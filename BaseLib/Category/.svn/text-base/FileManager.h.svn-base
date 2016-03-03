@@ -1,0 +1,21 @@
+//
+//  FileManager.h
+
+#import <Foundation/Foundation.h>
+
+@interface FileManager : NSObject
++ (instancetype)sharedInstance;
+
++ (NSString *) getApplicationSupportPath;
++ (NSString *) getDocumentsPath;
++ (NSString *) getCachePath;
++ (NSString *) getTemPath;
+
++ (BOOL) createDirectory:(NSString *)newDirectory;
++ (BOOL) deleteFilesysItem:(NSString*)strItem;
++ (BOOL) moveFilesysItem:(NSString *)srcPath toPath:(NSString *)dstPath;
++ (BOOL) copyFilesysItem:(NSString *)srcPath toPath:(NSString *)dstPath;
++ (BOOL) fileExist:(NSString*)strPath;
+
++ (BOOL) addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
+@end

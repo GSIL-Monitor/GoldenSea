@@ -1,0 +1,69 @@
+//
+//  UIView+Global.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIView (Global)
+
+#pragma mark - 页面上大的按钮
+
+#define COMMON_BUTTON_W                 48
+#define COMMON_BUTTON_H                 26
+#define COMMON_BIG_BUTTON_W             290
+#define COMMON_BIG_BUTTON_H             44
+
+#define COMMON_BUTTON_SCREEN_MARGIN     8
+#define COMMON_BUTTON_BGIMAGE_STRX      7.5 // 普通按钮背景图拉伸点x
+#define COMMON_BUTTON_BGIMAGE_STRY      7.5 // 普通按钮背景图拉伸点y
+
+#pragma mark - 导航栏上面的按钮
+
++ (UIButton*)navigationBarConfirmButtonForTitle:(NSString*)title
+                                         target:(id)target
+                                         action:(SEL)action;
+
++ (UIButton*)defaultNavigationBarConfirmButtonForTitle:(NSString*)title
+                                                target:(id)target
+                                                action:(SEL)action;
+
++ (UIButton*)navigationBarBackButtonForTitle:(NSString*)title
+                                      target:(id)target
+                                      action:(SEL)action;
+
++ (UIButton*)defaultNavigationBarBackButtonForTitle:(NSString*)title
+                                             target:(id)target
+                                             action:(SEL)action;
+
++ (UIButton*)navigationBarRoundButtonForTitle:(NSString*)title
+                                       target:(id)target
+                                       action:(SEL)action;
+
++ (UIButton*)defaultNavigationBarRoundButtonForTitle:(NSString*)title
+                                              target:(id)target
+                                              action:(SEL)action;
+
++ (UIButton*)commonImageButton:(NSString*)normalImage
+                highlightImage:(NSString*)highlightImage
+                      btnWidth:(CGFloat)width
+                     btnHeight:(CGFloat)height
+                        target:(id)target
+                        action:(SEL)action;
+
++ (UIButton*)commonTextButton:(NSString*)title
+                       target:(id)target
+                       action:(SEL)action;
+
+@end
+
+@interface UIView (RightDragToGoBack)
+
+- (BOOL)isSupportRightDragToGoBack;
+
+@end
+
+@interface UIControl (RightDragToGoBack)
+
+@property (nonatomic, assign) BOOL isSupportRightDragToGoBack;
+
+@end

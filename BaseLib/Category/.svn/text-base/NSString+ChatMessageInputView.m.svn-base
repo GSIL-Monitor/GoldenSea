@@ -1,0 +1,21 @@
+//
+//  NSString+RCSMessageInputView.m
+//  RCS
+//
+//  Created by Joy on 15-4-13.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "NSString+ChatMessageInputView.h"
+
+@implementation NSString (ChatMessageInputView)
+
+- (NSString *)stringByTrimingWhitespace {
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (NSUInteger)numberOfLines {
+    return [[self componentsSeparatedByString:@"\n"] count] + 1;
+}
+
+@end

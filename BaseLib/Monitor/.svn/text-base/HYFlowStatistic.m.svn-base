@@ -1,0 +1,189 @@
+//
+//  HYFlowStatistic.m
+//  _Client-iOS-Common
+//
+//  Created by zixian.qxz on 12-9-21.
+//  Copyright (c) 2012年 _.com. All rights reserved.
+//
+
+#import "HYFlowStatistic.h"
+#import "CommonMacros.h"
+#import "NSFileManagerEX.h"
+typedef enum {
+    FLOWTYPE_API_WIFI = 0,
+    FLOWTYPE_API_WWAN = 1,
+    FLOWTYPE_PIC_WIFI = 2,
+    FLOWTYPE_PIC_WWAN = 3
+} EFlowType;
+
+@implementation HYFlowStatistic
+
+@synthesize apiAccessFlowInWIFI = _apiAccessFlowInWIFI;
+@synthesize apiAccessFlowInWWAN = _apiAccessFlowInWWAN;
+@synthesize pictureAccessFlowInWIFI = _pictureAccessFlowInWIFI;
+@synthesize pictureAccessFlowInWWAN = _pictureAccessFlowInWWAN;
+@synthesize inWIFI = _inWIFI;
+
+SINGLETON_GENERATOR(HYFlowStatistic, shareInstance)
+
+/**
+ ** 流量存储格式:{yyyy-MM-dd:[api_wifi,api_wwan,pic_wifi,pic_wwan],...}
+ **/
+- (void)loadHistoryData
+{
+    NSString *path = [[NSFileManager docDir] stringByAppendingString:@"/flow_statistic.txt"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]){
+        _flowData = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        NSDate *now = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *key = [formatter stringFromDate:now];
+        
+        NSArray *data = [_flowData objectForKey:key];
+        // 取今天的值
+        if ([data count] == FLOWTYPE_PIC_WWAN + 1){
+            _apiAccessFlowInWIFI = [[data objectAtIndex:FLOWTYPE_API_WIFI] longLongValue];
+            _apiAccessFlowInWWAN = [[data objectAtIndex:FLOWTYPE_API_WWAN] longLongValue];
+            _pictureAccessFlowInWIFI = [[data objectAtIndex:FLOWTYPE_PIC_WIFI] longLongValue];
+            _pictureAccessFlowInWWAN = [[data objectAtIndex:FLOWTYPE_PIC_WWAN] longLongValue];
+        }
+        else{
+            _apiAccessFlowInWIFI = _apiAccessFlowInWWAN = _pictureAccessFlowInWIFI = _pictureAccessFlowInWWAN = 0;
+        }
+    }
+    else{
+        _apiAccessFlowInWIFI = _apiAccessFlowInWWAN = _pictureAccessFlowInWIFI = _pictureAccessFlowInWWAN = 0;
+    }
+}
+
+- (void)addApiAccessFlow:(long long)deltaFlow
+{
+    if (_inWIFI)
+        _apiAccessFlowInWIFI += deltaFlow;
+    else
+        _apiAccessFlowInWWAN += deltaFlow;
+}
+
+- (void)addPictureAccessFlow:(long long)deltaFlow
+{
+    if (_inWIFI)
+        _pictureAccessFlowInWIFI += deltaFlow;
+    else
+        _pictureAccessFlowInWWAN += deltaFlow;
+}
+
+- (long long)getThisMonthFlowInWIFI
+{
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    NSString *thisMonth = [formatter stringFromDate:now];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *today = [formatter stringFromDate:now];
+    
+    long long sum = 0;
+    for (NSString *key in _flowData){
+        if ([key hasPrefix:thisMonth] == YES){
+            if ([key isEqualToString:today] == NO){
+                NSArray *aMonthData = [_flowData objectForKey:key];
+                sum += [[aMonthData objectAtIndex:FLOWTYPE_API_WIFI] longLongValue];
+                sum += [[aMonthData objectAtIndex:FLOWTYPE_PIC_WIFI] longLongValue];
+            }
+        }
+    }
+    
+    sum += _apiAccessFlowInWIFI + _pictureAccessFlowInWIFI;
+    
+    return sum;
+}
+
+- (long long)getThisMonthFlowInWWAN
+{
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    NSString *thisMonth = [formatter stringFromDate:now];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *today = [formatter stringFromDate:now];
+    
+    long long sum = 0;
+    for (NSString *key in _flowData){
+        if ([key hasPrefix:thisMonth] == YES){
+            if ([key isEqualToString:today] == NO){
+                NSArray *aMonthData = [_flowData objectForKey:key];
+                sum += [[aMonthData objectAtIndex:FLOWTYPE_API_WWAN] longLongValue];
+                sum += [[aMonthData objectAtIndex:FLOWTYPE_PIC_WWAN] longLongValue];
+            }
+        }
+    }
+    
+    sum += _apiAccessFlowInWWAN + _pictureAccessFlowInWWAN;
+    
+    return sum;
+}
+
+- (long long)getTodayFlowInWIFI
+{
+    return _apiAccessFlowInWIFI + _pictureAccessFlowInWIFI;
+}
+- (long long)getTodayFlowInWWAN
+{
+    return _apiAccessFlowInWWAN + _pictureAccessFlowInWWAN;
+}
+
+// 删除前几个月的数据
+- (void)clearLastMonthData:(NSString *)thisMonth data:(NSMutableDictionary *)data
+{
+    NSMutableArray *deleteKeys = [NSMutableArray array];
+    for (NSString *key in data){
+        if ([key hasPrefix:thisMonth] == NO)
+            [deleteKeys addObject:key];
+    }
+    
+    for (NSString *key in deleteKeys)
+        [data removeObjectForKey:key];
+}
+
+- (void)save
+{
+    NSMutableDictionary *newFlowData = [NSMutableDictionary dictionary];
+    if ([_flowData count] > 0)
+        [newFlowData addEntriesFromDictionary:_flowData];
+    
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    NSString *thisMonth = [formatter stringFromDate:now];
+    [self clearLastMonthData:thisMonth data:newFlowData];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *today = [formatter stringFromDate:now];
+    
+    NSString *apiwifiValue = [NSString stringWithFormat:@"%lld", _apiAccessFlowInWIFI];
+    NSString *apiwwanValue = [NSString stringWithFormat:@"%lld", _apiAccessFlowInWWAN];
+    NSString *picwifiValue = [NSString stringWithFormat:@"%lld", _pictureAccessFlowInWIFI];
+    NSString *picwwanValue = [NSString stringWithFormat:@"%lld", _pictureAccessFlowInWWAN];
+    
+    NSArray *theMonth = [NSArray arrayWithObjects:apiwifiValue,apiwwanValue,picwifiValue,picwwanValue,nil];
+    [newFlowData setObject:theMonth forKey:today];
+    
+    NSString *path = [[NSFileManager docDir] stringByAppendingString:@"/flow_statistic.txt"];
+    [newFlowData writeToFile:path atomically:NO];
+}
+
+- (id)init
+{
+    SINGLETON_CHECK_INITED(HYFlowStatistic)
+    
+    if (self = [super init]){
+        [self loadHistoryData];
+    }
+    
+    return self;
+}
+
+@end

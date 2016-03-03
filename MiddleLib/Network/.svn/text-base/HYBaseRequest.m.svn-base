@@ -1,0 +1,164 @@
+//
+//  HYBaseRequest.m
+//  iRCS
+//
+//  Created by frank weng on 15/8/25.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import "HYBaseRequest.h"
+#import "HYBaseResponse.h"
+#import "HYRequestManager.h"
+#import "NSObject+YYModel.h"
+
+@interface HYBaseRequest()
+
+@property (nonatomic) NSString* apiURL;
+
+@end
+
+
+@implementation HYBaseRequest
+
+
+-(id)init
+{
+    self = [super init];
+    if(self){
+        if([self conformsToProtocol:@protocol(HYbaseRequestDelegate)]){
+            self.child = self;
+        }else{
+//            NSAssert(NO, @"child class must implement the HYbaseRequestDelegate");
+        }
+        
+        self.paramDic = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
+
+
+- (id)initWithUrl:(NSString *)url
+{
+    self = [super init];
+    if(self){
+        if([self conformsToProtocol:@protocol(HYbaseRequestDelegate) ]){
+            self.child = self;
+        }else{
+//            NSAssert(NO, @"child class must implement the HYbaseRequestDelegate");
+        }
+        
+        self.paramDic = [NSMutableDictionary dictionary];
+        _apiURL = url;
+    }
+    
+    return self;
+}
+
+
+-(void)dealloc
+{
+    [self stop];
+}
+
+- (YTKRequestSerializerType)requestSerializerType{
+    return YTKRequestSerializerTypeJSON;
+}
+
+- (NSString *)requestUrl
+{
+    if([[_apiURL lowercaseString] hasPrefix:@"http:"] || [[_apiURL lowercaseString] hasPrefix:@"https:"] ){
+        return _apiURL;
+    }
+    
+//    NSLog(@"full url path: %@", [NSString stringWithFormat:@"%@%@",Server_BaseURL,_apiURL]);
+    return [NSString stringWithFormat:@"%@%@",Server_BaseURL,_apiURL];
+}
+
+-(id) rawData
+{
+    return self.responseJSONObject;
+}
+
+
+-(id) responseDataFromObj:(id)responseObj
+{
+    HYBaseResponse* response = [[HYBaseResponse alloc]init];
+    
+    NSDictionary* dict = (NSDictionary*)responseObj;
+    response.errorCode = [[dict safeValueForKey:@"code"] integerValue];
+    if(!response.errorCode){
+        response.data = [[NSClassFromString([HYRequestManager modelWithRequst:NSStringFromClass([self class])]) alloc] initFromObj:responseObj];
+    }
+    
+    response.respError = [dict safeValueForKey:@"message"] ;
+
+    
+    return response;
+}
+
+//use YYModel to parse the JsonData
+- (id) responseDataWithYYModelFromObj:(id)responseObj
+{
+    HYBaseResponse* response = [[HYBaseResponse alloc]init];
+    
+    NSDictionary* dict = (NSDictionary*)responseObj;
+    response.errorCode = [[dict safeValueForKey:@"code"] integerValue];
+    if(!response.errorCode){
+        response.data = [NSClassFromString([HYRequestManager modelWithRequst:NSStringFromClass([self class])]) modelWithJSON:responseObj];
+    }
+    response.respError = [dict safeValueForKey:@"message"] ;
+    return response;
+}
+
+
+#pragma mark - interface func
+-(void)startWithSuccess:(void (^)(HYBaseRequest *request, HYBaseResponse *response))success failure:(void (^)(HYBaseRequest *request, HYBaseResponse *response))failure
+{
+    WS(tws);
+    [self startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        HYBaseResponse* response = [tws responseDataFromObj:request.responseJSONObject];
+        success(tws,response);
+
+        //to future.
+//        if(!response.errorCode){
+//            success(tws,response);
+//        }else{
+//            failure(tws,response);
+//        }
+    } failure:^(YTKBaseRequest *request) {
+        failure(tws,[tws responseDataFromObj:request.responseJSONObject]);
+    }];
+}
+
+-(void)startMomentRequestWithSuccess:(void (^)(HYBaseRequest *request, HYBaseResponse *response))success failure:(void (^)(HYBaseRequest *request, HYBaseResponse *response))failure
+{
+    WS(tws);
+    [self startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        HYBaseResponse* response = [tws responseDataWithYYModelFromObj:request.responseJSONObject];
+        success(tws,response);
+    } failure:^(YTKBaseRequest *request) {
+        HYBaseResponse* response = [tws responseDataWithYYModelFromObj:request.responseJSONObject];
+        failure(tws,response);
+    }];
+
+}
+
+
+#pragma mark - override the YTKBaseRequest  func
+-(id)jsonValidator
+{
+    return  [super jsonValidator];
+}
+
+-(BOOL)statusCodeValidator
+{
+    NSInteger statusCode = [self responseStatusCode];
+    if (statusCode >= 200 && statusCode <=299) { //fix me
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+@end

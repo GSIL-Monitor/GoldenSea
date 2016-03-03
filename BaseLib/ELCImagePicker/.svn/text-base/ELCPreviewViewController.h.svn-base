@@ -1,0 +1,40 @@
+//
+//  ELCReviewViewController.h
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+@class ELCPreviewViewController;
+@protocol ELCPreviewViewControllerDelegate <NSObject>
+
+- (void)elcPreviewViewController:(ELCPreviewViewController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
+- (void)elcPreviewViewControllerDidCancel:(ELCPreviewViewController *)picker;
+
+@end
+
+typedef void (^ELSPreviewSendBlock)(ELCPreviewViewController *previewVC);
+
+@interface ELCPreviewViewController : UIViewController
+@property (nonatomic, strong) NSArray *elcAssets;
+@property (nonatomic, assign) NSUInteger configerPageIndex;
+@property (nonatomic, copy) ELSPreviewSendBlock sendBlock;
+@property (nonatomic, assign) BOOL  isOrigin;  //是否发送原图，defaut is NO
+@property (nonatomic,assign) BOOL independentCall;//单独调用标示
+@property (nonatomic, assign) NSInteger maximumImagesCount;//最大选择数量
+/**
+ * YES if the picker should return a UIImage along with other meta info (this is the default),
+ * NO if the picker should return the assetURL and other meta info, but no actual UIImage.
+ */
+@property (nonatomic, assign) BOOL returnsImage;
+
+/**
+ * YES if the picker should return the original image,
+ * or NO for an image suitable for displaying full screen on the device.
+ * Does nothing if `returnsImage` is NO.
+ */
+@property (nonatomic, assign) BOOL returnsOriginalImage;
+@property (nonatomic, strong) id<ELCPreviewViewControllerDelegate> previewDelegate;
+@end

@@ -1,0 +1,48 @@
+//
+//  HYUIKitUtil.h
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    int getScreenWidth();
+    
+    int getScreenHeight();
+    
+    int getStatusBarHeight();
+    
+    void setStatusBarHeight(int newH);
+    
+    BOOL isDefaultTheme();
+    
+    double getSystemVersion();
+    
+    bool isDeviceJailBroken();
+    
+    unsigned long GetTickCount();
+
+    UIImage* cropImage(UIImage* originalImage, CGRect inRect, CGFloat scale);
+
+    float RightAlignWidthWithScreenSize(float xOrWith);
+    
+    float ScaleWidthWithScreenSize(float xOrWith);
+    
+    UIImage* getImageFromIconFont(NSString* title, float size, UIColor *color);
+    
+    UIImage* getImageFromIconFontByWidthHeight(NSString* title, float width, float height, UIColor *color);
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+#define STATUSBAR_HEIGHT        getStatusBarHeight()
+#define APPLICATION_WIDTH       (SCREEN_WIDTH)
+#define APPLICATION_HEIGHT      (SCREEN_HEIGHT - STATUSBAR_HEIGHT)
+
+#define SYSTEM_VERSION          getSystemVersion()
+

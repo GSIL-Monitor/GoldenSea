@@ -1,0 +1,189 @@
+//
+//  HYFileLogger.m
+//  _Client-iOS-Common
+//
+//  Created by zixian.qxz on 12-8-30.
+//  Copyright (c) 2012年 _.com. All rights reserved.
+//
+
+#import "HYFileLogger.h"
+
+@implementation HYLogLevelFilter
+
+static BOOL IsVerboseLoggingEnabled(void) {
+    static NSString *const kVerboseLoggingKey = @"HYVerboseLogging";
+    NSString *value = [[[NSProcessInfo processInfo] environment]
+                       objectForKey:kVerboseLoggingKey];
+    if (value) {
+        // Emulate [NSString boolValue] for pre-10.5
+        value = [value stringByTrimmingCharactersInSet:
+                 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([[value uppercaseString] hasPrefix:@"Y"] ||
+            [[value uppercaseString] hasPrefix:@"T"] ||
+            [value intValue]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kVerboseLoggingKey];
+}
+
+- (BOOL)filterAllowsMessage:(NSString *)msg level:(HYLoggerLevel)level {
+#if DEBUG
+    return YES;
+#endif
+    
+    BOOL allow = YES;
+    
+    switch (level) {
+        case kHYLoggerLevelDebug:
+            allow = NO;
+            break;
+        case kHYLoggerLevelInfo:
+            allow = IsVerboseLoggingEnabled();
+            break;
+        case kHYLoggerLevelError:
+            allow = YES;
+            break;
+        case kHYLoggerLevelAssert:
+            allow = YES;
+            break;
+        default:
+            allow = YES;
+            break;
+    }
+    
+    return allow;
+}
+
+@end  // HYLogLevelFilter
+
+@implementation HYLogNoFilter
+
+- (BOOL)filterAllowsMessage:(NSString *)msg level:(HYLoggerLevel)level {
+    return YES;  // Allow everything through
+}
+
+@end  // HYLogNoFilter
+
+
+@implementation HYLogCustomLevelFilter
+
+- (id)init {
+    // Use error level for default init.
+    return [self initWithFilterLevel:kHYLoggerLevelError];
+}
+
+- (id)initWithFilterLevel:(HYLoggerLevel)level {
+    self = [super init];
+    if (self != nil) {
+        _filterLevel = level;
+    }
+    return self;
+}
+
+- (BOOL)filterAllowsMessage:(NSString *)msg level:(HYLoggerLevel)level {
+    return (level >= _filterLevel) ? YES : NO;
+}
+
+@end
+
+@implementation HYFileLogWriter
+
+- (id)initWithName:(NSString *)name
+{
+    self = [super init];
+    if (self){
+#ifdef OPEN_FILE_LOGGER
+        NSDate *now = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd-HH:mm"];
+        NSString *fileName = [NSString stringWithFormat:@"log_%@_%@.log", name, [formatter stringFromDate:now]];
+        
+        NSString *path = [[NSFileManager docDir] stringByAppendingFormat:@"/%@",fileName];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path] == NO){
+            [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+        }
+        
+        _logFile = [NSFileHandle fileHandleForWritingAtPath:path];
+        NSString *line = @"********** BEGIN LOG **********\n";
+        [_logFile writeData:[line dataUsingEncoding:NSUTF8StringEncoding]];
+#endif
+    }
+    return self;
+}
+
+- (void)logMessage:(NSString *)msg level:(HYLoggerLevel)level
+{
+    NSString *line = [NSString stringWithFormat:@"%@\n",msg];
+    [_logFile writeData:[line dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
+- (void)dealloc
+{
+#ifdef OPEN_FILE_LOGGER
+    [_logFile closeFile];
+    _logFile = nil;
+#endif
+}
+
+@end
+
+@interface HYLogger(Private)
+- (void)logInternalFormat:(NSString *)fmt valist:(va_list)args level:(HYLoggerLevel)level;
+@end
+
+@implementation HYLogger
+
+@synthesize filter = _filter;
+@synthesize writer = _writer;
+
+- (id)initWithWriter:(id<HYLogWriter>)writer filter:(id<HYLogFilter>)filter
+{
+    self = [super init];
+    if (self){
+        _writer = writer;
+        _filter = filter;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    _writer = nil;
+    _filter = nil;
+}
+
+- (void)logDebug:(NSString *)format,...
+{
+#ifdef OPEN_FILE_LOGGER
+    va_list args;
+    va_start(args, format);
+    [self logInternalFormat:format valist:args level:kHYLoggerLevelDebug];
+    va_end(args);
+#endif
+}
+
+- (void)logInfo:(NSString *)format,...
+{
+#ifdef OPEN_FILE_LOGGER
+    va_list args;
+    va_start(args, format);
+    [self logInternalFormat:format valist:args level:kHYLoggerLevelInfo];
+    va_end(args);
+#endif
+}
+
+- (void)logInternalFormat:(NSString *)fmt valist:(va_list)args level:(HYLoggerLevel)level
+{
+    NSString *msg = [[NSString alloc] initWithFormat:fmt arguments:args];
+    
+    if (msg && [_filter filterAllowsMessage:msg level:level]){
+        [_writer logMessage:msg level:level];
+    }
+
+}
+
+@end

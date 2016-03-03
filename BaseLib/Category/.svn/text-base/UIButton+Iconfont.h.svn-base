@@ -1,0 +1,22 @@
+//
+//  UIButton+Iconfont.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIButton (IconFont)
+
++ (UIButton*)buttonWithTitle:(NSString*)title
+                 normalColor:(UIColor*)normalColor
+                    fontSize:(CGFloat)size
+                      target:(id)target
+                      action:(SEL)action;
+
++ (UIButton*)buttonWithTitle:(NSString*)title
+                 normalColor:(UIColor*)normalColor
+            highlightedColor:(UIColor*)highlightedColor
+                    fontSize:(CGFloat)size
+                      target:(id)target
+                      action:(SEL)action;
+
+@end

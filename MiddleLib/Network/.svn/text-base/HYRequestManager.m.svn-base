@@ -1,0 +1,143 @@
+//
+//  HYRequestManager.m
+//  iRCS
+//
+//  Created by frank weng on 15/8/12.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import "HYRequestManager.h"
+
+@interface HYRequestManager()
+
+@property (nonatomic,strong) NSMutableDictionary* responseDict;
+@property (nonatomic,strong) NSMutableDictionary* modelDict;
+
+@end
+
+@implementation HYRequestManager
+
++ (HYRequestManager *)sharedInstance {
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+-(void)initService
+{
+//    [HYRequestManager registerRequest:@"EatRequest" withResponse:@"EatResponse"];
+    [HYRequestManager registerRequest:@"EatRequest" withModel:@"EatModel"];
+    [HYRequestManager registerRequest:@"IsRCSUserRequest" withModel:@"IsRCSModel"];
+    [HYRequestManager registerRequest:@"BackupAllContactsRequest" withModel:@"RCSPlatRespBaseModel"];
+    [HYRequestManager registerRequest:@"GetAllContactsRequest" withModel:@"GetAllContactsModel"];
+    [HYRequestManager registerRequest:@"UserFeedbackRequest" withModel:@"RCSPlatRespBaseModel"];
+    [HYRequestManager registerRequest:@"LastBackupDateRequest" withModel:@"LastBackupDateModel"];
+    
+    //moments
+    [HYRequestManager registerRequest:@"GetFriPostsRequest" withModel:@"WebmoodListModel"];
+    [HYRequestManager registerRequest:@"GetMyPostsRequest" withModel:@"MyWmInfoListModel"];
+    [HYRequestManager registerRequest:@"AddCommentRequest" withModel:@"AddCommentModel"];
+    [HYRequestManager registerRequest:@"DelCommentRequest" withModel:@"DeleteCommentModel"];
+    [HYRequestManager registerRequest:@"AddPraiseRequest" withModel:@"AddPraiseModel"];
+    [HYRequestManager registerRequest:@"CancelPraiseRequest" withModel:@"CancelPraiseModel"];
+    [HYRequestManager registerRequest:@"GetPostDetailReq" withModel:@"WEbmoodDetailModel"];
+    [HYRequestManager registerRequest:@"UploaderPostRequest" withModel:@"WmUploaderModel"];
+    [HYRequestManager registerRequest:@"DeluploaderPostRequest" withModel:@"WebmoodBaseModel"];
+    [HYRequestManager registerRequest:@"SetBlackUserRequest" withModel:@"SetBlackUserModel"];
+    [HYRequestManager registerRequest:@"SetNotlookUserRequest" withModel:@"SetNotlookUserModel"];
+    [HYRequestManager registerRequest:@"QueryPersonalAuthRequest" withModel:@"QueryPersonalAuthModel"];
+    [HYRequestManager registerRequest:@"SetPersonalAuthRequest" withModel:@"SetPersonalAuthModel"];
+    [HYRequestManager registerRequest:@"UploadAlbumRequest" withModel:@"WebmoodBaseModel"];
+    [HYRequestManager registerRequest:@"GetMyCommentsRequest" withModel:@"MyCommentsListModel"];
+    [HYRequestManager registerRequest:@"GetWebInfoDetailRequest" withModel:@"GetWebInfoDetailModel"];
+    [HYRequestManager registerRequest:@"SelectNotificationRequest" withModel:@"SelectNotificationModel"];
+    [HYRequestManager registerRequest:@"DeleteNotificationRequest" withModel:@"WebmoodBaseModel"];
+    [HYRequestManager registerRequest:@"DeleteAllNotificationRequest" withModel:@"WebmoodBaseModel"];
+    [HYRequestManager registerRequest:@"SearchCommentsRequest" withModel:@"SearchCommentsModel"];
+    [HYRequestManager registerRequest:@"SearchPraisesRequest" withModel:@"SearchPraisesModel"];
+    [HYRequestManager registerRequest:@"FindBlackUserRequest" withModel:@"FindBlackUserModel"];
+    [HYRequestManager registerRequest:@"FindNotlookUserRequest" withModel:@"FindNotlookUserModel"];
+    // profile
+    [HYRequestManager registerRequest:@"RegistRCSPlatRequest" withModel:@"RegistRCSPlatModel"];
+    [HYRequestManager registerRequest:@"GetProfileRequest" withModel:@"GetProfileModel"];
+    [HYRequestManager registerRequest:@"SaveMyProfileRequest" withModel:@"RCSPlatRespBaseModel"];
+    [HYRequestManager registerRequest:@"CheckUsrRegisterdRequest" withModel:@"CheckUsrRegisterdModel"];
+
+}
+
+
++(void)registerRequest:(NSString *)requestClassString withResponse:(NSString *)responseClassString
+{
+    HYRequestManager* manager = [HYRequestManager sharedInstance];
+    [manager.responseDict safeSetValue:responseClassString forKey:requestClassString];
+}
+
+
++(HYBaseResponse*)responseWithRequst:(NSString *)requestClassString
+{
+    NSString* responseClassString = [[HYRequestManager sharedInstance].responseDict safeValueForKey:requestClassString];
+    
+    NSAssert(responseClassString, @"%@ not registed!", requestClassString);
+    
+    if(responseClassString){
+        HYBaseResponse* resp =  [[NSClassFromString(responseClassString) alloc]init];
+        return resp;
+    }
+    
+    return nil;
+}
+
+
++ (void) registerRequest:(NSString*)requestClassString withModel:(NSString*)modelClassString
+{
+    HYRequestManager* manager = [HYRequestManager sharedInstance];
+    [manager.modelDict safeSetValue:modelClassString forKey:requestClassString];
+}
+
++(NSString*)modelWithRequst:(NSString *)requestClassString
+{
+    NSString* modelClassString = [[HYRequestManager sharedInstance].modelDict safeValueForKey:requestClassString];
+    
+//    GSAssert(modelClassString, @"%@ not registed!", requestClassString);
+    if(!modelClassString){
+        return @"HYBaseModel";
+    }
+    
+    return modelClassString;
+    
+//    if(modelClassString){
+//        HYBaseModel* model =  [[NSClassFromString(modelClassString) alloc]init];
+//        return model;
+//    }
+//    
+//    return nil;
+}
+
+
+#pragma mark - getter & setter
+
+-(NSMutableDictionary*)modelDict
+{
+    if(!_modelDict){
+        _modelDict = [NSMutableDictionary dictionary];
+    }
+    
+    return _modelDict;
+}
+
+
+-(NSMutableDictionary*)responseDict
+{
+    if(!_responseDict){
+        _responseDict = [NSMutableDictionary dictionary];
+    }
+    
+    return _responseDict;
+}
+
+
+
+@end

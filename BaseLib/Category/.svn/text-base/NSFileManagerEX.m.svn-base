@@ -1,0 +1,170 @@
+//
+//  NSFileManagerEX.m
+//
+
+#import "NSFileManagerEX.h"
+#import <sys/xattr.h>
+#import "UIDeviceEX.h"
+
+
+@implementation NSFileManager (EX)
+
++ (NSString *)homeDir
+{
+    static NSString *homeDir = nil;
+    if(homeDir == nil)
+    {
+        homeDir = NSHomeDirectory();
+    }
+    return homeDir;
+}
+
++ (NSString *)bundleDir
+{
+    static NSString *bundleDir = nil;
+    if(bundleDir == nil)
+    {
+        bundleDir = [[NSBundle mainBundle] bundlePath];
+    }
+    return bundleDir;
+}
+
++ (NSString *)docDir
+{
+    static NSString *docDir = nil;
+    if(docDir == nil)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        if(paths && paths.count > 0)
+        {
+            docDir = [paths objectAtIndex:0];
+        }
+        else
+        {
+            docDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        }
+    }
+    return docDir;
+}
+
++ (NSString *)libDir
+{
+    static NSString *libDir = nil;
+    if(libDir == nil)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        if(paths && paths.count > 0)
+        {
+            libDir = [paths objectAtIndex:0];
+        }
+        else
+        {
+            libDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
+        }
+    }
+    return libDir;
+}
+
++ (NSString *)_StorageDirInLibDir
+{
+    static NSString *s_Path = nil;
+    if (nil == s_Path)
+    {
+        s_Path = [[NSFileManager libDir] stringByAppendingPathComponent:@"_Storage"];
+        BOOL isDirectory = NO;
+        if(![[NSFileManager defaultManager] fileExistsAtPath:s_Path isDirectory:&isDirectory] || !isDirectory)
+        {
+            [[NSFileManager defaultManager] createDirectoryAtPath:s_Path withIntermediateDirectories:YES attributes:nil error:nil];
+            [NSFileManager addSkipBackupAttributeToItemAtURLString:s_Path];
+        }
+        
+    }
+    return s_Path;
+}
+
+
++ (NSString *)tempDir
+{
+    static NSString* tempDir = nil;
+    
+    if (!tempDir) {
+        tempDir = [NSTemporaryDirectory() stringByStandardizingPath];
+    }
+    
+	return tempDir;
+}
++ (NSString *)cacheDir
+{
+    static NSString *cacheDir = nil;
+    if(cacheDir == nil)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        if(paths && paths.count > 0)
+        {
+            cacheDir = [paths objectAtIndex:0];
+        }
+        else
+        {
+            cacheDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+        }
+    }
+    return cacheDir;
+}
+
++ (NSString *)localDir
+{
+    static NSString *localDir = nil;
+    if(localDir == nil)
+    {
+        BOOL isDirectory = NO;
+        localDir = [[NSFileManager libDir] stringByAppendingPathComponent:@"Local"];
+        if(![[NSFileManager defaultManager] fileExistsAtPath:localDir isDirectory:&isDirectory] || !isDirectory)
+        {
+            [[NSFileManager defaultManager] createDirectoryAtPath:localDir withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+    }
+    return localDir;
+}
+
++ (BOOL)addSkipBackupAttributeToItemAtURLString:(NSString *)urlString
+{
+    NSURL *URL = [NSURL URLWithString:urlString];
+    if (DeviceSystemMajorVersion() >= 6)
+    {
+        return [NSFileManager addSkipBackupAttributeToItemAtURLAbove51:URL];
+    }
+    else
+    {
+        return [NSFileManager addSkipBackupAttributeToItemAtURLBelow51:URL];
+    }
+}
+
+
++ (BOOL)addSkipBackupAttributeToItemAtURLAbove51:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
+
++ (BOOL)addSkipBackupAttributeToItemAtURLBelow51:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    const char* filePath = [[URL path] fileSystemRepresentation];
+    
+    const char* attrName = "com.apple.MobileBackup";
+    u_int8_t attrValue = 1;
+    
+    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
+    return result == 0;
+}
+
+
+@end

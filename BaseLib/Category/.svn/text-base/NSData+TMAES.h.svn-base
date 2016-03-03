@@ -1,0 +1,15 @@
+//
+//  NSData+HYAES.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSData (HYAES)
+
+- (NSData *)HYAES256EncryptWithKey:(NSString *)key;   //加密
+- (NSData *)HYAES256EncryptWithKey:(NSString *)key iv:(NSString *)iv;
+
+- (NSData *)HYAES256DecryptWithKey:(NSString *)key;   //解密
+- (NSData *)HYAES256DecryptWithKey:(NSString *)key iv:(NSString *)iv;   //解密
+
+@end

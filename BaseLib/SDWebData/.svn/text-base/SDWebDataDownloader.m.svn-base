@@ -1,0 +1,417 @@
+//
+//  SDWebDataDownloader.m
+//  SDWebData
+//
+//  Created by stm on 11-7-13.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "SDWebDataDownloader.h"
+//#import "ASIHTTPRequest.h"
+
+NSString *const SDWebDataDownloadStartNotification = @"SDWebDataDownloadStartNotification";
+NSString *const SDWebDataDownloadStopNotification = @"SDWebDataDownloadStopNotification";
+
+@interface SDWebDataDownloader ()
+#ifndef SUPPORTED_INTERRUPTED_DOWNLOAD
+@property (nonatomic, retain) NSURLConnection *connection;
+#else
+@property (nonatomic, retain) ASIHTTPRequest  *asiHttpRequest;
+#endif
+@end
+
+@implementation SDWebDataDownloader
+@synthesize url, delegate, theData, userInfo, lowPriority,dataLength,totalLength,resetLength;
+@synthesize postMethod = _postMethod;
+
++ (id)downloaderWithURL:(NSURL *)aUrl delegate:(id<SDWebDataDownloaderDelegate>)aDelegate{
+	return [[self class] downloaderWithURL:aUrl delegate:aDelegate userInfo:nil];
+}
+
++ (id)downloaderWithURL:(NSURL *)aUrl delegate:(id<SDWebDataDownloaderDelegate>)aDelegate userInfo:(id)aUserInfo{
+	return [[self class] downloaderWithURL:aUrl delegate:aDelegate userInfo:aUserInfo lowPriority:NO];
+}
+
++ (id)downloaderWithURL:(NSURL *)aUrl delegate:(id<SDWebDataDownloaderDelegate>)aDelegate userInfo:(id)aUserInfo lowPriority:(BOOL)aLowPriority{
+	return [[self class] downloaderWithURL:aUrl delegate:aDelegate userInfo:aUserInfo lowPriority:aLowPriority postMethod:NO];
+}
+
++ (id)downloaderWithURL:(NSURL *)aUrl delegate:(id<SDWebDataDownloaderDelegate>)aDelegate userInfo:(id)aUserInfo lowPriority:(BOOL)aLowPriority postMethod:(BOOL)aPostMethod
+{
+    // Bind SDNetworkActivityIndicator if available (download it here: http://github.com/rs/SDNetworkActivityIndicator )
+    // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDWebImage import
+    if (NSClassFromString(@"SDNetworkActivityIndicator"))
+    {
+        id activityIndicator = [NSClassFromString(@"SDNetworkActivityIndicator") performSelector:NSSelectorFromString(@"sharedActivityIndicator")];
+        [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
+                                                 selector:NSSelectorFromString(@"startActivity")
+                                                     name:SDWebDataDownloadStartNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
+                                                 selector:NSSelectorFromString(@"stopActivity")
+                                                     name:SDWebDataDownloadStopNotification object:nil];
+    }
+    
+    SDWebDataDownloader *downloader = [[[SDWebDataDownloader alloc] init] autorelease];
+    downloader.dataLength = 0;
+    downloader.totalLength = 0;
+    downloader.resetLength = 0;
+    downloader.numberOfTimesToRetryOnTimeout = 1;
+    downloader.retryCount = 0;
+    downloader.url = aUrl;
+	downloader.delegate = [MAZeroingWeakRef refWithTarget:aDelegate];
+    //downloader.delegate = aDelegate;
+    downloader.userInfo = aUserInfo;
+    downloader.lowPriority = aLowPriority;
+    downloader.postMethod = aPostMethod;
+    [downloader performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
+    return downloader;
+}
+
+//+ (void)setMaxConcurrentDownloads:(NSUInteger)max
+//{
+//    // NOOP
+//}
+
+- (void)start
+{
+#ifndef SUPPORTED_INTERRUPTED_DOWNLOAD
+    // In order to prevent from potential duplicate caching (NSURLCache + SDImageCache) we disable the cache for image requests
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+    
+    if( _postMethod )
+    {
+        [request setHTTPMethod:@"POST"];
+    }
+    
+    self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO] autorelease];
+	
+    // If not in low priority mode, ensure we aren't blocked by UI manipulations (default runloop mode for NSURLConnection is NSEventTrackingRunLoopMode)
+    if (!lowPriority)
+    {
+        [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    }
+    
+    for( int i = 0 ; i< (self.numberOfTimesToRetryOnTimeout+1) ; i++ )
+    {
+        [connection start];
+    	
+        if (connection)
+        {
+            self.theData = [NSMutableData data];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStartNotification object:nil];
+            break;
+        }
+        else if( i == self.numberOfTimesToRetryOnTimeout )
+        {
+            id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+            
+            if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFailWithError:)])
+            {
+                [realDelegate performSelector:@selector(dataDownloader:didFailWithError:) withObject:self withObject:nil];
+            }
+        }
+        self.retryCount++;//重试次数
+    }
+    [request release];
+#else    
+    //ASIHttpRequest已经支持断点下载, 下载原理是把下载内容保存到临时文件中, 失败之后再次下载则从文件长度之后开始再次下载
+    //下载完成则把临时文件重命名成最终文件,
+    
+    //NSURL* tempUrl = [NSURL URLWithString:@"http://img01.taobaocdn.com/tfscom/i4/10403029294192635/T2wiN5XpBXXXXXXXXX_!!1792470403-0-matrixfa.jpg.jpg_120x120.jpg"]; //服务端目前还不支持断点下载, 可以使用该图片测试
+    //asiHttpRequest = [[ASIHTTPRequest alloc ] initWithURL:tempUrl];
+    
+    //WXINFO(@"Get Image File: %@", url);
+    self.asiHttpRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+    NSString* downloadPath = [self userInfo];
+    NSString* tmpDownloadPath = [downloadPath stringByAppendingString:@".download"];
+    
+    // The full file will be moved here if and when the request completes successfully
+    [_asiHttpRequest setDownloadDestinationPath:downloadPath];
+    // This file has part of the download in it already
+    [_asiHttpRequest setTemporaryFileDownloadPath:tmpDownloadPath];
+    [_asiHttpRequest setAllowResumeForFileDownloads:YES];
+    [_asiHttpRequest setShowAccurateProgress:YES];
+    [_asiHttpRequest setDownloadProgressDelegate:self];
+    [_asiHttpRequest setNumberOfTimesToRetryOnTimeout:self.numberOfTimesToRetryOnTimeout];
+    [_asiHttpRequest setAllowCompressedResponse:NO];
+    
+    NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+    if([fileManager fileExistsAtPath:tmpDownloadPath]) {
+        NSError *err = nil;
+        self.dataLength = [[fileManager attributesOfItemAtPath:tmpDownloadPath error:&err] fileSize];
+        if(err){
+            self.dataLength = 0;
+        }
+        
+        self.totalLength = [_asiHttpRequest getFileTotalSize];
+    }
+    //[ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
+    //[ASIHTTPRequest throttleBandwidthForWWANUsingLimit:1000];
+    //[ASIHTTPRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+    [_asiHttpRequest setHeadersReceivedBlock:^(NSDictionary *responseHeaders) {
+        if(_asiHttpRequest != nil && !_asiHttpRequest.isCancelled){
+            //获取内容总大小
+            NSNumber* length = [responseHeaders objectForKey:@"ContentLength"];
+            if( length == nil )
+                length = [responseHeaders objectForKey:@"Content-Length"];
+            self.totalLength = length.intValue;
+            //获取当前开始大小, 如果为断点下载则为断点下载位置.
+            self.dataLength = _asiHttpRequest.partialDownloadSize;
+            
+            NSString* contentRange = [responseHeaders objectForKey:@"Content-Range"];
+            if(contentRange != nil && [contentRange length] > 0){
+                //断点下载, 获取总文件大小
+                NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"/"];
+                NSString* totalLengthStr = [contentRange substringFromIndex:(1 + [contentRange rangeOfCharacterFromSet:charSet].location)];
+                if(totalLengthStr != nil && [totalLengthStr length] > 0){
+                    self.totalLength = [totalLengthStr intValue];
+                    [_asiHttpRequest setFileTotalSize:self.totalLength];
+                }
+            }
+            id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+            if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDataLenth:)])
+            {
+                [realDelegate performSelector:@selector(dataDownloaderDataLenth:) withObject:self];
+            }
+        }
+    }];
+    [_asiHttpRequest setCompletionBlock:^(void){
+        //dispatch_async(dispatch_get_main_queue(), ^(void){
+            BOOL callFinishCallback = NO;
+            if(_asiHttpRequest != nil && !_asiHttpRequest.isCancelled){
+                int statusCode = [_asiHttpRequest responseStatusCode];
+                if (statusCode == 200 || statusCode == 206) {
+                    //application/json
+                    NSString *contentType = _asiHttpRequest.responseHeaders[@"Content-Type"];
+                    if(contentType != nil && [contentType compare:@"application/json" options:NSCaseInsensitiveSearch] == NSOrderedSame){
+                        //服务端返回application/json类型, 表示服务端获取数据错误, (非标准, 又是一个坑)
+                    }else{
+                        NSData* data = [[[NSData alloc] initWithContentsOfFile:downloadPath] autorelease];
+                        if(data){
+                            callFinishCallback = YES;
+                            id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+                            if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDidFinish:)])
+                            {
+                                [realDelegate performSelector:@selector(dataDownloaderDidFinish:) withObject:self];
+                            }
+                            
+                            if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFinishWithData:)])
+                            {
+                                [realDelegate performSelector:@selector(dataDownloader:didFinishWithData:) withObject:self withObject:data];
+                            }
+                        }
+                    }
+                }
+                
+                if (!callFinishCallback) {
+                    id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+                    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFailWithError:)])
+                    {
+                        NSError *errObj = _asiHttpRequest.error;
+                        if (errObj == nil)
+                        {
+                            errObj = [NSError errorWithDomain:NetworkRequestErrorDomain code:_asiHttpRequest.responseStatusCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(_asiHttpRequest.responseStatusCode),@"errCode", _asiHttpRequest.responseStatusMessage, @"errMsg", nil]];
+                        }
+                        [realDelegate performSelector:@selector(dataDownloader:didFailWithError:) withObject:self withObject:errObj];
+                    }
+                    [_asiHttpRequest removeTemporaryDownloadFile];
+                    NSLog(@"Error = %d Get Image File: %@", [_asiHttpRequest responseStatusCode], url);
+                }
+            }
+        
+            [[NSFileManager defaultManager] removeItemAtPath:downloadPath error:nil];
+        //});
+        self.asiHttpRequest = nil;
+    }];
+    [_asiHttpRequest setFailedBlock:^(void) {
+        //dispatch_async(dispatch_get_main_queue(), ^(void){
+            if(_asiHttpRequest != nil && !_asiHttpRequest.isCancelled){
+                id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+                if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFailWithError:)])
+                {
+                    [realDelegate performSelector:@selector(dataDownloader:didFailWithError:) withObject:self withObject:_asiHttpRequest.error];
+                }
+                NSLog(@"Error Get Image File: %@", url);
+            }
+        //});
+        self.asiHttpRequest = nil;
+    }];
+    [_asiHttpRequest setDelegate:self];
+    [_asiHttpRequest startAsynchronous];
+    if(totalLength > 0 && dataLength > 0){
+        [self setProgress:(float)dataLength/totalLength];
+    }
+#endif
+}
+
+- (void)cancel
+{
+#ifndef SUPPORTED_INTERRUPTED_DOWNLOAD
+    if (connection)
+    {
+        [connection cancel];
+        self.connection = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStopNotification object:nil];
+    }
+#else
+    if(self.asiHttpRequest)
+    {
+        [self.asiHttpRequest cancel];
+        self.asiHttpRequest = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStopNotification object:nil];
+    }
+#endif
+}
+
+#ifndef SUPPORTED_INTERRUPTED_DOWNLOAD
+#pragma mark NSURLConnection (delegate)
+- (void)connection:(NSURLConnection *)aConnection didReceiveData:(NSData *)data
+{
+    [theData appendData:data];
+    self.dataLength += data.length;
+    
+    id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+	
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDataLenth:)])
+    {
+        [realDelegate performSelector:@selector(dataDownloaderDataLenth:) withObject:self];
+    }
+
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+        NSDictionary *dictionary = [httpResponse allHeaderFields];
+        NSNumber* length = [dictionary objectForKey:@"ContentLength"];
+        if( length == nil )
+            length = [dictionary objectForKey:@"Content-Length"];
+        self.totalLength = length.intValue;
+        if( self.totalLength != 0 && self.dataLength != 0 )
+            self.resetLength = self.dataLength;
+    }
+    id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+	
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDataLenth:)])
+    {
+        [realDelegate performSelector:@selector(dataDownloaderDataLenth:) withObject:self];
+    }
+    
+}
+
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+- (void)connectionDidFinishLoading:(NSURLConnection *)aConnection
+{
+    self.connection = nil;
+	
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStopNotification object:nil];
+	
+	id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+	
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDidFinish:)])
+    {
+        [realDelegate performSelector:@selector(dataDownloaderDidFinish:) withObject:self];
+    }
+    
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFinishWithData:)])
+    {
+		NSData *data=[theData retain];
+        [realDelegate performSelector:@selector(dataDownloader:didFinishWithData:) withObject:self withObject:data];
+		[data release];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    if( self.retryCount < self.numberOfTimesToRetryOnTimeout )
+    {
+        self.retryCount++;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+        
+        if( _postMethod )
+        {
+            [request setHTTPMethod:@"POST"];
+        }
+        
+        self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO] autorelease];
+        
+        // If not in low priority mode, ensure we aren't blocked by UI manipulations (default runloop mode for NSURLConnection is NSEventTrackingRunLoopMode)
+        if (!lowPriority)
+        {
+            [self.connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        }
+        for( int i = self.retryCount ; i< (self.numberOfTimesToRetryOnTimeout+1) ; i++ )
+        {
+            [self.connection start];
+            
+            if (self.connection)
+            {
+                self.theData = [NSMutableData data];
+                [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStartNotification object:nil];
+                break;
+            }
+            else if( i == self.numberOfTimesToRetryOnTimeout )
+            {
+                id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+                
+                if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFailWithError:)])
+                {
+                    [realDelegate performSelector:@selector(dataDownloader:didFailWithError:) withObject:self withObject:error];
+                }
+            }
+            self.retryCount++;//重试次数
+        }
+        [request release];
+        return;
+
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWebDataDownloadStopNotification object:nil];
+	
+	id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+	
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloader:didFailWithError:)])
+    {
+        [realDelegate performSelector:@selector(dataDownloader:didFailWithError:) withObject:self withObject:error];
+    }
+	
+    self.connection = nil;
+    self.theData = nil;
+}
+#else
+#pragma mark - ASIProgressDelegate
+- (void)setProgress:(float)newProgress
+{
+    //NSLog(@"setProgress %f", newProgress);
+    if(self.asiHttpRequest == nil || self.asiHttpRequest.isCancelled)
+        return;
+
+    self.dataLength = newProgress * self.totalLength;
+    if( self.totalLength != 0 && self.dataLength != 0 )
+        self.resetLength = self.dataLength;
+    id<SDWebDataDownloaderDelegate> realDelegate = [self.delegate target];
+    if (realDelegate && [realDelegate respondsToSelector:@selector(dataDownloaderDataLenth:)])
+    {
+        [realDelegate performSelector:@selector(dataDownloaderDataLenth:) withObject:self];
+    }
+}
+#endif
+
+#pragma mark NSObject
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+	self.delegate = nil;
+	[url release], url = nil;
+#ifndef SUPPORTED_INTERRUPTED_DOWNLOAD
+    [connection release], connection = nil;
+#else
+    [_asiHttpRequest release], _asiHttpRequest = nil;
+#endif
+    [theData release], theData = nil;
+    [userInfo release], userInfo = nil;
+	
+    [super dealloc];
+}
+@end

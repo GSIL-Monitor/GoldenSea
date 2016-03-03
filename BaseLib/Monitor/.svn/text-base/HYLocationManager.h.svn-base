@@ -1,0 +1,38 @@
+//
+//  HYLocationManager.h
+//  _Client-iOS-Common
+//
+//  Created by jiajun on 3/3/14.
+//  Copyright (c) 2014 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
+@class HYLocationManager;
+@protocol HYLocationManagerDelegate <NSObject>
+
+- (void)tmLocationManager:(HYLocationManager *)manager updatedLocation:(CLLocation *)location;
+
+@end
+
+@interface HYLocationManager : NSObject
+
++ (HYLocationManager *)sharedManager;
+// 启动定位
+- (void)start;
+// 关闭定位（一般不用显示调用）
+- (void)stop;
+
+@property   (weak, nonatomic)   id<HYLocationManagerDelegate>   delegate;
+
+// 允许的最大误差，低于该误差值，回调。默认500米
+@property   (assign, nonatomic) CLLocationAccuracy              maxAccuracy;
+// 最大定位次数，超过该次数仍未达到误差允许范围，也会回调。默认5次
+@property   (assign, nonatomic) NSInteger                       maxTimes;
+// 两次启动定位间隔的最小时长。默认30秒
+@property   (assign, nonatomic) NSInteger                       expired;
+// 获取到符合标准的Location后是否继续监听，并回调。默认NO
+@property   (assign, nonatomic) BOOL                            keeping;
+
+@end

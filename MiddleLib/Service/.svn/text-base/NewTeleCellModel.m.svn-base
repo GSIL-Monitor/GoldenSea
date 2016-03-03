@@ -1,0 +1,13 @@
+//
+//  NewTeleCellModel.m
+//  iRCS
+//
+//  Created by 黄春涛 on 16/1/13.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import "NewTeleCellModel.h"
+
+@implementation NewTeleCellModel
+
+@end

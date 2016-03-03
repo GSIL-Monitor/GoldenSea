@@ -1,0 +1,105 @@
+//
+//  ELCOverlayImageView.m
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import "ELCOverlayImageView.h"
+#import "ELCConsole.h"
+@implementation ELCOverlayImageView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)setIndex:(int)_index
+{
+    self.labIndex.text = [NSString stringWithFormat:@"%d",_index];
+}
+
+- (void)dealloc
+{
+    self.labIndex = nil;
+}
+- (void)setSelectedBlock:(ELCOverlayImageViewDelectedBlock)selectedBlock{
+    [self.selectedBtn bk_removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
+    if (selectedBlock) {
+        [_selectedBtn bk_addEventHandler:selectedBlock forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+- (instancetype)initWithSelectedBlock:(ELCOverlayImageViewDelectedBlock)selectedBlock
+{
+    self = [super init];
+    if (self) {
+        self.backgroundColor = ColorWithRGBA(255.0, 255.0, 255.0, 0.0);
+        self.userInteractionEnabled = YES;
+        _selectedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _selectedBtn.frame = CGRectMake(self.width - 33, 0, 33, 33);
+        [_selectedBtn setShowsTouchWhenHighlighted:YES];
+        if (selectedBlock) {
+            [_selectedBtn bk_addEventHandler:selectedBlock forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        [_selectedBtn setImage:[UIImage imageNamed:@"msg_big_choose"] forState:UIControlStateNormal];
+        [_selectedBtn setImage:[UIImage imageNamed:@"msg_big_cho_act"] forState:UIControlStateSelected];
+        [self addSubview:_selectedBtn];
+        
+        //        _selectedIcon = [[UIImageView alloc] initWithImage:image];
+        //        _selectedIcon.frame = CGRectMake(self.width - 25, 3, 22, 22);
+        //        [self addSubview:_selectedIcon];
+        
+        //FIXME:是否显示选中的 index
+        //        if ([[ELCConsole mainConsole] onOrder]) {
+        //            self.labIndex = [[UILabel alloc] initWithFrame:CGRectMake(2, 3, 16, 16)];
+        //            self.labIndex.backgroundColor = [UIColor redColor];
+        //            self.labIndex.clipsToBounds = YES;
+        //            self.labIndex.textAlignment = NSTextAlignmentCenter;
+        //            self.labIndex.textColor = [UIColor whiteColor];
+        //            self.labIndex.layer.cornerRadius = 8;
+        //            self.labIndex.layer.shouldRasterize = YES;
+        //            //        self.labIndex.layer.borderWidth = 1;
+        //            //        self.labIndex.layer.borderColor = [UIColor greenColor].CGColor;
+        //            self.labIndex.font = [UIFont boldSystemFontOfSize:13];
+        //            [self addSubview:self.labIndex];
+        //        }
+    }
+    return self;
+    
+}
+
+- (void) setIsSelected:(BOOL)isSelected{
+    //    if (isSelected) {
+    ////        [self.selectedIcon setImage:[UIImage imageNamed:@"select"]];
+    //        self.labIndex.hidden = NO;
+    //    }else{
+    ////        [self.selectedIcon setImage:[UIImage imageNamed:@"unselect"]];
+    //        self.labIndex.hidden = YES;
+    //    }
+    //    self.labIndex.hidden = YES;
+    [self.selectedBtn setSelected:isSelected];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    //    _selectedIcon.frame = CGRectMake(self.width - 25, 3, 22, 22);
+    _selectedBtn.frame = CGRectMake(self.width - 33, 0, 33, 33);
+    _labIndex.frame = CGRectMake(2, 3, 16, 16);
+}
+
+
+
+@end
+
+
+
+
+
+
+
+

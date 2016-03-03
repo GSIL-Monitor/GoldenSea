@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/4148/code/trunk/Personal-Client-iOS/iRCS/BaseLib/VoiceConvert/amrwapper
+END
+amrFileCodec.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/4148/code/trunk/Personal-Client-iOS/iRCS/BaseLib/VoiceConvert/amrwapper/amrFileCodec.h
+END
+wav.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/4148/code/trunk/Personal-Client-iOS/iRCS/BaseLib/VoiceConvert/amrwapper/wav.h
+END
+amrFileCodec.mm
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/zdyy/native/!svn/ver/4148/code/trunk/Personal-Client-iOS/iRCS/BaseLib/VoiceConvert/amrwapper/amrFileCodec.mm
+END
+wav.mm
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/4148/code/trunk/Personal-Client-iOS/iRCS/BaseLib/VoiceConvert/amrwapper/wav.mm
+END

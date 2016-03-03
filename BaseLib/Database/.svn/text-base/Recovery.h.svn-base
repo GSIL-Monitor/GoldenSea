@@ -1,0 +1,23 @@
+//
+//  Recovery.h
+//
+
+#import <Foundation/Foundation.h>
+
+#import "Connection.h"
+
+typedef enum  {
+    RAZE_AND_POISON,
+    POISON,
+}Disposition;
+
+@interface Recovery : NSObject
+
+@property(nonatomic, strong)     Connection *recoverDb;
+
++(Recovery *)begin:(Connection *)connection filePath:(NSString*)filepath;
++(BOOL)recovered:(Recovery *)r;
+
+
+
+@end

@@ -1,0 +1,851 @@
+//
+//  Connection.m
+//
+
+#import "Connection.h"
+#import "Statement.h"
+#import "StatementID.h"
+
+
+#pragma mark scopedBusyTimeout
+const int kBusyTimeoutSeconds = 1;
+
+@interface ScopedBusyTimeout : NSObject
+{
+     sqlite3* db_;
+}
+-(id)initWithDB:(sqlite3 *) db;
+
+-(int)setTimeout:(NSTimeInterval) timeout;
+
+@end
+
+@implementation ScopedBusyTimeout
+
+-(id)initWithDB:(sqlite3 *)db
+{
+    self = [super init];
+    if (self) {
+        db_ = db;
+    }
+
+    return self;
+}
+
+-(int)setTimeout:(NSTimeInterval)timeout
+{
+    if (timeout >= INT_MAX) {
+        return 0;
+    }
+    
+    return sqlite3_busy_timeout(db_, timeout);
+}
+
+-(void)dealloc
+{
+    sqlite3_busy_timeout(db_, 0);
+
+}
+
+@end
+
+
+#pragma mark scopedWritableSchema
+@interface ScopedWritableSchema: NSObject
+{
+    sqlite3* db_;
+    
+}
+-(id)initWithDB:(sqlite3 *)db;
+
+@end
+
+@implementation ScopedWritableSchema
+
+-(id)initWithDB:(sqlite3 *)db
+{
+    self = [super init];
+    if (self) {
+        db_ = db;
+        sqlite3_exec(db_, "PRAGMA writable_schema=1", NULL, NULL, NULL);
+    }
+    
+    return self;
+}
+
+
+-(void)dealloc
+{
+    sqlite3_exec(db_, "PRAGMA writable_schema=0", NULL, NULL, NULL);
+}
+@end
+
+
+
+
+@interface Connection()
+{
+
+    
+    Statement *stmt_;
+    
+    
+    NSMutableDictionary *statementCache_;
+    NSMutableOrderedSet *openStatements_;
+    
+    BOOL inMemory_;
+    BOOL poisoned_;
+    BOOL needsRollback_;
+
+}
+@end
+
+
+#pragma mark Connection
+@implementation Connection
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        statementCache_ = [[NSMutableDictionary alloc] initWithCapacity:10];
+        openStatements_ = [[NSMutableOrderedSet alloc] initWithCapacity:10];
+    }
+
+    return self;
+}
+
+-(void)dealloc
+{
+    [self close];
+}
+
+
+
++(int) backupDatabase:(sqlite3 *)src dst:(sqlite3 *)dst dbName:(NSString *)dbName
+{
+    sqlite3_backup* backup = sqlite3_backup_init(dst, [dbName UTF8String], src, [dbName UTF8String]);
+    
+    if (!backup) {
+        // Since this call only sets things up, this indicates a gross
+        // error in SQLite.
+//        DLOG(FATAL) << "Unable to start sqlite3_backup(): " << sqlite3_errmsg(dst);
+        return sqlite3_errcode(dst);
+    }
+    
+    int rc = sqlite3_backup_step(backup, -1);
+    int pages = sqlite3_backup_pagecount(backup);
+    sqlite3_backup_finish(backup);
+    if (rc == SQLITE_DONE) {
+        if (pages != 1) {
+            NSLog(@"the backup is broken");
+        }
+    }
+    
+    return rc;
+}
+
++(BOOL) validAttachmentPoint:(NSString *)attachMentPoint
+{
+    for(int i =0; i < attachMentPoint.length; i++)
+    {
+        char c = [attachMentPoint characterAtIndex:i];
+        if (!((c >= '0' && c <= '9') ||
+              (c >= 'a' && c <= 'z') ||
+              (c >= 'A' && c <= 'Z') ||
+              c == '_')) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+@synthesize db = db_;
+@synthesize pageSize = pageSize_;
+@synthesize cacheSize = cacheSize_;
+@synthesize exclusiveLocking = exclusiveLocking_;
+@synthesize transactionNesting = transactionNesting_;
+
+
+-(BOOL)open:(NSString *)path
+{
+    return [self openInternal:path retryFlag:RETRY_ON_POISON];
+}
+
+-(BOOL) openInMemory
+{
+    inMemory_ = YES;
+    return [self openInternal:@":memory:" retryFlag:NO_RETRY];
+}
+
+-(BOOL) openTemporary
+{
+    
+    return [self openInternal:@"" retryFlag:NO_RETRY];
+}
+
+-(BOOL)isOpen
+{
+
+    return !!db_;
+}
+
+-(void) closeInternal:(BOOL) forced
+{
+    [statementCache_ removeAllObjects];
+    
+    for (int i = 0; i < openStatements_.count; i++) {
+        StatementRef *s = [openStatements_ objectAtIndex:i];
+        [s close:forced];
+    }
+
+    if (db_) {
+        // Call to AssertIOAllowed() cannot go at the beginning of the function
+        // because Close() must be called from destructor to clean
+        // statement_cache_, it won't cause any disk access and it most probably
+        // will happen on thread not allowing disk access.
+        // TODO(paivanof@gmail.com): This should move to the beginning
+        // of the function. http://crbug.com/136655.
+        int rc = sqlite3_close(db_);
+        if (rc != SQLITE_OK) {
+            NSLog(@"sqlite3_close failed:  %@", [self getErrorMessage]);
+        }
+    }
+    db_ = NULL;
+}
+
+-(void)close
+{
+    
+    if (poisoned_) {
+        poisoned_ = NO;
+        return;
+    }
+    
+    [self closeInternal:NO];
+}
+
+
+-(void)preload
+{
+    if (!db_) {
+        return;
+    }
+    if (![self doesTableExist:@"meta"]) {
+        return;
+    }
+    
+    Statement *dummy = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:@"SELECT * FROM meta"]];
+
+    if (![dummy step])
+        return;
+}
+
+-(void)trimMemory:(BOOL) aggressively
+{
+    if (!db_)
+        return;
+    int originalCacheSize;
+    {
+        Statement *sqlGetOriginal = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:@"PRAGMA cache_size"]];
+        if (![sqlGetOriginal step]) {
+//            DLOG(WARNING) << "Could not get cache size " << GetErrorMessage();
+            return;
+        }
+        originalCacheSize = [sqlGetOriginal columnInt:0];
+    }
+    
+    int shrinkCacheSize = aggressively ? 1 : (originalCacheSize / 2);
+    
+    NSString *sqlShrink = [NSString stringWithFormat:@"PRAGMA cache_size=%d", shrinkCacheSize];
+    if (![self execute:sqlShrink]) {
+        //记录错误日志
+    }
+    
+    
+    NSString *sqlRestore = [NSString stringWithFormat:@"PRAGMA cache_size=%d", originalCacheSize];
+    if (![self execute:sqlRestore]) {
+        //记录错误日志
+    }
+}
+
+-(BOOL)raze
+{
+    if (!db_) {
+        NSLog(@"can't raze null db");
+        return NO;
+    }
+    
+    if (transactionNesting_ > 0) {
+        NSLog(@"Cannot raze within a transaction");
+        return NO;
+    }
+    
+    Connection *null_db = [[Connection alloc] init];
+    if (![null_db openInMemory]) {
+        NSLog(@"Unable to open in-memory database.");
+        return NO;
+    }
+    
+    if (pageSize_) {
+        // Enforce SQLite restrictions on |page_size_|.
+        if ((pageSize_ & (pageSize_ - 1))) {
+            NSLog(@"pageSize %ld is not a power of two", (long)pageSize_);
+        }
+        
+        const int kSqliteMaxPageSize = 32768;  // from sqliteLimit.h
+        if (pageSize_ <= kSqliteMaxPageSize) {
+            NSLog(@"pageSize %ld is less than kSqliteMaxPageSize %d", (long)pageSize_, kSqliteMaxPageSize);
+        }
+        
+        NSString *sql = [NSString stringWithFormat:@"PRAGMA page_size=%ld", (long)pageSize_];
+        if (![null_db execute:sql])
+            return NO;
+    }
+
+    if (![null_db execute:@"PRAGMA schema_version = 1"])
+        return NO;
+
+    ScopedWritableSchema *writable_schema = [[ScopedWritableSchema alloc] initWithDB:db_];
+    
+    NSString *kMain = @"main";
+
+    int rc = [Connection backupDatabase:null_db.db dst:db_ dbName:kMain];
+    if (rc == SQLITE_BUSY) {
+        return NO;
+    }
+
+    if (rc == SQLITE_NOTADB || rc == SQLITE_IOERR_SHORT_READ) {
+        sqlite3_file* file = NULL;
+        rc = sqlite3_file_control(db_, [kMain UTF8String], SQLITE_FCNTL_FILE_POINTER, &file);
+        if (rc != SQLITE_OK) {
+            NSLog(@"Failure getting file handle.");
+            return NO;
+        } else if (!file) {
+            NSLog(@"File handle is empty.");
+            return NO;
+        }
+        
+        rc = file->pMethods->xTruncate(file, 0);
+        if (rc != SQLITE_OK) {
+//            UMA_HISTOGRAM_SPARSE_SLOWLY("Sqlite.RazeDatabaseTruncate",rc);
+            NSLog(@"Failed to truncate file.");
+            return NO;
+        }
+
+        rc = [Connection backupDatabase:null_db.db dst:db_ dbName:kMain];
+        if (rc != SQLITE_DONE) {
+            NSLog(@"Failed retrying Raze().");
+        }
+    }
+
+    if (rc != SQLITE_DONE) {
+        // TODO(shess): Figure out which other cases can happen.
+        NSLog(@"Unable to copy entire null database.");
+        return NO;
+    }
+    
+    writable_schema = nil;
+    return YES;
+}
+
+-(BOOL) razeWithTimeout:(NSTimeInterval)timeout
+{
+    if (!db_) {
+        NSLog(@"Cannot raze null db");
+        return NO;
+    }
+    
+    
+    ScopedBusyTimeout *busyTimeout = [[ScopedBusyTimeout alloc] initWithDB:db_];
+    [busyTimeout setTimeout:timeout];
+    return [self raze];
+}
+
+-(BOOL) razeAndClose
+{
+    if (!db_) {
+        NSLog(@"Cannot raze null db");
+        return NO;
+    }
+    
+    [self rollbackAllTransactions];
+    
+    bool result = [self raze];
+    
+    [self closeInternal:YES];
+    
+    
+    // Mark the database so that future API calls fail appropriately,
+    // but don't DCHECK (because after calling this function they are
+    // expected to fail).
+    poisoned_ = YES;
+    
+    return result;
+}
+
+-(void) poison
+{
+    if (!db_) {
+        NSLog(@"Cannot raze null db");
+        return;
+    }
+    
+    [self rollbackAllTransactions];
+    [self closeInternal:YES];
+    
+    poisoned_ = YES;
+
+}
+
+
+-(BOOL) deleteDb:(NSString *)filePath
+{
+    NSString *journalPath = [filePath stringByAppendingString:@"-journal"];
+    NSString *walPath = [filePath stringByAppendingString:@"-wal"];
+
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    if ([filemgr isDeletableFileAtPath:journalPath]){
+        [filemgr removeItemAtPath:journalPath error:nil];
+    }
+    
+    if ([filemgr isDeletableFileAtPath:walPath]){
+        [filemgr removeItemAtPath:walPath error:nil];
+    }
+    
+    
+    if ([filemgr isDeletableFileAtPath:filePath]){
+        [filemgr removeItemAtPath:filePath error:nil];
+    }
+    
+    return ![filemgr fileExistsAtPath:journalPath]
+           && ![filemgr fileExistsAtPath:walPath]
+        && ![filemgr fileExistsAtPath:filePath];
+}
+
+
+-(BOOL)beginTransaction
+{
+    if (needsRollback_) {
+        if (transactionNesting_ > 0) {
+            
+        }
+        
+        // When we're going to rollback, fail on this begin and don't actually
+        // mark us as entering the nested transaction.
+        return NO;
+    }
+    BOOL success = YES;
+    if (!transactionNesting_) {
+        needsRollback_ = NO;
+        
+        Statement *begin = [[Statement alloc] initWithStatementRef:[self getCachedStatement:SQL_FROM_HERE sql:@"BEGIN TRANSACTION"]];
+        if (![begin run])
+            return NO;
+    }
+    transactionNesting_++;
+    
+    return success;
+}
+
+-(void) rollbackTransaction
+{
+    if (!transactionNesting_) {
+        NSLog(@"Rolling back a nonexistent transaction");
+        return;
+    }
+    
+    transactionNesting_--;
+    if (transactionNesting_ > 0) {
+        needsRollback_ =YES;
+        return;
+    }
+    
+    [self doRollback];
+}
+
+-(BOOL) commitTransaction
+{
+    if (!transactionNesting_) {
+        return NO;
+    }
+
+    transactionNesting_--;
+    if (transactionNesting_ > 0) {
+        return  !needsRollback_;
+    }
+    
+    if (needsRollback_) {
+        [self doRollback];
+        return NO;
+    }
+
+    
+    Statement *commit = [[Statement alloc] initWithStatementRef:[self getCachedStatement:SQL_FROM_HERE sql:@"COMMIT"]];
+    return [commit run];
+}
+
+-(void) rollbackAllTransactions
+{
+    if (transactionNesting_ > 0) {
+        transactionNesting_ = 0;
+        [self doRollback];
+    }
+
+}
+
+-(BOOL) attachDatabase:(NSString *) otherDbPath attachmentPoint:(NSString *) attachmentPoint
+{
+    [Connection validAttachmentPoint:attachmentPoint];
+    
+    Statement *s = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:@"ATTACH DATABASE ? AS ?"]];
+
+    [s bindString:0 val:otherDbPath];
+    [s bindString:1 val:attachmentPoint];
+    
+    return [s run];
+}
+
+-(BOOL)detachDatabase:(NSString *)attachmentPoint
+{
+    [Connection validAttachmentPoint:attachmentPoint];
+    Statement *s = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:@"DETACH DATABASE ?"]];
+    [s bindString:0 val:attachmentPoint];
+    
+    return [s run];
+}
+
+-(int)executeAndReturnErrorCode:(NSString *) sql
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");
+        return SQLITE_ERROR;
+    }
+    
+    return sqlite3_exec(db_, [sql UTF8String], NULL, NULL, NULL);
+}
+
+-(BOOL)execute:(NSString *)sql
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");
+        return NO;
+    }
+    
+    int error = [self executeAndReturnErrorCode:sql];
+    if (error != SQLITE_OK) {
+        NSLog(@"SQL Error in %@ , %@", sql, [self getErrorMessage]);
+    }
+
+    if (error == SQLITE_ERROR) {
+        NSLog(@"SQL Error in %@ , %@", sql, [self getErrorMessage]);
+    }
+    
+    
+    return error == SQLITE_OK;
+}
+
+-(BOOL) executeWithTimeout:(NSString *)sql timeout:(NSTimeInterval) timeout
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");
+        return NO;
+    }
+    
+    ScopedBusyTimeout *busyTimeout = [[ScopedBusyTimeout alloc] initWithDB:db_];
+    [busyTimeout setTimeout:timeout];
+    
+    return [self execute:sql];
+}
+
+-(BOOL)hasCachedStatement:(StatementID *) sid
+{
+    StatementRef *cacheStmt = (StatementRef *)[statementCache_ objectForKey:[sid string]];
+    if (cacheStmt) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(StatementRef *)getCachedStatement:(StatementID *)sid sql:(NSString *)sql
+{
+    StatementRef *cacheStmt = (StatementRef *)[statementCache_ objectForKey:[sid string]];
+    if (cacheStmt) {
+        if ([cacheStmt isValid]) {
+            sqlite3_reset(cacheStmt.stmt);
+            return cacheStmt;
+        }
+    }
+    
+    StatementRef *ref = [self getUniqueStatement:sql];
+    if ([ref isValid]) {
+        [statementCache_ setObject:ref forKey:[sid string]];
+    }
+
+    
+    return ref;
+}
+
+-(StatementRef *) getUniqueStatement:(NSString *)sql
+{
+    // Return inactive statement.
+    if (!db_)
+        return [[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:poisoned_];
+    
+    
+    sqlite3_stmt* stmt = NULL;
+    int rc = sqlite3_prepare_v2(db_, [sql UTF8String], -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        return [[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:NO];
+    }
+    
+    return [[StatementRef alloc] initWithStmt:self stmt:stmt wasValid:YES];
+}
+
+-(StatementRef *) getUntrackedStatement:(NSString *)sql
+{
+    if (!db_)
+        return [[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:poisoned_];
+    
+    
+    sqlite3_stmt* stmt = NULL;
+    int rc = sqlite3_prepare_v2(db_, [sql UTF8String], -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        return [[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:NO];
+    }
+    
+    return [[StatementRef alloc] initWithStmt:nil stmt:stmt wasValid:YES];
+}
+
+-(BOOL) isSQLValid:(NSString *)sql
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");
+        return NO;
+    }
+    
+    sqlite3_stmt* stmt = NULL;
+    if (sqlite3_prepare_v2(db_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
+        return NO;
+    
+    sqlite3_finalize(stmt);
+    return YES;
+}
+
+-(BOOL)doesTableExist:(NSString *)tableName
+{
+    return  [self doesTableOrIndexExist:tableName type:@"table"];
+}
+-(BOOL)doesIndexExist:(NSString *)indexName
+{
+    return  [self doesTableOrIndexExist:indexName type:@"index"];
+}
+
+-(BOOL)doesTableOrIndexExist:(NSString *)name type:(NSString *)type
+{
+    NSString *kSql = @"SELECT name FROM sqlite_master WHERE type=? AND name=?";
+    Statement *statement = [[Statement alloc] initWithStatementRef:[self getUntrackedStatement:kSql]];
+    [statement bindString:0 val:type];
+    [statement bindString:1 val:name];
+    
+    return [statement step];
+}
+
+-(BOOL) doesColumExist:(NSString *)tableName columnName:(NSString *)columnName
+{
+    NSString *sql = [NSString stringWithFormat:@"PRAGMA TABLE_INFO(%@)", tableName];
+    
+    Statement *s = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:sql]];
+    while ([s step]) {
+        if ([[s columnString:1] isEqualToString:columnName]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(int64_t)getLastInserRowId
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");
+        return 0;
+    }
+    
+    return sqlite3_last_insert_rowid(db_);
+}
+
+-(NSInteger)getLastChangeCount
+{
+    if (!db_) {
+        NSLog(@"Illegal use of connection without a db");        
+    }
+    
+    return sqlite3_changes(db_);
+}
+
+-(NSInteger) getErrorCode
+{
+    if (!db_)
+        return SQLITE_ERROR;
+    
+    return sqlite3_errcode(db_);
+}
+
+-(NSInteger) getLastErrno
+{
+    if (!db_)
+        return -1;
+    
+    int err = 0;
+    if (SQLITE_OK != sqlite3_file_control(db_, NULL, SQLITE_LAST_ERRNO, &err))
+        return -2;
+    
+    return err;
+    
+}
+
+-(NSString *)getErrorMessage
+{
+    if (!db_) {
+        return @"sql::Connection has no connection.";
+    }
+    return [NSString stringWithUTF8String:sqlite3_errmsg(db_)];
+}
+
+-(BOOL) openInternal:(NSString *)fileName retryFlag:(Retry)retryFlag
+{
+    if (db_) {
+        NSLog(@"sql::Connection is already open.");
+        return NO;
+    }
+
+    sqlite3_initialize();
+    
+    if (poisoned_) {
+        NSLog(@"sql::Connection is already open."); 
+        return NO;
+    }
+    poisoned_ = NO;
+    
+    int err = sqlite3_open([fileName UTF8String], &db_);
+    if (err != SQLITE_OK) {
+        // Extended error codes cannot be enabled until a handle is
+        // available, fetch manually.
+        sqlite3_extended_errcode(db_);
+
+        bool wasPoisoned = poisoned_;
+        [self close];
+        
+        if (wasPoisoned && retryFlag == RETRY_ON_POISON)
+            return [self openInternal:fileName retryFlag:NO_RETRY];
+        return NO;
+    }
+    
+    sqlite3_db_config(db_, SQLITE_DBCONFIG_LOOKASIDE, NULL, 0, 0);
+    err = sqlite3_extended_result_codes(db_, 1);
+    if (err != SQLITE_OK) {
+        NSLog(@"Could not enable extended result codes");
+    }
+    
+    err = [self executeAndReturnErrorCode:@"PRAGMA auto_vacuum"];
+    if (err != SQLITE_OK) {
+        NSLog(@"Sqlite.OpenProbeFailure %d", err);
+    }
+        
+    if (exclusiveLocking_) {
+        // TODO(shess): This should probably be a failure.  Code which
+        // requests exclusive locking but doesn't get it is almost certain
+        // to be ill-tested.
+        [self execute:@"PRAGMA locking_mode=EXCLUSIVE"];
+    }
+    [self execute:@"PRAGMA journal_mode = PERSIST"];
+    [self execute:@"PRAGMA journal_size_limit = 16384"];
+    
+    if (pageSize_ != 0) {
+        if (!(pageSize_ & (pageSize_ - 1))) {
+            if (pageSize_ <=  32768) {
+                NSString *sql = [NSString stringWithFormat:@"PRAGMA page_size=%ld", (long)pageSize_];
+                [self executeWithTimeout:sql timeout:kBusyTimeoutSeconds*1000];
+            }
+        }
+    }
+    
+    if (cacheSize_ != 0) {
+        NSString *sql = [NSString stringWithFormat:@"PRAGMA cache_size=%ld", (long)cacheSize_];
+        [self executeWithTimeout:sql timeout:kBusyTimeoutSeconds*1000];
+    }
+    
+    if (![self executeWithTimeout:@"PRAGMA secure_delete=ON" timeout:kBusyTimeoutSeconds*1000]) {
+        BOOL wasPoisoned = poisoned_;
+        [self close];
+        if (wasPoisoned && retryFlag== RETRY_ON_POISON) {
+            return [self openInternal:fileName retryFlag:NO_RETRY];
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(void)doRollback
+{
+    Statement *s = [[Statement alloc] initWithStatementRef:[self getCachedStatement:SQL_FROM_HERE sql:@"ROLLBACK"]];
+    [s run];
+    needsRollback_ = NO;
+
+}
+
+
+-(void)statementRefCreated:(StatementRef *)sRef
+{
+    if (![openStatements_ containsObject:sRef]) {
+        [openStatements_ addObject:sRef];
+    }
+}
+
+-(void)statementRefDeleted:(StatementRef *)sRef
+{
+    if ([openStatements_ containsObject:sRef]) {
+        [openStatements_ removeObject:sRef];
+    } else {
+        NSLog(@"Could not find statement");
+    }
+}
+
+-(BOOL)integrityCheck
+{
+    // This has the side effect of setting SQLITE_RecoveryMode, which
+    // allows SQLite to process through certain cases of corruption.
+    // Failing to set this pragma probably means that the database is
+    // beyond recovery.
+    
+    NSString *kWritableSchema = @"PRAGMA writable_schema = ON";
+    if (![self execute:kWritableSchema])
+        return NO;
+    
+    bool ret = NO;
+    {
+        NSString *kSql = @"PRAGMA integrity_check";
+        Statement *s = [[Statement alloc] initWithStatementRef:[self getUniqueStatement:kSql]];
+
+        // The pragma appears to return all results (up to 100 by default)
+        // as a single string.  This doesn't appear to be an API contract,
+        // it could return separate lines, so loop _and_ split.
+        while ([s step]) {
+           // NSString *result = [s columnString:0];
+        }
+    
+        ret = [s succeeded];
+    }
+    
+    // Best effort to put things back as they were before.
+    NSString *kNoWritableSchema = @"PRAGMA writable_schema = OFF";
+    [self execute:kNoWritableSchema];
+    
+    return ret;
+}
+
+@end

@@ -1,0 +1,48 @@
+//
+//  GroupUIModel.m
+//  iRCS
+//
+//  Created by 王斌 on 16/2/25.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import "GroupUIModel.h"
+
+@implementation GroupUIModel
+
+- (GroupUIModel *)initWithDBModel:(GroupDBModel *)DBModel
+{
+    self = [super init];
+    if (self) {
+        self.groupID = DBModel.groupID;
+        self.groupName = DBModel.groupName;
+        self.groupSubject = DBModel.groupSubject;
+        self.groupDescription = DBModel.groupDescription;
+        self.policy = DBModel.policy;
+        self.maxMemberCount = DBModel.maxMemberCount;
+        self.memberCount = DBModel.memberCount;
+        self.groupMaster = DBModel.groupMaster;
+        self.members = DBModel.members;
+        self.createTimeStamp = DBModel.createTimeStamp;
+        self.isQuit = DBModel.isQuit;
+        self.WeatherAcceptMessageNotification = DBModel.WeatherAcceptMessageNotification;
+        
+        self.matchRange = NSMakeRange(0,0);
+    }
+    return self;
+}
+
++ (NSMutableArray *)arrayWithDBModels:(NSArray *)DBModels
+{
+    NSMutableArray *models = nil;
+    if (DBModels) {
+        models = [[NSMutableArray alloc]initWithCapacity:DBModels.count];
+        for (GroupDBModel *DBModel in DBModels) {
+            GroupUIModel *UIModel = [[GroupUIModel alloc]initWithDBModel:DBModel];
+            [models addObject:UIModel];
+        }
+    }
+    return models;
+}
+
+@end

@@ -1,0 +1,57 @@
+//
+//  RCSAMapSearchHelper.h
+//  RCS
+//
+//  Created by Joy on 15-5-8.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <MAMapKit/MAMapKit.h>
+typedef void(^SearchSuccess)(id response);
+typedef void(^SearchFailure)(NSError *error);
+
+
+@interface AMapSearchHelper : NSObject<AMapSearchDelegate>
+
+@property (nonatomic, strong) AMapSearchAPI *searchAPI;
+
+/**
+ *  搜索框输入提示
+ *
+ *  @param key     关键字
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
+- (void)searchTipsWithKey:(NSString *)key success:(SearchSuccess)success failure:(SearchFailure)failure;
+
+/**
+ *  查询地理编码
+ *
+ *  @param key     地点名称
+ *  @param adcode  地点区域编码
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
+- (void)searchGeocodeWithKey:(NSString *)key adcode:(NSString *)adcode success:(SearchSuccess)success failure:(SearchFailure)failure;
+
+/**
+ *  根据中心点查询周围的POI
+ *
+ *  @param coordinate 经纬度坐标
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
+- (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate success:(SearchSuccess)success failure:(SearchFailure)failure;
+
+/**
+ *  根据中心点查对应的地理信息
+ *
+ *  @param coordinate 经纬度坐标
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ */
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SearchSuccess)success failure:(SearchFailure)failure;
+
+@end

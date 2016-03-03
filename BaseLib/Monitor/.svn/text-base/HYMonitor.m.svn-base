@@ -1,0 +1,330 @@
+//
+//  HYMonitor.m
+//  _Client-iOS-Common
+//
+//  Created by shenme on 13-7-22.
+//  Copyright (c) 2013年 _.com. All rights reserved.
+//
+
+#import "HYMonitor.h"
+
+#import <mach/mach.h>
+#import <mach/mach_host.h>
+
+#define HY_MONITOR_INTERVAL			1.0f					// 频率
+#define HY_MONITOR_COLOR            [UIColor redColor]		// 文字颜色
+#define HY_MONITOR_FONT				14						// 文字尺寸
+
+// 监控内存项
+#define HY_MONITOR_MEMORY_ACTIVE        0		// 活动内存
+#define HY_MONITOR_MEMORY_INACTIVE      0		// 非活动内存
+#define HY_MONITOR_MEMORY_WIRE          0		// 联动内存
+#define HY_MONITOR_MEMORY_FREE          1		// 可用内存
+#define HY_MONITOR_MEMORY_FREE_DELTA	1		// 可用内存变动
+#define HY_MONITOR_MEMORY_USED          1       // 已用内存
+
+// cpu
+#define HY_MONITOR_CPU                  1
+
+static HYMonitor* g_monitor = nil;
+
+//返回当前已用内存
+NSUInteger print_used_memory(NSMutableString* buffer)
+{
+    NSUInteger used_memory = 0;
+    struct task_basic_info info; mach_msg_type_number_t size = sizeof(info);
+    kern_return_t kerr = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)&info, &size);
+    if (kerr == KERN_SUCCESS) {
+        //size in bytes
+        used_memory = info.resident_size;
+    }
+    double B2MB = 1024.0f * 1024.0f;
+    [buffer appendFormat:@"\n当前：%.2f MB", used_memory/B2MB];
+
+    return used_memory;
+}
+
+// 返回当前可用内存
+NSUInteger print_free_memory(NSMutableString* buffer, NSUInteger lastFree)
+{
+    mach_port_t host_port;
+    mach_msg_type_number_t host_size;
+    vm_size_t pagesize;
+	
+    host_port = mach_host_self();
+    host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    host_page_size(host_port, &pagesize);
+	
+    vm_statistics_data_t vm_stat;
+	
+    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
+        NSLog(@"Failed to fetch vm statistics");
+	
+    /* Stats in bytes */
+	double B2MB = 1024.0f * 1024.0f;
+#if HY_MONITOR_MEMORY_ACTIVE
+    natural_t mem_active = vm_stat.active_count * pagesize;
+	[buffer appendFormat:@"\n活动：%.2f MB", mem_active / B2MB];
+#endif
+	
+#if HY_MONITOR_MEMORY_INACTIVE
+    natural_t mem_inactive = vm_stat.inactive_count * pagesize;
+	[buffer appendFormat:@"\n非活动：%.2f MB", mem_inactive / B2MB];
+#endif
+	
+#if HY_MONITOR_MEMORY_WIRE
+	natural_t mem_wire = vm_stat.wire_count * pagesize;
+	[buffer appendFormat:@"\n联动：%.2f MB", mem_wire / B2MB];
+#endif
+	
+	natural_t mem_free = vm_stat.free_count * pagesize;
+#if HY_MONITOR_MEMORY_FREE
+	[buffer appendFormat:@"\n可用：%.2f MB", mem_free / B2MB];
+    
+#endif
+	
+#if HY_MONITOR_MEMORY_FREE_DELTA
+	if (lastFree != 0)
+	{
+		double delta = (int64_t)mem_free - (int64_t)lastFree;
+        if (delta > 0.0f)
+        {
+            [buffer appendFormat:@"\n变化值：+%.2f MB", delta / B2MB];
+        }
+		else
+        {
+            [buffer appendFormat:@"\n变化值：%.2f MB", delta / B2MB];
+        }
+	}
+#endif
+    
+    
+	return mem_free;
+}
+
+void print_cpu_usage(NSMutableString* buffer)
+{
+    kern_return_t kr;
+    task_info_data_t tinfo;
+    mach_msg_type_number_t task_info_count;
+	
+    task_info_count = TASK_INFO_MAX;
+    kr = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)tinfo, &task_info_count);
+    if (kr != KERN_SUCCESS)
+	{
+        return;
+    }
+	
+//    task_basic_info_t      basic_info;
+    thread_array_t         thread_list;
+    mach_msg_type_number_t thread_count;
+	
+    thread_info_data_t     thinfo;
+    mach_msg_type_number_t thread_info_count;
+	
+    thread_basic_info_t basic_info_th;
+//    uint32_t stat_thread = 0; // Mach threads
+	
+//    basic_info = (task_basic_info_t)tinfo;
+	
+    // get threads in the task
+    kr = task_threads(mach_task_self(), &thread_list, &thread_count);
+    if (kr != KERN_SUCCESS)
+	{
+        return;
+    }
+//    if (thread_count > 0)
+//        stat_thread += thread_count;
+	
+    long tot_sec = 0;
+    long tot_usec = 0;
+    float tot_cpu = 0;
+    int j;
+	
+    for (j = 0; j < thread_count; j++)
+    {
+        thread_info_count = THREAD_INFO_MAX;
+        kr = thread_info(thread_list[j], THREAD_BASIC_INFO,
+                         (thread_info_t)thinfo, &thread_info_count);
+        if (kr != KERN_SUCCESS)
+		{
+            return;
+        }
+		
+        basic_info_th = (thread_basic_info_t)thinfo;
+		
+        if (!(basic_info_th->flags & TH_FLAGS_IDLE))
+		{
+            tot_sec = tot_sec + basic_info_th->user_time.seconds + basic_info_th->system_time.seconds;
+            tot_usec = tot_usec + basic_info_th->system_time.microseconds + basic_info_th->system_time.microseconds;
+            tot_cpu = tot_cpu + basic_info_th->cpu_usage / (float)TH_USAGE_SCALE * 100.0;
+        }
+		
+    } // for each thread
+	
+	[buffer appendFormat:@"\ncpu占用：%.1f%%", tot_cpu];
+}
+
+
+@implementation HYMonitor
+
+@synthesize working;
+
++ (HYMonitor*)sharedInstance
+{
+	if (g_monitor == nil)
+	{
+		g_monitor = [[HYMonitor alloc] init];
+	}
+	
+	return g_monitor;
+}
+
+- (id)init
+{
+    if (self = [super init])
+    {
+        _controllerInMemory = [[NSMutableArray alloc] initWithCapacity:3];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+	[tickTimer invalidate];
+    infoText = nil;
+}
+
+
+
+- (void)onTick
+{
+	NSMutableString* buf = [NSMutableString stringWithCapacity:1024];
+	freeMemory = print_free_memory(buf, freeMemory);
+#if HY_MONITOR_MEMORY_USED
+    usedMemory = print_used_memory(buf);
+#endif
+#if HY_MONITOR_CPU
+	print_cpu_usage(buf);
+#endif
+	
+	if (showMemoryWarning > 0)
+	{
+		[buf appendFormat:@"\n出现内存警告！！"];
+		showMemoryWarning --;
+	}
+	
+	[buf deleteCharactersInRange:NSMakeRange(0, 1)];
+    
+    
+    [self addControllerInfo:buf];
+
+	infoText.text = buf;
+	[topWindow bringSubviewToFront:infoText];
+}
+
+- (void)addControllerInfo:(NSMutableString* )buffer
+{
+    NSMutableArray *controllerArray = [g_monitor controllerInMermory];
+    
+    if(controllerArray.count > 0)
+    {
+        [buffer appendFormat:@"\n\n（5个主tab页面已过滤，不包含)\n\nController个数: %lu, 下面页面未释放!!!!\n", (unsigned long)controllerArray.count];
+        
+        for (int i = 0; i < controllerArray.count; i++)
+        {
+            [buffer appendFormat:@"%@,", controllerArray[i]];
+            
+        }
+    }
+}
+
+- (void)startMonitor
+{
+	if (tickTimer)
+	{
+		[tickTimer invalidate];
+	}
+	
+	tickTimer = [NSTimer scheduledTimerWithTimeInterval:HY_MONITOR_INTERVAL target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+	
+	infoText = [[UITextView alloc] initWithFrame:CGRectMake(5, 10, 310, 450)];
+	infoText.userInteractionEnabled = NO;
+	infoText.textColor = HY_MONITOR_COLOR;
+	infoText.font = [UIFont systemFontOfSize:HY_MONITOR_FONT];
+	infoText.backgroundColor = [UIColor clearColor];
+	
+	NSArray* windows = [UIApplication sharedApplication].windows;
+	topWindow = [windows objectAtIndex:0];
+	[topWindow addSubview:infoText];
+    
+    working = YES;
+}
+
+- (void)stopMonitor
+{
+	[tickTimer invalidate];
+	tickTimer = nil;
+	
+	[infoText removeFromSuperview];
+	infoText = nil;
+	
+	freeMemory = 0;
+	showMemoryWarning = 0;
+    
+    working = NO;
+}
+
+- (void)onMemoryWarning
+{
+	showMemoryWarning = 3; // 内存警告的消息显示3秒
+}
+
+- (void)setExlcudePages:(NSArray *)excludePages
+{
+    _excludePages = excludePages;
+}
+
+- (NSMutableArray *)controllerInMermory
+{
+    return  _controllerInMemory;
+}
+
+- (BOOL)containsInExcludeArray:(NSString *)pageName
+{
+    BOOL containsThisPage = NO;
+    if (_excludePages.count > 0)
+    {
+        for (NSString *page in _excludePages)
+        {
+            if (page.length > 0 && [page isEqualToString:pageName])
+            {
+                containsThisPage = YES;
+                break;
+            }
+        }
+    }
+    return containsThisPage;
+}
+
+- (void)addControllerInMermory:(NSString *)object
+{
+    if ([self containsInExcludeArray:object])
+    {
+        return;
+    }
+    
+    if (object)
+    {
+        [_controllerInMemory addObject:object];
+    }
+}
+- (void)removeControllerFromMemory:(NSString *)object
+{
+    if (object)
+    {
+        [_controllerInMemory removeObject:object];
+    }
+}
+
+@end

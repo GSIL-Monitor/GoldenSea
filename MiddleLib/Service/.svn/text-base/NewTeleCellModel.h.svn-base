@@ -1,0 +1,28 @@
+//
+//  NewTeleCellModel.h
+//  iRCS
+//
+//  Created by 黄春涛 on 16/1/13.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "NewTeleRecordDBModel.h"
+
+@interface NewTeleCellModel : NSObject
+
+//View Data
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *imageUrl;///< nil
+@property (nonatomic, strong) NSString *displayName;
+@property (nonatomic, strong) NSString *teleTime;
+@property (nonatomic, assign) NewRCSTeleType teleType;///<语音 or 视频 呼入 or 呼出
+@property (nonatomic, assign) NewRCSTeleStatus teleStatus;///<接听状态
+@property (nonatomic, assign) NewRCSTeleObject teleObject;///<单人 or 多人
+
+
+//Raw Data
+@property (nonatomic, strong) NewTeleRecordDBModel *rawTeleRecordModel;
+@property (nonatomic, strong) NSMutableArray *rawTeleRecords;//被合并的通话记录数据
+
+@end

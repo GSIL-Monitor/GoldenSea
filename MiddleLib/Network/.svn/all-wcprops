@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/zdyy/native/!svn/ver/7030/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network
+END
+HYBaseRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/7024/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseRequest.m
+END
+HYRequestManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/7030/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYRequestManager.m
+END
+HYBaseResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/6476/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseResponse.h
+END
+HYBaseModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/5142/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseModel.h
+END
+HYModelManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/5142/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYModelManager.h
+END
+HYBaseCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3770/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseCache.h
+END
+HYBaseResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseResponse.m
+END
+HYCacheManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3408/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYCacheManager.h
+END
+HYBaseModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/7024/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseModel.m
+END
+HYModelManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/5142/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYModelManager.m
+END
+HYBaseCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3408/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseCache.m
+END
+HYBaseRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/7024/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYBaseRequest.h
+END
+HYCacheManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3408/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYCacheManager.m
+END
+HYRequestManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3390/code/trunk/Personal-Client-iOS/iRCS/MiddleLib/Network/HYRequestManager.h
+END

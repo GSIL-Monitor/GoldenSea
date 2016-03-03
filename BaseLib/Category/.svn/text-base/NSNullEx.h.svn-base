@@ -1,0 +1,390 @@
+//
+//  NSNullEx.h
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface NSNull (EX)
+
+- (NSUInteger)length;
+- (NSUInteger)index;
+- (id)safeObjectAtIndex:(NSUInteger)index;
+- (id)safeValueForKey:(NSString *)key;
+
+- (void)safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey;
+- (void)safeSetValue:(id)value forKey:(NSString *)key;
+- (void)safeAddObject:(id)anObject;
+- (void)safeInsertObject:(id)anObject atIndex:(NSUInteger)index;
+
+- (BOOL)isEmpty;
+
++ (NSDictionary *)dictionaryWithContentsOfData:(NSData *)data;
+
+- (id)objectForKeyCheck:(id)aKey;
+
+- (id)objectForKeyCheck:(id)key class:(__unsafe_unretained Class)aClass;
+
+- (id)objectForKeyCheck:(id)key class:(__unsafe_unretained Class)aClass defaultValue:(id)defaultValue;
+
+- (NSArray *)arrayForKey:(id)key;
+
+- (NSArray *)arrayForKey:(id)key defaultValue:(NSArray *)defaultValue;
+
+- (NSMutableArray *)mutableArrayForKey:(id)key;
+
+- (NSMutableArray *)mutableArrayForKey:(id)key defaultValue:(NSArray *)defaultValue;
+
+- (NSDictionary *)dictionaryForKey:(id)key;
+
+- (NSDictionary *)dictionaryForKey:(id)key defaultValue:(NSDictionary *)defaultValue;
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key;
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key defaultValue:(NSDictionary *)defaultValue;
+
+- (NSData *)dataForKey:(id)key;
+
+- (NSData *)dataForKey:(id)key defaultValue:(NSData *)defaultValue;
+
+- (NSString *)stringForKey:(id)key;
+
+- (NSString *)stringForKeyToString:(id)key;
+
+- (NSString *)stringForKey:(id)key defaultValue:(NSString *)defaultValue;
+
+- (NSNumber *)numberForKey:(id)key;
+
+- (NSNumber *)numberForKey:(id)key defaultValue:(NSNumber *)defaultValue;
+
+- (char)charForKey:(id)key;
+
+- (unsigned char)unsignedCharForKey:(id)key;
+
+- (short)shortForKey:(id)key;
+
+- (short)shortForKey:(id)key defaultValue:(short)defaultValue;
+
+- (unsigned short)unsignedShortForKey:(id)key;
+
+- (unsigned short)unsignedShortForKey:(id)key defaultValue:(unsigned short)defaultValue;
+
+- (int)intForKey:(id)key;
+
+- (int)intForKey:(id)key defaultValue:(int)defaultValue;
+
+- (unsigned int)unsignedIntForKey:(id)key;
+
+- (unsigned int)unsignedIntForKey:(id)key defaultValue:(unsigned int)defaultValue;
+
+- (long)longForKey:(id)key;
+
+- (long)longForKey:(id)key defaultValue:(long)defaultValue;
+
+- (unsigned long)unsignedLongForKey:(id)key;
+
+- (unsigned long)unsignedLongForKey:(id)key defaultValue:(unsigned long)defaultValue;
+
+- (long long)longLongForKey:(id)key;
+
+- (long long)longLongForKey:(id)key defaultValue:(long long)defaultValue;
+
+- (unsigned long long)unsignedLongLongForKey:(id)key;
+
+- (unsigned long long)unsignedLongLongForKey:(id)key defaultValue:(unsigned long long)defaultValue;
+
+- (float)floatForKey:(id)key;
+
+- (float)floatForKey:(id)key defaultValue:(float)defaultValue;
+
+- (double)doubleForKey:(id)key;
+
+- (double)doubleForKey:(id)key defaultValue:(double)defaultValue;
+
+- (BOOL)boolForKey:(id)key;
+
+- (BOOL)boolForKey:(id)key defaultValue:(BOOL)defaultValue;
+
+- (NSInteger)integerForKey:(id)key;
+
+- (NSInteger)integerForKey:(id)key defaultValue:(NSInteger)defaultValue;
+
+- (NSUInteger)unsignedIntegerForKey:(id)key;
+
+- (NSUInteger)unsignedIntegerForKey:(id)key defaultValue:(NSUInteger)defaultValue;
+
+- (CGPoint)pointForKey:(id)key;
+
+- (CGPoint)pointForKey:(id)key defaultValue:(CGPoint)defaultValue;
+
+- (CGSize)sizeForKey:(id)key;
+
+- (CGSize)sizeForKey:(id)key defaultValue:(CGSize)defaultValue;
+
+- (CGRect)rectForKey:(id)key;
+
+- (CGRect)rectForKey:(id)key defaultValue:(CGRect)defaultValue;
+
+- (void)setObjectCheck:(id)anObject forKey:(id <NSCopying>)aKey;
+
+- (void)removeObjectForKeyCheck:(id)aKey;
+
+- (void)setChar:(char)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedChar:(unsigned char)value forKey:(id<NSCopying>)key;
+
+- (void)setShort:(short)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedShort:(unsigned short)value forKey:(id<NSCopying>)key;
+
+- (void)setInt:(int)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedInt:(unsigned int)value forKey:(id<NSCopying>)key;
+
+- (void)setLong:(long)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedLong:(unsigned long)value forKey:(id<NSCopying>)key;
+
+- (void)setLongLong:(long long)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedLongLong:(unsigned long long)value forKey:(id<NSCopying>)key;
+
+- (void)setFloat:(float)value forKey:(id<NSCopying>)key;
+
+- (void)setDouble:(double)value forKey:(id<NSCopying>)key;
+
+- (void)setBool:(BOOL)value forKey:(id<NSCopying>)key;
+
+- (void)setInteger:(NSInteger)value forKey:(id<NSCopying>)key;
+
+- (void)setUnsignedInteger:(NSUInteger)value forKey:(id<NSCopying>)key;
+
+- (void)setPointValue:(CGPoint)value forKey:(id<NSCopying>)key;
+
+- (void)setSizeValue:(CGSize)value forKey:(id<NSCopying>)key;
+
+- (void)setRectValue:(CGRect)value forKey:(id<NSCopying>)key;
+
+- (id)anyObject;
+
+- (id)objectAtIndexCheck:(NSUInteger)index;
+
+- (id)objectAtIndexCheck:(NSUInteger)index class:(__unsafe_unretained Class)aClass;
+
+- (id)objectAtIndexCheck:(NSUInteger)index class:(__unsafe_unretained Class)aClass defaultValue:(id)defaultValue;
+
+- (NSArray *)arrayAtIndex:(NSUInteger)index;
+
+- (NSArray *)arrayAtIndex:(NSUInteger)index defaultValue:(NSArray *)defaultValue;
+
+- (NSMutableArray *)mutableArrayAtIndex:(NSUInteger)index;
+
+- (NSMutableArray *)mutableArrayAtIndex:(NSUInteger)index defaultValue:(NSArray *)defaultValue;
+
+- (NSDictionary *)dictionaryAtIndex:(NSUInteger)index;
+
+- (NSDictionary *)dictionaryAtIndex:(NSUInteger)index defaultValue:(NSDictionary *)defaultValue;
+
+- (NSMutableDictionary *)mutableDictionaryAtIndex:(NSUInteger)index;
+
+- (NSMutableDictionary *)mutableDictionaryAtIndex:(NSUInteger)index defaultValue:(NSDictionary *)defaultValue;
+
+- (NSData *)dataAtIndex:(NSUInteger)index;
+
+- (NSData *)dataAtIndex:(NSUInteger)index defaultValue:(NSData *)defaultValue;
+
+- (NSString *)stringAtIndex:(NSUInteger)index;
+
+- (NSString *)stringAtIndexToString:(NSUInteger)index;
+
+- (NSString *)stringAtIndex:(NSUInteger)index defaultValue:(NSString *)defaultValue;
+
+- (NSNumber *)numberAtIndex:(NSUInteger)index;
+
+- (NSNumber *)numberAtIndex:(NSUInteger)index defaultValue:(NSNumber *)defaultValue;
+
+- (char)charAtIndex:(NSUInteger)index;
+
+- (unsigned char)unsignedCharAtIndex:(NSUInteger)index;
+
+- (short)shortAtIndex:(NSUInteger)index;
+
+- (short)shortAtIndex:(NSUInteger)index defaultValue:(short)defaultValue;
+
+- (unsigned short)unsignedShortAtIndex:(NSUInteger)index;
+
+- (unsigned short)unsignedShortAtIndex:(NSUInteger)index defaultValue:(unsigned short)defaultValue;
+
+- (int)intAtIndex:(NSUInteger)index;
+
+- (int)intAtIndex:(NSUInteger)index defaultValue:(int)defaultValue;
+
+- (unsigned int)unsignedIntAtIndex:(NSUInteger)index;
+
+- (unsigned int)unsignedIntAtIndex:(NSUInteger)index defaultValue:(unsigned int)defaultValue;
+
+- (long)longAtIndex:(NSUInteger)index;
+
+- (long)longAtIndex:(NSUInteger)index defaultValue:(long)defaultValue;
+
+- (unsigned long)unsignedLongAtIndex:(NSUInteger)index;
+
+- (unsigned long)unsignedLongAtIndex:(NSUInteger)index defaultValue:(unsigned long)defaultValue;
+
+- (long long)longLongAtIndex:(NSUInteger)index;
+
+- (long long)longLongAtIndex:(NSUInteger)index defaultValue:(long long)defaultValue;
+
+- (unsigned long long)unsignedLongLongAtIndex:(NSUInteger)index;
+
+- (unsigned long long)unsignedLongLongAtIndex:(NSUInteger)index defaultValue:(unsigned long long)defaultValue;
+
+- (float)floatAtIndex:(NSUInteger)index;
+
+- (float)floatAtIndex:(NSUInteger)index defaultValue:(float)defaultValue;
+
+- (double)doubleAtIndex:(NSUInteger)index;
+
+- (double)doubleAtIndex:(NSUInteger)index defaultValue:(double)defaultValue;
+
+- (BOOL)boolAtIndex:(NSUInteger)index;
+
+- (BOOL)boolAtIndex:(NSUInteger)index defaultValue:(BOOL)defaultValue;
+
+- (NSInteger)integerAtIndex:(NSUInteger)index;
+
+- (NSInteger)integerAtIndex:(NSUInteger)index defaultValue:(NSInteger)defaultValue;
+
+- (NSUInteger)unsignedIntegerAtIndex:(NSUInteger)index;
+
+- (NSUInteger)unsignedIntegerAtIndex:(NSUInteger)index defaultValue:(NSUInteger)defaultValue;
+
+- (CGPoint)pointAtIndex:(NSUInteger)index;
+
+- (CGPoint)pointAtIndex:(NSUInteger)index defaultValue:(CGPoint)defaultValue;
+
+- (CGSize)sizeAtIndex:(NSUInteger)index;
+
+- (CGSize)sizeAtIndex:(NSUInteger)index defaultValue:(CGSize)defaultValue;
+
+- (CGRect)rectAtIndex:(NSUInteger)index;
+
+- (CGRect)rectAtIndex:(NSUInteger)index defaultValue:(CGRect)defaultValue;
+
+- (void)addObjects:(id)objects, ... NS_REQUIRES_NIL_TERMINATION;
+
+- (void)addObjectCheck:(id)anObject;
+
+- (void)addChar:(char)value;
+
+- (void)addUnsignedChar:(unsigned char)value;
+
+- (void)addShort:(short)value;
+
+- (void)addUnsignedShort:(unsigned short)value;
+
+- (void)addInt:(int)value;
+
+- (void)addUnsignedInt:(unsigned int)value;
+
+- (void)addLong:(long)value;
+
+- (void)addUnsignedLong:(unsigned long)value;
+
+- (void)addLongLong:(long long)value;
+
+- (void)addUnsignedLongLong:(unsigned long long)value;
+
+- (void)addFloat:(float)value;
+
+- (void)addDouble:(double)value;
+
+- (void)addBool:(BOOL)value;
+
+- (void)addInteger:(NSInteger)value;
+
+- (void)addUnsignedInteger:(NSUInteger)value;
+
+- (void)addPointValue:(CGPoint)value;
+
+- (void)addSizeValue:(CGSize)value;
+
+- (void)addRectValue:(CGRect)value;
+
+- (void)insertObjectCheck:(id)anObject atIndex:(NSUInteger)index;
+
+- (void)insertChar:(char)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedChar:(unsigned char)value atIndex:(NSUInteger)index;
+
+- (void)insertShort:(short)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedShort:(unsigned short)value atIndex:(NSUInteger)index;
+
+- (void)insertInt:(int)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedInt:(unsigned int)value atIndex:(NSUInteger)index;
+
+- (void)insertLong:(long)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedLong:(unsigned long)value atIndex:(NSUInteger)index;
+
+- (void)insertLongLong:(long long)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedLongLong:(unsigned long long)value atIndex:(NSUInteger)index;
+
+- (void)insertFloat:(float)value atIndex:(NSUInteger)index;
+
+- (void)insertDouble:(double)value atIndex:(NSUInteger)index;
+
+- (void)insertBool:(BOOL)value atIndex:(NSUInteger)index;
+
+- (void)insertInteger:(NSInteger)value atIndex:(NSUInteger)index;
+
+- (void)insertUnsignedInteger:(NSUInteger)value atIndex:(NSUInteger)index;
+
+- (void)insertPointValue:(CGPoint)value atIndex:(NSUInteger)index;
+
+- (void)insertSizeValue:(CGSize)value atIndex:(NSUInteger)index;
+
+- (void)insertRectValue:(CGRect)value atIndex:(NSUInteger)index;
+
+- (void)replaceObjectCheckAtIndex:(NSUInteger)index withObject:(id)anObject;
+
+- (void)replaceCharAtIndex:(NSUInteger)index withChar:(char)value;
+
+- (void)replaceUnsignedCharAtIndex:(NSUInteger)index withUnsignedChar:(unsigned char)value;
+
+- (void)replaceShortAtIndex:(NSUInteger)index withShort:(short)value;
+
+- (void)replaceUnsignedShortAtIndex:(NSUInteger)index withUnsignedShort:(unsigned short)value;
+
+- (void)replaceIntAtIndex:(NSUInteger)index withInt:(int)value;
+
+- (void)replaceUnsignedIntAtIndex:(NSUInteger)index withUnsignedInt:(unsigned int)value;
+
+- (void)replaceLongAtIndex:(NSUInteger)index withLong:(long)value;
+
+- (void)replaceUnsignedLongAtIndex:(NSUInteger)index withUnsignedLong:(unsigned long)value;
+
+- (void)replaceLongLongAtIndex:(NSUInteger)index withLongLong:(long long)value;
+
+- (void)replaceUnsignedLongLongAtIndex:(NSUInteger)index withUnsignedLongLong:(unsigned long long)value;
+
+- (void)replaceFloatAtIndex:(NSUInteger)index withFloat:(float)value;
+
+- (void)replaceDoubleAtIndex:(NSUInteger)index withDouble:(double)value;
+
+- (void)replaceBoolAtIndex:(NSUInteger)index withBool:(BOOL)value;
+
+- (void)replaceIntegerAtIndex:(NSUInteger)index withInteger:(NSInteger)value;
+
+- (void)replaceUnsignedIntegerAtIndex:(NSUInteger)index withUnsignedInteger:(NSUInteger)value;
+
+- (void)replacePointValueAtIndex:(NSUInteger)index withPointValue:(CGPoint)value;
+
+- (void)replaceSizeValueAtIndex:(NSUInteger)index withSizeValue:(CGSize)value;
+
+- (void)replaceRectValueAtIndex:(NSUInteger)index withRectValue:(CGRect)value;
+
+@end

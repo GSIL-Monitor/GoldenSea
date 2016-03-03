@@ -1,0 +1,118 @@
+//
+//  SQLiteEntity.m
+//
+
+#import "SQLiteEntity.h"
+#import "DebugTool.h"
+
+@implementation SQLiteEntity
+
++ (NSString *)primaryKey
+{
+    return nil;
+}
+
++ (NSString *)uniqueKey
+{
+    return nil;
+}
+
++ (id)modelWithJSON:(NSDictionary *)json {
+    return [[[self class] alloc] initWithDictionary:json];
+}
+
++ (id)modelArrayWithJSON:(NSArray *)jsonArray {
+    Class cls = [self class];
+    NSMutableArray *ret = [[NSMutableArray alloc] initWithCapacity:[jsonArray count]];
+    
+    for (NSDictionary *dict in jsonArray) {
+        [ret addObject:[cls modelWithJSON:dict]];
+    }
+    
+    return ret;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict
+{
+    if (self = [super init]){
+        [self setFromDictionary:dict];
+    }
+    
+    return self;
+}
+
+- (void)setFromDictionary:(NSDictionary *)dict
+{
+    NSDictionary *keyMap = [self keyMapDictionary];
+    for (NSString *key in [dict keyEnumerator]) {
+        
+        id val = [dict objectForKey:key];
+        
+        NSString *theKey = key;
+        if ([keyMap objectForKey:key]) {
+            theKey = [keyMap objectForKey:key];
+        }
+        
+        if ([val isKindOfClass:[NSArray class]]) {
+            Class type = [self classForKey:theKey];
+            
+            if (type) {
+                [self setValue:[type modelArrayWithJSON:val] forKey:theKey];
+            } else {
+                [self setValue:val forKey:theKey];
+            }
+            
+        } else if (![val isKindOfClass:[NSDictionary class]] && ![val isKindOfClass:[NSNull class]]) {
+            
+            [self setValue:val forKey:theKey];
+            
+        } else {
+            
+            id origVal = [self valueForKey:theKey];
+			
+            if ([origVal isKindOfClass:[NSArray class]]) {
+                
+                NSArray *allKeys = [val allKeys];
+                
+                if ([allKeys count] > 0) {
+                    NSArray *arr = [val objectForKey:[allKeys objectAtIndex:0]];
+                    
+                    Class type = [self classForKey:theKey];
+                    
+                    if (type && [arr isKindOfClass:[NSArray class]]) {
+                        [self setValue:[type modelArrayWithJSON:arr] forKey:theKey];
+                    }
+                }
+                
+            } else {
+                Class cls = [self classForKey:theKey];
+                if (cls) {
+                    [self setValue:[cls modelWithJSON:val] forKey:theKey];
+                } else {
+                    [self setValue:val forKey:theKey];
+                }
+            }
+            
+        }
+    }
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    TRACE("class[%s] has no propery %s", [NSStringFromClass([self class]) UTF8String], [key UTF8String]);
+}
+
+#pragma mark - 子类可能需要重载的
+- (NSDictionary *)keyMapDictionary {
+    return nil;
+}
+
+- (Class)classForKey:(NSString *)key {
+    return NULL;
+}
+
+- (NSArray *)keys {
+    return nil;
+}
+
+@end

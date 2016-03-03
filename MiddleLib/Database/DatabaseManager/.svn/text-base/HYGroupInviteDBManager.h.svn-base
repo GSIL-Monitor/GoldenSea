@@ -1,0 +1,138 @@
+//
+//  HYGroupInviteDBManager.h
+//  iRCS
+//
+//  Created by 王斌 on 15/8/31.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "GroupInviteModel.h"
+#import "HYDatabaseHelper.h"
+#import "HYFMDatabase.h"
+#import "HYFMDatabaseQueue.h"
+
+@interface HYGroupInviteDBManager : NSObject
+// 用于数据操作的管理队列
+@property (nonatomic, strong) HYFMDatabaseQueue *databaseQueue;
+// 用于获取数据的数据库
+@property (nonatomic, strong) HYFMDatabase *database;
+
+- (void)setup;
++ (HYGroupInviteDBManager *)defaultManager;
+#pragma mark 增
+/**
+ *  根据默认参数创建数据表
+ *
+ *  @return 是否成功
+ */
+- (BOOL)createTable;
+
+/**
+ *  添加一条群邀请记录
+ *
+ *  @param groupInviteModel 群邀请数据
+ *
+ *  @return 是否成功
+ */
+- (BOOL)addGroupInviteInDBWithModel:(GroupInviteModel *)groupInviteModel;
+
+#pragma mark 删
+/**
+ *  删除指定群邀请
+ *
+ *  @param groupID 群组ID
+ *
+ *  @return 是否成功
+ */
+- (BOOL)deleteGroupInviteInDBWithGroupID:(NSString *)groupID InviterID:(NSString *)inviterID;
+
+#pragma mark 改
+/**
+ *  更新加入群状态
+ *
+ *  @param groupID 群号
+ *
+ *  @return 是否成功
+ */
+-(BOOL)updateGroupInviteJoinStatusWithGroupID:(NSString *)groupID InviterID:(NSString *)inviterID IsJoin:(int)joinStatus;
+
+/**
+ *  更新最新的通知请求时间
+ *
+ *  @param groupID
+ *  @param inviterID
+ *  @param timeStamp
+ *
+ *  @return
+ */
+-(BOOL)updateGroupInviteJoinStatusWithGroupID:(NSString *)groupID InviterID:(NSString *)inviterID TimeStamp:(int)timeStamp;
+
+/**
+ *  全部邀请更新为已读
+ */
+-(BOOL) setAllGroupInviteIsRead;
+
+#pragma mark 查
+/**
+ *  获取表格数据
+ *
+ *  @return GroupInviteModel
+ */
+-(NSArray *)getGroupInviteInDB;
+
+/**
+ *  获取一定数量表格数据
+ *
+ *  @return GroupInviteModel
+ */
+-(NSArray *)getGroupInviteInDBWithRange:(NSRange)range;
+
+/**
+ *  取一条最新的群邀请
+ *
+ *  @param BOOL 群邀请
+ *
+ *  @return 返回群邀请模型，无为nil
+ */
+-(GroupInviteModel *) getTopGroupInviteInDB;
+
+/**
+ *  未读消息数量
+ */
+- (int) getUnReadCount;
+
+/**
+ *  判断是否存在同样的群邀请
+ *
+ *  @param groupID   群号
+ *  @param inviterID 邀请人ID
+ *
+ *  @return 是否存在
+ */
+- (BOOL) isExistGroupInviteWithGroupID:(NSString *)groupID InviteID:(NSString *)inviterID;
+
+
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

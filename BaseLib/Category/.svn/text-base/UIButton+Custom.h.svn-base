@@ -1,0 +1,23 @@
+//
+//  UIButton+Custom.h
+//
+
+#import <UIKit/UIKit.h>
+#import "UIView+Custom.h"
+
+@interface UIButton (Custom)
+
+@property (nonatomic, assign) int skinTitleColorNormal;
+@property (nonatomic, assign) int skinTitleColorHighlighted;
+@property (nonatomic, assign) int skinTitleColorDisabled;
+@property (nonatomic, assign) int skinTitleColorSelected;
+@property (nonatomic, assign) int skinTitleShadowColor;
+@property (nonatomic, strong) NSString* skinImageNormal;
+@property (nonatomic, strong) NSString* skinImageHighlighted;
+@property (nonatomic, strong) NSString* skinImageSelected;
+@property (nonatomic, strong) NSString* skinBackgroundImageNormal;
+@property (nonatomic, strong) NSString* skinBackgroundImageHighlighted;
+@property (nonatomic, strong) NSString* skinBackgroundImageDisabled;
+@property (nonatomic, strong) NSString* skinBackgroundImageSelected;
+
+@end

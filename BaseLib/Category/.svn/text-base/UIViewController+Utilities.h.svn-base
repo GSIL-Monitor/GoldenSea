@@ -1,0 +1,24 @@
+//
+//  UIViewController+Utilities.h
+//  iRCS
+//
+//  Created by guming on 15/9/21.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, RCSLeftBarbtnItemStyle) {
+    RCSLeftBarbtnItemStyleBack = 0,
+    RCSLeftBarbtnItemStyleCancel = 1,
+    RCSLeftBarbtnItemStyleNone  = 2
+};
+@interface UIViewController (Utilities)
+- (void)configureLeftBarBtnItemStyle:(RCSLeftBarbtnItemStyle)itemStyle WithActionBlock:(void (^)(id sender))actionBlock;
+
+- (void)configureFinishRightBarItemWithActionBlock:(void (^)(id sender))finishBlock;
+
+- (void)configureRightBarItemWithTitle:(NSString *)title actionBlock:(void (^)(id sender))finishBlock;
+
++(UIViewController*) currentViewController;
+
+@end

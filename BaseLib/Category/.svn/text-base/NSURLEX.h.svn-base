@@ -1,0 +1,36 @@
+//
+//  NSURLEX.h
+//
+
+#import <Foundation/Foundation.h>
+
+#define addScheme(oUrl)  [oUrl URLByAddingScheme]
+
+@interface NSURL (EX)
+
++ (id)URLWithStringAddingPercentEscapes:(NSString *)URLString;
+
+- (id)initWithStringAddingPercentEscapes:(NSString *)URLString;
+- (NSURL *)URLByAddingScheme;
+
+//支付宝快登使用
+/**
+ scheme://user:pass@host:1/path/path2/file.html;params?query#fragment
+ 
+ schemeStr: 符合scheme://user:pass@host:1/path/path2/file.html;params?query的
+ URL, 不需要的字段可为空
+ queryParams: 用来构造query字段，自动做转义处理
+ */
++ (NSURL *)urlWith:(NSString *)schemeStr queryParams:(NSDictionary *)params;
+
+/**
+ scheme://user:pass@host:1/path/path2/file.html;params?query#fragment
+ 
+ 把query参数内容以NSDictionary返回，返回结果自动做反转义处理。
+ */
+- (NSDictionary *)queryParams;
+
+- (NSURL *)addParams:(NSDictionary *)params;
+- (NSURL *)appendParams:(NSDictionary *)params;
+
+@end

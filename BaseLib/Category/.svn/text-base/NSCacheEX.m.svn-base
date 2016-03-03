@@ -1,0 +1,437 @@
+//
+//  NSCacheEX.m
+//
+
+#import "NSCacheEX.h"
+
+@implementation NSCache(HYUitl)
+
+
+- (id)objectForKeyCheck:(id)aKey
+{
+    if (aKey == nil) {
+        return nil;
+    }
+    
+    id value = [self objectForKey:aKey];
+    if (value == [NSNull null]) {
+        return nil;
+    }
+    return value;
+}
+
+- (id)objectForKeyCheck:(id)key class:(__unsafe_unretained Class)aClass
+{
+    return [self objectForKeyCheck:key class:aClass defaultValue:nil];
+}
+
+- (id)objectForKeyCheck:(id)key class:(__unsafe_unretained Class)aClass defaultValue:(id)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if (![value isKindOfClass:aClass]) {
+        return defaultValue;
+    }
+    return value;
+}
+
+- (void)setObjectCheck:(id)anObject forKey:(id <NSCopying>)aKey
+{
+    if (aKey == nil) {
+        NSLog(@"%@ setObjectCheck: aKey 为 nil",self);
+        return;
+    }
+    
+    if (anObject == nil) {
+        NSLog(@"%@ setObjectCheck: anObject 为 nil",self);
+        return;
+    }
+    
+    [self setObject:anObject forKey:aKey];
+}
+
+- (void)removeObjectForKeyCheck:(id)aKey
+{
+    if (aKey == nil) {
+        NSLog(@"%@ removeObjectForKeyCheck: aKey 为 nil",self);
+        return;
+    }
+    
+    [self removeObjectForKey:aKey];
+}
+
+- (NSArray *)arrayForKey:(id)key
+{
+    return [self arrayForKey:key defaultValue:nil];
+}
+
+- (NSArray *)arrayForKey:(id)key defaultValue:(NSArray *)defaultValue
+{
+    return [self objectForKeyCheck:key class:[NSArray class] defaultValue:defaultValue];
+}
+
+- (NSMutableArray *)mutableArrayForKey:(id)key
+{
+    return [self mutableArrayForKey:key defaultValue:nil];
+}
+
+- (NSMutableArray *)mutableArrayForKey:(id)key defaultValue:(NSArray *)defaultValue
+{
+    return [self objectForKeyCheck:key class:[NSMutableArray class] defaultValue:defaultValue];
+}
+
+- (NSDictionary *)dictionaryForKey:(id)key
+{
+    return [self dictionaryForKey:key defaultValue:nil];
+}
+
+- (NSDictionary *)dictionaryForKey:(id)key defaultValue:(NSDictionary *)defaultValue
+{
+    return [self objectForKeyCheck:key class:[NSDictionary class] defaultValue:defaultValue];
+}
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key
+{
+    return [self mutableDictionaryForKey:key defaultValue:nil];
+}
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key defaultValue:(NSDictionary *)defaultValue
+{
+    return [self objectForKeyCheck:key class:[NSMutableDictionary class] defaultValue:defaultValue];
+}
+
+- (NSData *)dataForKey:(id)key
+{
+    return [self dataForKey:key defaultValue:nil];
+}
+
+- (NSData *)dataForKey:(id)key defaultValue:(NSData *)defaultValue
+{
+    return [self objectForKeyCheck:key class:[NSData class] defaultValue:defaultValue];
+}
+
+- (NSString *)stringForKey:(id)key
+{
+    return [self stringForKey:key defaultValue:nil];
+}
+
+- (NSString *)stringForKeyToString:(id)key
+{
+    return [self stringForKey:key defaultValue:@""];
+}
+
+- (NSString *)stringForKey:(id)key defaultValue:(NSString *)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    
+    if ([value isKindOfClass:[NSNumber class]]) {
+        return [value stringValue];
+    }
+    
+    if (![value isKindOfClass:[NSString class]]) {
+        return defaultValue;
+    }
+    return value;
+}
+
+- (NSNumber *)numberForKey:(id)key
+{
+    return [self numberForKey:key defaultValue:nil];
+}
+
+- (NSNumber *)numberForKey:(id)key defaultValue:(NSNumber *)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    
+    if ([value isKindOfClass:[NSString class]]) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        return [formatter numberFromString:value];
+    }
+    
+    if (![value isKindOfClass:[NSNumber class]]) {
+        return defaultValue;
+    }
+    
+    return value;
+}
+
+- (char)charForKey:(id)key
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value charValue];
+    }
+    else {
+        return 0x0;
+    }
+}
+
+- (unsigned char)unsignedCharForKey:(id)key
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedCharValue];
+    }
+    else {
+        return 0x0;
+    }
+}
+
+- (short)shortForKey:(id)key
+{
+    return [self shortForKey:key defaultValue:0];
+}
+
+- (short)shortForKey:(id)key defaultValue:(short)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value shortValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (unsigned short)unsignedShortForKey:(id)key
+{
+    return [self unsignedShortForKey:key defaultValue:0];
+}
+
+- (unsigned short)unsignedShortForKey:(id)key defaultValue:(unsigned short)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedShortValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (int)intForKey:(id)key
+{
+    return [self intForKey:key defaultValue:0];
+}
+
+- (int)intForKey:(id)key defaultValue:(int)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value intValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (unsigned int)unsignedIntForKey:(id)key
+{
+    return [self unsignedIntForKey:key defaultValue:0];
+}
+
+- (unsigned int)unsignedIntForKey:(id)key defaultValue:(unsigned int)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedIntValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (long)longForKey:(id)key
+{
+    return [self longForKey:key defaultValue:0];
+}
+
+- (long)longForKey:(id)key defaultValue:(long)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value longValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (unsigned long)unsignedLongForKey:(id)key
+{
+    return [self unsignedLongForKey:key defaultValue:0];
+}
+
+- (unsigned long)unsignedLongForKey:(id)key defaultValue:(unsigned long)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedLongValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (long long)longLongForKey:(id)key
+{
+    return [self longLongForKey:key defaultValue:0];
+}
+
+- (long long)longLongForKey:(id)key defaultValue:(long long)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value longLongValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (unsigned long long)unsignedLongLongForKey:(id)key
+{
+    return [self unsignedLongLongForKey:key defaultValue:0];
+}
+
+- (unsigned long long)unsignedLongLongForKey:(id)key defaultValue:(unsigned long long)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedLongLongValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (float)floatForKey:(id)key
+{
+    return [self floatForKey:key defaultValue:0.0];
+}
+
+- (float)floatForKey:(id)key defaultValue:(float)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        float result = [value floatValue];
+        return isnan(result) ? defaultValue : result;
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (double)doubleForKey:(id)key
+{
+    return [self doubleForKey:key defaultValue:0.0];
+}
+
+- (double)doubleForKey:(id)key defaultValue:(double)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        double result = [value doubleValue];
+        return isnan(result) ? defaultValue : result;
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (BOOL)boolForKey:(id)key
+{
+    return [self boolForKey:key defaultValue:NO];
+}
+
+- (BOOL)boolForKey:(id)key defaultValue:(BOOL)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value boolValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (NSInteger)integerForKey:(id)key
+{
+    return [self integerForKey:key defaultValue:0];
+}
+
+- (NSInteger)integerForKey:(id)key defaultValue:(NSInteger)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value integerValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (NSUInteger)unsignedIntegerForKey:(id)key
+{
+    return [self unsignedIntegerForKey:key defaultValue:0];
+}
+
+- (NSUInteger)unsignedIntegerForKey:(id)key defaultValue:(NSUInteger)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value unsignedIntegerValue];
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+- (CGPoint)pointForKey:(id)key
+{
+    return [self pointForKey:key defaultValue:CGPointZero];
+}
+
+- (CGPoint)pointForKey:(id)key defaultValue:(CGPoint)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSString class]] && ![value isEmpty])
+        return CGPointFromString(value);
+    else if ([value isKindOfClass:[NSValue class]])
+        return [value CGPointValue];
+    else
+        return defaultValue;
+}
+
+- (CGSize)sizeForKey:(id)key
+{
+    return [self sizeForKey:key defaultValue:CGSizeZero];
+}
+
+- (CGSize)sizeForKey:(id)key defaultValue:(CGSize)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSString class]] && ![value isEmpty])
+        return CGSizeFromString(value);
+    else if ([value isKindOfClass:[NSValue class]])
+        return [value CGSizeValue];
+    else
+        return defaultValue;
+}
+
+- (CGRect)rectForKey:(id)key
+{
+    return [self rectForKey:key defaultValue:CGRectZero];
+}
+
+- (CGRect)rectForKey:(id)key defaultValue:(CGRect)defaultValue
+{
+    id value = [self objectForKeyCheck:key];
+    if ([value isKindOfClass:[NSString class]] && ![value isEmpty])
+        return CGRectFromString(value);
+    else if ([value isKindOfClass:[NSValue class]])
+        return [value CGRectValue];
+    else
+        return defaultValue;
+}
+
+@end

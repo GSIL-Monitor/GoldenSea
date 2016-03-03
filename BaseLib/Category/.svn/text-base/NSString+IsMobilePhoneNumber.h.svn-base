@@ -1,0 +1,15 @@
+//
+//  NSString+IsMobilePhoneNumber.h
+//  iRCS
+//
+//  Created by 黄春涛 on 15/9/25.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (IsMobilePhoneNumber)
+
+- (BOOL) isMobilePhoneNumber;
+
+@end

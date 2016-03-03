@@ -1,0 +1,36 @@
+//
+//  GroupUIModel.h
+//  iRCS
+//
+//  Created by 王斌 on 16/2/25.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "HYComDefine.h"
+#import "GroupDBModel.h"
+
+@interface GroupUIModel : NSObject
+
+@property (nonatomic, copy) NSString *groupID; ///<群标示符
+@property (nonatomic, copy) NSString *groupName; ///<群名称
+@property (nonatomic, copy) NSString *groupSubject; ///<群主题
+@property (nonatomic, copy) NSString *groupDescription; ///<群描述
+@property (nonatomic, assign) HYPolicyType policy;   ///<群接受策略,暂时没有用到
+@property (nonatomic, assign) NSInteger maxMemberCount; ///<群最大人数
+@property (nonatomic, assign) NSInteger memberCount;    ///<群当前人数
+@property (nonatomic, copy) NSString *groupMaster; ///<群主
+@property (nonatomic, copy) NSString *members;///<群成员,以逗号隔开,暂时无用
+@property (nonatomic, assign) long long createTimeStamp; ///<创建时间
+@property (nonatomic, assign) BOOL isQuit; ///<标示被动退出
+@property (nonatomic, copy) NSString *WeatherAcceptMessageNotification;  ///<待用
+
+//==========
+
+@property (nonatomic, assign) NSRange matchRange;  ///<名字匹配范围
+
+- (GroupUIModel *)initWithDBModel:(GroupDBModel *)DBModel;
++ (NSMutableArray *)arrayWithDBModels:(NSArray *)DBModels;
+
+
+@end

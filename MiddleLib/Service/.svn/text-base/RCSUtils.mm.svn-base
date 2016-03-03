@@ -1,0 +1,543 @@
+//
+//  RCSUtils.m
+//  RCS
+//
+//  Created by yaofangyys on 15/4/9.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "RCSUtils.h"
+#import "amrFileCodec.h"
+#import <AVFoundation/AVFoundation.h>
+//#import "RegExCategories.h"
+#import "UIImageEX.h"
+#import "UIImage+Scaling.h"
+#import "HYUserInfoMgr.h"
+#import "FileManager.h"
+#import "NSDate+WhatDay.h"
+
+@implementation RCSUtils
+
++ (NSString*)getRelativeTimeToNowFromTimeInterval:(NSTimeInterval)time{
+    NSTimeInterval dateNow = [[NSDate date] timeIntervalSince1970];
+    long long intervalDay = 3600 * 24;
+    long long intervalweek = 7*24*3600;
+    
+    long long Now = (long long)dateNow; //当时的秒数
+    long long secondToday = Now % intervalDay; //今天累计的秒数
+    long long secondDays = Now - secondToday + intervalDay; //今天为止所有的秒数
+    
+    if (secondDays - time > intervalweek) {
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"MM月dd日"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }else if (secondDays - time > intervalDay *2) {
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"EEEE"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }else if (secondDays - time >intervalDay){
+        return @"昨天";
+    }else{
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"HH:mm"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }
+}
+
+
++ (NSString*)getRelativeTimeToNowForMessageFromTimeInterval:(NSTimeInterval)time
+{
+    NSTimeInterval dateNow = [[NSDate date] timeIntervalSince1970];
+    long long intervalDay = 3600 * 24;
+    long long intervalweek = 7*24*3600;
+    long long Now = (long long)dateNow; //当时的秒数
+    long long secondToday = Now % intervalDay; //今天累计的秒数
+    long long secondDays = Now - secondToday + intervalDay; //今天为止所有的秒数
+    if (secondDays - time > intervalweek) {
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"MM月dd日 HH:mm"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }else if (secondDays - time > intervalDay *2) {
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"EEEE HH:mm"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }else if (secondDays - time >intervalDay){
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"昨天 HH:mm"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }else{
+        NSDateFormatter *fommatter = [[NSDateFormatter alloc] init];
+        [fommatter setDateFormat:@"HH:mm"];
+        return [fommatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    }
+}
+
++ (NSString *)getRelativeTimeToNowForCallFromTimeInterval:(NSTimeInterval)time
+{
+    NSDate *data = [NSDate dateWithTimeIntervalSince1970:time];
+    if ([data isInAnHour]) {
+        NSDate *nowDate = [NSDate date];
+        int seconds = [nowDate timeIntervalSinceDate:data];
+         return [NSString stringWithFormat:@"%d分钟前",seconds/60];
+    }
+    else if([data isToday]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"HH:mm"];
+        return [formatter stringFromDate:data];
+    }else{
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy/MM/dd"];
+        return [formatter stringFromDate:data];
+    }
+}
+
++ (NSString *)getRelativeTimeToNowForConversationFromTimeInterval:(NSTimeInterval)time
+{
+    NSDate *data = [NSDate dateWithTimeIntervalSince1970:time];
+  if([data isToday]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"HH:mm"];
+        return [formatter stringFromDate:data];
+    }else if([data isYesterday]){
+        return @"昨天";
+    }else if([data isThisYear]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"MM月dd日"];
+        return [formatter stringFromDate:data];
+    }else{
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy年MM月dd日"];
+        return [formatter stringFromDate:data];
+    }
+}
+
+
++ (NSDate *)getSystemZoneDateWithTimeIntervalSince1970:(NSTimeInterval)interval {
+    NSDate *GMTDate = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSTimeZone *zone = [NSTimeZone localTimeZone];
+    
+    NSInteger seconds = [zone secondsFromGMTForDate:GMTDate];
+    NSDate *date = [GMTDate dateByAddingTimeInterval:seconds];
+    return date;
+}
+
+/**
+ *  数据库不支存储持单引号，所以将其转义为"/s",而"/"则转义为"//"
+ */
++ (NSString *)convertSpecialSymbolFromDBModelWithRawText:(NSString *)text
+{
+    NSString *rst = nil;
+    if (text) {
+        rst = [text stringByReplacingOccurrencesOfString:@"/s" withString:@"'"];
+        rst = [rst stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    }
+    return rst;
+    
+}
+
++ (NSString *)convertSpecialSymbolFromUIModelWithRawText:(NSString *)text
+{
+    NSString *rst = nil;
+    if (text) {
+        rst = [text stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+        rst = [rst stringByReplacingOccurrencesOfString:@"'" withString:@"/s"];
+    }
+    return rst;
+    
+}
+
++ (BOOL)convertWAVE:(NSString *)strWavePath ToAmr:(NSString *)toAmrPath {
+    if ([NSString isBlankString:strWavePath] || [NSString isBlankString:toAmrPath]) {
+        return NO;
+    }
+    
+    int frames =   EncodeWAVEFileToAMRFile([strWavePath UTF8String], [toAmrPath UTF8String], 1, 16);
+    if (frames > 0) {
+        //succeed.
+        return YES;
+    }
+    return NO;
+}
+
++ (NSString *)generalUDID {
+	CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+	CFStringRef uuid_string_ref = CFUUIDCreateString(NULL, uuid_ref);
+	CFRelease(uuid_ref);
+	NSString *uuid = [NSString stringWithString:(__bridge NSString *)uuid_string_ref];
+	CFRelease(uuid_string_ref);
+	return uuid;
+}
+
++ (NSString *)convertTextContentFaceExpressionToCode:(NSString *)strContent {
+	NSMutableArray *arrayCompair = [[NSMutableArray alloc] init];
+	for (int i = 0x1F600; i <= 0x1F64F; i++) {
+		if (i < 0x1F641 || i > 0x1F644) {
+			NSString *smiley = [[NSString alloc] initWithBytes:&i length:sizeof(i) encoding:NSUTF32LittleEndianStringEncoding];
+			[arrayCompair addObject:smiley];
+		}
+	}
+
+	NSString *strReturn = strContent;
+	for (int i = 0; i < [arrayCompair count]; i++) {
+		NSRange range =  [[strContent lowercaseString] rangeOfString:[[arrayCompair objectAtIndex:i] lowercaseString]];
+
+		if (range.location != NSNotFound) {
+			NSString *strcccc = [strContent substringWithRange:range];
+			NSData *data = [strcccc dataUsingEncoding:NSUTF32LittleEndianStringEncoding];
+			uint32_t unicode;
+			[data getBytes:&unicode length:sizeof(unicode)];
+			NSString *hexSend = [NSString stringWithFormat:@"/u%1x", unicode];
+			strReturn =  [strReturn stringByReplacingOccurrencesOfString:strcccc withString:hexSend];
+		}
+	}
+	return strReturn;
+}
+
++ (NSString *)getRedirectionFilePath:(NSString *)filePath {
+    if (!filePath || filePath.length == 0 || ![filePath hasSubString:@"/Documents/"]) {
+        return filePath;
+    }
+    
+    NSArray *pathCompnents = [filePath componentsSeparatedByString:@"/Documents"];
+    return [[FileManager getDocumentsPath] stringByAppendingString:[pathCompnents objectAtIndex:1]];
+}
+
+
+
++ (NSString *)getStringFromTimeInterval:(NSTimeInterval)timeInterval {
+    int totalSeconds = (int)timeInterval;
+    if (totalSeconds < 0) {
+        return @"0";
+    }
+    
+    if (timeInterval < 60 * 60) {
+        int minute = totalSeconds / 60;
+        int second = totalSeconds % 60;
+        return [NSString stringWithFormat:@"%d\'%.2d\"", minute, second];
+    }
+    else {
+        int hour = totalSeconds / (60 * 60);
+        int minute = (totalSeconds / 60) % 60;
+        int second = totalSeconds % 60;
+        return [NSString stringWithFormat:@"%d:%d\'%.2d\"", hour, minute, second];
+    }
+    return @"0";
+}
+
++ (NSString *)getChineseStringFromTimeInterval:(NSTimeInterval)timeInterval {
+    int totalSeconds = (int)timeInterval;
+    if (totalSeconds < 0) {
+        return @"0秒";
+    }
+
+    if (timeInterval < 60 * 60) {
+        int minute = totalSeconds / 60;
+        int second = totalSeconds % 60;
+        if (minute == 0) {
+            return [NSString stringWithFormat:@"%d秒", second];
+        }
+        return [NSString stringWithFormat:@"%d分%d秒", minute, second];
+    }
+    else {
+        int hour = totalSeconds / (60 * 60);
+        int minute = (totalSeconds / 60) % 60;
+        int second = totalSeconds % 60;
+        return [NSString stringWithFormat:@"%d时%d分%d秒", hour, minute, second];
+    }
+    return @"0";
+
+}
+
+//TODO:HY_HISTORY_LOGIN_USERINFO
+
++ (NSString *)getCurrentUserPhoneNumber {
+    WSUserInfo* currUserInfo = [[HYUserInfoMgr shareManager]currUserInfo];
+    
+	NSString *currentUserPhone = currUserInfo.phoneNumber;
+
+	if ([NSString isBlankString:currentUserPhone]) {
+		return nil;
+	}
+	return currentUserPhone;
+}
+
++ (NSString *)getCurrentUserId
+{
+    WSUserInfo* currUserInfo = [[HYUserInfoMgr shareManager]currUserInfo];
+    
+    NSString *currentUser = currUserInfo.usrID;
+    if ([NSString isBlankString:currentUser]) {
+        return nil;
+    }
+    return currentUser;
+}
+
+//+ (UIViewController *)getCurrentVC {
+//    UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+//    UIViewController *topVC = appRootVC;
+//    while (topVC.presentedViewController) {
+//        topVC = topVC.presentedViewController;
+//        NSLog(@"%@",NSStringFromClass([topVC class]));
+//    }
+////    if (topVC.presentingViewController) {
+////        topVC = topVC.presentingViewController;
+////        NSLog(@"%@",NSStringFromClass([topVC class]));
+////    }
+//
+//    return topVC;
+//}
+
++ (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
+
+
++ (BOOL)convertMovToMP4:(NSURL *)url ToURL:(NSURL *)toUrl {
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+    
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    BOOL __block isSucceed = NO;
+    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:AVAssetExportPresetPassthrough];
+        exportSession.outputURL = toUrl;
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        
+        BOOL __block isFinished = NO;
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler: ^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed: {
+                    // log error to text view
+                    NSError *exportError = exportSession.error;
+                    DDLogError(@"AVAssetExportSessionStatusFailed: %@", exportError);
+                    isFinished = YES;
+                    break;
+                }
+                    
+                case AVAssetExportSessionStatusCompleted: {
+                    DDLogInfo(@"AVAssetExportSessionStatusCompleted");
+                    // set up AVPlayer
+                    
+                    // NSData *data = [NSData dataWithContentsOfURL:exportURL];
+                    isFinished = YES;
+                    isSucceed = YES;
+                    break;
+                }
+                    
+                case AVAssetExportSessionStatusUnknown: { DDLogInfo(@"AVAssetExportSessionStatusUnknown"); break; }
+                    
+                case AVAssetExportSessionStatusExporting: { DDLogInfo(@"AVAssetExportSessionStatusExporting"); break; }
+                    
+                case AVAssetExportSessionStatusCancelled: { DDLogInfo(@"AVAssetExportSessionStatusCancelled"); break; }
+                    
+                case AVAssetExportSessionStatusWaiting: { DDLogInfo(@"AVAssetExportSessionStatusWaiting"); break; }
+                    
+                default: { DDLogInfo(@"didn't get export status"); break; }
+            }
+            
+            //            [exportSession release];
+        }];
+        
+        while (!isFinished) {
+            sleep(0.5);
+        }
+    }
+    return isSucceed;
+}
+
++ (NSData *)generalIcon:(UIImage *)image {
+    if (!image) {
+        return nil;
+    }
+    
+    //    //10kb缩略图
+    //    return [UIImage autoScaleImage:image ToSize:10];
+//    CGSize size = image.size;
+//    if (size.width > 100) {
+//        float ss = 100 / (float)size.width;
+//        size.height =  size.height * ss;
+//        size.width = 100;
+//        UIImage *imageNew = [image imageByScalingToSize:size];
+//        return UIImageJPEGRepresentation(imageNew, (CGFloat)0.01);
+//    }
+    return UIImageJPEGRepresentation(image, (CGFloat)0.1);
+}
++ (BOOL)isTheSamePhoneNumber:(NSString *)phone1 Phone2:(NSString *)phone2 {
+	if (!phone1 || !phone2) {
+		return NO;
+	}
+
+	if ([phone1 hasSuffix:phone2] || [phone2 hasSuffix:phone1]) {
+		return YES;
+	}
+	return NO;
+}
+
++ (BOOL)isTheSameUserId:(NSString *)userId1 withUserId:(NSString *)userId2
+{
+    if (!userId1 || !userId2) {
+        return  NO;
+    }else{
+        if ([userId1 isEqualToString:userId2]) {
+            return YES;
+        }else
+            return NO;
+    }
+}
+
++ (void)makeSystemCall:(NSString *)phone {
+    if (phone && phone.length > 0) {
+        NSString *str = [[NSString alloc] initWithFormat:@"tel://%@", phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
++ (BOOL)is64bit{
+#if defined(__LP64__) && __LP64__
+    return YES;
+#else
+    return NO;
+#endif
+}
+
+
++ (BOOL)is32bit{
+#if defined(__LP64__) && __LP64__
+    return NO;
+#else
+    return YES;
+#endif
+}
+
+
+//// other util func
++  (NSString *) getResourceFullPathInDocumentsWithPartialPath:(NSString *) resPartialPath{
+    NSArray* array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *fullPath=nil;
+    if([array count])
+        fullPath=[array[0] stringByAppendingString:resPartialPath];
+    
+    return fullPath;
+}
+
+
++ (NSString *) getFormattedByteSizeFromString:(NSString *) str{
+    NSInteger length = [str length];
+    
+    return [[self class] getFormattedSizeFromLength:length];
+}
+
++ (NSString *)getFormattedSizeFromLength:(NSInteger)length
+{
+    NSString *strLength;
+    if (length < 1024) {
+        strLength = [NSString stringWithFormat:@"%ldB",length];
+    }else if(length < 1024*1024){
+        strLength = [NSString stringWithFormat:@"%.1fKB",(CGFloat)length/1024];
+    }else{
+        strLength = [NSString stringWithFormat:@"%.1fMB",(CGFloat)length/1024/1024];
+    }
+    return strLength;
+}
+
++ (NSInteger) nearestLargestIntFromFloat:(CGFloat)input{
+    if (0==(input-(NSInteger)input)) {
+        return (NSInteger)input;
+    }else{
+        return ((NSInteger)input+1);
+    }
+}
+
+
+/**
+ ** lineView:	   需要绘制成虚线的view
+ ** lineLength:	 虚线的宽度
+ ** lineSpacing:	虚线的间距
+ ** lineColor:	  虚线的颜色
+ **/
++ (void)drawDashLine:(UIView *)lineView lineLength:(int)lineLength lineSpacing:(int)lineSpacing lineColor:(UIColor *)lineColor
+{
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [shapeLayer setBounds:lineView.bounds];
+    [shapeLayer setPosition:CGPointMake(CGRectGetWidth(lineView.frame) / 2, CGRectGetHeight(lineView.frame))];
+    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+    //  设置虚线颜色为blackColor
+    [shapeLayer setStrokeColor:lineColor.CGColor];
+    //  设置虚线宽度
+    [shapeLayer setLineWidth:CGRectGetHeight(lineView.frame)];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    //  设置线宽，线间距
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:lineLength], [NSNumber numberWithInt:lineSpacing], nil]];
+    //  设置路径
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, CGRectGetWidth(lineView.frame), 0);
+    [shapeLayer setPath:path];
+    CGPathRelease(path);
+    //  把绘制好的虚线添加上来
+    [lineView.layer addSublayer:shapeLayer];
+}
+
+
+
+
+/*
+ <?xml version="1.0" encoding="UTF-8" ?><rcsenvelope xmlns="urn:gsma:params:xml:ns:rcs:rcs:geolocation" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10" xmlns:gs="http://www.opengis.net/pidflo/1.0" xmlns:gml="http://www.opengis.net/gml" entity="sip:+8613800138064@rcs.pci-suntektech.com"><rcspushlocation id="dpecb" label="天河工业园建工路4号"><gp:geopriv><gp:location-info><gs:Circle srsName="urn:ogc:def:crs:EPSG::4326"><gs:radius uom="urn:ogc:def:uom:EPSG::9001">490.000000</gs:radius><gml:pos>23.124479 113.372112</gml:pos></gs:Circle></gp:location-info><gp:usage-rules><gp:retention-expiry>2015-06-03T09:38:55Z</gp:retention-expiry></gp:usage-rules></gp:geopriv><timestamp>2015-06-03T09:38:55Z</timestamp></rcspushlocation></rcsenvelope>
+ */
+//+ (RCSMapLocation *)parseLocationFromMapXml:(NSString *)filePath {
+//    RCSMapLocation *location = [[RCSMapLocation alloc] init];
+//    NSString *messagesStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//    NSUInteger loc = [messagesStr rangeOfString:@"label=\""].location;
+//    if (loc == NSNotFound) {
+//        return location;
+//    }
+//    messagesStr = [messagesStr substringFromIndex:loc + 7];
+//    NSArray *ar = [messagesStr componentsSeparatedByString:@"\"><gp:geopriv>"];
+//    if (ar.count > 1) {
+//        location.strTitle = [ar objectAtIndex:0];
+//        NSString *tmp = [ar objectAtIndex:1];
+//        NSUInteger loc1 = [tmp rangeOfString:@"<gml:pos>"].location;
+//        if (loc1 == NSNotFound) {
+//            return location;
+//        }
+//        tmp = [tmp substringFromIndex:[tmp rangeOfString:@"<gml:pos>"].location + 9];
+//        NSArray *ar1 = [tmp componentsSeparatedByString:@"</gml:pos>"];
+//        if (ar1.count > 0) {
+//            NSString *strLocation = [ar1 objectAtIndex:0];
+//            NSArray *ar2 = [strLocation componentsSeparatedByString:@" "];
+//            if (ar2.count > 1) {
+//                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[ar2 objectAtIndex:0] floatValue], [[ar2 objectAtIndex:1] floatValue]);
+//                location.coordinate = coord;
+//            }
+//        }
+//    }
+//    return location;
+//}
+
+@end

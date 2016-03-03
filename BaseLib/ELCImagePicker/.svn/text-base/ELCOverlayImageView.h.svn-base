@@ -1,0 +1,37 @@
+//
+//  ELCOverlayImageView.h
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef   void (^ ELCOverlayImageViewDelectedBlock)(id sender);
+
+@interface ELCOverlayImageView : UIImageView
+
+@property (nonatomic, strong) UILabel *labIndex;
+@property (nonatomic, strong) UIButton *selectedBtn;
+
+
+- (instancetype)initWithSelectedBlock:(ELCOverlayImageViewDelectedBlock)selectedBlock;
+- (void)setSelectedBlock:(ELCOverlayImageViewDelectedBlock)selectedBlock;
+- (void) setIndex:(int)_index;
+- (void) setIsSelected:(BOOL)isSelected;
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

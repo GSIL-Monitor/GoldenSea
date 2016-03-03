@@ -1,0 +1,67 @@
+//
+//  UIImage+WebP.m
+//  SDWebImage
+//
+//  Created by Olivier Poitrey on 07/06/13.
+//  Copyright (c) 2013 Dailymotion. All rights reserved.
+//
+
+#import "UIImage+WebP.h"
+#import "webp/decode.h"
+
+// Callback for CGDataProviderRelease
+static void FreeImageData(void *info, const void *data, size_t size)
+{
+    free((void *)data);
+}
+
+@implementation UIImage (WebP)
+
++ (UIImage *)sd_imageWithWebPData:(NSData *)data
+{
+    CGDataProviderRef provider;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault ;
+    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+    
+    CGImageRef imageRef;
+    
+    WebPBitstreamFeatures features;
+    WebPGetFeatures([data bytes], [data length], &features);
+    
+    int height = features.height;
+    int width = features.width;
+    uint8_t * decodedData = NULL;
+    if (features.has_alpha) {
+        bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaLast;
+        decodedData = WebPDecodeRGBA([data bytes], [data length], &width, &height);
+        if (decodedData == NULL) {
+            CGColorSpaceRelease(colorSpaceRef);
+            return nil;
+        }
+        provider = CGDataProviderCreateWithData(NULL, decodedData, width*height*4, FreeImageData);
+        imageRef = CGImageCreate(width, height, 8, 32, 4*width, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+    } else {
+        decodedData = WebPDecodeRGB([data bytes], [data length], &width, &height);
+        if (decodedData == NULL) {
+            CGColorSpaceRelease(colorSpaceRef);
+            return nil;
+        }
+        provider = CGDataProviderCreateWithData(NULL, decodedData, width*height*3, FreeImageData);
+        imageRef = CGImageCreate(width, height, 8, 24, 3*width, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+    }
+    CGColorSpaceRelease(colorSpaceRef);
+    CGDataProviderRelease(provider);
+    
+    UIImage *newImage  = [[UIImage alloc] initWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return newImage;
+}
+
+@end
+
+// Functions to resolve some undefined symbols when using WebP and force_load flag
+void WebPInitPremultiplyNEON(void) {}
+void WebPInitUpsamplersNEON(void) {}
+void VP8DspInitNEON(void) {}

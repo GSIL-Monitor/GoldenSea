@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/zdyy/native/!svn/ver/7705/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header
+END
+Compatibility.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/Compatibility.h
+END
+HYAvailability.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/HYAvailability.h
+END
+CommonMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/6779/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/CommonMacros.h
+END
+HYNotificationDefineEX.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/zdyy/native/!svn/ver/4497/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/HYNotificationDefineEX.h
+END
+SystemConstants.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/7705/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/SystemConstants.h
+END
+TBProtocolConstantsEX.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/TBProtocolConstantsEX.h
+END
+HYUIKitMacroDef.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Foundation/Header/HYUIKitMacroDef.h
+END

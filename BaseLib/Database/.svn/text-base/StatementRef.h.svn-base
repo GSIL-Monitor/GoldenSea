@@ -1,0 +1,27 @@
+//
+//  StatementRef.h
+//
+
+#import <Foundation/Foundation.h>
+#import "sqlite3.h"
+
+
+@class Connection;
+
+/**
+ ** 用于管理创建sqlite3数据指针的状态管理与指针释放
+ **
+ **
+ **/
+
+@interface StatementRef: NSObject
+
+@property(nonatomic, strong) Connection *connection;
+@property(nonatomic) sqlite3_stmt *stmt;
+@property(nonatomic) BOOL wasValid;
+
+-(id)initWithStmt:(Connection *)connection stmt:(sqlite3_stmt *)stmt wasValid:(BOOL)wasValid;
+-(BOOL)isValid;
+-(void)close:(BOOL)forced;
+
+@end

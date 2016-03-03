@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData
+END
+SDDataCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDDataCache.m
+END
+SDWebDataManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDWebDataManager.h
+END
+SDNetworkActivityIndicator.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDNetworkActivityIndicator.h
+END
+SDWebImageCompatibly.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDWebImageCompatibly.h
+END
+SDImageView+SDWebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDImageView+SDWebCache.m
+END
+SDWebDataDownloader.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDWebDataDownloader.h
+END
+SDWebDataManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDWebDataManager.m
+END
+SDNetworkActivityIndicator.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDNetworkActivityIndicator.m
+END
+SDWebDataDownloader.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDWebDataDownloader.m
+END
+SDDataCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDDataCache.h
+END
+SDImageView+SDWebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebData/SDImageView+SDWebCache.h
+END

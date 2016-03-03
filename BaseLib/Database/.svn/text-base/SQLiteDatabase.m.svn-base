@@ -1,0 +1,899 @@
+//
+//  SQLiteDatabase.m
+//
+
+#import "SQLiteDatabase.h"
+#import <unistd.h>
+#include <objc/runtime.h>
+#import "SQLiteEntity.h"
+#import "SQLiteStatement.h"
+#import "SQLiteQuery.h"
+#import "Statement.h"
+#import "DebugTool.h"
+
+
+#define NEW_VERSION_ASSIGN
+
+static int exec_callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
+    id<SQLiteDatabaseSQLExecDelegate> delegate = (__bridge id<SQLiteDatabaseSQLExecDelegate>)NotUsed;
+    [delegate callback:delegate.context withArgc:argc argv:argv andColName:azColName];
+    
+    return 0;
+}
+
+
+@interface SQLiteDatabase()
+{
+    Statement *stmt_;
+
+}
+@end
+
+
+@implementation SQLiteDatabase
+
+@synthesize busyRetryTimeout;
+
++ (SQLiteDatabase *)openOrCreateDatabase:(NSString *)name
+{
+    SQLiteDatabase *db = [[self alloc] initWithName:name];
+    if ([db open]){
+        return db;
+    }
+    else{
+        TRACE("open database failed. (%s)", [name cStringUsingEncoding:NSUTF8StringEncoding]);
+        return nil;
+    }
+}
+
+- (void)dealloc {
+    [self close];
+    
+    cachedStatements = nil;
+    databasePath = nil;
+}
+
+- (int)version
+{
+#ifdef NEW_VERSION_ASSIGN
+    static sqlite3_stmt *stmt_version;
+    int databaseVersion = 0;
+    
+    if(sqlite3_prepare_v2(db, "PRAGMA user_version;", -1, &stmt_version, NULL) == SQLITE_OK) {
+        while(sqlite3_step(stmt_version) == SQLITE_ROW) {
+            databaseVersion = sqlite3_column_int(stmt_version, 0);
+            TRACE("%s: version %d", __FUNCTION__, databaseVersion);
+        }
+        TRACE("%s: the databaseVersion is: %d", __FUNCTION__, databaseVersion);
+    } else {
+        TRACE("%s: ERROR Preparing: , %s", __FUNCTION__, sqlite3_errmsg(db) );
+    }
+    sqlite3_finalize(stmt_version);
+    
+    return databaseVersion;
+#else
+    NSString *sql = @"SELECT dbversion FROM dbinfo";
+    NSArray *result = [self query:sql withParams:nil withResultType:nil];
+    int dbVersion = [[[result objectAtIndex:0] objectForKey:@"dbversion"] intValue];
+    return dbVersion;
+#endif
+}
+
+- (void)setVersion:(int)version
+{
+#ifdef NEW_VERSION_ASSIGN
+    [self execSQL:[NSString stringWithFormat:@"PRAGMA user_version = %d",version]];
+#else
+    NSString *sql = @"UPDATE dbinfo SET dbversion = ?";
+    [self update:sql withParams:[NSArray arrayWithObject:[NSNumber numberWithInt:version]]];
+#endif
+}
+
+- (id)initWithName:(NSString *)dbName
+{    
+    if (self= [super init]) {
+        databasePath        = [dbName copy];
+        db                  = 0x00;
+        logsErrors          = YES;
+        crashOnErrors       = 0x00;
+        busyRetryTimeout    = 0x00;
+        shouldCacheStatements = YES;
+    }
+    
+    return self;
+}
+
+- (BOOL)beginTransaction
+{
+    BOOL b =  [self execSQL:@"BEGIN EXCLUSIVE TRANSACTION;"];
+    if (b) {
+        inTransaction = YES;
+    }
+    return b;
+}
+
+- (BOOL)endTransaction
+{
+    BOOL b =  [self execSQL:@"COMMIT TRANSACTION;"];
+    if (b) {
+        inTransaction = NO;
+    }
+    return b;
+}
+
+- (BOOL)open
+{
+    if (db) {
+        return YES;
+    }
+    
+    int err = sqlite3_open((databasePath ? [databasePath fileSystemRepresentation] : ":memory:"), &db );
+    if(err != SQLITE_OK) {
+        TRACE("error opening!: %d", err);
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)close
+{
+    [self clearCachedStatements];
+    
+    if (!db) {
+        return YES;
+    }
+    
+    int  rc;
+    BOOL retry;
+    int numberOfRetries = 0;
+    BOOL triedFinalizingOpenStatements = NO;
+    
+    do {
+        retry   = NO;
+        rc      = sqlite3_close(db);
+        if (SQLITE_BUSY == rc || SQLITE_LOCKED == rc) {
+            retry = YES;
+            usleep(20);
+            if (busyRetryTimeout && (numberOfRetries++ > busyRetryTimeout)) {
+                TRACE("%s:%d", __FUNCTION__, __LINE__);
+                TRACE("Database busy, unable to close");
+                return NO;
+            }
+            
+            if (!triedFinalizingOpenStatements) {
+                triedFinalizingOpenStatements = YES;
+                sqlite3_stmt *pStmt;
+                while ((pStmt = sqlite3_next_stmt(db, 0x00)) !=0) {
+                    TRACE("Closing leaked statement");
+                    sqlite3_finalize(pStmt);
+                }
+            }
+        }
+        else if (SQLITE_OK != rc) {
+            TRACE("error closing!: %d", rc);
+        }
+    }
+    while (retry);
+    
+    db = NULL;
+    return YES;
+}
+
+#pragma mark - Utility Methods
+- (NSString*)lastErrorMessage {
+    return [NSString stringWithUTF8String:sqlite3_errmsg(db)];
+}
+
+- (BOOL)hadError {
+    int lastErrCode = [self lastErrorCode];
+    
+    return (lastErrCode > SQLITE_OK && lastErrCode < SQLITE_ROW);
+}
+
+- (int)lastErrorCode {
+    return sqlite3_errcode(db);
+}
+
+- (sqlite_int64)lastInsertRowId {
+    
+    if (inUse) {
+        [self warnInUse];
+        return NO;
+    }
+    inUse = YES;
+    
+    sqlite_int64 ret = sqlite3_last_insert_rowid(db);
+    
+    inUse = NO;
+    
+    return ret;
+}
+
+- (void)warnInUse {
+    TRACE("The Database %s is currently in use.", [databasePath UTF8String]);
+    
+#ifndef NS_BLOCK_ASSERTIONS
+    if (crashOnErrors) {
+        NSAssert1(false, @"The FMDatabase %@ is currently in use.", self);
+    }
+#endif
+}
+
+- (sqlite3_stmt *)getStatementForSql:(NSString *)sql error:(NSError **)outErr cache:(SQLiteStatement **)cached;
+{
+    int rc = 0;
+    sqlite3_stmt *pStmt = NULL;
+    SQLiteStatement *cachedStmt = nil;
+    *cached = cachedStmt;
+    
+    if (traceExecution && sql) {
+        TRACE("executeInsert: %@", [sql UTF8String]);
+    }
+    
+    if (shouldCacheStatements) {
+        cachedStmt = [self cachedStatementForQuery:sql];
+        pStmt = cachedStmt ? [cachedStmt statement] : NULL;
+        if (pStmt) *cached = cachedStmt;
+    }
+    
+    int numberOfRetries = 0;
+    BOOL retry = NO;
+    
+    if (!pStmt) {
+        do {
+            retry = NO;
+            rc = sqlite3_prepare_v2(db, [sql UTF8String], -1, &pStmt, 0);
+            if (SQLITE_BUSY == rc || SQLITE_LOCKED == rc) {
+                retry = YES;
+                usleep(20);
+                
+                if (busyRetryTimeout && (numberOfRetries++ > busyRetryTimeout)) {
+                    TRACE("%s:%d Database busy (%s)", __FUNCTION__, __LINE__, [databasePath UTF8String]);
+                    TRACE("Database busy");
+                    sqlite3_finalize(pStmt);
+                    inUse = NO;
+                    return NULL;
+                }
+            }
+            else if (SQLITE_OK != rc) {
+                if (logsErrors) {
+                    TRACE("DB Error: %d \"%s\"", [self lastErrorCode], [[self lastErrorMessage] UTF8String]);
+                    TRACE("DB Query: %s", [sql UTF8String]);
+#ifndef NS_BLOCK_ASSERTIONS
+                    if (crashOnErrors) {
+                        NSAssert2(false, @"DB Error: %d \"%@\"", [self lastErrorCode], [self lastErrorMessage]);
+                    }
+#endif
+                }
+                
+                sqlite3_finalize(pStmt);
+                inUse = NO;
+                
+                if (outErr) {
+                    *outErr = [NSError errorWithDomain:[NSString stringWithUTF8String:sqlite3_errmsg(db)] code:rc userInfo:nil];
+                }
+                
+                return NULL;
+            }
+        }
+        while (retry);
+    }
+    
+    return pStmt;
+}
+
+- (BOOL)bindParameters:(SQLiteEntity *)record keys:(NSArray *)keys statement:(sqlite3_stmt *)pStmt
+{
+    int param_count = sqlite3_bind_parameter_count(pStmt);
+    if (param_count > 0){
+        BOOL fail = NO;
+        for (int i=0; i<param_count; i++){
+            NSString *pname = [keys objectAtIndex:i];
+            objc_property_t prop = class_getProperty([record class], [pname UTF8String]);
+            const char *pattr = property_getAttributes(prop);
+            id value = [record valueForKey:pname];
+            if ([value isKindOfClass:[NSNumber class]]){
+                char type = pattr[1];
+                if (type == 'f' || type == 'd'){
+                    sqlite3_bind_double(pStmt, i + 1, [value doubleValue]);
+                }
+                else if (type == 'l' || type == 'q' || type == 'Q'){
+                    sqlite3_bind_int64(pStmt, i + 1, [value longLongValue]);
+                }
+                else{
+                    sqlite3_bind_int(pStmt, i + 1, [value intValue]);
+                }
+            }
+            else if ([value isKindOfClass:[NSString class]]){
+                sqlite3_bind_text(pStmt, i + 1, [value UTF8String], -1, SQLITE_TRANSIENT);
+            }
+            else if ([value isKindOfClass:[NSData class]]){
+                sqlite3_bind_blob(pStmt, i+1, [value bytes], (int)[value length], SQLITE_STATIC);
+            }
+            else if ([value isKindOfClass:[NSDate class]]){
+                sqlite3_bind_double(pStmt, i+1, [value timeIntervalSince1970]);
+            }
+            else{
+                if ((pattr != NULL) && (strstr(pattr, "NSString") != NULL)){
+                    sqlite3_bind_text(pStmt, i + 1, "", -1, SQLITE_TRANSIENT);
+                }
+                else{
+                    fail = YES;
+                    break;
+                }
+            }
+        }
+        
+        if (fail){
+            sqlite3_finalize(pStmt);
+            inUse = NO;
+        }
+        
+        return !fail;
+    }
+    
+    return NO;
+}
+
+#pragma mark - Cache Strategy
+- (SQLiteStatement *)cachedStatementForQuery:(NSString *)sql
+{
+    return [cachedStatements objectForKey:sql];
+}
+
+- (void)setCachedStatement:(SQLiteStatement *)statement forSQL:(NSString*)sql
+{
+    //NSLog(@"setting query: %@", query);
+    sql = [sql copy]; // in case we got handed in a mutable string...
+    [statement setQuery:sql];
+    [cachedStatements setObject:statement forKey:sql];
+}
+
+- (void)clearCachedStatements {
+    
+    NSEnumerator *e = [cachedStatements objectEnumerator];
+    SQLiteStatement *cachedStmt;
+    
+    while ((cachedStmt = [e nextObject])) {
+        [cachedStmt close];
+    }
+    
+    [cachedStatements removeAllObjects];
+}
+
+#pragma mark - SQL Execute
+- (NSString *)sqlTypeFromObjcType:(const char *)objcType
+{
+    int len = strlen(objcType);
+    if (len > 1){
+        char type = objcType[1];
+        if (strchr("ilqcsILQSBC", type))
+            return @"INTEGER";
+        else if (type == 'f')
+            return @"FLOAT";
+        else if (type == 'd')
+            return @"DOUBLE";
+        else if (type == '@'){
+            if (strstr(objcType, "NSString") != NULL)
+                return @"TEXT";
+            else if (strstr(objcType, "NSNumber") != NULL)
+                return @"INTEGER";
+            else if (strstr(objcType, "NSData") != NULL)
+                return @"BLOB";
+            else if (strstr(objcType, "NSDate") != NULL)
+                return @"DATETIME";
+            else
+                return nil;
+        }
+    }
+
+    return nil;
+}
+
+- (void)createTable:(Class)entityClass withUniqueKey:(NSString *)uniqueKey
+{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (", NSStringFromClass(entityClass)];
+    
+    unsigned int count = 0;
+    objc_property_t *pList = class_copyPropertyList(entityClass, &count);
+    for (int i=0; i<count; i++){
+        objc_property_t prop = pList[i];
+        const char *pname = property_getName(prop);
+        const char *pattr = property_getAttributes(prop);
+        NSString *sqlType = [self sqlTypeFromObjcType:pattr];
+        
+        if (sqlType != nil){
+            [sql appendFormat:@"%s %@,", pname, sqlType];
+        }
+    }
+    free(pList);
+    
+    [sql appendString:@"rowID INTEGER PRIMARY KEY AUTOINCREMENT"];
+    
+    if (uniqueKey != nil){
+        [sql appendFormat:@",UNIQUE (%@)",uniqueKey];
+    }
+    
+    [sql appendString:@");"];
+    
+    [self execSQL:sql];
+}
+
+- (BOOL)execSQL:(NSString *)sql
+{
+    return [self execSQL:sql withDelegate:nil];
+}
+
+- (BOOL)execSQL:(NSString *)sql withDelegate:(id<SQLiteDatabaseSQLExecDelegate>)delegate
+{
+    if(!db)
+        return NO;
+    
+    int rc;
+    char *zErrMsg = NULL;
+    if (delegate != nil){
+        rc = sqlite3_exec(db, [sql UTF8String], exec_callback, (__bridge void *)(delegate.context), &zErrMsg);
+    }
+    else{
+        rc = sqlite3_exec(db, [sql UTF8String], NULL, NULL, &zErrMsg);
+    }
+    
+    if (rc != SQLITE_OK && zErrMsg){
+        TRACE("sql exec error: %s,%s",zErrMsg,[sql UTF8String]);
+        sqlite3_free(zErrMsg);
+    }
+    
+    return (rc == SQLITE_OK);
+}
+
+- (int)doStep:(sqlite3_stmt *)pStmt andSQL:(NSString *)sql
+{
+    /* Call sqlite3_step() to run the virtual machine. Since the SQL being
+     ** executed is not a SELECT statement, we assume no data will be returned.
+     */
+    int rc = 0;
+    int numberOfRetries = 0;
+    BOOL retry = NO;
+    do {
+        rc = sqlite3_step(pStmt);
+        retry = NO;
+        
+        if (SQLITE_BUSY == rc || SQLITE_LOCKED == rc) {
+            // this will happen if the db is locked, like if we are doing an update or insert.
+            // in that case, retry the step... and maybe wait just 10 milliseconds.
+            retry = YES;
+            if (SQLITE_LOCKED == rc) {
+                rc = sqlite3_reset(pStmt);
+                if (rc != SQLITE_LOCKED) {
+                    TRACE("Unexpected result from sqlite3_reset (%d) eu", rc);
+                }
+            }
+            usleep(20);
+            
+            if (busyRetryTimeout && (numberOfRetries++ > busyRetryTimeout)) {
+                TRACE("%s:%d Database busy (%s)", __FUNCTION__, __LINE__, [databasePath UTF8String]);
+                TRACE("Database busy");
+                retry = NO;
+            }
+        }
+        else if (SQLITE_DONE == rc || SQLITE_ROW == rc) {
+            // all is well, let's return.
+        }
+        else if (SQLITE_ERROR == rc) {
+            TRACE("Error calling sqlite3_step (%d: %s) SQLITE_ERROR", rc, sqlite3_errmsg(db));
+            TRACE("DB Query: %s", [sql UTF8String]);
+        }
+        else if (SQLITE_MISUSE == rc) {
+            // uh oh.
+            TRACE("Error calling sqlite3_step (%d: %s) SQLITE_MISUSE", rc, sqlite3_errmsg(db));
+            TRACE("DB Query: %s", [sql UTF8String]);
+        }
+        else {
+            // what funk !
+            TRACE("Unknown error calling sqlite3_step (%d: %s) eu", rc, sqlite3_errmsg(db));
+            TRACE("DB Query: %s", [sql UTF8String]);
+        }
+        
+    } while (retry);
+    
+    return rc;
+}
+
+- (BOOL)update:(NSString *)sql withParams:(NSArray *)params
+{
+    SQLiteStatement *cachedStmt = nil;
+    sqlite3_stmt *sqlStatement = [self getStatementForSql:sql error:NULL cache:&cachedStmt];
+    if (sqlStatement){
+        int param_count = 0;
+        BOOL fail = NO;
+        if ((param_count = sqlite3_bind_parameter_count(sqlStatement))) {
+            if (params.count < param_count){
+                fail = YES;
+            }
+            else{
+                for (int i = 0; i < param_count; i++) {
+                    id o = [params objectAtIndex:i];
+                    
+                    // determine the type of the argument
+                    if (o == nil) {
+                        sqlite3_bind_null(sqlStatement, i + 1);
+                    } else if ([o respondsToSelector:@selector(objCType)]) {
+                        if (strchr("islISLB", *[o objCType])) { // integer
+                            sqlite3_bind_int(sqlStatement, i + 1, [o intValue]);
+                        }
+                        else if (strchr("qQ", *[o objCType])){
+                            sqlite3_bind_int64(sqlStatement, i + 1, [o longLongValue]);
+                        }
+                        else if (strchr("fd", *[o objCType])) {   // double
+                            sqlite3_bind_double(sqlStatement, i + 1, [o doubleValue]);
+                        }
+                        else {    // unhandled types
+                            TRACE("bindSQL: Unhandled objCType: %s", [o objCType]);
+                            fail = YES;
+                        }
+                    } else if ([o respondsToSelector:@selector(UTF8String)]) { // string
+                        sqlite3_bind_text(sqlStatement, i + 1, [o UTF8String], -1, SQLITE_TRANSIENT);
+                    } else {    // unhhandled type
+                        TRACE("bindSQL: Unhandled parameter type: %@", [o class]);
+                        fail = YES;
+                    }
+                }
+            }
+        }
+        
+        if (fail){
+            sqlite3_finalize(sqlStatement);
+            inUse = NO;
+            sqlStatement = NULL;
+        }
+    }
+    
+    if (sqlStatement){
+        int rc = [self doStep:sqlStatement andSQL:sql];
+        
+        if (rc == SQLITE_DONE || rc == SQLITE_ROW){
+            if (shouldCacheStatements && !cachedStmt) {
+                cachedStmt = [[SQLiteStatement alloc] init];
+                
+                [cachedStmt setStatement:sqlStatement];
+                
+                [self setCachedStatement:cachedStmt forSQL:sql];
+            }
+            
+            if (cachedStmt){
+                cachedStmt.useCount = cachedStmt.useCount + 1;
+                rc = sqlite3_reset(sqlStatement);
+            }
+            else{
+                rc = sqlite3_finalize(sqlStatement);
+            }
+        }
+        else{
+            rc = sqlite3_finalize(sqlStatement);
+        }
+        
+        inUse = NO;
+        
+        return (rc == SQLITE_OK);
+    }
+    
+    return NO;
+}
+
+- (BOOL)updateRow:(SQLiteEntity *)record
+{
+    unsigned int count = 0;
+    objc_property_t *pList = class_copyPropertyList([record class], &count);
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:count];
+    NSMutableArray *values = [NSMutableArray arrayWithCapacity:count];
+    for (int i=0; i<count; i++){
+        objc_property_t prop = pList[i];
+        const char *pname = property_getName(prop);
+        const char *pattr = property_getAttributes(prop);
+        NSString *sqlType = [self sqlTypeFromObjcType:pattr];
+        if (strcmp(pname, "rowID") == 0 || sqlType == nil)
+            continue;
+        NSString *key = [NSString stringWithFormat:@"%s",pname];
+        [keys addObject:key];
+        id value = [record valueForKey:key];
+        if (value)
+            [values addObject:value];
+        else{
+            if (strchr("ilqcsILQSBC", pattr[1])){
+                [value addObject:[NSNumber numberWithInt:0]];
+            }
+            else{
+                [value addObject:@""];
+            }
+        }
+    }
+    free(pList);
+    
+    [values addObject:record.rowID];
+    
+    NSString *sql = [NSString stringWithFormat:@"update %@ set %@ = ? where rowID = ?",
+                        NSStringFromClass([record class]),
+                        [keys componentsJoinedByString:@" = ?, "]];
+    return [self update:sql withParams:values];
+}
+
+- (BOOL)deleteRow:(SQLiteEntity *)record
+{
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ where rowID = ?", NSStringFromClass([record class])];
+    return [self update:sql withParams:[NSArray arrayWithObject:record.rowID]];
+}
+
+- (BOOL)clearTable:(NSString *)table
+{
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", table];
+    return [self execSQL:sql];
+}
+
+- (BOOL)insert:(SQLiteEntity *)record error:(NSError **)outErr
+{
+    if (inUse){
+        [self warnInUse];
+        return NO;
+    }
+    
+    inUse = YES;
+    
+    unsigned int count = 0;
+    objc_property_t *pList = class_copyPropertyList([record class], &count);
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:count-1];
+    for (int i=0; i<count; i++){
+        objc_property_t prop = pList[i];
+        const char *pname = property_getName(prop);
+        const char *pattr = property_getAttributes(prop);
+        NSString *sqlType = [self sqlTypeFromObjcType:pattr];
+        if (strcmp(pname, "rowID") == 0 || sqlType == nil)
+            continue;
+        [keys addObject:[NSString stringWithFormat:@"%s",pname]];
+    }
+    free(pList);
+    
+    NSMutableArray * placeHoldersArray = [NSMutableArray arrayWithCapacity:keys.count];
+    for (int i = 0; i < keys.count; i++)  // array of ? markers for placeholders in query
+        [placeHoldersArray addObject:@"?"];
+    
+    NSString *sql = [NSMutableString stringWithFormat:@"INSERT INTO %@ (%@) values (%@)", NSStringFromClass([record class]), [keys componentsJoinedByString:@","], [placeHoldersArray componentsJoinedByString:@","]];
+    
+    SQLiteStatement *cachedStmt = nil;
+    sqlite3_stmt *sqlStatement = [self getStatementForSql:sql error:outErr cache:&cachedStmt];
+    if (sqlStatement){
+        BOOL bindSuccess = [self bindParameters:record keys:keys statement:sqlStatement];
+        if (bindSuccess){
+            int rc = [self doStep:sqlStatement andSQL:sql];
+            
+            assert( rc!=SQLITE_ROW );
+            
+            if (shouldCacheStatements && !cachedStmt) {
+                cachedStmt = [[SQLiteStatement alloc] init];
+                
+                [cachedStmt setStatement:sqlStatement];
+                
+                [self setCachedStatement:cachedStmt forSQL:sql];
+            }
+            
+            if (cachedStmt) {
+                cachedStmt.useCount = cachedStmt.useCount + 1;
+                rc = sqlite3_reset(sqlStatement);
+            }
+            else {
+                /* Finalize the virtual machine. This releases all memory and other
+                 ** resources allocated by the sqlite3_prepare() call above.
+                 */
+                rc = sqlite3_finalize(sqlStatement);
+            }
+            
+            inUse = NO;
+            
+            record.rowID = [NSNumber numberWithLongLong:[self lastInsertRowId]];
+            
+            return (rc == SQLITE_OK);
+        }
+    }
+    
+    return NO;
+}
+
+- (id)setupResult:(sqlite3_stmt *)pStmt withType:(NSString *)className
+{
+    int columnCount = sqlite3_column_count(pStmt);
+    
+    id element = nil;
+    Class theClass = NULL;
+    if (className == nil)
+        element = [[NSMutableDictionary alloc] initWithCapacity:columnCount];
+    else{
+        theClass = NSClassFromString(className);
+        element = [[NSClassFromString(className) alloc] init];
+    }
+    
+    for (int i=0; i<columnCount; i++){
+        int type = sqlite3_column_type(pStmt, i);
+        int bytes = sqlite3_column_bytes(pStmt,i);
+        const char *pname = sqlite3_column_name(pStmt, i);
+        objc_property_t prop = class_getProperty(theClass, pname);
+        
+        id value = nil;
+        switch (type) {
+            case SQLITE_INTEGER:
+            {
+                if (bytes <= 4)
+                    value = [NSNumber numberWithInt:sqlite3_column_int(pStmt, i)];
+                else
+                    value = [NSNumber numberWithLongLong:sqlite3_column_int64(pStmt, i)];
+                break;
+            }
+            case SQLITE_FLOAT:
+            {
+                if (theClass != NULL){
+                    const char *pattr = property_getAttributes(prop);
+                    if (strstr(pattr, "NSDate"))
+                        value = [NSDate dateWithTimeIntervalSince1970:sqlite3_column_double(pStmt, i)];
+                }
+                if (value == nil)
+                    value = [NSNumber numberWithDouble:sqlite3_column_double(pStmt, i)];
+                break;
+            }
+            case SQLITE_TEXT:
+            {
+                value = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(pStmt, i)];
+                break;
+            }
+            case SQLITE_BLOB:
+            {
+                value = [NSMutableData dataWithLength:bytes];
+                memcpy([value mutableBytes], sqlite3_column_blob(pStmt, i), bytes);
+                break;
+            }
+            case SQLITE_NULL:
+            {
+                if (theClass != NULL){
+                    const char *pattr = property_getAttributes(prop);
+                    if (strstr(pattr, "NSString"))
+                        value = @" ";
+                }
+                
+                if (value == nil)
+                    value = [NSNumber numberWithInt:0];
+                break;
+            }
+            default:
+                break;
+        }
+        
+        if (prop != NULL){
+            NSString *key = [NSString stringWithFormat:@"%s",pname];
+            [element setValue:value forKey:key];
+        }
+        else if (className == nil){
+            NSString *key = [NSString stringWithFormat:@"%s",pname];
+            [element setObject:value forKey:key];
+        }
+    }
+    
+    return element;
+}
+
+- (NSArray *)query:(SQLiteQuery *)query withParams:(NSArray *)params
+{
+    return [self query:[query getSQL] withParams:params withResultType:query.entityName];
+}
+
+- (NSArray *)query:(NSString *)sql withParams:(NSArray *)params withResultType:(NSString *)className
+{
+    if (inUse){
+        [self warnInUse];
+        return nil;
+    }
+    
+    inUse = YES;
+    
+    SQLiteStatement *cachedStmt = nil;
+    sqlite3_stmt *sqlStatement = [self getStatementForSql:sql error:NULL cache:&cachedStmt];
+    if (sqlStatement){
+        int param_count = 0;
+        BOOL fail = NO;
+        if ((param_count = sqlite3_bind_parameter_count(sqlStatement))) {
+            for (int i = 0; i < param_count; i++) {
+                id o = [params objectAtIndex:i];
+                
+                // determine the type of the argument
+                if (o == nil) {
+                    sqlite3_bind_null(sqlStatement, i + 1);
+                } else if ([o respondsToSelector:@selector(objCType)]) {
+                    if (strchr("islISLB", *[o objCType])) { // integer
+                        sqlite3_bind_int(sqlStatement, i + 1, [o intValue]);
+                    }
+                    else if (strchr("qQ", *[o objCType])){
+                        sqlite3_bind_int64(sqlStatement, i + 1, [o longLongValue]);
+                    }
+                    else if (strchr("fd", *[o objCType])) {   // double
+                        sqlite3_bind_double(sqlStatement, i + 1, [o doubleValue]);
+                    }
+                    else {    // unhandled types
+                        TRACE("bindSQL: Unhandled objCType: %s", [o objCType]);
+                        fail = YES;
+                    }
+                } else if ([o respondsToSelector:@selector(UTF8String)]) { // string
+                    sqlite3_bind_text(sqlStatement, i + 1, [o UTF8String], -1, SQLITE_TRANSIENT);
+                } else {    // unhhandled type
+                    TRACE("bindSQL: Unhandled parameter type: %@", [o class]);
+                    fail = YES;
+                }
+            }
+        }
+        
+        if (fail){
+            sqlite3_finalize(sqlStatement);
+            inUse = NO;
+            sqlStatement = NULL;
+        }
+    }
+    
+    if (sqlStatement){
+        if (shouldCacheStatements && !cachedStmt) {
+            cachedStmt = [[SQLiteStatement alloc] init];
+            
+            [cachedStmt setStatement:sqlStatement];
+            
+            [self setCachedStatement:cachedStmt forSQL:sql];
+        }
+        
+        // fetch result
+        NSMutableArray *results = [NSMutableArray array];
+        while ([self doStep:sqlStatement andSQL:sql] == SQLITE_ROW) {
+            [results addObject:[self setupResult:sqlStatement withType:className]];
+        }
+        
+        if (cachedStmt)
+            cachedStmt.useCount = cachedStmt.useCount + 1;
+        
+        inUse = NO;
+        
+        return results;
+    }
+    
+    inUse = NO;
+    
+    return nil;
+}
+
+- (NSInteger) countRows:(NSString *)className
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM %@",className];
+    
+    SQLiteStatement *cachedStmt = nil;
+    sqlite3_stmt *sqlStatement = [self getStatementForSql:sql error:NULL cache:&cachedStmt];
+
+    int rows = 0;
+    if (sqlStatement){
+        if (shouldCacheStatements && !cachedStmt) {
+            cachedStmt = [[SQLiteStatement alloc] init];
+            
+            [cachedStmt setStatement:sqlStatement];
+            
+            [self setCachedStatement:cachedStmt forSQL:sql];
+        }
+        
+        if (cachedStmt)
+            cachedStmt.useCount = cachedStmt.useCount + 1;
+        
+        // fetch result
+        if ([self doStep:sqlStatement andSQL:sql] == SQLITE_ROW) {
+            rows = sqlite3_column_int(sqlStatement,0);
+        }
+    }
+    
+    return rows;
+}
+
+
+
+
+
+@end

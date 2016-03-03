@@ -1,0 +1,70 @@
+//
+//  SQLiteHelper.m
+//
+
+#import "SQLiteHelper.h"
+#import "SQLiteDatabase.h"
+#import "NSFileManagerEX.h"
+
+@interface SQLiteHelper ()
+
+@property (nonatomic, strong) SQLiteDatabase * db;
+
+@end
+
+static SQLiteDatabase *g_db = nil;
+
+@implementation SQLiteHelper
+
++ (SQLiteDatabase *)sharedDB
+{
+    return g_db;
+}
+
++ (void)setSharedDB:(SQLiteDatabase *)db
+{
+    g_db = db;
+}
+
+- (id)initWithName:(NSString *)dbName andVersion:(int)version
+{
+    if (self = [super init]){
+        NSString * dbPath = [NSFileManager docDir];
+        NSString *oldDbPath = [dbPath stringByAppendingPathComponent:dbName];
+        
+        _dbPath = [[NSFileManager _StorageDirInLibDir] stringByAppendingPathComponent:dbName];
+        
+        if([[NSFileManager defaultManager] fileExistsAtPath:oldDbPath])
+        {
+            [[NSFileManager defaultManager] moveItemAtPath:oldDbPath toPath:_dbPath error:nil];
+        }
+        _newVersion = version;
+    }
+    
+    return self;
+}
+
+- (SQLiteDatabase *)getWritableDatabase
+{
+    _db = [SQLiteDatabase openOrCreateDatabase:_dbPath];
+    if (_db){
+        int oldVersion = _db.version;
+        if (_newVersion != oldVersion){
+            [_db beginTransaction];
+            if (oldVersion == 0){
+                // create
+                [_delegate onCreate:_db];
+            }
+            else {
+                // upgrade
+                [_delegate onUpgrade:_db fromVersion:oldVersion toVersion:_newVersion];
+            }
+            _db.version = _newVersion;
+            [_db endTransaction];
+        }
+    }
+    
+    return _db;
+}
+
+@end

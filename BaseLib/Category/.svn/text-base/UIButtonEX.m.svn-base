@@ -1,0 +1,52 @@
+//
+//  UIButtonEX.m
+//
+
+#import "UIButtonEX.h"
+#import <objc/runtime.h>
+
+@implementation UIButton (EX)
+
+@dynamic hitEdgeInsets;
+
+#define kHitEdgeInsetsKey   @"__HY_HitEdgeInsets__"
+
+- (void)setHitEdgeInsets:(UIEdgeInsets)hitEdgeInsets
+{
+    NSValue *value = [NSValue valueWithUIEdgeInsets:hitEdgeInsets];
+    objc_setAssociatedObject(self, kHitEdgeInsetsKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIEdgeInsets)hitEdgeInsets
+{
+    NSValue * value = objc_getAssociatedObject(self, kHitEdgeInsetsKey);
+    if(value) {
+        return [value UIEdgeInsetsValue];
+    }
+
+    return UIEdgeInsetsZero;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (UIEdgeInsetsEqualToEdgeInsets(self.hitEdgeInsets, UIEdgeInsetsZero) || !self.enabled || self.hidden) {
+        return [super pointInside:point withEvent:event];
+    }
+    
+    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.hitEdgeInsets);
+    
+    return CGRectContainsPoint(hitFrame, point);
+}
+
++(id)buttonWithFrame:(CGRect)frame title:(NSString *)title fontSize:(CGFloat)fontSize
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = frame;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+    
+    return button;
+}
+
+@end

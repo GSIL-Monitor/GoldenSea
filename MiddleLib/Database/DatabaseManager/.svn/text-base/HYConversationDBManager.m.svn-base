@@ -1,0 +1,419 @@
+//
+//  HYConversationDBManager.m
+//  iRCS
+//
+//  Created by 王斌 on 15/8/28.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import "HYConversationDBManager.h"
+#import "MessageDBModel.h"
+
+@interface HYConversationDBManager()
+
+@property (nonatomic, strong) HYDatabaseHelper *dbHelper;
+
+@end
+
+@implementation HYConversationDBManager
+
+SINGLETON_GENERATOR(HYConversationDBManager, defaultManager)
+
+- (id)init
+{
+    self = [super init];
+    return self;
+}
+
+- (void)setup
+{
+    self.dbHelper = [HYDatabaseHelper defaultHelper];
+    self.database = self.dbHelper.database;
+    self.databaseQueue = self.dbHelper.databaseQueue;
+}
+
+#pragma mark 增
+- (BOOL)createTable
+{
+    NSDictionary *param = @{@"conversationUUID": @"text primary key",
+                                             @"toUserID": @"text",
+                                             @"conversationType": @"integer",
+                                             @"lastSender": @"text",
+                                             @"lastMessageID": @"text",
+                                             @"lastMessage": @"text",
+                                             @"lastMessageType": @"integer",
+                                             @"lastMessageStatus": @"integer",
+                                             @"lastTimeStamp": @"integer",
+                                             @"unReadCount": @"integer",
+                                             @"msgCount": @"integer",
+                                             @"isTop": @"bool",
+                                             @"isHide": @"bool",
+                                             @"policy": @"int",
+                                             @"draftContent": @"text",
+                                             @"draftTimeStamp": @"integer"};
+    return [self.dbHelper creatTableWithTable:CONVERSATION_TABLE Param:param];
+}
+
+
+
+- (BOOL)forceAddConversationInDBWithModel:(ConversationDBModel *)conversationModel
+{
+    if (!conversationModel) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (conversationUUID,toUserID,conversationType,lastSender,lastMessageID,lastMessage,lastMessageType,lastMessageStatus,lastTimeStamp,unReadCount,msgCount,isTop,isHide,policy,draftContent,draftTimeStamp) values('%@','%@','%u','%@','%@','%@','%u','%u','%ld','%ld','%ld','%d','%d','%u','%@','%ld')",CONVERSATION_TABLE,conversationModel.conversationUUID,conversationModel.toUserID,conversationModel.conversationType,conversationModel.lastSender,conversationModel.lastMessageID,conversationModel.lastMessage,conversationModel.lastMessageType,conversationModel.lastMessageStatus,(long)conversationModel.lastTimeStamp,(long)conversationModel.unReadCount,(long)conversationModel.msgCount,conversationModel.isTop,conversationModel.isHide,conversationModel.policy,conversationModel.draftContent,(long)conversationModel.draftTimeStamp];
+            rst = [db executeUpdate:sql];
+    }];
+    return rst;
+}
+
+- (BOOL)addConversationInDBWithModel:(ConversationDBModel *)conversationModel
+{
+    if (!conversationModel) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    if ([self isExistConversationWithUUID:conversationModel.conversationUUID]) {
+        conversationModel.isHide = NO;
+        rst = [self updateConversationInDB:conversationModel];
+    } else{
+        rst = [self forceAddConversationInDBWithModel:conversationModel];
+    }
+    return rst;
+}
+
+
+
+- (BOOL)addConversationInDBWithMessageDBModel:(MessageDBModel *)messageDBModel
+{
+    if (!messageDBModel) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    ConversationDBModel *convDBModel = [[ConversationDBModel alloc]initWithMessageDBModel:messageDBModel];
+    return [self addConversationInDBWithModel:convDBModel];
+}
+
+#pragma mark 查
+- (BOOL)isExistConversationWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where conversationUUID = '%@'",CONVERSATION_TABLE, conversationUUID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if ([rs next]) {
+            rst = YES;
+        }
+        [rs close];
+    }];
+    return rst;
+
+}
+
+- (NSArray *)getAllConversationInDB
+{
+    __block NSMutableArray *array = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+//        NSString *sql = [NSString stringWithFormat:@"select * from %@ where isHide = '0' order by lastTimeStamp desc",CONVERSATION_TABLE];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where isHide = '0' order by isTop desc,draftTimeStamp desc",CONVERSATION_TABLE];  //依据草稿时间排序
+        HYFMResultSet * rs = [db executeQuery:sql];
+        int i = 0;
+
+        while([rs next]) {
+            if (!array) {
+                array = [[NSMutableArray alloc] init];
+            }
+            ConversationDBModel * model = [[ConversationDBModel alloc]init];
+            model.conversationUUID  = [rs stringForColumn:@"conversationUUID"];
+            model.toUserID          = [rs stringForColumn:@"toUserId"];
+            model.conversationType  = [rs intForColumn:@"conversationType"];
+            model.lastSender        = [rs stringForColumn:@"lastSender"];
+            model.lastMessageID     = [rs stringForColumn:@"lastMessageID"];
+            model.lastMessage       = [rs stringForColumn:@"lastMessage"];
+            model.lastMessageType   = [rs intForColumn:@"lastMessageType"];
+            model.lastMessageStatus = [rs intForColumn:@"lastMessageStatus"];
+            model.lastTimeStamp     = [rs longLongIntForColumn:@"lastTimeStamp"];
+            model.unReadCount       = [rs intForColumn:@"unReadCount"];
+            model.msgCount          = [rs intForColumn:@"msgCount"];
+            model.isTop             = [rs boolForColumn:@"isTop"];
+            model.isHide            = [rs boolForColumn:@"isHide"];
+            model.policy            = [rs intForColumn:@"policy"];;
+            model.draftContent      = [rs stringForColumn:@"draftContent"];
+            model.draftTimeStamp    = [rs longLongIntForColumn:@"draftTimeStamp"];
+            
+            if (model.isTop) {
+                [array safeInsertObject:model atIndex:i];
+                i++;
+            }else{
+                [array addObject:model];
+            }
+        }
+        [rs close];
+    }];
+    
+    return [NSArray arrayWithArray:array];
+}
+
+- (NSArray *)forceGetAllConversationInDB
+{
+    __block NSMutableArray *array = nil;
+    
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ order by lastTimeStamp desc",CONVERSATION_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        int i = 0;
+        while([rs next]) {
+            if (!array) {
+                array = [[NSMutableArray alloc] init];
+            }
+            ConversationDBModel * model = [[ConversationDBModel alloc]init];
+            model.conversationUUID  = [rs stringForColumn:@"conversationUUID"];
+            model.toUserID          = [rs stringForColumn:@"toUserId"];
+            model.conversationType  = [rs intForColumn:@"conversationType"];
+            model.lastSender        = [rs stringForColumn:@"lastSender"];
+            model.lastMessageID     = [rs stringForColumn:@"lastMessageID"];
+            model.lastMessage       = [rs stringForColumn:@"lastMessage"];
+            model.lastMessageType   = [rs intForColumn:@"lastMessageType"];
+            model.lastMessageStatus = [rs intForColumn:@"lastMessageStatus"];
+            model.lastTimeStamp     = [rs longLongIntForColumn:@"lastTimeStamp"];
+            model.unReadCount       = [rs intForColumn:@"unReadCount"];
+            model.msgCount          = [rs intForColumn:@"msgCount"];
+            model.isTop             = [rs boolForColumn:@"isTop"];
+            model.isHide            = [rs boolForColumn:@"isHide"];
+            model.policy            = [rs intForColumn:@"policy"];;
+            model.draftContent      = [rs stringForColumn:@"draftContent"];
+            model.draftTimeStamp    = [rs longLongIntForColumn:@"draftTimeStamp"];
+            if (model.isTop) {
+                [array safeInsertObject:model atIndex:i];
+                i++;
+            }else{
+                [array addObject:model];
+            }
+
+        }
+        [rs close];
+    }];
+    
+    return [NSArray arrayWithArray:array];
+}
+
+
+- (ConversationDBModel *)getConversationInDBWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return nil;
+    }
+    __block ConversationDBModel * model = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where conversationUUID = '%@'",CONVERSATION_TABLE, conversationUUID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            model = [[ConversationDBModel alloc]init];
+            model.conversationUUID  = [rs stringForColumn:@"conversationUUID"];
+            model.toUserID          = [rs stringForColumn:@"toUserId"];
+            model.conversationType  = [rs intForColumn:@"conversationType"];
+            model.lastSender        = [rs stringForColumn:@"lastSender"];
+            model.lastMessageID     = [rs stringForColumn:@"lastMessageID"];
+            model.lastMessage       = [rs stringForColumn:@"lastMessage"];
+            model.lastMessageType   = [rs intForColumn:@"lastMessageType"];
+            model.lastMessageStatus = [rs intForColumn:@"lastMessageStatus"];
+            model.lastTimeStamp     = [rs longLongIntForColumn:@"lastTimeStamp"];
+            model.unReadCount       = [rs intForColumn:@"unReadCount"];
+            model.msgCount          = [rs intForColumn:@"msgCount"];
+            model.isTop             = [rs boolForColumn:@"isTop"];
+            model.isHide            = [rs boolForColumn:@"isHide"];
+            model.policy            = [rs intForColumn:@"policy"];;
+            model.draftContent      = [rs stringForColumn:@"draftContent"];
+            model.draftTimeStamp    = [rs longLongIntForColumn:@"draftTimeStamp"];
+        }
+        [rs close];
+    }];
+    return model;
+}
+
+
+
+- (NSString *)getToUserIDInDBWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return nil;
+    }
+    __block NSString * userID = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select toUserID from %@ where conversationUUID = '%@'",CONVERSATION_TABLE, conversationUUID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if([rs next]) {
+            userID = [rs stringForColumnIndex:0];
+        }
+        [rs close];
+    }];
+    return userID;
+}
+
+
+#pragma mark 改
+- (BOOL)updateConversationInDB:(ConversationDBModel *)conversation
+{
+    if (!conversation) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (conversation) {
+            NSString *sql = [NSString stringWithFormat:@"update %@ set toUserID = '%@',conversationType = '%u',lastSender = '%@',lastMessageID = '%@',lastMessageStatus = '%u',lastMessageType = '%u',conversationType = '%u',lastTimeStamp = '%ld',lastSender = '%@',lastMessage = '%@',unReadCount = '%ld',msgCount = '%ld',isTop = '%d',isHide = '%d',policy = '%u',draftContent = '%@',draftTimeStamp = '%ld' where conversationUUID = '%@'",CONVERSATION_TABLE,conversation.toUserID,conversation.conversationType,conversation.lastSender,conversation.lastMessageID,conversation.lastMessageStatus,conversation.lastMessageType,conversation.conversationType,(long)conversation.lastTimeStamp,conversation.lastSender,conversation.lastMessage,(long)conversation.unReadCount,(long)conversation.msgCount,conversation.isTop,conversation.isHide,conversation.policy,conversation.draftContent,(long)conversation.draftTimeStamp,conversation.conversationUUID];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (BOOL)appearAtTheTopWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+
+        NSString *sql = [NSString stringWithFormat:@"update %@ set isTop = '1' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+- (BOOL)appearNormallyWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set isTop = '0' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+
+- (BOOL)policyWith:(NSString *)conversationUUID{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set policy = '0' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+
+}
+
+
+
+- (BOOL)notPolicyWith:(NSString *)conversationUUID{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set policy = '1' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+
+
+- (BOOL)setReadWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set unReadCount = '0' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+- (BOOL)setAllRead
+{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set unReadCount = '0' where  unReadCount > '0'",CONVERSATION_TABLE];
+        rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+#pragma mark 删
+//软删除
+- (BOOL)deleteConversationInDBWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+            //软删除,隐藏
+            NSString *sql = [NSString stringWithFormat:@"update %@ set lastSender = '',lastMessageID = '',lastMessageStatus = '0',lastMessageType = '0',lastTimeStamp = '0',lastMessage = '',unReadCount = '0',msgCount = '0',isTop = '0',isHide = '1',policy = '0',draftContent = '',draftTimeStamp = '0' where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+            
+            rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+//硬删除
+- (BOOL)forceDeleteConversationInDBWithUUID:(NSString *)conversationUUID
+{
+    if (!conversationUUID) {
+        DDLogError(@"DB parameter nil");
+        return NO;
+    }
+
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+            NSString *sql = [NSString stringWithFormat:@"delete from %@ where conversationUUID = '%@'",CONVERSATION_TABLE,conversationUUID];
+            
+            rst = [db executeUpdate:sql];
+        
+    }];
+    return rst;
+}
+
+
+
+@end

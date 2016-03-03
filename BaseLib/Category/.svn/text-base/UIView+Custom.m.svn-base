@@ -1,0 +1,88 @@
+//
+//  UIView+Custom.m
+//
+
+#import "UIView+Custom.h"
+#import <objc/runtime.h>
+
+@implementation UIView (Custom)
+
+- (void)reloadAppearance
+{
+    for (UIView* subView in self.subviews)
+    {
+        [subView reloadAppearance];
+    }
+    
+    [self.skinConfig setViewAppearance:self];
+    [self setNeedsDisplay];
+}
+
+#pragma mark - dynamic property
+
+@dynamic skinIsSetDefault;
+
+- (BOOL)skinIsSetDefault
+{
+    NSNumber* skinIsSetDefault = objc_getAssociatedObject(self, @"skinIsSetDefault");
+    return YES;
+    return [skinIsSetDefault boolValue];
+}
+
+- (void)setSkinIsSetDefault:(BOOL)skinIsSetDefault
+{
+    BOOL oldValue = self.skinIsSetDefault;
+    objc_setAssociatedObject(self, @"skinIsSetDefault", [NSNumber numberWithBool:skinIsSetDefault], OBJC_ASSOCIATION_RETAIN);
+    
+    if (oldValue != skinIsSetDefault)
+    {
+        [self reloadAppearance];
+    }
+}
+
+- (void)setSkinIsSetDefault:(BOOL)skinIsSetDefault recursive:(BOOL)isRecursive
+{
+    if (!isRecursive)
+    {
+        [self setSkinIsSetDefault:skinIsSetDefault];
+    }
+    else
+    {
+        BOOL oldValue = self.skinIsSetDefault;
+        [self setSkinIsSetDefaultInternal:skinIsSetDefault];
+        
+        if (oldValue != skinIsSetDefault)
+        {
+            [self reloadAppearance];
+        }
+    }
+}
+
+- (void)setSkinIsSetDefaultInternal:(BOOL)skinIsSetDefault
+{
+    objc_setAssociatedObject(self, @"skinIsSetDefault", [NSNumber numberWithBool:skinIsSetDefault], OBJC_ASSOCIATION_RETAIN);
+    
+    for (UIView *subview in self.subviews)
+    {
+        [subview setSkinIsSetDefaultInternal:skinIsSetDefault];
+    }
+}
+
+@dynamic skinConfig;
+- (HYBaseColorConfig*)skinConfig
+{
+    HYBaseColorConfig* skinConfig = objc_getAssociatedObject(self, @"skinConfig");
+    return skinConfig;
+}
+
+- (void)setSkinConfig:(HYBaseColorConfig*)skinConfig
+{
+    objc_setAssociatedObject(self, @"skinConfig", skinConfig, OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinConfig != nil)
+    {
+        [skinConfig setViewAppearance:self];
+    }
+}
+
+@end

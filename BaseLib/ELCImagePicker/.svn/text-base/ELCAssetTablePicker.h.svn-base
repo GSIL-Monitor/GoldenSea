@@ -1,0 +1,49 @@
+//
+//  ELCAssetTablePicker.h
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "ELCAsset.h"
+#import "ELCAssetSelectionDelegate.h"
+#import "ELCAssetPickerFilterDelegate.h"
+#import "AlbumTableView.h"
+#import "HYCustomBaseVC.h"
+@interface ELCAssetTablePicker : HYCustomBaseVC <ELCAssetDelegate,AlbumTableViewDelegate>
+
+@property (nonatomic, weak) id <ELCAssetSelectionDelegate> parent;
+@property (nonatomic, strong) ALAssetsGroup *assetGroup;
+@property (nonatomic, strong) NSMutableArray *elcAssets;
+@property (nonatomic, strong) NSArray *firstAssets;
+@property (nonatomic, strong) IBOutlet UILabel *selectedAssetsLabel;
+@property (nonatomic, assign) BOOL singleSelection;
+@property (nonatomic, assign) BOOL immediateReturn;
+@property (nonatomic, strong) NSMutableArray *assetGroups;
+@property (nonatomic, strong) NSArray *mediaTypes;
+// optional, can be used to filter the assets displayed
+@property(nonatomic, weak) id<ELCAssetPickerFilterDelegate> assetPickerFilterDelegate;
+
+- (int)totalSelectedAssets;
+- (void)preparePhotos;
+
+- (void)doneAction:(id)sender;
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

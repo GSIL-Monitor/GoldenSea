@@ -1,0 +1,25 @@
+//
+//  RCSHUD.h
+//  RCS
+//
+//  Created by YuSong.Yan on 15/4/21.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
+
+#define kRCSHUD  [RCSHUD shareHUD]
+
+@interface RCSHUD : NSObject <MBProgressHUDDelegate>
+
++ (RCSHUD *)shareHUD;
+- (void)showMessage:(NSString *)_message;
+- (void)showMessage:(NSString *)_message duration:(CGFloat)_duration;
+- (void)showMessageWithActivityIndicatorView:(NSString *)_message;
+
+- (void)showLongTextMesasge:(NSString *)textMessage;
+- (void)showLongTextMessage:(NSString *)_longMessage duration:(CGFloat)_duration;
+
+- (void)hideHUD;
+@end

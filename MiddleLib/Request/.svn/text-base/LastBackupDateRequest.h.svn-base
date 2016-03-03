@@ -1,0 +1,15 @@
+//
+//  LastBackupDateRequest.h
+//  iRCS
+//
+//  Created by YangWeitian on 15/11/16.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "HYBaseRequest.h"
+
+@interface LastBackupDateRequest : HYBaseRequest
+
+-(instancetype)initWithUid:(NSString *)uid;
+
+@end

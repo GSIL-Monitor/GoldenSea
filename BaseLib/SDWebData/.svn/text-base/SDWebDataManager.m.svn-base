@@ -1,0 +1,404 @@
+//
+//  SDWebDataManager.m
+//  SDWebData
+//
+//  Created by stm on 11-7-13.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "SDWebDataManager.h"
+
+@interface _SDDownloaderInfo : NSObject
+/// 下载器
+@property (nonatomic, retain) SDWebDataDownloader *downloader;
+/// 存放回调
+@property (nonatomic, retain) MAZeroingWeakRef *delegateRef;
+/// cache访问，都是用这个数据，而不是直接使用url.absoluteString
+/// 除非url.absoluteString为空字符串，否则cacheKey字符串都非空
+@property (nonatomic, copy) NSString *cacheKey;
+
+@end
+
+@implementation _SDDownloaderInfo
+
+- (void)dealloc
+{
+    [_downloader release];
+    [_delegateRef release];
+    [_cacheKey release];
+    [super dealloc];
+}
+
+@end
+
+
+static SDWebDataManager *instance=nil;
+//#define DEBUG_LOG WXINFO
+#define DEBUG_LOG
+
+@interface SDWebDataManager()
+
+@property (nonatomic, retain) NSMutableArray *mutableArrayDownloaderInfo;
+
+@end
+
+@implementation SDWebDataManager
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        downloaderForURL = [[NSMutableDictionary alloc] init];
+        failedURLs = [[NSMutableDictionary alloc] init];
+        _mutableArrayDownloaderInfo = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [downloaderForURL release], downloaderForURL = nil;
+    [failedURLs release], failedURLs = nil;
+    [_mutableArrayDownloaderInfo release];_mutableArrayDownloaderInfo = nil;
+    [super dealloc];
+}
+
+
++ (id)sharedManager
+{
+    if (instance == nil)
+    {
+        instance = [[SDWebDataManager alloc] init];
+    }
+	
+    return instance;
+}
+
+#pragma mark - private methods
+
+- (void)addDownloader:(SDWebDataDownloader *)aDownloader delegateRef:(MAZeroingWeakRef *)aDelegateRef cacheKey:(NSString *)aCacheKey
+{
+    _SDDownloaderInfo *info = [[_SDDownloaderInfo alloc] init];
+    [info setDownloader:aDownloader];
+    [info setDelegateRef:aDelegateRef];
+    [info setCacheKey:aCacheKey];
+    @synchronized(self.mutableArrayDownloaderInfo) {
+        [self.mutableArrayDownloaderInfo addObject:info];
+    }
+    
+    DEBUG_LOG(@">>>>>>>>>>>>>>>>addDownloader:%@", info);
+    [info release];
+}
+
+
+- (void)removeDDObj:(_SDDownloaderInfo *)aDownloaderInfo
+{
+    DEBUG_LOG(@">>>>>>>>>>>>>>>>removeDownloader:%@\n=============remain:%d", aDownloaderInfo, self.mutableArrayDownloaderInfo.count - 1);
+    @synchronized(self.mutableArrayDownloaderInfo) {
+        [aDownloaderInfo retain];
+        [self.mutableArrayDownloaderInfo removeObject:aDownloaderInfo];
+        [aDownloaderInfo release];
+    }
+}
+
+/// 通过某个键值查找downloaderInfo
+- (_SDDownloaderInfo *)getDownloaderInfoByDownloader:(SDWebDataDownloader *)aDownloader
+{
+    _SDDownloaderInfo *result = nil;
+    @synchronized(self.mutableArrayDownloaderInfo) {
+        for (_SDDownloaderInfo *info in self.mutableArrayDownloaderInfo) {
+            if (info.downloader == aDownloader) {
+                result = [info retain];
+                break; // 找到
+            }
+        }
+    }
+    return [result autorelease];
+}
+
+- (_SDDownloaderInfo *)getDownloaderInfoByDelegate:(id)aDelegate
+{
+    _SDDownloaderInfo *result = nil;
+    @synchronized(self.mutableArrayDownloaderInfo) {
+        for (_SDDownloaderInfo *info in self.mutableArrayDownloaderInfo) {
+            if (info.delegateRef.target == aDelegate) {
+                result = [info retain];
+                break; // 找到
+            }
+        }
+    }
+    return [result autorelease];
+}
+
+
+#pragma mark public methods
+
+/**
+ * @deprecated
+ */
+- (NSData *)dataWithURL:(NSURL *)url
+{
+	return [[SDDataCache sharedDataCache] dataFromKey:[url absoluteString]];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate
+{
+	[self downloadWithURL:url delegate:delegate refreshCache:NO];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache
+{
+	[self downloadWithURL:url delegate:delegate refreshCache:refreshCache retryFailed:NO];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed
+{
+	[self downloadWithURL:url delegate:delegate refreshCache:refreshCache retryFailed:retryFailed lowPriority:NO];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority
+{
+	[self downloadWithURL:url delegate:delegate refreshCache:refreshCache retryFailed:retryFailed lowPriority:NO postMethod:NO];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority postMethod:(BOOL)postMethod
+{
+    [self downloadWithURL:url delegate:delegate refreshCache:refreshCache retryFailed:retryFailed lowPriority:lowPriority postMethod:postMethod cacheKey:nil];
+}
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority postMethod:(BOOL)postMethod cacheKey:(NSString *)aCacheKey
+{
+    if (!url || !delegate )
+    {
+        return;
+    }
+	else if(!retryFailed )
+	{
+		//! 如果上次失败过，切没有超过3分钟我们依然不尝试再次请求
+		NSDate * lastTime = [failedURLs objectForKey:url];
+		if(lastTime != nil)
+		{
+			NSDate *nowTime = [NSDate date];
+			
+			NSTimeInterval timeInterval = [nowTime timeIntervalSinceDate:lastTime];
+			if(timeInterval < 180)
+			{
+				return;
+			}
+			[failedURLs removeObjectForKey:url];
+		}
+	}
+    
+    //  指定cacheKey
+    if (aCacheKey.length <= 0) {    //  如果传入的cacheKey为空，则使用urlString
+        aCacheKey = url.absoluteString.length > 0 ? url.absoluteString : @"";
+        
+        if (aCacheKey.length <= 0) {
+            NSLog(@"SDWebDownloadManager: cacheKey 和 urlString 同时为空");
+        }
+    }
+    
+	MAZeroingWeakRef *delWeakRef = [MAZeroingWeakRef refWithTarget:delegate];
+	
+	if (!refreshCache) 
+	{
+		// Check the on-disk cache async so we don't block the main thread
+		NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:delWeakRef, @"delegate", url, @"url", [NSNumber numberWithBool:lowPriority], @"low_priority", [NSNumber numberWithBool:postMethod],@"postMethod",nil];
+		[[SDDataCache sharedDataCache] queryDiskCacheForKey:aCacheKey delegate:self userInfo:info];
+	}
+	else {
+        if(delegate != nil && [delegate respondsToSelector:@selector(webDataManager:startDownloading:)]){
+            [delegate webDataManager:self startDownloading:url];
+        }
+        
+		// Share the same downloader for identical URLs so we don't download the same URL several times
+		SDWebDataDownloader *downloader = [downloaderForURL objectForKey:url];
+		
+		if (!downloader) 
+		{
+            NSString *path = [[[SDDataCache sharedDataCache] cachePathForKey:aCacheKey] stringByAppendingString:@".tmp"];
+			downloader = [SDWebDataDownloader downloaderWithURL:url delegate:self userInfo:path lowPriority:lowPriority postMethod:postMethod];
+			[downloaderForURL setObject:downloader forKey:url];
+		}
+		
+		// If we get a normal priority request, make sure to change type since downloader is shared
+		if (!lowPriority && downloader.lowPriority)
+			downloader.lowPriority = NO;
+		
+        [self addDownloader:downloader delegateRef:delWeakRef cacheKey:aCacheKey];
+	}
+}
+
+- (void)cancelForDelegate:(id<SDWebDataManagerDelegate>)delegate
+{
+    _SDDownloaderInfo *downloadInfo = [self getDownloaderInfoByDelegate:delegate];
+    if (downloadInfo == nil) {
+        return;
+    }
+    
+    [downloadInfo retain]; // retain住
+    {
+        [self removeDDObj:downloadInfo]; // 移除
+        
+        // 再检索是否这个downloader还被其他的delegate引用
+        _SDDownloaderInfo *otherDownloaderInfo = [self getDownloaderInfoByDownloader:downloadInfo.downloader];
+        if (otherDownloaderInfo == nil) {
+            // 已经没有其他引用，可以真正cancel掉下载
+            [downloadInfo.downloader cancel];
+            [downloaderForURL removeObjectForKey:downloadInfo.downloader.url];
+        }
+    }
+    [downloadInfo release]; // 注意释放
+}
+
+#pragma mark -
+#pragma mark SDDataCacheDelegate
+
+- (void)dataCache:(SDDataCache *)dataCache didFindData:(NSData *)aData forKey:(NSString *)key userInfo:(NSDictionary *)info
+{
+	id<SDWebDataManagerDelegate> delegate = [[info objectForKey:@"delegate"] target];
+	if (delegate != nil && [delegate respondsToSelector:@selector(webDataManager:didFinishWithData:isCache:theURL:)])
+	{
+		[delegate webDataManager:self didFinishWithData:aData isCache:YES theURL:[[info objectForKey:@"url"] absoluteString]];
+	}
+}
+
+- (void)dataCache:(SDDataCache *)dataCache didNotFindDataForKey:(NSString *)key userInfo:(NSDictionary *)arguments
+{
+    NSDictionary *info = [arguments objectForKey:@"userInfo"];
+	NSURL *url = [info objectForKey:@"url"];
+	id delWeakRef = [info objectForKey:@"delegate"];	
+	BOOL lowPriority = [[info objectForKey:@"low_priority"] boolValue];
+    BOOL postMethod = [[info objectForKey:@"postMethod"] boolValue];
+    NSString* cachePath = [arguments objectForKey:@"cache_file_path"];
+	
+	// Share the same downloader for identical URLs so we don't download the same URL several times
+	SDWebDataDownloader *downloader = [downloaderForURL objectForKey:url];
+	
+    id<SDWebDataManagerDelegate> delegate = [(MAZeroingWeakRef*)delWeakRef target];
+    if(delegate != nil && [delegate respondsToSelector:@selector(webDataManager:startDownloading:)]){
+        [delegate webDataManager:self startDownloading:url];
+    }
+    
+	if (!downloader)
+	{
+		downloader = [SDWebDataDownloader downloaderWithURL:url delegate:self userInfo:cachePath lowPriority:lowPriority postMethod:postMethod];
+		[downloaderForURL setObject:downloader forKey:url];
+	}
+	
+	// If we get a normal priority request, make sure to change type since downloader is shared
+    if (!lowPriority && downloader.lowPriority)
+        downloader.lowPriority = NO;
+    
+    [self addDownloader:downloader delegateRef:delWeakRef cacheKey:key];
+}
+
+
+
+#pragma mark -
+#pragma mark SDWebDataDownloaderDelegate
+
+- (void)dataDownloader:(SDWebDataDownloader *)downloader didFinishWithData:(NSData *)aData
+{
+	[downloader retain];
+    _SDDownloaderInfo *downloaderInfo = [self getDownloaderInfoByDownloader:downloader];
+    
+    BOOL isDataValid = YES; //  默认认为数据合法
+    
+    if (aData) {
+        //  需要询问数据是否合法
+        if (downloaderInfo.delegateRef.target && [downloaderInfo.delegateRef.target respondsToSelector:@selector(webDataManager:isFinishedDataValid:)]) {
+            isDataValid = [downloaderInfo.delegateRef.target webDataManager:self isFinishedDataValid:aData];
+        }
+    } else {
+        isDataValid = NO;   //无数据，认为非法
+    }
+		
+    //  只有合法的数据才进行存储
+    if (isDataValid)
+    {
+		[failedURLs removeObjectForKey:downloader.url];
+        // Store the data in the cache
+        
+        [[SDDataCache sharedDataCache] storeData:aData forKey:downloaderInfo.cacheKey toDisk:YES];
+    }
+    else
+    {
+        // The image can't be downloaded from this URL, mark the URL as failed so we won't try and fail again and again
+        [failedURLs setObject:[NSDate date] forKey:downloader.url];
+    }
+	
+    // Notify all the delegates with this downloader
+    do {
+        _SDDownloaderInfo *otherDownloaderInfo = [self getDownloaderInfoByDownloader:downloader];
+        if (otherDownloaderInfo == nil) {
+            break; // 已经没有其他的delegate引用这个downloader了
+        } else {
+            // 先通知
+            if (isDataValid) {
+                if (otherDownloaderInfo.delegateRef.target && [otherDownloaderInfo.delegateRef.target respondsToSelector:@selector(webDataManager:didFinishWithData:isCache:theURL:)]) {
+                    [otherDownloaderInfo.delegateRef.target webDataManager:self didFinishWithData:aData isCache:NO theURL:otherDownloaderInfo.downloader.url.absoluteString];
+                }
+            } else {
+                if (otherDownloaderInfo.delegateRef.target && [otherDownloaderInfo.delegateRef.target respondsToSelector:@selector(webDataManager:didFailWithError:theURL:)]) {
+                    [otherDownloaderInfo.delegateRef.target webDataManager:self didFailWithError:nil theURL:otherDownloaderInfo.downloader.url.absoluteString];
+                }
+            }
+            [self removeDDObj:otherDownloaderInfo]; // 再删除
+        }
+    } while (YES);
+    
+    // Release the downloader
+    [downloaderForURL removeObjectForKey:downloader.url];
+    [downloader release];
+}
+
+- (void)dataDownloader:(SDWebDataDownloader *)downloader didFailWithError:(NSError *)error
+{
+	[downloader retain];
+	
+    // Notify all the delegates with this downloader
+    do {
+        _SDDownloaderInfo *downloaderInfo = [self getDownloaderInfoByDownloader:downloader];
+        if (downloaderInfo == nil) {
+            break; // 已经没有其他的delegate引用这个downloader了
+        } else {
+            // 先通知
+            if (downloaderInfo.delegateRef.target && [downloaderInfo.delegateRef.target respondsToSelector:@selector(webDataManager:didFailWithError:theURL:)]) {
+                [downloaderInfo.delegateRef.target webDataManager:self didFailWithError:error theURL:downloaderInfo.downloader.url.absoluteString];
+            }
+            [self removeDDObj:downloaderInfo];
+        }
+    } while (YES);
+    
+    
+    // Release the downloader
+    [downloaderForURL removeObjectForKey:downloader.url];
+    [downloader release];
+}
+- (void)dataDownloaderDataLenth:(SDWebDataDownloader *)downloader
+{
+    [downloader retain];
+	
+    NSMutableArray *needNotifyArray = [NSMutableArray array];
+    @synchronized(self.mutableArrayDownloaderInfo) {
+        for (_SDDownloaderInfo *info in self.mutableArrayDownloaderInfo) {
+            if (info.downloader == downloader) {
+                [needNotifyArray addObject:info];
+            }
+        }
+    }
+    
+    for (_SDDownloaderInfo *info in needNotifyArray) {
+        int tempLength = MAX(downloader.dataLength, downloader.resetLength);
+        // 通知
+        if (info.delegateRef.target && [info.delegateRef.target respondsToSelector:@selector(webDataManager:didDownloadDataLength:totalLength:)]) {
+            [info.delegateRef.target webDataManager:self didDownloadDataLength:tempLength totalLength:downloader.totalLength];
+        }
+    }
+    
+    [downloader release];
+}
+
+
+@end

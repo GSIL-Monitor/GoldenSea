@@ -1,0 +1,67 @@
+//
+//  iRCS.pch
+//  iRCS
+//
+//  Created by frank weng on 15/8/12.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#ifndef iRCS_iRCS_pch
+#define iRCS_iRCS_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+
+/// TAGS FOR EASY DEBUGGING
+#if TARGET_IPHONE_SIMULATOR
+    #define __SKIP_LITTLEC_VOIP__
+    #define __SKIP_NAT__
+#else
+
+#endif
+
+#define __SKIP_LITTLEC_VOIP__
+
+
+
+#define Is_Test_Step
+
+
+//#import "CocoaLumberjack.h"
+
+//#import <LittlecIm/HDDLog.h>
+
+
+#import <objc/runtime.h>
+
+/// constants
+#import "AppMacro.h"
+//#import "UIMacro.h"
+#import "CommonMacros.h"
+//#import "NotificationMacro.h"
+//#import "SystemConstants.h"
+//#import "ContactInfoKeyMacro.h"
+//#import "HYLog.h"
+//#import "HYDebugManager.h"
+
+/// categories
+#import "NSObject+JSON.h"
+
+//#import "NSStringEX.h"
+#import "NSArrayEX.h"
+#import "NSDictionaryEX.h"
+//#import "NSCacheEX.h"
+//
+//#import "NSFileManagerEX.h"
+//#import "NSURLEX.h"
+//#import "NSIndexSet+BlocksKit.h"
+
+#import "YTKNetworkConfig.h"
+
+#endif
+
+#endif

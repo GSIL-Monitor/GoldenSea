@@ -1,0 +1,336 @@
+/*
+ * This file is part of the SDWebImage package.
+ * (c) Olivier Poitrey <rs@dailymotion.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#import "UIImageView+WebCache.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
+
+@protocol imageUsability <NSObject>
+
+-(NSDictionary *)imageUsabilityRecord:(UIImageView *)image imgUrl:(NSURL *)url;
+
+@end
+
+static char operationKey;
+static char operationArrayKey;
+
+
+@implementation UIImageView (WebCache)
+
+
+#pragma mark Get ViewController of the UIImageView
+
+- (UIViewController*)viewController {
+    for (UIView* next=self; next; next=next.superview) {
+        if ([next.nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)next.nextResponder;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - WebImage
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 基本
+
+- (void)setImageWithURL:(NSURL *)url
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:nil imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+                options:(SDWebImageOptions)options
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:CGSizeZero cutType:ImageCutType_None options:options progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:ImageCutType_None options:0 progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:0 progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:options progress:nil completed:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+               progress:(SDWebImageDownloaderProgressBlock)progressBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:options progress:progressBlock completed:nil];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 回调
+
+- (void)setImageWithURL:(NSURL *)url
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:nil imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:options progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+               progress:(SDWebImageDownloaderProgressBlock)progressBlock
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:imageSize cutType:cutType options:options progress:progressBlock completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholder
+                options:(SDWebImageOptions)options
+               progress:(SDWebImageDownloaderProgressBlock)progressBlock
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:TBCDNImageModuleDefault placeholderImage:placeholder imageSize:CGSizeZero cutType:ImageCutType_None options:options progress:progressBlock completed:completedBlock];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 组件定位
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+              completed:(SDWebImageCompletedBlock)completedBlock;
+{
+    [self setImageWithURL:url module:module placeholderImage:nil imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+       placeholderImage:(UIImage *)placeholder
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:module placeholderImage:placeholder imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:module placeholderImage:placeholder imageSize:imageSize cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:module placeholderImage:placeholder imageSize:imageSize cutType:cutType options:0 progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    [self setImageWithURL:url module:module placeholderImage:placeholder imageSize:imageSize cutType:cutType options:options progress:nil completed:completedBlock];
+}
+
+- (void)setImageWithURL:(NSURL *)url
+                 module:(NSString *)module
+       placeholderImage:(UIImage *)placeholder
+              imageSize:(CGSize)imageSize
+                cutType:(ImageCutType)cutType
+                options:(SDWebImageOptions)options
+               progress:(SDWebImageDownloaderProgressBlock)progressBlock
+              completed:(SDWebImageCompletedBlock)completedBlock
+{
+    if (!url || ![url.absoluteString length]) {
+        self.image = placeholder;
+        return;
+    }
+    
+    if (options & SDWebImageNoParse) {
+        [self setImageWithParsedURL:url placeholderImage:placeholder module:module options:options progress:progressBlock completed:completedBlock];
+        return;
+    }
+    
+    //解析拼接URL
+    NSURL *parsedURL = nil;
+    Class URLParserClass = objc_getClass("TBCDNImageURLParser");
+    if (URLParserClass) {
+        parsedURL = ((id (*)(id, SEL, id, id, CGSize, CGSize, ImageCutType))objc_msgSend)(URLParserClass, NSSelectorFromString(@"parseImageURLForCDNURL:module:imageSize:viewSize:cutType:"), url, module, imageSize, self.frame.size, cutType);
+    }
+    
+    parsedURL = parsedURL ?: url;
+    if (parsedURL) {
+        [self setImageWithParsedURL:parsedURL placeholderImage:placeholder module:module options:options progress:progressBlock completed:completedBlock];
+    }
+}
+
+- (void)setImageWithParsedURL:(NSURL *)url
+             placeholderImage:(UIImage *)placeholder
+                       module:(NSString *)module
+                      options:(SDWebImageOptions)options
+                     progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                    completed:(SDWebImageCompletedBlock)completedBlock
+{
+    __weak __block UIImageView *wself = self;
+    [self setImageInnerMethodWithURL:url placeholderImage:placeholder module:module options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+        if (completedBlock) {
+            completedBlock(image, error, cacheType);
+        }
+        
+        if (!error && !CGSizeEqualToSize(image.size, CGSizeZero)) {
+            //渐显动画
+            if (options & SDWebImageAnimating && cacheType != SDImageCacheTypeMemory) {
+                wself.alpha = 0;
+                [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    wself.alpha = 1;
+                } completion:NULL];
+            }
+        }
+        
+        NSMutableDictionary   *userInfo = [NSMutableDictionary dictionary];
+        [userInfo setObject:[NSString stringWithFormat:@"%ld x %ld", (long)image.size.width, (long)image.size.height] forKey:@"imageSize"];
+        if (error) {
+            [userInfo setObject:error forKey:@"error"];
+        }
+    }];
+}
+
+- (void)setImageInnerMethodWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder module:(NSString *)module options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock {
+    [self cancelCurrentImageLoad];
+    
+    if (!(options & SDWebImageKeepImageWhenRefreshing && self.image)) {
+        self.image = placeholder;
+    }
+    
+    if (url) {
+        __weak UIImageView *wself = self;
+        id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadWithURL:url module:module imageSize:CGSizeZero cutType:ImageCutType_None options: options | SDWebImageNoParse progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+            if (!wself) return;
+            dispatch_main_sync_safe(^{
+                if (!wself) return;
+                if (image) {
+                    wself.image = image;
+                    [wself setNeedsLayout];
+                }
+                
+                // 子带编码逻辑, 需要上抛给业务层三次
+                BOOL   isSubband = options & SDWebImageSubband;
+                if (completedBlock && (isSubband || finished)) {
+                    completedBlock(image, error, cacheType);
+                }
+            });
+        }];
+        objc_setAssociatedObject(self, &operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
+- (void)cancelCurrentImageLoad
+{
+    // Cancel in progress downloader from queue
+    id <SDWebImageOperation> operation = objc_getAssociatedObject(self, &operationKey);
+    if (operation) {
+        [operation cancel];
+        objc_setAssociatedObject(self, &operationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
+- (void)cancelCurrentArrayLoad
+{
+    // Cancel in progress downloader from queue
+    NSArray *operations = objc_getAssociatedObject(self, &operationArrayKey);
+    for (id <SDWebImageOperation> operation in operations) {
+        if (operation) {
+            [operation cancel];
+        }
+    }
+    objc_setAssociatedObject(self, &operationArrayKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)sd_setImageWithURL:(NSURL *)url
+{
+    [self setImageWithURL:url];
+}
+
+- (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
+{
+    [self setImageWithURL:url placeholderImage:placeholder];
+}
+
+@end

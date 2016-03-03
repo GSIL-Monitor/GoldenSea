@@ -1,0 +1,16 @@
+//
+//  ELCImagePickerHeader.h
+//  ELCImagePickerDemo
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#ifndef ELCImagePickerDemo_ELCImagePickerHeader_h
+#define ELCImagePickerDemo_ELCImagePickerHeader_h
+
+#import "ELCAlbumPickerController.h"
+#import "ELCImagePickerController.h"
+#import "ELCAssetTablePicker.h"
+
+#endif

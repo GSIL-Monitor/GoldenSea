@@ -1,0 +1,57 @@
+//
+//  StatementID.m
+//
+
+#import "StatementID.h"
+
+@interface StatementID()
+{
+    NSInteger  number_;
+    NSString *str_;
+    
+    
+    
+}
+@end
+
+
+@implementation StatementID
+
+
+-(id)initWithFile:(NSString *)file line:(NSUInteger)line
+{
+    self = [super init];
+    if (self) {
+        number_ = line;
+        str_ = file;
+    }
+    
+    return self;
+}
+
+-(id)initWithUniqueName:(NSString *)uniqueName
+{
+    self = [super init];
+    if (self) {
+        number_ = -1;
+        str_ =  uniqueName;
+    }
+    
+    return self;
+}
+
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    StatementID *sid = [[[self class] allocWithZone:zone] initWithFile:str_ line:number_];
+    return sid;
+}
+
+-(NSString *) string
+{
+    
+    return [str_ stringByAppendingFormat:@"%d", number_];
+}
+
+
+@end

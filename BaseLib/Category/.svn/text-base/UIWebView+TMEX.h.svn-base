@@ -1,0 +1,21 @@
+//
+//  UIWebView+HYEX.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIWebView (HYEX)
+
+-(void)setViewportWidth:(NSString *)widthValue;
+
+-(CGFloat)viewportScale;
+
+-(void)hideBouncesShadow;
+-(UIScrollView*)getScrollView;
+
+-(CGFloat)heightForContent;
+-(NSString *)Content;
+-(NSString *)Title;
+-(NSString *) wrapperHead:(NSString *)content;
+
+@end

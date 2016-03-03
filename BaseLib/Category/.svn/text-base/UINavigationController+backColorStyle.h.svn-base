@@ -1,0 +1,20 @@
+//
+//  UINavigationController+backColorStyle.h
+//  RCS
+//
+//  Created by yaofangyys on 15/4/3.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSUInteger, RCSNavBarColorStyle) {
+    RCSNavBarColorStyleDark = 0,
+    RCSNavBarColorStyleLightRed = 1,
+    RCSNavBarColorStyleDarkTranslucent = 2,
+    RCSNavBarColorStyleLightRedTranslucent = 3
+};
+
+@interface UINavigationController (backColorStyle)
+- (void)setNavigationBarColorStyle:(RCSNavBarColorStyle)colorStyle;
+@end

@@ -1,0 +1,31 @@
+//
+//  UIAlertView+AddBlockCallBacks.m
+//
+
+#import "UIAlertView+AddBlockCallBacks.h"
+#import <objc/runtime.h>
+
+
+@implementation UIAlertView (AddBlockCallBacks)
+
+static const char *handlerRunTimeAccosiationKey = "alertViewBlocksDelegate";
+
+- (void)showAlerViewWithHandler:(UIActionAlertViewCallBackHandler)handler;
+{
+    objc_setAssociatedObject(self, ( const void *)(&handlerRunTimeAccosiationKey), handler, OBJC_ASSOCIATION_COPY);
+    
+    [self setDelegate:self];
+    [self show];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIActionAlertViewCallBackHandler completionHandler = objc_getAssociatedObject(self, ( const void *)(&handlerRunTimeAccosiationKey));
+    
+    if (completionHandler != NULL) {
+        
+        completionHandler(alertView, buttonIndex);
+    }
+}
+
+@end

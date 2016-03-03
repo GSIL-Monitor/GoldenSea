@@ -1,0 +1,56 @@
+//
+//  SQLiteEntity.h
+//
+
+#import <Foundation/Foundation.h>
+
+/**
+ 这个类的对象即能使用JSON数据来生成，又用来和数据库中的一张表对应
+ */
+
+@interface SQLiteEntity : NSObject
+
+@property (strong, nonatomic) NSNumber *rowID;
+
++ (NSString *)primaryKey;
++ (NSString *)uniqueKey;
+
+/**
+ 使用一个 JSON 来创建 TMSQLiteEntity 实例
+ @param json 以 NSDictionary 表示的 JSON 对象
+ */
++ (id)modelWithJSON:(NSDictionary*)json;
+
+/**
+ 使用一个数组类型的 JSON 来创建 TBModel 数组
+ @param jsonArray 以 NSArray 表示的 JSON 数组对象
+ */
++ (NSArray *)modelArrayWithJSON:(NSArray *)jsonArray;
+
+- (id)initWithDictionary:(NSDictionary *)dict;
+
+/**
+ 获取对应属性的类型，用于在属性值为一个 NSDictionary 或者 NSArray 时来创建正确类型的属性对象
+ @param key 对应属性的名称
+ @returns 属性对应的类型
+ */
+- (Class)classForKey:(NSString*)key;
+
+/**
+ 从一个 JSON Dictionary 设置 TMSQLiteEntity 的属性
+ @param dict 以 NSDictionary 表示的 JSON 对象
+ */
+- (void)setFromDictionary:(NSDictionary*)dict;
+
+/**
+ 该 TMSQLiteEntity 所拥有的属性名称列表
+ @returns 所有属性名称
+ */
+- (NSArray *)keys;
+
+/**
+ 获得key与属性名字的对应
+ */
+- (NSDictionary *)keyMapDictionary;
+
+@end

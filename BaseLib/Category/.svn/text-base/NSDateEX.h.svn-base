@@ -1,0 +1,61 @@
+//
+//  NSDateEX.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface NSDate (EX) 
+
+//一年的第几天
++ (int)dayOfYear:(int)year month:(int)month day:(int)day;
+
++ (NSDateComponents *)toChinaComponents:(NSDate *)gmDate;
+
+- (BOOL)isSameDayWith:(NSDate *)cmpDate;
+
++ (void)setMondayAsFirst:(BOOL)value;
+
+-(NSDate *)offsetMonth:(int)numMonths;
+-(NSDate *)offsetDay:(int)numDays;
+-(NSDate *)offsetHours:(int)hours;
+-(int)numDaysInMonth;
+-(int)firstWeekDayInMonth;
+-(int)year;
+-(int)month;
+-(int)day;
+
++(NSDate *)dateStartOfDay:(NSDate *)date;
++(NSDate *)dateStartOfWeek;
++(NSDate *)dateEndOfWeek;
+
++(NSString *)weekdayName:(int)weekday;
+
+- (NSString *)dateDescription;
+
+- (NSString *)dateDescriptionShortVersion;
+
+// YYYY-MM-DD格式
++ (void)extractComponentsFromYMD:(NSString*)source year:(int*)year month:(int*)month day:(int*)day;
++ (NSDate*)convertYMDFormatToDate:(NSString*)source;
+
++ (BOOL)isDoubleEleven:(const long)time;
+
++ (int)numberOfDayToDoubleEleven:(const long)time;
+
++ (NSDate*)convertTimeZone8yyyyMMddHHmmssFormatToDate:(NSString*)source; // 将东八区的yyyyMMddHHmmss格式日期转成NSDate
+
+// 倒计时
++ (NSString*)countdownText:(NSTimeInterval)fireDate currentDate:(NSTimeInterval)currentDate fired:(BOOL*)fired;
+
+//NSDate+Formatter
+- (NSString*)stringWithFormat:(NSString*)fmt;
++ (NSDate*)dateFromString:(NSString*)str withFormat:(NSString*)fmt;
++ (NSDate *)dateFromString:(NSString *)str withFormat:(NSString *)fmt locale:(NSLocale *)locale;
+- (NSDate *)dateByAddingDays:(NSInteger)days months:(NSInteger)months years:(NSInteger)years;
+
+-(BOOL) isLaterThanOrEqualTo:(NSDate*)date;
+-(BOOL) isEarlierThanOrEqualTo:(NSDate*)date;
+-(BOOL) isLaterThan:(NSDate*)date;
+-(BOOL) isEarlierThan:(NSDate*)date;
+
+@end

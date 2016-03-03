@@ -1,0 +1,12 @@
+//
+//  StatementID.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface StatementID : NSObject<NSCopying>
+
+-(id)initWithFile:(NSString *)file line:(NSUInteger)line;
+-(id)initWithUniqueName:(NSString *)uniqueName;
+-(NSString *) string;
+@end

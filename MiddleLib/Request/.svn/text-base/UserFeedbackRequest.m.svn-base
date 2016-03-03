@@ -1,0 +1,46 @@
+//
+//  UserFeedbackRequest.m
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/22.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "UserFeedbackRequest.h"
+#import "HYUserInfoMgr.h"
+
+@interface UserFeedbackRequest () <HYbaseRequestDelegate>
+
+@end
+
+@implementation UserFeedbackRequest
+
+-(id)initWithUrl:(NSString *)url{
+    self = [super initWithUrl:url];
+    if (self) {
+        NSString *mobile = [HYUserInfoMgr shareManager].currUserInfo.usrID;
+        [self.paragmaDic safeSetValue:mobile forKey:@"userId"];
+    }
+    return self;
+}
+
+-(YTKRequestSerializerType)requestSerializerType{
+    return YTKRequestSerializerTypeJSON;
+}
+
+-(YTKRequestMethod)requestMethod{
+    return YTKRequestMethodGet;
+}
+
+-(id)requestArgument{
+    return self.paragmaDic;
+}
+
+-(NSMutableDictionary *)paragmaDic{
+    if (!_paragmaDic) {
+        _paragmaDic = [[NSMutableDictionary alloc]init];
+    }
+    return _paragmaDic;
+}
+
+@end

@@ -1,0 +1,115 @@
+//
+//  NSDate+Formatter.m
+//
+
+#import "NSDate+Formatter.h"
+
+//TT_FIX_CATEGORY_BUG(TBSKDFormatString)
+
+@implementation NSDate (TBSKDFormatString)
+
+- (NSString*)stringWithFormat:(NSString*)fmt {
+//    static NSDateFormatter *fmtter;
+//    
+//    if (fmtter == nil) {
+//        fmtter = [[NSDateFormatter alloc] init];
+//    }
+
+    NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *fmtter = [dictionary objectForKey:@"TBDateFormater"];
+    
+    if (fmtter == nil) {
+        fmtter = [[NSDateFormatter alloc] init];
+        [dictionary setObject:fmtter forKey:@"TBDateFormater"];
+    }
+    
+    if (fmt == nil || [fmt isEqualToString:@""]) {
+        fmt = @"HH:mm:ss";
+    }
+    
+    [fmtter setDateFormat:fmt];
+    
+    return [fmtter stringFromDate:self];
+}
+
++ (NSDate*)dateFromString:(NSString*)str withFormat:(NSString*)fmt {
+//    static NSDateFormatter *fmtter;
+//    
+//    if (fmtter == nil) {
+//        fmtter = [[NSDateFormatter alloc] init];
+//    }
+
+    NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *fmtter = [dictionary objectForKey:@"TBDateFormater"];
+    
+    if (fmtter == nil) {
+        fmtter = [[NSDateFormatter alloc] init];
+        [dictionary setObject:fmtter forKey:@"TBDateFormater"];
+    }
+    
+    if (fmt == nil || [fmt isEqualToString:@""]) {
+        fmt = @"HH:mm:ss";
+    }
+    
+    [fmtter setDateFormat:fmt];
+    
+    return [fmtter dateFromString:str];
+}
+
+
++ (NSDate *)dateFromString:(NSString*)str withFormat:(NSString*)fmt locale:(NSLocale *)locale {
+//    static NSDateFormatter *fmtter;
+//    
+//    if (fmtter == nil) {
+//        fmtter = [[NSDateFormatter alloc] init];
+//    }
+
+    NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *fmtter = [dictionary objectForKey:@"TBDateFormater"];
+    
+    if (fmtter == nil) {
+        fmtter = [[NSDateFormatter alloc] init] ;
+        [dictionary setObject:fmtter forKey:@"TBDateFormater"];
+    }
+    
+    if (fmt == nil || [fmt isEqualToString:@""]) {
+        fmt = @"HH:mm:ss";
+    }
+    
+    [fmtter setDateFormat:fmt];
+    if (locale != nil) {
+        [fmtter setLocale:locale];
+    }
+    
+    return [fmtter dateFromString:str];
+}
+
+- (NSDate *)dateByAddingDays:(NSInteger)days months:(NSInteger)months years:(NSInteger)years
+{
+    NSDateComponents *c = [[NSDateComponents alloc] init] ;
+    c.year = years;
+    c.month = months;
+    c.day = days;
+    return [[NSCalendar currentCalendar] dateByAddingComponents:c toDate:self options:0];
+}
+
+/**
+ *  获取此时刻“X月X日”的字符串
+ */
++ (NSString *)stringWithMonthAndDay{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"M月d日";
+    return [dateFormatter stringFromDate:date];
+}
+
+/**
+ *  获取具体的此时刻的时间字符串
+ */
++ (NSString *)stringWithDetailDate{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    return [dateFormatter stringFromDate:date];
+}
+@end

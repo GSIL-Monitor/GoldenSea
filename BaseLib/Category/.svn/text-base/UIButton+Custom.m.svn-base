@@ -1,0 +1,247 @@
+//
+//  UIButton+Custom.m
+//
+
+#import "UIButton+Custom.h"
+#import <objc/runtime.h>
+
+@implementation UIButton (Custom)
+
+#pragma mark - ISkinProtocol
+
+- (void)reloadAppearance
+{
+    [super reloadAppearance];
+    
+    self.skinTitleColorNormal = self.skinTitleColorNormal;
+    self.skinTitleColorHighlighted = self.skinTitleColorHighlighted;
+    self.skinTitleColorDisabled = self.skinTitleColorDisabled;
+    self.skinTitleColorSelected = self.skinTitleColorSelected;
+    self.skinTitleShadowColor = self.skinTitleShadowColor;
+    self.skinImageNormal = self.skinImageNormal;
+    self.skinImageHighlighted = self.skinImageHighlighted;
+    self.skinImageSelected = self.skinImageSelected;
+    self.skinBackgroundImageNormal = self.skinBackgroundImageNormal;
+    self.skinBackgroundImageHighlighted = self.skinBackgroundImageHighlighted;
+    self.skinBackgroundImageDisabled = self.skinBackgroundImageDisabled;
+    self.skinBackgroundImageSelected = self.skinBackgroundImageSelected;
+}
+
+#pragma mark - dynamic property
+
+@dynamic skinTitleColorNormal;
+- (int)skinTitleColorNormal
+{
+    NSNumber* skinTitleColorNormal = objc_getAssociatedObject(self, @"skinTitleColorNormal");
+    return [skinTitleColorNormal intValue];
+}
+
+- (void)setSkinTitleColorNormal:(int)skinTitleColorNormal
+{
+    objc_setAssociatedObject(self, @"skinTitleColorNormal", [NSNumber numberWithInt:skinTitleColorNormal], OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinTitleColorNormal != kColorInvalid)
+    {
+        [self setTitleColor:GLOBAL_COLOR_USEDEFAULT(skinTitleColorNormal, self.skinIsSetDefault) forState:UIControlStateNormal];
+    }
+}
+
+@dynamic skinTitleColorHighlighted;
+- (int)skinTitleColorHighlighted
+{
+    NSNumber* skinTitleColorHighlighted = objc_getAssociatedObject(self, @"skinTitleColorHighlighted");
+    return [skinTitleColorHighlighted intValue];
+}
+
+- (void)setSkinTitleColorHighlighted:(int)skinTitleColorHighlighted
+{
+    objc_setAssociatedObject(self, @"skinTitleColorHighlighted", [NSNumber numberWithInt:skinTitleColorHighlighted], OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinTitleColorHighlighted != kColorInvalid)
+    {        
+        [self setTitleColor:GLOBAL_COLOR_USEDEFAULT(skinTitleColorHighlighted, self.skinIsSetDefault) forState:UIControlStateHighlighted];
+    }
+}
+
+@dynamic skinTitleColorDisabled;
+- (int)skinTitleColorDisabled
+{
+    NSNumber* skinTitleColorDisabled = objc_getAssociatedObject(self, @"skinTitleColorDisabled");
+    return [skinTitleColorDisabled intValue];
+}
+
+- (void)setSkinTitleColorDisabled:(int)skinTitleColorDisabled
+{
+    objc_setAssociatedObject(self, @"skinTitleColorDisabled", [NSNumber numberWithInt:skinTitleColorDisabled], OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinTitleColorDisabled != kColorInvalid)
+    {
+        [self setTitleColor:GLOBAL_COLOR_USEDEFAULT(skinTitleColorDisabled, self.skinIsSetDefault) forState:UIControlStateDisabled];
+    }
+}
+
+@dynamic skinTitleColorSelected;
+- (int)skinTitleColorSelected
+{
+    NSNumber* skinTitleColorSelected = objc_getAssociatedObject(self, @"skinTitleColorSelected");
+    return [skinTitleColorSelected intValue];
+}
+
+- (void)setSkinTitleColorSelected:(int)skinTitleColorSelected
+{
+    objc_setAssociatedObject(self, @"skinTitleColorSelected", [NSNumber numberWithInt:skinTitleColorSelected], OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinTitleColorSelected != kColorInvalid)
+    {
+        [self setTitleColor:GLOBAL_COLOR_USEDEFAULT(skinTitleColorSelected, self.skinIsSetDefault) forState:UIControlStateSelected];
+    }
+}
+
+@dynamic skinTitleShadowColor;
+- (int)skinTitleShadowColor
+{
+    NSNumber* skinTitleShadowColor = objc_getAssociatedObject(self, @"skinTitleShadowColor");
+    return [skinTitleShadowColor intValue];
+}
+
+- (void)setSkinTitleShadowColor:(int)skinTitleShadowColor
+{
+    objc_setAssociatedObject(self, @"skinTitleShadowColor", [NSNumber numberWithInt:skinTitleShadowColor], OBJC_ASSOCIATION_RETAIN);
+    
+    if (skinTitleShadowColor != kColorInvalid)
+    {
+        [self setTitleShadowColor:GLOBAL_COLOR_USEDEFAULT(skinTitleShadowColor, self.skinIsSetDefault) forState:UIControlStateNormal];
+    }
+}
+
+@dynamic skinImageNormal;
+- (NSString*)skinImageNormal
+{
+    NSString* skinImageNormal = objc_getAssociatedObject(self, @"skinImageNormal");
+    return skinImageNormal;
+}
+
+- (void)setSkinImageNormal:(NSString*)skinImageNormal
+{
+    objc_setAssociatedObject(self, @"skinImageNormal", skinImageNormal, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinImageNormal length] > 0)
+    {
+        UIImage* image = [UIImage imageNamed:skinImageNormal];
+        [self setImage:image forState:UIControlStateNormal];
+    }
+}
+
+@dynamic skinImageHighlighted;
+- (NSString*)skinImageHighlighted
+{
+    NSString* skinImageHighlighted = objc_getAssociatedObject(self, @"skinImageHighlighted");
+    return skinImageHighlighted;
+}
+
+- (void)setSkinImageHighlighted:(NSString*)skinImageHighlighted
+{
+    objc_setAssociatedObject(self, @"skinImageHighlighted", skinImageHighlighted, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinImageHighlighted length] > 0)
+    {
+        UIImage* image = [UIImage imageNamed:skinImageHighlighted];
+        [self setImage:image forState:UIControlStateHighlighted];
+    }
+}
+
+@dynamic skinImageSelected;
+- (NSString*)skinImageSelected
+{
+    NSString* skinImageSelected = objc_getAssociatedObject(self, @"skinImageSelected");
+    return skinImageSelected;
+}
+
+- (void)setSkinImageSelected:(NSString*)skinImageSelected
+{
+    objc_setAssociatedObject(self, @"skinImageSelected", skinImageSelected, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinImageSelected length] > 0)
+    {
+        UIImage* image = [UIImage imageNamed:skinImageSelected];
+        [self setImage:image forState:UIControlStateSelected];
+    }
+}
+
+@dynamic skinBackgroundImageNormal;
+- (NSString*)skinBackgroundImageNormal
+{
+    NSString* skinBackgroundImageNormal = objc_getAssociatedObject(self, @"skinBackgroundImageNormal");
+    return skinBackgroundImageNormal;
+}
+
+- (void)setSkinBackgroundImageNormal:(NSString*)skinBackgroundImageNormal
+{
+    objc_setAssociatedObject(self, @"skinBackgroundImageNormal", skinBackgroundImageNormal, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinBackgroundImageNormal length] > 0)
+    {
+        UIImage* bgImage = [UIImage imageNamed:skinBackgroundImageNormal];
+        bgImage = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width / 2 topCapHeight:bgImage.size.height / 2];
+        [self setBackgroundImage:bgImage forState:UIControlStateNormal];
+    }
+}
+
+@dynamic skinBackgroundImageHighlighted;
+- (NSString*)skinBackgroundImageHighlighted
+{
+    NSString* skinBackgroundImageHighlighted = objc_getAssociatedObject(self, @"skinBackgroundImageHighlighted");
+    return skinBackgroundImageHighlighted;
+}
+
+- (void)setSkinBackgroundImageHighlighted:(NSString*)skinBackgroundImageHighlighted
+{
+    objc_setAssociatedObject(self, @"skinBackgroundImageHighlighted", skinBackgroundImageHighlighted, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinBackgroundImageHighlighted length] > 0)
+    {
+        UIImage* bgImage = [UIImage imageNamed:skinBackgroundImageHighlighted];
+        bgImage = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width / 2 topCapHeight:bgImage.size.height / 2];
+        [self setBackgroundImage:bgImage forState:UIControlStateHighlighted];
+    }
+}
+
+@dynamic skinBackgroundImageDisabled;
+- (NSString*)skinBackgroundImageDisabled
+{
+    NSString* skinBackgroundImageDisabled = objc_getAssociatedObject(self, @"skinBackgroundImageDisabled");
+    return skinBackgroundImageDisabled;
+}
+
+- (void)setSkinBackgroundImageDisabled:(NSString*)skinBackgroundImageDisabled
+{
+    objc_setAssociatedObject(self, @"skinBackgroundImageDisabled", skinBackgroundImageDisabled, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinBackgroundImageDisabled length] > 0)
+    {
+        UIImage* bgImage = [UIImage imageNamed:skinBackgroundImageDisabled];
+        bgImage = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width / 2 topCapHeight:bgImage.size.height / 2];
+        [self setBackgroundImage:bgImage forState:UIControlStateDisabled];
+    }
+}
+
+@dynamic skinBackgroundImageSelected;
+- (NSString*)skinBackgroundImageSelected
+{
+    NSString* skinBackgroundImageSelected = objc_getAssociatedObject(self, @"skinBackgroundImageSelected");
+    return skinBackgroundImageSelected;
+}
+
+- (void)setSkinBackgroundImageSelected:(NSString*)skinBackgroundImageSelected
+{
+    objc_setAssociatedObject(self, @"skinBackgroundImageSelected", skinBackgroundImageSelected, OBJC_ASSOCIATION_RETAIN);
+    
+    if ([skinBackgroundImageSelected length] > 0)
+    {
+        UIImage* bgImage = [UIImage imageNamed:skinBackgroundImageSelected];
+        bgImage = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width / 2 topCapHeight:bgImage.size.height / 2];
+        [self setBackgroundImage:bgImage forState:UIControlStateSelected];
+    }
+}
+
+@end

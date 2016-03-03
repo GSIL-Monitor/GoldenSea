@@ -1,0 +1,535 @@
+//
+//  ELCReviewViewController.m
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import "ELCImagePickerController.h"
+#import "ELCPreviewViewController.h"
+#import "PageScrollView.h"
+#import "ELCAsset.h"
+#import "ELCConsole.h"
+
+@interface ELCPageView : PageView
+@property (nonatomic, strong) UIImageView *contentImageView;
+@end
+
+@implementation ELCPageView
+- (instancetype)initWithPageIndentifier:(NSString *)pageIndentifier{
+    self = [super initWithPageIndentifier:pageIndentifier];
+    if (self) {
+        _contentImageView  = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _contentImageView.backgroundColor = [UIColor clearColor];
+        //[_contentImageView showBorderColor];
+        _contentImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_contentImageView ];
+    }
+    return self;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_contentImageView setFrame:CGRectMake(0, 0, self.width, self.height)];
+}
+
+@end
+
+
+@interface ELCPreviewViewController ()<PageScrollViewDataSource,PageScrollViewDelegate>
+@property (nonatomic, strong) PageScrollView *pagingScorllerView;
+@property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) UIButton *orginImageBtn;
+@property (nonatomic, strong) UIButton *sendBtn;
+@property (nonatomic, strong) UIButton *isSelectedBtn;
+@property (nonatomic, assign) BOOL bFirst;
+@end
+
+@implementation ELCPreviewViewController
+#pragma mark -
+#pragma mark - controller life circle
+
+- (void)dealloc{
+    self.sendBlock = nil;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        _configerPageIndex = 0;
+         _isOrigin = NO;
+        _bFirst = YES;
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+//    [self.navigationController setNavigationBarColorStyle:RCSNavBarColorStyleDark];
+    __weak typeof(self) weakSelf = self;
+    [self configureLeftBarBtnItemStyle:RCSLeftBarbtnItemStyleBack
+                   WithActionBlock:^(id sender) {
+                       [weakSelf.navigationController popViewControllerAnimated:YES];
+                   }];
+    
+    if (IS_IOS7) {
+        self.extendedLayoutIncludesOpaqueBars = YES;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }else{
+        self.wantsFullScreenLayout = YES;
+    }
+    
+   
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    _isSelectedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _isSelectedBtn.frame = CGRectMake(0, 0, 44, 44);
+    [_isSelectedBtn setImage:[UIImage imageNamed:@"msg_big_choose"] forState:UIControlStateNormal];
+    _isSelectedBtn.showsTouchWhenHighlighted = YES;
+    [_isSelectedBtn setImage:[UIImage imageNamed:@"msg_big_cho_act"] forState:UIControlStateSelected];
+    _isSelectedBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [_isSelectedBtn addTarget:self
+                       action:@selector(isSelectedBtnTouched:)
+             forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:_isSelectedBtn];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self initSubviews];
+    
+    [self.view bk_whenTapped:^{
+        [weakSelf.navigationController setNavigationBarHidden:!weakSelf.navigationController.navigationBar.hidden animated:YES];
+        if (weakSelf.footerView.hidden) {
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.footerView.hidden = NO;
+                weakSelf.footerView.frame = CGRectMake(0, weakSelf.view.height - 50, weakSelf.view.width, 50);
+            }];
+        }else{
+            [UIView animateWithDuration:0.2 animations:^{
+                weakSelf.footerView.frame = CGRectMake(0, weakSelf.view.height, weakSelf.view.width, 50);
+            } completion:^(BOOL finished) {
+                weakSelf.footerView.hidden = YES;
+            }];
+        }
+        
+    }];
+}
+- (BOOL)prefersStatusBarHidden
+{
+    if (_bFirst) {
+        _bFirst = NO;
+        if (self.footerView.hidden) {
+            return YES;
+        } else {
+            return NO;//隐藏为YES，显示为NO
+        }
+    } else {
+        if (!self.footerView.hidden) {
+            return YES;
+        } else {
+            return NO;//隐藏为YES，显示为NO
+        }
+    }
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.pagingScorllerView scrollToPageIndex:self.configerPageIndex];
+    [_orginImageBtn setTitleColor:_isOrigin ? [UIColor whiteColor]: ColorWithRGBA(19.0, 127.0, 253.0, 0.4)
+                         forState:UIControlStateNormal];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBarTintColor:RCS_Color_NavBarColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.pagingScorllerView.hidden = YES;
+}
+
+
+#pragma mark -
+#pragma mark - setup subviews
+
+- (void)initSubviews{
+    _pagingScorllerView = [[PageScrollView alloc] initWithFrame:CGRectZero];
+    _pagingScorllerView.backgroundColor = [UIColor blackColor];
+    _pagingScorllerView.pagingDataSource = self;
+    _pagingScorllerView.pagingDelegate = self;
+    [self.view addSubview:_pagingScorllerView];
+    
+    _footerView = [[UIView alloc] initWithFrame:CGRectZero];
+    _footerView.backgroundColor = [UIColor lightGrayColor];
+    _footerView.alpha = 0.6;
+    [self.view addSubview:_footerView];
+    [self updateOrginBtnStatus:0];
+    _orginImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _orginImageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    _orginImageBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft ;
+    [_orginImageBtn setTitle:[NSString stringWithFormat:@"原图(%ldKB)",(unsigned long)[self sizeOfSelectedPictures]] forState:UIControlStateNormal];
+    UIColor *oriTitleColor = _isOrigin ? [UIColor whiteColor]: ColorWithRGBA(19.0, 127.0, 253.0, 0.4);
+    UIImage *oriImage = _isOrigin ? [UIImage imageNamed:@"picture_selected"] : [UIImage imageNamed:@"picture_unselected"];
+    [_orginImageBtn setTitleColor:oriTitleColor
+                         forState:UIControlStateNormal];
+    [_orginImageBtn setImage:oriImage forState:UIControlStateNormal];
+    [_orginImageBtn addTarget:self action:@selector(sendOriginalPicDataTouchd:) forControlEvents:UIControlEventTouchUpInside];
+    [_orginImageBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 2, 0, 20)];
+    [_orginImageBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
+    [self.footerView addSubview:_orginImageBtn];
+    
+    _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _sendBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [self updateSendBtnStatus];
+    [_sendBtn addTarget:self action:@selector(sendBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView addSubview:_sendBtn];
+}
+
+
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    self.pagingScorllerView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+    self.footerView.frame = CGRectMake(0, self.view.height - 50, self.view.width, 50);
+    _orginImageBtn.frame = CGRectMake(10, (self.footerView.height - 44)/2, 130, 44);
+    _sendBtn.frame = CGRectMake(self.footerView.width - 10 - 60, (self.footerView.height - 44)/2, 60, 44);
+    [self.pagingScorllerView scrollToPageIndex:self.configerPageIndex];
+}
+
+#pragma mark -
+#pragma mark -  private method
+- (NSUInteger)numbersOfSelectedPictures{
+    NSUInteger count = 0;
+    for (ELCAsset * assent in self.elcAssets) {
+        if (assent.selected) {
+            count++;
+        }
+    }
+    return count;
+}
+-(NSUInteger)sizeOfSelectedPictures
+{
+    NSUInteger size = 0;
+    for (ELCAsset * assent in self.elcAssets) {
+        if (assent.selected) {
+            float  perKBBytes = 1024;
+            ALAssetRepresentation *representation = [assent.asset defaultRepresentation];
+            long long fileKB = (long long)([representation size]/perKBBytes);
+            if (fileKB>10240) {
+                fileKB = 10240;
+            }
+            size += fileKB;
+        }
+    }
+    return size;
+}
+- (NSMutableArray *)getSelectedAssets{
+    NSMutableArray *selectedAssets = [NSMutableArray array];
+    for (ELCAsset *asset in self.elcAssets) {
+        if (asset.selected) {
+            [selectedAssets addObject:asset];
+        }
+    }
+    return selectedAssets;
+}
+
+
+#pragma mark -
+#pragma mark - UI response method
+
+- (void)sendOriginalPicDataTouchd:(id)sender{
+
+    ELCAsset *asset = [self.elcAssets objectAtIndex:self.pagingScorllerView.curPage];
+    asset.bOrgin = !asset.bOrgin;
+    self.isOrigin = asset.bOrgin;
+    ELCImagePickerController *imPickerNav = nil;
+    if ([self.navigationController isKindOfClass:[ELCImagePickerController class]]) {
+        imPickerNav = (ELCImagePickerController *)self.navigationController;
+    }
+    
+    if (!self.isOrigin) {
+        imPickerNav.returnsOriginalImage = YES;
+        [self.orginImageBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+         [_orginImageBtn setImage: [UIImage imageNamed:@"picture_selected"] forState:UIControlStateNormal];
+    }else{
+         imPickerNav.returnsOriginalImage = NO;
+        [_orginImageBtn setTitleColor:ColorWithRGBA(19.0, 127.0, 253.0, 0.4) forState:UIControlStateNormal];
+         [_orginImageBtn setImage:[UIImage imageNamed:@"picture_unselected"] forState:UIControlStateNormal];
+    }
+}
+
+- (void)sendBtnTouched:(id)sender{
+    //FIXME:发送图片
+    if (self.independentCall) {
+        NSLog(@"self.independentCall:%d",self.independentCall);
+        [self sendAssets];
+    }
+    else
+    {
+        if (self.sendBlock) {
+            self.sendBlock(self);
+        }
+    }
+    
+}
+- (void)sendAssets{
+    if (0 == [self numbersOfSelectedPictures]) {
+        return;
+    }
+    NSMutableArray *selectedAssetsImages = [[NSMutableArray alloc] init];
+    for (ELCAsset *elcAsset in self.elcAssets) {
+        if ([elcAsset selected]) {
+            [selectedAssetsImages addObject:elcAsset];
+        }
+    }
+    if ([[ELCConsole mainConsole] onOrder]) {
+        [selectedAssetsImages sortUsingSelector:@selector(compareWithIndex:)];
+    }
+    NSLog(@"selectedAssetsImages.count:%d",selectedAssetsImages.count);
+    [self selectedAssets:selectedAssetsImages];
+}
+- (void)selectedAssets:(NSArray *)assets
+{
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    
+    for(ELCAsset *elcasset in assets) {
+        ALAsset *asset = elcasset.asset;
+        id obj = [asset valueForProperty:ALAssetPropertyType];
+        if (!obj) {
+            continue;
+        }
+        NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+        
+        CLLocation* wgs84Location = [asset valueForProperty:ALAssetPropertyLocation];
+        if (wgs84Location) {
+            [workingDictionary setObject:wgs84Location forKey:ALAssetPropertyLocation];
+        }
+        
+        [workingDictionary setObject:obj forKey:UIImagePickerControllerMediaType];
+        
+        //This method returns nil for assets from a shared photo stream that are not yet available locally. If the asset becomes available in the future, an ALAssetsLibraryChangedNotification notification is posted.
+        ALAssetRepresentation *assetRep = [asset defaultRepresentation];
+        
+        if(assetRep != nil) {
+            if (_returnsImage) {
+                CGImageRef imgRef = nil;
+                //defaultRepresentation returns image as it appears in photo picker, rotated and sized,
+                //so use UIImageOrientationUp when creating our image below.
+                UIImageOrientation orientation = UIImageOrientationUp;
+                
+                if (_returnsOriginalImage) {
+                    imgRef = [assetRep fullResolutionImage];
+                    orientation = [assetRep orientation];
+                } else {
+                    imgRef = [assetRep fullScreenImage];
+                }
+                UIImage *img = [UIImage imageWithCGImage:imgRef
+                                                   scale:1.0f
+                                             orientation:orientation];
+                [workingDictionary setObject:img forKey:UIImagePickerControllerOriginalImage];
+            }
+            
+            [workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:UIImagePickerControllerReferenceURL];
+            
+            [returnArray addObject:workingDictionary];
+        }
+        
+    }
+    if (self.previewDelegate != nil && [self.previewDelegate respondsToSelector:@selector(elcPreviewViewController:didFinishPickingMediaWithInfo:)]) {
+        [self.previewDelegate performSelector:@selector(elcPreviewViewController:didFinishPickingMediaWithInfo:) withObject:self withObject:returnArray];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+}
+- (void)isSelectedBtnTouched:(id)sender{
+    
+    ELCAsset *asset = [self.elcAssets objectAtIndex:self.pagingScorllerView.curPage];
+    if (self.independentCall) {
+        asset.selected = !asset.selected;
+        [self setSelected:asset.selected asset:asset];
+    }else
+    {
+        asset.selected = !asset.selected;
+        //asset.bOrgin = !asset.bOrgin;
+    }
+    [self.isSelectedBtn setSelected:asset.selected];
+    [self updateSendBtnStatus];
+    [self updateOrginBtnStatus:self.pagingScorllerView.curPage];
+    
+}
+- (void)setSelected:(BOOL)selected asset:(ELCAsset *)asset
+{
+    if (selected) {
+        if (![self shouldSelectAsset:asset]) {
+            return;
+        }
+    } else {
+        if (![self shouldDeselectAsset]) {
+            return;
+        }
+    }
+    if (selected) {
+        [self assetSelected];
+    } else {
+        [self assetDeselected];
+    }
+}
+- (BOOL)shouldSelectAsset:(ELCAsset *)asset
+{
+    NSUInteger selectionCount = 0;
+    for (ELCAsset *elcAsset in self.elcAssets) {
+        if (elcAsset.selected) selectionCount++;
+    }
+    BOOL shouldSelect = YES;
+    shouldSelect = [self shouldSelectAsset:asset previousCount:selectionCount];
+    return shouldSelect;
+}
+
+- (void)assetSelected
+{
+    
+}
+
+- (BOOL)shouldDeselectAsset
+{
+    return YES;
+}
+
+- (void)assetDeselected
+{
+        
+}
+- (BOOL)shouldSelectAsset:(ELCAsset *)asset previousCount:(NSUInteger)previousCount
+{
+    BOOL shouldSelect = previousCount <= self.maximumImagesCount;
+    if (!shouldSelect) {
+        asset.selectedFull = YES;
+        asset.selected = NO;
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"你最多只能选择%d张图片", nil), self.maximumImagesCount];
+        //NSString *message = [NSString stringWithFormat:NSLocalizedString(@"You can only send %d photos at a time.", nil), self.maximumImagesCount];
+        [[[UIAlertView alloc] initWithTitle:title
+                                    message:nil
+                                   delegate:nil
+                          cancelButtonTitle:nil
+                          otherButtonTitles:NSLocalizedString(@"我知道了", nil), nil] show];
+    }
+    return shouldSelect;
+}
+
+- (void)updateSendBtnStatus{
+    NSUInteger count = [self numbersOfSelectedPictures];
+    if (0 == count) {
+        [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:ColorWithRGBA(19.0, 127.0, 253.0, 0.4)
+                       forState:UIControlStateNormal];
+        
+    }else{
+        [_sendBtn setTitle:[NSString stringWithFormat:@"发送(%d)", count]
+                  forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:ColorWithRGB(19.0, 127.0, 253.0)
+                       forState:UIControlStateNormal];
+    }
+}
+
+- (void)updateOrginBtnStatus:(NSInteger)index{
+    
+    NSUInteger count = [self numbersOfSelectedPictures];
+    ELCAsset *ElcAsset = [self.elcAssets objectAtIndex:index];
+    [self.isSelectedBtn setSelected:ElcAsset.selected];
+    
+    if ([self numbersOfSelectedPictures]==0) {
+        [_orginImageBtn setTitle:@"原图" forState:UIControlStateNormal];
+        [_orginImageBtn setTitleColor:ColorWithRGBA(19.0, 127.0, 253.0, 0.4)
+                       forState:UIControlStateNormal];
+        
+    }else{
+        if ((unsigned long)[self sizeOfSelectedPictures]>1024) {
+            NSUInteger size = [self sizeOfSelectedPictures]/1024;
+            [_orginImageBtn setTitle:[NSString stringWithFormat:@"原图(%ldM)",(unsigned long)size]
+                            forState:UIControlStateNormal];
+        } else {
+            [_orginImageBtn setTitle:[NSString stringWithFormat:@"原图(%ldKB)",(unsigned long)[self sizeOfSelectedPictures]]
+                            forState:UIControlStateNormal];
+        }
+        [_orginImageBtn setTitleColor:ColorWithRGB(19.0, 127.0, 253.0)
+                       forState:UIControlStateNormal];
+    }
+    
+    if (self.isOrigin) {
+        UIImage *oriImage = [UIImage imageNamed:@"picture_selected"];
+        [_orginImageBtn setImage:oriImage forState:UIControlStateNormal];
+    } else {
+        UIImage *oriImage = [UIImage imageNamed:@"picture_unselected"];
+        [_orginImageBtn setImage:oriImage forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark -
+#pragma mark - PageScrollViewDataSource / PageScrollViewDelegate
+- (NSInteger)numbersOfPagesInPageingScrollerView:(PageScrollView *)pageingView{
+    return [_elcAssets count];
+}
+
+
+- (PageView *)pageingScrollerView:(PageScrollView *)pageingView pageViewForIndexPath:(NSInteger)indexPath{
+    NSString *pageViewIndentifier = @"ELCPageView";
+    ELCPageView *pageView = (ELCPageView *)[pageingView dequeueRecycledPageWithPageIndentifier:pageViewIndentifier];
+    if (!pageView) {
+        pageView = [[ELCPageView alloc] initWithPageIndentifier:pageViewIndentifier];
+    }
+    pageView.contentImageView.image = [self getImageForIndex:indexPath];
+    
+    return pageView;
+}
+
+- (UIImage *)getImageForIndex:(NSInteger)index{
+    if (index >= [self.elcAssets count]) {
+        DDLogInfo(@"索引越界！");
+        //RCSDebugAssert(NO);
+        return nil;
+    }
+    ELCAsset *asset = [self.elcAssets objectAtIndex:index];
+    ALAssetRepresentation *assetRep = [asset.asset defaultRepresentation];
+    if (assetRep) {
+        CGImageRef imgRef = nil;
+        UIImageOrientation orientation = (UIImageOrientation)[assetRep orientation];
+        imgRef = [assetRep fullScreenImage];//原图
+        return [UIImage imageWithCGImage:imgRef
+                                   scale:1.0f
+                             orientation:orientation];
+    }
+    return nil;
+}
+
+
+
+- (void)pagingScrollerViewDidScrollToTop:(PageScrollView *)pageingView{
+    
+}
+- (void)pagingScrollerViewDidScrollToEnd:(PageScrollView *)pageingView{
+    
+}
+
+- (void)pageingScrollerView:(PageScrollView *)pageingView willDisappearPage:(PageView *)pageView{
+    
+}
+
+- (void)pageingScrollerView:(PageScrollView *)pageingView pageWillDisplayPageIndex:(NSInteger)index pageView:(PageView *)pageView{
+    
+}
+
+- (void)pageingScrollerView:(PageScrollView *)pageingView pageDidDisplayPageIndex:(NSInteger)index pageView:(PageView *)pageView{
+//    ELCAsset *ElcAsset = [self.elcAssets objectAtIndex:index];
+//    [self.isSelectedBtn setSelected:ElcAsset.selected];
+    
+    [self updateOrginBtnStatus:index];
+}
+
+@end

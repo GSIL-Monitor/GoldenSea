@@ -1,0 +1,104 @@
+//
+//  UIWebView+HYEX.m
+//
+
+#import "UIWebView+TMEX.h"
+#import "CommonMacros.h"
+
+@implementation UIWebView (HYEX)
+
+-(UIScrollView*) getScrollView
+{
+    return self.scrollView;
+}
+
+-(void)hideBouncesShadow
+{
+    UIScrollView *scrollView = self.scrollView;
+    for (UIView* subView in scrollView.subviews) {
+        if ([subView isKindOfClass:[UIImageView class]]) {
+            subView.hidden = YES;
+        }
+    }
+}
+
+
+-(CGFloat)viewportScale
+{
+    CGFloat scale = 1.0;
+    
+    NSString *content =[self stringByEvaluatingJavaScriptFromString:@"document.getElementsByName( 'viewport' )[0].getAttribute( 'content' )"];
+    if (content && ![content isEqualToString:@""]) {
+        NSArray *kvList = [content componentsSeparatedByString:@","];
+        for (NSString *kv in kvList) {
+            NSArray *value = [kv componentsSeparatedByString:@"="];
+            if (value.count > 1) {
+                NSString *k = [value objectAtIndex:0];
+                if ([k isEqualToString:@"initial-scale"]) {
+                    NSString *v = value[1];
+                    scale = [v floatValue];
+                }
+            }
+        }
+        
+    } else {
+        scale = 1.0;
+    }
+    
+    return scale;
+}
+
+-(void)setViewportWidth:(NSString *)widthValue
+{
+    [self stringByEvaluatingJavaScriptFromString:
+     [NSString stringWithFormat:@"var result = '';"
+      "var viewport = null;"
+      "var content = null;"
+      "var document_head = document.getElementsByTagName( 'head' )[0];"
+      "var child = document_head.firstChild;"
+      "while ( child )"
+      "{"
+      " if ( null == viewport && child.nodeType == 1 && child.nodeName == 'META' && child.getAttribute( 'name' ) == 'viewport' )"
+      "   {"
+      "     viewport = child;"
+      "     viewport.setAttribute( 'content' , 'width=%@, user-scalable=no' );"
+      "     result = 'fixed meta tag';"
+      " }"
+      " child = child.nextSibling;"
+      "}"
+      "if (null == viewport)"
+      "{"
+      " var meta = document.createElement( 'meta' );"
+      " meta.setAttribute( 'name' , 'viewport' );"
+      " meta.setAttribute( 'content' , 'width=%@, user-scalable=no' );"
+      " document_head.appendChild( meta );"
+      "}"
+      ,widthValue
+      ,widthValue]
+     ];
+}
+
+
+
+-(CGFloat)heightForContent
+{
+    return [[self stringByEvaluatingJavaScriptFromString: @"document.body.scrollHeight"] floatValue];
+}
+
+
+-(NSString *)Content
+{
+    return [self stringByEvaluatingJavaScriptFromString: @"document.documentElement.innerHHYL"];
+}
+
+-(NSString *)Title
+{
+    return [self stringByEvaluatingJavaScriptFromString: @"document.title"];
+}
+
+-(NSString *) wrapperHead:(NSString *)content
+{
+    return  [NSString stringWithFormat:@"<!doctype html>\n<html>\n<head>\n<meta content=\"width=device-width\" id=\"viewport\" name=\"viewport\"/>\n</head>\n<body>\n%@\n</body>\n</html>", NONILString(content)];
+}
+
+@end

@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage
+END
+NSData+ImageContentType.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/NSData+ImageContentType.m
+END
+SDWebImageDownloader.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDownloader.m
+END
+TBImageUtility.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/TBImageUtility.h
+END
+SDWebImageDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDecoder.h
+END
+SDImageCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDImageCache.h
+END
+TBImageUtility.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/TBImageUtility.m
+END
+SDWebImageManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageManager.h
+END
+SDWebImageDecoder.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDecoder.m
+END
+SDImageCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDImageCache.m
+END
+UIImage+Scale.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+Scale.h
+END
+UIButton+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIButton+WebCache.h
+END
+SDWebImageManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageManager.m
+END
+SDWebImageDownloaderOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDownloaderOperation.h
+END
+UIImage+Scale.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+Scale.m
+END
+UIImageView+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImageView+WebCache.h
+END
+UIImage+WebP.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+WebP.h
+END
+SDWebImageCompat.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageCompat.h
+END
+UIButton+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIButton+WebCache.m
+END
+SDWebImageDownloaderOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDownloaderOperation.m
+END
+UIImageView+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImageView+WebCache.m
+END
+UIImage+WebP.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+WebP.m
+END
+UIImage+MultiFormat.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+MultiFormat.h
+END
+SDWebImageCompat.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageCompat.m
+END
+UIImage+GIF.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+GIF.h
+END
+UIImage+MultiFormat.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+MultiFormat.m
+END
+NSData+ImageContentType.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/NSData+ImageContentType.h
+END
+SDWebImageDownloader.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageDownloader.h
+END
+UIImage+GIF.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/UIImage+GIF.m
+END
+SDWebImageOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/SDWebImage/SDWebImageOperation.h
+END

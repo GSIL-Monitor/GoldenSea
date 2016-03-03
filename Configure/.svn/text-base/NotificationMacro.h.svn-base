@@ -1,0 +1,96 @@
+//
+//  NotificationMacro.h
+//  MobileApplicationPlatform
+//
+//  Created by zhdooo on 15/4/1.
+//  Copyright (c) 2015年 gs. All rights reserved.
+//
+
+#ifndef MobileApplicationPlatform_NotificationMacro_h
+#define MobileApplicationPlatform_NotificationMacro_h
+
+
+#define Key_UserList                     @"Key_UserList"
+#define Key_UserName                     @"Key_UserName"
+#define Key_Password                     @"Key_Password"
+#define Key_GesturePassword              @"Key_GesturePassword"
+
+
+#define NOTI_LOGINOUT                    @"NOTI_LOGINOUT"
+
+#define NOTI_RECEIVE_MESSAGE             @"NOTI_RECEIVE_MESSAGE"
+#define NOTI_UPDATE_MESSAGE_STATUS       @"NOTI_UPDATE_MESSAGE_STATUS"
+#define NOTI_UPDATE_MEDIAMESSAGE_STATUS  @"NOTI_UPDATE_MEDIAMESSAGE_STATUS"
+#define NOTI_RESEND_MESSAGE              @"NOTI_RESEND_MESSAGE"
+#define NOTI_EDIT_MESSAGE                @"NOTI_EDIT_MESSAGE"
+#define NOTI_DELETE_MESSAGE              @"NOTI_DELETE_MESSAGE"
+#define NOTI_FORWARD_MESSAGE             @"NOTI_FORWARD_MESSAGE"
+#define NOTI_COLLECT_MESSAGE             @"NOTI_COLLECT_MESSAGE"
+#define NOTI_UPDATE_SINGLE_CONVERSATION  @"NOTI_UPDATE_SINGLE_CONVERSATION"
+#define NOTI_UPDATE_ALL_CONVERSATION     @"NOTI_UPDATE_ALL_CONVERSATION"
+#define NOTI_RELOAD_SINGLE_CONVERSATION  @"NOTI_RELOAD_SINGLE_CONVERSATION"
+#define NOTI_RELAOD_ALL_CONVERSATION     @"NOTI_RELAOD_ALL_CONVERSATION"
+#define NOTI_UPDATE_TELE_HISTORY         @"NOTI_UPDATE_TELE_HISTORY"
+#define FAKEDATA_LOAD                    @"FAKEDATA_LOAD"
+#define NOTI_PREPARE_DELETE_BURN_MESAGE  @"NOTI_PREPARE_DELETE_BURN_MESAGE"
+
+#define NOTI_TIMINGMESSAGE               @"NOTI_TIMINGMESSAGE"
+
+#define NOTI_UPLOAD_PROCESS              @"NOTI_UPLOAD_PROCESS"
+#define NOTI_ADD_SINGLE_CONVERSATION     @"NOTI_ADD_SINGLE_CONVERSATION"
+#define NOTI_ADD_GROUP_CONVERSATION      @"NOTI_ADD_GROUP_CONVERSATION"
+#define NOTI_ADD_GROUP_MEMBER            @"NOTI_ADD_GROUP_MEMBER"  ///<单聊变群聊，添加群聊成员
+
+#define NOTI_ORIGINAL_IMAGE_DOWNLOADED   @"NOTI_ORIGINAL_IMAGE_DOWNLOADED"
+
+#define NOTI_MSGNEW_SELECT_CONTACT       @"NOTI_MSGNEW_SELECT_CONTACT"
+
+
+//========================通讯录相关通知==================================
+#define NOTI_ADBOOK_EDITED @"NOTI_ADBOOK_EDITED"
+#define NOTI_ADBOOK_EDITED_IN_PHONE @"NOTI_ADBOOK_EDITED_IN_PHONE"
+#define NOTI_ADBOOK_GRANTED @"NOTI_ADBOOK_GRANTED"
+#define NOTI_REFRESH_UI @"NOTI_REFRESH_UI"
+#define NOTI_ALL_MODELS_ALREADY @"NOTI_ALL_MODELS_ALREADY"
+#define NOTI_CONTACT_EDITED @"NOTI_CONTACT_EDITED"
+#define NOTI_CONTACT_ADDED @"NOTI_CONTACT_ADDED"
+#define NOTI_CONTACT_DELETE_STATUS @"NOTI_CONTACT_DELETE_STATUS"
+#define NOTI_CONTACT_ADDED_OR_EDITED @"NOTI_CONTACT_ADDED_OR_EDITED"
+#define NOTI_CONTACT_FORWARD_MESSAGE @"NOTI_CONTACT_FORWARD_MESSAGE"
+#define NOTI_CONTACT_VCARD @"NOTI_CONTACT_VCARD"
+#define NOTI_APP_STATUS @"NOTI_APP_STATUS"
+#define NOTI_RELEASE_ADBOOK @"NOTI_RELEASE_ADBOOK"
+#define NOTI_FAVORITES_BLOCK_UPDATE @"NOTI_FAVORITES_BLOCK_UPDATE"
+#define NOTI_PROFILE_REQUEST_SUCCESS @"NOTI_PROFILE_REQUEST_SUCCESS"
+
+#define NOTI_RCS_UPDATED_FOR_CONVERSATION @"NOTI_RCS_UPDATED_FOR_CONVERSATION"
+#define NOTI_CONTACT_UPDATE_FOR_CONVERSATION @"NOTI_CONTACT_UPDATE_FOR_CONVERSATION"
+
+#define NOTI_RCSUSER_LIB_UPDATE_NOTIFICATION @"NOTI_RCSUSER_LIB_UPDATE_NOTIFICATION"
+
+//======================================================================
+
+//========================群相关通知，更新UI===============================
+#define NOTI_TOP_CONVERSATION            @"NOTI_TOP_CONVERSATION"
+#define NOTI_CANELTOP_CONVERSATION       @"NOTI_CanelTOP_CONVERSATION"
+#define NOTI_SET_POLICY                  @"NOTI_SET_POLICY"
+#define NOTI_CANEL_POLICY                @"NOTI_SET_POLICY"
+
+#define NOTI_GROUPNAME_CHANGED           @"NOTI_GROUPNAME_CHANGED"
+#define NOTI_GROUPNICKNAME_CHANGED       @"NOTI_GROUPNICKNAME_CHANGED"
+
+#define NOTI_DELETE_CONVERSATIONMESSAGES @"NOTI_DELETE_CONVERSATIONMESSAGES"
+#define NOTI_DELETE_GROUP_CONVERSATION   @"NOTI_DELETE_GROUP_CONVERSATION"
+#define NOTI_QUIT_GROUP                  @"NOTI_QUIT_GROUP"
+#define NOTI_NEW_SYSTEMNOTIFICATION      @"NOTI_NEW_SYSTEMNOTIFICATION"
+#define NOTI_GROUPMEMBER_JOIN            @"NOTI_GROUPMEMBER_JOIN"
+#define NOTI_DELETE_GROUPMEMBER          @"NOTI_DELETE_GROUPMEMBER"
+//======================================================================
+
+
+//===========================友圈互动消息通知==============================
+#define NOTI_MM_TIP            @"NOTI_MM_TIP"
+//======================================================================
+
+
+#endif

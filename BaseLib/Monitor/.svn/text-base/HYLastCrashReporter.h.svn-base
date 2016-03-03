@@ -1,0 +1,18 @@
+//
+//  HYLastCrashReporter.h
+//  _Client-iOS-Common
+//
+//  Created by shenme on 13-4-10.
+//  Copyright (c) 2013年 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface HYLastCrashReporter : NSObject
+
++ (void)scanLastTracks;
+
++ (void)startTrack:(NSString*)taskName data:(NSDictionary*)data;
++ (void)endTrack:(NSString*)taskName;
+
+@end

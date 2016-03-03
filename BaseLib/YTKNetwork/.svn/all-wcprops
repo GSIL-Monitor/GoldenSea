@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/zdyy/native/!svn/ver/4526/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork
+END
+YTKNetworkAgent.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkAgent.h
+END
+YTKBatchRequestAgent.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBatchRequestAgent.h
+END
+YTKChainRequestAgent.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKChainRequestAgent.h
+END
+YTKNetworkAgent.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/4526/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkAgent.m
+END
+YTKBatchRequestAgent.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBatchRequestAgent.m
+END
+YTKNetworkConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkConfig.h
+END
+YTKChainRequestAgent.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKChainRequestAgent.m
+END
+YTKBaseRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBaseRequest.h
+END
+YTKNetworkPrivate.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkPrivate.h
+END
+YTKNetworkConfig.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkConfig.m
+END
+YTKBaseRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBaseRequest.m
+END
+YTKRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKRequest.h
+END
+YTKNetworkPrivate.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKNetworkPrivate.m
+END
+YTKBatchRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBatchRequest.h
+END
+YTKChainRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKChainRequest.h
+END
+YTKRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKRequest.m
+END
+YTKBatchRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKBatchRequest.m
+END
+YTKChainRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YTKNetwork/YTKChainRequest.m
+END

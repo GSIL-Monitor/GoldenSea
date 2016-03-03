@@ -1,0 +1,54 @@
+//
+//  UITableView+Extensions.m
+//  RCS
+//
+//  Created by YuSong.Yan on 15/4/27.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "UITableView+Extensions.h"
+
+@implementation UITableView (Extensions)
+- (void)scrollToBottomWithAnimation:(BOOL)animation{
+    DDLogInfo(@"scrollToBottomWithAnimation:%@",animation?@"YES":@"NO");
+    //这种方法不适用于tableview插入新的一行的情况
+    if (self.contentSize.height <= self.height) {
+        return;
+    }
+    if (animation) {
+        [UIView animateWithDuration:0.25f animations:^{
+            self.contentOffset = CGPointMake(self.contentOffset.x, self.contentSize.height-self.height);
+        }];
+    }else{
+        self.contentOffset = CGPointMake(self.contentOffset.x, self.contentSize.height-self.height);
+    }
+    
+    //使用这种方法，动画不够流畅
+//    NSUInteger sections = [self numberOfSections];
+//    NSUInteger rows = [self numberOfRowsInSection:sections-1];
+//    while (rows == 0) {
+//        //删除cell可能导致row为0
+//        sections --;
+//        if (sections > 0) {
+//            rows = [self numberOfRowsInSection:sections-1];
+//        }
+//    }
+//    if (sections > 0 && rows > 0) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rows-1 inSection:sections -1];
+//        
+//        [self scrollToRowAtIndexPath:indexPath
+//                    atScrollPosition:UITableViewScrollPositionBottom
+//                            animated:animation];
+//    }
+}
+@end
+
+
+@implementation UITableViewCell(Extensions)
+
+-(void)initUIWithModel:(id)model
+{
+    ;
+}
+
+@end

@@ -1,0 +1,16 @@
+//
+//  Transaction.h
+//
+
+#import <Foundation/Foundation.h>
+#import "Connection.h"
+
+@interface Transaction : NSObject
+
+@property(nonatomic) BOOL isOpen;
+
+-(id)initWithDb:(Connection *)db;
+-(BOOL)begin;
+-(void)rollback;
+-(BOOL)commit;
+@end

@@ -1,0 +1,23 @@
+//
+//  NSString+IsMobilePhoneNumber.m
+//  iRCS
+//
+//  Created by 黄春涛 on 15/9/25.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "NSString+IsMobilePhoneNumber.h"
+
+@implementation NSString (IsMobilePhoneNumber)
+
+- (BOOL) isMobilePhoneNumber{
+    
+    NSString *cleanPhoneStr = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+    NSString *phoneNumberRegex = @"^1[3|4|5|7|8][0-9]\\d{8}$";
+    NSPredicate *phoneNumberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneNumberRegex];
+    BOOL ret = [phoneNumberPredicate evaluateWithObject:cleanPhoneStr];
+    return ret;
+
+}
+
+@end

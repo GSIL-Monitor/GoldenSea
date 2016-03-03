@@ -1,0 +1,63 @@
+//
+//  StatementRef.m
+//
+
+#import "StatementRef.h"
+#import "Connection.h"
+
+#pragma mark StatementRef
+
+@implementation  StatementRef
+
+@synthesize connection=connection_;
+@synthesize stmt=stmt_;
+@synthesize wasValid=wasValid_;
+
+
+-(id)initWithStmt:(Connection *)connection stmt:(sqlite3_stmt *)stmt wasValid:(BOOL)wasValid
+{
+    self = [super init];
+    if (self) {
+        connection_ = connection;
+        stmt_ = stmt;
+        wasValid_  = wasValid;
+        if (connection_) {
+            [connection_ statementRefCreated:self];
+        }
+    }
+    return self;
+}
+-(BOOL)isValid
+{
+    return !!stmt_;
+}
+
+-(void)close:(BOOL)forced
+{
+    if (stmt_) {
+        // Call to AssertIOAllowed() cannot go at the beginning of the function
+        // because Close() is called unconditionally from destructor to clean
+        // connection_. And if this is inactive statement this won't cause any
+        // disk access and destructor most probably will be called on thread
+        // not allowing disk access.
+        // TODO(paivanof@gmail.com): This should move to the beginning
+        // of the function. http://crbug.com/136655.
+        sqlite3_finalize(stmt_);
+        stmt_ = NULL;
+    }
+    connection_ = NULL;  // The connection may be getting deleted.
+    
+    // Forced close is expected to happen from a statement error
+    // handler.  In that case maintain the sense of |was_valid_| which
+    // previously held for this ref.
+    wasValid_ = wasValid_ && forced;
+}
+
+-(void)dealloc
+{
+    if (connection_)
+        [connection_ statementRefDeleted:self];
+    [self close:NO];
+}
+
+@end

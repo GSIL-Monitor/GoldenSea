@@ -1,0 +1,11 @@
+//
+//  NSString+HHYLEntities.h
+//  See http://pastebin.com/uVb3SKHK
+//
+
+@interface NSString (TBSDKHHYLEntities)
+
+- (NSString *)stringByDecodingHHYLEntities;
+
+@end
+

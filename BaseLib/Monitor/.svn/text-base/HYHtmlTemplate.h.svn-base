@@ -1,0 +1,19 @@
+//
+//  HYHtmlTemplate.h
+//  _Client-iOS-Common
+//
+//  Created by dolphinux on 5/29/14.
+//  Copyright (c) 2014 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+//用于公用Html片段，以及javascript脚本生成
+@interface HYHtmlTemplate : NSObject
+
++(NSString *)metaViewport:(CGFloat)scale;
++(NSString *)htmlwrapper:(NSString *)head body:(NSString *)body;
++(NSString *)htmlwrapper:(NSString *)head body:(NSString *)body backgroundColor:(NSString *)color;
+
+@end

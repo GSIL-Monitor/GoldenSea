@@ -1,0 +1,278 @@
+//
+//  HYActionSheet.m
+//  HYActionSheet
+//
+//  Created by 黄春涛 on 16/1/8.
+//  Copyright © 2016年 黄春涛. All rights reserved.
+//
+
+#import "HYActionSheet.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface HYActionSheet()
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) id<HYActionSheetDelegate> delegate;
+@property (nonatomic, strong) NSString *canelButtonTitle;
+@property (nonatomic, strong) NSArray *otherButtonTitles;
+@property (nonatomic, assign) NSInteger redTitleIndex;
+
+
+@property (nonatomic, strong) UIWindow *backWindow;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *darkView;
+
+//default setting
+@property (nonatomic, assign) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat titleLabelHeight;
+@property (nonatomic, assign) CGFloat buttonLabelHeight;
+@property (nonatomic, assign) CGFloat canelButtonHeight;
+
+@end
+
+@implementation HYActionSheet
+
+- (instancetype)initWithTitle:(NSString *)title
+                     delegate:(id<HYActionSheetDelegate>)delegate
+            cancelButtonTitle:(NSString *)cancelButtonTitle
+            otherButtonTitles:(NSArray *)otherButtonTitles///<NSString
+                redTitleIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self) {
+        
+        _title = title;
+        _delegate = delegate;
+        _canelButtonTitle = cancelButtonTitle;
+        _otherButtonTitles = otherButtonTitles;
+        _redTitleIndex = index;
+        
+        //default setting
+        _fontSize = 17.0f;
+        _titleLabelHeight = 50;
+        _buttonLabelHeight = 50;
+        _canelButtonHeight = 60;
+    }
+    return self;
+}
+
+-(void)show{
+    
+    if ([self.delegate respondsToSelector:@selector(HYwillPresentActionSheet:)]) {
+        [self.delegate HYwillPresentActionSheet:self];
+    }
+    
+    [self setupContentView];
+    self.backWindow.hidden = NO;
+    
+    [self.backWindow addSubview:self];
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.darkView.alpha = 0.4f;
+        self.darkView.userInteractionEnabled = YES;
+        
+        CGRect frame = self.contentView.frame;
+        frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;
+        self.contentView.frame = frame;
+    } completion:^(BOOL finished) {
+        if ([self.delegate respondsToSelector:@selector(HYdidPresentActionSheet:)]) {
+            [self.delegate HYdidPresentActionSheet:self];
+        }
+    }];
+}
+
+-(void)setupContentView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat gapHeight = 0.5;
+    
+    self.darkView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    self.darkView.alpha = 0.0f;
+    self.darkView.userInteractionEnabled = NO;
+    self.darkView.backgroundColor = [UIColor blackColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(darkViewTapped:)];
+    tap.numberOfTapsRequired = 1;
+    [self.darkView addGestureRecognizer:tap];
+    [self addSubview:self.darkView];
+    
+    self.contentView = [UIView new];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.contentView];
+    
+    UIView * contentBackVIew = [UIView new];
+    contentBackVIew.backgroundColor = NEWUI_Color_bgcor1;
+    [self.contentView addSubview:contentBackVIew];
+    
+    CGFloat y = 0.f;
+    if (self.title.length > 0) {
+        UIView *labelView = [[UIView alloc]initWithFrame:CGRectMake(0, y, screenWidth, self.titleLabelHeight)];
+        labelView.backgroundColor = [UIColor whiteColor];
+        
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:labelView.bounds
+                                                       byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+                                                             cornerRadii:CGSizeMake(5, 5)];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = labelView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        labelView.layer.mask = maskLayer;
+        [self.contentView addSubview:labelView];
+        
+        UILabel *titleLabel = [[UILabel alloc]init];
+        titleLabel.textColor = NEWUI_Color_fontcor3;
+        titleLabel.numberOfLines = 0;
+        titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:13.0f];
+        titleLabel.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        titleLabel.frame = CGRectMake(0, y, screenWidth - 56 * 2, self.titleLabelHeight);
+        titleLabel.text = self.title;
+        [titleLabel sizeToFit];
+        titleLabel.center = labelView.center;
+        
+        [labelView addSubview:titleLabel];
+        y = y + self.titleLabelHeight + gapHeight;
+    }
+    
+    
+    NSInteger tag = 0;
+    for (NSString *buttonTitle in self.otherButtonTitles) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor whiteColor];
+        button.frame = CGRectMake(0, y, screenWidth, self.buttonLabelHeight);
+        button.titleLabel.font = [UIFont systemFontOfSize:self.fontSize];
+        if (tag == self.redTitleIndex) {
+            [button setTitleColor:NEWUI_Color_redcor1 forState:UIControlStateNormal];
+        }
+        else{
+            [button setTitleColor:NEWUI_Color_fontcor1 forState:UIControlStateNormal];
+        }
+        if (tag == 0 && self.title.length == 0) {
+            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:button.bounds
+                                                           byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+                                                                 cornerRadii:CGSizeMake(5, 5)];
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+            maskLayer.frame = button.bounds;
+            maskLayer.path = maskPath.CGPath;
+            button.layer.mask = maskLayer;
+        }
+        [button setTitle:buttonTitle forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = tag;
+        tag ++;
+        [self.contentView addSubview:button];
+        y = y + self.buttonLabelHeight + gapHeight;
+    }
+    
+    y += 10;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, y, screenWidth, self.canelButtonHeight);
+    button.titleLabel.font = [UIFont systemFontOfSize:self.fontSize];
+    [button setTitleColor:NEWUI_Color_fontcor1 forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor whiteColor];
+    [button setTitle:self.canelButtonTitle forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(canelButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:button];
+    y += self.canelButtonHeight;
+    
+    self.contentView.frame = CGRectMake(0, screenHeight, screenWidth, y);
+    contentBackVIew.frame = CGRectMake(0, 10, screenWidth, y - 10);
+    self.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+}
+
+-(UIWindow *)backWindow{
+    if (!_backWindow) {
+        _backWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _backWindow.windowLevel = UIWindowLevelStatusBar;
+        _backWindow.backgroundColor = [UIColor clearColor];
+        _backWindow.hidden = NO;
+    }
+    return _backWindow;
+}
+
+- (void)dismissActionSheet{
+    
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        [self.darkView setAlpha:0];
+        [self.darkView setUserInteractionEnabled:NO];
+        
+        CGRect frame = self.contentView.frame;
+        frame.origin.y += frame.size.height;
+        [self.contentView setFrame:frame];
+        
+    } completion:^(BOOL finished) {
+        
+        if ([self.delegate respondsToSelector:@selector(HYactionSheetCancel:)]) {
+            [self.delegate HYactionSheetCancel:self];
+        }
+        
+        [self removeFromSuperview];
+        self.backWindow.hidden = YES;
+    }];
+
+}
+
+#pragma mark - Target & Action
+
+-(void)darkViewTapped:(UIView *)sender{
+    [self dismissActionSheet];
+}
+
+-(void)canelButtonClicked:(UIButton *)sender{
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        [self.darkView setAlpha:0];
+        [self.darkView setUserInteractionEnabled:NO];
+        
+        CGRect frame = self.contentView.frame;
+        frame.origin.y += frame.size.height;
+        [self.contentView setFrame:frame];
+        
+    } completion:^(BOOL finished) {
+        
+        if ([self.delegate respondsToSelector:@selector(HYactionSheetCancel:)]) {
+            [self.delegate HYactionSheetCancel:self];
+        }
+        
+        [self removeFromSuperview];
+        self.backWindow.hidden = YES;
+    }];
+}
+
+-(void)buttonClicked:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(HYactionSheet:clickedButtonAtIndex:)]) {
+        [self.delegate HYactionSheet:self clickedButtonAtIndex:sender.tag];
+    }
+    [self dismissActionSheet];
+    
+    
+}
+
+#pragma mark - Setter & Getter
+-(void)setTitle:(NSString *)title{
+    _title = title;
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/zdyy/native/!svn/ver/3797/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes
+END
+HexColors.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/HexColors.m
+END
+TSBlurView.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSBlurView.m
+END
+TSMessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSMessage.h
+END
+TSMessageView.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/3797/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSMessageView.m
+END
+.gitkeep
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/.gitkeep
+END
+TSMessage.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSMessage.m
+END
+HexColors.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/HexColors.h
+END
+TSBlurView.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSBlurView.h
+END
+TSMessageView.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/3712/code/trunk/Personal-Client-iOS/iRCS/BaseLib/TSMessages/Classes/TSMessageView.h
+END

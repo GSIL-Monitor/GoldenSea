@@ -1,0 +1,70 @@
+//
+//  HYFileLogger.h
+//  _Client-iOS-Common
+//
+//  Created by zixian.qxz on 12-8-30.
+//  Copyright (c) 2012年 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+//#define OPEN_FILE_LOGGER
+
+// Log levels.
+typedef enum {
+    kHYLoggerLevelUnknown,
+    kHYLoggerLevelDebug,
+    kHYLoggerLevelInfo,
+    kHYLoggerLevelError,
+    kHYLoggerLevelAssert,
+} HYLoggerLevel;
+
+// Protocol to be imlemented by a HYLogFilter instance.
+@protocol HYLogFilter <NSObject>
+// Returns YES if |msg| at |level| should be filtered out; NO otherwise.
+- (BOOL)filterAllowsMessage:(NSString *)msg level:(HYLoggerLevel)level;
+@end
+
+// 默认filter，过滤debug以上的信息
+@interface HYLogLevelFilter : NSObject <HYLogFilter>
+@end
+
+// 不过滤任何日志
+@interface HYLogNoFilter : NSObject <HYLogFilter>
+@end 
+
+// A log filter that filters messages below a specified level. 
+@interface HYLogCustomLevelFilter : NSObject <HYLogFilter> {
+@private
+    HYLoggerLevel _filterLevel;
+}
+- (id)initWithFilterLevel:(HYLoggerLevel)level;
+@end
+
+/**
+// Log Writers
+**/
+// Protocol to be implemented by a HYLogWriter instance.
+@protocol HYLogWriter <NSObject>
+- (void)logMessage:(NSString *)msg level:(HYLoggerLevel)level;
+@end
+
+@interface HYFileLogWriter :NSObject<HYLogWriter>{
+    NSFileHandle *_logFile;
+}
+- (id)initWithName:(NSString *)name;
+@end
+
+@interface HYLogger : NSObject{
+    id<HYLogWriter> _writer;
+    id<HYLogFilter> _filter;
+}
+
+@property (nonatomic, strong) id<HYLogFilter> filter;
+@property (nonatomic, strong) id<HYLogWriter> writer;
+
+- (id)initWithWriter:(id<HYLogWriter>)writer filter:(id<HYLogFilter>)filter;
+- (void)logDebug:(NSString *)format,...;
+- (void)logInfo:(NSString *)format,...;
+
+@end

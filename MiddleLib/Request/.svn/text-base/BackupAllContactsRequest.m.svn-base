@@ -1,0 +1,79 @@
+//
+//  BackupAllContactsRequest.m
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/14.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "BackupAllContactsRequest.h"
+#import "ContactModel.h"
+#import "HYUserInfoMgr.h"
+#import "ContactManager.h"
+
+@interface BackupAllContactsRequest () <HYbaseRequestDelegate>
+
+@end
+
+@implementation BackupAllContactsRequest
+- (id)init{
+    if (self= [super initWithUrl:@"/contactBackup/addAllContacts.do"]) {
+        
+        //用户手机号
+        NSString *mobile = [HYUserInfoMgr shareManager].currUserInfo.phoneNumber;
+        //用户ID
+        NSString *uid = [HYUserInfoMgr shareManager].currUserInfo.usrID;
+        //联系人数组
+        NSMutableArray *contacts = [[NSMutableArray alloc]init];
+        NSArray *contactsArr = [[ContactManager shareManager]getAllContactModelsArray];
+        self.backupCounts = [contactsArr count];
+        for (ContactModel *contactModel in contactsArr) {
+            NSString *contactid = [contactModel.contactDict safeObjectForKey:ADKRecordID];
+            NSArray *phonefield = [contactModel.contactDict safeObjectForKey:ADKPhoneNums];
+            NSString *index = @"1";
+            NSString *name = [contactModel.contactDict safeObjectForKey:ADKFullName];
+            
+            NSString *job = [contactModel.contactDict safeObjectForKey:ADKJob];
+            NSString *company = [contactModel.contactDict safeObjectForKey:ADKCompany];
+//            NSString *email = [contactModel.contactDict safeObjectForKey:ADKEmail];
+            NSString *birthday = [contactModel.contactDict safeObjectForKey:ADKBirthday];
+            
+            NSMutableDictionary *data = [NSMutableDictionary dictionary];
+            [data safeSetValue:job forKey:@"job"];
+            [data safeSetValue:company forKey:@"company"];
+//            [data safeSetValue:email forKey:@"email"];
+            [data safeSetValue:birthday forKey:@"birthday"];
+            
+            //单个联系人字典
+            NSMutableDictionary *contactDict = [NSMutableDictionary dictionary];
+            [contactDict safeSetValue:contactid forKey:@"contactid"];
+            [contactDict safeSetValue:phonefield forKey:@"phonefield"];
+            [contactDict safeSetValue:index forKey:@"index"];
+            [contactDict safeSetValue:data forKey:@"data"];
+            [contactDict safeSetValue:name forKey:@"name"];
+            
+            if (phonefield) {
+                [contacts safeAddObject:contactDict];
+            }
+        }
+        [self.paramDic safeSetValue:mobile forKey:@"mobile"];
+        [self.paramDic safeSetValue:contacts forKey:@"contacts"];
+        [self.paramDic safeSetValue:uid forKey:@"uid"];
+        
+    }
+    return self;
+}
+
+-(YTKRequestSerializerType)requestSerializerType{
+    return YTKRequestSerializerTypeJSON;
+}
+
+-(YTKRequestMethod)requestMethod{
+    return YTKRequestMethodPost;
+}
+
+-(id)requestArgument{
+    return self.paramDic;
+}
+
+@end

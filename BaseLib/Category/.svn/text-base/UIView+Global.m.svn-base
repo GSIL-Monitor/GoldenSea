@@ -1,0 +1,197 @@
+//
+//  UIView+Global.m
+//
+
+#import "UIView+Global.h"
+#import "HYUIKitMacroDef.h"
+#import "HYGlobalColor.h"
+#import "HYUIKitDefine.h"
+#import <objc/runtime.h>
+#import "UIButton+Custom.h"
+#import "NSString+Compatibility.h"
+
+@implementation UIView (Global)
+
+#pragma mark - 页面上的按钮
+
++ (UIButton*)commomImageTextBlurButtonForTitle:(NSString *)title image:(UIImage *)image highlightImage:(UIImage*)highlightImage
+                                        target:(id)target action:(SEL)action downAction:(SEL)downAction
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, SCREEN_WIDTH, COMMON_BIG_BUTTON_H);
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    CGSize size = [title textSize:[UIFont boldSystemFontOfSize:18]];
+    UIImageView *icon = [[UIImageView alloc] initWithImage:image highlightedImage:highlightImage];
+    icon.frame = CGRectMake((button.frame.size.width-icon.image.size.width-size.width-4)/2, (button.frame.size.height-icon.image.size.height)/2,
+                                    icon.image.size.width, icon.image.size.height);
+    [button addSubview:icon];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(icon.frame.origin.x+icon.frame.size.width+4,
+                                    (button.frame.size.height-size.height)/2, size.width, size.height)];
+    label.text = title;
+    label.textColor = RGBACOLOR(0x00, 0x7a, 0xff, 1);
+    label.highlightedTextColor = RGBACOLOR(0x00, 0x7a, 0xff, 0.5);
+    [button addSubview:label];
+    
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:target action:downAction forControlEvents:UIControlEventTouchDown];
+    
+    return button;
+}
+
++ (UIButton*)navigationBarConfirmButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, HEADER_BTN_W, HEADER_BTN_H);
+    button.titleLabel.font = [UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE];
+    button.skinTitleColorNormal = kNavigationBarButtonTitleColorNoraml;
+    button.skinTitleColorHighlighted = kNavigationBarButtonTitleColorHighlighted;
+    button.skinTitleColorSelected = kNavigationBarButtonTitleColorSelected;
+    button.skinTitleColorDisabled = kNavigationBarButtonTitleColorDisabled;
+    button.skinBackgroundImageNormal = @"header_hlbtn_nor.png";
+    button.skinBackgroundImageHighlighted = @"header_hlbtn_pressed.png";
+    //button.skinBackgroundImageDisabled = @"header_hlbtn_disabled.png";
+    //button.adjustsImageWhenHighlighted = NO;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
++ (UIButton*)defaultNavigationBarConfirmButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIView navigationBarConfirmButtonForTitle:title target:target action:action];
+    button.skinIsSetDefault = YES;
+    
+    return button;
+}
+
++ (UIButton*)navigationBarBackButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.titleLabel.font = [UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE];
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, HEADER_LEFTBTN_INSET_LEFT, 0, HEADER_LEFTBTN_INSET_RIGHT);
+    button.skinTitleColorNormal = kNavigationBarButtonTitleColorNoraml;
+    button.skinTitleColorHighlighted = kNavigationBarButtonTitleColorHighlighted;
+    button.skinTitleColorSelected = kNavigationBarButtonTitleColorSelected;
+    button.skinTitleColorDisabled = kNavigationBarButtonTitleColorDisabled;
+    button.skinBackgroundImageNormal = @"header_leftbtn_nor.png";
+    button.skinBackgroundImageHighlighted = @"header_leftbtn_press.png";
+    [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    // 计算frame
+    CGSize titleSize = [title textSize:[UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE]];
+    int maxWidth  = HEADER_LEFTBTN_INSET_LEFT + HEADER_LEFTBTN_INSET_RIGHT + TITLE_BUTTON_FONTSIZE * 6;
+    button.frame = CGRectMake(0, 0, MIN(MAX(HEADER_LEFTBTN_INSET_LEFT + HEADER_LEFTBTN_INSET_RIGHT + titleSize.width, HEADER_LEFTBTN_W), maxWidth), HEADER_LEFTBTN_H);
+    
+    return button;
+}
+
++ (UIButton*)defaultNavigationBarBackButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIView navigationBarBackButtonForTitle:title target:target action:action];
+    button.skinIsSetDefault = YES;
+    
+    return button;
+}
+
++ (UIButton*)navigationBarRoundButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.titleLabel.font = [UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE];
+    
+    button.skinTitleColorNormal = kNavigationBarButtonTitleColorNoraml;
+    button.skinTitleColorHighlighted = kNavigationBarButtonTitleColorHighlighted;
+    button.skinTitleColorSelected = kNavigationBarButtonTitleColorSelected;
+    button.skinTitleColorDisabled = kNavigationBarButtonTitleColorDisabled;
+    button.skinBackgroundImageNormal = @"header_btn_nor.png";
+    button.skinBackgroundImageHighlighted = @"header_btn_press.png";
+    button.skinBackgroundImageSelected = @"header_btn_press.png";
+     
+    //button.adjustsImageWhenHighlighted = NO;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -16);
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -14);
+
+    // 计算frame
+    int horMargin = HEADER_LEFTBTN_INSET_RIGHT;
+    int maxWidth  = horMargin * 2 + TITLE_BUTTON_FONTSIZE * 6;
+    CGSize titleSize = [title textSize:[UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE]];
+    button.frame = CGRectMake(0, 0, MIN(MAX(horMargin * 2 + titleSize.width, HEADER_LEFTBTN_W), maxWidth), HEADER_LEFTBTN_H);
+    
+    return button;
+}
+
++ (UIButton*)defaultNavigationBarRoundButtonForTitle:(NSString*)title target:(id)target action:(SEL)action
+{
+    UIButton* button = [UIView navigationBarRoundButtonForTitle:title target:target action:action];
+    button.skinIsSetDefault = YES;
+    
+    return button;
+}
+
++ (UIButton*)commonImageButton:(NSString*)normalImage
+                highlightImage:(NSString*)highlightImage
+                         btnWidth:(CGFloat)width
+                        btnHeight:(CGFloat)height
+                        target:(id)target
+                        action:(SEL)action
+{
+    UIButton* button = [UIView navigationBarRoundButtonForTitle:@"" target:target action:action];
+    button.skinImageNormal = normalImage;
+    button.skinImageHighlighted = highlightImage;
+    button.frame = CGRectMake(0, 0, width, height);
+    button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    return button;
+}
+
++ (UIButton*)commonTextButton:(NSString*)title
+                       target:(id)target
+                       action:(SEL)action
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.titleLabel.font = [UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    int horMargin = HEADER_LEFTBTN_INSET_RIGHT;
+    int maxWidth  = horMargin * 2 + TITLE_BUTTON_FONTSIZE * 6;
+    CGSize titleSize = [title textSize:[UIFont systemFontOfSize:TITLE_BUTTON_FONTSIZE]];
+    button.frame = CGRectMake(0, 0, MIN(MAX(horMargin * 2 + titleSize.width, HEADER_LEFTBTN_W), maxWidth), HEADER_LEFTBTN_H);
+    
+    return button;
+}
+
+@end
+
+@implementation UIView (RightDragToGoBack)
+
+- (BOOL)isSupportRightDragToGoBack
+{
+    return YES;
+}
+
+@end
+
+@implementation UIControl (RightDragToGoBack)
+
+@dynamic isSupportRightDragToGoBack;
+- (BOOL)isSupportRightDragToGoBack
+{
+    NSNumber* isSupportRightDragToGoBack = objc_getAssociatedObject(self, @"isSupportRightDragToGoBack");
+    return YES;
+    
+    return [isSupportRightDragToGoBack boolValue];
+}
+
+- (void)setIsSupportRightDragToGoBack:(BOOL)isSupportRightDragToGoBack
+{
+    objc_setAssociatedObject(self, @"isSupportRightDragToGoBack", [NSNumber numberWithBool:isSupportRightDragToGoBack], OBJC_ASSOCIATION_RETAIN);
+}
+
+@end
+

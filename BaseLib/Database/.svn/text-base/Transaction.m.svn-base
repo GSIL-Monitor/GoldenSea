@@ -1,0 +1,66 @@
+//
+//  Transaction.m
+//
+
+#import "Transaction.h"
+@interface Transaction()
+{
+    Connection *connection_;
+}
+@end
+
+@implementation Transaction
+
+@synthesize isOpen=isOpen_;
+
+-(id)initWithDb:(Connection *)connection
+{
+    self = [super init];
+    if (self) {
+        connection_ = connection;
+    }
+
+    return self;
+}
+
+- (void)dealloc
+{
+    if (isOpen_) {
+        [connection_ rollbackAllTransactions];
+    }
+}
+
+-(BOOL)begin
+{
+    if (isOpen_) {
+        return YES;
+    }
+    isOpen_ = [connection_ beginTransaction];
+    
+    return isOpen_;
+}
+
+-(void)rollback
+{
+    if (!isOpen_) {
+        NSLog(@"Attempting to roll back a nonexistent transaction. Did you remember to call Begin() and check its return?");
+    }
+    
+    isOpen_ = NO;
+   
+    [connection_ rollbackTransaction];
+}
+
+-(BOOL)commit
+{
+    if (!isOpen_) {
+        NSLog(@"Attempting to commit a nonexistent transaction.Did you remember to call Begin() and check its return?");
+    }
+    isOpen_ = NO;
+  
+    return  [connection_ commitTransaction];
+}
+
+
+
+@end

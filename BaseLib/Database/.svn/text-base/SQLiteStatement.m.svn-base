@@ -1,0 +1,36 @@
+//
+//  SQLiteStatement.m
+//
+
+#import "SQLiteStatement.h"
+
+@implementation SQLiteStatement
+
+- (void)finalize {
+    [self close];
+    [super finalize];
+}
+
+- (void)dealloc {
+    [self close];
+    _query = nil;
+}
+
+- (void)close {
+    if (_statement) {
+        sqlite3_finalize(_statement);
+        _statement = NULL;
+    }
+}
+
+- (void)reset {
+    if (_statement) {
+        sqlite3_reset(_statement);
+    }
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@ %ld hit(s) for query %@", [super description], _useCount, _query];
+}
+
+@end

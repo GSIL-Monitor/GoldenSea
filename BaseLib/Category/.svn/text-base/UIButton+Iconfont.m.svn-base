@@ -1,0 +1,42 @@
+//
+//  UIButton+IconFont.m
+//
+
+#import "UIButton+Iconfont.h"
+
+
+@implementation UIButton (IconFont)
+
+
++ (UIButton*)buttonWithTitle:(NSString*)title
+                 normalColor:(UIColor*)normalColor
+                    fontSize:(CGFloat)size
+                      target:(id)target
+                      action:(SEL)action
+{
+    return [self buttonWithTitle:title normalColor:normalColor highlightedColor:normalColor fontSize:size target:target action:action];
+}
+
++ (UIButton*)buttonWithTitle:(NSString*)title
+                 normalColor:(UIColor*)normalColor
+            highlightedColor:(UIColor*)highlightedColor
+                    fontSize:(CGFloat)size
+                      target:(id)target
+                      action:(SEL)action
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, size, size)];
+    button.titleLabel.font = [UIFont fontWithName:@"iconfont" size:size];
+    button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    button.titleLabel.backgroundColor = [UIColor clearColor];
+    [button setTitle:title forState:UIControlStateNormal];  //使用iconfont对应的Unicode，可以使用FontLab Studio 5查看
+    [button setTitleColor:normalColor forState:UIControlStateNormal];  //设置iconfont的正常状态颜色
+    [button setTitleColor:highlightedColor forState:UIControlStateHighlighted];  //设置iconfont的正常状态颜色
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+@end
+
+
+

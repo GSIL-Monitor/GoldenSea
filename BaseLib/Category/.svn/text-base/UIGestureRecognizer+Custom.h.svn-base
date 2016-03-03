@@ -1,0 +1,16 @@
+//
+//  UIGestureRecognizer+Custom.h
+//  TmallClient-iPhone
+//
+//  Created by walson on 14-12-11.
+//  Copyright (c) 2014年 Tmall.com. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+@interface UIGestureRecognizer (Custom)
+
+- (void)setGestureRecognizerState:(NSNumber*)state;
+
+@end

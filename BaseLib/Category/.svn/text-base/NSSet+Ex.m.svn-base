@@ -1,0 +1,42 @@
+//
+//  NSSet+Ex.m
+//  iRCS
+//
+//  Created by frank weng on 15/10/26.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "NSSet+Ex.h"
+
+@implementation NSSet (Ex)
+
+- (id)safeValueForKey:(NSString *)key
+{
+    id value = [self valueForKey:key];
+    if([value isKindOfClass:[NSNull class]]){
+        value = nil;
+    }
+    return value;
+}
+
+- (void)safeSetValue:(id)value forKey:(NSString *)key
+{
+    if (key && [key isKindOfClass:[NSString class]]) {
+        [self setValue:value forKey:key];
+    }
+}
+
+@end
+
+
+
+@implementation NSMutableSet (Ex)
+
+- (void)safeAddObject:(id)anObject
+{
+    if(anObject){
+        [self addObject:anObject];
+    }
+}
+
+@end

@@ -1,0 +1,35 @@
+//
+//  HYActionSheet.h
+//  HYActionSheet
+//
+//  Created by 黄春涛 on 16/1/8.
+//  Copyright © 2016年 黄春涛. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class HYActionSheet;
+
+@protocol HYActionSheetDelegate <NSObject>
+@optional
+- (void)HYactionSheet:(HYActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)HYactionSheetCancel:(HYActionSheet *)actionSheet;
+
+- (void)HYwillPresentActionSheet:(HYActionSheet *)actionSheet;
+- (void)HYdidPresentActionSheet:(HYActionSheet *)actionSheet;
+
+@end
+
+@interface HYActionSheet : UIView
+
+- (instancetype)initWithTitle:(NSString *)title
+                     delegate:(id<HYActionSheetDelegate>)delegate
+            cancelButtonTitle:(NSString *)cancelButtonTitle
+            otherButtonTitles:(NSArray *)otherButtonTitles///<NSString
+                redTitleIndex:(NSInteger)index;
+
+
+- (void)show;
+
+-(void)setTitle:(NSString *)title;
+
+@end

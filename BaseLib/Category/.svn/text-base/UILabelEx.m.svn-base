@@ -1,0 +1,31 @@
+//
+//  UILabelEx.m
+//  iRCS
+//
+//  Created by minjie on 30/09/15.
+//  Copyright © 2015 frank weng. All rights reserved.
+//
+
+#import "UILabelEx.h"
+
+@implementation UILabel (Ex)
+-(instancetype)initWithFont:(UIFont *) aFont andColor:(UIColor *)aColor{
+    if (self=[super init]) {
+        self.textColor=aColor;
+        self.font=aFont;
+    }
+    
+    return self;
+}
+
+
+-(void)addAttributedString:(NSMutableAttributedString *)attributedString withLineSpacing:(CGFloat) spacing{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:spacing];//调整行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributedString length])];
+    self.attributedText = attributedString;
+    [self sizeToFit];
+}
+
+
+@end

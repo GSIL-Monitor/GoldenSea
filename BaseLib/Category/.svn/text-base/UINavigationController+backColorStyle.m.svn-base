@@ -1,0 +1,80 @@
+//
+//  UINavigationController+backColorStyle.m
+//  RCS
+//
+//  Created by yaofangyys on 15/4/3.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "UINavigationController+backColorStyle.h"
+#import "UIImageEX.h"
+
+#define ColorWithRGB(_R_, _G_, _B_)        [UIColor colorWithRed:_R_/255.0  \
+green:_G_/255.0 \
+blue:_B_/255.0 \
+alpha:1.0]
+
+@implementation UINavigationController (backColorStyle)
+
+
+- (void)setNavigationBarColorStyle:(RCSNavBarColorStyle)colorStyle{
+    switch (colorStyle) {
+        case RCSNavBarColorStyleDark:{
+            [self setNavigationBarBackGroundColor:RCS_Color_TopDark Translucent:NO];
+        }
+            break;
+        case RCSNavBarColorStyleLightRed:{
+            [self setNavigationBarBackGroundColor:ColorWithRGB(248, 133, 104) Translucent:NO];
+        }break;
+        case RCSNavBarColorStyleDarkTranslucent:{
+            [self setNavigationBarBackGroundColor:RCS_Color_TopDark Translucent:YES];
+        } break;
+        case RCSNavBarColorStyleLightRedTranslucent:{
+            [self setNavigationBarBackGroundColor:ColorWithRGB(248, 133, 104) Translucent:YES];
+        } break;
+        default:
+            break;
+    }
+}
+
+
+
+- (void)setNavigationBarBackGroundColor:(UIColor *)color Translucent:(BOOL)isTranslucent{
+    [self.navigationBar setTranslucent:isTranslucent];
+    if (IS_IOS7 >= 7.0) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [self.navigationBar setTintColor:[UIColor whiteColor]];
+        [self.navigationBar setBarTintColor:color];
+        
+    }else {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [self.navigationBar setTintColor:[UIColor whiteColor]];
+        UIImage *navBackImage = [UIImage constuctImageWithColor:color toSize:CGSizeMake(1,44)];
+        [self.navigationBar setBackgroundImage:navBackImage forBarMetrics:UIBarMetricsDefault];
+    }
+//    [self setNeedsStatusBarAppearanceUpdate];
+}
+- (UIColor *)colorWithHexString:(NSString *)str {
+    if ([str length] != 7) {
+        return nil;
+    }
+    if ([str characterAtIndex:0] != '#') {
+        return nil;
+    }
+    int r =  valueFromChar([str characterAtIndex:1]) * 16 + valueFromChar([str characterAtIndex:2]);
+    int g =  valueFromChar([str characterAtIndex:3]) * 16 + valueFromChar([str characterAtIndex:4]);
+    int b =  valueFromChar([str characterAtIndex:5]) * 16 + valueFromChar([str characterAtIndex:6]);
+    return [UIColor colorWithRed:r / (float)255 green:g / (float)255 blue:b / (float)255 alpha:1];
+}
+int valueFromChar(char c) {
+    if (c >= '0' && c <= '9') {
+        return c - '0';
+    }
+    if (c >= 'a' && c <= 'z') {
+        return c - 'a' + 10;
+    }
+    return -1;
+}
+@end

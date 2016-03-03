@@ -1,0 +1,38 @@
+//
+//  NSString+CountryCodePhoneNumber.m
+//  iRCS
+//
+//  Created by 黄春涛 on 15/12/3.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "NSString+CountryCodePhoneNumber.h"
+#import "NSString+IsMobilePhoneNumber.h"
+
+@implementation NSString (CountryCodePhoneNumber)
+
++(NSString *)phoneNumber:(NSString *)phoneNum addCountryCode:(NSString *)countryCode{
+    if (![phoneNum isValidString] || ![countryCode isValidString]) {
+        return  phoneNum;
+    }
+    
+    if (![phoneNum isMobilePhoneNumber] || countryCode.length != 3) {
+        return phoneNum;
+    }
+    
+    NSMutableString *mutableStr = [NSMutableString stringWithString:countryCode];
+    [mutableStr appendString:phoneNum];
+    
+    return mutableStr;
+}
+
++(NSString *)phoneNumberRemoveCountryCode:(NSString *)phoneNumber{
+    if (phoneNumber.length != 14) {
+        return phoneNumber;
+    }
+    //remove"+86"
+    return [phoneNumber substringFromIndex:3];
+}
+
+
+@end

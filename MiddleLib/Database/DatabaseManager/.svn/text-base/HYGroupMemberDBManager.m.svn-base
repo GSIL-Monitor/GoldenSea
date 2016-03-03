@@ -1,0 +1,238 @@
+//
+//  HYGroupMemberDBManager.m
+//  iRCS
+//
+//  Created by 王斌 on 15/8/31.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import "HYGroupMemberDBManager.h"
+
+@interface HYGroupMemberDBManager()
+
+@property (nonatomic, strong) HYDatabaseHelper *dbHelper;
+
+@end
+
+@implementation HYGroupMemberDBManager
+
+SINGLETON_GENERATOR(HYGroupMemberDBManager, defaultManager)
+
+- (id)init
+{
+    self = [super init];
+    return self;
+}
+
+- (void)setup
+{
+    self.dbHelper = [HYDatabaseHelper defaultHelper];
+    self.database = self.dbHelper.database;
+    self.databaseQueue = self.dbHelper.databaseQueue;
+}
+
+#pragma mark 增
+- (BOOL)createTable
+{
+    NSDictionary *param = @{@"userID": @"text",
+                                            @"groupID": @"text",
+                                            @"contactName": @"text",
+                                            @"nickName": @"text",
+                                            @"headImageUrl": @"text",
+                                            @"memberStatus": @"integer",
+                                            @"role": @"integer",};
+    
+    return [self.dbHelper creatTableWithTable:GROUPMEMBER_TABLE Param:param];
+}
+
+
+- (BOOL)addGroupMemberInDBWithModel:(GroupMemberDBModel *)groupMemberModel
+{
+    __block BOOL rst = NO;
+    
+    BOOL isExist = [self groupMemberIsExistWithUserID:groupMemberModel.userID GroupID:groupMemberModel.groupID];
+    if (!isExist) {
+        [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+            if (groupMemberModel) {
+                NSString *sql = [NSString stringWithFormat:@"insert into %@ (groupID,userID,nickName,memberStatus,role,contactName,headImageUrl) values('%@','%@','%@','%u','%u','%@','%@')",GROUPMEMBER_TABLE,groupMemberModel.groupID,groupMemberModel.userID,groupMemberModel.nickName,groupMemberModel.memberStatus,groupMemberModel.role,groupMemberModel.contactName,groupMemberModel.headImageUrl];
+                rst = [db executeUpdate:sql];
+            }
+            
+        }];
+    }
+    else{
+        [self updateGroupMemberInDBWithModel:groupMemberModel];
+    }
+    return rst;
+}
+
+- (BOOL)addGroupMembersInDBWithUserModelArray:(NSArray *)array GroupID:(NSString *)groupID{
+    BOOL rst = YES;
+    if (array.count > 0) {
+        for (UserModel *userModel in array) {
+            GroupMemberDBModel *groupMemberModel = [[GroupMemberDBModel alloc] init];
+            groupMemberModel.groupID = groupID;
+            groupMemberModel.userID = userModel.userName;
+            groupMemberModel.nickName = userModel.nickName;
+            
+            if (![self addGroupMemberInDBWithModel:[groupMemberModel setStringNotNil]]) {
+                rst = NO;
+            }
+        }
+        
+    }
+    return rst;
+}
+
+- (void)addGroupMembersInDBWithGroupMemberDBModelArray:(NSArray *)array GroupID:(NSString *)groupID{
+    if (array.count > 0) {
+        for (GroupMemberDBModel *model in array) {
+            [self addGroupMemberInDBWithModel:[model setStringNotNil]];
+        }
+        
+    }
+}
+
+#pragma mark 查
+
+- (NSArray *)getGroupMemberDatailInDBWithGroupID:(NSString *)groupID
+{
+    __block NSMutableArray *members = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select *,rowid from %@ where groupID = '%@' order by rowid asc",GROUPMEMBER_TABLE,groupID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            if (!members) {
+                members = [[NSMutableArray alloc]init];
+            }
+            GroupMemberDBModel *member = [[GroupMemberDBModel alloc]init];
+            member.groupID      = groupID;
+            member.userID       = [rs stringForColumn:@"userID"];
+            member.nickName     = [rs stringForColumn:@"nickName"];
+            member.memberStatus = [rs intForColumn:@"memberStatus"];
+            member.role         = [rs intForColumn:@"role"];
+            member.contactName  = [rs stringForColumn:@"contactName"];
+            member.headImageUrl = [rs stringForColumn:@"headImageUrl"];
+
+            [members addObject:member];
+        }
+        [rs close];
+    }];
+    return [members copy];
+}
+
+-(int)getGroupMemberCountInDBWithGroupID:(NSString *)groupID{
+    __block int resultCount;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where groupID = '%@'",GROUPMEMBER_TABLE,groupID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if([rs next]) {
+            resultCount = [rs intForColumn:@"count(*)"];
+        }
+        [rs close];
+    }];
+    return resultCount;
+
+}
+
+
+- (BOOL)groupMemberIsExistWithUserID:(NSString *)userID GroupID:(NSString *)groupID{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE userID = '%@' AND groupID = '%@'",GROUPMEMBER_TABLE,userID,groupID];
+        HYFMResultSet *rs = [db executeQuery:sql];
+        if ([rs next]) {
+            rst = YES;
+        }
+        [rs close];
+    }];
+    return rst;
+
+}
+
+- (GroupMemberDBModel *)getGroupMemberWithUserID:(NSString *)userID GroupID:(NSString *)groupID{
+    __block GroupMemberDBModel *member = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE userID = '%@' AND groupID = '%@'",GROUPMEMBER_TABLE,userID,groupID];
+        HYFMResultSet *rs = [db executeQuery:sql];
+        if ([rs next]) {
+            member = [[GroupMemberDBModel alloc]init];
+            member.groupID      = [rs stringForColumn:@"groupID"];
+            member.userID       = [rs stringForColumn:@"userID"];
+            member.nickName     = [rs stringForColumn:@"nickName"];
+            member.memberStatus = [rs intForColumn:@"memberStatus"];
+            member.role         = [rs intForColumn:@"role"];
+            member.contactName  = [rs stringForColumn:@"contactName"];
+            member.headImageUrl = [rs stringForColumn:@"headImageUrl"];
+        }
+        [rs close];
+    }];
+    return member;
+}
+
+
+#pragma mark 改
+- (BOOL)updateGroupMemberInDBWithModel:(GroupMemberDBModel *)member
+{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"update %@ set nickName = '%@',memberStatus = '%u',role = '%u' where userID = '%@' and groupID = '%@'",GROUPMEMBER_TABLE,member.nickName,member.memberStatus,member.role,member.userID,member.groupID];
+        rst = [db executeUpdate:sql];
+    }];
+    return rst;
+}
+
+- (void)updateGroupMemberInDBWithArray:(NSArray *)userModelArry GroupID:(NSString *)groupID{ //userModelArray<UserModel>
+    
+    [self deleteGroupMembersInDBWithGroupID:groupID];
+    [self addGroupMembersInDBWithUserModelArray:userModelArry GroupID:groupID];
+    
+}
+
+- (BOOL)updateGroupMemberNickNameInDBWithNewName:(NSString *)nickName UserID:(NSString *)userID GroupID:(NSString *)groupID{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"update %@ set nickName = '%@' where userID = '%@'and groupID = '%@'",GROUPMEMBER_TABLE,nickName,userID,groupID];
+        rst = [db executeUpdate:sql];
+    }];
+    return rst;
+}
+
+- (void)updateGroupMasterWithGroupID:(NSString *)groupID Master:(NSString *)groupMaster{
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"update %@ set role = '%d' where userID = '%@' and groupID = '%@'",GROUPMEMBER_TABLE,HYGroupMember_Role_Creator,groupMaster,groupID];
+        [db executeUpdate:sql];
+        sql = [NSString stringWithFormat:@"update %@ set role = '%d' where userID != '%@' and groupID = '%@'",GROUPMEMBER_TABLE,HYGroupMember_Role_Member,groupMaster,groupID];
+        [db executeUpdate:sql];
+    }];
+}
+
+
+#pragma mark 删
+- (BOOL)deleteGroupMemberInDBWithGroupID:(NSString *)groupID UserID:(NSString *)userID
+{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (groupID && userID) {
+            NSString *sql = [NSString stringWithFormat:@"delete from %@ where groupID = '%@' and userID = '%@'",GROUPMEMBER_TABLE,groupID,userID];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (BOOL)deleteGroupMembersInDBWithGroupID:(NSString *)groupID{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (groupID) {
+            NSString *sql = [NSString stringWithFormat:@"delete from %@ where groupID = '%@'",GROUPMEMBER_TABLE,groupID];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+@end

@@ -1,0 +1,25 @@
+//
+//  UIResponder+MethodSwizzle.m
+//  iRCS
+//
+//  Created by 王斌 on 15/12/18.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "UIResponder+MethodSwizzle.h"
+
+@implementation UIResponder (MethodSwizzle)
+
+- (BOOL)HYBecomeFirstResponder
+{
+//    DDLogInfo(@"\n\n====HYBecomeFirstResponder====\n\n");
+    return [self HYBecomeFirstResponder];
+}
+
+- (BOOL)HYResignFirstResponder
+{
+//    DDLogInfo(@"\n\n====HYResignFirstResponder====\n\n");
+    return [self HYResignFirstResponder];
+}
+
+@end

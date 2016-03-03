@@ -1,0 +1,17 @@
+//
+//  NSString+CountryCodePhoneNumber.h
+//  iRCS
+//
+//  Created by 黄春涛 on 15/12/3.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (CountryCodePhoneNumber)
+
++(NSString *)phoneNumber:(NSString *)phoneNum addCountryCode:(NSString *)countryCode;
+
++(NSString *)phoneNumberRemoveCountryCode:(NSString *)phoneNumber;
+
+@end

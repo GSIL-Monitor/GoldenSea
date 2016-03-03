@@ -1,0 +1,23 @@
+//
+//  UIApplication+Compatibility.m
+//
+
+#import "UIApplication+Compatibility.h"
+
+
+@implementation UIApplication(Compatibility)
+
+
+-(void)registerForRemoteNotification
+{
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge)
+                                                                                 categories:nil];
+        [[UIApplication sharedApplication]  registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication]  registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication]  registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeBadge];
+    }
+}
+
+@end

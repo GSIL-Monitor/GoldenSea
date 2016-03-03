@@ -1,0 +1,52 @@
+//
+//  AssetCell.h
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+#define ELCAssetCellItemSpace 4
+#define ELCAssetCellItemWidth  (SCREEN_SIZE.width - 5*ELCAssetCellItemSpace)/4
+
+
+typedef NS_ENUM(NSUInteger, ELCAssetCellActionType) {
+    ELCAssetCellActionTypeTaped,
+    ELCAssetCellActionTypeSelected,
+    ELCAssetCellActionTypeDeselected,
+    ELCAssetCellActionTypeSelectedFull
+};
+
+@class ELCAssetCell;
+@protocol ELCAssetCellSelectedDelegate <NSObject>
+
+- (void)ELCAssetCell:(ELCAssetCell *)assetrCell selectedAtIndex:(int)index ELCAssetCellActionType:(ELCAssetCellActionType)actionType;
+
+@end
+
+@interface ELCAssetCell : UITableViewCell
+
+@property (nonatomic, assign) BOOL alignmentLeft;
+@property (nonatomic, assign) id <ELCAssetCellSelectedDelegate> selectedDelegate;
+- (void)setAssets:(NSArray *)assets;
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

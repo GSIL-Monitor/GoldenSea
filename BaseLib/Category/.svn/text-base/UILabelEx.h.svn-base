@@ -1,0 +1,14 @@
+//
+//  UILabelEx.h
+//  iRCS
+//
+//  Created by minjie on 30/09/15.
+//  Copyright © 2015 frank weng. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UILabel (Ex)
+-(instancetype)initWithFont:(UIFont *) aFont andColor:(UIColor *)aColor;
+-(void)addAttributedString:(NSMutableAttributedString *)attributedString withLineSpacing:(CGFloat) spacing;
+@end

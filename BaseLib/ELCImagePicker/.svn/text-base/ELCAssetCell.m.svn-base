@@ -1,0 +1,185 @@
+//
+//  AssetCell.m
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import "ELCAssetCell.h"
+#import "ELCAsset.h"
+#import "ELCConsole.h"
+#import "ELCOverlayImageView.h"
+
+@interface ELCAssetCell ()
+
+@property (nonatomic, strong) NSArray *rowAssets;
+@property (nonatomic, strong) NSMutableArray *imageViewArray;
+@property (nonatomic, strong) NSMutableArray *overlayViewArray;
+
+@end
+
+@implementation ELCAssetCell
+
+//Using auto synthesizers
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+	if (self) {
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellTapped:)];
+        [self addGestureRecognizer:tapRecognizer];
+        
+        NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithCapacity:4];
+        self.imageViewArray = mutableArray;
+        
+        NSMutableArray *overlayArray = [[NSMutableArray alloc] initWithCapacity:4];
+        self.overlayViewArray = overlayArray;
+	}
+	return self;
+}
+
+- (void)setAssets:(NSArray *)assets
+{
+    self.rowAssets = assets;
+    for (UIImageView *view in _imageViewArray) {
+        [view removeFromSuperview];
+    }
+    for (ELCOverlayImageView *view in _overlayViewArray) {
+        [view removeFromSuperview];
+    }
+    //set up a pointer here so we don't keep calling [UIImage imageNamed:] if creating overlays
+    UIImage *overlayImage = nil;
+    for (int i = 0; i < [_rowAssets count]; ++i) {
+        ELCAsset *asset = [_rowAssets objectAtIndex:i];
+        
+        if (i < [_imageViewArray count]) {
+            UIImageView *imageView = [_imageViewArray objectAtIndex:i];
+            imageView.image = [UIImage imageWithCGImage:asset.asset.thumbnail];
+        } else {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:asset.asset.thumbnail]];
+            [_imageViewArray addObject:imageView];
+        }
+        
+        
+        __weak typeof(self) weakSelf = self;
+        ELCOverlayImageViewDelectedBlock selectedBlock =   ^(id sender) {
+            if ([sender isKindOfClass:[UIButton class]] && [[sender superview] isKindOfClass:[ELCOverlayImageView class]]) {
+                UIButton *selectBtn = (UIButton *)sender;
+                ELCOverlayImageView *curOverlayView = (ELCOverlayImageView *)selectBtn.superview;
+                
+                asset.selected = !asset.selected;
+                if (asset.selected) {
+                    asset.index = [[ELCConsole mainConsole] numOfSelectedElements];
+                    [curOverlayView setIndex:asset.index+1];
+                    [[ELCConsole mainConsole] addIndex:asset.index];
+                }else{
+                    int lastElement = [[ELCConsole mainConsole] numOfSelectedElements] - 1;
+                    [[ELCConsole mainConsole] removeIndex:lastElement];
+                }
+                [curOverlayView setIsSelected:asset.selected];
+                
+                if (weakSelf.selectedDelegate && [weakSelf.selectedDelegate respondsToSelector:@selector(ELCAssetCell:selectedAtIndex:ELCAssetCellActionType:)]) {
+                    if (asset.selectedFull) {
+                        [weakSelf.selectedDelegate ELCAssetCell:weakSelf
+                                                selectedAtIndex:i
+                                         ELCAssetCellActionType:ELCAssetCellActionTypeSelectedFull];
+                    } else {
+                        [weakSelf.selectedDelegate ELCAssetCell:weakSelf
+                                                selectedAtIndex:i
+                                         ELCAssetCellActionType:(asset.selected ? ELCAssetCellActionTypeSelected :ELCAssetCellActionTypeDeselected)];
+                    }
+                    
+                }
+                
+            }
+        };
+        
+        if (i < [_overlayViewArray count]) {
+            ELCOverlayImageView *overlayView = [_overlayViewArray objectAtIndex:i];
+            [overlayView setIsSelected:asset.selected];
+            overlayView.labIndex.text = [NSString stringWithFormat:@"%d", asset.index + 1];
+            [overlayView setSelectedBlock:selectedBlock];
+        } else {
+            if (overlayImage == nil) {
+                overlayImage = [UIImage imageNamed:@"Overlay.png"];
+            }
+            ELCOverlayImageView *overlayView = [[ELCOverlayImageView alloc] initWithSelectedBlock:selectedBlock];
+            [_overlayViewArray addObject:overlayView];
+            [overlayView setIsSelected:asset.selected];
+            overlayView.labIndex.text = [NSString stringWithFormat:@"%d", asset.index + 1];
+        }
+    }
+}
+- (void)cellTapped:(UITapGestureRecognizer *)tapRecognizer
+{
+    CGPoint point = [tapRecognizer locationInView:self];
+    int c = (int32_t)self.rowAssets.count;
+    CGFloat totalWidth = c * ELCAssetCellItemWidth + (c - 1) * 4;
+    CGFloat startX;
+    
+    if (self.alignmentLeft) {
+        startX = 4;
+    }else {
+        startX = (self.bounds.size.width - totalWidth) / 2;
+    }
+    
+    CGRect frame = CGRectMake(startX, 2, ELCAssetCellItemWidth, ELCAssetCellItemWidth);
+    
+    for (int i = 0; i < [_rowAssets count]; ++i) {
+        if (CGRectContainsPoint(frame, point)) {
+            ELCAsset *asset = [_rowAssets objectAtIndex:i];
+            //            asset.selected = !asset.selected;
+            //            ELCOverlayImageView *overlayView = [_overlayViewArray objectAtIndex:i];
+            //            overlayView.hidden = !asset.selected;
+            //            [overlayView setIsSelected:asset.selected];
+            
+            if (_selectedDelegate && [_selectedDelegate respondsToSelector:@selector(ELCAssetCell:selectedAtIndex:ELCAssetCellActionType:)]) {
+                [_selectedDelegate ELCAssetCell:self selectedAtIndex:i ELCAssetCellActionType:ELCAssetCellActionTypeTaped];
+            }
+            
+            //            if (asset.selected) {
+            //                asset.index = [[ELCConsole mainConsole] numOfSelectedElements];
+            //                [overlayView setIndex:asset.index+1];
+            //                [[ELCConsole mainConsole] addIndex:asset.index];
+            //            }else{
+            //                int lastElement = [[ELCConsole mainConsole] numOfSelectedElements] - 1;
+            //                [[ELCConsole mainConsole] removeIndex:lastElement];
+            //            }
+            break;
+        }
+        frame.origin.x = frame.origin.x + frame.size.width + 4;
+    }
+}
+-(CGFloat)getCellWith
+{
+    if (SCREEN_WIDTH==375) {//6s
+        return 88.75f;
+    } else if (SCREEN_WIDTH==414){//6plus
+        return 98.5f;
+    }
+    return 75.0f;
+}
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+//    int c = self.rowAssets.count;
+    int c = 4;
+    CGFloat totalWidth = c * [self getCellWith] + (c - 1) * 4;
+    CGFloat startX = (self.bounds.size.width - totalWidth) / 2;
+	CGRect frame = CGRectMake(startX, 2, [self getCellWith], [self getCellWith]);
+	
+	for (int i = 0; i < [_rowAssets count]; ++i) {
+		UIImageView *imageView = [_imageViewArray objectAtIndex:i];
+		[imageView setFrame:frame];
+		[self addSubview:imageView];
+        
+        ELCOverlayImageView *overlayView = [_overlayViewArray objectAtIndex:i];
+        [overlayView setFrame:frame];
+        [self addSubview:overlayView];
+		
+		frame.origin.x = frame.origin.x + frame.size.width + 4;
+	}
+}
+
+
+@end

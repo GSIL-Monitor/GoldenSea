@@ -1,0 +1,125 @@
+//
+//  UIViewController+Utilities.m
+//  iRCS
+//
+//  Created by guming on 15/9/21.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "UIViewController+Utilities.h"
+
+@implementation UIViewController (Utilities)
+- (void)configureLeftBarBtnItemStyle:(RCSLeftBarbtnItemStyle)itemStyle WithActionBlock:(void (^)(id sender))actionBlock{
+    
+    if (RCSLeftBarbtnItemStyleNone == itemStyle) {
+        self.navigationItem.leftBarButtonItems = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+        [self.navigationItem setHidesBackButton:YES animated:NO ];
+        return;
+    }
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (itemStyle == RCSLeftBarbtnItemStyleBack) {
+        [btn setImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
+        [btn setFrame:CGRectMake(0, 0, 22, 44)];
+    }else{
+        [btn setTitle:@"取消" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [btn setFrame:CGRectMake(0, 0, 50, 44)];
+    }
+    if (actionBlock) {
+        [btn bk_addEventHandler:actionBlock forControlEvents:UIControlEventTouchUpInside];
+    }
+    [btn setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    
+    self.navigationItem.leftBarButtonItems = nil;
+    if (IS_IOS7 >= 7.0) {
+        UIBarButtonItem *fixitem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        fixitem.width = -15;
+        [self.navigationItem setLeftBarButtonItems:@[fixitem,backItem]];
+    }else{
+        [self.navigationItem setLeftBarButtonItem:backItem];
+    }
+}
+
+- (void)configureFinishRightBarItemWithActionBlock:(void (^)(id sender))finishBlock{
+    [self configureRightBarItemWithTitle:@"发送" actionBlock:finishBlock];
+}
+
+- (void)configureRightBarItemWithTitle:(NSString *)title actionBlock:(void (^)(id sender))finishBlock{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [btn setFrame:CGRectMake(0, 0, 36, 36)];
+    if (finishBlock) {
+        [btn bk_addEventHandler:finishBlock forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    UIBarButtonItem *itemFinish = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    if (IS_IOS7 >= 7.0) {
+        UIBarButtonItem *itemAdjust = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        itemAdjust.width = -15;
+        [self.navigationItem setRightBarButtonItems:@[itemFinish, itemAdjust]];
+    }else{
+        [self.navigationItem setRightBarButtonItem:itemFinish];
+    }
+    
+}
+
+
+
++(UIViewController*) findBestViewController:(UIViewController*)vc {
+    
+    if (vc.presentedViewController) {
+        
+        // Return presented view controller
+        return [UIViewController findBestViewController:vc.presentedViewController];
+        
+    } else if ([vc isKindOfClass:[UISplitViewController class]]) {
+        
+        // Return right hand side
+        UISplitViewController* svc = (UISplitViewController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [UIViewController findBestViewController:svc.viewControllers.lastObject];
+        else
+            return vc;
+        
+    } else if ([vc isKindOfClass:[UINavigationController class]]) {
+        
+        // Return top view
+        UINavigationController* svc = (UINavigationController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [UIViewController findBestViewController:svc.topViewController];
+        else
+            return vc;
+        
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        
+        // Return visible view
+        UITabBarController* svc = (UITabBarController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [UIViewController findBestViewController:svc.selectedViewController];
+        else
+            return vc;
+        
+    } else {
+        
+        // Unknown view controller type, return last child view controller
+        return vc;
+        
+    }
+    
+}
+
++(UIViewController*) currentViewController {
+    
+    // Find best view controller
+    UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [UIViewController findBestViewController:viewController];
+    
+}
+@end

@@ -1,0 +1,452 @@
+//
+//  HYRCSUserDBManager.m
+//  iRCS
+//
+//  Created by 黄春涛 on 15/11/1.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "HYRCSUserDBManager.h"
+#define DATABASE_RCSUSERDB @"RCSUser.db"
+#define RCSUSER_TABLE @"rcsuserTable"
+#define LOCALCONTACT_TABLE @"localContactTable"
+
+@interface HYRCSUserDBManager()
+
+@property (nonatomic, strong) HYFMDatabaseQueue *databaseQueue;
+
+@property (nonatomic, strong) HYFMDatabase *database;
+
+@end
+
+@implementation HYRCSUserDBManager
+
+SINGLETON_GENERATOR(HYRCSUserDBManager, defaultManager);
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        NSString *dbPath = [paths stringByAppendingPathComponent:DATABASE_RCSUSERDB];
+        
+        DDLogInfo(@"dbpath========%@",dbPath);
+        _databaseQueue = [HYFMDatabaseQueue databaseQueueWithPath:dbPath];
+        [_databaseQueue inDatabase:^(HYFMDatabase *db) {
+            _database = db;
+            if ([db open]){
+            }
+            else{
+            }
+        }];
+        
+        
+    }
+    return self;
+}
+
+- (BOOL)closeDB
+{
+    BOOL rst = [self.database close];
+    self.database = nil;
+    self.databaseQueue = nil;
+    return rst;
+}
+
+- (BOOL)createRCSUserTable
+{
+    NSDictionary *param = @{@"identity": @"text",
+                            @"userPhone": @"text primary key",
+                            @"userName": @"text",
+                            @"isregistered": @"integer",
+                            @"headImgUrl": @"text",
+                            @"mood": @"text",
+                            @"contactID": @"text",
+                            @"isblack":@"integer",
+                            @"isfavorite":@"integer"
+                           };
+    
+    __block BOOL ret = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSMutableString *strParam = nil;
+        NSArray *keys = [param allKeys];
+        for (NSString *key in keys) {
+            NSString *obj = [param objectForKey:key];
+            
+            if (!strParam) {
+                strParam = [[NSString stringWithFormat:@"%@ %@",key,obj]mutableCopy];
+            }else{
+                [strParam appendString:[NSString stringWithFormat:@",%@ %@",key,obj]];
+            }
+        }
+        
+        NSString *sql = [NSString stringWithFormat:@"create table if not exists %@  (%@)",RCSUSER_TABLE,strParam];
+        ret = [db executeUpdate:sql];
+        
+    }];
+    return ret;
+}
+
+- (BOOL)addRCSUserInDBWithModel:(RCSUserModel *)rcsUserModel{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (rcsUserModel) {
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (identity,userPhone,userName,isregistered,headImgUrl,mood,contactID,isblack,isfavorite) values('%@','%@','%@','%d','%@','%@','%@','%d','%d')",RCSUSER_TABLE,rcsUserModel.identity,rcsUserModel.userPhone,rcsUserModel.userName,rcsUserModel.isregistered,rcsUserModel.headImgUrl,rcsUserModel.mood,rcsUserModel.contactID,rcsUserModel.isBlocked,rcsUserModel.isFavorite];
+
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (BOOL)deleteRCSUserInDBWithUserPhone:(NSString *)userPhone{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (userPhone) {
+            NSString *sql = [NSString stringWithFormat:@"delete from %@ where userPhone = '%@'",RCSUSER_TABLE,userPhone];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (RCSUserModel *)getRCSUserInDBWithUserPhone:(NSString *)userPhone{
+    __block RCSUserModel *rcsuserModel = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where userPhone = '%@'",RCSUSER_TABLE,userPhone];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if([rs next]) {
+            rcsuserModel = [[RCSUserModel alloc]init];
+            rcsuserModel.identity = [rs stringForColumn:@"identity"];
+            rcsuserModel.userPhone = [rs stringForColumn:@"userPhone"];
+            rcsuserModel.userName = [rs stringForColumn:@"userName"];
+            rcsuserModel.isregistered = [rs intForColumn:@"isregistered"];
+            rcsuserModel.headImgUrl = [rs stringForColumn:@"headImgUrl"];
+            rcsuserModel.mood = [rs stringForColumn:@"mood"];
+            rcsuserModel.contactID = [rs stringForColumn:@"contactID"];
+            rcsuserModel.isBlocked = [rs intForColumn:@"isblack"];
+            rcsuserModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            if (![rcsuserModel.identity isValidString] || [rcsuserModel.identity isEqualToString:@"(null)"]) {
+                rcsuserModel.identity = nil;
+            }
+            if (![rcsuserModel.userPhone isValidString] || [rcsuserModel.userPhone isEqualToString:@"(null)"]) {
+                rcsuserModel.userPhone = nil;
+            }
+            if (![rcsuserModel.userName isValidString] || [rcsuserModel.userName isEqualToString:@"(null)"]) {
+                rcsuserModel.userName = nil;
+            }
+            if (![rcsuserModel.headImgUrl isValidString] || [rcsuserModel.headImgUrl isEqualToString:@"(null)"]) {
+                rcsuserModel.headImgUrl = nil;
+            }
+            if (![rcsuserModel.mood isValidString] || [rcsuserModel.mood isEqualToString:@"(null)"]) {
+                rcsuserModel.mood = nil;
+            }
+            if (![rcsuserModel.contactID isValidString] || [rcsuserModel.contactID isEqualToString:@"(null)"]) {
+                rcsuserModel.contactID = nil;
+            }
+        }
+        [rs close];
+    }];
+    return rcsuserModel;
+}
+
+- (NSArray *)getAllRCSUserInDB{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ ",RCSUSER_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            RCSUserModel *rcsuserModel = [[RCSUserModel alloc] init];
+            rcsuserModel.identity = [rs stringForColumn:@"identity"];
+            rcsuserModel.userPhone = [rs stringForColumn:@"userPhone"];
+            rcsuserModel.userName = [rs stringForColumn:@"userName"];
+            rcsuserModel.isregistered = [rs intForColumn:@"isregistered"];
+            rcsuserModel.headImgUrl = [rs stringForColumn:@"headImgUrl"];
+            rcsuserModel.mood = [rs stringForColumn:@"mood"];
+            rcsuserModel.contactID = [rs stringForColumn:@"contactID"];
+            rcsuserModel.isBlocked = [rs intForColumn:@"isblack"];
+            rcsuserModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            if (![rcsuserModel.identity isValidString] || [rcsuserModel.identity isEqualToString:@"(null)"]) {
+                rcsuserModel.identity = nil;
+            }
+            if (![rcsuserModel.userPhone isValidString] || [rcsuserModel.userPhone isEqualToString:@"(null)"]) {
+                rcsuserModel.userPhone = nil;
+            }
+            if (![rcsuserModel.userName isValidString] || [rcsuserModel.userName isEqualToString:@"(null)"]) {
+                rcsuserModel.userName = nil;
+            }
+            if (![rcsuserModel.headImgUrl isValidString] || [rcsuserModel.headImgUrl isEqualToString:@"(null)"]) {
+                rcsuserModel.headImgUrl = nil;
+            }
+            if (![rcsuserModel.mood isValidString] || [rcsuserModel.mood isEqualToString:@"(null)"]) {
+                rcsuserModel.mood = nil;
+            }
+            if (![rcsuserModel.contactID isValidString] || [rcsuserModel.contactID isEqualToString:@"(null)"]) {
+                rcsuserModel.contactID = nil;
+            }
+            [array safeAddObject:rcsuserModel];
+        }
+        [rs close];
+    }];
+    
+    return [NSArray arrayWithArray:array];
+}
+
+- (NSArray *)getBlackedPhoneNumbersInDB{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ WHERE isblack = '1' AND contactID = '(null)'",RCSUSER_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            RCSUserModel *rcsuserModel = [[RCSUserModel alloc] init];
+            rcsuserModel.identity = [rs stringForColumn:@"identity"];
+            rcsuserModel.userPhone = [rs stringForColumn:@"userPhone"];
+            rcsuserModel.userName = [rs stringForColumn:@"userName"];
+            rcsuserModel.isregistered = [rs intForColumn:@"isregistered"];
+            rcsuserModel.headImgUrl = [rs stringForColumn:@"headImgUrl"];
+            rcsuserModel.mood = [rs stringForColumn:@"mood"];
+            rcsuserModel.contactID = [rs stringForColumn:@"contactID"];
+            rcsuserModel.isBlocked = [rs intForColumn:@"isblack"];
+            rcsuserModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            if (![rcsuserModel.identity isValidString] || [rcsuserModel.identity isEqualToString:@"(null)"]) {
+                rcsuserModel.identity = nil;
+            }
+            if (![rcsuserModel.userPhone isValidString] || [rcsuserModel.userPhone isEqualToString:@"(null)"]) {
+                rcsuserModel.userPhone = nil;
+            }
+            if (![rcsuserModel.userName isValidString] || [rcsuserModel.userName isEqualToString:@"(null)"]) {
+                rcsuserModel.userName = nil;
+            }
+            if (![rcsuserModel.headImgUrl isValidString] || [rcsuserModel.headImgUrl isEqualToString:@"(null)"]) {
+                rcsuserModel.headImgUrl = nil;
+            }
+            if (![rcsuserModel.mood isValidString] || [rcsuserModel.mood isEqualToString:@"(null)"]) {
+                rcsuserModel.mood = nil;
+            }
+            if (![rcsuserModel.contactID isValidString] || [rcsuserModel.contactID isEqualToString:@"(null)"]) {
+                rcsuserModel.contactID = nil;
+            }
+            [array safeAddObject:rcsuserModel];
+        }
+        [rs close];
+    }];
+    
+    return [NSArray arrayWithArray:array];
+}
+
+
+- (BOOL)updateRCSUserInDBWith:(RCSUserModel *)model{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (model) {
+            NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET identity='%@',userName='%@',isregistered='%d',headImgUrl='%@',mood='%@',contactID = '%@',isblack='%d',isfavorite='%d' WHERE userPhone = '%@'",RCSUSER_TABLE,model.identity,model.userName,model.isregistered,model.headImgUrl,model.mood,model.contactID,model.isBlocked,model.isFavorite,model.userPhone];
+            rst = [db executeUpdate:sql];
+        }
+    }];
+    return rst;
+}
+
+- (BOOL)createLocalContactTable
+{
+    NSDictionary *param = @{@"contactID" : @"text primary key",
+                            @"groupType" : @"integer",
+                            @"isblack" : @"integer",
+                            @"isfavorite" : @"integer",
+                            };
+    
+    __block BOOL ret = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSMutableString *strParam = nil;
+        NSArray *keys = [param allKeys];
+        for (NSString *key in keys) {
+            NSString *obj = [param objectForKey:key];
+            
+            if (!strParam) {
+                strParam = [[NSString stringWithFormat:@"%@ %@",key,obj]mutableCopy];
+            }else{
+                [strParam appendString:[NSString stringWithFormat:@",%@ %@",key,obj]];
+            }
+        }
+        
+        NSString *sql = [NSString stringWithFormat:@"create table if not exists %@  (%@)",LOCALCONTACT_TABLE,strParam];
+        ret = [db executeUpdate:sql];
+        
+    }];
+    return ret;
+}
+
+- (BOOL)addLocalContacterInDBWithModel:(LocalContacterModel *)localContactModel{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (localContactModel) {
+
+            NSString *sql = [NSString stringWithFormat:@"insert into %@ (contactID,isblack,isfavorite,groupType) values('%@','%d','%d','%ld')",LOCALCONTACT_TABLE,localContactModel.contactID,localContactModel.isBlocked,localContactModel.isFavorite,localContactModel.group];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (BOOL)deleteLocalContacterInDBWithContactID:(NSString *)contactID{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (contactID) {
+            NSString *sql = [NSString stringWithFormat:@"delete from %@ where contactID = '%@'",LOCALCONTACT_TABLE,contactID];
+            rst = [db executeUpdate:sql];
+        }
+        
+    }];
+    return rst;
+}
+
+- (LocalContacterModel *)getLocalContactInDBWith:(NSString*)contactID{
+    __block LocalContacterModel *localContactModel = nil;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where contactID = '%@'",LOCALCONTACT_TABLE,contactID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if([rs next]) {
+            localContactModel = [[LocalContacterModel alloc]init];
+            localContactModel.contactID = [rs stringForColumn:@"contactID"];
+            localContactModel.isBlocked = [rs intForColumn:@"isblack"];
+            localContactModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            localContactModel.group = [rs intForColumn:@"groupType"];
+            if (![localContactModel.contactID isValidString] || [localContactModel.contactID isEqualToString:@"(null)"]) {
+                localContactModel.contactID = nil;
+            }
+        }
+        [rs close];
+    }];
+    return localContactModel;
+
+}
+
+- (NSArray *)getAllLocalContactInDB{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ ",LOCALCONTACT_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            LocalContacterModel *localContactModel = [[LocalContacterModel alloc]init];
+            localContactModel.contactID = [rs stringForColumn:@"contactID"];
+            localContactModel.isBlocked = [rs intForColumn:@"isblack"];
+            localContactModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            localContactModel.group = [rs intForColumn:@"groupType"];
+            if (![localContactModel.contactID isValidString] || [localContactModel.contactID isEqualToString:@"(null)"]) {
+                localContactModel.contactID = nil;
+            }
+            [array safeAddObject:localContactModel];
+        }
+        [rs close];
+    }];
+    return array;
+}
+
+- (NSArray *)getAllLocalBlackedContactInDB{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ WHERE isblack = '1'",LOCALCONTACT_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            LocalContacterModel *localContactModel = [[LocalContacterModel alloc]init];
+            localContactModel.contactID = [rs stringForColumn:@"contactID"];
+            localContactModel.isBlocked = [rs intForColumn:@"isblack"];
+            localContactModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            localContactModel.group = [rs intForColumn:@"groupType"];
+            if (![localContactModel.contactID isValidString] || [localContactModel.contactID isEqualToString:@"(null)"]) {
+                localContactModel.contactID = nil;
+            }
+            [array safeAddObject:localContactModel];
+        }
+        [rs close];
+    }];
+    return array;
+}
+
+- (NSArray *)getAllLocalFavContactInDB{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ WHERE isfavorite = '1'",LOCALCONTACT_TABLE];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            LocalContacterModel *localContactModel = [[LocalContacterModel alloc]init];
+            localContactModel.contactID = [rs stringForColumn:@"contactID"];
+            localContactModel.isBlocked = [rs intForColumn:@"isblack"];
+            localContactModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            localContactModel.group = [rs intForColumn:@"groupType"];
+            if (![localContactModel.contactID isValidString] || [localContactModel.contactID isEqualToString:@"(null)"]) {
+                localContactModel.contactID = nil;
+            }
+            [array safeAddObject:localContactModel];
+        }
+        [rs close];
+    }];
+    return array;
+
+}
+
+
+- (BOOL)updateLocalContactInDBWith:(LocalContacterModel *)model{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (model) {
+
+            NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET isblack='%d',isfavorite='%d' ,groupType = '%ld' WHERE contactID = '%@'",LOCALCONTACT_TABLE,model.isBlocked,model.isFavorite,model.group,model.contactID];
+
+            rst = [db executeUpdate:sql];
+        }
+    }];
+    return rst;
+}
+
+- (BOOL)groupContactInDBWithContactID:(NSString *)contactID groupType:(ContactGroupType)groupType{
+    __block BOOL rst = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET groupType = '%ld' WHERE contactID = '%@'",LOCALCONTACT_TABLE,groupType,contactID];
+        
+        rst = [db executeUpdate:sql];
+    }];
+    return rst;
+}
+
+- (ContactGroupType)getGroupInDBWithContact:(NSString *)contactID{
+    
+    __block int groupType = 0;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where contactID = '%@'",LOCALCONTACT_TABLE,contactID];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        if([rs next]) {
+            groupType = [rs intForColumn:@"groupType"];
+        }
+        [rs close];
+    }];
+    return groupType;
+
+}
+
+- (NSArray *)getLocalContactsInDBWithGroupName:(ContactGroupType)groupType{
+    __block NSMutableArray *array = [NSMutableArray array];
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ WHERE groupType = '%ld'",LOCALCONTACT_TABLE, (long)groupType];
+        HYFMResultSet * rs = [db executeQuery:sql];
+        while([rs next]) {
+            LocalContacterModel *localContactModel = [[LocalContacterModel alloc]init];
+            localContactModel.contactID = [rs stringForColumn:@"contactID"];
+            localContactModel.isBlocked = [rs intForColumn:@"isblack"];
+            localContactModel.isFavorite = [rs intForColumn:@"isfavorite"];
+            localContactModel.group = [rs intForColumn:@"groupType"];
+            if (![localContactModel.contactID isValidString] || [localContactModel.contactID isEqualToString:@"(null)"]) {
+                localContactModel.contactID = nil;
+            }
+            [array safeAddObject:localContactModel];
+        }
+        [rs close];
+    }];
+    return array;
+}
+
+
+@end

@@ -1,0 +1,27 @@
+//
+//  NSFileManagerEX.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSFileManager (EX)
+
++ (NSString *)homeDir;
+
++ (NSString *)bundleDir;
+
++ (NSString *)docDir;
+
++ (NSString *)libDir;
+
++ (NSString *)tempDir;
+
++ (NSString *)cacheDir;
+
++ (NSString *)localDir;
+
++ (NSString *)_StorageDirInLibDir;
+
++ (BOOL)addSkipBackupAttributeToItemAtURLString:(NSString *)urlString;
+
+@end

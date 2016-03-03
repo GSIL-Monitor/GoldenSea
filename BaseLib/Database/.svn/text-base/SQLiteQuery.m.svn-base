@@ -1,0 +1,33 @@
+//
+//  SQLiteQuery.m
+//
+
+#import "SQLiteQuery.h"
+
+@implementation SQLiteQuery
+
+- (void)sortWithKey:(NSString *)key ascending:(BOOL)ascending
+{
+    _ascending = ascending;
+    _sortKey = key;
+}
+
+- (NSString *)getSQL
+{
+    NSMutableString *sql = [[NSMutableString alloc] initWithFormat:@"SELECT * FROM %@",self.entityName];
+    if (_conditionFormat.length > 0){
+        [sql appendFormat:@" WHERE %@",_conditionFormat];
+    }
+    if (_sortKey.length > 0){
+        if (_ascending)
+            [sql appendFormat:@" ORDER BY %@",_sortKey];
+        else
+            [sql appendFormat:@" ORDER BY %@ DESC",_sortKey];
+    }
+    if (_queryLimit > 0){
+        [sql appendFormat:@" LIMIT %d",_queryLimit];
+    }
+    return sql;
+}
+
+@end

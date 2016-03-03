@@ -1,0 +1,23 @@
+//
+//  NSSet+Ex.h
+//  iRCS
+//
+//  Created by frank weng on 15/10/26.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSSet (Ex)
+
+- (id)safeValueForKey:(NSString *)key;
+- (void)safeSetValue:(id)value forKey:(NSString *)key;
+
+@end
+
+
+
+@interface NSMutableSet (Ex)
+- (void)safeAddObject:(id)anObject;
+
+@end

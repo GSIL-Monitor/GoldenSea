@@ -1,0 +1,15 @@
+//
+//  BackupAllContactsRequest.h
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/14.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "HYBaseRequest.h"
+
+@interface BackupAllContactsRequest : HYBaseRequest
+@property (assign, nonatomic) NSInteger backupCounts;
+
+@end
+

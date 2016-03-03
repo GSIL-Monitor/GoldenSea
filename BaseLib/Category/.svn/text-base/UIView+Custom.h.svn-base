@@ -1,0 +1,20 @@
+//
+//  UIView+Custom.h
+//
+
+#import <UIKit/UIKit.h>
+#import "HYColorConfig.h"
+
+
+@interface UIView (Custom)
+
+@property (nonatomic, assign) BOOL skinIsSetDefault;
+
+@property (nonatomic, strong) HYBaseColorConfig* skinConfig;
+
+- (void)setSkinIsSetDefault:(BOOL)skinIsSetDefault recursive:(BOOL)isRecursive;
+
+- (void)reloadAppearance;
+
+@end
+

@@ -1,0 +1,254 @@
+//
+//  NSURLEX.m
+//
+
+#import "NSURLEX.h"
+#import "NSStringEX.h"
+#import "CommonMacros.h"
+@implementation NSURL (EX)
+
+- (NSURL *)URLByAddingScheme
+{
+    if ([self.absoluteString hasPrefix:@"http://"] || [self.absoluteString hasPrefix:@"https://"]) {
+        return self;
+    }
+    else if ([self.absoluteString hasPrefix:@"//"]) {
+        return [NSURL URLWithString:[NSString stringWithFormat:@"http:%@", self.absoluteString]];
+    }
+    else {
+        return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", self.absoluteString]];
+    }
+    return self;
+}
+
++ (id)URLWithStringAddingPercentEscapes:(NSString *)URLString
+{
+    NSString * validURLString = [URLString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    validURLString = [validURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    if (validURLString.length == 0)
+    {
+        return nil;
+    }
+    
+    return [self URLWithString:validURLString];
+}
+
+- (id)initWithStringAddingPercentEscapes:(NSString *)URLString
+{
+    NSString * validURLString = [URLString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    validURLString = [validURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    if (validURLString.length == 0)
+    {
+        self = nil;
+        return nil;
+    }
+    
+    return [self initWithString:validURLString];
+}
+
++ (NSURL *)urlWith:(NSString *)schemeStr queryParams:(NSDictionary *)params {
+    NSURL *url = [NSURL URLWithString:schemeStr];
+    NSString *prefix = url.query ? @"&" : @"?";
+    
+    NSMutableArray* keyValuePairs = [NSMutableArray array];
+    for (NSString* key in [params allKeys]) {
+        id value = [params objectForKey:key];
+        if ([value isKindOfClass:[NSNumber class]]) {
+            value = [NSString stringWithFormat:@"%@", value];
+        }
+        if(![value isKindOfClass:[NSString class]]) {
+            NSLog(@"warning: %@ is not NSString Class", value);
+            continue;
+        }
+        
+        CFStringRef escapedStr = CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                         (CFStringRef)value,
+                                                                         NULL,
+                                                                         (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                         kCFStringEncodingUTF8);
+        [keyValuePairs addObject:[NSString stringWithFormat:@"%@=%@", key, escapedStr]];
+        CFRelease(escapedStr);
+    }
+    NSString *queryStr = [keyValuePairs componentsJoinedByString:@"&"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", schemeStr, prefix, queryStr];
+    return [NSURL URLWithString:urlString];
+}
+
+- (NSDictionary *)queryParams {
+    if(!self.query) {
+        return  nil;
+    }
+    
+    NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+    NSArray *keyValuePairs = [self.query componentsSeparatedByString:@"&"];
+    for(id kv in keyValuePairs) {
+        NSArray *kvPair = [kv componentsSeparatedByString:@"="];
+        if(kvPair.count > 1)
+        {
+            NSString *key = [kvPair objectAtIndex:0];
+            NSString *value = [kvPair objectAtIndex:1];
+            CFStringRef origStr =
+            CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                    (CFStringRef)(value),
+                                                                    CFSTR(""),
+                                                                    kCFStringEncodingUTF8);
+            if (!origStr) {
+                continue;
+            }
+            [ret setValue:(__bridge NSString*)(origStr) forKey:key];
+            CFRelease(origStr);
+        }
+    }
+    
+    return ret;
+}
+
+- (NSURL *)addParams:(NSDictionary *)params {
+    NSMutableString *_add = nil;
+    if(NSNotFound != [self.absoluteString rangeOfString:@"#"].location)
+    {
+        NSArray *array = [self.absoluteString componentsSeparatedByString:@"#"];
+        if(array.count > 1)
+        {
+            NSString *header = [array objectAtIndex:0];
+            if (NSNotFound != [header rangeOfString:@"?"].location) {
+                _add = [NSMutableString stringWithString:@"&"];
+            }else {
+                _add = [NSMutableString stringWithString:@"?"];
+            }
+            for (NSString* key in [params allKeys]) {
+                if ([params objectForKey:key] && 0 < [[params objectForKey:key] length]) {
+                    [_add appendFormat:@"%@=%@&",key,[[params objectForKey:key] urlEncodedString]];
+                }
+            }
+            NSString *footer = [array objectAtIndex:1];
+            
+            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@#%@",
+                                         NONILString(header),
+                                         [_add substringToIndex:[_add length] - 1],
+                                         NONILString(footer)]];
+        }
+    }
+    else
+    {
+        if (NSNotFound != [self.absoluteString rangeOfString:@"?"].location) {
+            _add = [NSMutableString stringWithString:@"&"];
+        }else {
+            _add = [NSMutableString stringWithString:@"?"];
+        }
+        for (NSString* key in [params allKeys]) {
+            if ([params objectForKey:key] && 0 < [[params objectForKey:key] length]) {
+                [_add appendFormat:@"%@=%@&",key,[[params objectForKey:key] urlEncodedString]];
+                
+            }
+        }
+        
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                     self.absoluteString,
+                                     [_add substringToIndex:[_add length] - 1]]];
+    }
+    return self;
+}
+
+- (NSString *)trimTailZerosAfterDotOfString:(NSString *)string
+{
+    NSInteger loc = string.length - 1;
+    NSString *curent = @"";
+    while (0 <= loc) {
+        curent = [string substringFromIndex:loc];
+        if ([@"." isEqualToString:curent]) {
+            loc ++;
+            break;
+        }
+        if (! [@"0" isEqualToString:curent] && 0 < [curent integerValue]) {
+            loc ++;
+            break;
+        }
+        loc --;
+    }
+    return [string substringToIndex:loc];
+}
+
+- (NSString *)stringFromValue:(id)value
+{
+    NSString *ret;
+    if([value isKindOfClass:[NSNumber class]]) {
+        if (0 == strcmp([(NSNumber *)value objCType], @encode(double))) {
+            ret = [self trimTailZerosAfterDotOfString:[NSString stringWithFormat:@"%lf", [(NSNumber *)value doubleValue]]];
+        }
+        else if (0 == strcmp([(NSNumber *)value objCType], @encode(float))) {
+            ret = [self trimTailZerosAfterDotOfString:[NSString stringWithFormat:@"%f", [(NSNumber *)value floatValue]]];
+        }
+        else if (0 == strcmp([(NSNumber *)value objCType], @encode(int))) {
+            ret = [NSString stringWithFormat:@"%d", [(NSNumber *)value intValue]];
+        }
+        else if (0 == strcmp([(NSNumber *)value objCType], @encode(BOOL))) {
+            ret = [NSString stringWithFormat:@"%d", [(NSNumber *)value boolValue]];
+        }
+        else if (0 == strcmp([(NSNumber *)value objCType], @encode(long))) {
+            ret = [NSString stringWithFormat:@"%ld", [(NSNumber *)value longValue]];
+        }
+        else if (0 == strcmp([(NSNumber *)value objCType], @encode(long long))) {
+            ret = [NSString stringWithFormat:@"%lld", [(NSNumber *)value longLongValue]];
+        }
+        else {
+            ret = [NSString stringWithFormat:@"%.2f", [(NSNumber *)value floatValue]];
+        }
+    }
+    else {
+        ret = value;
+    }
+    return ret;
+}
+
+- (NSURL *)appendParams:(NSDictionary *)params {
+    NSMutableString *_add = nil;
+    if(NSNotFound != [self.absoluteString rangeOfString:@"#"].location)
+    {
+        NSArray *array = [self.absoluteString componentsSeparatedByString:@"#"];
+        if(array.count > 1)
+        {
+            NSString *header = [array objectAtIndex:0];
+            if (NSNotFound != [header rangeOfString:@"?"].location) {
+                _add = [NSMutableString stringWithString:@"&"];
+            }else {
+                _add = [NSMutableString stringWithString:@"?"];
+            }
+            for (NSString* key in [params allKeys]) {
+                NSString *value = [self stringFromValue:[params objectForKey:key]];
+                if (value) {
+                    [_add appendFormat:@"%@=%@&",key,[value urlEncodedString]];
+                }
+            }
+            NSString *footer = [array objectAtIndex:1];
+            
+            return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@#%@",
+                                         NONILString(header),
+                                         [_add substringToIndex:[_add length] - 1],
+                                         NONILString(footer)]];
+        }
+    }
+    else
+    {
+        if (NSNotFound != [self.absoluteString rangeOfString:@"?"].location) {
+            _add = [NSMutableString stringWithString:@"&"];
+        }else {
+            _add = [NSMutableString stringWithString:@"?"];
+        }
+        for (NSString* key in [params allKeys]) {
+            NSString *value = [self stringFromValue:[params objectForKey:key]];
+            if (value) {
+                [_add appendFormat:@"%@=%@&",key,[value urlEncodedString]];
+            }
+        }
+        
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                     self.absoluteString,
+                                     [_add substringToIndex:[_add length] - 1]]];
+    }
+    return self;
+}
+@end

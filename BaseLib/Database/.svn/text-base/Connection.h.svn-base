@@ -1,0 +1,88 @@
+//
+//  Connection.h
+//
+
+#import <Foundation/Foundation.h>
+#import "StatementRef.h"
+#import "sqlite3.h"
+#import "StatementID.h"
+
+
+#define SQL_FROM_HERE [[StatementID alloc] initWithFile:[NSString stringWithUTF8String:__FILE__] line:__LINE__]
+
+typedef enum {
+    NO_RETRY = 0,
+    RETRY_ON_POISON
+}Retry;
+
+@interface Connection : NSObject
+
+@property(nonatomic) NSInteger pageSize;
+@property(nonatomic) NSInteger cacheSize;
+@property(nonatomic) BOOL exclusiveLocking;
+@property(nonatomic) NSInteger transactionNesting;
+
+
+@property(nonatomic) sqlite3* db;
+
+-(id)init;
+
+-(BOOL)integrityCheck;
+-(BOOL)open:(NSString *)path;
+-(BOOL) openInMemory;
+-(BOOL) openTemporary;
+
+-(BOOL)isOpen;
+
+-(void)close;
+
+-(void)preload;
+
+-(void)trimMemory:(BOOL) aggressively;
+
+-(BOOL)raze;
+
+-(BOOL) razeWithTimeout:(NSTimeInterval)timeout;
+
+-(void) poison;
+
+-(BOOL) razeAndClose;
+
+-(BOOL)deleteDb:(NSString *)filePath;
+
+
+-(BOOL)beginTransaction;
+-(void) rollbackTransaction;
+-(BOOL) commitTransaction;
+-(void) rollbackAllTransactions;
+
+-(BOOL) attachDatabase:(NSString *) otherDbPath attachmentPoint:(NSString *) attachmentPoint;
+-(BOOL)detachDatabase:(NSString *)attachmentPoint;
+
+-(BOOL)execute:(NSString *)sql;
+-(int)executeAndReturnErrorCode:(NSString *) sql;
+
+
+-(BOOL)hasCachedStatement:(StatementID *) sid;
+-(StatementRef *)getCachedStatement:(StatementID *)sid sql:(NSString *)sql;
+
+
+-(BOOL) isSQLValid:(NSString *)sql;
+-(StatementRef *) getUniqueStatement:(NSString *)sql;
+
+-(BOOL)doesTableExist:(NSString *)tableName;
+-(BOOL)doesIndexExist:(NSString *)indexName;
+-(BOOL) doesColumExist:(NSString *)tableName columnName:(NSString *)columnName;
+
+-(int64_t)getLastInserRowId;
+-(NSInteger)getLastChangeCount;
+-(NSInteger) getErrorCode;
+-(NSInteger) getLastErrno;
+-(NSString *)getErrorMessage;
+
+-(void)statementRefCreated:(StatementRef *)sRef;
+-(void)statementRefDeleted:(StatementRef *)sRef;
+
+
+
+@end

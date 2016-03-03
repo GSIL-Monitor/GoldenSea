@@ -1,0 +1,177 @@
+//
+//  RCSAMapSearchHelper.m
+//  RCS
+//
+//  Created by Joy on 15-5-8.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "AMapSearchHelper.h"
+#import "GeocodeAnnotation.h"
+#import "POIAnnotation.h"
+
+@interface AMapSearchHelper()
+
+@property (nonatomic, strong) SearchSuccess searchTipsSuccess;
+@property (nonatomic, strong) SearchFailure searchTipsFailure;
+@property (nonatomic, strong) SearchSuccess searchGeocodeSuccess;
+@property (nonatomic, strong) SearchFailure searchGeocodeFailure;
+@property (nonatomic, strong) SearchSuccess searchPoiSuccess;
+@property (nonatomic, strong) SearchFailure searchPoiFailure;
+@property (nonatomic, strong) SearchSuccess searchReGeocodeSuccess;
+@property (nonatomic, strong) SearchFailure searchReGeocodeFailure;
+@end
+
+@implementation AMapSearchHelper
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [AMapSearchServices sharedServices].apiKey = (NSString *)MAMapServices_ApiKey;
+        self.searchAPI = [[AMapSearchAPI alloc]init];
+        self.searchAPI.delegate = self;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    self.searchAPI.delegate = nil;
+}
+
+#pragma mark - Utility
+
+/* 地理编码 搜索. */
+- (void)searchGeocodeWithKey:(NSString *)key adcode:(NSString *)adcode success:(SearchSuccess)success failure:(SearchFailure)failure {
+    if (key.length == 0)
+    {
+        return;
+    }
+    
+    self.searchGeocodeSuccess = success;
+    self.searchGeocodeFailure = failure;
+    
+    AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
+    geo.address = key;
+    
+//    if (adcode.length > 0)
+//    {
+//        geo.city = @[adcode];
+//    }
+    
+    [self.searchAPI AMapGeocodeSearch:geo];
+}
+
+/* 输入提示 搜索.*/
+- (void)searchTipsWithKey:(NSString *)key success:(SearchSuccess)success failure:(SearchFailure)failure {
+    if (key.length == 0)
+    {
+        return;
+    }
+    
+    self.searchTipsSuccess = success;
+    self.searchTipsFailure = failure;
+    
+    AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
+    tips.keywords = key;
+    [self.searchAPI AMapInputTipsSearch:tips];
+}
+
+/* 根据中心点坐标来搜周边的POI. */
+- (void)searchPoiByCenterCoordinate:(CLLocationCoordinate2D)coordinate success:(SearchSuccess)success failure:(SearchFailure)failure {
+    self.searchPoiSuccess = success;
+    self.searchPoiFailure = failure;
+    
+    AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
+    
+    request.location            = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    //request.keywords            = @"电影院";
+    request.keywords            = @"";
+    /* 按照距离排序. */
+    request.sortrule            = 0;
+    request.requireExtension    = YES;
+    
+    [self.searchAPI AMapPOIAroundSearch:request];
+
+}
+
+#pragma mark - AMapSearchDelegate
+
+/* 地理编码回调.*/
+- (void)onGeocodeSearchDone:(AMapGeocodeSearchRequest *)request response:(AMapGeocodeSearchResponse *)response
+{
+    if (response.geocodes.count == 0)
+    {
+        return;
+    }
+    
+    NSMutableArray *annotations = [NSMutableArray array];
+    
+    [response.geocodes enumerateObjectsUsingBlock:^(AMapGeocode *obj, NSUInteger idx, BOOL *stop) {
+        GeocodeAnnotation *geocodeAnnotation = [[GeocodeAnnotation alloc] initWithGeocode:obj];
+        
+        [annotations addObject:geocodeAnnotation];
+    }];
+    
+    if (self.searchGeocodeSuccess) {
+        self.searchGeocodeSuccess(annotations);
+    }
+//    [self searchPoiByCenterCoordinate:[annotations[0] coordinate]];
+}
+
+/* 输入提示回调. */
+- (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response
+{
+    
+    if (self.searchTipsSuccess) {
+        self.searchTipsSuccess(response.tips);
+    }
+}
+
+/* POI 搜索回调. */
+- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
+{
+    if (response.pois.count == 0)
+    {
+        return;
+    }
+    
+    NSMutableArray *poiAnnotations = [NSMutableArray arrayWithCapacity:response.pois.count];
+    
+    [response.pois enumerateObjectsUsingBlock:^(AMapPOI *obj, NSUInteger idx, BOOL *stop) {
+        
+        [poiAnnotations addObject:[[POIAnnotation alloc] initWithPOI:obj]];
+        
+    }];
+    
+    if (self.searchPoiSuccess) {
+        self.searchPoiSuccess(poiAnnotations);
+    }
+
+}
+/* 根据中心点查对应的地理信息.*/
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SearchSuccess)success failure:(SearchFailure)failure
+{
+    self.searchReGeocodeSuccess = success;
+    self.searchReGeocodeFailure = failure;
+    
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    regeo.location                    = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    regeo.requireExtension            = YES;
+    
+    [self.searchAPI AMapReGoecodeSearch:regeo];
+}
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if (response.regeocode.pois.count == 0)
+    {
+        return;
+    }
+    
+    if (self.searchReGeocodeSuccess) {
+        self.searchReGeocodeSuccess(response.regeocode.pois);
+    }
+}
+@end

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/zdyy/native/!svn/ver/5858/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker
+END
+THContactPickerView.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/5654/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactPickerView.h
+END
+THContactTextField.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3541/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactTextField.h
+END
+THContactView.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3541/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactView.h
+END
+THContactViewStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3541/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactViewStyle.h
+END
+THContactPickerView.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/5858/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactPickerView.m
+END
+THContactTextField.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3541/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactTextField.m
+END
+THContactView.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/zdyy/native/!svn/ver/3655/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactView.m
+END
+THContactViewStyle.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3541/code/trunk/Personal-Client-iOS/iRCS/BaseLib/THContactPicker/THContactViewStyle.m
+END

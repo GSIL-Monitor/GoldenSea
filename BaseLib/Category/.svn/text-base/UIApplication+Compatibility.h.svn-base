@@ -1,0 +1,13 @@
+//
+//  UIApplication+Compatibility.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIApplication(Compatibility)
+
+//兼容ios7与ios8 注册通知方式的差异
+
+-(void)registerForRemoteNotification;
+
+@end

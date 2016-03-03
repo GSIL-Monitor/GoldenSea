@@ -1,0 +1,42 @@
+//
+//  HYMonitor.h
+//  _Client-iOS-Common
+//
+//  Created by shenme on 13-7-22.
+//  Copyright (c) 2013年 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface HYMonitor : NSObject
+{
+    BOOL working;
+	NSTimer* tickTimer;
+	UITextView* infoText;
+	UIView* topWindow;
+	NSUInteger freeMemory;
+        NSUInteger usedMemory;
+	NSInteger showMemoryWarning;
+    
+    NSArray *_excludePages;
+    NSMutableArray *_controllerInMemory;
+}
+
+@property (nonatomic, readonly) BOOL working;
+
++ (HYMonitor*)sharedInstance;
+
+- (void)startMonitor;
+- (void)stopMonitor;
+- (void)onMemoryWarning;
+
+
+- (void)setExlcudePages:(NSArray *)excludePages;
+
+- (NSMutableArray *)controllerInMermory;
+
+- (void)addControllerInMermory:(NSString *)object;
+- (void)removeControllerFromMemory:(NSString *)object;
+
+@end

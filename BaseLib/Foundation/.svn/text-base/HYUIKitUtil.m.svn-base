@@ -1,0 +1,164 @@
+//
+//  HYUIKitUtil.m
+//
+
+#import "HYUIKitUtil.h"
+#import <time.h>
+#import <sys/time.h>
+#import "UIImageEX.h"
+
+NSString* const kThemeChangedNotification = @"__ThemeChangedNotification__";
+
+static int static_statusbarHeight = 0;
+
+int getScreenWidth()
+{
+    static int s_scrWidth = 0;
+    if (s_scrWidth == 0)
+    {
+        CGRect screenFrame = [UIScreen mainScreen].bounds;
+        s_scrWidth = screenFrame.size.width;
+    }
+    
+    return s_scrWidth;
+}
+
+int getScreenHeight()
+{
+    static int s_scrHeight = 0;
+    if (s_scrHeight == 0)
+    {
+        CGRect screenFrame = [UIScreen mainScreen].bounds;
+        s_scrHeight = screenFrame.size.height;
+    }
+    
+    return s_scrHeight;
+}
+
+int getStatusBarHeight()
+{
+    if (static_statusbarHeight == 0)
+    {
+        CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+        static_statusbarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
+    }
+    
+    return static_statusbarHeight;
+}
+
+void setStatusBarHeight(int newH)
+{
+    static_statusbarHeight = newH;
+}
+
+BOOL isDefaultTheme()
+{
+    return YES;
+}
+
+double getSystemVersion()
+{
+    static double s_SystemVersion = 0;
+    if (s_SystemVersion == 0)
+    {
+        s_SystemVersion = [[[UIDevice currentDevice] systemVersion] doubleValue];
+    }
+    
+    return s_SystemVersion;
+}
+
+bool isDeviceJailBroken()
+{
+    NSURL* url = [NSURL URLWithString:@"cydia://package/com.example.package"];
+    return [[UIApplication sharedApplication] canOpenURL:url];
+}
+
+unsigned long GetTickCount()
+{
+    unsigned long currentTime;
+    
+    struct timeval current;
+    gettimeofday(&current, NULL);
+    currentTime = current.tv_sec * 1000 + current.tv_usec/1000;
+    
+    return currentTime;
+}
+
+UIImage* cropImage(UIImage* originalImage, CGRect inRect, CGFloat scale)
+{
+    CGRect theRect  = inRect;
+    theRect.size.width = ((int)inRect.size.width+4)/8*8;
+    theRect.size.height = ((int)inRect.size.height+4)/8*8;
+    theRect.origin.x += (inRect.size.width-theRect.size.width)/2;
+    theRect.origin.y += (inRect.size.height-theRect.size.height)/2;
+    
+    CGSize size = originalImage.size;
+    CGFloat x = theRect.origin.x;
+    CGFloat y = theRect.origin.y;
+    CGFloat width = theRect.size.width;
+    CGFloat height = theRect.size.height;
+    UIImageOrientation imageOrientation = originalImage.imageOrientation;
+    if (imageOrientation == UIImageOrientationRight || imageOrientation == UIImageOrientationRightMirrored) {
+        theRect.origin.x = y;
+        theRect.origin.y = size.width - theRect.size.width - x;
+        theRect.size.width = height;
+        theRect.size.height = width;
+    } else if (imageOrientation == UIImageOrientationLeft || imageOrientation == UIImageOrientationLeftMirrored) {
+        theRect.origin.x = size.height - theRect.size.height - y;
+        theRect.origin.y = x;
+        theRect.size.width = height;
+        theRect.size.height = width;
+    } else if (imageOrientation == UIImageOrientationDown || imageOrientation == UIImageOrientationDownMirrored) {
+        theRect.origin.x = size.width - theRect.size.width - x;;
+        theRect.origin.y = size.height - theRect.size.height - y;
+    }
+    
+    CGImageRef croppedCGImage = CGImageCreateWithImageInRect(originalImage.CGImage ,theRect);
+    UIImage *croppedImage = [UIImage imageWithCGImage:croppedCGImage scale:scale orientation:originalImage.imageOrientation];
+    CGImageRelease(croppedCGImage);
+    
+    return croppedImage;
+}
+
+float RightAlignWidthWithScreenSize(float xOrWith)
+{
+    return SCREEN_WIDTH - (320 - xOrWith);
+}
+
+float ScaleWidthWithScreenSize(float xOrWith)
+{
+    return SCREEN_WIDTH/320 * xOrWith;
+}
+
+
+UIImage* getImageFromIconFont(NSString* title, float size, UIColor *color)
+{
+    UILabel *iconFontLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size, size)];
+    iconFontLabel.font = [UIFont fontWithName:@"iconfont" size:size];
+    iconFontLabel.textAlignment = UITextAlignmentCenter;
+    iconFontLabel.backgroundColor = [UIColor clearColor];
+    [iconFontLabel setTextColor:color];
+    iconFontLabel.text = title;
+    
+    return [iconFontLabel captureImageInRect:iconFontLabel.bounds];
+}
+
+UIImage* getImageFromIconFontByWidthHeight(NSString* title, float width, float height, UIColor *color)
+{
+    float size = height;
+    float labelHeight = height;
+    
+    // ios 6下uilabel对于iconfont的处理有些问题，会有偏移，故需要+3个像素
+    if(SYSTEM_VERSION < 7)
+    {
+        labelHeight = height + 3;
+    }
+    UILabel *iconFontLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, labelHeight)];
+    iconFontLabel.font = [UIFont fontWithName:@"iconfont" size:size];
+    iconFontLabel.textAlignment = UITextAlignmentCenter;
+    iconFontLabel.backgroundColor = [UIColor clearColor];
+    [iconFontLabel setTextColor:color];
+    iconFontLabel.text = title;
+    
+    return [iconFontLabel captureImageInRect:iconFontLabel.bounds];
+}

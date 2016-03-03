@@ -1,0 +1,70 @@
+//
+//  Statment.h
+//
+
+#import <Foundation/Foundation.h>
+#import "sqlite3.h"
+#import "StatementRef.h"
+
+// Possible return values from ColumnType in a statement. These should match
+// the values in sqlite3.h.
+typedef enum  {
+    COLUMN_TYPE_INTEGER = 1,
+    COLUMN_TYPE_FLOAT = 2,
+    COLUMN_TYPE_TEXT = 3,
+    COLUMN_TYPE_BLOB = 4,
+    COLUMN_TYPE_NULL = 5,
+}ColType;
+
+
+@interface Statement : NSObject
+
+@property(nonatomic)     BOOL  succeeded;
+@property(nonatomic, strong) StatementRef *stmtRef;
+
+-(id)initWithStatementRef:(StatementRef *)stmtRef;
+-(id)assign:(StatementRef*) stmtRef;
+-(void)clear;
+-(BOOL)isValid;
+
+//执行statment，返回成功或者失败，主要用于没有输出的sql执行，比如Insert，update等写操作
+-(BOOL)run;
+
+//执行statment， 当返回true时 将会有一组数据返回，可以持续调用该setp接口 直到返回false，这样所有的结果集都将返回
+//当用于循环的时候，这样做是便于编程的便利
+//当step返回 false， 有可能是两种情况，一种是没有更多的数据，一种是一个错误。如果需要区分可以使用Succeeded来区分
+//比如
+// Typical example:
+//   while (s.Step()) {
+//     ...
+//   }
+//   return s.Succeeded();
+
+-(BOOL)step;
+-(void)reset:(BOOL)clearBoundVars;
+
+// strings there may be out of memory.
+-(BOOL) bindNull:(NSInteger) col;
+-(BOOL) bindBool:(NSInteger) col val:(NSInteger)val;
+-(BOOL) bindInt:(NSInteger) col val:(int)val;
+-(BOOL) bindDouble:(NSInteger) col val:(double)val;
+-(BOOL) bindString:(NSInteger) col val:(NSString *)val;
+-(BOOL) bindBlob:(NSInteger) col val:(NSData *)val;
+
+-(NSInteger) columnCount;
+
+-(BOOL)columnBool:(NSInteger) col;
+-(NSInteger)columnInt:(NSInteger) col;
+-(double)columnDoublel:(NSInteger) col;
+-(NSString *)columnString:(NSInteger) col;
+
+-(ColType) columnType:(NSInteger)col;
+-(ColType) declaredColumnType:(NSInteger)col;
+
+-(NSInteger) columnByteLength:(NSInteger) col;
+-(NSData *) columnBlob:(NSInteger) col;
+
+-(NSString *) getSQLStatement;
+
+@end
+

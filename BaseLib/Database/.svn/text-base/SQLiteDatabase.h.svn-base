@@ -1,0 +1,62 @@
+//
+//  SQLiteDatabase.h
+//
+
+#import <Foundation/Foundation.h>
+#import <sqlite3.h>
+#import "Statement.h"
+
+@protocol SQLiteDatabaseSQLExecDelegate <NSObject>
+
+@property (strong, nonatomic) id context;
+
+- (void)callback:(id)context withArgc:(int)argc argv:(char **)argv andColName:(char **)azColName;
+
+@end
+
+@class SQLiteEntity;
+@class SQLiteQuery;
+
+@interface SQLiteDatabase : NSObject
+{
+    sqlite3    *db;
+	NSString   *databasePath;
+    BOOL       logsErrors;
+    BOOL       crashOnErrors;
+    BOOL       inUse;
+    BOOL       inTransaction;
+    BOOL       traceExecution;
+    BOOL       checkedOut;
+    int        busyRetryTimeout;
+    BOOL       shouldCacheStatements;
+    NSMutableDictionary *cachedStatements;
+}
+
+@property (assign, nonatomic) int version;
+@property (assign, nonatomic) int busyRetryTimeout;
+
++ (SQLiteDatabase *)openOrCreateDatabase:(NSString *)name;
+
+- (id)initWithName:(NSString *)dbName;
+- (BOOL)beginTransaction;
+- (BOOL)endTransaction;
+- (BOOL)open;
+- (BOOL)close;
+
+- (void)createTable:(Class)entityClass withUniqueKey:(NSString *)uniqueKey;
+
+- (BOOL)execSQL:(NSString *)sql;
+- (BOOL)execSQL:(NSString *)sql withDelegate:(id<SQLiteDatabaseSQLExecDelegate>)delegate;
+
+- (BOOL)update:(NSString *)sql withParams:(NSArray *)params;
+- (BOOL)updateRow:(SQLiteEntity *)record;
+- (BOOL)deleteRow:(SQLiteEntity *)record;
+- (BOOL)clearTable:(NSString *)table;
+- (BOOL)insert:(SQLiteEntity *)record error:(NSError **)outErr;
+- (NSArray *)query:(SQLiteQuery *)query withParams:(NSArray *)params;
+- (NSArray *)query:(NSString *)sql withParams:(NSArray *)params withResultType:(NSString *)className;
+
+- (NSInteger) countRows:(NSString *)className;
+
+
+@end

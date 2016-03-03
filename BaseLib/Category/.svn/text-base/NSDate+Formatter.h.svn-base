@@ -1,0 +1,17 @@
+//
+//  NSDate+Formatter.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSDate (TBSKDFormatString)
+
+- (NSString*)stringWithFormat:(NSString*)fmt;
++ (NSDate*)dateFromString:(NSString*)str withFormat:(NSString*)fmt;
++ (NSDate *)dateFromString:(NSString *)str withFormat:(NSString *)fmt locale:(NSLocale *)locale;
+- (NSDate *)dateByAddingDays:(NSInteger)days months:(NSInteger)months years:(NSInteger)years;
+
++ (NSString *)stringWithMonthAndDay;
++ (NSString *)stringWithDetailDate;
+
+@end

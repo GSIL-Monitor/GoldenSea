@@ -1,0 +1,573 @@
+//
+//  ELCAssetTablePicker.m
+//
+//  Created by guming on 15/9/7.
+//  Copyright © 2015年 guming. All rights reserved.
+//
+
+#import "ELCAssetTablePicker.h"
+#import "ELCAssetCell.h"
+#import "ELCAsset.h"
+#import "ELCAlbumPickerController.h"
+#import "ELCConsole.h"
+#import "ELCPreviewViewController.h"
+#import "ELCImagePickerController.h"
+#define Albums_Title_Color ([UIColor colorWithString:@"333333"])
+@interface ELCAssetTablePicker ()<UITableViewDataSource, UITableViewDelegate,ELCAssetCellSelectedDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) int columns;      //一行有多少个item
+@property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) UIButton *previewBtn;
+@property (nonatomic, strong) UIButton *finishBtn;
+@property (nonatomic, assign) NSUInteger selectedPictureCount;
+@property (nonatomic, strong) UIView *titleView;
+@property (nonatomic, strong) UIButton *buttonTitle;
+@property (nonatomic, strong) UIButton *buttonImage;
+@property (nonatomic, strong) AlbumTableView *albumsTableView;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, assign) BOOL initAlbums;
+@end
+
+@implementation ELCAssetTablePicker
+
+//Using auto synthesizers
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        //Sets a reasonable default bigger then 0 for columns
+        //So that we don't have a divide by 0 scenario
+        self.columns = 4;
+        _selectedPictureCount = 0;
+        self.assetGroups = [NSMutableArray arrayWithCapacity:5];
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    __weak typeof(self) weakSelf = self;
+
+    [self resetLeftButtonWithTitle:@"返回"];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero
+                                              style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.showsHorizontalScrollIndicator = NO;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.backgroundColor = [UIColor whiteColor];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_tableView setAllowsSelection:NO];
+    [self.view addSubview:_tableView];
+    
+    
+    _footerView = [[UIView alloc] initWithFrame:CGRectZero];
+    [_footerView addLineToViewAtPosition:UIViewAddLinePositionTop withLineColor:ColorWithRGB(220, 214, 214)];
+    _footerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_footerView];
+    
+    _previewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _previewBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [_previewBtn setTitle:@"预览" forState:UIControlStateNormal];
+    _previewBtn.enabled = NO;
+    [_previewBtn setTitleColor:PureAlphaColor(51.0, 0.4)
+                      forState:UIControlStateNormal];
+    [_previewBtn addTarget:self action:@selector(previewBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView  addSubview:_previewBtn];
+    
+    
+    _finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _finishBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [_finishBtn setTitle:@"发送" forState:UIControlStateNormal];
+    
+    [_finishBtn setTitleColor:ColorWithRGBA(19.0, 127.0, 253.0, 0.4)
+                     forState:UIControlStateNormal];
+    _finishBtn.enabled = NO;
+    [_finishBtn addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView  addSubview:_finishBtn];
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    self.elcAssets = tempArray;
+    
+    [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+    
+    // Register for notifications when the photo library has changed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preparePhotos) name:ALAssetsLibraryChangedNotification object:nil];
+    self.titleView = [[UIView alloc]init];
+    self.buttonTitle = [[UIButton alloc]init];
+    UIImage *backgroundImage = [UIImage imageNamed:@"msg_photo_close"];
+    [self.buttonTitle setImage:backgroundImage forState:UIControlStateNormal];
+    [self.buttonTitle setTitle: [NSString stringWithFormat:@"%@",[self.assetGroup valueForProperty:ALAssetsGroupPropertyName]] forState:UIControlStateNormal];
+    UIFont* theFont = [UIFont systemFontOfSize:14];
+    CGSize constraint = CGSizeMake(SCREEN_WIDTH-20, 20000.0f);
+    CGSize resultSize = [self sizeWithFontSize:theFont displaySize:constraint text:[self.buttonTitle currentTitle]];
+    [self setCustomTitleView:self.titleView];
+    [self.titleView addSubview:self.buttonTitle];
+    [self.buttonTitle addTarget:self action:@selector(handleAlbumsTableView) forControlEvents:UIControlEventTouchUpInside];
+    int resultWide = resultSize.width + backgroundImage.size.width;
+    [self.buttonTitle setTitleEdgeInsets:UIEdgeInsetsMake(0, -backgroundImage.size.width, 0, backgroundImage.size.width)];
+    [self.buttonTitle setImageEdgeInsets:UIEdgeInsetsMake(0, resultWide, 0, -resultWide)];
+}
+- (CGSize)sizeWithFontSize:(UIFont*)aFont displaySize:(CGSize)aSize text:(NSString *)text
+
+{
+    NSDictionary *attributeDic = @{NSFontAttributeName : aFont};
+    CGSize size = aSize;
+    CGSize lastSize = [text boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:attributeDic
+                                         context:Nil].size;
+    return lastSize;
+}
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height - 50);
+    self.footerView.frame = CGRectMake(0, self.tableView.bottom, self.view.width, 50);
+    _previewBtn.frame = CGRectMake(10, (self.footerView.height - 44)/2, 60, 44);
+    _finishBtn.frame = CGRectMake(self.footerView.width - 10 - 60, (self.footerView.height - 44)/2, 60, 44);
+    [self.buttonTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleView.mas_left);
+        make.bottom.mas_equalTo(self.titleView.mas_bottom);
+        make.width.mas_equalTo(self.titleView.mas_width);
+        make.height.mas_equalTo(self.titleView.mas_height);
+    }];
+    [self checkFooterBtnStatus];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setBarTintColor:RCS_Color_NavBarColor];
+    self.columns = self.view.bounds.size.width / 80;//375
+    if (self.view.bounds.size.width == 414) {
+        self.columns = self.view.bounds.size.width / 100;//6 Plus
+    }
+    if (self.tableView) {
+        [self.tableView reloadData];
+    }
+    _selectedPictureCount = [self totalSelectedAssets];
+    [self checkFooterBtnStatus];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[ELCConsole mainConsole] removeAllIndex];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ALAssetsLibraryChangedNotification object:nil];
+}
+
+- (void)cancelChoosePicture{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    self.columns = self.view.bounds.size.width / 80;
+    [self.tableView reloadData];
+}
+
+- (void)preparePhotos
+{
+    @autoreleasepool {
+
+        [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            
+            if (result == nil) {
+                return;
+            }
+
+            ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result];
+            NSURL *url = [[elcAsset.asset defaultRepresentation]url];
+            NSString *str = [url absoluteString];
+            for (ELCAsset *asset in self.firstAssets) {
+                NSURL *urlOut = [[asset.asset defaultRepresentation]url];
+                NSString *strOut = [urlOut absoluteString];
+
+                if (asset.selected&&[str isEqualToString:strOut]) {
+                    elcAsset.selected = asset.selected;
+                }
+            }
+            [elcAsset setParent:self];
+            
+            BOOL isAssetFiltered = NO;//相册中有视频，图片等，所以需要过滤
+            if (self.assetPickerFilterDelegate &&
+               [self.assetPickerFilterDelegate respondsToSelector:@selector(assetTablePicker:isAssetFilteredOut:)])
+            {
+                isAssetFiltered = [self.assetPickerFilterDelegate assetTablePicker:self isAssetFilteredOut:(ELCAsset*)elcAsset];
+            }
+
+            if (!isAssetFiltered) {
+                [self.elcAssets addObject:elcAsset];
+            }
+            
+         }];
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            // scroll to bottom
+            long section = [self numberOfSectionsInTableView:self.tableView] - 1;
+            long row = [self tableView:self.tableView numberOfRowsInSection:section] - 1;
+            if (section >= 0 && row >= 0) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:row
+                                                     inSection:section];
+                        [self.tableView scrollToRowAtIndexPath:ip
+                                              atScrollPosition:UITableViewScrollPositionBottom
+                                                      animated:NO];
+            }
+            
+            //[self.navigationItem setTitle:self.singleSelection ? @"Pick Photo" : @"Pick Photos"];
+        });
+    }
+}
+
+- (NSMutableArray *)getSelectedAssets{
+    NSMutableArray *selectedAssets = [NSMutableArray array];
+    for (ELCAsset *asset in self.elcAssets) {
+        if (asset.selected) {
+            [selectedAssets addObject:asset];
+        }
+    }
+    return selectedAssets;
+}
+- (void)sendAssets{
+    if (0 == [self totalSelectedAssets]) {
+        return;
+    }
+    NSMutableArray *selectedAssetsImages = [[NSMutableArray alloc] init];
+    for (ELCAsset *elcAsset in self.elcAssets) {
+        if ([elcAsset selected]) {
+            [selectedAssetsImages addObject:elcAsset];
+        }
+    }
+    if ([[ELCConsole mainConsole] onOrder]) {
+        [selectedAssetsImages sortUsingSelector:@selector(compareWithIndex:)];
+    }
+    [self.parent selectedAssets:selectedAssetsImages];
+}
+#pragma mark 发送
+- (void)doneAction:(id)sender
+{	
+	[self sendAssets];
+}
+
+
+- (BOOL)shouldSelectAsset:(ELCAsset *)asset
+{
+    NSUInteger selectionCount = 0;
+    for (ELCAsset *elcAsset in self.elcAssets) {
+        if (elcAsset.selected) selectionCount++;
+    }
+    BOOL shouldSelect = YES;
+    if ([self.parent respondsToSelector:@selector(shouldSelectAsset:previousCount:)]) {
+        shouldSelect = [self.parent shouldSelectAsset:asset previousCount:selectionCount];
+    }
+    return shouldSelect;
+}
+
+- (void)assetSelected:(ELCAsset *)asset
+{
+    if (self.singleSelection) {
+
+        for (ELCAsset *elcAsset in self.elcAssets) {
+            if (asset != elcAsset) {
+                elcAsset.selected = NO;
+            }
+        }
+    }
+    if (self.immediateReturn) {
+        NSArray *singleAssetArray = @[asset];
+        [(NSObject *)self.parent performSelector:@selector(selectedAssets:) withObject:singleAssetArray afterDelay:0];
+    }
+}
+
+- (BOOL)shouldDeselectAsset:(ELCAsset *)asset
+{
+    if (self.immediateReturn){
+        return NO;
+    }
+    return YES;
+}
+
+- (void)assetDeselected:(ELCAsset *)asset
+{
+    if (self.singleSelection) {
+        for (ELCAsset *elcAsset in self.elcAssets) {
+            if (asset != elcAsset) {
+                elcAsset.selected = NO;
+            }
+        }
+    }
+
+    if (self.immediateReturn) {
+        NSArray *singleAssetArray = @[asset.asset];
+        [(NSObject *)self.parent performSelector:@selector(selectedAssets:) withObject:singleAssetArray afterDelay:0];
+    }
+    
+    int numOfSelectedElements = [self totalSelectedAssets];
+    if (asset.index < numOfSelectedElements - 1) {
+        NSMutableArray *arrayOfCellsToReload = [[NSMutableArray alloc] initWithCapacity:1];
+        
+        for (int i = 0; i < [self.elcAssets count]; i++) {
+            ELCAsset *assetInArray = [self.elcAssets objectAtIndex:i];
+            if (assetInArray.selected && (assetInArray.index > asset.index)) {
+                assetInArray.index -= 1;
+                
+                int row = i / self.columns;
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                BOOL indexExistsInArray = NO;
+                for (NSIndexPath *indexInArray in arrayOfCellsToReload) {
+                    if (indexInArray.row == indexPath.row) {
+                        indexExistsInArray = YES;
+                        break;
+                    }
+                }
+                if (!indexExistsInArray) {
+                    [arrayOfCellsToReload addObject:indexPath];
+                }
+            }
+        }
+        [self.tableView reloadRowsAtIndexPaths:arrayOfCellsToReload withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
+}
+#pragma mark - 预览
+#pragma mark - UI response method
+- (void)previewBtnTouched:(id)sender{
+    NSMutableArray *selectedAssets = [self getSelectedAssets];
+    if (0 == [self totalSelectedAssets] || [selectedAssets count]==0) {
+        return;
+    }
+    
+    ELCImagePickerController *imPickerNav = nil;
+    if ([self.navigationController isKindOfClass:[ELCImagePickerController class]]) {
+        imPickerNav = (ELCImagePickerController *)self.navigationController;
+    }
+    
+    //FIXME:预览选中图片
+    ELCPreviewViewController * previewController = [[ELCPreviewViewController alloc] init];
+    previewController.elcAssets = selectedAssets;
+    if (imPickerNav) {
+        previewController.isOrigin = imPickerNav.returnsOriginalImage;
+    }
+    __weak typeof(self) weakSelf = self;
+    previewController.sendBlock = ^(ELCPreviewViewController *previewVC){
+        [weakSelf sendAssets];
+    };
+    [self.navigationController pushViewController:previewController animated:YES];
+}
+
+
+#pragma mark UITableViewDataSource Delegate Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.columns <= 0) { //Sometimes called before we know how many columns we have
+        self.columns = 4;
+    }
+    NSInteger numRows = ceil([self.elcAssets count] / (float)self.columns);
+    return numRows;
+}
+
+- (NSArray *)assetsForIndexPath:(NSIndexPath *)path
+{
+    long index = path.row * self.columns;
+    long length = MIN(self.columns, [self.elcAssets count] - index);
+    return [self.elcAssets subarrayWithRange:NSMakeRange(index, length)];
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    static NSString *CellIdentifier = @"Cell";
+        
+    ELCAssetCell *cell = (ELCAssetCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (cell == nil) {		        
+        cell = [[ELCAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectedDelegate = self;
+    }
+    
+    [cell setAssets:[self assetsForIndexPath:indexPath]];
+    
+    return cell;
+}
+-(CGFloat)getCellWith
+{
+    if (SCREEN_WIDTH==375) {//6s
+        return 88.75f;
+    } else if (SCREEN_WIDTH==414){//6plus
+        return 98.5f;
+    }
+    return 75.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [self getCellWith]+4;
+}
+
+- (int)totalSelectedAssets
+{
+    int count = 0;
+    
+    for (ELCAsset *asset in self.elcAssets) {
+		if (asset.selected) {
+            count++;	
+		}
+	}
+    
+    return count;
+}
+- (void)checkFooterBtnStatus{
+    if (0 == [self totalSelectedAssets]) {
+        self.previewBtn.enabled = NO;
+        self.finishBtn.enabled = NO;
+        [_previewBtn setTitleColor:PureAlphaColor(51.0, 0.4)
+                          forState:UIControlStateNormal];
+        [_finishBtn setTitleColor:ColorWithRGBA(19.0, 127.0, 253.0, 0.4)
+                         forState:UIControlStateNormal];
+        [_finishBtn setTitle:@"发送" forState:UIControlStateNormal];
+        
+    }else{
+        self.previewBtn.enabled = YES;
+        self.finishBtn.enabled = YES;
+        [_previewBtn setTitleColor:PureColor(51.0)
+                          forState:UIControlStateNormal];
+        [_finishBtn setTitleColor:ColorWithRGB(19.0, 127.0, 253.0)
+                         forState:UIControlStateNormal];
+        [_finishBtn setTitle:[NSString stringWithFormat:@"发送(%lu)", (unsigned long)[self totalSelectedAssets]] forState:UIControlStateNormal];
+    }
+    
+}
+#pragma mark -
+#pragma mark -  ELCAssetCellSelectedDelegate
+
+- (void)ELCAssetCell:(ELCAssetCell *)assetrCell
+     selectedAtIndex:(int)index
+ELCAssetCellActionType:(ELCAssetCellActionType)actionType{
+    switch (actionType) {
+        case ELCAssetCellActionTypeTaped:{
+            //FIXME: preview picture
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:assetrCell];
+            NSArray *curRowAssets = [self assetsForIndexPath:indexPath];
+            ELCAsset *asset = [curRowAssets objectAtIndex:index];
+            NSUInteger tapIndx = [self.elcAssets indexOfObject:asset];
+            
+            ELCImagePickerController *imPickerNav = nil;
+            if ([self.navigationController isKindOfClass:[ELCImagePickerController class]]) {
+                imPickerNav = (ELCImagePickerController *)self.navigationController;
+            }
+            
+            ELCPreviewViewController * previewVC = [[ELCPreviewViewController alloc] init];
+            previewVC.elcAssets = self.elcAssets;
+            previewVC.configerPageIndex = tapIndx;
+            if (imPickerNav) {
+                previewVC.isOrigin = imPickerNav.returnsOriginalImage;
+            }
+            __weak typeof(self) weakSelf = self;
+            previewVC.sendBlock = ^(ELCPreviewViewController *previewVC){
+                [weakSelf sendAssets];
+            };
+            [self.navigationController pushViewController:previewVC animated:YES];
+        }
+            break;
+        case ELCAssetCellActionTypeDeselected:{
+            _selectedPictureCount--;
+            [self checkFooterBtnStatus];
+        }
+            break;
+        case ELCAssetCellActionTypeSelected:{
+            _selectedPictureCount++;
+            [self checkFooterBtnStatus];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)setCustomTitleView:(UIView*)titleView
+{
+    if (titleView != nil)
+    {
+        CGRect frame = titleView.frame;
+        frame.origin.x = (APPLICATION_WIDTH-frame.size.width)/2;
+        frame.size.width = 120;
+        frame.size.height = 40;
+        titleView.frame = frame;
+        self.navigationItem.titleView = nil;
+        self.navigationItem.titleView = titleView;
+    }
+}
+
+-(void)handleAlbumsTableView
+{
+    if (!self.initAlbums) {
+        self.maskView = [[UIView alloc]initWithFrame:self.view.bounds];
+        self.maskView.backgroundColor = [UIColor blackColor];
+        self.maskView.alpha = 0.5f;
+        [self.view addSubview:self.maskView];
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maskViewTapped:)];
+        [self.maskView addGestureRecognizer:tapRecognizer];
+        self.albumsTableView = [[AlbumTableView alloc]initAlbumTableView:self.assetGroups];
+        self.albumsTableView.mediaTypes = self.mediaTypes;
+        self.albumsTableView.albumTableViewDelegate = self;
+        [self.view addSubview:self.albumsTableView];
+        [UIView animateWithDuration:1.5 animations:^{
+            [self.albumsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.view.mas_left);
+                make.top.mas_equalTo(self.view.mas_top);
+                make.width.mas_equalTo(self.view.mas_width);
+                make.height.mas_equalTo(self.view.height/2);
+            }];
+        }];
+        self.initAlbums = YES;
+        [self.buttonTitle setImage:[UIImage imageNamed:@"msg_photo_open"] forState:UIControlStateNormal];
+    } else {
+        self.albumsTableView.hidden = YES;
+        self.maskView.hidden = YES;
+        self.initAlbums = NO;
+        [self.buttonTitle setImage:[UIImage imageNamed:@"msg_photo_close"] forState:UIControlStateNormal];
+    }
+    
+}
+-(void)maskViewTapped:(UITapGestureRecognizer *)tapRecognizer
+{
+    self.albumsTableView.hidden = YES;
+    self.maskView.hidden = YES;
+}
+-(void)didSelectTableViewFinished:(NSMutableArray *)albumGroups assetGroup:(ALAssetsGroup *)assetGroup
+{
+    self.albumsTableView.hidden = YES;
+    self.maskView.hidden = YES;
+    self.assetGroup = assetGroup;
+    [self.elcAssets removeAllObjects];
+    [self.buttonTitle setTitle: (NSString *)[assetGroup valueForProperty:ALAssetsGroupPropertyName] forState:UIControlStateNormal];
+    UIImage *backgroundImage = [UIImage imageNamed:@"msg_photo_close"];
+    [self.buttonTitle setImage:backgroundImage forState:UIControlStateNormal];
+    UIFont* theFont = [UIFont systemFontOfSize:14];
+    CGSize constraint = CGSizeMake(SCREEN_WIDTH-20, 20000.0f);
+    CGSize resultSize = [self sizeWithFontSize:theFont displaySize:constraint text:[self.buttonTitle currentTitle]];
+    [self.buttonTitle setTitleEdgeInsets:UIEdgeInsetsMake(0, -backgroundImage.size.width, 0, backgroundImage.size.width)];
+    [self.buttonTitle setImageEdgeInsets:UIEdgeInsetsMake(0, self.buttonTitle.titleLabel.bounds.size.width, 0, -self.buttonTitle.titleLabel.bounds.size.width)];
+    self.initAlbums = NO;
+    [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+}
+@end

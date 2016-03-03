@@ -1,0 +1,33 @@
+//
+//  MessageFileManager.h
+//  iRCS
+//
+//  Created by 王斌 on 15/9/30.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MessageBaseUIModel.h"
+#import "FileManager.h"
+
+@interface MessageFileManager : NSObject
+
++ (MessageFileManager *)defaultManager;
+
+- (NSString *) storeImage:(UIImage *)image WithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) storeImage:(UIImage *)image WithConversationUUID:(NSString *)conversationUUID Ratio:(CGFloat)ratio;
+- (NSString *) storeVideo:(NSString *)movePath WithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) storeContact:(NSData *)vcardData WithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) storeContactWithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) getAudioFileStorePathWithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) getVideoFileStorePathWithConversationUUID:(NSString *)conversationUUID;
+- (NSString *) getVcardFileStorePathWithConversationUUID:(NSString *)conversationUUID;
+
+
+- (NSString *) copyForwardMessageImage:(NSString *)imagePath ByContacter:(id)contacter;
+- (NSString *) copyForwardMessageVideo:(NSString *)videoPath ByContacter:(id)contacter;
+- (NSString *) copyForwardMessageVcard:(NSString *)filePath ByContacter:(id)contacter;
+
+
+
+@end

@@ -1,0 +1,40 @@
+//
+//  GetAllContactsRequest.m
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/20.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "GetAllContactsRequest.h"
+
+
+
+@interface GetAllContactsRequest () <HYbaseRequestDelegate>
+
+@end
+
+
+@implementation GetAllContactsRequest
+
+-(instancetype)initWithUid:(NSString *)uid mobile:(NSString *)mobile{
+    NSString *url = [NSString stringWithFormat:@"/contactBackup/getAllContacts.do"];
+    if (self= [super initWithUrl:url]) {
+        
+        DDLogInfo(@"SaveMyProfileRequest url: %@",url);
+        [self.paramDic safeSetObject:uid forKey:@"uid"];
+        [self.paramDic safeSetValue:mobile forKey:@"mobile"];
+    }
+    return self;
+}
+
+
+-(YTKRequestMethod)requestMethod{
+    return YTKRequestMethodPost;
+}
+
+-(id)requestArgument{
+    return self.paramDic;
+}
+
+@end

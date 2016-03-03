@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack
+END
+DDLog.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDLog.h
+END
+DDLog+LOGV.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDLog+LOGV.h
+END
+DDFileLogger.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDFileLogger.m
+END
+DDASLLogger.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDASLLogger.m
+END
+DDTTYLogger.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDTTYLogger.m
+END
+DDLogMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDLogMacros.h
+END
+DDLog.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDLog.m
+END
+DDAbstractDatabaseLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDAbstractDatabaseLogger.h
+END
+DDAbstractDatabaseLogger.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDAbstractDatabaseLogger.m
+END
+DDASLLogCapture.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDASLLogCapture.h
+END
+DDAssertMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDAssertMacros.h
+END
+DDLegacyMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDLegacyMacros.h
+END
+DDASLLogCapture.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDASLLogCapture.m
+END
+CocoaLumberjack.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/CocoaLumberjack.h
+END
+DDASLLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDASLLogger.h
+END
+DDFileLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDFileLogger.h
+END
+DDTTYLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Lumberjack/DDTTYLogger.h
+END

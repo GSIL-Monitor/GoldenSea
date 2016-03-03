@@ -1,0 +1,17 @@
+//
+//  RCSPlatRespBaseModel.h
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/16.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "HYBaseModel.h"
+
+@interface RCSPlatRespBaseModel : HYBaseModel
+
+@property (assign, nonatomic) NSInteger code; //返回结果
+@property (copy, nonatomic) NSString* message; //返回结果描述
+//@property (nonatomic, strong) NSString* data; //详细信息
+
+@end

@@ -1,0 +1,64 @@
+//
+//  HYLastCrashReporter.m
+//  _Client-iOS-Common
+//
+//  Created by shenme on 13-4-10.
+//  Copyright (c) 2013年 _.com. All rights reserved.
+//
+
+#import "HYLastCrashReporter.h"
+#import "NSFileManagerEX.h"
+#define CRASH_ACTION_CODE_BASE      5000000
+
+@implementation HYLastCrashReporter
+
++ (NSString*)fileNameWithTask:(NSString*)taskName
+{
+    return [[NSFileManager docDir] stringByAppendingFormat:@"/LastCrashFiles/%@", taskName];
+}
+
++ (void)scanLastTracks
+{
+    NSString* actionName = @"ASIHttpRequest_RunPACScript";
+    NSString* fileName = [HYLastCrashReporter fileNameWithTask:actionName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileName])
+    {
+        @try
+        {
+            NSDictionary* data = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+            NSString* dataString = [data JSONString];
+            
+            //todo trace
+        }
+        @catch (NSException *exception)
+        {
+            
+        }
+        @finally
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:fileName error:nil];
+        }
+    }
+}
+
++ (void)startTrack:(NSString*)taskName data:(NSDictionary*)data
+{
+    BOOL isDirectory = NO;
+    NSString* directoryPath = [[NSFileManager docDir] stringByAppendingFormat:@"/LastCrashFiles"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:&isDirectory] || !isDirectory)
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    
+    [NSKeyedArchiver archiveRootObject:data toFile:[HYLastCrashReporter fileNameWithTask:taskName]];
+}
+
++ (void)endTrack:(NSString*)taskName
+{
+    [[NSFileManager defaultManager] removeItemAtPath:[HYLastCrashReporter fileNameWithTask:taskName] error:nil];
+}
+
+@end

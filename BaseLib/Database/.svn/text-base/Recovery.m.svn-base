@@ -1,0 +1,154 @@
+//
+//  Recovery.m
+//
+
+#import "Recovery.h"
+
+
+@interface Recovery()
+{
+    Connection *db_;
+}
+@end
+
+@implementation Recovery
+
+@synthesize recoverDb=recoverDb_;
+
++(Recovery *)begin:(Connection *)connection filePath:(NSString*)filepath
+{
+    Recovery *r = [[Recovery alloc] initWithConnection:connection];
+    if (![r initialize:filepath]) {
+        [r shutdown:POISON];
+        return nil;
+    }
+    return r;
+}
+
+
++(BOOL)recovered:(Recovery *)r
+{
+    return  [r backup];
+}
+
+-(id)initWithConnection:(Connection *)connection
+{
+    self = [super init];
+    if (self) {
+        db_ = connection;
+        recoverDb_ = [[Connection alloc] init];
+        
+        if (db_.pageSize) {
+            [recoverDb_ setPageSize:db_.pageSize];
+        }
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [self shutdown:RAZE_AND_POISON];
+}
+
+-(BOOL)initialize:(NSString *)dbPath
+{
+
+    [db_ rollbackAllTransactions];
+    
+    if (![recoverDb_ openTemporary]) {
+        return NO;
+    }
+    
+    // Turn on |SQLITE_RecoveryMode| for the handle, which allows
+    // reading certain broken databases.
+    if (![recoverDb_ execute:@"PRAGMA writable_schema=1"]) {
+        return NO;
+    }
+    if (![recoverDb_ attachDatabase:dbPath attachmentPoint:@"corrupt"]) {
+        return NO;
+    }
+   
+    return YES;
+}
+
+-(BOOL)backup
+{
+    if (!db_) {
+        return NO;
+    }
+
+    if (!recoverDb_.isOpen) {
+        return NO;
+    }
+
+    NSString *kMain = @"main";
+    sqlite3_backup* backup = sqlite3_backup_init(db_.db, [kMain UTF8String],
+                                                 recoverDb_.db, [kMain UTF8String]);
+    if (!backup) {
+        // Error code is in the destination database handle.
+        int err = sqlite3_errcode(db_.db);
+        NSLog(@"sqlite3_backup_init() failed: %d", err);
+        return NO;
+    }
+    
+    // -1 backs up the entire database.
+    int rc = sqlite3_backup_step(backup, -1);
+    int pages = sqlite3_backup_pagecount(backup);
+    if (pages <= 0) {
+        return NO;
+    }
+    // TODO(shess): sqlite3_backup_finish() appears to allow returning a
+    // different value from sqlite3_backup_step().  Circle back and
+    // figure out if that can usefully inform the decision of whether to
+    // retry or not.
+    sqlite3_backup_finish(backup);
+    if (rc != SQLITE_DONE) {
+        NSLog(@"sqlite3_backup_step() failed: %@", [NSString stringWithUTF8String:sqlite3_errmsg(db_.db)]);
+        return NO;
+    }
+    
+    // The destination database was locked.  Give up, but leave the data
+    // in place.  Maybe it won't be locked next time.
+    if (rc == SQLITE_BUSY || rc == SQLITE_LOCKED) {
+        [self shutdown:POISON];
+        return NO;
+    }
+    
+    // Running out of memory should be transient, retry later.
+    if (rc == SQLITE_NOMEM) {
+        [self shutdown:POISON];
+        return NO;
+    }
+    
+    // TODO(shess): For now, leave the original database alone, pending
+    // results from Sqlite.RecoveryStep.  Some errors should probably
+    // route to RAZE_AND_POISON.
+    if (rc != SQLITE_DONE) {
+        [self shutdown:POISON];
+        return NO;
+    }
+    
+    // Clean up the recovery db, and terminate the main database
+    // connection.
+    [self shutdown:POISON];
+    return YES;
+}
+
+-(void)shutdown:(Disposition) raze
+{
+    if (!db_) {
+        return;
+    }
+
+    [recoverDb_ close];
+
+    if(raze == RAZE_AND_POISON) {
+        [db_ razeAndClose];
+    } else if (raze == POISON) {
+        [db_ poison];
+    }
+
+    db_ = nil;
+
+}
+@end

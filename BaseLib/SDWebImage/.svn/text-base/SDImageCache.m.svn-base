@@ -1,0 +1,947 @@
+/*
+ * This file is part of the SDWebImage package.
+ * (c) Olivier Poitrey <rs@dailymotion.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#import "SDImageCache.h"
+#import "SDWebImageDecoder.h"
+#import "UIImage+MultiFormat.h"
+#import <CommonCrypto/CommonDigest.h>
+#import "NSData+ImageContentType.h"
+#import "UIImage+Scale.h"
+#import "SDWebImageManager.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
+#import "RegexKitLite.h"
+#import <objc/runtime.h>
+#import "TBImageUtility.h"
+
+static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
+// PNG signature bytes and data (below)
+static unsigned char kPNGSignatureBytes[8] = {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A};
+static NSData *kPNGSignatureData = nil;
+static char smallCopyKey;
+static NSLock *levelModelLock;
+
+BOOL ImageDataHasPNGPreffix(NSData *data);
+
+BOOL ImageDataHasPNGPreffix(NSData *data) {
+    NSUInteger pngSignatureLength = [kPNGSignatureData length];
+    if ([data length] >= pngSignatureLength) {
+        if ([[data subdataWithRange:NSMakeRange(0, pngSignatureLength)] isEqualToData:kPNGSignatureData]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+@interface SDImageCache ()
+
+@property (strong, nonatomic) NSCache *memCache;
+@property (strong, nonatomic) NSString *diskCachePath;
+@property (strong, nonatomic) NSMutableArray *customPaths;
+@property (SDDispatchQueueSetterSementics, nonatomic) dispatch_queue_t ioQueue;
+
+@property (strong, nonatomic) NSString *offlineCachePath;
+@property (strong, nonatomic) NSMutableDictionary *levelModelDict;
+@property (strong, nonatomic) NSMutableDictionary *md5ImageKeyDict;
+@property (assign, nonatomic) BOOL cleanDiskShouldStop;
+
+@end
+
+
+@implementation SDImageCache
+{
+    NSFileManager *_fileManager;
+}
+
++ (SDImageCache *)sharedImageCache
+{
+    static dispatch_once_t once;
+    static id instance;
+    dispatch_once(&once, ^{
+        instance = [self new];
+        kPNGSignatureData = [NSData dataWithBytes:kPNGSignatureBytes length:8];
+        ((SDImageCache *)instance).maxMemoryCost = [instance maxCostByPhoneRAM];
+    });
+    return instance;
+}
+
+- (id)init
+{
+    return [self initWithNamespace:@"default"];
+}
+
+- (id)initWithNamespace:(NSString *)ns
+{
+    if ((self = [super init]))
+    {
+        NSString *fullNamespace = [@"com.hackemist.SDWebImageCache." stringByAppendingString:ns];
+        
+        // Create IO serial queue
+        _ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
+        
+        // Init default values
+        _maxCacheAge = kDefaultCacheMaxCacheAge;
+        _maxCacheSize = 192 * 1024 * 1024;
+        _maxOfflineCacheSize = 48 * 1024 * 1024;
+        
+        // Init the memory cache
+        _memCache = [[NSCache alloc] init];
+        _memCache.name = fullNamespace;
+        [_memCache setCountLimit:50];
+        
+        // Init the disk cache
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        _diskCachePath = [paths[0] stringByAppendingPathComponent:fullNamespace];
+        paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        _offlineCachePath = [paths[0] stringByAppendingPathComponent:@"OfflineImageCache"];
+        
+        // 初始化分级模型
+        [self setupLevelModel];
+        
+        dispatch_sync(_ioQueue, ^{
+            _fileManager = [NSFileManager new];
+        });
+        
+        // Subscribe to app events
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(clearMemory)
+                                                     name:UIApplicationDidReceiveMemoryWarningNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(cleanDisk)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(backgroundCleanDisk)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(stopCleanDisk)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
+        
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    SDDispatchQueueRelease(_ioQueue);
+}
+
+- (void)addReadOnlyCachePath:(NSString *)path
+{
+    if (!self.customPaths)
+    {
+        self.customPaths = [NSMutableArray new];
+    }
+    
+    if (![self.customPaths containsObject:path])
+    {
+        [self.customPaths addObject:path];
+    }
+}
+
+#pragma mark SDImageCache (private)
+
+- (void)stopCleanDisk
+{
+    self.cleanDiskShouldStop = YES;
+}
+
+- (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path
+{
+    NSString *filename = [self cachedFileNameForKey:key];
+    return [path stringByAppendingPathComponent:filename];
+}
+
+- (NSString *)defaultCachePathForKey:(NSString *)key
+{
+    return [self cachePathForKey:key inPath:self.diskCachePath];
+}
+
+- (NSString *)cachedFileNameForKey:(NSString *)key
+{
+    const char *str = [key UTF8String];
+    if (str == NULL)
+    {
+        str = "";
+    }
+    unsigned char r[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, (CC_LONG)strlen(str), r);
+    NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                          r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
+    
+    return filename;
+}
+
+#pragma mark ImageCache
+
+- (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk
+{
+    if (!image || !key)
+    {
+        return;
+    }
+    [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
+    
+    if (toDisk)
+    {
+        dispatch_async(self.ioQueue, ^
+                       {
+                           NSData *data = imageData;
+                           
+                           if (image && (recalculate || !data)) {
+#if TARGET_OS_IPHONE
+                               // We need to determine if the image is a PNG or a JPEG
+                               // PNGs are easier to detect because they have a unique signature (http://www.w3.org/TR/PNG-Structure.html)
+                               // The first eight bytes of a PNG file always contain the following (decimal) values:
+                               // 137 80 78 71 13 10 26 10
+                               
+                               // We assume the image is PNG, in case the imageData is nil (i.e. if trying to save a UIImage directly),
+                               // we will consider it PNG to avoid loosing the transparency
+                               BOOL imageIsPng = YES;
+                               
+                               // But if we have an image data, we will look at the preffix
+                               if ([imageData length] >= [kPNGSignatureData length]) {
+                                   imageIsPng = ImageDataHasPNGPreffix(imageData);
+                               }
+                               
+                               if (imageIsPng) {
+                                   data = UIImagePNGRepresentation(image);
+                               }
+                               else {
+                                   data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+                               }
+#else
+                               data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];
+#endif
+                           }
+                           
+                           if (data)
+                           {
+                               NSString *urlFragment = [[NSURL URLWithString:key] fragment];
+                               BOOL isOfflineImage = [urlFragment length] > 4 && [[urlFragment substringToIndex:4] isEqualToString:@"_cs="];
+                               NSString *cachePath = isOfflineImage ? self.offlineCachePath : self.diskCachePath;
+                               
+                               NSDate* startOfWrite = [NSDate  date];
+                               
+                               if (![_fileManager fileExistsAtPath:cachePath])
+                               {
+                                   [_fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:NULL];
+                               }
+                               
+                               if ([_fileManager createFileAtPath:isOfflineImage ? [self offlineCachePathForKey:key] : [self defaultCachePathForKey:key] contents:data attributes:nil])
+                               {
+                                   //新下载图片加入阶梯索引
+                                   [self addImageLevelModelSizeForKey:key];
+                               }
+                           }
+                       });
+    }
+}
+
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key
+{
+    [self storeImage:image recalculateFromImage:YES imageData:nil forKey:key toDisk:YES];
+}
+
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk
+{
+    [self storeImage:image recalculateFromImage:YES imageData:nil forKey:key toDisk:toDisk];
+}
+
+- (BOOL)diskImageExistsWithKey:(NSString *)key
+{
+    __block BOOL exists = NO;
+    dispatch_sync(_ioQueue, ^{
+        exists = [_fileManager fileExistsAtPath:[self defaultCachePathForKey:key]];
+    });
+    
+    return exists;
+}
+
+- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key
+{
+    UIImage* img = [self.memCache objectForKey:key];
+    
+    return img;
+}
+
+- (UIImage *)imageFromDiskCacheForKey:(NSString *)key
+{
+    return [self imageFromDiskCacheForKey:key needSmallCopy:NO];
+}
+
+- (UIImage *)imageFromDiskCacheForKey:(NSString *)key needSmallCopy:(BOOL)needSmallCopy
+{
+    // First check the in-memory cache...
+    UIImage *image = [self imageFromMemoryCacheForKey:key];
+    if (image) {
+        return image;
+    }
+    
+    // Second check the disk cache...
+    UIImage *diskImage = [self diskImageForKey:key needSmallCopy:needSmallCopy];
+    if (diskImage) {
+        CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
+        [self.memCache setObject:diskImage forKey:key cost:cost];
+    }
+    
+    return diskImage;
+}
+
+- (NSData *)diskImageDataBySearchingAllPathsForKey:(NSString *)key
+{
+    NSString *urlFragment = [[NSURL URLWithString:key] fragment];
+    BOOL isOfflineImage = [urlFragment length] > 4 && [[urlFragment substringToIndex:4] isEqualToString:@"_cs="];
+    
+    NSString *defaultPath = isOfflineImage ? [self offlineCachePathForKey:key] : [self defaultCachePathForKey:key];
+    
+    NSDate* startOfReadTime = [NSDate date];
+    
+    NSData *data = [NSData dataWithContentsOfFile:defaultPath];
+    
+    if (data)
+    {
+        return data;
+    }
+    
+    for (NSString *path in self.customPaths) {
+        NSString *filePath = [self cachePathForKey:key inPath:path];
+        NSData *imageData = [NSData dataWithContentsOfFile:filePath];
+        if (imageData) {
+            return imageData;
+        }
+    }
+    
+    return nil;
+}
+
+- (UIImage *)diskImageForKey:(NSString *)key
+{
+    return [self diskImageForKey:key needSmallCopy:NO];
+}
+
+// 如果有小图版本，可先返回当 Placeholder
+- (UIImage *)diskImageForKey:(NSString *)key needSmallCopy:(BOOL)needSmallCopy
+{
+    if (!key || [key length] == 0) {
+        return nil;
+    }
+    
+    NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
+    
+    if (data) {
+        
+        UIImage *image = [self scaledImageForKey:key image:data];
+        
+        image = [UIImage decodedImageWithImage:image];
+        
+        [[SDImageCache sharedImageCache] storeImage:image forKey:key];
+        
+        return image;
+    }
+        
+    //有大尺寸图时裁剪获得小图，有小尺寸图时充当 placeholder
+    NSString *baseKey = [TBImageUtility imageBaseUrlStringFromURLString:key];
+    NSString *suffixString = [key substringFromIndex:[baseKey length]];
+    CGSize imageSize = [TBImageUtility imageSizeFromURLString:suffixString];
+    NSDictionary *levelDict = [self getImageLevelModelSizeForKey:key];
+
+    if (levelDict || ([[levelDict allKeys][0] integerValue] < imageSize.width && !needSmallCopy)) {
+        NSInteger levelSize = [[levelDict allKeys][0] integerValue];
+        if (needSmallCopy || levelSize >= (NSInteger)imageSize.width) {
+            NSString *cachedImageUrl = [baseKey stringByAppendingString:[levelDict allValues][0]];
+            data = [self diskImageDataBySearchingAllPathsForKey:cachedImageUrl];
+            if (data) {
+                
+                UIImage *image = [self scaledImageForKey:key image:data];
+                
+                image = [UIImage decodedImageWithImage:image];
+                
+                UIImage *resizeImage = [image imageByScalingAndCroppingToSize:imageSize];
+                
+                NSLog(@"图片 %@ 找到了 %ld 尺寸进行填充", key, (long)levelSize);
+                
+                if (levelSize < (NSInteger)imageSize.width) {
+                    objc_setAssociatedObject(resizeImage, &smallCopyKey, @(SDImageCacheTypeSmallCopy), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                } else {
+                    [[SDImageCache sharedImageCache] storeImage:resizeImage forKey:key];
+                }
+                
+                return resizeImage;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (UIImage *)scaledImageForKey:(NSString *)key image:(NSObject *)image {
+    return SDScaledImageForKey(key, image);
+}
+
+- (NSOperation *)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDImageCacheType cacheType))doneBlock
+{
+    return [self queryDiskCacheForKey:key needSmallCopy:NO done:doneBlock];
+}
+
+- (NSOperation *)queryDiskCacheForKey:(NSString *)key needSmallCopy:(BOOL)needSmallCopy done:(void (^)(UIImage *image, SDImageCacheType cacheType))doneBlock
+{
+    NSOperation *operation = [NSOperation new];
+    
+    if (!doneBlock) return nil;
+    
+    if (!key)
+    {
+        doneBlock(nil, SDImageCacheTypeNone);
+        return nil;
+    }
+    
+    // First check the in-memory cache...
+    UIImage *image = [self imageFromMemoryCacheForKey:key];
+    
+    if (image)
+    {
+        doneBlock(image, SDImageCacheTypeMemory);
+
+        return nil;
+    }
+
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(self.ioQueue, ^{
+        if (operation.isCancelled) {
+            return;
+        }
+        
+        @autoreleasepool {
+            UIImage *diskImage = [weakSelf diskImageForKey:key needSmallCopy:needSmallCopy];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(objc_getAssociatedObject(diskImage, &smallCopyKey)) {
+                    doneBlock(diskImage, SDImageCacheTypeSmallCopy);
+                } else {
+                    doneBlock(diskImage, SDImageCacheTypeDisk);
+                }
+            });
+        }
+    });
+    
+    return operation;
+}
+
+- (void)removeImageForKey:(NSString *)key
+{
+    [self removeImageForKey:key fromDisk:YES];
+}
+
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk
+{
+    if (key == nil) {
+        return;
+    }
+    
+    [self.memCache removeObjectForKey:key];
+    
+    if (fromDisk) {
+        dispatch_async(self.ioQueue, ^{
+            [_fileManager removeItemAtPath:[self defaultCachePathForKey:key] error:nil];
+        });
+    }
+}
+
+- (void)setMaxMemoryCost:(NSUInteger)maxMemoryCost
+{
+    self.memCache.totalCostLimit = maxMemoryCost;
+}
+
+- (NSUInteger)maxMemoryCost
+{
+    return self.memCache.totalCostLimit;
+}
+
+- (void)clearMemory
+{
+    [self.memCache removeAllObjects];
+}
+
+- (void)clearDisk
+{
+    [self clearDiskOnCompletion:nil];
+}
+
+- (void)clearDiskOnCompletion:(void (^)())completion
+{
+    dispatch_async(self.ioQueue, ^{
+        [_fileManager removeItemAtPath:self.diskCachePath error:nil];
+        [_fileManager createDirectoryAtPath:self.diskCachePath
+                withIntermediateDirectories:YES
+                                 attributes:nil
+                                      error:NULL];
+        
+        //同时清除离线缓存和缓存索引
+        [_fileManager removeItemAtPath:self.offlineCachePath error:nil];
+        [_fileManager createDirectoryAtPath:self.offlineCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
+        
+        [self cleanLevelModel];
+        [self saveImageLevelModel];
+        
+        if (completion) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion();
+            });
+        }
+    });
+}
+
+- (void)cleanDisk
+{
+    [self cleanDiskWithCompletionBlock:nil];
+}
+
+- (void)cleanDiskWithCompletionBlock:(void (^)())completionBlock {
+    self.cleanDiskShouldStop = NO;
+    dispatch_async(self.ioQueue, ^{
+        
+        //3类目录清理：常规目录、离线目录、AppGroup目录
+        NSArray *pathArray = nil;
+        NSString *appGroupImageCachePath = nil;
+        if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
+            NSURL *containerURL = [_fileManager containerURLForSecurityApplicationGroupIdentifier:@"group.com.taobao.taobao4iphone.documents"];
+            appGroupImageCachePath = [[[containerURL URLByAppendingPathComponent:@"Library/Caches/ImageCache"] absoluteString] substringFromIndex:7];
+        }
+        
+        NSInteger totalImageNum = 0;
+        pathArray = appGroupImageCachePath ? @[self.diskCachePath, self.offlineCachePath, appGroupImageCachePath] : @[self.diskCachePath, self.offlineCachePath];
+        
+        for (NSString *cacheURL in pathArray) {
+            BOOL isOfflineCache = [cacheURL isEqualToString:self.offlineCachePath];
+            NSURL *diskCacheURL = [NSURL fileURLWithPath:cacheURL isDirectory:YES];
+            NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
+            
+            // This enumerator prefetches useful properties for our cache files.
+            NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtURL:diskCacheURL
+                                                       includingPropertiesForKeys:resourceKeys
+                                                                          options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                     errorHandler:NULL];
+            
+            NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-self.maxCacheAge];
+            NSMutableDictionary *cacheFiles = [NSMutableDictionary dictionary];
+            NSUInteger currentCacheSize = 0;
+            
+            // Enumerate all of the files in the cache directory.  This loop has two purposes:
+            //
+            //  1. Removing files that are older than the expiration date.
+            //  2. Storing file attributes for the size-based cleanup pass.
+            for (NSURL *fileURL in fileEnumerator) {
+                if (self.cleanDiskShouldStop) {
+                    return;
+                }
+                NSDictionary *resourceValues = [fileURL resourceValuesForKeys:resourceKeys error:NULL];
+                
+                // Skip directories.
+                if ([resourceValues[NSURLIsDirectoryKey] boolValue]) {
+                    continue;
+                }
+                
+                // Remove files that are older than the expiration date;
+                NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
+                if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate] && !isOfflineCache) {
+                    if ([_fileManager removeItemAtURL:fileURL error:nil]) {
+                        [self removeImageLevelModelSizeForMD5:[fileURL lastPathComponent]];
+                    }
+                    continue;
+                }
+                
+                // Store a reference to this file and account for its total size.
+                NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
+                currentCacheSize += [totalAllocatedSize unsignedIntegerValue];
+                [cacheFiles setObject:resourceValues forKey:fileURL];
+            }
+            
+            // If our remaining disk cache exceeds a configured maximum size, perform a second
+            // size-based cleanup pass.  We delete the oldest files first.
+            NSInteger cacheSize = 0;
+            if (isOfflineCache) {
+                cacheSize = self.maxOfflineCacheSize;
+            } else if ([cacheURL isEqualToString:self.diskCachePath]) {
+                cacheSize = self.maxCacheSize;
+            } else {
+                //AppGroup放小量
+                cacheSize = 5 * 1024 * 1024;
+            }
+            
+            totalImageNum += [[cacheFiles allKeys] count];
+            if (cacheSize > 0 && currentCacheSize > cacheSize) {
+                // Target half of our maximum cache size for this cleanup pass.
+                const NSUInteger desiredCacheSize = isOfflineCache ? cacheSize : cacheSize / 2;
+                
+                // Sort the remaining cache files by their last modification time (oldest first).
+                NSArray *sortedFiles = [cacheFiles keysSortedByValueWithOptions:NSSortConcurrent
+                                                                usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                                                                    return [obj1[NSURLContentModificationDateKey] compare:obj2[NSURLContentModificationDateKey]];
+                                                                }];
+                
+                // Delete files until we fall below our desired cache size.
+                for (NSURL *fileURL in sortedFiles) {
+                    if (self.cleanDiskShouldStop) {
+                        return;
+                    }
+                    if ([_fileManager removeItemAtURL:fileURL error:nil]) {
+                        totalImageNum--;
+                        [self removeImageLevelModelSizeForMD5:[fileURL lastPathComponent]];
+                        
+                        NSDictionary *resourceValues = cacheFiles[fileURL];
+                        NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
+                        currentCacheSize -= [totalAllocatedSize unsignedIntegerValue];
+                        
+                        if (currentCacheSize < desiredCacheSize) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //针对图片文件和索引的松依赖，如果系统自动删除缓存图片文件时，手淘得不到任何通知处理，为防止索引冗余过大问题，超过一定值需要重建索引
+        if (totalImageNum + 20 < [self getImageLevelIndexCount]) {
+            [self cleanLevelModel];
+        }
+        
+        [self saveImageLevelModel];
+        
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock();
+            });
+        }
+    });
+}
+
+- (void)backgroundCleanDisk {
+    UIApplication *application = [UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        // Clean up any unfinished task business by marking where you
+        // stopped or ending the task outright.
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    // Start the long-running task and return immediately.
+    [self cleanDiskWithCompletionBlock:^{
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+}
+
+- (NSUInteger)getSize {
+    __block NSUInteger size = 0;
+    dispatch_sync(self.ioQueue, ^{
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:self.diskCachePath];
+        for (NSString *fileName in fileEnumerator) {
+            NSString *filePath = [self.diskCachePath stringByAppendingPathComponent:fileName];
+            NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+            size += [attrs fileSize];
+        }
+    });
+    return size;
+}
+
+- (NSUInteger)getDiskCount {
+    __block NSUInteger count = 0;
+    dispatch_sync(self.ioQueue, ^{
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:self.diskCachePath];
+        count = [[fileEnumerator allObjects] count];
+    });
+    return count;
+}
+
+- (void)calculateSizeWithCompletionBlock:(void (^)(NSUInteger fileCount, NSUInteger totalSize))completionBlock {
+    NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
+    
+    dispatch_async(self.ioQueue, ^{
+        NSUInteger fileCount = 0;
+        NSUInteger totalSize = 0;
+        
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtURL:diskCacheURL
+                                                   includingPropertiesForKeys:@[NSFileSize]
+                                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                 errorHandler:NULL];
+        
+        for (NSURL *fileURL in fileEnumerator) {
+            NSNumber *fileSize;
+            [fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:NULL];
+            totalSize += [fileSize unsignedIntegerValue];
+            fileCount += 1;
+        }
+        
+        if (completionBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(fileCount, totalSize);
+            });
+        }
+    });
+}
+
+- (NSString *)offlineCachePathForKey:(NSString *)key
+{
+    return [self cachePathForKey:key inPath:self.offlineCachePath];
+}
+
+- (NSUInteger)maxCostByPhoneRAM {
+    unsigned long long   phoneSizeB = [NSProcessInfo processInfo].physicalMemory; // 单位:Byte
+    unsigned long long   phoneSizeMB = phoneSizeB / (1024 * 1024); // 单位MB
+    
+    // 返回单位是Byte
+    if (phoneSizeMB <= 512) {
+        return 10 * 1024 * 1024;
+    } else if (phoneSizeMB <= 1024) {
+        return 20 * 1024 * 1024;
+    } else {
+        return 40 * 1024 * 1024;
+    }
+}
+
+#pragma mark - 阶梯模型索引
+
+/**
+ *  imageKey 信息获取辅助函数
+ */
+- (NSDictionary *)imageInfoFromKey:(NSString *)imageKey
+{
+    NSString *baseUrl = imageKey;
+    
+    NSArray *matchArray = [baseUrl captureComponentsMatchedByRegex:@"_(\\d+)x(\\d+).*"];
+    if ([matchArray count] == 3) {
+        NSInteger width = [matchArray[1] integerValue];
+        NSInteger height = [matchArray[2] integerValue];
+        if (width == height) {
+            return @{@"baseURL": [baseUrl substringToIndex:[baseUrl length] - [matchArray[0] length]],
+                     @"width": [NSString stringWithFormat:@"%ld", (long)width],
+                     @"suffix": matchArray[0]};
+        }
+    }
+    
+    return nil;
+}
+
+/**
+ *  初始化阶梯索引
+ */
+- (void)setupLevelModel
+{
+    levelModelLock = [[NSLock alloc] init];
+    
+    NSData *levelInfoData = [NSData dataWithContentsOfMappedFile:[self levelModelFilePath]];
+    if (levelInfoData) {
+        NSDictionary *levelMetaDict = (NSDictionary *)[NSPropertyListSerialization propertyListWithData:levelInfoData options:0 format:NULL error:NULL];
+        _levelModelDict = [levelMetaDict[@"levelInfo"] mutableCopy];
+        _md5ImageKeyDict = [levelMetaDict[@"md5Info"] mutableCopy];
+    }
+    
+    if (!_levelModelDict) {
+        _levelModelDict = [NSMutableDictionary dictionary];
+    }
+    
+    if (!_md5ImageKeyDict) {
+        _md5ImageKeyDict = [NSMutableDictionary dictionary];
+    }
+}
+
+/**
+ *  获取已索引图片文件个数
+ */
+- (NSInteger)getImageLevelIndexCount
+{
+    [levelModelLock lock];
+    NSInteger count = [[self.md5ImageKeyDict allKeys] count];
+    [levelModelLock unlock];
+    
+    return count;
+}
+
+/**
+ *  从阶梯索引索引获取尺寸
+ *
+ *  @param size 图片本身宽
+ *  @param imageKey 图片key
+ */
+- (NSDictionary *)getImageLevelModelSizeForKey:(NSString *)imageKey
+{
+    NSDictionary *imageInfo = [self imageInfoFromKey:imageKey];
+    NSDictionary *result = nil;
+    
+    if (imageInfo) {
+        [levelModelLock lock];
+        
+        NSArray *levelArray = self.levelModelDict[imageInfo[@"baseURL"]];
+        if (levelArray) {
+            NSInteger width = [imageInfo[@"width"] integerValue];
+            for (NSDictionary *obj in levelArray) {
+                NSInteger value = [[obj allKeys][0] integerValue];
+                if (width == value) {
+                    result = obj;
+                    break;
+                } else if (width > value) {
+                    if (!result) {
+                        //小图 placehold
+                        result = obj;
+                    }
+                    break;
+                } else {
+                    //大图裁剪
+                    result = obj;
+                }
+            }
+        }
+        
+        [levelModelLock unlock];
+    }
+    
+    return result;
+}
+
+/**
+ *  将尺寸纳入阶梯索引
+ *
+ *  @param size 图片本身宽
+ *  @param imageKey 图片key
+ */
+- (void)addImageLevelModelSizeForKey:(NSString *)imageKey
+{
+    NSDictionary *imageInfo = [self imageInfoFromKey:imageKey];
+    if (imageInfo) {
+        
+        [levelModelLock lock];
+        
+        NSArray *levelArray = self.levelModelDict[imageInfo[@"baseURL"]];
+        NSInteger width = [imageInfo[@"width"] integerValue];
+        if (!levelArray) {
+            levelArray = @[@{imageInfo[@"width"]: imageInfo[@"suffix"]}];
+            self.levelModelDict[imageInfo[@"baseURL"]] = levelArray;
+            self.md5ImageKeyDict[[self cachedFileNameForKey:imageKey]] = imageKey;
+        } else {
+            NSInteger newLevelIndex = 0;
+            for (NSDictionary *obj in levelArray) {
+                NSInteger value = [[obj allKeys][0] integerValue];
+                if (width == value) {
+                    //无需变动
+                    newLevelIndex = -1;
+                    break;
+                } else if (width > value) {
+                    break;
+                } else {
+                    newLevelIndex++;
+                }
+            }
+            
+            if (newLevelIndex != -1) {
+                NSMutableArray *levelArrayCopy = [levelArray mutableCopy];
+                [levelArrayCopy insertObject:@{imageInfo[@"width"]: imageInfo[@"suffix"]} atIndex:newLevelIndex];
+                self.levelModelDict[imageInfo[@"baseURL"]] = [levelArrayCopy copy];
+                self.md5ImageKeyDict[[self cachedFileNameForKey:imageKey]] = imageKey;
+            }
+            
+        }
+        
+        [levelModelLock unlock];
+    }
+}
+
+/**
+ *  将尺寸从阶梯索引删除
+ *
+ *  @param size 图片本身宽
+ *  @param imageKey 图片key
+ */
+- (void)removeImageLevelModelSizeForMD5:(NSString *)md5
+{
+    [levelModelLock lock];
+    
+    NSString *imageKey = self.md5ImageKeyDict[md5];
+    NSDictionary *imageInfo = [self imageInfoFromKey:imageKey];
+    if (imageInfo) {
+        
+        NSArray *levelArray = self.levelModelDict[imageInfo[@"baseURL"]];
+        if (!levelArray) {
+            return;
+        } else {
+            NSMutableArray *levelArrayCopy = [levelArray mutableCopy];
+            [levelArrayCopy removeObject:@{imageInfo[@"width"]: imageInfo[@"suffix"]}];
+            if ([levelArrayCopy count] < 1) {
+                [self.levelModelDict removeObjectForKey:imageInfo[@"baseURL"]];
+            } else {
+                self.levelModelDict[imageInfo[@"baseURL"]] = [levelArrayCopy copy];
+            }
+        }
+    }
+    
+    [self.md5ImageKeyDict removeObjectForKey:md5];
+    
+    [levelModelLock unlock];
+}
+
+/**
+ *  清除分级模型索引
+ */
+- (void)cleanLevelModel
+{
+    [levelModelLock lock];
+    
+    [self.levelModelDict removeAllObjects];
+    [self.md5ImageKeyDict removeAllObjects];
+    
+    [levelModelLock unlock];
+}
+
+/**
+ *  保存图片索引LRU信息
+ */
+- (void)saveImageLevelModel
+{
+    [levelModelLock lock];
+    
+    NSDictionary *levelModelDictCopy = [self.levelModelDict copy];
+    NSDictionary *md5ImageKeyDictCopy = [self.md5ImageKeyDict copy];
+    
+    [levelModelLock unlock];
+    
+//    static dispatch_queue_t levelModelQueue = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        levelModelQueue = dispatch_queue_create("com.taobao.SDImageCache.ImageLevelModelQueue", NULL);
+//    });
+//    
+//    dispatch_async(levelModelQueue, ^{
+    
+    if (levelModelDictCopy && md5ImageKeyDictCopy) {
+        NSData *data = [NSPropertyListSerialization dataWithPropertyList:@{@"levelInfo": levelModelDictCopy, @"md5Info": md5ImageKeyDictCopy} format:NSPropertyListBinaryFormat_v1_0 options:0 error:nil];
+        [data writeToFile:[self levelModelFilePath] atomically:NO];
+    }
+//    });
+}
+
+/**
+ *  LRU缓存索引文件位置
+ *
+ *  @return LRU缓存索引文件位置
+ */
+- (NSString *)levelModelFilePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    return [paths[0] stringByAppendingPathComponent:@"tbcdnimage-levelmodel.metadata"];
+}
+
+@end

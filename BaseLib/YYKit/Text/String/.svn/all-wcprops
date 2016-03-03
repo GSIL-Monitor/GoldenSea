@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String
+END
+UIPasteboard+YYText.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/UIPasteboard+YYText.m
+END
+NSParagraphStyle+YYText.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/NSParagraphStyle+YYText.h
+END
+YYTextAttribute.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextAttribute.h
+END
+YYTextArchiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextArchiver.h
+END
+YYTextRunDelegate.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextRunDelegate.m
+END
+NSParagraphStyle+YYText.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/NSParagraphStyle+YYText.m
+END
+YYTextAttribute.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextAttribute.m
+END
+YYTextArchiver.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextArchiver.m
+END
+NSAttributedString+YYText.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/NSAttributedString+YYText.h
+END
+YYTextUtilities.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextUtilities.h
+END
+YYTextRubyAnnotation.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextRubyAnnotation.h
+END
+NSAttributedString+YYText.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/NSAttributedString+YYText.m
+END
+YYTextUtilities.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextUtilities.m
+END
+YYTextRubyAnnotation.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextRubyAnnotation.m
+END
+YYTextParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextParser.h
+END
+UIPasteboard+YYText.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/UIPasteboard+YYText.h
+END
+YYTextRunDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextRunDelegate.h
+END
+YYTextParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/6700/code/trunk/Personal-Client-iOS/iRCS/BaseLib/YYKit/Text/String/YYTextParser.m
+END

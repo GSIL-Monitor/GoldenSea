@@ -1,0 +1,13 @@
+//
+//  UILabel+AutoResize.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UILabel (AutoResize)
+
+- (void)autoResizeWidth;
+- (void)autoResizeHeight;
+- (void)autoResize;
+
+@end

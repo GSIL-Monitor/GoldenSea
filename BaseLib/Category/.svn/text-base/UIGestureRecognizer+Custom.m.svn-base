@@ -1,0 +1,32 @@
+//
+//  UIGestureRecognizer+Custom.m
+//  TmallClient-iPhone
+//
+//  Created by walson on 14-12-11.
+//  Copyright (c) 2014年 Tmall.com. All rights reserved.
+//
+
+#import "UIGestureRecognizer+Custom.h"
+
+@implementation UIGestureRecognizer (Custom)
+
+- (void)setGestureRecognizerState:(NSNumber*)state
+{
+    NSInteger stat = [state integerValue];
+    
+    NSMethodSignature* signature = [[self class] instanceMethodSignatureForSelector:@selector(setState)];
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:self];
+    [invocation setSelector: @selector(setState)];
+    [invocation setArgument: &stat atIndex: 2];
+    [invocation invoke];
+}
+
+
+-(void)setState
+{
+    NSLog(@"UIGestureRecognizer called invalid function!!!: setGestureRecognizerState/setState");
+}
+
+
+@end

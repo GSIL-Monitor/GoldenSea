@@ -1,0 +1,28 @@
+//
+//  RCSPlatRespBaseModel.m
+//  iRCS
+//
+//  Created by YangWeitian on 15/10/16.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "RCSPlatRespBaseModel.h"
+
+@implementation RCSPlatRespBaseModel
+
+
+-(BOOL)customSetValue:(id)val forProperty:(NSString *)property
+{
+    if ([property isEqualToString:NSStringFromSelector(@selector(code))]) {
+        NSString* theVal = (NSString*)val;
+        
+        [self setValue:[NSNumber numberWithInteger:[theVal integerValue]] forKey:property];
+
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+@end

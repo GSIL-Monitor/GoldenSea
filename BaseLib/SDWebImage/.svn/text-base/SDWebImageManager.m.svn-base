@@ -1,0 +1,531 @@
+/*
+ * This file is part of the SDWebImage package.
+ * (c) Olivier Poitrey <rs@dailymotion.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#import "SDWebImageManager.h"
+#import <objc/message.h>
+#import <objc/runtime.h>
+
+@interface SDWebImageCombinedOperation : NSObject <SDWebImageOperation>
+
+@property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
+@property (copy, nonatomic) void (^cancelBlock)();
+@property (strong, nonatomic) NSOperation *cacheOperation;
+
+@end
+
+@interface SDWebImageManager ()
+
+@property (strong, nonatomic, readwrite) SDImageCache *imageCache;
+@property (strong, nonatomic, readwrite) SDWebImageDownloader *imageDownloader;
+@property (strong, nonatomic) NSMutableArray *runningOperations;
+
+@end
+
+@implementation SDWebImageManager
+
++ (id)sharedManager
+{
+    static dispatch_once_t once;
+    static id instance;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        _imageCache = [self createCache];
+        _imageDownloader = [SDWebImageDownloader new];
+        _runningOperations = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (SDImageCache *)createCache
+{
+    return [SDImageCache sharedImageCache];
+}
+
+- (NSString *)cacheKeyForURL:(NSURL *)url
+{
+    if (self.cacheKeyFilter)
+    {
+        return self.cacheKeyFilter(url);
+    }
+    else
+    {
+        return [url absoluteString];
+    }
+}
+
+- (BOOL)diskImageExistsForURL:(NSURL *)url
+{
+    NSString *key = [self cacheKeyForURL:url];
+    return [self.imageCache diskImageExistsWithKey:key];
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 基本
+
+/**
+ *  基本静默下载图片接口
+ *  注意：这个接口谨慎使用，因为是原图下载，如果过大会耗费流量
+ *
+ *  @param url            图片url
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+
+/**
+ *  添加图片大小
+ *  注意：这个接口只有在你确定图片大小，不需要底层再适配大小时使用，如果需要适配，请用楼下接口
+ *
+ *  @param url            图片url
+ *  @param imageSize      图像大小
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                  imageSize:(CGSize)imageSize
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:imageSize cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:imageSize cutType:cutType options:0 progress:nil completed:completedBlock];
+}
+
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ *  @param options        选项参数
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                    options:(SDWebImageOptions)options
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:imageSize cutType:cutType options:options progress:nil completed:completedBlock];
+}
+
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ *  @param options        选项参数
+ *  @param progress       进度回调
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                    options:(SDWebImageOptions)options
+                                   progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:imageSize cutType:cutType options:options progress:progressBlock completed:completedBlock];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 组件定位
+
+/**
+ *  基本静默下载图片接口
+ *  注意：这个接口谨慎使用，因为是原图下载，如果过大会耗费流量
+ *
+ *  @param url            图片url
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                     module:(NSString *)module
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:module imageSize:CGSizeZero cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+/**
+ *  添加图片大小
+ *  注意：这个接口只有在你确定图片大小，不需要底层再适配大小时使用，如果需要适配，请用楼下接口
+ *
+ *  @param url            图片url
+ *  @param module         调用组件模块名，为了对不同模块进行不同配置，默认则写TBCDNImageModuleDefault
+ *  @param imageSize      图像大小
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                     module:(NSString *)module
+                                  imageSize:(CGSize)imageSize
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:module imageSize:imageSize cutType:ImageCutType_None options:0 progress:nil completed:completedBlock];
+}
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param module         调用组件模块名，为了对不同模块进行不同配置，默认则写TBCDNImageModuleDefault
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                     module:(NSString *)module
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:module imageSize:imageSize cutType:cutType options:0 progress:nil completed:completedBlock];
+}
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param module         调用组件模块名，为了对不同模块进行不同配置，默认则写TBCDNImageModuleDefault
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ *  @param options        选项参数
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                     module:(NSString *)module
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                    options:(SDWebImageOptions)options
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:module imageSize:imageSize cutType:cutType options:options progress:nil completed:completedBlock];
+}
+
+/**
+ *  对应添加裁切类型
+ *
+ *  @param url            图片url
+ *  @param module         调用组件模块名，为了对不同模块进行不同配置，默认则写TBCDNImageModuleDefault
+ *  @param imageSize      图像大小
+ *  @param cutType        指定裁剪类型
+ *  @param options        选项参数
+ *  @param progress       进度回调
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                     module:(NSString *)module
+                                  imageSize:(CGSize)imageSize
+                                    cutType:(ImageCutType)cutType
+                                    options:(SDWebImageOptions)options
+                                   progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    if (!url || ![url.absoluteString length]) {
+        return nil;
+    }
+    
+    if (options & SDWebImageNoParse) {
+        return [self downloadWithParsedURL:url module:module options:options progress:progressBlock completed:completedBlock];
+    }
+    
+    //解析拼接URL
+    NSURL *parsedURL = nil;
+    Class URLParserClass = objc_getClass("TBCDNImageURLParser");
+    if (URLParserClass) {
+        parsedURL = ((id (*)(id, SEL, id, id, CGSize, CGSize, ImageCutType))objc_msgSend)(URLParserClass, NSSelectorFromString(@"parseImageURLForCDNURL:module:imageSize:viewSize:cutType:"), url, module, imageSize, CGSizeZero, cutType);
+    }
+    
+    parsedURL = parsedURL ?: url;
+    if (parsedURL) {
+        return [self downloadWithParsedURL:parsedURL module:module options:options progress:progressBlock completed:completedBlock];
+    }
+    
+    return nil;
+}
+
+/**
+ *  老接口兼容
+ *
+ *  @param url            图片url
+ *  @param options        选项参数
+ *  @param progress       进度回调
+ */
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url
+                                    options:(SDWebImageOptions)options
+                                   progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url module:TBCDNImageModuleDefault imageSize:CGSizeZero cutType:ImageCutType_None options:options progress:progressBlock completed:completedBlock];
+}
+
+/**
+ *  新接口适配：官方版本3.7.0以上开始使用此方法
+ *
+ *  @param url            图片url
+ *  @param options        选项参数
+ *  @param progress       进度回调
+ */
+- (id <SDWebImageOperation>)downloadImageWithURL:(NSURL *)url
+                                         options:(SDWebImageOptions)options
+                                        progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                       completed:(SDWebImageCompletionWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url
+                         options:options
+                        progress:progressBlock
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                           if (completedBlock) {
+                               completedBlock(image, error, cacheType, finished, url);
+                           }
+                       }];
+}
+
+
+- (id<SDWebImageOperation>)downloadWithParsedURL:(NSURL *)url
+                                          module:(NSString *)module
+                                         options:(SDWebImageOptions)options
+                                        progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                       completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    // Invoking this method without a completedBlock is pointless
+    NSParameterAssert(completedBlock);
+    
+    // Very common mistake is to send the URL using NSString object instead of NSURL. For some strange reason, XCode won't
+    // throw any warning for this type mismatch. Here we failsafe this error by allowing URLs to be passed as NSString.
+    if ([url isKindOfClass:NSString.class])
+    {
+        url = [NSURL URLWithString:(NSString *)url];
+    }
+    
+    // Prevents app crashing on argument type error like sending NSNull instead of NSURL
+    if (![url isKindOfClass:NSURL.class])
+    {
+        url = nil;
+    }
+    
+    __block SDWebImageCombinedOperation *operation = [SDWebImageCombinedOperation new];
+    __weak SDWebImageCombinedOperation *weakOperation = operation;
+    
+    if (!url)
+    {
+        dispatch_main_sync_safe(^{
+            NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:nil];
+            completedBlock(nil, error, SDImageCacheTypeNone, YES);
+        });
+        return operation;
+    }
+    
+    @synchronized (self.runningOperations)
+    {
+        [self.runningOperations addObject:operation];
+    }
+    
+    if ((options & SDWebImageNoWebP) && [url.absoluteString hasSuffix:@"_.webp"]) {
+        url = [NSURL URLWithString:[url.absoluteString substringToIndex:[url.absoluteString length] - 6]];
+    }
+    
+//    if ([module isEqualToString:TBCDNImageModuleWaterFlow] && (arc4random() % 3) == 1 && [url.absoluteString hasSuffix:@"_.webp"]) {
+//        url = [NSURL URLWithString:[url.absoluteString substringToIndex:[url.absoluteString length] - 6]];
+//    }
+    
+    NSString *key = [self cacheKeyForURL:url];
+    
+    operation.cacheOperation = [self.imageCache queryDiskCacheForKey:key needSmallCopy:!(options & SDWebImageNoSmallCopy) done:^(UIImage *image, SDImageCacheType cacheType)
+    {
+        if (operation.isCancelled)
+        {
+            @synchronized(self.runningOperations)
+            {
+                [self.runningOperations removeObject:operation];
+            }
+            
+            return;
+        }
+        
+        if ((!image || options & SDWebImageRefreshCached || cacheType == SDImageCacheTypeSmallCopy) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url])) {
+            
+            if (image) {
+                dispatch_main_sync_safe(^{
+                    // If image was found in the cache but SDWebImageRefreshCached is provided, notify about the cached image
+                    // AND try to re-download it in order to let a chance to NSURLCache to refresh it from server.
+                    completedBlock(image, nil, cacheType, !(cacheType == SDImageCacheTypeSmallCopy));
+                });
+            }
+            
+            // download if no image or requested to refresh anyway, and download allowed by delegate
+            SDWebImageDownloaderOptions downloaderOptions = 0;
+            if (options & SDWebImageLowPriority) downloaderOptions |= SDWebImageDownloaderLowPriority;
+            if (options & SDWebImageProgressiveDownload) downloaderOptions |= SDWebImageDownloaderProgressiveDownload;
+            if (options & SDWebImageRefreshCached) downloaderOptions |= SDWebImageDownloaderUseNSURLCache;
+            if (options & SDWebImageContinueInBackground) downloaderOptions |= SDWebImageDownloaderContinueInBackground;
+            if (options & SDWebImageHandleCookies) downloaderOptions |= SDWebImageDownloaderHandleCookies;
+            if (options & SDWebImageAllowInvalidSSLCertificates) downloaderOptions |= SDWebImageDownloaderAllowInvalidSSLCertificates;
+            if (options & SDWebImageHighPriority) downloaderOptions |= SDWebImageDownloaderHighPriority;
+            if (image && options & SDWebImageRefreshCached) {
+                // force progressive off if image already cached but forced refreshing
+                downloaderOptions &= ~SDWebImageDownloaderProgressiveDownload;
+                // ignore image read from NSURLCache if image if cached but force refreshing
+                downloaderOptions |= SDWebImageDownloaderIgnoreCachedResponse;
+            }
+            if (options & SDWebImageSubband) downloaderOptions |= SDWebImageDownloaderSubbandDownload;
+            
+            id <SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished) {
+                if (weakOperation.isCancelled) {
+                    // Do nothing if the operation was cancelled
+                    // See #699 for more details
+                    // if we would call the completedBlock, there could be a race condition between this block and another completedBlock for the same object, so if this one is called second, we will overwrite the new data
+                }
+                else if (error) {
+                    dispatch_main_sync_safe(^{
+                        if (!weakOperation.isCancelled) {
+                            completedBlock(nil, error, SDImageCacheTypeNone, finished);
+                        }
+                    });
+                    //埋点
+                    Class monitorClass = objc_getClass("AppMonitorAlarm");
+                    if (monitorClass) {
+                        ((void (*)(id, SEL, id, id, id, id))objc_msgSend)(monitorClass, NSSelectorFromString(@"commitFailWithPage:monitorPoint:errorCode:errorMsg:"), [NSString stringWithFormat:@"Page_%@", module], @"ImageDownload", [NSString stringWithFormat:@"%ld", (long)error.code], error.localizedDescription);
+                    }
+                    
+                }
+                else {
+                    BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
+                    
+                    if (options & SDWebImageRefreshCached && image && !downloadedImage) {
+                        // Image refresh hit the NSURLCache cache, do not call the completion block
+                    }
+                    // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
+                    else if (downloadedImage /*&& !downloadedImage.images*/ && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)]) {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
+                            
+                            dispatch_main_sync_safe(^{
+                                completedBlock(transformedImage, nil, SDImageCacheTypeNone, finished);
+                            });
+                            
+                            if (transformedImage && finished) {
+                                BOOL imageWasTransformed = ![transformedImage isEqual:downloadedImage];
+                                [self.imageCache storeImage:transformedImage recalculateFromImage:imageWasTransformed imageData:data forKey:key toDisk:cacheOnDisk];
+                            }
+                        });
+                    }
+                    else {
+                        dispatch_main_sync_safe(^{
+                            completedBlock(downloadedImage, nil, SDImageCacheTypeNone, finished);
+                        });
+                        
+                        if (downloadedImage && finished) {
+                            [self.imageCache storeImage:downloadedImage recalculateFromImage:NO imageData:data forKey:key toDisk:cacheOnDisk];
+                        }
+                    }
+                }
+                
+                if (finished) {
+                    @synchronized (self.runningOperations) {
+                        [self.runningOperations removeObject:operation];
+                    }
+                }
+                
+                //埋点
+                Class monitorClass = objc_getClass("AppMonitorAlarm");
+                if (monitorClass) {
+                    ((void (*)(id, SEL, id, id))objc_msgSend)(monitorClass, NSSelectorFromString(@"commitSuccessWithPage:monitorPoint:"), [NSString stringWithFormat:@"Page_%@", module], @"ImageDownload");
+                }
+            }];
+            operation.cancelBlock = ^{
+                [subOperation cancel];
+            };
+        }
+        else if (image) {
+            dispatch_main_sync_safe(^{
+                completedBlock(image, nil, cacheType, YES);
+            });
+            @synchronized (self.runningOperations) {
+                [self.runningOperations removeObject:operation];
+            }
+        }
+        else {
+            // Image not in cache and download disallowed by delegate
+            dispatch_main_sync_safe(^{
+                completedBlock(nil, nil, SDImageCacheTypeNone, YES);
+            });
+            @synchronized (self.runningOperations) {
+                [self.runningOperations removeObject:operation];
+            }
+        }
+    }];
+    
+    return operation;
+}
+
+- (void)cancelAll
+{
+    @synchronized(self.runningOperations)
+    {
+        [self.runningOperations makeObjectsPerformSelector:@selector(cancel)];
+        [self.runningOperations removeAllObjects];
+    }
+}
+
+- (BOOL)isRunning
+{
+    return self.runningOperations.count > 0;
+}
+
+@end
+
+@implementation SDWebImageCombinedOperation
+
+- (void)setCancelBlock:(void (^)())cancelBlock
+{
+    if (self.isCancelled)
+    {
+        if (cancelBlock) cancelBlock();
+    }
+    else
+    {
+        _cancelBlock = [cancelBlock copy];
+    }
+}
+
+- (void)cancel
+{
+    self.cancelled = YES;
+    if (self.cacheOperation)
+    {
+        [self.cacheOperation cancel];
+        self.cacheOperation = nil;
+    }
+    if (self.cancelBlock)
+    {
+        self.cancelBlock();
+        self.cancelBlock = nil;
+    }
+}
+
+@end

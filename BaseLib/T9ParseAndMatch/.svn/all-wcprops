@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch
+END
+T9Util.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/T9Util.h
+END
+PinyinUnit.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/PinyinUnit.m
+END
+QwertyMatchPinyinUtil.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/QwertyMatchPinyinUtil.h
+END
+T9MatchPinyinUtil.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/T9MatchPinyinUtil.h
+END
+ParsePinyinUtil.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/ParsePinyinUtil.h
+END
+T9Util.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/T9Util.m
+END
+BasePinyinUnit.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/BasePinyinUnit.h
+END
+QwertyMatchPinyinUtil.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/QwertyMatchPinyinUtil.m
+END
+T9MatchPinyinUtil.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/T9MatchPinyinUtil.m
+END
+ParsePinyinUtil.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/ParsePinyinUtil.m
+END
+BasePinyinUnit.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/BasePinyinUnit.m
+END
+PinyinUnit.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/zdyy/native/!svn/ver/6741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/T9ParseAndMatch/PinyinUnit.h
+END

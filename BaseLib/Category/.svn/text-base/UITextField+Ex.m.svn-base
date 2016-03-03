@@ -1,0 +1,21 @@
+//
+//  UITextField+Ex.m
+//  iRCS
+//
+//  Created by minjie on 06/01/16.
+//  Copyright © 2016 frank weng. All rights reserved.
+//
+
+#import "UITextField+Ex.h"
+
+@implementation UITextField (Ex)
+-(instancetype)initWithFont:(UIFont *) aFont andColor:(UIColor *)aColor{
+    if (self=[super init]) {
+        self.textColor=aColor;
+        self.font=aFont;
+    }
+    
+    return self;
+}
+
+@end

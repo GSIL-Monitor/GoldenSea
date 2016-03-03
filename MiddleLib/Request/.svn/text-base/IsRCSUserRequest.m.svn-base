@@ -1,0 +1,51 @@
+//
+//  IsRCSUserRequest.m
+//  iRCS
+//
+//  Created by 黄春涛 on 15/9/17.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#import "IsRCSUserRequest.h"
+
+@interface IsRCSUserRequest()<HYbaseRequestDelegate>
+@end
+
+
+@implementation IsRCSUserRequest
+
+-(instancetype)initWithPhones:(NSArray *)phones{
+    self = [super initWithUrl:@"/contactBackup/queryRegMsg.do"];
+    if (self) {
+        NSMutableArray *phoneArry = [NSMutableArray array];
+        for (int i = 0; i < phones.count; i ++) {
+            NSDictionary *tmpDic = [NSDictionary dictionaryWithObject:[phones safeObjectAtIndex:i] forKey:@"username"];
+            [phoneArry safeAddObject:tmpDic];
+        }
+        
+        [self.paramDic setObject:XiaoXi_AppKey forKey:@"appkey"];
+        [self.paramDic setObject:phoneArry forKey:@"userinfos"];
+        
+    }
+    return self;
+}
+
+
+//-(NSString *)requestUrl{
+//    return @"/contactBackup/queryRegMsg.do";
+//}
+
+- (YTKRequestSerializerType)requestSerializerType{
+    return YTKRequestSerializerTypeJSON;
+}
+
+-(YTKRequestMethod)requestMethod{
+    return YTKRequestMethodPost;
+}
+
+-(id)requestArgument{
+    NSLog(@"%@",self.paramDic);
+    return self.paramDic;
+}
+
+@end

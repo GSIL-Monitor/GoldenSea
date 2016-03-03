@@ -1,0 +1,133 @@
+//
+//  HYComTypedef.h
+//
+//  Created by 王斌 on 15/8/28.
+//  Copyright (c) 2015年 frank weng. All rights reserved.
+//
+
+#ifndef iRCS_HYComdefine_h
+#define iRCS_HYComdefine_h
+
+
+#define kMAXNUMBEROFMESSAGES 30
+#define UNLOGIN_USER_ID      0
+
+typedef enum _HYConversationType{
+    HYConversationType_None = -1,
+    HYConversationType_One_to_One = 0,
+    HYConversationType_Group = 1,     ///<群聊
+    HYConversationType_Service = 2,    ///<广告、服务类通知
+    HYConversationType_System = 3,     ///<系统通知
+    HYConversationType_NewCreate = 4,   ///<本地新建消息，发送消息时判断用
+    HYConversationType_One_to_Many = 5,   ///<群发，非群聊
+    HYConversationType_HangUp = 6           ///挂断电话
+}
+HYConversationType;
+
+
+typedef enum _HYPolicyType {
+    HYPolicyType_Recv_and_Notify = 0,
+    HYPolicyType_OnlyReceive,
+    HYPolicyType_Reject,
+    HYPolicyType_NotRecv,
+    
+}
+HYPolicyType;
+
+///
+/// 定义消息的状态。
+///
+typedef enum _HYMessageStatus{
+    //发送的消息
+    HY_MessageStatus_Failed        = 0x01<<1,///< 消息发送失败
+    HY_MessageStatus_Sending       = 0x01<<2,///< 消息发送中...
+    HY_MessageStatus_Sent          = 0x01<<3,///< 消息已经发送出去
+    HY_MessageStatus_Delivered     = 0x01<<4,///< 消息已经发送出去,对方已经接收成功。
+    HY_MessageStatus_NoNetwork     = 0x01<<5, ///<无网络，网络连接之后自动发送
+    //接收的消息
+    HY_MessageStatus_Downing       = 0x01<<7,///< 正在下载数据。
+    HY_MessageStatus_Downed        = 0x01<<8,///< 下载完毕。
+    HY_MessageStatus_Downed_Cancel = 0x01<<9,///< 用户取消下载完毕。
+    HY_MessageStatus_Incoming      = 0x01<<10,///< 有新的消息进来
+    //接收的消息已读或未读
+    HY_MessageStatus_Read          = 0x01<<13,///< 消息已读
+    HY_MessageStatus_Unread        = 0x01<<14,///< 消息未读
+    //通话
+    HY_MessageStatus_Connected     = 0x01<<11,///<通话接通
+    HY_MessageStatus_Unconnected   = 0x01<<12, ///<通话未接通
+    HY_MessageStatus_REJECT        = 0x01<<15,///<拒接
+    HY_MessageStatus_Cancel        = 0x01<<16 ///<取消
+}
+HYMessageStatus;
+
+///
+///定义会话的类型。
+///
+typedef enum _HYMessageContentType {
+    
+    HY_MessageContentType_None = 0,         ///< 默认值
+    HY_MessageContentType_Audio = (0x01<<0),///< 音频消息
+    HY_MessageContentType_Video = (0x01<<1),///< 视频消息
+    HY_MessageContentType_Text = (0x01<<2),  ///< 文本消息
+//    HY_MessageContentType_Draft = (0x01<<3),  ///< 草稿     //目前没有这种类型
+    HY_MessageContentType_Image = (0x01<<4),   ///<图片
+    HY_MessageContentType_Location = (0x01<<5),  ///<位置信息
+    HY_MessageContentType_Contact = (0x01<<6), ///<联系人
+    HY_MessageContentType_Hint = (0x01<<7),   ///<群成员增删等提示信息
+//    HY_MessageContentType_BurnAfterRead = (0x01<<4)  ///<阅后即焚
+    HY_MessageContentType_AudioIn = (0x01<<8), ///<电话呼入
+    HY_MessageContentType_AudioOut = (0x01<<9)  ///<电话呼出
+}
+HYMessageContentType;
+
+/// 群组成员状态
+typedef enum _HYGroupMember_Status{
+    HYGroupMember_Status_Unknow,
+    HYGroupMember_Status_Online,
+    HYGroupMember_Status_Offline,///<离线
+    HYGroupMember_Status_Kicked,///<成员被踢
+    HYGroupMember_Status_Depart,///<成员退群
+    HYGroupMember_Status_Pending,
+    HYGroupMember_Status_RefuseJoinGroup,///<拒绝加群
+    HYGroupMember_GroupDismissed///<群解散
+}HYGroupMember_Status;
+
+
+/// 群组成员角色
+typedef enum _HYGroupMember_Role{
+    HYGroupMember_Role_None,     ///< 未知角色
+    HYGroupMember_Role_Creator,  ///< 群组创建者
+    HYGroupMember_Role_Member    ///< 群组普通成员
+}HYGroupMember_Role;
+
+///< 群用户操作类型
+typedef enum _HYGroupMember_OperType{
+    HYAddMember,   ///< 添加成员
+    HYModMember,   ///< 修改成员信息
+    HYDelMember,   ///< 删除成员(群创建者才有此功能)
+    HYLeaveGroup   ///< 退出群组
+}HYGroupMember_OperType;
+
+///<对群租成员操作后返回的类型
+typedef enum _HYGroupMember_OperResult{
+    HYGroupMember_Unkown,           ///<未知状态
+    HYGroupMember_Inviting,         ///<邀请进群中
+    HYGroupMember_JoinedGroup,      ///<加入群
+    HYGroupMember_RefuseJoinGroup,  ///<拒绝加入群
+    HYGroupMember_Offline,          ///<下线
+    HYGroupMember_LeaveGroup,       ///<退群
+    HYGroupMember_KickedFromGroup   ///<踢出群
+}HYGroupMember_OperResult;
+
+///< 群要求状态类型
+typedef enum _HYGroupJoinStatus{
+    HYGroupJoinStatus_None,        ///<未操作
+    HYGroupJoinStatus_Joined,      ///<加入群
+    HYGroupJoinStatus_Refuse      ///<拒绝加入群
+}
+HYGroupJoinStatus;
+
+
+
+
+#endif

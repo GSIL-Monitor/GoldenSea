@@ -1,0 +1,35 @@
+//
+//  HYFlowStatistic.h
+//  _Client-iOS-Common
+//
+//  Created by zixian.qxz on 12-9-21.
+//  Copyright (c) 2012年 _.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+/**
+ ** 流量存储格式:{yyyy-MM-dd:[api_wifi,api_wwan,pic_wifi,pic_wwan],...}
+**/
+
+@interface HYFlowStatistic : NSObject{
+    NSDictionary *_flowData;
+}
+
+@property (assign, nonatomic) long long apiAccessFlowInWIFI;
+@property (assign, nonatomic) long long apiAccessFlowInWWAN;
+@property (assign, nonatomic) long long pictureAccessFlowInWIFI;
+@property (assign, nonatomic) long long pictureAccessFlowInWWAN;
+@property (assign, nonatomic) BOOL inWIFI;
+
++ (HYFlowStatistic *)shareInstance;
+
+- (void)addApiAccessFlow:(long long)deltaFlow;
+- (void)addPictureAccessFlow:(long long)deltaFlow;
+- (long long)getThisMonthFlowInWIFI;
+- (long long)getThisMonthFlowInWWAN;
+- (long long)getTodayFlowInWIFI;
+- (long long)getTodayFlowInWWAN;
+- (void)save;
+
+@end

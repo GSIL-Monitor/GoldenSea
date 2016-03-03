@@ -1,0 +1,20 @@
+//
+//  SQLiteQuery.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface SQLiteQuery : NSObject
+{
+    NSString *_sortKey;
+    BOOL _ascending;
+}
+
+@property (strong,nonatomic) NSString *entityName;
+@property (strong,nonatomic) NSString *conditionFormat;
+@property (assign,nonatomic) int queryLimit;
+
+- (void)sortWithKey:(NSString *)key ascending:(BOOL)ascending;
+- (NSString *)getSQL;
+
+@end

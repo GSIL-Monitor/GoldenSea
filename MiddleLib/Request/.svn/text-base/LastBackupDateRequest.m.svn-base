@@ -1,0 +1,30 @@
+//
+//  LastBackupDateRequest.m
+//  iRCS
+//
+//  Created by YangWeitian on 15/11/16.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "LastBackupDateRequest.h"
+
+@implementation LastBackupDateRequest
+
+-(instancetype)initWithUid:(NSString *)uid{
+    NSString *url = [NSString stringWithFormat:@"/contactBackup/lastBackupDate.do?uid=%@",uid];
+
+    if (self= [super initWithUrl:url]) {
+
+    }
+    return self;
+}
+
+-(YTKRequestMethod)requestMethod{
+    return YTKRequestMethodPost;
+}
+
+-(id)requestArgument{
+    return self.paramDic;
+}
+
+@end

@@ -1,0 +1,103 @@
+//
+//  RCSHUD.m
+//  RCS
+//
+//  Created by YuSong.Yan on 15/4/21.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import "RCSHUD.h"
+
+static MBProgressHUD *hud = nil;
+
+@implementation RCSHUD
+
++ (RCSHUD *)shareHUD
+{
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+
+- (void)showLongTextMesasge:(NSString *)textMessage{
+    if (hud == nil) {
+        hud = [[MBProgressHUD alloc] initWithView:[self topUIWindow]];
+        [[self topUIWindow] addSubview:hud];
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.detailsLabelText = textMessage;
+        [hud show:YES];
+    }else{
+        hud.detailsLabelText = textMessage;
+        [hud show:YES];
+    }
+
+}
+
+
+- (void)showMessage:(NSString *)_message{
+    if (hud == nil) {
+        hud = [[MBProgressHUD alloc] initWithView:[self topUIWindow]];
+        [[self topUIWindow] addSubview:hud];
+
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = _message;
+        [hud show:YES];
+    }else{
+        
+        hud.labelText = _message;
+        [hud show:YES];
+    }
+    
+}
+- (void)showMessage:(NSString *)_message duration:(CGFloat)_duration{
+    [self hideHUD];
+    [self showMessage:_message];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [hud hide:NO];
+        [hud removeFromSuperview];
+        hud = nil;
+    });
+}
+
+
+- (void)showLongTextMessage:(NSString *)_longMessage duration:(CGFloat)_duration{
+    [self hideHUD];
+    [self showLongTextMesasge:_longMessage];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [hud hide:NO];
+        [hud removeFromSuperview];
+        hud = nil;
+    });
+
+    
+}
+
+- (void)showMessageWithActivityIndicatorView:(NSString *)_message{
+    if (hud == nil) {
+        hud = [[MBProgressHUD alloc] initWithView:[self topUIWindow]];
+        [[self topUIWindow] addSubview:hud];
+    }
+    hud.labelText = _message;
+    hud.mode = MBProgressHUDModeIndeterminate;
+    [hud show:YES];
+}
+
+- (void)hideHUD{
+    if (hud && hud.superview) {
+        [hud hide:NO];
+        [hud removeFromSuperview];
+        hud = nil;
+    }
+}
+
+- (UIWindow *)topUIWindow{
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    return [windows lastObject];
+}
+
+@end

@@ -1,0 +1,264 @@
+//
+//  MessageFileManager.m
+//  iRCS
+//
+//  Created by 王斌 on 15/9/30.
+//  Copyright © 2015年 frank weng. All rights reserved.
+//
+
+#import "MessageFileManager.h"
+#import "ContactManager.h"
+
+@implementation MessageFileManager
+
+SINGLETON_GENERATOR(MessageFileManager, defaultManager)
+
+- (NSString *)storeImage:(UIImage *)image WithConversationUUID:(NSString *)conversationUUID{
+    NSData *data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+    NSString *strPictureName = [NSString stringWithFormat:@"%@.jpg",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getImageStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *storedPath = [fileDirector stringByAppendingFormat:@"/%@",strPictureName];
+    [data writeToFile:storedPath atomically:YES];
+    return storedPath;
+}
+
+- (NSString *)storeImage:(UIImage *)image WithConversationUUID:(NSString *)conversationUUID Ratio:(CGFloat)ratio
+{
+    NSData *data = UIImageJPEGRepresentation(image, ratio);
+    NSString *strPictureName = [NSString stringWithFormat:@"%@.jpg",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getImageStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *storedPath = [fileDirector stringByAppendingFormat:@"/%@",strPictureName];
+    [data writeToFile:storedPath atomically:YES];
+    return storedPath;
+}
+
+- (NSString *)storeVideo:(NSString *)movePath WithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *moveName = [NSString stringWithFormat:@"%@.mp4",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getVideoStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *movePathstr = [fileDirector stringByAppendingFormat:@"/%@",moveName];
+    
+    if (moveName && movePathstr) {
+        BOOL isSucceed =  [RCSUtils convertMovToMP4:[NSURL fileURLWithPath:movePath]
+                                              ToURL:[NSURL fileURLWithPath:movePathstr]];
+        if (isSucceed) {
+            return movePathstr;
+        }
+    }
+    return nil;
+
+}
+
+- (NSString *)storeContact:(NSData *)vcardData WithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *contactName = [NSString stringWithFormat:@"%@.vcf",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getContactStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *contactPath = [fileDirector stringByAppendingFormat:@"/%@",contactName];
+    
+    if (contactName && contactPath) {
+        BOOL isSucceed = [vcardData writeToFile:contactPath options:NSDataWritingAtomic error:nil];
+        if (isSucceed) {
+            return contactPath;
+        }
+    }
+    return nil;
+}
+- (NSString *) storeContactWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *contactName = [NSString stringWithFormat:@"%@.vcf",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getContactStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *contactPath = [fileDirector stringByAppendingFormat:@"/%@",contactName];
+    
+    if (contactName && contactPath) {
+        
+        return contactPath;
+    }
+    return nil;
+}
+- (NSString *)getAudioFileStorePathWithConversationUUID:(NSString *)conversationUUID
+{
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    return [NSString stringWithFormat:@"%@/%@.wav", [self getAudioStoredDirectoryWithConversationUUID:conversationUUID],
+            [f stringFromDate:[NSDate date]]];
+}
+
+- (NSString *)getVideoFileStorePathWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *moveName = [NSString stringWithFormat:@"%@.mp4",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getVideoStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *movePathstr = [fileDirector stringByAppendingFormat:@"/%@",moveName];
+    
+    return movePathstr;
+}
+
+- (NSString *)getVcardFileStorePathWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *vcardName = [NSString stringWithFormat:@"%@.vcf",[RCSUtils generalUDID]];
+    NSString *fileDirector = [self getContactStoredDirectoryWithConversationUUID:conversationUUID];
+    if ([NSString isBlankString:fileDirector]) {
+        NSLog(@"找不到文件存储目录");
+        return nil;
+        //RCSDebugAssert(NO);
+    }
+    NSString *vcardPath = [fileDirector stringByAppendingFormat:@"/%@",vcardName];
+    
+    return vcardPath;
+}
+
+
+- (NSString *)copyForwardMessageImage:(NSString *)imagePath ByContacter:(id)contacter{
+    NSString *fileDirector = [self getImageFileStoredPathByContacter:contacter];
+    NSString *strPictureName = [NSString stringWithFormat:@"%@.jpg",[RCSUtils generalUDID]];
+    NSString *storedPath = [fileDirector stringByAppendingFormat:@"/%@",strPictureName];
+    if (storedPath) {
+        if ([FileManager copyFilesysItem:imagePath toPath:storedPath]) {
+            return storedPath;
+        }
+    }
+    return nil;
+}
+
+
+- (NSString *) copyForwardMessageVideo:(NSString *)videoPath ByContacter:(id)contacter
+{
+    NSString *fileDirector = [self getVideoFileStoredPathByContacter:contacter];
+    NSString *strPictureName = [NSString stringWithFormat:@"%@.mp4",[RCSUtils generalUDID]];
+    NSString *storedPath = [fileDirector stringByAppendingFormat:@"/%@",strPictureName];
+    if (storedPath) {
+        if ([FileManager copyFilesysItem:videoPath toPath:storedPath]) {
+            return storedPath;
+        }
+    }
+    return nil;
+}
+
+
+- (NSString *) copyForwardMessageVcard:(NSString *)filePath ByContacter:(id)contacter{
+    NSString *fileDirector = [self getVcardFileStoredPathByContacter:contacter];
+    NSString *strname = [NSString stringWithFormat:@"%@.vcf",[RCSUtils generalUDID]];
+    NSString *strpath = [fileDirector stringByAppendingFormat:@"/%@",strname];
+    if (strpath) {
+        if ([FileManager copyFilesysItem:filePath toPath:strpath]) {
+            return strpath;
+        }
+    }
+    return nil;
+}
+
+#pragma mark -
+
+- (NSString *)getAudioStoredDirectoryWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Audios",RCSUserPhone, conversationUUID];
+    if ([FileManager createDirectory:path]) {
+        return path;
+    }
+    return nil;
+
+}
+
+- (NSString *)getImageStoredDirectoryWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Images",RCSUserPhone, conversationUUID];
+    
+    if ([FileManager createDirectory:path]) {
+        return path;
+    }
+    return nil;
+}
+
+- (NSString *)getVideoStoredDirectoryWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Videos",RCSUserPhone, conversationUUID];
+    if ([FileManager createDirectory:path]) {
+        return path;
+    }
+    return nil;
+
+}
+
+- (NSString *)getContactStoredDirectoryWithConversationUUID:(NSString *)conversationUUID
+{
+    NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Contacts",RCSUserPhone, conversationUUID];
+    if ([FileManager createDirectory:path]) {
+        return path;
+    }
+    return nil;
+
+}
+
+- (NSString *)getImageFileStoredPathByContacter:(id)Contact{
+    ContactModel *targetContact = (ContactModel *)Contact;
+    NSString *conversationUUID;
+    
+    if (targetContact.firstPhone) {
+        conversationUUID = [NSString stringWithFormat:@"%@%@",RCSUserPhone,targetContact.firstPhone];
+        NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Images", RCSUserPhone,conversationUUID];
+        if ([FileManager createDirectory:path]) {
+            return path;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)getVideoFileStoredPathByContacter:(id)Contact{
+    ContactModel *targetContact = (ContactModel *)Contact;
+    NSString *conversationUUID;
+    
+    if (targetContact.firstPhone) {
+        conversationUUID = [NSString stringWithFormat:@"%@%@",RCSUserPhone,targetContact.firstPhone];
+        NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Videos", RCSUserPhone,conversationUUID];
+        if ([FileManager createDirectory:path]) {
+            return path;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)getVcardFileStoredPathByContacter:(id)Contact{
+    NSString *targetPhone = nil;
+    ContactModel *targetContact = (ContactModel *)Contact;
+    NSString *conversationUUID;
+
+    if (targetContact.firstPhone) {
+        conversationUUID = [NSString stringWithFormat:@"%@%@",RCSUserPhone,targetContact.firstPhone];
+        NSString *path = [[FileManager getDocumentsPath] stringByAppendingFormat:@"/%@/%@/Contacts", RCSUserPhone,conversationUUID];
+        if ([FileManager createDirectory:path]) {
+            return path;
+        }
+    }
+    return nil;
+}
+
+@end

@@ -1,0 +1,56 @@
+//
+//  SDDataCache.h
+//  SDWebData
+//
+//  Created by stm on 11-7-13.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@protocol SDDataCacheDelegate;
+@interface SDDataCache : NSObject {
+    NSMutableDictionary *memCache;
+    NSString *diskCachePath;
+    NSOperationQueue *cacheInQueue, *cacheOutQueue;
+}
+
++ (SDDataCache *)sharedDataCache;
+- (void)storeData:(NSData *)aData forKey:(NSString *)key;
+- (void)storeData:(NSData *)aData forKey:(NSString *)key toDisk:(BOOL)toDisk;//存储data
+
+- (NSData *)dataFromKey:(NSString *)key;
+- (NSData *)dataFromKey:(NSString *)key fromDisk:(BOOL)fromDisk;//得到指定的data
+- (void)queryDiskCacheForKey:(NSString *)key delegate:(id <SDDataCacheDelegate>)delegate userInfo:(NSDictionary *)info;
+
+//－－－taobao add－－－
+//兼容以前的storeImage 
+//注意 这里如果是使用大于宽度200图片会以jpeg的方式表现 可能会导致不透明的情况 可以直接掉最后一个函数指定图片
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key;
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk;
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk withRepresentation:(bool)isPNG;
+
+- (BOOL)isExistFileKey:(NSString *)key;
+- (BOOL)isExistFileData:(NSString *)fileName;
+//更改一个数据从一个key 到一个新key  
+- (bool)changeDataKey:(NSString *)oldKey toNewKey:(NSString*)newKey;
+//
+- (void)removeDataForKey:(NSString *)key;//移除指点的元素
+- (void)clearMemory;//清理内存
+- (void)clearDisk;//清理所有的缓存
+- (void)cleanDisk;//清理过期的缓存
+- (NSString *)cachePathForKey:(NSString *)key;
+
+//复制文件
+- (void) copyFromKeyDataToKey:(NSString*)fromKey toKey:(NSString*)toKey;
+
+@end
+
+
+@protocol SDDataCacheDelegate<NSObject>
+
+@optional
+- (void)dataCache:(SDDataCache *)dataCache didFindData:(NSData *)aData forKey:(NSString *)key userInfo:(NSDictionary *)info;
+- (void)dataCache:(SDDataCache *)dataCache didNotFindDataForKey:(NSString *)key userInfo:(NSDictionary *)info;
+
+@end

@@ -1,0 +1,148 @@
+//
+//  HYLocationManager.m
+//  _Client-iOS-Common
+//
+//  Created by jiajun on 3/3/14.
+//  Copyright (c) 2014 _.com. All rights reserved.
+//
+
+#import "HYLocationManager.h"
+#import "CommonMacros.h"
+
+@interface HYLocationManager () <CLLocationManagerDelegate>
+
+@property   (strong, nonatomic) CLLocation              *currentLocation;
+@property   (strong, nonatomic) CLLocationManager       *locationManager;
+@property   (assign, nonatomic) NSTimeInterval          lastUpdate;
+@property   (assign, nonatomic) NSInteger               updateTimes;
+
+@end
+
+@implementation HYLocationManager
+
+SINGLETON_GENERATOR(HYLocationManager, sharedManager);
+
+#pragma mark - Private
+- (BOOL)checkLocation:(CLLocation *)location
+{
+    if (nil == self.currentLocation) {
+        self.currentLocation    = location;
+        return YES;
+    }
+    else if (0.f == self.maxAccuracy || self.maxAccuracy > location.horizontalAccuracy) {
+        self.currentLocation    = location;
+        return YES;
+    }
+    else if (self.maxTimes <= self.updateTimes) {
+        self.currentLocation    = location;
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - Action
+- (void)callBack
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tmLocationManager:updatedLocation:)]) {
+        [self.delegate tmLocationManager:self updatedLocation:[self.currentLocation copy]];
+    }
+}
+
+- (void)processLocation:(CLLocation *)location
+{
+    self.updateTimes ++;
+    if ([self checkLocation:location]) {
+        self.lastUpdate = [[NSDate date] timeIntervalSince1970];
+        [self callBack];
+        if (! self.keeping) {
+            [self stop];
+        }
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate
+// 5.0 or eralier
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self processLocation:newLocation];
+}
+
+// 6.0 or later
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [self processLocation:[locations lastObject]];
+}
+
+#pragma mark - Public
+- (void)start
+{
+    if (! [CLLocationManager locationServicesEnabled]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"天猫客户端需要访问您的位置，请在“系统设置-隐私”中打开“定位服务”" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    NSTimeInterval  current = [[NSDate date] timeIntervalSince1970];
+    if (self.expired < current - self.lastUpdate) {
+        if (![CLLocationManager locationServicesEnabled]){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:HYString(@"location_need_enabled")
+                                                               delegate:nil
+                                                      cancelButtonTitle:HYString(@"I_KNOW")
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        
+        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+        
+        switch (status) {
+            case kCLAuthorizationStatusDenied:
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                    message:HYString(@"location_need_enabled_for_app")
+                                                                   delegate:nil
+                                                          cancelButtonTitle:HYString(@"I_KNOW")
+                                                          otherButtonTitles:nil];
+                [alertView show];
+            }
+            case kCLAuthorizationStatusNotDetermined:
+            case kCLAuthorizationStatusAuthorized:
+            case kCLAuthorizationStatusRestricted:
+                break;
+            default:
+                break;
+        }
+
+        [self.locationManager startMonitoringSignificantLocationChanges];
+    }
+    else {
+        [self callBack];
+    }
+}
+
+- (void)stop
+{
+    if (! [CLLocationManager locationServicesEnabled]) {
+        return;
+    }
+    self.updateTimes    = 0;
+    self.lastUpdate     = 0;
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+}
+
+- (id)init
+{
+    SINGLETON_CHECK_INITED(HYLocationManager);
+    self = [super init];
+    if (self) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate   = self;
+
+        self.expired        = 30;
+        self.maxAccuracy    = 500.f;
+        self.maxTimes       = 5;
+        self.keeping        = NO;
+    }
+    return self;
+}
+
+@end

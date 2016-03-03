@@ -1,0 +1,67 @@
+//
+//  TBImageUtility.m
+//  SDWebImage
+//
+//  Created by 贾复 on 14/11/19.
+//  Copyright (c) 2014年 Taobao lnc. All rights reserved.
+//
+
+#import "TBImageUtility.h"
+#import "RegexKitLite.h"
+
+@implementation TBImageUtility
+
++ (CGSize)imageSizeFromURLString:(NSString *)urlString
+{
+    CGSize imageSize = CGSizeMake(0, 0);
+    NSString *baseUrl = urlString;
+    
+    NSString *regexSizeString = @"_(\\d+)x(\\d+).*";
+    
+    NSArray *sizeMatchArray = [baseUrl captureComponentsMatchedByRegex:regexSizeString];
+    if ([sizeMatchArray count] == 3) {
+        NSInteger width = [sizeMatchArray[1] integerValue];
+        NSInteger height = [sizeMatchArray[2] integerValue];
+        if (width == 10000 || height == 10000 || width == height) {
+            imageSize.width = [sizeMatchArray[1] integerValue];
+            imageSize.height = [sizeMatchArray[2] integerValue];
+        }
+    }
+    
+    return imageSize;
+    
+}
+
++ (NSString *)imageBaseUrlStringFromURLString:(NSString *)urlString
+{
+    NSString *baseUrl = urlString;
+    
+    NSArray *matchArray = [baseUrl captureComponentsMatchedByRegex:@"_(\\d+)x(\\d+).*"];
+    if ([matchArray count] == 3) {
+        NSInteger width = [matchArray[1] integerValue];
+        NSInteger height = [matchArray[2] integerValue];
+        if (width == 10000 || height == 10000 || width == height) {
+            return [baseUrl substringToIndex:[baseUrl length] - [matchArray[0] length]];
+        }
+    }
+    
+    NSUInteger baseIndex = [baseUrl rangeOfString:@".png"].location;
+    if (baseIndex != NSNotFound) {
+        return [baseUrl substringToIndex:baseIndex + 4];
+    }
+    
+    baseIndex = [baseUrl rangeOfString:@".jpg"].location;
+    if (baseIndex != NSNotFound) {
+        return [baseUrl substringToIndex:baseIndex + 4];
+    }
+    
+    baseIndex = [baseUrl rangeOfString:@".jpeg"].location;
+    if (baseIndex != NSNotFound) {
+        return [baseUrl substringToIndex:baseIndex + 5];
+    }
+    
+    return baseUrl;
+}
+
+
+@end

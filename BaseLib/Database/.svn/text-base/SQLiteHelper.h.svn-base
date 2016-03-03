@@ -1,0 +1,30 @@
+//
+//  SQLiteHelper.h
+//
+
+#import <Foundation/Foundation.h>
+
+@class SQLiteDatabase;
+
+@protocol SQLiteHelperDelegate <NSObject>
+
+- (void)onCreate:(SQLiteDatabase *)db;
+- (void)onUpgrade:(SQLiteDatabase *)db fromVersion:(int)oldVersion toVersion:(int)newVersion;
+
+@end
+
+@interface SQLiteHelper : NSObject
+{
+    NSString *_dbPath;
+    int _newVersion;
+}
+
+@property (strong, nonatomic) id<SQLiteHelperDelegate> delegate;
+
++ (SQLiteDatabase *)sharedDB;
++ (void)setSharedDB:(SQLiteDatabase *)db;
+
+- (id)initWithName:(NSString *)dbName andVersion:(int)version;
+- (SQLiteDatabase *)getWritableDatabase;
+
+@end

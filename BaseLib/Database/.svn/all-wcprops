@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/zdyy/native/!svn/ver/3486/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database
+END
+Transaction.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Transaction.m
+END
+SQLiteStatement.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteStatement.m
+END
+SQLiteDatabase.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteDatabase.m
+END
+SQLiteQuery.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteQuery.m
+END
+SQLiteEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteEntity.h
+END
+Recovery.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Recovery.h
+END
+MetaTable.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/MetaTable.h
+END
+Connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Connection.h
+END
+SQLiteHelper.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteHelper.h
+END
+StatementRef.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/StatementRef.h
+END
+SQLiteEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteEntity.m
+END
+Recovery.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Recovery.m
+END
+MetaTable.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/zdyy/native/!svn/ver/3464/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/MetaTable.m
+END
+Connection.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/zdyy/native/!svn/ver/3486/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Connection.m
+END
+Statement.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Statement.h
+END
+SQLiteHelper.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteHelper.m
+END
+StatementRef.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/StatementRef.m
+END
+Statement.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Statement.m
+END
+StatementID.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/StatementID.h
+END
+Transaction.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/Transaction.h
+END
+SQLiteStatement.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteStatement.h
+END
+SQLiteDatabase.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteDatabase.h
+END
+StatementID.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/StatementID.m
+END
+SQLiteQuery.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/zdyy/native/!svn/ver/3257/code/trunk/Personal-Client-iOS/iRCS/BaseLib/Database/SQLiteQuery.h
+END

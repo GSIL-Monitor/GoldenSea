@@ -1,0 +1,36 @@
+//
+//  UIImage+Scale.m
+//  TBUtility
+//
+//  Created by Dafeng Jin on 14/7/22.
+//
+//
+
+#import "UIImage+Scale.h"
+
+@implementation UIImage (Scale)
+
+- (UIImage *)imageByScalingAndCroppingToSize:(CGSize)size {
+    if (self.size.width <= size.width || CGSizeEqualToSize(size, CGSizeZero)) {
+        return self;
+    }
+    
+    CGSize scaledSize = size;
+    
+    CGFloat widthFactor = size.width / self.size.width;
+    CGFloat scaleFactor = widthFactor;
+    scaledSize.width = self.size.width * scaleFactor;
+    scaledSize.height = self.size.height * scaleFactor;
+    
+    UIGraphicsBeginImageContextWithOptions(scaledSize, NO, 0.0);
+    
+    [self drawInRect:CGRectMake(0, 0, scaledSize.width, scaledSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    
+    return newImage;
+}
+
+@end

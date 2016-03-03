@@ -1,0 +1,11 @@
+//
+//  NSObject+ContainerMutableCopy.h
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSObject(ContainerMutableCopy)
+
+- (id)containerMutableCopy;
+
+@end

@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/zdyy/native/!svn/ver/7854/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker
+END
+ELCConsole.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCConsole.m
+END
+ELCAlbumPickerController.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/7741/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAlbumPickerController.m
+END
+ELCAssetPickerFilterDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetPickerFilterDelegate.h
+END
+ELCOverlayImageView.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCOverlayImageView.h
+END
+ELCAssetCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/6385/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetCell.h
+END
+ELCAsset.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/6511/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAsset.h
+END
+ELCAssetSelectionDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetSelectionDelegate.h
+END
+ELCPreviewViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/7651/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCPreviewViewController.h
+END
+ELCImagePickerController.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/7666/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCImagePickerController.h
+END
+ELCAssetCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/zdyy/native/!svn/ver/6537/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetCell.m
+END
+ELCAsset.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/zdyy/native/!svn/ver/6384/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAsset.m
+END
+ELCOverlayImageView.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/7415/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCOverlayImageView.m
+END
+ELCAssetTablePicker.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/7664/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetTablePicker.h
+END
+ELCPreviewViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/7843/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCPreviewViewController.m
+END
+ELCImagePickerHeader.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCImagePickerHeader.h
+END
+ELCImagePickerController.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/7667/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCImagePickerController.m
+END
+ELCAssetTablePicker.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/zdyy/native/!svn/ver/7854/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAssetTablePicker.m
+END
+ELCConsole.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/zdyy/native/!svn/ver/3840/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCConsole.h
+END
+ELCAlbumPickerController.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/zdyy/native/!svn/ver/5821/code/trunk/Personal-Client-iOS/iRCS/BaseLib/ELCImagePicker/ELCAlbumPickerController.h
+END

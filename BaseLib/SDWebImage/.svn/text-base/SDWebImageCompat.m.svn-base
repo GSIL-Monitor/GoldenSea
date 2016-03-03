@@ -1,0 +1,63 @@
+//
+//  SDWebImageCompat.m
+//  SDWebImage
+//
+//  Created by Olivier Poitrey on 11/12/12.
+//  Copyright (c) 2012 Dailymotion. All rights reserved.
+//
+
+#import "SDWebImageCompat.h"
+#import "UIImage+WebP.h"
+#import "NSData+ImageContentType.h"
+#import "UIImage+MultiFormat.h"
+#import "NSData+ImageContentType.h"
+#import "UIImage+GIF.h"
+
+#if !__has_feature(objc_arc)
+#error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
+#endif
+
+BOOL isWebPURL_(NSData *imageData)
+{
+    NSString *imageContentType = [NSData contentTypeForImageData:imageData];
+    
+    if ([imageContentType isEqualToString:@"image/webp"])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+inline UIImage *SDScaledImageForKey(NSString *key, NSObject *imageOrData)
+{
+    @autoreleasepool {
+        
+        if (!imageOrData)
+        {
+            return nil;
+        }
+        
+        UIImage *image;
+        
+        if ([imageOrData isKindOfClass:[NSData class]])
+        {
+            NSString *imageContentType = [NSData contentTypeForImageData:(NSData *)imageOrData];
+            if ([imageContentType isEqualToString:@"image/gif"]) {
+                image = [UIImage sd_animatedGIFWithData:(NSData *)imageOrData];
+            }
+            else if ([imageContentType isEqualToString:@"image/webp"])
+            {
+                image = [UIImage sd_imageWithWebPData:(NSData *)imageOrData];
+            }
+            else {
+                image = [[UIImage alloc] initWithData:(NSData *)imageOrData];
+            }
+
+        } else if ([imageOrData isKindOfClass:[UIImage class]]) {
+            image = (UIImage *)imageOrData;
+        }
+        
+        return image;
+    }
+}

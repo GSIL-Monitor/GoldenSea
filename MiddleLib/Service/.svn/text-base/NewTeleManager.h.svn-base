@@ -1,0 +1,36 @@
+//
+//  NewTeleManager.h
+//  iRCS
+//
+//  Created by 黄春涛 on 16/1/13.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "NewTeleCellModel.h"
+#import "NewTeleRecordDBModel.h"
+#import "ConversationLayout.h"
+
+@interface NewTeleManager : NSObject
+
++ (NewTeleManager *)defaultManager;
+
+//- (NSArray *)getTeleRecords;///<NewTeleCellModel
+- (NSMutableArray *)getTeleLayouts; ///< 将通话数据模型转换成ConversationLayout的数组，必要的时候将多条通话数据合并
+
+//array:最近通话相应的布局模型
+- (void)mergeTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array;  ///< 将通话数据合并入数组
+- (void)addTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array; ///< 将通话数据添加进数组
+
+- (void)addTeleRecordWith:(NewTeleRecordDBModel *)dbModel;
+
+- (void)deleteTeleRecordWithConversationLayout:(ConversationLayout *)layout;
+//- (void)deleteTeleRecordsWith:(NewTeleCellModel *)cellModel;
+
+- (NewTeleCellModel *) makeTeleCellModelWith:(NewTeleRecordDBModel *)dbModel;
+
+/**
+ *  newModel是否需要和oldModel进行合并
+ */
+- (BOOL)shouldMergeDBModel:(NewTeleRecordDBModel *)newModel WithDBModel:(NewTeleRecordDBModel *)oldModel;
+@end

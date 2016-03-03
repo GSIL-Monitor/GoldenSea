@@ -1,0 +1,18 @@
+//
+//  UIImage+WriteToFile.h
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface UIImage (WriteToFile)
+
+- (BOOL)wirteToFile:(NSString*)path;
+
+- (BOOL)writeToFile:(NSString*)path
+           fileType:(NSString*)fileType;
+
+- (BOOL)writeToFile:(NSString* )path
+           fileType:(NSString*)fileType quality:(CGFloat)quality;
+
+@end

@@ -1,0 +1,99 @@
+//
+//  UIImageView+SDWebCache.m
+//  SDWebData
+//
+//  Created by stm on 11-7-13.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "SDImageView+SDWebCache.h"
+
+@implementation UIImageView(SDWebCacheCategory)
+
+- (void)setImageWithURL:(NSURL *)url
+{
+	[self setImageWithURL:url refreshCache:NO];
+}
+
+- (void)setImageWithURL:(NSURL *)url refreshCache:(BOOL)refreshCache
+{
+	[self setImageWithURL:url refreshCache:refreshCache placeholderImage:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url refreshCache:(BOOL)refreshCache placeholderImage:(UIImage *)placeholder
+{
+    [self setImageWithURL:url refreshCache:refreshCache placeholderImage:nil postMethod:NO];
+}
+
+- (void)setImageWithURL:(NSURL *)url refreshCache:(BOOL)refreshCache placeholderImage:(UIImage *)placeholder postMethod:(BOOL)posthMethod
+{
+    [self setImageWithURL:url refreshCache:refreshCache placeholderImage:placeholder postMethod:posthMethod cacheKey:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url refreshCache:(BOOL)refreshCache placeholderImage:(UIImage *)placeholder postMethod:(BOOL)posthMethod cacheKey:(NSString *)aCacheKey
+{
+    SDWebDataManager *manager = [SDWebDataManager sharedManager];
+	
+    // Remove in progress downloader from queue
+    [manager cancelForDelegate:self];
+    self.image = placeholder;
+	
+    if (url)
+    {
+        [manager downloadWithURL:url delegate:self refreshCache:refreshCache retryFailed:YES lowPriority:NO postMethod:posthMethod cacheKey:aCacheKey];
+    }
+}
+
+- (void)cancelCurrentImageLoad
+{
+    [[SDWebDataManager sharedManager] cancelForDelegate:self];
+}
+
+- (void)loadImageSucces
+{
+    // do nothing 子类有需要的再实现
+}
+
+- (void)loadImageFailed
+{
+    // do nothing 子类有需要的再实现
+}
+
+#pragma mark - SDWebDataManagerDelegate
+
+- (BOOL)webDataManager:(SDWebDataManager *)dataManager isFinishedDataValid:(NSData *)aData
+{
+    UIImage *img = [UIImage imageWithData:aData];
+    
+    if (img) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)webDataManager:(SDWebDataManager *)dataManager didFinishWithData:(NSData *)aData isCache:(BOOL)isCache theURL:(NSString *)url
+{
+	UIImage *img=[UIImage imageWithData:aData];
+    if (img != nil)
+    {
+        self.image = img;
+        
+        [self loadImageSucces];
+        
+        NSString *urlDecode = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* dicParam = [NSDictionary dictionaryWithObjectsAndKeys:urlDecode,kKeyImageLoadUrl,aData,kKeyImageLoadData,self,kKeyImageLoadImageView,nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationImageViewDidFinishedLoadImag object:dicParam];
+    }
+    else 
+    {
+        [self loadImageFailed];
+    }
+}
+
+- (void)webDataManager:(SDWebDataManager *)dataManager didFailWithError:(NSError *)error theURL:(NSString *)url
+{
+    [self loadImageFailed];
+}
+
+@end

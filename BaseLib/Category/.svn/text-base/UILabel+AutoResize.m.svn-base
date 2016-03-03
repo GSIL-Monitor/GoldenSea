@@ -1,0 +1,32 @@
+//
+//  UILabel+AutoResize.m
+//
+
+#import "UILabel+AutoResize.h"
+
+@implementation UILabel (AutoResize)
+
+- (void)autoResizeWidth
+{
+    CGSize size =  [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    CGFloat width = size.width;
+    CGRect frame = self.frame;
+    frame.size.width = width;
+    self.frame = frame;
+}
+
+- (void)autoResizeHeight
+{
+    CGSize size = [self.text boundingRectWithSize:CGSizeMake(self.frame.size.width, 500) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:self.font?@{NSFontAttributeName:self.font}:nil context:nil].size;
+    CGRect frame = self.frame;
+    frame.size.height = size.height;
+    self.frame = frame;
+}
+
+- (void)autoResize
+{
+    [self autoResizeWidth];
+    [self autoResizeHeight];
+}
+
+@end

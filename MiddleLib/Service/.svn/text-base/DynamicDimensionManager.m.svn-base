@@ -1,0 +1,26 @@
+//
+//  DynamicDimensionManager.m
+//  iRCS
+//
+//  Created by minjie on 16/12/15.
+//  Copyright © 2015 frank weng. All rights reserved.
+//
+
+#import "DynamicDimensionManager.h"
+
+@implementation DynamicDimensionManager
+
+SINGLETON_GENERATOR(DynamicDimensionManager, sharedManager)
+
+-(instancetype)init{
+    if (self=[super init]) {
+        NSString *tmpNameStr=@"测试字体";
+        _fontHeightOf14 =[tmpNameStr sizeWithFontSize:RCS_Font_Arial_size_14 displaySize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)].height;
+        _fontHeightOf16 =[tmpNameStr sizeWithFontSize:RCS_Font_Arial_size_16 displaySize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)].height;
+
+    }
+    return self;
+}
+
+
+@end

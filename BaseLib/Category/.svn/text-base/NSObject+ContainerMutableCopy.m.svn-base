@@ -1,0 +1,41 @@
+//
+//  NSObject+ContainerMutableCopy.m
+//
+
+#import "NSObject+ContainerMutableCopy.h"
+
+@implementation NSObject(ContainerMutableCopy)
+
+- (id)containerMutableCopy
+{
+    if ([self isKindOfClass:[NSDictionary class]])
+    {
+        NSDictionary* oldDict = (NSDictionary*)self;
+        NSMutableDictionary* newDict = [NSMutableDictionary dictionaryWithCapacity:[oldDict count]];
+        for (id obj in oldDict)
+            [newDict setObject:[oldDict[obj] containerMutableCopy] forKey:obj];
+        return newDict;
+    }
+    else if ([self isKindOfClass:[NSSet class]])
+    {
+        NSSet* oldSet = (NSSet*)self;
+        NSMutableSet* newSet = [NSMutableSet setWithCapacity:[oldSet count]];
+        for (id obj in oldSet)
+            [newSet addObject:[obj containerMutableCopy]];
+        return newSet;
+    }
+    else if ([self isKindOfClass:[NSArray class]])
+    {
+        NSArray* oldArray = (NSArray*)self;
+        NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:[oldArray count]];
+        for (id obj in oldArray)
+            [newArray addObject:[obj containerMutableCopy]];
+        return newArray;
+    }
+    else
+    {
+        return self;
+    }
+}
+
+@end

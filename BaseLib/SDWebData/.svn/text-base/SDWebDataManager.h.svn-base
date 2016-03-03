@@ -1,0 +1,46 @@
+//
+//  SDWebDataManager.h
+//  SDWebData
+//
+//  Created by stm on 11-7-13.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "SDDataCache.h"
+#import "SDWebDataDownloader.h"
+
+@protocol SDWebDataManagerDelegate;
+@interface SDWebDataManager : NSObject<SDDataCacheDelegate,SDWebDataDownloaderDelegate> {
+    NSMutableDictionary *downloaderForURL;
+    NSMutableDictionary *failedURLs;
+}
+
++ (id)sharedManager;
+- (NSData *)dataWithURL:(NSURL *)url;
+
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate;
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache;
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed;
+/**
+ refreshCache=YES,重新下载并覆盖已有的cache;
+ retryFailed=YES,失败后可以再次下载;
+ lowPriority=YES,低优先级.
+ **/
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority;
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority postMethod:(BOOL)postMethod;
+- (void)downloadWithURL:(NSURL *)url delegate:(id<SDWebDataManagerDelegate>)delegate refreshCache:(BOOL)refreshCache retryFailed:(BOOL)retryFailed lowPriority:(BOOL)lowPriority postMethod:(BOOL)postMethod cacheKey:(NSString *)aCacheKey;
+- (void)cancelForDelegate:(id<SDWebDataManagerDelegate>)delegate;
+
+@end
+
+
+@protocol SDWebDataManagerDelegate <NSObject>
+
+@optional
+- (BOOL)webDataManager:(SDWebDataManager *)dataManager isFinishedDataValid:(NSData *)aData;
+- (void)webDataManager:(SDWebDataManager *)dataManager didFinishWithData:(NSData *)aData isCache:(BOOL)isCache theURL:(NSString *)url;
+- (void)webDataManager:(SDWebDataManager *)dataManager didFailWithError:(NSError *)error theURL:(NSString *)url;
+- (void)webDataManager:(SDWebDataManager *)dataManager didDownloadDataLength:(int)dataLength  totalLength:(int)totalLength;
+- (void)webDataManager:(SDWebDataManager *)dataManager startDownloading:(NSURL*)url;
+@end

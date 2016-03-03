@@ -1,0 +1,32 @@
+//
+//  HYHtmlTemplate.m
+//  _Client-iOS-Common
+//
+//  Created by dolphinux on 5/29/14.
+//  Copyright (c) 2014 _.com. All rights reserved.
+//
+
+#import "HYHtmlTemplate.h"
+#import "CommonMacros.h"
+@implementation HYHtmlTemplate
+
+
+//生成metaviewport标签
++(NSString *)metaViewport:(CGFloat)scale
+{
+    return [NSString stringWithFormat:@"<meta content=\"width=device-width,initial-scale=%f\" name=\"viewport\"/>\n", scale];
+}
+
++(NSString *)htmlwrapper:(NSString *)head body:(NSString *)body
+{
+    return [HYHtmlTemplate htmlwrapper:head body:body backgroundColor:nil];
+}
++(NSString *)htmlwrapper:(NSString *)head body:(NSString *)body backgroundColor:(NSString *)color
+{
+    if(color) {
+        return [NSString stringWithFormat:@"<html>\n<head>\n%@</head><body style=\"margin:0px;padding:0px;background-color:%@;\">\n%@\n</body>\n</html>", NONILString(head), NONILString(color),NONILString(body)];
+    }
+
+    return [NSString stringWithFormat:@"<html>\n<head>\n%@</head><body>\n%@\n</body>\n</html>", NONILString(head), NONILString(body)];
+}
+@end

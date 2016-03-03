@@ -1,0 +1,46 @@
+//
+//  MetaTable.h
+//
+
+#import <Foundation/Foundation.h>
+#import "Connection.h"
+
+
+@interface MetaTable : NSObject
+
+//判断是否存在db中是否存在meta信息描述表
++(BOOL)doTableExist:(Connection *)db;
+
+-(BOOL)init:(Connection *)db version:(NSUInteger)version compatibleVersion:(NSUInteger)compatibleVersion;
+
+-(void)reset;
+
+//兼容版本号代码能够读取数据库的最低版本
+//如果只是小改动以及约束条件变化，老版本的代码仍然可以在该数据库上工作不会失败
+//比如，
+//如果一个可选字段在版本3中加入了表结构，并且兼容版本2，
+//那么我们会预期版本2的数据库仍热可以读写数据表
+//
+//变更规则：当做数据库升级的时候检查版本号，
+//检查兼容版本号是否可以使用该数据库，
+//如果兼容版本号大于版本号，读写数据库将面临失败的风险
+//如果上一个版本不存在，兼容版本号等于0
+-(void)setVersionNumber:(NSUInteger)version;
+-(NSUInteger)versionNumber;
+
+-(void)setCompatibleVersionNumber:(NSUInteger)version;
+-(NSUInteger)compatibleVersionNumber;
+
+-(BOOL)setValue:(NSString *)key stringValue:(NSString *)value;
+-(BOOL)setValue:(NSString *)key integerValue:(NSInteger)value;
+
+-(NSString*) getStringValue:(NSString *)key;
+-(NSInteger) getIntegerValue:(NSString *)key;
+
+-(BOOL)DeleteKey:(NSString *)key;
+
+@end
+
+
+
+

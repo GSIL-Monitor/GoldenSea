@@ -1,0 +1,12 @@
+//
+//  UIButtonEX.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIButton (EX)
+
+@property(nonatomic, assign) UIEdgeInsets hitEdgeInsets;
++(id)buttonWithFrame:(CGRect)frame title:(NSString *)title fontSize:(CGFloat)fontSize;
+
+@end

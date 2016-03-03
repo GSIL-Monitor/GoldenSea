@@ -1,0 +1,115 @@
+//
+//  FileManager.m
+
+#import "FileManager.h"
+
+@implementation FileManager
++ (instancetype)sharedInstance
+{
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+
++ (NSString *) getApplicationSupportPath{
+    //such as:../Applications/9A425424-645E-4337-8730-8A080DF086F4/Library/Application Support
+    NSArray* libraryPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSAllDomainsMask, YES);
+    
+    NSString *path = nil;
+    if ([libraryPaths count] > 0) {
+        path = [libraryPaths objectAtIndex:0];
+    }
+    
+    if (![FileManager fileExist:path]) {
+        [FileManager createDirectory:path];
+    }
+    return path;
+}
+
+
++ (NSString *) getDocumentsPath{
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) objectAtIndex:0];
+    
+    //such as:../Applications/
+    return documentPath;
+}
+
+
+
++ (NSString *) getCachePath{
+    // such as : ../Applications/9A425424-645E-4337-8730-8A080DF086F4/Library/Caches
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES) objectAtIndex:0];
+    return cachePath;
+}
+
+
++ (NSString *) getTemPath{
+    NSString *cachesDic = NSTemporaryDirectory();
+    return cachesDic;
+}
+
++ (BOOL)createDirectory:(NSString *)newDirectory{
+    if([self fileExist:newDirectory]) return YES;
+    
+    NSError * error = nil;
+    BOOL finished = [[NSFileManager defaultManager] createDirectoryAtPath:newDirectory
+                                              withIntermediateDirectories:YES
+                                                               attributes:nil
+                                                                    error:&error];
+    return finished;
+}
+
+
++ (BOOL)deleteFilesysItem:(NSString*)strItem{
+    if ([strItem length] == 0) {
+        return YES;
+    }
+    
+    NSError * error = nil;
+    BOOL finished = [[NSFileManager defaultManager] removeItemAtPath:strItem error:&error];
+    return finished;
+}
+
+
++ (BOOL)moveFilesysItem:(NSString *)srcPath toPath:(NSString *)dstPath{
+    if (![self fileExist:srcPath]) return NO;
+    
+    NSError * error = nil;
+    return [[NSFileManager defaultManager] moveItemAtPath:srcPath
+                                                   toPath:dstPath
+                                                    error:&error];
+}
+
++ (BOOL) copyFilesysItem:(NSString *)srcPath toPath:(NSString *)dstPath{
+    if (![self fileExist:srcPath]) return NO;
+    
+    NSError * error = nil;
+    return [[NSFileManager defaultManager] copyItemAtPath:srcPath
+                                                   toPath:dstPath
+                                                    error:&error];
+}
+
++ (BOOL) fileExist:(NSString*)strPath{
+    NSFileManager *file_manager = [NSFileManager defaultManager];
+    BOOL finded = [file_manager fileExistsAtPath:strPath];
+    return finded;
+}
+
++ (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool:YES]
+                                  forKey: NSURLIsExcludedFromBackupKey
+                                   error: &error];
+    if(!success){
+        DDLogInfo(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
+
+@end

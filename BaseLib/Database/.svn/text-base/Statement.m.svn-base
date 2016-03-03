@@ -1,0 +1,272 @@
+//
+//  Statment.m
+//
+
+#import "Statement.h"
+
+@implementation Statement
+
+@synthesize stmtRef=stmtRef_;
+@synthesize succeeded=succeeded_;
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        stmtRef_ = [[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:NO];
+    }
+    return self;
+}
+
+
+-(id)initWithStatementRef:(StatementRef *)stmtRef
+{
+    self = [super init];
+    if (self) {
+        stmtRef_ = stmtRef;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [self reset:YES];
+}
+
+
+-(id)assign:(StatementRef *)stmtRef
+{
+    [self reset:YES];
+    
+    stmtRef_ = stmtRef;
+    return self;
+}
+
+-(void)clear
+{
+    [self assign:[[StatementRef alloc] initWithStmt:nil stmt:NULL wasValid:NO]];
+    succeeded_ = NO;
+
+}
+
+-(BOOL) checkValid
+{
+    if (![stmtRef_ wasValid]) {
+        NSLog(@"Cannot call mutating statements on an invalid statement.");
+    }
+    
+    return [self isValid];
+}
+
+-(BOOL)run
+{
+    if (![self checkValid])
+        return NO;
+    
+    
+    return [self checkError:(sqlite3_step(stmtRef_.stmt))] == SQLITE_DONE;
+}
+
+-(BOOL)step
+{
+    if (![self checkValid])
+        return NO;
+    
+    return [self checkError:(sqlite3_step(stmtRef_.stmt))] == SQLITE_ROW;
+}
+
+
+-(void)reset:(BOOL)clearBoundVars
+{
+    if ([self isValid]) {
+        if (clearBoundVars) {
+            sqlite3_clear_bindings(stmtRef_.stmt);
+        }
+        sqlite3_reset(stmtRef_.stmt);
+    }
+    
+    succeeded_ = NO;
+}
+
+-(BOOL)succeeded
+{
+    if (![self isValid]) {
+        return NO;
+    }
+    
+    return succeeded_;
+}
+
+-(BOOL)bindNull:(NSInteger)col
+{
+    if (![self isValid]) {
+        return NO;
+    }
+    
+    return [self checkOk:sqlite3_bind_null(stmtRef_.stmt, col + 1)];
+}
+
+-(BOOL)bindInt:(NSInteger)col val:(int)val
+{
+    if (![self isValid]) {
+        return NO;
+    }
+
+    return [self checkOk:sqlite3_bind_int(stmtRef_.stmt, col + 1, val)];
+}
+
+-(BOOL) bindDouble:(NSInteger)col val:(double)val
+{
+    if (![self isValid]) {
+        return NO;
+    }
+    
+   return [self checkOk:sqlite3_bind_double(stmtRef_.stmt, col + 1, val)];
+}
+
+
+-(BOOL) bindBool:(NSInteger)col val:(NSInteger)val
+{
+    if (![self isValid]) {
+        return NO;
+    }
+
+    return [self bindInt:col val:val ? 1 : 0];
+}
+
+-(BOOL)bindString:(NSInteger)col val:(NSString *)val
+{
+    if (![self isValid]) {
+        return NO;
+    }
+    
+    return [self checkOk:sqlite3_bind_text(stmtRef_.stmt,
+                                           col + 1,
+                                           [val UTF8String],
+                                           [val lengthOfBytesUsingEncoding:NSUTF8StringEncoding],
+                                           SQLITE_TRANSIENT)];
+}
+
+-(BOOL)bindBlob:(NSInteger)col val:(NSData *)val
+{
+    if (![self isValid]) {
+        return NO;
+    }
+    
+    return [self checkOk:sqlite3_bind_blob(stmtRef_.stmt,
+                                       col + 1,
+                                       [val bytes],
+                                       val.length,
+                                       SQLITE_TRANSIENT)];
+}
+
+-(NSInteger)columnCount
+{
+    if (![self isValid]) {
+        return 0;
+    }
+
+    return sqlite3_column_count(stmtRef_.stmt);
+}
+
+-(ColType)columnType:(NSInteger)col
+{
+    return sqlite3_column_type(stmtRef_.stmt, col);
+}
+
+
+-(ColType)declaredColumnType:(NSInteger)col
+{
+    NSString *columType = [NSString stringWithUTF8String:sqlite3_column_decltype(stmtRef_.stmt, col)];
+    
+    if ([[columType lowercaseString] isEqualToString:@"integer"]) {
+        return COLUMN_TYPE_INTEGER;
+    } else if ([[columType lowercaseString] isEqualToString:@"float"]) {
+        return COLUMN_TYPE_FLOAT;
+    } else if ([[columType lowercaseString] isEqualToString:@"text"]) {
+        return COLUMN_TYPE_TEXT;
+    } else if ([[columType lowercaseString] isEqualToString:@"blob"]) {
+        return COLUMN_TYPE_BLOB;
+    }
+    
+    return COLUMN_TYPE_NULL;
+}
+
+-(BOOL)columnBool:(NSInteger)col
+{
+    return !![self columnInt:col];
+}
+
+-(NSInteger)columnInt:(NSInteger)col
+{
+    if (![self checkValid])
+        return 0;
+    
+    return sqlite3_column_int(stmtRef_.stmt, col);
+}
+
+-(double)columnDoublel:(NSInteger)col
+{
+    if (![self checkValid])
+        return 0;
+    
+    return sqlite3_column_double(stmtRef_.stmt, col);
+}
+-(NSString *)columnString:(NSInteger)col
+{
+    if (![self checkValid])
+        return @"";
+    
+    const char* str = (const char *)sqlite3_column_text(stmtRef_.stmt, col);
+    
+    return [NSString stringWithUTF8String:str];
+    
+}
+
+-(NSData *)columnBlob:(NSInteger)col
+{
+    if (![self checkValid])
+        return nil;
+    
+    const void* data = sqlite3_column_blob(stmtRef_.stmt, col);
+    int len = sqlite3_column_bytes(stmtRef_.stmt, col);    
+    
+    return [NSData dataWithBytes:data length:len];
+}
+
+-(NSInteger)columnByteLength:(NSInteger)col
+{
+    if (![self checkValid])
+        return 0;
+    
+    return sqlite3_column_bytes(stmtRef_.stmt, col);
+}
+
+-(NSString *) getSQLStatement
+{
+    return [NSString stringWithUTF8String:sqlite3_sql(stmtRef_.stmt)];
+}
+
+
+
+-(BOOL)isValid
+{
+    return [stmtRef_ isValid];
+}
+
+-(NSInteger) checkError:(NSInteger)err
+{
+    succeeded_ = (err == SQLITE_OK || err == SQLITE_ROW || err == SQLITE_DONE);
+    
+    return err;
+}
+-(NSInteger) checkOk:(NSInteger)err
+{
+    if (err == SQLITE_RANGE) {
+        NSLog(@"SQlite is out of range");
+    }
+    
+    return err == SQLITE_OK;
+}
+
+@end

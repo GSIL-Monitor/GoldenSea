@@ -1,0 +1,211 @@
+//
+//  RCSUtils.h
+//  RCS
+//
+//  Created by yaofangyys on 15/4/9.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "NSString+Utilities.h"
+
+
+
+@interface RCSUtils : NSObject
+
+/**
+ *  从时间戳中获取相对现在的时间描述
+ * @param  time  时间戳
+ * @return  相对于现在的时间描述
+ */
++ (NSString *)getRelativeTimeToNowFromTimeInterval:(NSTimeInterval)time;
+
+/**
+ *  根据时间戳得到时间表述，用于聊天界面显示
+ *
+ *  @param time 时间戳
+ *
+ *  @return 时间描述
+ */
++ (NSString *)getRelativeTimeToNowForMessageFromTimeInterval:(NSTimeInterval)time;
+
++ (NSString *)getRelativeTimeToNowForCallFromTimeInterval:(NSTimeInterval)time;
++ (NSString *)getRelativeTimeToNowForConversationFromTimeInterval:(NSTimeInterval)time;
+
+/**
+ *  从时间戳中获取当前系统时区对应时间
+ *
+ *  @param interval 时间戳
+ *
+ *  @return 时间
+ */
++ (NSDate *)getSystemZoneDateWithTimeIntervalSince1970:(NSTimeInterval)interval;
+
+/**
+ *  convert MAVE file to AMR file
+ * @param strWavePath  Mave file path
+ * @param toAmrPath  is the target  Amr file path
+ * @return
+ */
++ (BOOL)convertWAVE:(NSString *)strWavePath ToAmr:(NSString *)toAmrPath;
+
+
+/**
+ *  数据库不支存储持单引号，所以将其转义为"/s",而"/"则转义为"//"
+ */
++ (NSString *)convertSpecialSymbolFromDBModelWithRawText:(NSString *)text;
+
++ (NSString *)convertSpecialSymbolFromUIModelWithRawText:(NSString *)text;
+
+/**
+ *  获取未使用的标示
+ */
++ (NSString *)generalUDID;
+
+
+/**
+ *  字符转化表情编码
+ */
++ (NSString *)convertTextContentFaceExpressionToCode:(NSString *)strContent;
+
+
+
+/**
+ *  convert Move file to MP4 file
+ * @param url is the Move file path
+ * @param toUrl  is the target  MP4 file path
+ * @return
+ */
++ (BOOL)convertMovToMP4:(NSURL *)url ToURL:(NSURL *)toUrl;
+
+
+/**
+ *  使用原图生成缩略图
+ * @param image 原图
+ * @return
+ */
++ (NSData *)generalIcon:(UIImage *)image;
+
+///**
+// *  替换电话号码为联系人姓名
+// *
+// *  @param phone 电话号码
+// *
+// *  @return 通讯录中对应的联系人姓名数组
+// */
+//+ (NSArray *)ContactDisplayNameWithPhoneNumber:(NSString *)phone;
+
+
+/**
+ *  从时间戳中获取时间描述
+ * @param  time  时间戳
+ * @return  时间描述
+ */
+//+ (NSString *)getDateStringFromTimeInterval:(NSTimeInterval)timeInterval;
+
+
+/**
+ *  修正文件的绝对路径
+ * @param filePath 原路径
+ * @return 真实路径
+ */
++ (NSString *)getRedirectionFilePath:(NSString *)filePath;
+
+/**
+ *  将秒数转换为时分秒(00:00:00')形式
+ *
+ *  @param timeInterval 秒数
+ *
+ *  @return 时分秒(00:00:00')格式的字符串
+ */
++ (NSString *)getStringFromTimeInterval:(NSTimeInterval)timeInterval;
+
+/**
+ *  将秒数转换为时分秒(00时00分00秒)形式
+ *
+ *  @param timeInterval 秒数
+ *
+ *  @return 时分秒(00时00分00秒)格式的字符串
+ */
+
++ (NSString *)getChineseStringFromTimeInterval:(NSTimeInterval)timeInterval;
+
+/**
+ *  获取当前用户的号码
+ * @return  当前用户手机号（注意区分是否+86）
+ */
++ (NSString *)getCurrentUserPhoneNumber;
+
++ (NSString *)getCurrentUserId;
+
+
++ (UIViewController *)getCurrentVC;
+/**
+ *  是否是同一个号码
+ * @param
+ * @return
+ */
++ (BOOL)isTheSamePhoneNumber:(NSString *)phone1 Phone2:(NSString *)phone2;
+
++ (BOOL)isTheSameUserId:(NSString*)userId1 withUserId:(NSString *)userId2;
+
+/**
+ *  是否通知消息的号码
+ *
+ *  @return
+ */
+//+ (BOOL)isNotificationPhoneNumber:(NSString *)phone;
+
+
+/**
+ *  使用系统原生拨打电话
+ *
+ *  @param phone 电话号码
+ */
++ (void)makeSystemCall:(NSString *)phone;
+
+/**
+ *  是否运行在32位
+ * @param
+ * @return
+ */
++ (BOOL)is32bit;
+
+/**
+ *  是否运行在64位
+ * @param
+ * @return
+ */
++ (BOOL)is64bit;
+
+/**
+ *  从Xml文件中获取定位信息
+ * @param
+ * @return
+ */
+
+//+ (RCSMapLocation *)parseLocationFromMapXml:(NSString *)filePath;
+
+// 获取Documents资源文件的绝对路径
++  (NSString *) getResourceFullPathInDocumentsWithPartialPath:(NSString *) resPartialPath;
+
+// 获取字符串的字符个数，转换成文件大小 -> KB/MB
++ (NSString *) getFormattedByteSizeFromString:(NSString *) str;
+
+// 将长度转化成文件大小
++ (NSString *)getFormattedSizeFromLength:(NSInteger)length;
+
+// 转换成最近的最大数: 2->2      2.01-> 3        2.97->3
++ (NSInteger) nearestLargestIntFromFloat:(CGFloat)input;
+
+
+/**
+ ** lineView:	   需要绘制成虚线的view
+ ** lineLength:	 虚线的宽度
+ ** lineSpacing:	虚线的间距
+ ** lineColor:	  虚线的颜色
+ **/
++ (void)drawDashLine:(UIView *)lineView lineLength:(int)lineLength lineSpacing:(int)lineSpacing lineColor:(UIColor *)lineColor;
+
+@end
+

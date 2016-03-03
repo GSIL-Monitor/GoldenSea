@@ -1,0 +1,138 @@
+//
+//  MetaTable.m
+//
+
+#import "MetaTable.h"
+#import "Transaction.h"
+#import "Statement.h"
+
+@interface MetaTable()
+{
+    Connection *db_;
+}
+@end
+
+@implementation MetaTable
+
+static NSString *kVersionKey = @"version";
+static NSString *kCompatibleVersionKey = @"last_compatible_version";
+
++(BOOL)doTableExist:(Connection *)db
+{
+    return [db doesTableExist:@"meta"];
+}
+
+-(BOOL)init:(Connection *)db version:(NSUInteger)version compatibleVersion:(NSUInteger)compatibleVersion
+{
+    if (!(!db_ && db)) {
+        return NO;
+    }
+    
+    db_ = db;
+    
+    // Make sure the table is created an populated atomically.
+    Transaction *transaction = [[Transaction alloc] initWithDb:db];
+    if (![transaction begin])
+        return NO;
+    
+    if (![MetaTable doTableExist:db]) {
+        if (![db_ execute:@"CREATE TABLE meta (key LONGVARCHAR NOT NULL UNIQUE PRIMARY KEY, value LONGVARCHAR)"])
+            return false;
+        
+        // Note: there is no index over the meta table. We currently only have a
+        // couple of keys, so it doesn't matter. If we start storing more stuff in
+        // there, we should create an index.
+        [self setVersionNumber:version];
+        [self setCompatibleVersionNumber:compatibleVersion];
+    }
+    
+    return [transaction commit];
+}
+
+-(void)reset
+{
+    db_ = nil;
+}
+
+-(void)setVersionNumber:(NSUInteger)version
+{
+    [self setValue:kVersionKey integerValue:version];
+}
+
+-(NSUInteger)versionNumber
+{
+//    NSUInteger version = 0;
+    return  [self getIntegerValue:kVersionKey];
+}
+
+-(void)setCompatibleVersionNumber:(NSUInteger)version
+{
+    [self setValue:kCompatibleVersionKey integerValue:version];
+}
+
+-(NSUInteger)compatibleVersionNumber
+{
+    return [self getIntegerValue:kCompatibleVersionKey];
+}
+
+
+
+-(BOOL)setValue:(NSString *)key integerValue:(NSInteger)value
+{
+    Statement *s;
+    [self prepareSetStatement:s key:key];
+    [s bindInt:1 val:(int)value];
+    return [s run];
+}
+
+
+-(BOOL)setValue:(NSString *)key stringValue:(NSString *)value
+{
+    Statement *s;
+    [self prepareSetStatement:s key:key];
+    [s bindString:1 val:value];
+    return [s run];
+}
+
+-(NSInteger)getIntegerValue:(NSString *)key
+{
+    Statement *s;
+    if (! [self prepareGetStatement:s key:key]) {
+        return 0;
+    }
+    return [s columnInt:0];
+}
+
+-(NSString *)getStringValue:(NSString *)key
+{
+    Statement *s;
+    if (![self prepareGetStatement:s key:key]) {
+        return nil;
+    }
+    return [s columnString:0];
+}
+
+-(BOOL)DeleteKey:(NSString *)key
+{
+    Statement *s = [[Statement alloc] initWithStatementRef:[db_  getUniqueStatement:key]];
+    [s bindString:0 val:key];
+    
+    return [s run];
+    
+}
+
+-(void)prepareSetStatement:(Statement *) statement key:(NSString *)key
+{
+    [statement assign:[db_ getCachedStatement:SQL_FROM_HERE sql:@"INSERT OR REPLACE INTO meta (key,value) VALUES (?,?)"]];
+    [statement bindString:0 val:key];
+}
+
+-(BOOL)prepareGetStatement:(Statement *) statement key:(NSString *) key
+{
+    [statement assign:[db_ getCachedStatement:SQL_FROM_HERE sql:@"SELECT value FROM meta WHERE key=?"]];
+    [statement bindString:0 val:key];
+    
+    return [statement step];
+}
+
+@end

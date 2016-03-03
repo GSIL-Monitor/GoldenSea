@@ -1,0 +1,195 @@
+//
+//  NewTeleManager.m
+//  iRCS
+//
+//  Created by 黄春涛 on 16/1/13.
+//  Copyright © 2016年 frank weng. All rights reserved.
+//
+
+#import "NewTeleManager.h"
+#import "NewTeleDBManager.h"
+#import "ContactManager.h"
+#import "ContactModel.h"
+#import "NSDate+WhatDay.h"
+
+@implementation NewTeleManager
+
+SINGLETON_GENERATOR(NewTeleManager, defaultManager);
+
+#pragma mark - Public Method
+- (NSArray *)getTeleRecords{
+    
+    NSArray *teleDBRecords = [[NewTeleDBManager defaultManager] getAllTeleHistory];
+    NSMutableArray *teleCellModelArray = [NSMutableArray array];///<NewTeleCellModel
+
+    //合并通话记录
+    NewTeleRecordDBModel *lastDBModel = nil;
+    for (NewTeleRecordDBModel *dbModel in teleDBRecords) {
+        if (lastDBModel) {
+            //判断是否合并
+            if ([lastDBModel.phoneNumbers isEqualToString:dbModel.phoneNumbers] &&
+                lastDBModel.teleType != NEWRCS_TELESTATUS_UNCONNECTED &&
+                dbModel.teleType != NEWRCS_TELESTATUS_UNCONNECTED &&
+                lastDBModel.startTimeStamp - 10 * 60 < dbModel.startTimeStamp
+                ) {
+                //该条记录被合并
+                NewTeleCellModel *cellModel = [teleCellModelArray lastObject];
+                [cellModel.rawTeleRecords safeAddObject:dbModel];
+            }else{
+                [teleCellModelArray safeAddObject:[self makeTeleCellModelWith:dbModel]];
+            }
+        }
+        else{
+            [teleCellModelArray safeAddObject:[self makeTeleCellModelWith:dbModel]];
+        }
+        
+        lastDBModel = dbModel;
+    }
+    
+    return teleCellModelArray;
+}
+
+- (NSMutableArray *)getTeleLayouts
+{
+    NSArray *teleDBRecords = [[NewTeleDBManager defaultManager] getAllTeleHistory];
+    NSMutableArray *arrayLayouts = [NSMutableArray array];///<NewTeleCellModel
+
+    //合并通话记录
+    NewTeleRecordDBModel *lastDBModel = nil;
+    for (NewTeleRecordDBModel *dbModel in teleDBRecords) {
+        if (lastDBModel) {
+            //判断是否合并
+            if ([self shouldMergeDBModel:lastDBModel WithDBModel:dbModel]) {
+                //该条记录被合并
+                [self initMergeTeleDBModel:dbModel ToArray:arrayLayouts ];
+               
+            }else{
+                [self initAddTeleDBModel:dbModel ToArray:arrayLayouts];
+            }
+        }
+        else{
+            [self initAddTeleDBModel:dbModel ToArray:arrayLayouts];
+        }
+        lastDBModel = dbModel;
+    }
+    
+    return arrayLayouts;
+}
+
+- (void)mergeTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array
+{
+    ConversationLayout *layout = [array firstObject];
+    [layout.TeleRecordDBModels safeAddObject:dbModel];
+}
+
+- (void)initMergeTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array
+{
+    ConversationLayout *layout = [array lastObject];
+    [layout.TeleRecordDBModels safeAddObject:dbModel];
+}
+
+
+- (void)addTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array
+{
+    ConversationUIModel *convModel = [[ConversationUIModel alloc]initWithTeleDBModel:dbModel];
+    ConversationLayout *layout = [[ConversationLayout alloc]initWithConversationUIModel:convModel WithModelType:ConversationModelType_Tele];
+    layout.TeleRecordDBModels = [[NSMutableArray alloc]init];
+    [layout.TeleRecordDBModels safeAddObject:dbModel];
+    [array insertObject:layout atIndex:0];
+}
+
+- (void)initAddTeleDBModel:(NewTeleRecordDBModel *)dbModel ToArray:(NSMutableArray *)array
+{
+    ConversationUIModel *convModel = [[ConversationUIModel alloc]initWithTeleDBModel:dbModel];
+    ConversationLayout *layout = [[ConversationLayout alloc]initWithConversationUIModel:convModel WithModelType:ConversationModelType_Tele];
+    layout.TeleRecordDBModels = [[NSMutableArray alloc]init];
+    [layout.TeleRecordDBModels safeAddObject:dbModel];
+    [array safeAddObject:layout];
+}
+
+- (void)addTeleRecordWith:(NewTeleRecordDBModel *)dbModel{
+    [[NewTeleDBManager defaultManager] addTeleHistory:dbModel];
+}
+
+
+- (void)deleteTeleRecordsWith:(NewTeleCellModel *)cellModel{
+    for (NewTeleRecordDBModel *dbModel in cellModel.rawTeleRecords) {
+        [[NewTeleDBManager defaultManager] deleteTeleHisory:dbModel];
+    }
+}
+
+- (void)deleteTeleRecordWithConversationLayout:(ConversationLayout *)layout
+{
+    for (NewTeleRecordDBModel *dbModel in layout.TeleRecordDBModels) {
+        [[NewTeleDBManager defaultManager]deleteTeleHisory:dbModel];
+    }
+}
+
+- (NewTeleCellModel *) makeTeleCellModelWith:(NewTeleRecordDBModel *)dbModel{
+    
+    NewTeleCellModel *cellModel = [[NewTeleCellModel alloc] init];
+    
+    NSArray *phoneNumbers = [dbModel.phoneNumbers componentsSeparatedByString:@","];
+    ContactModel *contactModel = [[ContactManager shareManager] getContactModelWithPhoneNum:[phoneNumbers safeObjectAtIndex:0]];
+    
+    cellModel.image = [contactModel.contactDict safeObjectForKey:ADKHeadImage];
+    cellModel.imageUrl = nil;
+    
+    NSMutableString *displayName = [NSMutableString string];
+    for (NSString* phoneNumber in phoneNumbers) {
+        ContactModel *model = [[ContactManager shareManager] getContactModelWithPhoneNum:phoneNumber];
+        if (model) {
+            [displayName appendString:model.fullName];
+        }
+        else{
+            [displayName appendString:phoneNumber];
+        }
+      //  [displayName appendString:@"、"];
+    }
+  //  cellModel.displayName = [displayName substringToIndex:displayName.length - 2];
+    cellModel.displayName = displayName;
+    
+    NSDate *callDate = [NSDate dateWithTimeIntervalSince1970:dbModel.startTimeStamp];
+    if ([callDate isInAnHour]) {
+        NSDate *nowDate = [NSDate date];
+        int seconds = [nowDate timeIntervalSinceDate:callDate];
+        cellModel.teleTime = [NSString stringWithFormat:@"%d分钟前",seconds/60];
+    }
+    else if([callDate isToday]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"hh:mm"];
+        cellModel.teleTime = [formatter stringFromDate:callDate];
+    }
+    else{
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy/MM/dd"];
+        cellModel.teleTime = [formatter stringFromDate:callDate];
+    }
+    
+    cellModel.teleType = dbModel.teleType;
+    cellModel.teleStatus = dbModel.teleStatus;
+    cellModel.teleObject = dbModel.teleObject;
+    
+    cellModel.rawTeleRecordModel = dbModel;
+    cellModel.rawTeleRecords = [NSMutableArray arrayWithObject:dbModel];
+    
+    return cellModel;
+}
+
+- (BOOL)shouldMergeDBModel:(NewTeleRecordDBModel *)newModel WithDBModel:(NewTeleRecordDBModel *)oldModel
+{
+    //号码相同、间隔小于10分钟、 ((都不是呼入未接通) | (都是呼入未接通))
+    BOOL shouldMerge = ([oldModel.phoneNumbers isEqualToString:newModel.phoneNumbers] &&
+                        newModel.startTimeStamp - oldModel.startTimeStamp < 10 * 60 &&
+                        ((newModel.teleType == oldModel.teleType &&
+                          newModel.teleStatus == oldModel.teleStatus &&
+                          NEWRCS_TeleType_Audio_In == newModel.teleType &&
+                          NEWRCS_TELESTATUS_UNCONNECTED == newModel.teleStatus) ||
+                         (!(NEWRCS_TELESTATUS_UNCONNECTED == newModel.teleStatus &&
+                          NEWRCS_TeleType_Audio_In == newModel.teleType)&&!(
+                          NEWRCS_TELESTATUS_UNCONNECTED == oldModel.teleStatus &&
+                          NEWRCS_TeleType_Audio_In == oldModel.teleType))));
+    return shouldMerge;
+}
+
+@end

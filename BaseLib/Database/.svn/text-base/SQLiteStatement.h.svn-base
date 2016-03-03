@@ -1,0 +1,17 @@
+//
+//  SQLiteStatement.h
+//
+
+#import <Foundation/Foundation.h>
+#import <sqlite3.h>
+
+@interface SQLiteStatement : NSObject
+
+@property (assign) long useCount;
+@property (strong) NSString *query;
+@property (assign) sqlite3_stmt *statement;
+
+- (void)close;
+- (void)reset;
+
+@end

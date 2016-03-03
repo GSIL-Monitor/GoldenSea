@@ -1,0 +1,58 @@
+//
+//  UIImage+WriteToFile.m
+//
+
+#import "UIImage+WriteToFile.h"
+
+
+@implementation UIImage (WriteToFile)
+
+- (BOOL)writeToFile:(NSString* )path fileType:(NSString*)fileType
+{
+    return [self writeToFile:path fileType:fileType quality:0.8];
+}
+
+- (BOOL)writeToFile:(NSString* )path
+           fileType:(NSString*)fileType quality:(CGFloat)quality
+{
+	if (!path)
+        return NO;
+	
+	// Write a UIImage to JPEG with minimum compression (best quality)
+	// The value 'image' must be a UIImage object
+	// The value '1.0' represents image compression quality as value from 0.0 to 1.0
+	NSData *data = nil;
+	if ([fileType isEqualToString:@"JPEG"] || [fileType isEqualToString:@"jpeg"])
+    {
+		data = UIImageJPEGRepresentation(self, quality);
+		if (data)
+			return [data writeToFile:path atomically:YES];
+		else
+			return NO;
+	}
+    else if ([fileType isEqualToString:@"PNG"] || [fileType isEqualToString:@"png"] )
+    {
+		// Write image to PNG
+		data = UIImagePNGRepresentation(self);
+		if (data)
+			return [data writeToFile:path atomically:YES];
+		else
+			return NO;
+	}
+    
+	return NO;
+}
+
+- (BOOL)wirteToFile:(NSString*)path
+{
+	if(!path)
+        return NO;
+    
+	NSData * data = UIImagePNGRepresentation(self);
+	if (data == nil)
+		return NO;
+    
+	return [data writeToFile:path atomically:YES];
+}
+
+@end

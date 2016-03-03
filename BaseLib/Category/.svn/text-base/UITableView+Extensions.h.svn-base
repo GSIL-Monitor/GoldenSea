@@ -1,0 +1,18 @@
+//
+//  UITableView+Extensions.h
+//  RCS
+//
+//  Created by YuSong.Yan on 15/4/27.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UITableView (Extensions)
+- (void)scrollToBottomWithAnimation:(BOOL)animation;
+
+@end
+
+@interface UITableViewCell (Extensions)
+- (void)initUIWithModel:(id)model;
+@end

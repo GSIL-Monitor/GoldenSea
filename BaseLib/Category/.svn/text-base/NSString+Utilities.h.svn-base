@@ -1,0 +1,42 @@
+//
+//  NSString+Utilities.h
+//  RCS
+//
+//  Created by YuSong.Yan on 15/4/22.
+//  Copyright (c) 2015年 Ron. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (Utilities)
+
++ (BOOL) isBlankString:(NSString *)string;
+
+- (BOOL) hasSubString:(NSString *)string;
+
+/**
+ *  判断字符串是否纯数字组成
+ *
+ *  @return YES表示纯数字
+ */
+- (BOOL)isPureInt;
+
+
+
+///  返回  自适应 宽高
+///
+///  @param aFont 设置字体
+///  @param aSize MAXFloat  / height
+///
+///  @return 宽高
+- (CGSize)sizeWithFontSize:(UIFont*)aFont
+               displaySize:(CGSize)aSize;
+
+@end
+
+@interface NSAttributedString (Utilities)
+- (CGSize)sizeWithFontSize:(UIFont*)aFont
+               displaySize:(CGSize)aSize;
+- (CGSize)attributeStringSizeWithFontSize:(UIFont*)aFont
+                              displaySize:(CGSize)aSize;
+@end
