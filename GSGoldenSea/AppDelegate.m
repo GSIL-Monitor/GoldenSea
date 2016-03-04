@@ -10,6 +10,9 @@
 
 #import "HYRequestManager.h"
 
+#import "HYDatabaseHelper.h"
+#import "KDataDBService.h"
+
 
 @interface AppDelegate ()
 
@@ -37,6 +40,8 @@
 
 -(void)testFunc
 {
+    
+    
     NSDate* dnow = [NSDate dateWithTimeIntervalSinceNow:0];
     
     NSTimeInterval time = [dnow timeIntervalSince1970];

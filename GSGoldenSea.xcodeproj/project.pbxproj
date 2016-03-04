@@ -14,7 +14,7 @@
 		421265451C867A930053787E /* HYDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212653B1C867A930053787E /* HYDatabaseHelper.m */; };
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
-		4212654F1C8680360053787E /* KDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataService.m */; };
+		4212654F1C8680360053787E /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataDBService.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
 		42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D741C7FF771004E4DC2 /* ViewController.m */; };
@@ -118,8 +118,8 @@
 		421265481C867B7D0053787E /* NSArrayEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayEX.m; sourceTree = "<group>"; };
 		421265491C867B7D0053787E /* NSDictionaryEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryEX.h; sourceTree = "<group>"; };
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
-		4212654D1C8680360053787E /* KDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataService.h; sourceTree = "<group>"; };
-		4212654E1C8680360053787E /* KDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataService.m; sourceTree = "<group>"; };
+		4212654D1C8680360053787E /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
+		4212654E1C8680360053787E /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -472,8 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				42E08E391C7FF8C1004E4DC2 /* TestService */,
-				4212654D1C8680360053787E /* KDataService.h */,
-				4212654E1C8680360053787E /* KDataService.m */,
+				4212654D1C8680360053787E /* KDataDBService.h */,
+				4212654E1C8680360053787E /* KDataDBService.m */,
 				4204D0551C88160500D27135 /* HelpService.h */,
 				4204D0561C88160500D27135 /* HelpService.m */,
 			);
@@ -908,7 +908,7 @@
 				42E08D721C7FF771004E4DC2 /* main.m in Sources */,
 				42E08E591C7FF8C1004E4DC2 /* HYBaseResponse.m in Sources */,
 				42E097951C7FFAEB004E4DC2 /* HYFMDatabasePool.m in Sources */,
-				4212654F1C8680360053787E /* KDataService.m in Sources */,
+				4212654F1C8680360053787E /* KDataDBService.m in Sources */,
 				42E08E5C1C7FF8C1004E4DC2 /* HYRequestManager.m in Sources */,
 				42E08E571C7FF8C1004E4DC2 /* HYBaseModel.m in Sources */,
 				42E097CA1C7FFAEB004E4DC2 /* Reachability.m in Sources */,
