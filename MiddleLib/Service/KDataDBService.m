@@ -58,7 +58,7 @@ SINGLETON_GENERATOR(KDataDBService, shareManager);
     
     self.keyTypeDict = param;
     
-    return [super createTable];
+    return [super createTable:tableName];
 }
 
 

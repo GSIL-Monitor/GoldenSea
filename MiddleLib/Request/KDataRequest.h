@@ -7,12 +7,15 @@
 //
 
 #import "HYBaseRequest.h"
+#import "KDataModel.h"
+
 
 
 
 
 @interface KDataRequest : HYBaseRequest
 
++(KDataRequest*)requestWith:(KDataReqModel*)reqModel;
 
 
 @end

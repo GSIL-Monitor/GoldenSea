@@ -51,7 +51,7 @@
  *
  *  @return success or not
  */
-- (BOOL)createTable
+- (BOOL)createTable:(NSString*)tableName
 {
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     for(NSString* key in [self.keyTypeDict allKeys]){
@@ -483,11 +483,11 @@
             break;
             
         case dbType_float:
-            value = @"";
+            value = @"float";
             break;
             
         case dbType_double:
-            value = @"";
+            value = @"double";
             break;
             
         case dbType_date:

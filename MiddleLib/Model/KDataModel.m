@@ -25,3 +25,10 @@
 @implementation KDataModel
 
 @end
+
+
+
+@implementation KDataReqModel
+
+
+@end

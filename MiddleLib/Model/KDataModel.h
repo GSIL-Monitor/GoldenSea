@@ -116,3 +116,28 @@
 
 
 @end
+
+
+
+
+
+
+
+@interface KDataReqModel : HYBaseModel
+
+@property (nonatomic,strong) NSString* symbol;
+@property (nonatomic,strong) NSString* period;
+@property (nonatomic,strong) NSString* begin;
+@property (nonatomic,strong) NSString* end;
+
+
+@end
+
+
+
+
+
+
+
+
+

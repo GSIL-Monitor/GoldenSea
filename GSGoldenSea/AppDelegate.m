@@ -13,6 +13,8 @@
 #import "HYDatabaseHelper.h"
 #import "KDataDBService.h"
 
+#import "STKManager.h"
+
 
 @interface AppDelegate ()
 
@@ -27,8 +29,10 @@
     [[HYRequestManager sharedInstance]initService];
     
     
+    [[STKManager shareManager]test];
+    
     //debug code.
-    [self testFunc];
+//    [self testFunc];
     
 }
 

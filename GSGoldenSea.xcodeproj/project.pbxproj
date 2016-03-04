@@ -15,6 +15,8 @@
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
 		4212654F1C8680360053787E /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataDBService.m */; };
+		426007101C896080009AF691 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4260070F1C896080009AF691 /* STKDBService.m */; };
+		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
 		42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D741C7FF771004E4DC2 /* ViewController.m */; };
@@ -120,6 +122,10 @@
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
 		4212654D1C8680360053787E /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
 		4212654E1C8680360053787E /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
+		4260070E1C896080009AF691 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
+		4260070F1C896080009AF691 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
+		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
+		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKManager.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -474,8 +480,12 @@
 				42E08E391C7FF8C1004E4DC2 /* TestService */,
 				4212654D1C8680360053787E /* KDataDBService.h */,
 				4212654E1C8680360053787E /* KDataDBService.m */,
+				4260070E1C896080009AF691 /* STKDBService.h */,
+				4260070F1C896080009AF691 /* STKDBService.m */,
 				4204D0551C88160500D27135 /* HelpService.h */,
 				4204D0561C88160500D27135 /* HelpService.m */,
+				426007111C896EA5009AF691 /* STKManager.h */,
+				426007121C896EA5009AF691 /* STKManager.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -899,6 +909,7 @@
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
 				42E08E551C7FF8C1004E4DC2 /* EntermaintModel.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
+				426007131C896EA5009AF691 /* STKManager.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,
 				42E098161C7FFAEB004E4DC2 /* YTKChainRequest.m in Sources */,
@@ -922,6 +933,7 @@
 				42E0979A1C7FFAEB004E4DC2 /* iCarousel.m in Sources */,
 				42E097981C7FFAEB004E4DC2 /* DebugTool.c in Sources */,
 				42E098191C7FFAEB004E4DC2 /* YTKNetworkConfig.m in Sources */,
+				426007101C896080009AF691 /* STKDBService.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
 				42E0981B1C7FFAEB004E4DC2 /* YTKRequest.m in Sources */,

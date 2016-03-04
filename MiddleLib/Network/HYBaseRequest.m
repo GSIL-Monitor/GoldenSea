@@ -67,6 +67,9 @@
 
 - (NSString *)requestUrl
 {
+    //add agent.
+    self 
+    
     if([[_apiURL lowercaseString] hasPrefix:@"http:"] || [[_apiURL lowercaseString] hasPrefix:@"https:"] ){
         return _apiURL;
     }
