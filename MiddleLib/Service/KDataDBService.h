@@ -8,6 +8,6 @@
 
 #import "HYBaseDBService.h"
 
-@interface KDataService : HYBaseDBService
+@interface KDataDBService : HYBaseDBService
 
 @end

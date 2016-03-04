@@ -6,12 +6,12 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "KDataService.h"
+#import "KDataDBService.h"
 #import "KDataModel.h"
 
-@implementation KDataService
+@implementation KDataDBService
 
-SINGLETON_GENERATOR(KDataService, shareManager);
+SINGLETON_GENERATOR(KDataDBService, shareManager);
 
 
 -(id)init
