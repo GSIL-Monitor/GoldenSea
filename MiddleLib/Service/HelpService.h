@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HelpService : NSObject
++(NSString*)savePath:(NSString*)fileName;
++(BOOL)saveContent:(NSString*)content withName:(NSString*)fileName;
 
 @end

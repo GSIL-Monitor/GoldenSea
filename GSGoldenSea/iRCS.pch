@@ -62,6 +62,8 @@
 
 #import "YTKNetworkConfig.h"
 
+#import "HelpService.h"
+
 #endif
 
 #endif

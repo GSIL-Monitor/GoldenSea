@@ -31,7 +31,7 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     __block BOOL rst = NO;
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     
-    NSString *dbPath = [paths stringByAppendingPathComponent:DATABASE_FILENAME];
+    NSString *dbPath = [HelpService savePath:DATABASE_FILENAME]; // [paths stringByAppendingPathComponent:DATABASE_FILENAME];
     
     DDLogInfo(@"dbpath========%@",dbPath);
     self.databaseQueue = [HYFMDatabaseQueue databaseQueueWithPath:dbPath];

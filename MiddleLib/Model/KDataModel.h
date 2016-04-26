@@ -91,25 +91,45 @@
 
 @interface KDataModel : HYBaseModel
 
-@property (assign) int volume;
+@property (strong) NSString* time;
+
 @property (assign) CGFloat open;
 @property (assign) CGFloat high;
 @property (assign) CGFloat close;
 @property (assign) CGFloat low;
 
-@property (assign) CGFloat chg; //
-@property (assign) CGFloat percent; //换手率
-@property (assign) CGFloat turnrate; //
+@property (assign) int volume;
 
-@property (assign) CGFloat ma5;
-@property (assign) CGFloat ma10;
-@property (assign) CGFloat ma20;
-@property (assign) CGFloat ma30;
 
-@property (assign) CGFloat dif;
-@property (assign) CGFloat dea;
-@property (assign) CGFloat macd;
-@property (assign) NSString* time;
+//dv property , percent , t value vs tp1 close (or t1 vs tp2 close)
+@property (assign) CGFloat dvOpen;
+@property (assign) CGFloat dvHigh; //percent value. t high vs tp1 close
+@property (assign) CGFloat dvClose; //percent value. t close vs tp1 close
+@property (assign) CGFloat dvLow;
+
+@property (assign) CGFloat dvTP1Close; //percent value. tp1 close vs tp2 close
+
+//conditons.
+@property (assign) BOOL isMeetT0DayConditonOpen;
+
+
+
+
+
+
+////below is reserved.
+//@property (assign) CGFloat chg; //
+//@property (assign) CGFloat percent; //换手率
+//@property (assign) CGFloat turnrate; //
+//
+//@property (assign) CGFloat ma5;
+//@property (assign) CGFloat ma10;
+//@property (assign) CGFloat ma20;
+//@property (assign) CGFloat ma30;
+//
+//@property (assign) CGFloat dif;
+//@property (assign) CGFloat dea;
+//@property (assign) CGFloat macd;
 
 
 

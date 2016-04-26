@@ -15,6 +15,8 @@
 
 #import "STKManager.h"
 
+#import "GSAnalysisManager.h"
+
 
 @interface AppDelegate ()
 
@@ -28,11 +30,13 @@
     //regsiter net
     [[HYRequestManager sharedInstance]initService];
     
-    
-    [[STKManager shareManager]test];
+//    [[STKManager shareManager]testGetFriPostsRequest];
+
+//    [[STKManager shareManager]test];
     
     //debug code.
 //    [self testFunc];
+    [self test2];
     
 }
 
@@ -40,6 +44,22 @@
     // Insert code here to tear down your application
 }
 
+
+
+
+-(void)test2
+{
+    NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
+    
+    OneDayCondition tp1con;
+    tp1con.close_max = -6.f;
+    tp1con.close_min = -11.f;
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    
+    [GSAnalysisManager shareManager].DVUnitOfT0DayOpenAndTP1DayClose = 100; //0
+
+    [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
+}
 
 
 -(void)testFunc
@@ -53,14 +73,29 @@
     
     time = 1456490307755;
     time = 1424954307755;
+    
+    time = 1456037755;
+    time = 1425437755;
+
+
     NSString* tstring = @"Fri Feb 27 00:00:00 +0800 2015";
     
     NSDate* d2 = [NSDate dateWithTimeIntervalSince1970:time];
     
-    
+    NSDate* d3 = [self parseString:tstring];
     
     NSLog(@"bb");
 
+    
+}
+
+-(NSDate*)parseString:(NSString*)str
+{
+    NSDate* date ;
+    
+    
+    
+    return date;
 }
 
 @end

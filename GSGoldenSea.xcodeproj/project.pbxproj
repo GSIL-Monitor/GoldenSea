@@ -17,6 +17,7 @@
 		4212654F1C8680360053787E /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataDBService.m */; };
 		426007101C896080009AF691 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4260070F1C896080009AF691 /* STKDBService.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
+		42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
 		42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D741C7FF771004E4DC2 /* ViewController.m */; };
@@ -24,8 +25,6 @@
 		42E08D7A1C7FF771004E4DC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E08D781C7FF771004E4DC2 /* Main.storyboard */; };
 		42E08D851C7FF771004E4DC2 /* GSGoldenSeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D841C7FF771004E4DC2 /* GSGoldenSeaTests.m */; };
 		42E08D901C7FF771004E4DC2 /* GSGoldenSeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D8F1C7FF771004E4DC2 /* GSGoldenSeaUITests.m */; };
-		42E08E541C7FF8C1004E4DC2 /* EatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DD71C7FF8C0004E4DC2 /* EatModel.m */; };
-		42E08E551C7FF8C1004E4DC2 /* EntermaintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DD91C7FF8C0004E4DC2 /* EntermaintModel.m */; };
 		42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DDC1C7FF8C0004E4DC2 /* HYBaseCache.m */; };
 		42E08E571C7FF8C1004E4DC2 /* HYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DDE1C7FF8C0004E4DC2 /* HYBaseModel.m */; };
 		42E08E581C7FF8C1004E4DC2 /* HYBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DE01C7FF8C0004E4DC2 /* HYBaseRequest.m */; };
@@ -33,8 +32,6 @@
 		42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DE41C7FF8C0004E4DC2 /* HYCacheManager.m */; };
 		42E08E5B1C7FF8C1004E4DC2 /* HYModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DE61C7FF8C0004E4DC2 /* HYModelManager.m */; };
 		42E08E5C1C7FF8C1004E4DC2 /* HYRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DE81C7FF8C0004E4DC2 /* HYRequestManager.m */; };
-		42E08E5E1C7FF8C1004E4DC2 /* EatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DED1C7FF8C0004E4DC2 /* EatRequest.m */; };
-		42E08E831C7FF8C1004E4DC2 /* ChangeDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08E3B1C7FF8C1004E4DC2 /* ChangeDBService.m */; };
 		42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E094541C7FFAEA004E4DC2 /* AFDownloadRequestOperation.m */; };
 		42E097231C7FFAEB004E4DC2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E094561C7FFAEA004E4DC2 /* AFHTTPRequestOperation.m */; };
 		42E097241C7FFAEB004E4DC2 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E094581C7FFAEA004E4DC2 /* AFHTTPRequestOperationManager.m */; };
@@ -126,6 +123,8 @@
 		4260070F1C896080009AF691 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
 		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
 		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKManager.m; sourceTree = "<group>"; };
+		42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAnalysisManager.h; sourceTree = "<group>"; };
+		42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAnalysisManager.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,10 +140,6 @@
 		42E08D8B1C7FF771004E4DC2 /* GSGoldenSeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSGoldenSeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D8F1C7FF771004E4DC2 /* GSGoldenSeaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSGoldenSeaUITests.m; sourceTree = "<group>"; };
 		42E08D911C7FF771004E4DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		42E08DD61C7FF8C0004E4DC2 /* EatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EatModel.h; sourceTree = "<group>"; };
-		42E08DD71C7FF8C0004E4DC2 /* EatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EatModel.m; sourceTree = "<group>"; };
-		42E08DD81C7FF8C0004E4DC2 /* EntermaintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntermaintModel.h; sourceTree = "<group>"; };
-		42E08DD91C7FF8C0004E4DC2 /* EntermaintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntermaintModel.m; sourceTree = "<group>"; };
 		42E08DDB1C7FF8C0004E4DC2 /* HYBaseCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseCache.h; sourceTree = "<group>"; };
 		42E08DDC1C7FF8C0004E4DC2 /* HYBaseCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseCache.m; sourceTree = "<group>"; };
 		42E08DDD1C7FF8C0004E4DC2 /* HYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseModel.h; sourceTree = "<group>"; };
@@ -159,10 +154,6 @@
 		42E08DE61C7FF8C0004E4DC2 /* HYModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYModelManager.m; sourceTree = "<group>"; };
 		42E08DE71C7FF8C0004E4DC2 /* HYRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYRequestManager.h; sourceTree = "<group>"; };
 		42E08DE81C7FF8C0004E4DC2 /* HYRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYRequestManager.m; sourceTree = "<group>"; };
-		42E08DEC1C7FF8C0004E4DC2 /* EatRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EatRequest.h; sourceTree = "<group>"; };
-		42E08DED1C7FF8C0004E4DC2 /* EatRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EatRequest.m; sourceTree = "<group>"; };
-		42E08E3A1C7FF8C1004E4DC2 /* ChangeDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeDBService.h; sourceTree = "<group>"; };
-		42E08E3B1C7FF8C1004E4DC2 /* ChangeDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeDBService.m; sourceTree = "<group>"; };
 		42E094531C7FFAEA004E4DC2 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		42E094541C7FFAEA004E4DC2 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		42E094551C7FFAEA004E4DC2 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -422,24 +413,12 @@
 		42E08DD41C7FF8C0004E4DC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				42E08DD51C7FF8C0004E4DC2 /* TestModel */,
 				42E098D61C8029D1004E4DC2 /* KDataModel.h */,
 				42E098D71C8029D1004E4DC2 /* KDataModel.m */,
 				4204D0521C880AC800D27135 /* STKModel.h */,
 				4204D0531C880AC800D27135 /* STKModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		42E08DD51C7FF8C0004E4DC2 /* TestModel */ = {
-			isa = PBXGroup;
-			children = (
-				42E08DD61C7FF8C0004E4DC2 /* EatModel.h */,
-				42E08DD71C7FF8C0004E4DC2 /* EatModel.m */,
-				42E08DD81C7FF8C0004E4DC2 /* EntermaintModel.h */,
-				42E08DD91C7FF8C0004E4DC2 /* EntermaintModel.m */,
-			);
-			path = TestModel;
 			sourceTree = "<group>";
 		};
 		42E08DDA1C7FF8C0004E4DC2 /* Network */ = {
@@ -466,8 +445,6 @@
 		42E08DE91C7FF8C0004E4DC2 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				42E08DEC1C7FF8C0004E4DC2 /* EatRequest.h */,
-				42E08DED1C7FF8C0004E4DC2 /* EatRequest.m */,
 				42E098D91C802A5D004E4DC2 /* KDataRequest.h */,
 				42E098DA1C802A5D004E4DC2 /* KDataRequest.m */,
 			);
@@ -477,7 +454,6 @@
 		42E08E381C7FF8C0004E4DC2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				42E08E391C7FF8C1004E4DC2 /* TestService */,
 				4212654D1C8680360053787E /* KDataDBService.h */,
 				4212654E1C8680360053787E /* KDataDBService.m */,
 				4260070E1C896080009AF691 /* STKDBService.h */,
@@ -486,17 +462,10 @@
 				4204D0561C88160500D27135 /* HelpService.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
 				426007121C896EA5009AF691 /* STKManager.m */,
+				42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */,
+				42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		42E08E391C7FF8C1004E4DC2 /* TestService */ = {
-			isa = PBXGroup;
-			children = (
-				42E08E3A1C7FF8C1004E4DC2 /* ChangeDBService.h */,
-				42E08E3B1C7FF8C1004E4DC2 /* ChangeDBService.m */,
-			);
-			path = TestService;
 			sourceTree = "<group>";
 		};
 		42E08E3C1C7FF8C1004E4DC2 /* UI */ = {
@@ -875,11 +844,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42E08E541C7FF8C1004E4DC2 /* EatModel.m in Sources */,
 				42E08E581C7FF8C1004E4DC2 /* HYBaseRequest.m in Sources */,
 				42E0972F1C7FFAEB004E4DC2 /* UIButton+AFNetworking.m in Sources */,
 				421265451C867A930053787E /* HYDatabaseHelper.m in Sources */,
-				42E08E831C7FF8C1004E4DC2 /* ChangeDBService.m in Sources */,
 				42E097331C7FFAEB004E4DC2 /* UIWebView+AFNetworking.m in Sources */,
 				42E098171C7FFAEB004E4DC2 /* YTKChainRequestAgent.m in Sources */,
 				42E097311C7FFAEB004E4DC2 /* UIProgressView+AFNetworking.m in Sources */,
@@ -900,14 +867,12 @@
 				42E097281C7FFAEB004E4DC2 /* AFURLConnectionOperation.m in Sources */,
 				42E0972B1C7FFAEB004E4DC2 /* AFURLSessionManager.m in Sources */,
 				42E0978A1C7FFAEB004E4DC2 /* GTMBase64.m in Sources */,
-				42E08E5E1C7FF8C1004E4DC2 /* EatRequest.m in Sources */,
 				42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */,
 				42E097B21C7FFAEB004E4DC2 /* DDMultiFormatter.m in Sources */,
 				42E098141C7FFAEB004E4DC2 /* YTKBatchRequest.m in Sources */,
 				42E0972D1C7FFAEB004E4DC2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				42E097AB1C7FFAEB004E4DC2 /* DDASLLogCapture.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
-				42E08E551C7FF8C1004E4DC2 /* EntermaintModel.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
 				426007131C896EA5009AF691 /* STKManager.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
@@ -935,6 +900,7 @@
 				42E098191C7FFAEB004E4DC2 /* YTKNetworkConfig.m in Sources */,
 				426007101C896080009AF691 /* STKDBService.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
+				42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
 				42E0981B1C7FFAEB004E4DC2 /* YTKRequest.m in Sources */,
 				42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */,

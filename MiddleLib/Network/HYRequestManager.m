@@ -28,39 +28,39 @@
 
 -(void)initService
 {
-    [HYRequestManager registerRequest:@"kDataRequest" withModel:@"KDataModel"];
+    [HYRequestManager registerRequest:@"KDataRequest" withModel:@"KFullDataModel"];
     
     
-    [HYRequestManager registerRequest:@"IsRCSUserRequest" withModel:@"IsRCSModel"];
-    [HYRequestManager registerRequest:@"BackupAllContactsRequest" withModel:@"RCSPlatRespBaseModel"];
-    [HYRequestManager registerRequest:@"GetAllContactsRequest" withModel:@"GetAllContactsModel"];
-    [HYRequestManager registerRequest:@"UserFeedbackRequest" withModel:@"RCSPlatRespBaseModel"];
-    [HYRequestManager registerRequest:@"LastBackupDateRequest" withModel:@"LastBackupDateModel"];
-    
-    //moments
+//    [HYRequestManager registerRequest:@"IsRCSUserRequest" withModel:@"IsRCSModel"];
+//    [HYRequestManager registerRequest:@"BackupAllContactsRequest" withModel:@"RCSPlatRespBaseModel"];
+//    [HYRequestManager registerRequest:@"GetAllContactsRequest" withModel:@"GetAllContactsModel"];
+//    [HYRequestManager registerRequest:@"UserFeedbackRequest" withModel:@"RCSPlatRespBaseModel"];
+//    [HYRequestManager registerRequest:@"LastBackupDateRequest" withModel:@"LastBackupDateModel"];
+//    
+//    //moments
     [HYRequestManager registerRequest:@"GetFriPostsRequest" withModel:@"WebmoodListModel"];
-    [HYRequestManager registerRequest:@"GetMyPostsRequest" withModel:@"MyWmInfoListModel"];
-    [HYRequestManager registerRequest:@"AddCommentRequest" withModel:@"AddCommentModel"];
-    [HYRequestManager registerRequest:@"DelCommentRequest" withModel:@"DeleteCommentModel"];
-    [HYRequestManager registerRequest:@"AddPraiseRequest" withModel:@"AddPraiseModel"];
-    [HYRequestManager registerRequest:@"CancelPraiseRequest" withModel:@"CancelPraiseModel"];
-    [HYRequestManager registerRequest:@"GetPostDetailReq" withModel:@"WEbmoodDetailModel"];
-    [HYRequestManager registerRequest:@"UploaderPostRequest" withModel:@"WmUploaderModel"];
-    [HYRequestManager registerRequest:@"DeluploaderPostRequest" withModel:@"WebmoodBaseModel"];
-    [HYRequestManager registerRequest:@"SetBlackUserRequest" withModel:@"SetBlackUserModel"];
-    [HYRequestManager registerRequest:@"SetNotlookUserRequest" withModel:@"SetNotlookUserModel"];
-    [HYRequestManager registerRequest:@"QueryPersonalAuthRequest" withModel:@"QueryPersonalAuthModel"];
-    [HYRequestManager registerRequest:@"SetPersonalAuthRequest" withModel:@"SetPersonalAuthModel"];
-    [HYRequestManager registerRequest:@"UploadAlbumRequest" withModel:@"WebmoodBaseModel"];
-    [HYRequestManager registerRequest:@"GetMyCommentsRequest" withModel:@"MyCommentsListModel"];
-    [HYRequestManager registerRequest:@"GetWebInfoDetailRequest" withModel:@"GetWebInfoDetailModel"];
-    [HYRequestManager registerRequest:@"SelectNotificationRequest" withModel:@"SelectNotificationModel"];
-    [HYRequestManager registerRequest:@"DeleteNotificationRequest" withModel:@"WebmoodBaseModel"];
-    [HYRequestManager registerRequest:@"DeleteAllNotificationRequest" withModel:@"WebmoodBaseModel"];
-    [HYRequestManager registerRequest:@"SearchCommentsRequest" withModel:@"SearchCommentsModel"];
-    [HYRequestManager registerRequest:@"SearchPraisesRequest" withModel:@"SearchPraisesModel"];
-    [HYRequestManager registerRequest:@"FindBlackUserRequest" withModel:@"FindBlackUserModel"];
-    [HYRequestManager registerRequest:@"FindNotlookUserRequest" withModel:@"FindNotlookUserModel"];
+//    [HYRequestManager registerRequest:@"GetMyPostsRequest" withModel:@"MyWmInfoListModel"];
+//    [HYRequestManager registerRequest:@"AddCommentRequest" withModel:@"AddCommentModel"];
+//    [HYRequestManager registerRequest:@"DelCommentRequest" withModel:@"DeleteCommentModel"];
+//    [HYRequestManager registerRequest:@"AddPraiseRequest" withModel:@"AddPraiseModel"];
+//    [HYRequestManager registerRequest:@"CancelPraiseRequest" withModel:@"CancelPraiseModel"];
+//    [HYRequestManager registerRequest:@"GetPostDetailReq" withModel:@"WEbmoodDetailModel"];
+//    [HYRequestManager registerRequest:@"UploaderPostRequest" withModel:@"WmUploaderModel"];
+//    [HYRequestManager registerRequest:@"DeluploaderPostRequest" withModel:@"WebmoodBaseModel"];
+//    [HYRequestManager registerRequest:@"SetBlackUserRequest" withModel:@"SetBlackUserModel"];
+//    [HYRequestManager registerRequest:@"SetNotlookUserRequest" withModel:@"SetNotlookUserModel"];
+//    [HYRequestManager registerRequest:@"QueryPersonalAuthRequest" withModel:@"QueryPersonalAuthModel"];
+//    [HYRequestManager registerRequest:@"SetPersonalAuthRequest" withModel:@"SetPersonalAuthModel"];
+//    [HYRequestManager registerRequest:@"UploadAlbumRequest" withModel:@"WebmoodBaseModel"];
+//    [HYRequestManager registerRequest:@"GetMyCommentsRequest" withModel:@"MyCommentsListModel"];
+//    [HYRequestManager registerRequest:@"GetWebInfoDetailRequest" withModel:@"GetWebInfoDetailModel"];
+//    [HYRequestManager registerRequest:@"SelectNotificationRequest" withModel:@"SelectNotificationModel"];
+//    [HYRequestManager registerRequest:@"DeleteNotificationRequest" withModel:@"WebmoodBaseModel"];
+//    [HYRequestManager registerRequest:@"DeleteAllNotificationRequest" withModel:@"WebmoodBaseModel"];
+//    [HYRequestManager registerRequest:@"SearchCommentsRequest" withModel:@"SearchCommentsModel"];
+//    [HYRequestManager registerRequest:@"SearchPraisesRequest" withModel:@"SearchPraisesModel"];
+//    [HYRequestManager registerRequest:@"FindBlackUserRequest" withModel:@"FindBlackUserModel"];
+//    [HYRequestManager registerRequest:@"FindNotlookUserRequest" withModel:@"FindNotlookUserModel"];
     // profile
     [HYRequestManager registerRequest:@"RegistRCSPlatRequest" withModel:@"RegistRCSPlatModel"];
     [HYRequestManager registerRequest:@"GetProfileRequest" withModel:@"GetProfileModel"];
@@ -100,7 +100,7 @@
 
 +(NSString*)modelWithRequst:(NSString *)requestClassString
 {
-    NSString* modelClassString = [[HYRequestManager sharedInstance].modelDict valueForKey:requestClassString];
+    NSString* modelClassString = [[HYRequestManager sharedInstance].modelDict safeValueForKey:requestClassString];
     
 //    GSAssert(modelClassString, @"%@ not registed!", requestClassString);
     if(!modelClassString){

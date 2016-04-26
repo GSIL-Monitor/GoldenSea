@@ -11,7 +11,7 @@
 
 @implementation KDataDBService
 
-SINGLETON_GENERATOR(KDataDBService, shareManager);
+//SINGLETON_GENERATOR(KDataDBService, shareManager);
 
 
 -(id)init
@@ -32,7 +32,7 @@ SINGLETON_GENERATOR(KDataDBService, shareManager);
     self.tableName =  tableName; // @"Table_kData";
     
     NSDictionary *param = @{
-                            @"kdataID"                    : [NSNumber numberWithInt:((1 << 8) + dbType_int)],
+//                            @"kdataID"                    : [NSNumber numberWithInt:((1 << 8) + dbType_int)],
                             
                             @"volume"                      : [NSNumber numberWithInt:dbType_int],
                             

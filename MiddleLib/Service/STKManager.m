@@ -11,6 +11,7 @@
 #import "KDataDBService.h"
 #import "HYDatabaseHelper.h"
 
+
 @interface STKManager ()
 
 @property (strong) NSMutableDictionary* stkdbDict;
@@ -47,18 +48,20 @@ SINGLETON_GENERATOR(STKManager, shareManager);
 
 -(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol
 {
-    KDataDBService* servcie = [self.stkdbDict safeValueForKey:symbol];
-    if(!servcie){
-        KDataDBService* dataDBService = [[KDataDBService alloc]init];
+    KDataDBService* dataDBService = [self.stkdbDict safeValueForKey:symbol];
+    if(!dataDBService){
+        dataDBService = [[KDataDBService alloc]init];
         [dataDBService setup];
         [dataDBService createTable:symbol];
+        [self.stkdbDict safeSetValue:dataDBService forKey:symbol];
     }
     
-    return servcie;
+    return dataDBService;
 }
 
 -(void)test
 {
+    
     KDataReqModel* reqModel = [[KDataReqModel alloc]init];
     
     
@@ -69,21 +72,34 @@ SINGLETON_GENERATOR(STKManager, shareManager);
     reqModel.begin = @"1424954307755";
     reqModel.end = @"1456490307755";
     
+
+    [self queryKData:reqModel];
+    
+}
+
+
+-(void)queryKData:(KDataReqModel*)reqModel
+{
     KDataRequest* kdataReq = [KDataRequest requestWith:reqModel];
     
     [kdataReq startWithSuccess:^(HYBaseRequest *request, HYBaseResponse *response) {
-        //
         KFullDataModel* dataModel = (KFullDataModel*)response.data;
+        
+        //save to file firstly
+        NSString* fileName = [NSString stringWithFormat:@"%@.json",reqModel.symbol];
+        [HelpService saveContent:request.responseString withName:fileName];
+        
+        //save to db.
         for(long i = 0; i<[dataModel.chartlist count]; i++){
             KDataModel* ele = [dataModel.chartlist safeObjectAtIndex:i];
-            [[self dbserviceWithSymbol:reqModel.symbol] addRecord:ele];
+            KDataDBService* service = [self dbserviceWithSymbol:reqModel.symbol];
+            [service addRecord:ele];
         }
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
         NSLog(@"failed");
     }];
-    
-    
 }
+
 
 
 
