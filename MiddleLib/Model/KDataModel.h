@@ -101,13 +101,18 @@
 @property (assign) int volume;
 
 
-//dv property , percent , t value vs tp1 close (or t1 vs tp2 close)
+//dv property , percent , t value vs tp1 close
 @property (assign) CGFloat dvOpen;
-@property (assign) CGFloat dvHigh; //percent value. t high vs tp1 close
-@property (assign) CGFloat dvClose; //percent value. t close vs tp1 close
+@property (assign) CGFloat dvHigh;
+@property (assign) CGFloat dvClose;
 @property (assign) CGFloat dvLow;
 
-@property (assign) CGFloat dvTP1Close; //percent value. tp1 close vs tp2 close
+//tp1 dv property , percent ,  tp1 vs tp2 close
+@property (assign) CGFloat dvTP1Open;
+@property (assign) CGFloat dvTP1High;
+@property (assign) CGFloat dvTP1Close;
+@property (assign) CGFloat dvTP1Low;
+
 
 //conditons.
 @property (assign) BOOL isMeetT0DayConditonOpen;

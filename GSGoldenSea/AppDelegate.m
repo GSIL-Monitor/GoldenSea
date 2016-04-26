@@ -52,8 +52,8 @@
     NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     
     OneDayCondition tp1con;
-    tp1con.close_max = -6.f;
-    tp1con.close_min = -11.f;
+    tp1con.close_max = 1.1f;
+    tp1con.close_min = 0.f;
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     [GSAnalysisManager shareManager].DVUnitOfT0DayOpenAndTP1DayClose = 100; //0

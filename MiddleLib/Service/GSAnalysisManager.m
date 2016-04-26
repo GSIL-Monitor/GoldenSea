@@ -73,7 +73,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:i];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i+1];
         
+        kT0Data.dvTP1Open = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
+        kT0Data.dvTP1High = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
         kT0Data.dvTP1Close = (kTP1Data.close - kTP2Data.close)*100.f/kTP2Data.close;
+        kT0Data.dvTP1Low = (kTP1Data.low - kTP2Data.close)*100.f/kTP2Data.close;
+
         kT0Data.dvHigh = (kT0Data.high - kTP1Data.close)*100.f/kTP1Data.close;
         kT0Data.dvClose = (kT0Data.close - kTP1Data.close)*100.f/kTP1Data.close;
         kT0Data.dvOpen = (kT0Data.open - kTP1Data.close)*100.f/kTP1Data.close;
@@ -96,7 +100,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     [self logOutResult];
     
-    NSLog(@"end analysis. totalCount(%d)",self.totalCount);
+    SMLog(@"end analysis. totalCount(%d)",self.totalCount);
     
 
 }
@@ -122,7 +126,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
      >-2%
      >-10%
      */
-    for(long i=0; i<7; i++){
+    for(long i=0; i<6; i++){
         [self.resultArray addObject:[NSMutableArray array]];
     }
 }
@@ -140,12 +144,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         tmpArray = [self.resultArray objectAtIndex:2];
     }else if (dvValue > 0.f){
         tmpArray = [self.resultArray objectAtIndex:3];
-    }else if (dvValue > -1.f){
+    }else if (dvValue > -1.5f){
         tmpArray = [self.resultArray objectAtIndex:4];
-    }else if (dvValue > -2.f){
+    }else if (dvValue > -11.f){
         tmpArray = [self.resultArray objectAtIndex:5];
-    }else if (dvValue > -10.f){
-        tmpArray = [self.resultArray objectAtIndex:6];
     }
     
     [tmpArray addObject:kSndData];
@@ -163,13 +165,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         percent = [tmpArray count]*100.f/self.totalCount;
 
         if(i <= 3){
-            NSLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }else{
-            NSLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
+            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
         }
         
         for (KDataModel* kData in tmpArray) {
-            NSLog(@"%@  TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f",kData.time,kData.dvTP1Close,kData.dvOpen,kData.dvHigh,kData.dvClose);
+            SMLog(@"%@  TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f",kData.time,kData.dvTP1Close,kData.dvOpen,kData.dvHigh,kData.dvClose);
         }
     }
 
@@ -186,7 +188,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     NSString *file;
     while ((file = [dirEnum nextObject])) {
         if ([file hasSuffix:@"txt"]) { // || [file hasSuffix:@"xls"]
-            //            NSLog(@"file:%@",file);
+            //            SMLog(@"file:%@",file);
             //            continue;
             
             NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
@@ -227,7 +229,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
-    NSLog(@"getStkContentArray:%@",self.currStkFilePath);
+    SMLog(@"getStkContentArray:%@",self.currStkFilePath);
     
     long index = 0;
     long lineIndex = 0;
@@ -241,7 +243,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     NSArray *lines = [txt componentsSeparatedByString:@"\n"];
     for(NSString* oneline in lines){
         
-//        NSLog(@"oneline:%@",oneline);
+//        SMLog(@"oneline:%@",oneline);
         
         //skip addtional info
         lineIndex++;
@@ -254,7 +256,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-//        NSLog(@"oneline:%@",oneline);
+//        SMLog(@"oneline:%@",oneline);
 
         
         //deal with real data.

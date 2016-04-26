@@ -44,4 +44,20 @@
     return res;
 }
 
+
++ (void)log:(NSString *)format, ... {
+    va_list args;
+    
+    if (format) {
+        va_start(args, format);
+        
+        NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+ 
+        printf("%s\n",[message UTF8String]);
+        
+        va_end(args);
+    }
+}
+
+
 @end
