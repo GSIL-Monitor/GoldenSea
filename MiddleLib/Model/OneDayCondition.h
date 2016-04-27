@@ -10,4 +10,16 @@
 
 @interface OneDayCondition : NSObject
 
+@property (assign) CGFloat open_min;
+@property (assign) CGFloat open_max;
+
+@property (assign) CGFloat close_min; //the min value, close vs open, (percent)
+@property (assign) CGFloat close_max;
+
+@property (assign) CGFloat high_min;
+@property (assign) CGFloat high_max;
+
+@property (assign) CGFloat low_min;
+@property (assign) CGFloat low_max;
+
 @end

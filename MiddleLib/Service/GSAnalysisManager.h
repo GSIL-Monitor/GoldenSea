@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KDataModel.h"
+#import "OneDayCondition.h"
 
 typedef enum {
     Period_3m = 0, //three month
@@ -23,10 +24,6 @@ typedef enum {
     ConditionKind_Low
 }ConditionKind;
 
-typedef struct {
-    CGFloat close_min; //the min value, close vs open, (percent)
-    CGFloat close_max;
-}OneDayCondition;
 
 
 
@@ -45,10 +42,10 @@ typedef struct {
 
 
 @property (assign) Period period;
-@property (assign) OneDayCondition tp1dayCond;  //t-1 day
-@property (assign) OneDayCondition tp2dayCond;  //t-2 day
-@property (assign) OneDayCondition t0dayCond;    //t day
-@property (assign) OneDayCondition t1dayCond;  //t+1 day
+@property (strong) OneDayCondition* tp1dayCond;  //t-1 day
+@property (strong) OneDayCondition* tp2dayCond;  //t-2 day
+@property (strong) OneDayCondition* t0dayCond;    //t day
+@property (strong) OneDayCondition* t1dayCond;  //t+1 day
 
 
 

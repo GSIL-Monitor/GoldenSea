@@ -88,15 +88,15 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.dvOpen = (kT0Data.open - kTP1Data.close)*100.f/kTP1Data.close;
         kT0Data.dvLow = (kT0Data.low - kTP1Data.close)*100.f/kTP1Data.close;
 
-        if(![self isMeetTP1dayConditon:kTP1Data FstData:kTP2Data]){
+        if(![self isMeetConditon:self.tp1dayCond PrevData:kTP2Data NextData:kTP1Data]){
             continue;
         }
         
-        if(![self isMeetT0DayConditon:kT0Data FstData:kTP1Data]){
+        
+        if(![self isMeetConditon:self.t0dayCond PrevData:kTP1Data NextData:kT0Data]){
             continue;
         }
         
-
         
         [self dispatchResult2Array:kT0Data];
         
@@ -360,48 +360,85 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     return YES;
 }
 
--(BOOL)isMeetTP1dayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstDat;
+-(BOOL)isMeetConditon:(OneDayCondition*)cond PrevData:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData;
 {
-    
-    CGFloat dv = (kSndData.close - kFstDat.close)*100.f/kSndData.close;
-
-   if(dv > self.tp1dayCond.close_min
-      && dv < self.tp1dayCond.close_max){
-       return YES;
-   }
-    
-    return NO;
-}
-
-
-
--(BOOL)isMeetT0DayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstData;
-{
-    
-    if(self.DVUnitOfT0DayOpenAndTP1DayClose >= 99){ //skip limit
+    if(!cond){
         return YES;
     }
     
-    BOOL res = NO;
-   
+    CGFloat dv = 0.f;
     
-    CGFloat dv = (kSndData.open - kFstData.close)*100/kFstData.close;
-    
-    CGFloat judgeDvCond = self.DVUnitOfT0DayOpenAndTP1DayClose*self.DVUnitValue;
-    {
-        if(dv >= judgeDvCond
-           &&  dv<(self.DVUnitOfT0DayOpenAndTP1DayClose+1)*self.DVUnitValue){
-            res = YES;
-        }
-    }
-   
-    
-    if(res == YES){
-        kSndData.isMeetT0DayConditonOpen = YES;
+    dv = (kNextData.open - kPrevData.close)*100.f/kPrevData.close;
+    if(!(dv > self.tp1dayCond.open_min
+       && dv < self.tp1dayCond.open_max)){
+        return NO;
     }
     
-    return res;
+    dv = (kNextData.close - kPrevData.close)*100.f/kPrevData.close;
+    if(!(dv > self.tp1dayCond.close_min
+         && dv < self.tp1dayCond.close_max)){
+        return NO;
+    }
+    
+    dv = (kNextData.high - kPrevData.close)*100.f/kPrevData.close;
+    if(!(dv > self.tp1dayCond.high_min
+         && dv < self.tp1dayCond.high_max)){
+        return NO;
+    }
+    
+    dv = (kNextData.low - kPrevData.close)*100.f/kPrevData.close;
+    if(!(dv > self.tp1dayCond.low_min
+         && dv < self.tp1dayCond.low_max)){
+        return NO;
+    }
+    
+    return YES;
 }
+
+
+//
+//-(BOOL)isMeetTP1dayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstDat;
+//{
+//    
+//    CGFloat dv = (kSndData.close - kFstDat.close)*100.f/kSndData.close;
+//
+//   if(dv > self.tp1dayCond.close_min
+//      && dv < self.tp1dayCond.close_max){
+//       return YES;
+//   }
+//    
+//    return NO;
+//}
+//
+//
+//
+//-(BOOL)isMeetT0DayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstData;
+//{
+//    
+//    if(self.DVUnitOfT0DayOpenAndTP1DayClose >= 99){ //skip limit
+//        return YES;
+//    }
+//    
+//    BOOL res = NO;
+//   
+//    
+//    CGFloat dv = (kSndData.open - kFstData.close)*100/kFstData.close;
+//    
+//    CGFloat judgeDvCond = self.DVUnitOfT0DayOpenAndTP1DayClose*self.DVUnitValue;
+//    {
+//        if(dv >= judgeDvCond
+//           &&  dv<(self.DVUnitOfT0DayOpenAndTP1DayClose+1)*self.DVUnitValue){
+//            res = YES;
+//        }
+//    }
+//   
+//    
+//    if(res == YES){
+//        kSndData.isMeetT0DayConditonOpen = YES;
+//    }
+//    
+//    return res;
+//}
 
 
 -(BOOL)isValidDataPassedIn
@@ -443,5 +480,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     return res;
 }
+
+
+
 
 @end

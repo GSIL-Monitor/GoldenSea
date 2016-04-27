@@ -12,20 +12,8 @@
 /// common macro func
 #define RCSDefaultNotificationCenter [NSNotificationCenter defaultCenter]
 
+#define kInvalidData_Base 10000.f
 
-
-#define SCREEN_SIZE [UIScreen mainScreen].bounds.size
-#define XiaoXi_AppKey @"003300ac"
-#define ThirdNode_AppKey @"222222cc"
-//#define ThirdNode_AppKey @"111111cc"
-#define Umeng_Appkey @"56186f3567e58e650a004548"
-#define Flurry_Appkey @"YB32XK8BJBBCP9VHNJRX"
-
-
-//SSO platform
-//sourcid: 010106 same as Android
-#define SSO_APPKEY  @"46D8B1FB0A7EF2C3"
-#define SSO_APPID   @"01010618"
 
 
 //http://xueqiu.com/stock/forchartk/stocklist.json?symbol=SH000001&period=1day&type=normal&begin=1424954307755&end=1456490307755&_=1456490307755
@@ -49,18 +37,6 @@
 
 #define DDLogInfo NSLog
 #define DDLogError NSLog
-
-#ifdef DEBUG
-//static const int ddLogLevel = DDLogLevelVerbose;
-#else
-//static const int ddLogLevel = DDLogLevelError;
-#endif
-
-//#ifdef DEBUG
-//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-//#else
-//static const int ddLogLevel = LOG_LEVEL_ERROR;
-//#endif
 
 
 #define Timeout_uploadImage     (dispatch_time(DISPATCH_TIME_NOW,(NSEC_PER_SEC*45)))

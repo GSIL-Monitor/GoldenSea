@@ -51,7 +51,7 @@
 {
     NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     
-    OneDayCondition tp1con;
+    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
     tp1con.close_max = 1.5f;
     tp1con.close_min = 0.1f;
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
