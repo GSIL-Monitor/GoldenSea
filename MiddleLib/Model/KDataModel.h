@@ -88,6 +88,7 @@
 @end
 
 
+#define kInvalidData_Base 10000.f
 
 @interface KDataModel : HYBaseModel
 

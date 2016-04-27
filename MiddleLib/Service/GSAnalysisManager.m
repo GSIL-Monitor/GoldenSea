@@ -68,6 +68,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     self.totalCount=0;
     
+    if(! [self isValidDataPassedIn]){
+        return;
+    }
+    
+    
     for(long i=1; i<[self.contentArray count]-1; i++ ){
         KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:i];
@@ -107,6 +112,32 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 
 #pragma mark - internal funcs
+
+
+-(void)logOutResult
+{
+    //logOut which loss item
+    NSMutableArray* tmpArray;
+    CGFloat percent = 0.f;
+    
+    for(long i=0; i<[self.resultArray count]; i++){
+        tmpArray = [self.resultArray objectAtIndex:i];
+        
+        percent = [tmpArray count]*100.f/self.totalCount;
+        
+        if(i <= 3){
+            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+        }else{
+            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
+        }
+        
+        for (KDataModel* kData in tmpArray) {
+            SMLog(@"%@  TP1High:%.2f, TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f, T0Low:%.2f",kData.time, kData.dvTP1High,kData.dvTP1Close,kData.dvOpen,kData.dvHigh,kData.dvClose,kData.dvLow);
+        }
+    }
+    
+    
+}
 
 -(void)reset
 {
@@ -153,30 +184,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     [tmpArray addObject:kSndData];
 }
 
--(void)logOutResult
-{
-    //logOut which loss item
-    NSMutableArray* tmpArray;
-    CGFloat percent = 0.f;
-
-    for(long i=0; i<[self.resultArray count]; i++){
-        tmpArray = [self.resultArray objectAtIndex:i];
-        
-        percent = [tmpArray count]*100.f/self.totalCount;
-
-        if(i <= 3){
-            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
-        }else{
-            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
-        }
-        
-        for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@  TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f",kData.time,kData.dvTP1Close,kData.dvOpen,kData.dvHigh,kData.dvClose);
-        }
-    }
-
-    
-}
 
 
 -(NSString*)findSourceFileWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir
@@ -314,7 +321,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
 }
 
-
+#pragma mark - condition
 -(BOOL)isMeetPeriodCondition:(KDataModel*)kData;
 {
     
@@ -391,6 +398,47 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     if(res == YES){
         kSndData.isMeetT0DayConditonOpen = YES;
+    }
+    
+    return res;
+}
+
+
+-(BOOL)isValidDataPassedIn
+{
+    BOOL res = YES;
+    
+    if(self.currT0KData){
+        if(!self.currTP1KData || !self.currTP2KData){
+            res = NO;
+        }
+        
+        if(self.currT0KData.open > kInvalidData_Base
+           || self.currT0KData.close > kInvalidData_Base
+           || self.currT0KData.high > kInvalidData_Base
+           || self.currT0KData.low > kInvalidData_Base){
+            res = NO;
+        }
+        
+        if(self.currTP1KData.open > kInvalidData_Base
+           || self.currTP1KData.close > kInvalidData_Base
+           || self.currTP1KData.high > kInvalidData_Base
+           || self.currTP1KData.low > kInvalidData_Base){
+            res = NO;
+        }
+
+        
+        if(self.currTP2KData.open > kInvalidData_Base
+           || self.currTP2KData.close > kInvalidData_Base
+           || self.currTP2KData.high > kInvalidData_Base
+           || self.currTP2KData.low > kInvalidData_Base){
+            res = NO;
+        }
+
+    }
+    
+    if(!res){
+        SMLog(@"the data is imcompleted!!!");
     }
     
     return res;

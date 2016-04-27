@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDataModel.h"
 
 typedef enum {
     Period_3m = 0, //three month
@@ -14,6 +15,13 @@ typedef enum {
     Period_2y       //2 year
 }Period;
 
+
+typedef enum {
+    ConditionKind_Open = 0,
+    ConditionKind_Close,
+    ConditionKind_High,
+    ConditionKind_Low
+}ConditionKind;
 
 typedef struct {
     CGFloat close_min; //the min value, close vs open, (percent)
@@ -29,6 +37,12 @@ typedef struct {
 @interface GSAnalysisManager : NSObject
 
 +(GSAnalysisManager*)shareManager;
+
+//we will analysis the data which simlar as this value
+@property (strong) KDataModel* currT0KData;
+@property (strong) KDataModel* currTP1KData;
+@property (strong) KDataModel* currTP2KData; 
+
 
 @property (assign) Period period;
 @property (assign) OneDayCondition tp1dayCond;  //t-1 day

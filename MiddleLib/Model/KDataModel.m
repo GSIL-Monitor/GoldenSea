@@ -24,6 +24,18 @@
 
 @implementation KDataModel
 
+-(id)init
+{
+    if(self = [super init]){
+        self.open = kInvalidData_Base+1;
+        self.close = kInvalidData_Base+1;
+        self.high = kInvalidData_Base+1;
+        self.low = kInvalidData_Base+1;
+    }
+    
+    return self;
+}
+
 @end
 
 

@@ -15,6 +15,7 @@
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
 		4212654F1C8680360053787E /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataDBService.m */; };
+		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
 		426007101C896080009AF691 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4260070F1C896080009AF691 /* STKDBService.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
 		42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */; };
@@ -119,6 +120,8 @@
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
 		4212654D1C8680360053787E /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
 		4212654E1C8680360053787E /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
+		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
+		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
 		4260070E1C896080009AF691 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
 		4260070F1C896080009AF691 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
 		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
@@ -417,6 +420,8 @@
 				42E098D71C8029D1004E4DC2 /* KDataModel.m */,
 				4204D0521C880AC800D27135 /* STKModel.h */,
 				4204D0531C880AC800D27135 /* STKModel.m */,
+				424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */,
+				424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -895,6 +900,7 @@
 				42E097AF1C7FFAEB004E4DC2 /* DDTTYLogger.m in Sources */,
 				42E097AE1C7FFAEB004E4DC2 /* DDLog.m in Sources */,
 				42E097971C7FFAEB004E4DC2 /* HYFMResultSet.m in Sources */,
+				424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */,
 				42E0979A1C7FFAEB004E4DC2 /* iCarousel.m in Sources */,
 				42E097981C7FFAEB004E4DC2 /* DebugTool.c in Sources */,
 				42E098191C7FFAEB004E4DC2 /* YTKNetworkConfig.m in Sources */,

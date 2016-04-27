@@ -52,13 +52,15 @@
     NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     
     OneDayCondition tp1con;
-    tp1con.close_max = 1.1f;
-    tp1con.close_min = 0.f;
+    tp1con.close_max = 1.5f;
+    tp1con.close_min = 0.1f;
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     [GSAnalysisManager shareManager].DVUnitOfT0DayOpenAndTP1DayClose = 100; //0
 
-    [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
+//    [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
+    [[GSAnalysisManager shareManager]parseFile:@"002481" inDir:dir];
+
 }
 
 
