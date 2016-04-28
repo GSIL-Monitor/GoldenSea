@@ -148,7 +148,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
      >-2%
      >-10%
      */
-    for(long i=0; i<6; i++){
+    for(long i=0; i<5; i++){
         [self.resultArray addObject:[NSMutableArray array]];
     }
 }
@@ -160,16 +160,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     NSMutableArray* tmpArray;
     if(dvValue > 3.f){
         tmpArray = [self.resultArray objectAtIndex:0];
-    }else if (dvValue > 2.f){
-        tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > 1.f){
-        tmpArray = [self.resultArray objectAtIndex:2];
+        tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > 0.f){
-        tmpArray = [self.resultArray objectAtIndex:3];
+        tmpArray = [self.resultArray objectAtIndex:2];
     }else if (dvValue > -1.5f){
-        tmpArray = [self.resultArray objectAtIndex:4];
+        tmpArray = [self.resultArray objectAtIndex:3];
     }else if (dvValue > -11.f){
-        tmpArray = [self.resultArray objectAtIndex:5];
+        tmpArray = [self.resultArray objectAtIndex:4];
     }
     
     [tmpArray addObject:kSndData];
