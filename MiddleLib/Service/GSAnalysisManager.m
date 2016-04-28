@@ -224,7 +224,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
-    SMLog(@"getStkContentArray:%@",self.currStkFilePath);
+//    SMLog(@"getStkContentArray:%@",self.currStkFilePath);
     
     long index = 0;
     long lineIndex = 0;

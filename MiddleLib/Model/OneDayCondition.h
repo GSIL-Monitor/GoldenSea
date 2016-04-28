@@ -24,7 +24,7 @@
 @property (assign) CGFloat low_max;
 
 
-@property (assign) CGFloat dvRange;
+@property (assign,nonatomic) CGFloat dvRange;
 
 
 -(id)initWithKData:(KDataModel*)kData baseData:(KDataModel*)baseData;
@@ -32,5 +32,6 @@
 
 -(id)initWithKData:(KDataModel*)kData baseCloseValue:(CGFloat)baseCloseValue;
 
+-(void) logOutCondition;
 
 @end

@@ -68,10 +68,10 @@
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
     OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
-    tp1con.dvRange = 0.5;
+//    tp1con.dvRange = 0.9;
     
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    
+    [tp1con logOutCondition];
     
 //    OneDayCondition* t0con = [[OneDayCondition alloc]init];
 //    t0con.open_max = -0.2f;

@@ -59,17 +59,19 @@
 
 -(void)_initData
 {
-    self.open_max = 11.f;
-    self.open_min = -11.f;
+    CGFloat maxValue = 100.f;
     
-    self.close_max = 11.f;
-    self.close_min = -11.f;
+    self.open_max = maxValue;
+    self.open_min = -maxValue;
     
-    self.high_max = 11.f;
-    self.high_min = -11.f;
+    self.close_max = maxValue;
+    self.close_min = -maxValue;
     
-    self.low_max = 11.f;
-    self.low_min = -11.f;
+    self.high_max = maxValue;
+    self.high_min = maxValue;
+    
+    self.low_max = maxValue;
+    self.low_min = -maxValue;
     
     _dvRange = KDV_Range;
 }
@@ -110,6 +112,12 @@
         }
         
     }
+}
+
+-(void) logOutCondition;
+{
+    SMLog(@"Condition Open:%.2f,High:%.2f,Low:%.2f,Close:%.2f,  ",self.open_max-_dvRange,self.high_max-_dvRange,self.low_max-_dvRange,self.close_max-_dvRange);
+
 }
 
 
