@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDataModel.h"
 
 @interface OneDayCondition : NSObject
 
@@ -21,5 +22,12 @@
 
 @property (assign) CGFloat low_min;
 @property (assign) CGFloat low_max;
+
+
+-(id)initWithKData:(KDataModel*)kData baseData:(KDataModel*)baseData;
+
+
+-(id)initWithKData:(KDataModel*)kData baseCloseValue:(CGFloat)baseCloseValue;
+
 
 @end

@@ -51,17 +51,31 @@
 {
     NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     
-    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    tp1con.close_max = 3.5f;
-    tp1con.close_min = 1.1f;
+    KDataModel* kData0 = [[KDataModel alloc]init];
+    kData0.open = 11.54;
+    kData0.high = 11.95;
+    kData0.low = 11.32;
+    kData0.close = 11.75;
+
+    
+    KDataModel* kData1 = [[KDataModel alloc]init];
+//    kData1.open = 11.60;
+    kData1.high = 11.66;
+    kData1.low = 11.23;
+    kData1.close = 11.57;
+    KDataModel* kData2 = [[KDataModel alloc]init];
+    kData2.close = 11.75;
+    
+//    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
+    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
+
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.open_max = -0.2f;
-    t0con.open_min = -2.f;
-    
-    [GSAnalysisManager shareManager].t0dayCond = t0con; //0
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.open_max = -0.2f;
+//    t0con.open_min = -2.f;
+//    [GSAnalysisManager shareManager].t0dayCond = t0con;
 
     [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
 //    [[GSAnalysisManager shareManager]parseFile:@"002481" inDir:dir];

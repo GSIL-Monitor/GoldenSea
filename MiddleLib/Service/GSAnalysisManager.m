@@ -18,7 +18,7 @@
 @property (nonatomic,strong) NSMutableArray* contentArray;
 @property (nonatomic,strong) NSMutableArray* resultArray;
 
-@property (assign) int currDate;
+@property (assign) int standardDate;
 @property (assign) int totalCount;
 
 @end
@@ -32,18 +32,18 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(id)init
 {
     if(self = [super init]){
-        //1,get date
-        NSDate * date = [NSDate date];
-        NSTimeInterval sec = [date timeIntervalSinceNow];
-        NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+//        //1,get date
+//        NSDate * date = [NSDate date];
+//        NSTimeInterval sec = [date timeIntervalSinceNow];
+//        NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+//        
+//        NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+////        [df setDateFormat:@"yyyy-MM-dd HH.mm.ss"];
+//        [df setDateFormat:@"yyyyMMdd"];
+//        NSString * dString = [df stringFromDate:currentDate];
         
-        NSDateFormatter * df = [[NSDateFormatter alloc] init ];
-//        [df setDateFormat:@"yyyy-MM-dd HH.mm.ss"];
-        [df setDateFormat:@"yyyyMMdd"];
-        NSString * dString = [df stringFromDate:currentDate];
         
-        self.currDate = [dString intValue];
-        self.DVUnitValue = 0.5f;
+        self.standardDate = 20140101;
     }
     
     return self;
@@ -121,7 +121,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         }
         
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@  TP1High:%.2f, TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f, T0Low:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvClose,kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow);
+            SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvLow,kData.dvTP1.dvClose,
+                  kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
+                  kData.dvT1.dvOpen,kData.dvT1.dvHigh);
         }
     }
     
@@ -346,37 +348,16 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     int date =  [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
     
-    
     //tmp solution
-    if(date > 20150101){
+    if(date > self.standardDate){
         return YES;
     }else{
         return NO;
     }
     
+ 
     
-    //tbd.
-    int pdtime = self.currDate - date;
-    
-    switch (self.period) {
-        case Period_3m:
-            
-            break;
-            
-        case Period_1y:
-            
-            break;
-            
-        case Period_2y:
-            
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    return YES;
+   
 }
 
 -(BOOL)isMeetConditon:(OneDayCondition*)cond DVValue:(DVValue*)dv;
@@ -495,6 +476,49 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 }
 
 
+#pragma mark - getter&setter
+-(void)setPeriod:(Period)period
+{
+    _period = period;
+    
+    
+    int month = 0;
+    
+    switch (_period) {
+        case Period_3m:
+            month = -3;
+            break;
+            
+        case Period_1y:
+            month = -12;
+            break;
+            
+        case Period_2y:
+            month = -24;
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSDate * cdate = [NSDate date];
+    NSTimeInterval sec = [cdate timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setMonth:month];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
+    
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+    [df setDateFormat:@"yyyyMMdd"];
+    NSString * dString = [df stringFromDate:newDate];
+    
+    self.standardDate = [dString intValue];
+    
+    
+}
 
 
 @end

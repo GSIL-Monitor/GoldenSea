@@ -49,10 +49,6 @@ typedef enum {
 
 
 
-// this can be set from -20 to 20, if the value greate than 100, we skip the limit
-@property (assign) int DVUnitOfT0DayOpenAndTP1DayClose; //the differ unit num between the second open and the first close. 0.5 is one unit.
-@property (assign) CGFloat  DVUnitValue; //one uint value, default is 0.5,
-
 
 
 -(void)parseFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
