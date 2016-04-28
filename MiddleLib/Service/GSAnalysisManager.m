@@ -18,7 +18,6 @@
 @property (nonatomic,strong) NSMutableArray* contentArray;
 @property (nonatomic,strong) NSMutableArray* resultArray;
 
-@property (assign) int standardDate;
 @property (assign) int totalCount;
 
 @end
@@ -114,7 +113,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         percent = [tmpArray count]*100.f/self.totalCount;
         
-        if(i <= 3){
+        if(i <= 2){
             SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }else{
             SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
@@ -475,48 +474,48 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 
 #pragma mark - getter&setter
--(void)setPeriod:(Period)period
-{
-    _period = period;
-    
-    
-    int month = 0;
-    
-    switch (_period) {
-        case Period_3m:
-            month = -3;
-            break;
-            
-        case Period_1y:
-            month = -12;
-            break;
-            
-        case Period_2y:
-            month = -24;
-            break;
-            
-        default:
-            break;
-    }
-    
-    NSDate * cdate = [NSDate date];
-    NSTimeInterval sec = [cdate timeIntervalSinceNow];
-    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
-    
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    [dateComponents setMonth:month];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
-    
-    
-    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
-    [df setDateFormat:@"yyyyMMdd"];
-    NSString * dString = [df stringFromDate:newDate];
-    
-    self.standardDate = [dString intValue];
-    
-    
-}
+//-(void)setPeriod:(Period)period
+//{
+//    _period = period;
+//    
+//    
+//    int month = 0;
+//    
+//    switch (_period) {
+//        case Period_3m:
+//            month = -3;
+//            break;
+//            
+//        case Period_1y:
+//            month = -12;
+//            break;
+//            
+//        case Period_2y:
+//            month = -24;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    NSDate * cdate = [NSDate date];
+//    NSTimeInterval sec = [cdate timeIntervalSinceNow];
+//    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+//    
+//    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+//    [dateComponents setMonth:month];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
+//    
+//    
+//    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+//    [df setDateFormat:@"yyyyMMdd"];
+//    NSString * dString = [df stringFromDate:newDate];
+//    
+//    self.standardDate = [dString intValue];
+//    
+//    
+//}
 
 
 @end

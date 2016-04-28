@@ -24,6 +24,9 @@
 @property (assign) CGFloat low_max;
 
 
+@property (assign) CGFloat dvRange;
+
+
 -(id)initWithKData:(KDataModel*)kData baseData:(KDataModel*)baseData;
 
 

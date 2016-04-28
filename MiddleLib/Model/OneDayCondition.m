@@ -10,6 +10,13 @@
 
 #define KDV_Range 1.f
 
+@interface OneDayCondition()
+
+@property (strong) KDataModel* kData;
+@property (assign) CGFloat baseCloseValue;
+
+@end
+
 @implementation OneDayCondition
 
 -(id)init
@@ -29,38 +36,8 @@
     if(self){
         [self _initData];
 
-        if(kData == nil
-           || baseData.close > kInvalidData_Base){
-            //do nothing
-        }else{
-            if (kData.open < kInvalidData_Base) {
-                CGFloat dvOpen = (kData.open - baseData.close)*100.f/baseData.close;
-                
-                self.open_max = dvOpen+KDV_Range;
-                self.open_min = dvOpen-KDV_Range;
-            }
-            
-            if(kData.high < kInvalidData_Base){
-                CGFloat dvHigh = (kData.high - baseData.close)*100.f/baseData.close;
-                self.high_max = dvHigh+KDV_Range;
-                self.high_min = dvHigh-KDV_Range;
-            }
-            
-            if(kData.low < kInvalidData_Base){
-                CGFloat dvLow = (kData.low - baseData.close)*100.f/baseData.close;
-                self.low_max = dvLow+KDV_Range;
-                self.low_min = dvLow-KDV_Range;
-            }
-            
-            
-            if(kData.close < kInvalidData_Base){
-                CGFloat dvClose = (kData.close - baseData.close)*100.f/baseData.close;
-                self.close_max = dvClose+KDV_Range;
-                self.close_min = dvClose-KDV_Range;
-            }
-            
-        }
-        
+        [self _initData:kData baseCloseValue:baseData.close];
+
     }
     
     return self;
@@ -73,37 +50,7 @@
     if(self){
         [self _initData];
         
-        if(kData == nil
-           || baseCloseValue > kInvalidData_Base){
-            //do nothing
-        }else{
-            if (kData.open < kInvalidData_Base) {
-                CGFloat dvOpen = (kData.open - baseCloseValue)*100.f/baseCloseValue;
-                
-                self.open_max = dvOpen+KDV_Range;
-                self.open_min = dvOpen-KDV_Range;
-            }
-            
-            if(kData.high < kInvalidData_Base){
-                CGFloat dvHigh = (kData.high - baseCloseValue)*100.f/baseCloseValue;
-                self.high_max = dvHigh+KDV_Range;
-                self.high_min = dvHigh-KDV_Range;
-            }
-            
-            if(kData.low < kInvalidData_Base){
-                CGFloat dvLow = (kData.low - baseCloseValue)*100.f/baseCloseValue;
-                self.low_max = dvLow+KDV_Range;
-                self.low_min = dvLow-KDV_Range;
-            }
-            
-            
-            if(kData.close < kInvalidData_Base){
-                CGFloat dvClose = (kData.close - baseCloseValue)*100.f/baseCloseValue;
-                self.close_max = dvClose+KDV_Range;
-                self.close_min = dvClose-KDV_Range;
-            }
-            
-        }
+        [self _initData:kData baseCloseValue:baseCloseValue];
         
     }
     
@@ -123,6 +70,54 @@
     
     self.low_max = 11.f;
     self.low_min = -11.f;
+    
+    _dvRange = KDV_Range;
+}
+
+-(void)_initData:(KDataModel*)kData baseCloseValue:(CGFloat)baseCloseValue;
+{
+    self.kData = kData;
+    self.baseCloseValue = baseCloseValue;
+    
+    if(kData == nil
+       || baseCloseValue >= kInvalidData_Base){
+        //do nothing
+    }else{
+        if (kData.open < kInvalidData_Base) {
+            CGFloat dvOpen = (kData.open - baseCloseValue)*100.f/baseCloseValue;
+            
+            self.open_max = dvOpen+_dvRange;
+            self.open_min = dvOpen-_dvRange;
+        }
+        
+        if(kData.high < kInvalidData_Base){
+            CGFloat dvHigh = (kData.high - baseCloseValue)*100.f/baseCloseValue;
+            self.high_max = dvHigh+_dvRange;
+            self.high_min = dvHigh-_dvRange;
+        }
+        
+        if(kData.low < kInvalidData_Base){
+            CGFloat dvLow = (kData.low - baseCloseValue)*100.f/baseCloseValue;
+            self.low_max = dvLow+_dvRange;
+            self.low_min = dvLow-_dvRange;
+        }
+        
+        
+        if(kData.close < kInvalidData_Base){
+            CGFloat dvClose = (kData.close - baseCloseValue)*100.f/baseCloseValue;
+            self.close_max = dvClose+_dvRange;
+            self.close_min = dvClose-_dvRange;
+        }
+        
+    }
+}
+
+
+-(void)setDvRange:(CGFloat)dvRange
+{
+    _dvRange = dvRange;
+    
+    [self _initData:self.kData baseCloseValue:self.baseCloseValue];
 }
 
 @end

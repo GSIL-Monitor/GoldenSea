@@ -68,7 +68,8 @@
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
     OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
-
+    tp1con.dvRange = 0.5;
+    
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     
@@ -77,6 +78,8 @@
 //    t0con.open_min = -2.f;
 //    [GSAnalysisManager shareManager].t0dayCond = t0con;
 
+    
+    [GSAnalysisManager shareManager].standardDate = 20110101;
     [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
 //    [[GSAnalysisManager shareManager]parseFile:@"002481" inDir:dir];
 

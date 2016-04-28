@@ -41,7 +41,7 @@ typedef enum {
 @property (strong) KDataModel* currTP2KData; 
 
 
-@property (assign) Period period;
+@property (assign) int standardDate; //start analysis date, such as 20140101
 @property (strong) OneDayCondition* tp1dayCond;  //t-1 day
 @property (strong) OneDayCondition* tp2dayCond;  //t-2 day
 @property (strong) OneDayCondition* t0dayCond;    //t day
