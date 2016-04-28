@@ -73,27 +73,16 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     
-    for(long i=1; i<[self.contentArray count]-1; i++ ){
-        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:i];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i+1];
+    for(long i=0; i<[self.contentArray count]-1; i++ ){
         
-        kT0Data.dvTP1Open = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1High = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1Close = (kTP1Data.close - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1Low = (kTP1Data.low - kTP2Data.close)*100.f/kTP2Data.close;
-
-        kT0Data.dvHigh = (kT0Data.high - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvClose = (kT0Data.close - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvOpen = (kT0Data.open - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvLow = (kT0Data.low - kTP1Data.close)*100.f/kTP1Data.close;
-
-        if(![self isMeetConditon:self.tp1dayCond PrevData:kTP2Data NextData:kTP1Data]){
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+        
+        if(![self isMeetConditon:self.tp1dayCond DVValue:kT0Data.dvT0]){
             continue;
         }
         
         
-        if(![self isMeetConditon:self.t0dayCond PrevData:kTP1Data NextData:kT0Data]){
+        if(![self isMeetConditon:self.t0dayCond DVValue:kT0Data.dvTP1]){
             continue;
         }
         
@@ -164,7 +153,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(void)dispatchResult2Array:(KDataModel*)kSndData
 {
-    CGFloat dvValue = kSndData.dvHigh;
+    CGFloat dvValue = kSndData.dvT0.dvHigh;
 //    CGFloat dvUnit = 1.f;
     NSMutableArray* tmpArray;
     if(dvValue > 3.f){
@@ -247,6 +236,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
+    NSMutableArray* tmpContentArray = [NSMutableArray array];
+    
     NSArray *lines = [txt componentsSeparatedByString:@"\n"];
     for(NSString* oneline in lines){
         
@@ -312,12 +303,40 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         }
         
         if ([self isMeetPeriodCondition:kData]) {
-            [self.contentArray addObject:kData];
+            [tmpContentArray addObject:kData];
         }
 
         
         index++; //just for debug.
     }
+    
+    
+    
+    //calulate value
+    for(long i=2; i<[tmpContentArray count]-2; i++ ){
+        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+        
+        kT0Data.dvTP1.dvOpen = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
+        kT0Data.dvTP1.dvHigh = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
+        kT0Data.dvTP1.dvLow = (kTP1Data.low - kTP2Data.close)*100.f/kTP2Data.close;
+        kT0Data.dvTP1.dvClose = (kTP1Data.close - kTP2Data.close)*100.f/kTP2Data.close;
+        
+        kT0Data.dvT0.dvOpen = (kT0Data.open - kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvT0.dvHigh = (kT0Data.high - kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvT0.dvLow = (kT0Data.low - kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvT0.dvClose = (kT0Data.close - kTP1Data.close)*100.f/kTP1Data.close;
+        
+        kT0Data.dvT1.dvOpen = (kT1Data.open - kT0Data.close)*100.f/kT0Data.close;
+        kT0Data.dvT1.dvHigh = (kT1Data.high - kT0Data.close)*100.f/kT0Data.close;
+        kT0Data.dvT1.dvLow = (kT1Data.low - kT0Data.close)*100.f/kT0Data.close;
+        kT0Data.dvT1.dvClose = (kT1Data.close - kT0Data.close)*100.f/kT0Data.close;
+        
+        [self.contentArray addObject:kT0Data];
+    }
+    
     
 }
 
@@ -360,85 +379,79 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     return YES;
 }
 
--(BOOL)isMeetConditon:(OneDayCondition*)cond PrevData:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData;
+-(BOOL)isMeetConditon:(OneDayCondition*)cond DVValue:(DVValue*)dv;
 {
     if(!cond){
         return YES;
     }
     
-    CGFloat dv = 0.f;
     
-    dv = (kNextData.open - kPrevData.close)*100.f/kPrevData.close;
-    if(!(dv > self.tp1dayCond.open_min
-       && dv < self.tp1dayCond.open_max)){
+    if(!(dv.dvOpen > cond.open_min
+         && dv.dvOpen < cond.open_max)){
+        return NO;
+    }else{
+        //do nothing.
+//        int r = 1;
+    }
+    
+    
+    if(!(dv.dvHigh > cond.high_min
+         && dv.dvHigh < cond.high_max)){
         return NO;
     }
     
-    dv = (kNextData.close - kPrevData.close)*100.f/kPrevData.close;
-    if(!(dv > self.tp1dayCond.close_min
-         && dv < self.tp1dayCond.close_max)){
+    if(!(dv.dvLow > cond.low_min
+         && dv.dvLow < cond.low_max)){
         return NO;
     }
     
-    dv = (kNextData.high - kPrevData.close)*100.f/kPrevData.close;
-    if(!(dv > self.tp1dayCond.high_min
-         && dv < self.tp1dayCond.high_max)){
-        return NO;
-    }
-    
-    dv = (kNextData.low - kPrevData.close)*100.f/kPrevData.close;
-    if(!(dv > self.tp1dayCond.low_min
-         && dv < self.tp1dayCond.low_max)){
+    if(!(dv.dvClose > cond.close_min
+         && dv.dvClose < cond.close_max)){
         return NO;
     }
     
     return YES;
 }
 
-
-//
-//-(BOOL)isMeetTP1dayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstDat;
+//-(BOOL)isMeetConditon:(OneDayCondition*)cond PrevData:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData;
 //{
-//    
-//    CGFloat dv = (kSndData.close - kFstDat.close)*100.f/kSndData.close;
-//
-//   if(dv > self.tp1dayCond.close_min
-//      && dv < self.tp1dayCond.close_max){
-//       return YES;
-//   }
-//    
-//    return NO;
-//}
-//
-//
-//
-//-(BOOL)isMeetT0DayConditon:(KDataModel*)kSndData FstData:(KDataModel*)kFstData;
-//{
-//    
-//    if(self.DVUnitOfT0DayOpenAndTP1DayClose >= 99){ //skip limit
+//    if(!cond){
 //        return YES;
 //    }
 //    
-//    BOOL res = NO;
-//   
+//    CGFloat dv = 0.f;
 //    
-//    CGFloat dv = (kSndData.open - kFstData.close)*100/kFstData.close;
-//    
-//    CGFloat judgeDvCond = self.DVUnitOfT0DayOpenAndTP1DayClose*self.DVUnitValue;
-//    {
-//        if(dv >= judgeDvCond
-//           &&  dv<(self.DVUnitOfT0DayOpenAndTP1DayClose+1)*self.DVUnitValue){
-//            res = YES;
-//        }
-//    }
-//   
-//    
-//    if(res == YES){
-//        kSndData.isMeetT0DayConditonOpen = YES;
+//    dv = (kNextData.open - kPrevData.close)*100.f/kPrevData.close;
+//    if(!(dv > cond.open_min
+//       && dv < cond.open_max)){
+//        return NO;
+//    }else{
+//        //do nothing.
+//        int r = 1;
 //    }
 //    
-//    return res;
+//    dv = (kNextData.close - kPrevData.close)*100.f/kPrevData.close;
+//    if(!(dv > cond.close_min
+//         && dv < cond.close_max)){
+//        return NO;
+//    }
+//    
+//    dv = (kNextData.high - kPrevData.close)*100.f/kPrevData.close;
+//    if(!(dv > cond.high_min
+//         && dv < cond.high_max)){
+//        return NO;
+//    }
+//    
+//    dv = (kNextData.low - kPrevData.close)*100.f/kPrevData.close;
+//    if(!(dv > cond.low_min
+//         && dv < cond.low_max)){
+//        return NO;
+//    }
+//    
+//    return YES;
 //}
+
+
 
 
 -(BOOL)isValidDataPassedIn

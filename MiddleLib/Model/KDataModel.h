@@ -89,29 +89,33 @@
 
 
 
+@interface DVValue : NSObject
+
+@property (assign) CGFloat dvOpen;
+@property (assign) CGFloat dvHigh;
+@property (assign) CGFloat dvLow;
+@property (assign) CGFloat dvClose;
+
+
+@end
+
+
 @interface KDataModel : HYBaseModel
 
 @property (strong) NSString* time;
 
 @property (assign) CGFloat open;
 @property (assign) CGFloat high;
-@property (assign) CGFloat close;
 @property (assign) CGFloat low;
+@property (assign) CGFloat close;
+
 
 @property (assign) int volume;
 
 
-//dv property , percent , t value vs tp1 close
-@property (assign) CGFloat dvOpen;
-@property (assign) CGFloat dvHigh;
-@property (assign) CGFloat dvClose;
-@property (assign) CGFloat dvLow;
-
-//tp1 dv property , percent ,  tp1 vs tp2 close
-@property (assign) CGFloat dvTP1Open;
-@property (assign) CGFloat dvTP1High;
-@property (assign) CGFloat dvTP1Close;
-@property (assign) CGFloat dvTP1Low;
+@property (strong) DVValue* dvT0; //dv property , percent , t value vs tp1 close
+@property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close
+@property (strong) DVValue* dvT1; //dv property , percent , t1 value vs t close
 
 
 //conditons.
