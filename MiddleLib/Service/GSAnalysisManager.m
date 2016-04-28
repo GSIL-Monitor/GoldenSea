@@ -77,12 +77,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
         
-        if(![self isMeetConditon:self.tp1dayCond DVValue:kT0Data.dvT0]){
+        if(![self isMeetConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
             continue;
         }
         
         
-        if(![self isMeetConditon:self.t0dayCond DVValue:kT0Data.dvTP1]){
+        if(![self isMeetConditon:self.t0dayCond DVValue:kT0Data.dvT0]){
             continue;
         }
         
@@ -121,7 +121,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         }
         
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@  TP1High:%.2f, TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f, T0Low:%.2f",kData.time, kData.dvTP1High,kData.dvTP1Close,kData.dvOpen,kData.dvHigh,kData.dvClose,kData.dvLow);
+            SMLog(@"%@  TP1High:%.2f, TP1Close:%.2f,  T0Open:%.2f, T0High:%.2f , T0Close:%.2f, T0Low:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvClose,kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow);
         }
     }
     
@@ -314,10 +314,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     //calulate value
     for(long i=2; i<[tmpContentArray count]-2; i++ ){
-        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+        KDataModel* kTP2Data  = [tmpContentArray objectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
+        KDataModel* kT1Data = [tmpContentArray objectAtIndex:i+1];
         
         kT0Data.dvTP1.dvOpen = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
         kT0Data.dvTP1.dvHigh = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
