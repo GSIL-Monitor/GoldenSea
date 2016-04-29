@@ -60,7 +60,7 @@
     
     KDataModel* kData1 = [[KDataModel alloc]init];
 //    kData1.open = 11.60;
-    kData1.high = 11.66;
+//    kData1.high = 11.66;
     kData1.low = 11.23;
     kData1.close = 11.57;
     KDataModel* kData2 = [[KDataModel alloc]init];
@@ -73,10 +73,10 @@
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     [tp1con logOutCondition];
     
-//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+    OneDayCondition* t0con = [[OneDayCondition alloc]init];
 //    t0con.open_max = -0.2f;
 //    t0con.open_min = -2.f;
-//    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    [GSAnalysisManager shareManager].t0dayCond = t0con;
 
     
     [GSAnalysisManager shareManager].standardDate = 20110101;

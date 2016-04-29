@@ -57,6 +57,44 @@
     return self;
 }
 
+-(id)initWithKDataDVValue:(DVValue*)baseDVValue;
+{
+    self = [super init];
+    if(self){
+        [self _initData];
+        
+        if (baseDVValue.dvOpen < kInvalidData_Base) {
+            CGFloat dvOpen = baseDVValue.dvOpen;
+            
+            self.open_max = dvOpen+_dvRange;
+            self.open_min = dvOpen-_dvRange;
+        }
+        
+        if(baseDVValue.dvHigh < kInvalidData_Base){
+            CGFloat dvHigh = baseDVValue.dvHigh;
+            self.high_max = dvHigh+_dvRange;
+            self.high_min = dvHigh-_dvRange;
+        }
+        
+        if(baseDVValue.dvLow < kInvalidData_Base){
+            CGFloat dvLow = baseDVValue.dvLow;
+            self.low_max = dvLow+_dvRange;
+            self.low_min = dvLow-_dvRange;
+        }
+        
+        
+        if(baseDVValue.dvClose < kInvalidData_Base){
+            CGFloat dvClose = baseDVValue.dvClose;
+            self.close_max = dvClose+_dvRange;
+            self.close_min = dvClose-_dvRange;
+        }
+        
+    }
+    
+    return self;
+}
+
+
 -(void)_initData
 {
     CGFloat maxValue = 100.f;
@@ -68,7 +106,7 @@
     self.close_min = -maxValue;
     
     self.high_max = maxValue;
-    self.high_min = maxValue;
+    self.high_min = -maxValue;
     
     self.low_max = maxValue;
     self.low_min = -maxValue;

@@ -24,6 +24,17 @@
 
 @implementation DVValue
 
+-(id)init
+{
+    if(self = [super init]){
+        self.dvOpen = kInvalidData_Base+1;
+        self.dvHigh = kInvalidData_Base+1;
+        self.dvLow = kInvalidData_Base+1;
+        self.dvClose = kInvalidData_Base+1;
+    }
+    
+    return self;
+}
 
 
 @end

@@ -32,6 +32,10 @@
 
 -(id)initWithKData:(KDataModel*)kData baseCloseValue:(CGFloat)baseCloseValue;
 
+
+-(id)initWithKDataDVValue:(DVValue*)baseDVValue;
+
+
 -(void) logOutCondition;
 
 @end

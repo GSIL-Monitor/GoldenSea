@@ -25,7 +25,6 @@
 		42E08D771C7FF771004E4DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42E08D761C7FF771004E4DC2 /* Assets.xcassets */; };
 		42E08D7A1C7FF771004E4DC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E08D781C7FF771004E4DC2 /* Main.storyboard */; };
 		42E08D851C7FF771004E4DC2 /* GSGoldenSeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D841C7FF771004E4DC2 /* GSGoldenSeaTests.m */; };
-		42E08D901C7FF771004E4DC2 /* GSGoldenSeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D8F1C7FF771004E4DC2 /* GSGoldenSeaUITests.m */; };
 		42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DDC1C7FF8C0004E4DC2 /* HYBaseCache.m */; };
 		42E08E571C7FF8C1004E4DC2 /* HYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DDE1C7FF8C0004E4DC2 /* HYBaseModel.m */; };
 		42E08E581C7FF8C1004E4DC2 /* HYBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DE01C7FF8C0004E4DC2 /* HYBaseRequest.m */; };
@@ -94,13 +93,6 @@
 			remoteGlobalIDString = 42E08D691C7FF771004E4DC2;
 			remoteInfo = GSGoldenSea;
 		};
-		42E08D8C1C7FF771004E4DC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 42E08D621C7FF771004E4DC2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 42E08D691C7FF771004E4DC2;
-			remoteInfo = GSGoldenSea;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -140,7 +132,6 @@
 		42E08D801C7FF771004E4DC2 /* GSGoldenSeaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSGoldenSeaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D841C7FF771004E4DC2 /* GSGoldenSeaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSGoldenSeaTests.m; sourceTree = "<group>"; };
 		42E08D861C7FF771004E4DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		42E08D8B1C7FF771004E4DC2 /* GSGoldenSeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSGoldenSeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D8F1C7FF771004E4DC2 /* GSGoldenSeaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSGoldenSeaUITests.m; sourceTree = "<group>"; };
 		42E08D911C7FF771004E4DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42E08DDB1C7FF8C0004E4DC2 /* HYBaseCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseCache.h; sourceTree = "<group>"; };
@@ -297,13 +288,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		42E08D881C7FF771004E4DC2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -334,7 +318,6 @@
 			children = (
 				42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */,
 				42E08D801C7FF771004E4DC2 /* GSGoldenSeaTests.xctest */,
-				42E08D8B1C7FF771004E4DC2 /* GSGoldenSeaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -758,24 +741,6 @@
 			productReference = 42E08D801C7FF771004E4DC2 /* GSGoldenSeaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		42E08D8A1C7FF771004E4DC2 /* GSGoldenSeaUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42E08D9A1C7FF771004E4DC2 /* Build configuration list for PBXNativeTarget "GSGoldenSeaUITests" */;
-			buildPhases = (
-				42E08D871C7FF771004E4DC2 /* Sources */,
-				42E08D881C7FF771004E4DC2 /* Frameworks */,
-				42E08D891C7FF771004E4DC2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42E08D8D1C7FF771004E4DC2 /* PBXTargetDependency */,
-			);
-			name = GSGoldenSeaUITests;
-			productName = GSGoldenSeaUITests;
-			productReference = 42E08D8B1C7FF771004E4DC2 /* GSGoldenSeaUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -789,10 +754,6 @@
 						CreatedOnToolsVersion = 7.2;
 					};
 					42E08D7F1C7FF771004E4DC2 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 42E08D691C7FF771004E4DC2;
-					};
-					42E08D8A1C7FF771004E4DC2 = {
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 42E08D691C7FF771004E4DC2;
 					};
@@ -813,7 +774,6 @@
 			targets = (
 				42E08D691C7FF771004E4DC2 /* GSGoldenSea */,
 				42E08D7F1C7FF771004E4DC2 /* GSGoldenSeaTests */,
-				42E08D8A1C7FF771004E4DC2 /* GSGoldenSeaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -829,13 +789,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		42E08D7E1C7FF771004E4DC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42E08D891C7FF771004E4DC2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -932,14 +885,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		42E08D871C7FF771004E4DC2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42E08D901C7FF771004E4DC2 /* GSGoldenSeaUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -947,11 +892,6 @@
 			isa = PBXTargetDependency;
 			target = 42E08D691C7FF771004E4DC2 /* GSGoldenSea */;
 			targetProxy = 42E08D811C7FF771004E4DC2 /* PBXContainerItemProxy */;
-		};
-		42E08D8D1C7FF771004E4DC2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 42E08D691C7FF771004E4DC2 /* GSGoldenSea */;
-			targetProxy = 42E08D8C1C7FF771004E4DC2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1063,6 +1003,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BaseLib/VoiceConvert/lib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = goldenSea.GSGoldenSea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1085,6 +1026,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BaseLib/VoiceConvert/lib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = goldenSea.GSGoldenSea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1116,32 +1058,6 @@
 			};
 			name = Release;
 		};
-		42E08D9B1C7FF771004E4DC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GSGoldenSeaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = goldenSea.GSGoldenSeaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GSGoldenSea;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		42E08D9C1C7FF771004E4DC2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = GSGoldenSeaUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = goldenSea.GSGoldenSeaUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GSGoldenSea;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1168,15 +1084,6 @@
 			buildConfigurations = (
 				42E08D981C7FF771004E4DC2 /* Debug */,
 				42E08D991C7FF771004E4DC2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42E08D9A1C7FF771004E4DC2 /* Build configuration list for PBXNativeTarget "GSGoldenSeaUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42E08D9B1C7FF771004E4DC2 /* Debug */,
-				42E08D9C1C7FF771004E4DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
