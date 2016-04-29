@@ -83,6 +83,7 @@
 		42E098D41C802616004E4DC2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E098D31C802616004E4DC2 /* libsqlite3.0.tbd */; };
 		42E098D81C8029D1004E4DC2 /* KDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098D71C8029D1004E4DC2 /* KDataModel.m */; };
 		42E098DB1C802A5D004E4DC2 /* KDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098DA1C802A5D004E4DC2 /* KDataRequest.m */; };
+		E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +271,7 @@
 		42E098D71C8029D1004E4DC2 /* KDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataModel.m; sourceTree = "<group>"; };
 		42E098D91C802A5D004E4DC2 /* KDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataRequest.h; sourceTree = "<group>"; };
 		42E098DA1C802A5D004E4DC2 /* KDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataRequest.m; sourceTree = "<group>"; };
+		E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */,
 				42E098D41C802616004E4DC2 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +308,7 @@
 		42E08D611C7FF771004E4DC2 = {
 			isa = PBXGroup;
 			children = (
+				E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */,
 				42E098D31C802616004E4DC2 /* libsqlite3.0.tbd */,
 				42E08D6C1C7FF771004E4DC2 /* GSGoldenSea */,
 				42E08D831C7FF771004E4DC2 /* GSGoldenSeaTests */,
