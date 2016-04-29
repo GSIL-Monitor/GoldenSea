@@ -108,16 +108,37 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     NSMutableArray* tmpArray;
     CGFloat percent = 0.f;
     
+    
+    //calulate percent firstly
+    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
     for(long i=0; i<[self.resultArray count]; i++){
         tmpArray = [self.resultArray objectAtIndex:i];
         
         percent = [tmpArray count]*100.f/self.totalCount;
         
-        if(i <= 2){
-            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+        if(i < 2){
+            winPercent += percent;
+        }else if(i == 2){
+            holdPercent += percent;
         }else{
-            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
+            lossPercent += percent;
         }
+    }
+    SMLog(@"win(%.2f),hold(%.2f),loss(%.2f)",winPercent,holdPercent,lossPercent);
+
+    
+    
+    for(long i=0; i<[self.resultArray count]; i++){
+        tmpArray = [self.resultArray objectAtIndex:i];
+        
+        percent = [tmpArray count]*100.f/self.totalCount;
+        
+        if(i < 2){
+            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+        }else if(i == 2){
+            SMLog(@"hold itme array :%ld, percent(%.2f)",i,percent);
+        }else{
+            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);        }
         
         for (KDataModel* kData in tmpArray) {
             SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvLow,kData.dvTP1.dvClose,

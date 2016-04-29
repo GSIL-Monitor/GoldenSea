@@ -27,6 +27,9 @@
 @property (assign,nonatomic) CGFloat dvRange;
 
 
++(void)calulateDVValue:(KDataModel*)kData baseCloseValue:(CGFloat)baseCloseValue;
+
+
 -(id)initWithKData:(KDataModel*)kData baseData:(KDataModel*)baseData;
 
 

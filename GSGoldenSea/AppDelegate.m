@@ -18,14 +18,26 @@
 #import "GSAnalysisManager.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    CGFloat _diffOfLowAndClose;
+    CGFloat _diffOfHighAndClose;
+    NSString* _dir;
+    NSString* _stkID;
+
+}
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    // Insert code here to initialize your applicati
+    
+    _diffOfHighAndClose = 1.5;
+    _diffOfLowAndClose = 1.5;
+    _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
+    _stkID = @"600418"; //002481
+    [GSAnalysisManager shareManager].standardDate = 20150101;
     
     //regsiter net
     [[HYRequestManager sharedInstance]initService];
@@ -49,41 +61,133 @@
 
 -(void)test2
 {
-    NSString* dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     
+
+    [self setCodintionCase1];
+    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+
+    [self setCodintionCase2];
+    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    
+    [self setCodintionCase3];
+    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    
+    [self setCodintionCase4];
+    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    
+    return;
+    
+    [self setCodintionCase0Toady];
+    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    
+
+}
+
+
+-(OneDayCondition*)setCodintionCase0Toady
+{
     KDataModel* kData0 = [[KDataModel alloc]init];
     kData0.open = 11.54;
     kData0.high = 11.95;
     kData0.low = 11.32;
     kData0.close = 11.75;
-
+    
     
     KDataModel* kData1 = [[KDataModel alloc]init];
-//    kData1.open = 11.60;
-//    kData1.high = 11.66;
+    //    kData1.open = 11.60;
+    //    kData1.high = 11.66;
     kData1.low = 11.23;
     kData1.close = 11.57;
     KDataModel* kData2 = [[KDataModel alloc]init];
     kData2.close = 11.75;
     
-//    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
+    
+    //    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
     OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
-//    tp1con.dvRange = 0.9;
+    //    tp1con.dvRange = 0.9;
     
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     [tp1con logOutCondition];
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
-//    t0con.open_max = -0.2f;
-//    t0con.open_min = -2.f;
+    //    t0con.open_max = -0.2f;
+    //    t0con.open_min = -2.f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    
+    return tp1con;
+}
+
+//small T line and close red
+-(OneDayCondition*)setCodintionCase1
+{
+    DVValue* dvValue = [[DVValue alloc]init];
+    dvValue.dvClose = 0.5;
+    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
+    
+    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    tp1con.dvRange = 0.5;
+    
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    [tp1con logOutCondition];
 
     
-    [GSAnalysisManager shareManager].standardDate = 20110101;
-    [[GSAnalysisManager shareManager]parseFile:@"600418" inDir:dir];
-//    [[GSAnalysisManager shareManager]parseFile:@"002481" inDir:dir];
-
+    return tp1con;
 }
+
+//small T line and close green
+-(OneDayCondition*)setCodintionCase2
+{
+    DVValue* dvValue = [[DVValue alloc]init];
+    dvValue.dvClose = -0.5;
+    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
+    
+    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    tp1con.dvRange = 0.5;
+    
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    [tp1con logOutCondition];
+    
+    
+    return tp1con;
+}
+
+
+//small opp-T line and close red
+-(OneDayCondition*)setCodintionCase3
+{
+    DVValue* dvValue = [[DVValue alloc]init];
+    dvValue.dvClose = 0.5;
+    dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
+    
+    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    tp1con.dvRange = 0.5;
+    
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    [tp1con logOutCondition];
+    
+    
+    return tp1con;
+}
+
+
+//small opp-T line and close green
+-(OneDayCondition*)setCodintionCase4
+{
+    DVValue* dvValue = [[DVValue alloc]init];
+    dvValue.dvClose = -0.5;
+    dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
+    
+    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    tp1con.dvRange = 0.5;
+    
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    [tp1con logOutCondition];
+    
+    
+    return tp1con;
+}
+
 
 
 -(void)testFunc
