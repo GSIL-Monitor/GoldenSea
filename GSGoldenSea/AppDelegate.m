@@ -37,7 +37,7 @@
     _diffOfLowAndClose = 1.5;
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     _stkID = @"600418"; //002481
-    [GSAnalysisManager shareManager].standardDate = 20150101;
+    [GSAnalysisManager shareManager].standardDate = 20110101;
     
     //regsiter net
     [[HYRequestManager sharedInstance]initService];
@@ -65,6 +65,8 @@
 
     [self setCodintionCase1];
     [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    
+    return;
 
     [self setCodintionCase2];
     [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
@@ -122,11 +124,12 @@
 -(OneDayCondition*)setCodintionCase1
 {
     DVValue* dvValue = [[DVValue alloc]init];
-    dvValue.dvClose = 0.5;
-    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
+    dvValue.dvClose = 4.5;
+    dvValue.dvHigh = dvValue.dvClose;
+//    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
     
     OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp1con.dvRange = 0.5;
+    tp1con.dvRange = 1.f;
     
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     [tp1con logOutCondition];

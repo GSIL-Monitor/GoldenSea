@@ -93,7 +93,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     [self logOutResult];
     
-    SMLog(@"end analysis. totalCount(%d)",self.totalCount);
+//    SMLog(@"end analysis. totalCount(%d)",self.totalCount);
     
 
 }
@@ -124,9 +124,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             lossPercent += percent;
         }
     }
-    SMLog(@"win(%.2f),hold(%.2f),loss(%.2f)",winPercent,holdPercent,lossPercent);
+    SMLog(@"totalCount(%d): win(%.2f),hold(%.2f),loss(%.2f)",self.totalCount,winPercent,holdPercent,lossPercent);
 
     
+//    return;
     
     for(long i=0; i<[self.resultArray count]; i++){
         tmpArray = [self.resultArray objectAtIndex:i];
@@ -333,7 +334,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     
     //calulate value
-    for(long i=2; i<[tmpContentArray count]-2; i++ ){
+    for(long i=6; i<[tmpContentArray count]-2; i++ ){
+        KDataModel* kTP6Data  = [tmpContentArray objectAtIndex:(i-6)];
+        KDataModel* kTP5Data  = [tmpContentArray objectAtIndex:(i-5)];
+        KDataModel* kTP4Data  = [tmpContentArray objectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [tmpContentArray objectAtIndex:(i-3)];
         KDataModel* kTP2Data  = [tmpContentArray objectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
@@ -353,6 +358,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.dvT1.dvHigh = (kT1Data.high - kT0Data.close)*100.f/kT0Data.close;
         kT0Data.dvT1.dvLow = (kT1Data.low - kT0Data.close)*100.f/kT0Data.close;
         kT0Data.dvT1.dvClose = (kT1Data.close - kT0Data.close)*100.f/kT0Data.close;
+        
+        
+        
+        //avaerage
+        kT0Data.dvAvgTP1toTP5.dvOpen = ((kTP5Data.open+kTP4Data.open+kTP3Data.open+kTP2Data.open+kTP6Data.open)-5*kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvAvgTP1toTP5.dvHigh = ((kTP5Data.high+kTP4Data.high+kTP3Data.high+kTP2Data.high+kTP6Data.high)-5*kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvAvgTP1toTP5.dvLow = ((kTP5Data.low+kTP4Data.low+kTP3Data.low+kTP2Data.low+kTP6Data.low)-5*kTP1Data.close)*100.f/kTP1Data.close;
+        kT0Data.dvAvgTP1toTP5.dvClose = ((kTP5Data.close+kTP4Data.close+kTP3Data.close+kTP2Data.close+kTP6Data.close)-5*kTP1Data.close)*100.f/kTP1Data.close;
         
         [self.contentArray addObject:kT0Data];
     }
