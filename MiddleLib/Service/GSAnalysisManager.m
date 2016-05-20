@@ -93,7 +93,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     [[GSLogout shareManager] logOutResult];
     
-//    SMLog(@"end analysis. totalCount(%d)",self.totalCount);
     
 
 }
@@ -111,11 +110,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     /*
      Sndday high vs fstday close
      >3%
-     >2%
      >1%
      >0%
-     >-1%
-     >-2%
+     >-1.5%
      >-10%
      */
     for(long i=0; i<5; i++){
@@ -152,13 +149,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(BOOL)isMeetMutableCond:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData
 {
-   
     
-    if(
-//       kNextData.high > kPrevData.high
-//       && kNextData.low < kPrevData.low
-//       &&
-       kNextData.open < kPrevData.low){
+    if(kNextData.open < kPrevData.low){
         return YES;
     }
     
@@ -216,44 +208,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     return YES;
 }
-
-//-(BOOL)isMeetConditon:(OneDayCondition*)cond PrevData:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData;
-//{
-//    if(!cond){
-//        return YES;
-//    }
-//    
-//    CGFloat dv = 0.f;
-//    
-//    dv = (kNextData.open - kPrevData.close)*100.f/kPrevData.close;
-//    if(!(dv > cond.open_min
-//       && dv < cond.open_max)){
-//        return NO;
-//    }else{
-//        //do nothing.
-//        int r = 1;
-//    }
-//    
-//    dv = (kNextData.close - kPrevData.close)*100.f/kPrevData.close;
-//    if(!(dv > cond.close_min
-//         && dv < cond.close_max)){
-//        return NO;
-//    }
-//    
-//    dv = (kNextData.high - kPrevData.close)*100.f/kPrevData.close;
-//    if(!(dv > cond.high_min
-//         && dv < cond.high_max)){
-//        return NO;
-//    }
-//    
-//    dv = (kNextData.low - kPrevData.close)*100.f/kPrevData.close;
-//    if(!(dv > cond.low_min
-//         && dv < cond.low_max)){
-//        return NO;
-//    }
-//    
-//    return YES;
-//}
 
 
 
