@@ -18,6 +18,9 @@
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
 		426007101C896080009AF691 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4260070F1C896080009AF691 /* STKDBService.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
+		426980041CEEF22200D99888 /* GSLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSLogout.m */; };
+		426980071CEEF5F000D99888 /* GSDataInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataInit.m */; };
+		4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */; };
 		42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
@@ -119,6 +122,12 @@
 		4260070F1C896080009AF691 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
 		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
 		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKManager.m; sourceTree = "<group>"; };
+		426980021CEEF22200D99888 /* GSLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSLogout.h; sourceTree = "<group>"; };
+		426980031CEEF22200D99888 /* GSLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSLogout.m; sourceTree = "<group>"; };
+		426980051CEEF5F000D99888 /* GSDataInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataInit.h; sourceTree = "<group>"; };
+		426980061CEEF5F000D99888 /* GSDataInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDataInit.m; sourceTree = "<group>"; };
+		426980081CEEF96000D99888 /* GSAnalysisManager+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSAnalysisManager+ex.h"; sourceTree = "<group>"; };
+		426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSAnalysisManager+ex.m"; sourceTree = "<group>"; };
 		42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAnalysisManager.h; sourceTree = "<group>"; };
 		42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAnalysisManager.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,8 +463,14 @@
 				4204D0561C88160500D27135 /* HelpService.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
 				426007121C896EA5009AF691 /* STKManager.m */,
+				426980081CEEF96000D99888 /* GSAnalysisManager+ex.h */,
+				426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */,
 				42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */,
 				42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */,
+				426980021CEEF22200D99888 /* GSLogout.h */,
+				426980031CEEF22200D99888 /* GSLogout.m */,
+				426980051CEEF5F000D99888 /* GSDataInit.h */,
+				426980061CEEF5F000D99888 /* GSDataInit.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -829,11 +844,13 @@
 				42E097281C7FFAEB004E4DC2 /* AFURLConnectionOperation.m in Sources */,
 				42E0972B1C7FFAEB004E4DC2 /* AFURLSessionManager.m in Sources */,
 				42E0978A1C7FFAEB004E4DC2 /* GTMBase64.m in Sources */,
+				426980071CEEF5F000D99888 /* GSDataInit.m in Sources */,
 				42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */,
 				42E097B21C7FFAEB004E4DC2 /* DDMultiFormatter.m in Sources */,
 				42E098141C7FFAEB004E4DC2 /* YTKBatchRequest.m in Sources */,
 				42E0972D1C7FFAEB004E4DC2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				42E097AB1C7FFAEB004E4DC2 /* DDASLLogCapture.m in Sources */,
+				4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
 				426007131C896EA5009AF691 /* STKManager.m in Sources */,
@@ -867,6 +884,7 @@
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
 				42E0981B1C7FFAEB004E4DC2 /* YTKRequest.m in Sources */,
 				42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */,
+				426980041CEEF22200D99888 /* GSLogout.m in Sources */,
 				42E097241C7FFAEB004E4DC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				42E098131C7FFAEB004E4DC2 /* YTKBaseRequest.m in Sources */,
 				42E097931C7FFAEB004E4DC2 /* FMDatabaseAdditions.m in Sources */,

@@ -37,7 +37,8 @@
     _diffOfLowAndClose = 1.5;
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     _stkID = @"600418"; //002481
-    [GSAnalysisManager shareManager].standardDate = 20110101;
+    
+    [GSDataInit shareManager].standardDate = 20110101;
     
     //regsiter net
     [[HYRequestManager sharedInstance]initService];
@@ -63,24 +64,24 @@
 {
     
 
-    [self setCodintionCase1];
-    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    [self setCodintionCase100];
+    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
     return;
 
     [self setCodintionCase2];
-    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
     [self setCodintionCase3];
-    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
     [self setCodintionCase4];
-    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
     return;
     
     [self setCodintionCase0Toady];
-    [[GSAnalysisManager shareManager]parseFile:_stkID inDir:_dir];
+    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
 
 }
@@ -119,6 +120,16 @@
     
     return tp1con;
 }
+
+
+//waiBaoRi
+-(OneDayCondition*)setCodintionCase100
+{
+//    [GSAnalysisManager shareManager].isWaibaoriDownCond = YES;
+    
+    return nil;
+}
+
 
 //small T line and close red
 -(OneDayCondition*)setCodintionCase1
