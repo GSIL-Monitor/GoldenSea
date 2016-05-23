@@ -22,7 +22,7 @@
 
 +(GSAnalysisManager*)shareManager;
 
-
+@property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSMutableArray* resultArray;
 @property (assign) int totalCount;
 

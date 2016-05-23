@@ -210,6 +210,9 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
         kT0Data.dvAvgTP1toTP5.dvLow = ((kTP5Data.low+kTP4Data.low+kTP3Data.low+kTP2Data.low+kTP6Data.low)-5*kTP1Data.close)*100.f/kTP1Data.close;
         kT0Data.dvAvgTP1toTP5.dvClose = ((kTP5Data.close+kTP4Data.close+kTP3Data.close+kTP2Data.close+kTP6Data.close)-5*kTP1Data.close)*100.f/kTP1Data.close;
         
+        kT0Data.T1Data = kT1Data;
+        kT0Data.TP1Data = kTP1Data;
+        
         [self.contentArray addObject:kT0Data];
     }
     

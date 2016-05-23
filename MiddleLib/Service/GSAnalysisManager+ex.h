@@ -12,4 +12,9 @@
 
 -(BOOL)isValidDataPassedIn;
 
+-(void)reset;
+
+-(void)dispatchResult2Array:(KDataModel*)kT0data buy:(CGFloat)buyValue sell:(CGFloat)sellValue;
+
+
 @end

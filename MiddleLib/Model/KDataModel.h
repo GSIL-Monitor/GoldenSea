@@ -109,9 +109,11 @@
 @property (assign) CGFloat low;
 @property (assign) CGFloat close;
 
-
 @property (assign) int volume;
 
+
+@property (strong) KDataModel* TP1Data;
+@property (strong) KDataModel* T1Data;
 
 @property (strong) DVValue* dvT0; //dv property , percent , t value vs tp1 close
 @property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close

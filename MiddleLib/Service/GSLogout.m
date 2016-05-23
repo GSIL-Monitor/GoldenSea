@@ -17,7 +17,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 
 
-
 -(void)logOutResult
 {
     //logOut which loss item
@@ -61,8 +60,8 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         }
         
         for (KDataModel* kData in tmpArray) {
-            //            [self logResWithDV:kData];
-            [self logResWithValue:kData];
+                        [self logResWithDV:kData];
+//            [self logResWithValue:kData];
         }
     }
     
@@ -71,16 +70,27 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)logResWithDV:(KDataModel*)kData
 {
-    SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvLow,kData.dvTP1.dvClose,
-          kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
+    SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f,openVSlow:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvLow,kData.dvTP1.dvClose,
+          kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,(kData.dvT0.dvLow-kData.dvT0.dvOpen),
           kData.dvT1.dvOpen,kData.dvT1.dvHigh);
 }
 
 -(void)logResWithValue:(KDataModel*)kData
 {
-    SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.dvTP1.dvHigh,kData.dvTP1.dvLow,kData.dvTP1.dvClose,
-          kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
-          kData.dvT1.dvOpen,kData.dvT1.dvHigh);
+    SMLog(@"%@  TP1-Open:%.2f,High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time,kData.TP1Data.open, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
+          kData.open,kData.high, kData.close,kData.low,
+          kData.T1Data.open,kData.T1Data.high);
 }
+
+
+//-(void)logResWithValue:(KDataModel*)kData
+//{
+//    SMLog(@"%@  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
+//          kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
+//          kData.dvT1.dvOpen,kData.dvT1.dvHigh);
+//}
+
+
+
 
 @end

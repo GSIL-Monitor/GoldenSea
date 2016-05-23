@@ -15,9 +15,6 @@
 @interface GSAnalysisManager ()
 
 
-@property (nonatomic,strong) NSArray* contentArray;
-
-
 @end
 
 
@@ -86,7 +83,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         }
         
         
-        [self dispatchResult2Array:kT0Data];
+
+        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
+        
+//        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
+
+
+//        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
         
         self.totalCount++;
     }
@@ -94,51 +97,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     [[GSLogout shareManager] logOutResult];
     
     
-
 }
 
 
 #pragma mark - internal funcs
-
-
--(void)reset
-{
-    self.totalCount = 0;
-    self.contentArray = [NSMutableArray array];
-    self.resultArray = [NSMutableArray array];
-    
-    /*
-     Sndday high vs fstday close
-     >3%
-     >1%
-     >0%
-     >-1.5%
-     >-10%
-     */
-    for(long i=0; i<5; i++){
-        [self.resultArray addObject:[NSMutableArray array]];
-    }
-}
-
--(void)dispatchResult2Array:(KDataModel*)kSndData
-{
-    CGFloat dvValue = kSndData.dvT0.dvHigh;
-//    CGFloat dvUnit = 1.f;
-    NSMutableArray* tmpArray;
-    if(dvValue > 3.f){
-        tmpArray = [self.resultArray objectAtIndex:0];
-    }else if (dvValue > 1.f){
-        tmpArray = [self.resultArray objectAtIndex:1];
-    }else if (dvValue > 0.f){
-        tmpArray = [self.resultArray objectAtIndex:2];
-    }else if (dvValue > -1.5f){
-        tmpArray = [self.resultArray objectAtIndex:3];
-    }else if (dvValue > -11.f){
-        tmpArray = [self.resultArray objectAtIndex:4];
-    }
-    
-    [tmpArray addObject:kSndData];
-}
 
 
 
@@ -151,8 +113,15 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     
     if(kNextData.open < kPrevData.low){
-        return YES;
+//        if((kPrevData.dvT0.dvClose > -5.5)
+//        && (kNextData.dvT0.dvOpen > -2.f)
+//           )
+        {
+            return YES;
+        }
     }
+    
+    
     
     return NO;
 }
@@ -185,11 +154,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     if(!(dv.dvOpen > cond.open_min
          && dv.dvOpen < cond.open_max)){
         return NO;
-    }else{
-        //do nothing.
-//        int r = 1;
     }
-    
     
     if(!(dv.dvHigh > cond.high_min
          && dv.dvHigh < cond.high_max)){
