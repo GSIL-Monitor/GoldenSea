@@ -16,11 +16,11 @@
 #import "STKManager.h"
 
 #import "GSAnalysisManager.h"
+#import "GSCondition.h"
 
 
 @interface AppDelegate (){
-    CGFloat _diffOfLowAndClose;
-    CGFloat _diffOfHighAndClose;
+    
     NSString* _dir;
     NSString* _stkID;
 
@@ -33,8 +33,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your applicati
     
-    _diffOfHighAndClose = 1.5;
-    _diffOfLowAndClose = 1.5;
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
     _stkID = @"600418"; //002481
     
@@ -63,24 +61,9 @@
 -(void)test2
 {
     
-
-    [self setCodintionCase100];
-    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
-    return;
-
-    [self setCodintionCase2];
-    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
+//    [self setCodintionCase0Toady];
     
-    [self setCodintionCase3];
-    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
-    
-    [self setCodintionCase4];
-    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
-    
-    return;
-    
-    [self setCodintionCase0Toady];
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
     
 
@@ -122,114 +105,11 @@
 }
 
 
-//waiBaoRi
--(OneDayCondition*)setCodintionCase100
-{
-//    [GSAnalysisManager shareManager].isWaibaoriDownCond = YES;
-    
-    return nil;
-}
-
-
-//small T line and close red
--(OneDayCondition*)setCodintionCase1
-{
-    DVValue* dvValue = [[DVValue alloc]init];
-    dvValue.dvClose = 4.5;
-    dvValue.dvHigh = dvValue.dvClose;
-//    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp1con.dvRange = 1.f;
-    
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    [tp1con logOutCondition];
-
-    
-    return tp1con;
-}
-
-//small T line and close green
--(OneDayCondition*)setCodintionCase2
-{
-    DVValue* dvValue = [[DVValue alloc]init];
-    dvValue.dvClose = -0.5;
-    dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp1con.dvRange = 0.5;
-    
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    [tp1con logOutCondition];
-    
-    
-    return tp1con;
-}
-
-
-//small opp-T line and close red
--(OneDayCondition*)setCodintionCase3
-{
-    DVValue* dvValue = [[DVValue alloc]init];
-    dvValue.dvClose = 0.5;
-    dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp1con.dvRange = 0.5;
-    
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    [tp1con logOutCondition];
-    
-    
-    return tp1con;
-}
-
-
-//small opp-T line and close green
--(OneDayCondition*)setCodintionCase4
-{
-    DVValue* dvValue = [[DVValue alloc]init];
-    dvValue.dvClose = -0.5;
-    dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp1con.dvRange = 0.5;
-    
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    [tp1con logOutCondition];
-    
-    
-    return tp1con;
-}
 
 
 
--(void)testFunc
-{
-    
-    
-    NSDate* dnow = [NSDate dateWithTimeIntervalSinceNow:0];
-    
-    NSTimeInterval time = [dnow timeIntervalSince1970];
-    
-    
-    time = 1456490307755;
-    time = 1424954307755;
-    
-    time = 1456037755;
-    time = 1425437755;
 
 
-    NSString* tstring = @"Fri Feb 27 00:00:00 +0800 2015";
-    
-    NSDate* d2 = [NSDate dateWithTimeIntervalSince1970:time];
-    
-    NSDate* d3 = [self parseString:tstring];
-    
-    NSLog(@"bb");
-
-    
-}
 
 -(NSDate*)parseString:(NSString*)str
 {

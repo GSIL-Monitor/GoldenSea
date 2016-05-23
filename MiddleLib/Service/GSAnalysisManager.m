@@ -74,13 +74,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        if(![self isMeetWaibaoriDown:kTP2Data NextData:kTP1Data]){
-            continue;
-        }
-        
-        if(![self isMeetMutableCond:kTP1Data NextData:kT0Data]){
-            continue;
-        }
+//        if(![self isMeetWaibaoriDown:kTP2Data NextData:kTP1Data]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetMutableCond:kTP1Data NextData:kT0Data]){
+//            continue;
+//        }
         
         
 

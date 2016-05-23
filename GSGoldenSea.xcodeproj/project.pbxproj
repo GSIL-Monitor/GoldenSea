@@ -86,6 +86,7 @@
 		42E098D41C802616004E4DC2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E098D31C802616004E4DC2 /* libsqlite3.0.tbd */; };
 		42E098D81C8029D1004E4DC2 /* KDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098D71C8029D1004E4DC2 /* KDataModel.m */; };
 		42E098DB1C802A5D004E4DC2 /* KDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098DA1C802A5D004E4DC2 /* KDataRequest.m */; };
+		42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E74FF81CF2E7E5009D483D /* GSCondition.m */; };
 		E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,8 @@
 		42E098D71C8029D1004E4DC2 /* KDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataModel.m; sourceTree = "<group>"; };
 		42E098D91C802A5D004E4DC2 /* KDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataRequest.h; sourceTree = "<group>"; };
 		42E098DA1C802A5D004E4DC2 /* KDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataRequest.m; sourceTree = "<group>"; };
+		42E74FF71CF2E7E5009D483D /* GSCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCondition.h; sourceTree = "<group>"; };
+		42E74FF81CF2E7E5009D483D /* GSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCondition.m; sourceTree = "<group>"; };
 		E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -405,6 +408,7 @@
 				42E08DDA1C7FF8C0004E4DC2 /* Network */,
 				42E08DE91C7FF8C0004E4DC2 /* Request */,
 				42E08E381C7FF8C0004E4DC2 /* Service */,
+				42E74FF61CF2E7B1009D483D /* Conditon */,
 			);
 			path = MiddleLib;
 			sourceTree = SOURCE_ROOT;
@@ -722,6 +726,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		42E74FF61CF2E7B1009D483D /* Conditon */ = {
+			isa = PBXGroup;
+			children = (
+				42E74FF71CF2E7E5009D483D /* GSCondition.h */,
+				42E74FF81CF2E7E5009D483D /* GSCondition.m */,
+			);
+			path = Conditon;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -834,6 +847,7 @@
 				42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */,
 				42E097301C7FFAEB004E4DC2 /* UIImageView+AFNetworking.m in Sources */,
 				42E098C41C80237B004E4DC2 /* NSObject+JSON.m in Sources */,
+				42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */,
 				4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */,
 				42E097261C7FFAEB004E4DC2 /* AFNetworkReachabilityManager.m in Sources */,
 				42E097941C7FFAEB004E4DC2 /* HYFMDatabase.m in Sources */,
