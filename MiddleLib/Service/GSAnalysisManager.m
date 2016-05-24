@@ -99,7 +99,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //        }
 
         
-//        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
+        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
 
@@ -107,7 +107,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
 //        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT0Data.low];
 
-        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
+//        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
 
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];

@@ -60,8 +60,8 @@
 -(void)test2
 {
     //    [self setCodintionCase0Toady];
-//    [self setNormalUp];
-    [GSCondition shareManager].shapeCond = ShapeCondition_FanZhuanRi_Down;
+    [self setNormalUp];
+//    [GSCondition shareManager].shapeCond = ShapeCondition_FanZhuanRi_Down;
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }
@@ -81,6 +81,8 @@
     t1con.open_min = -1.f;
 //    t1con.open_max = 1.1f;
 //    t1con.open_min = 0.f;
+    t1con.close_max = -0.7f;
+    t1con.close_min = -1.7f;
     [GSAnalysisManager shareManager].t1dayCond = t1con;
 }
 
