@@ -1,0 +1,12 @@
+20160524
+totalCount(6): win(83.33),loss(16.67)
+win itme array :0, percent(16.67)
+2012/12/19  T0-Open:-0.35,High:3.32,Close:1.92,Low:-0.35;  T1-Open:-0.86,High:1.89,Close:-0.69,Low:-1.54;  T2-Open:0.52,High:4.49,Close:1.73,Low:0.00
+win itme array :1, percent(66.67)
+2011/11/04  T0-Open:0.29,High:1.88,Close:1.30,Low:-0.87;  T1-Open:-0.43,High:1.43,Close:-1.29,Low:-1.71;  T2-Open:-1.30,High:2.03,Close:0.87,Low:-1.30
+2012/07/12  T0-Open:0.00,High:1.84,Close:1.15,Low:-2.99;  T1-Open:-0.68,High:0.45,Close:-1.14,Low:-1.82;  T2-Open:0.23,High:0.69,Close:-3.22,Low:-3.91
+2015/01/12  T0-Open:-0.08,High:1.19,Close:1.03,Low:-1.43;  T1-Open:-0.24,High:1.10,Close:-0.63,Low:-1.02;  T2-Open:-0.32,High:2.92,Close:0.39,Low:-0.55
+2015/12/03  T0-Open:0.07,High:2.00,Close:1.40,Low:-0.20;  T1-Open:-0.33,High:0.86,Close:-0.59,Low:-1.18;  T2-Open:0.53,High:1.52,Close:0.86,Low:-0.46
+--loss itme array :2, percent(16.67)
+2012/08/28  T0-Open:0.25,High:2.24,Close:1.24,Low:-0.25;  T1-Open:-0.25,High:0.25,Close:-1.23,Low:-1.47;  T2-Open:0.00,High:0.50,Close:-1.99,Low:-3.98
+--loss itme array :3, percent(0.00)

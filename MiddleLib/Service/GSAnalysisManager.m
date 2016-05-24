@@ -94,12 +94,16 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        CGFloat wantBuy = kT0Data.close*0.97;
-        if(wantBuy < kT1Data.low){
+//        CGFloat wantBuy = kT0Data.close*0.97;
+//        if(wantBuy < kT1Data.low){
+//            continue;
+//        }
+//        
+        if(kT1Data.dvT0.dvClose - kT1Data.dvT0.dvLow > 1.f){
             continue;
         }
         
-        if(kT1Data.dvT0.dvClose - kT1Data.dvT0.dvLow > 1.f){
+        if(!(kT1Data.dvT0.dvLow < -1 && kT1Data.dvT0.dvLow > -2)){
             continue;
         }
         
