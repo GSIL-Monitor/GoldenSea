@@ -16,6 +16,19 @@
 
 
 
+
+#define GetDVValue(dest,base) ((dest - base)*100.f/base)
+
+
+
+
+
+
+
+
+
+
+
 //http://xueqiu.com/stock/forchartk/stocklist.json?symbol=SH000001&period=1day&type=normal&begin=1424954307755&end=1456490307755&_=1456490307755
 
 #ifdef DEBUG

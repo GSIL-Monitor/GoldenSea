@@ -91,6 +91,8 @@
 {
     CGFloat dvValue = (sellValue-buyValue)*100.f/buyValue;
     
+    kT0data.dvSelltoBuy = dvValue;
+    
     //    CGFloat dvUnit = 1.f;
     NSMutableArray* tmpArray;
     if(dvValue > 3.f){

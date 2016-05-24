@@ -271,7 +271,6 @@
 		42E096701C7FFAEB004E4DC2 /* YTKRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKRequest.m; sourceTree = "<group>"; };
 		42E0986D1C7FFDE1004E4DC2 /* iRCS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRCS.pch; sourceTree = "<group>"; };
 		42E0986F1C802198004E4DC2 /* AppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
-		42E098701C802198004E4DC2 /* ContactInfoKeyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoKeyMacro.h; sourceTree = "<group>"; };
 		42E098711C802198004E4DC2 /* NotificationMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationMacro.h; sourceTree = "<group>"; };
 		42E098721C802198004E4DC2 /* UIMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMacro.h; sourceTree = "<group>"; };
 		42E098991C80237B004E4DC2 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
@@ -704,7 +703,6 @@
 			isa = PBXGroup;
 			children = (
 				42E0986F1C802198004E4DC2 /* AppMacro.h */,
-				42E098701C802198004E4DC2 /* ContactInfoKeyMacro.h */,
 				42E098711C802198004E4DC2 /* NotificationMacro.h */,
 				42E098721C802198004E4DC2 /* UIMacro.h */,
 			);

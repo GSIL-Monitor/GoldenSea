@@ -58,7 +58,8 @@
 -(void)test2
 {
     //    [self setCodintionCase0Toady];
-    [self setNormalUp];
+//    [self setNormalUp];
+    [GSCondition shareManager].shapeCond = ShapeCondition_FanZhuanRi_Down;
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }

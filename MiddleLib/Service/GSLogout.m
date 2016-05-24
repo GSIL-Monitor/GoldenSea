@@ -74,8 +74,9 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)logResWithDV:(KDataModel*)kData
 {
-    SMLog(@"%@  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f;  T1-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f;  T2-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f",kData.time,
+    SMLog(@"%@ T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f;  TS2B:%.2f;  T1-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f;  T2-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f",kData.time,
           kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
+          kData.dvSelltoBuy,
           kData.dvT1.dvOpen,kData.dvT1.dvHigh,kData.dvT1.dvClose,kData.dvT1.dvLow,
           kData.dvT2.dvOpen,kData.dvT2.dvHigh,kData.dvT2.dvClose,kData.dvT2.dvLow);
     
@@ -93,7 +94,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 //for debug: to check the programe is right.
 -(void)logResWithValue:(KDataModel*)kData
 {
-    SMLog(@"%@  TP1-Open:%.2f,High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time,kData.TP1Data.open, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
+    SMLog(@"%@ TP1-Open:%.2f,High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time,kData.TP1Data.open, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
           kData.open,kData.high, kData.close,kData.low,
           kData.T1Data.open,kData.T1Data.high);
 }

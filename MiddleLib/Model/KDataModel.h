@@ -115,6 +115,9 @@
 @property (strong) KDataModel* TP1Data;
 @property (strong) KDataModel* T1Data;
 
+@property (assign) CGFloat dvSelltoBuy;
+
+
 @property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close
 @property (strong) DVValue* dvT0; //dv property , percent , t value vs tp1 close
 @property (strong) DVValue* dvT1; //dv property , percent , t1 value vs t close

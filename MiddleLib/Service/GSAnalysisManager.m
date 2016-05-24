@@ -94,24 +94,21 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-//        CGFloat wantBuy = kT0Data.close*0.97;
-//        if(wantBuy < kT1Data.low){
+//        if(![self isMeetAddtionCond:passDict]){
 //            continue;
 //        }
-//        
-        if(kT1Data.dvT0.dvClose - kT1Data.dvT0.dvLow > 1.f){
-            continue;
-        }
+
         
-        if(!(kT1Data.dvT0.dvLow < -1 && kT1Data.dvT0.dvLow > -2)){
-            continue;
-        }
-        
-        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
+//        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
 
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
+//        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
+        
+//        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT0Data.low];
+
+        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
+
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
 
@@ -126,7 +123,31 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 }
 
 
+-(BOOL)isMeetAddtionCond:(NSDictionary*)passDict
+{
+    if(!passDict)
+        return YES;
+    
+    //    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
+    KDataModel* kTP1Data  = [passDict objectForKey:@"kTP1Data"];
+    KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
+    KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
 
+    //        CGFloat wantBuy = kT0Data.close*0.97;
+    //        if(wantBuy < kT1Data.low){
+    //            continue;
+    //        }
+    //
+    if(kT1Data.dvT0.dvClose - kT1Data.dvT0.dvLow > 1.f){
+        return NO;
+    }
+    
+    if(!(kT1Data.dvT0.dvLow < -1 && kT1Data.dvT0.dvLow > -2)){
+        return NO;
+    }
+    
+    return NO;
+}
 
 
 
@@ -142,7 +163,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
     KDataModel* kTP1Data  = [passDict objectForKey:@"kTP1Data"];
     KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
-    
+    KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
+
 
     switch ([GSCondition shareManager].shapeCond) {
         case ShapeCondition_WaiBaoRi_Down:
@@ -171,7 +193,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         case ShapeCondition_FanZhuanRi_Down:
         {
             if(kT0Data.open < kTP1Data.low){
-                return YES;
+                if(kT0Data.high > kTP1Data.low
+//                   && GetDVValue(kT0Data.close, kT0Data.low)>2.f
+//                   && kT1Data.dvT0.dvOpen > 0.2f
+                   && kT1Data.low < kTP1Data.low
+                   ){
+                    return YES;
+                }
             }
         }
 
@@ -219,6 +247,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             break;
             
         default:
+            return YES;
             break;
     }
     
