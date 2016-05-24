@@ -39,14 +39,11 @@
     [GSDataInit shareManager].standardDate = 20110101;
     
     //regsiter net
-    [[HYRequestManager sharedInstance]initService];
-    
+//    [[HYRequestManager sharedInstance]initService];
 //    [[STKManager shareManager]testGetFriPostsRequest];
-
 //    [[STKManager shareManager]test];
     
-    //debug code.
-//    [self testFunc];
+
     [self test2];
     
 }
@@ -60,13 +57,28 @@
 
 -(void)test2
 {
-    
-    
-//    [self setCodintionCase0Toady];
+    //    [self setCodintionCase0Toady];
+    [self setNormalUp];
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
-    
+}
 
+
+-(void)setNormalUp
+{
+    [GSCondition shareManager].t0Cond = T0Condition_Up;
+    
+    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+    t0con.close_max = 2.5f;
+    t0con.close_min = 1.f;
+    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+    t1con.open_max = -0.1f;
+    t1con.open_min = -1.f;
+//    t1con.open_max = 1.1f;
+//    t1con.open_min = 0.f;
+    [GSAnalysisManager shareManager].t1dayCond = t1con;
 }
 
 
@@ -88,20 +100,19 @@
     kData2.close = 11.75;
     
     
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
-    OneDayCondition* tp1con = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
-    //    tp1con.dvRange = 0.9;
+    //    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
+    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
+    //    theCond.dvRange = 0.9;
     
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
-    [tp1con logOutCondition];
+    [GSAnalysisManager shareManager].tp1dayCond = theCond;
+    [theCond logOutCondition];
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     //    t0con.open_max = -0.2f;
     //    t0con.open_min = -2.f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
-    
-    return tp1con;
+    return theCond;
 }
 
 
@@ -110,14 +121,5 @@
 
 
 
-
--(NSDate*)parseString:(NSString*)str
-{
-    NSDate* date ;
-    
-    
-    
-    return date;
-}
 
 @end

@@ -44,14 +44,14 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     dvValue.dvHigh = dvValue.dvClose;
     dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
     
-    OneDayCondition* tp0con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp0con.dvRange = 0.8f;
+    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    theCond.dvRange = 0.8f;
     
-    [GSAnalysisManager shareManager].tp1dayCond = tp0con;
-    [tp0con logOutCondition];
+    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [theCond logOutCondition];
     
     
-    return tp0con;
+    return theCond;
 }
 
 //small T line and close green
@@ -61,14 +61,14 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     dvValue.dvClose = -0.5;
     dvValue.dvLow = dvValue.dvClose-_diffOfLowAndClose;
     
-    OneDayCondition* tp0con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp0con.dvRange = 0.5;
+    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].tp1dayCond = tp0con;
-    [tp0con logOutCondition];
+    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [theCond logOutCondition];
     
     
-    return tp0con;
+    return theCond;
 }
 
 
@@ -79,14 +79,14 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     dvValue.dvClose = 0.5;
     dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
     
-    OneDayCondition* tp0con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp0con.dvRange = 0.5;
+    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].tp1dayCond = tp0con;
-    [tp0con logOutCondition];
+    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [theCond logOutCondition];
     
     
-    return tp0con;
+    return theCond;
 }
 
 
@@ -97,14 +97,14 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     dvValue.dvClose = -0.5;
     dvValue.dvHigh = dvValue.dvClose+_diffOfHighAndClose;
     
-    OneDayCondition* tp0con = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
-    tp0con.dvRange = 0.5;
+    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
+    theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].tp1dayCond = tp0con;
-    [tp0con logOutCondition];
+    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [theCond logOutCondition];
     
     
-    return tp0con;
+    return theCond;
 }
 
 

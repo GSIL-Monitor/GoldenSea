@@ -56,7 +56,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //    for(long i=0; i<[self.contentArray count]-1; i++ ){
     
     NSDictionary* passDict;
-    for(long i=6; i<[self.contentArray count]-2; i++ ){
+    for(long i=6; i<[self.contentArray count]-3; i++ ){
         KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
         KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
         KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
@@ -65,27 +65,49 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
         KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-        
+        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
         
         
+        //dv condintoon
         if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
             continue;
         }
         
+        if(![self isMeetDVConditon:self.t0dayCond DVValue:kT0Data.dvT0]){
+            continue;
+        }
         
+        if(![self isMeetDVConditon:self.t1dayCond DVValue:kT0Data.dvT1]){
+            continue;
+        }
+        
+        
+        //shape condition
         if(![self isMeetShapeCond:passDict]){
             continue;
         }
         
+        //t0 condition
         if(![self isMeetT0Condition:passDict]){
             continue;
         }
         
+        CGFloat wantBuy = kT0Data.close*0.97;
+        if(wantBuy < kT1Data.low){
+            continue;
+        }
         
+        if(kT1Data.dvT0.dvClose - kT1Data.dvT0.dvLow > 1.f){
+            continue;
+        }
         
+        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
+        
+//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
 
-        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
+//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
 
@@ -100,7 +122,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 }
 
 
-#pragma mark - internal funcs
 
 
 

@@ -53,7 +53,8 @@
         self.dvT0 = [[DVValue alloc]init];
         self.dvTP1 = [[DVValue alloc]init];
         self.dvT1 = [[DVValue alloc]init];
-        
+        self.dvT2 = [[DVValue alloc]init];
+
         self.dvAvgTP1toTP5 = [[DVValue alloc]init];
 
     }

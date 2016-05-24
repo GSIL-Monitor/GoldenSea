@@ -45,12 +45,46 @@
         
     }
     
+    if(![self isValidDVCond:self.tp1dayCond]
+       && ![self isValidDVCond:self.tp2dayCond]
+       && ![self isValidDVCond:self.t0dayCond]
+       && ![self isValidDVCond:self.t1dayCond]){
+        res = NO;
+    }
+    
     if(!res){
         SMLog(@"the data is imcompleted!!!");
     }
     
     return res;
 }
+
+
+-(BOOL)isValidDVCond:(OneDayCondition*)dvCond
+{
+    if(!dvCond){
+        return YES;
+    }
+    
+    if(dvCond.open_max < dvCond.open_min){
+        return NO;
+    }
+    
+    if(dvCond.close_max < dvCond.close_min){
+        return NO;
+    }
+    
+    if(dvCond.high_max < dvCond.high_min){
+        return NO;
+    }
+    
+    if(dvCond.low_max < dvCond.low_min){
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 
 -(void)dispatchResult2Array:(KDataModel*)kT0data buy:(CGFloat)buyValue sell:(CGFloat)sellValue

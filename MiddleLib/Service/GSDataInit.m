@@ -177,7 +177,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
     
     //calulate value
-    for(long i=6; i<[tmpContentArray count]-2; i++ ){
+    for(long i=6; i<[tmpContentArray count]-3; i++ ){
         KDataModel* kTP6Data  = [tmpContentArray objectAtIndex:(i-6)];
         KDataModel* kTP5Data  = [tmpContentArray objectAtIndex:(i-5)];
         KDataModel* kTP4Data  = [tmpContentArray objectAtIndex:(i-4)];
@@ -186,6 +186,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
         KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
         KDataModel* kT1Data = [tmpContentArray objectAtIndex:i+1];
+        KDataModel* kT2Data = [tmpContentArray objectAtIndex:i+2];
+
         
         kT0Data.dvTP1.dvOpen = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
         kT0Data.dvTP1.dvHigh = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
@@ -202,7 +204,10 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
         kT0Data.dvT1.dvLow = (kT1Data.low - kT0Data.close)*100.f/kT0Data.close;
         kT0Data.dvT1.dvClose = (kT1Data.close - kT0Data.close)*100.f/kT0Data.close;
         
-        
+        kT0Data.dvT2.dvOpen = (kT2Data.open - kT1Data.close)*100.f/kT1Data.close;
+        kT0Data.dvT2.dvHigh = (kT2Data.high - kT1Data.close)*100.f/kT1Data.close;
+        kT0Data.dvT2.dvLow = (kT2Data.low - kT1Data.close)*100.f/kT1Data.close;
+        kT0Data.dvT2.dvClose = (kT2Data.close - kT1Data.close)*100.f/kT1Data.close;
         
         //avaerage
         kT0Data.dvAvgTP1toTP5.dvOpen = ((kTP5Data.open+kTP4Data.open+kTP3Data.open+kTP2Data.open+kTP6Data.open)-5*kTP1Data.close)*100.f/kTP1Data.close;
