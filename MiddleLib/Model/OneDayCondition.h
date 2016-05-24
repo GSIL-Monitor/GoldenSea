@@ -24,6 +24,10 @@
 @property (assign) CGFloat low_max;
 
 
+@property (assign) CGFloat closeDVopen_min; //close - open
+@property (assign) CGFloat closeDVopen_max;
+
+
 @property (assign,nonatomic) CGFloat dvRange;
 
 

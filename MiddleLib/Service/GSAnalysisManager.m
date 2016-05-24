@@ -11,6 +11,7 @@
 #import "GSLogout.h"
 #import "GSDataInit.h"
 #import "GSAnalysisManager+ex.h"
+#import "GSCondition.h"
 
 @interface GSAnalysisManager ()
 
@@ -54,6 +55,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
 //    for(long i=0; i<[self.contentArray count]-1; i++ ){
     
+    NSDictionary* passDict;
     for(long i=6; i<[self.contentArray count]-2; i++ ){
         KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
         KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
@@ -64,30 +66,28 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
         KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
         
+        passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
         
-        if(![self isMeetConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
+        
+        if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
             continue;
         }
         
         
-        if(![self isMeetConditon:self.t0dayCond DVValue:kT0Data.dvT0]){
+        if(![self isMeetShapeCond:passDict]){
             continue;
         }
         
-//        if(![self isMeetWaibaoriDown:kTP2Data NextData:kTP1Data]){
-//            continue;
-//        }
-//        
-//        if(![self isMeetMutableCond:kTP1Data NextData:kT0Data]){
-//            continue;
-//        }
+        if(![self isMeetT0Condition:passDict]){
+            continue;
+        }
+        
         
         
 
         [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
-
 
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
         
@@ -109,42 +109,100 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 #pragma mark - condition
 
 
--(BOOL)isMeetMutableCond:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData
+-(BOOL)isMeetShapeCond:(NSDictionary*)passDict
 {
+    if(!passDict)
+        return YES;
     
-    if(kNextData.open < kPrevData.low){
-//        if((kPrevData.dvT0.dvClose > -5.5)
-//        && (kNextData.dvT0.dvOpen > -2.f)
-//           )
+//    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
+    KDataModel* kTP1Data  = [passDict objectForKey:@"kTP1Data"];
+    KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
+    
+
+    switch ([GSCondition shareManager].shapeCond) {
+        case ShapeCondition_WaiBaoRi_Down:
         {
-            return YES;
+            if(kT0Data.high > kTP1Data.high
+               && kT0Data.low < kTP1Data.low
+               && kT0Data.open > kT0Data.close){
+                return YES;
+            }
         }
+            
+            break;
+            
+        case ShapeCondition_WaiBaoRi_Up:
+        {
+            if(kT0Data.high > kTP1Data.high
+               && kT0Data.low < kTP1Data.low
+               && kT0Data.open < kT0Data.close){
+                return YES;
+            }
+        }
+
+            break;
+            
+            
+        case ShapeCondition_FanZhuanRi_Down:
+        {
+            if(kT0Data.open < kTP1Data.low){
+                return YES;
+            }
+        }
+
+            break;
+            
+        case ShapeCondition_FanZhuanRi_Up:
+        {
+            if(kT0Data.open > kTP1Data.high){
+                return YES;
+            }
+        }
+            break;
+            
+        default:
+            return YES;
+            break;
     }
-    
-    
     
     return NO;
 }
 
 
--(BOOL)isMeetWaibaoriDown:(KDataModel*)kPrevData NextData:(KDataModel*)kNextData
+-(BOOL)isMeetT0Condition:(NSDictionary*)passDict
 {
-    if(!self.isWaibaoriDownCond){
+    if(!passDict)
         return YES;
+
+    KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
+    
+    switch ([GSCondition shareManager].t0Cond) {
+        case T0Condition_Up:
+        {
+            if(kT0Data.open < kT0Data.close){
+                return YES;
+            }
+        }
+            break;
+            
+        case T0Condition_Down:
+        {
+            if(kT0Data.open > kT0Data.close){
+                return YES;
+            }
+        }
+            break;
+            
+        default:
+            break;
     }
     
-    if(kNextData.high > kPrevData.high
-       && kNextData.low < kPrevData.low
-       && kNextData.open > kNextData.close){
-        return YES;
-    }
     
     return NO;
 }
 
 
-
--(BOOL)isMeetConditon:(OneDayCondition*)cond DVValue:(DVValue*)dv;
+-(BOOL)isMeetDVConditon:(OneDayCondition*)cond DVValue:(DVValue*)dv;
 {
     if(!cond){
         return YES;

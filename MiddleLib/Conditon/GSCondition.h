@@ -16,9 +16,18 @@ typedef enum {
     ShapeCondition_FanZhuanRi_Up
 }ShapeCondition;
 
+
+typedef enum {
+    T0Condition_Null = 0,
+    T0Condition_Down,
+    T0Condition_Up
+}T0Condition;
+
 @interface GSCondition : NSObject
 
 +(GSCondition*)shareManager;
 
+@property (assign) ShapeCondition shapeCond;
+@property (assign) T0Condition t0Cond;
 
 @end
