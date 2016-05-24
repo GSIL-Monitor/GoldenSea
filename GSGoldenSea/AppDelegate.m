@@ -33,7 +33,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your applicati
     
+    
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
+    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
     _stkID = @"600418"; //002481
     
     [GSDataInit shareManager].standardDate = 20110101;

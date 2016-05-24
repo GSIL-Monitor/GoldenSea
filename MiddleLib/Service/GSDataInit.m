@@ -52,7 +52,10 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
             //            continue;
             
             NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
-            if([file containsString:stkUUID]){
+            NSRange range = [fullPath rangeOfString:stkUUID];
+            if(range.length != 0)
+//            if([file containsString:stkUUID])
+            {
                 self.currStkFilePath = fullPath; //tbd, why servel times?
                 return fullPath;
             }
@@ -84,7 +87,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 -(NSMutableArray*)getStkContentArray
 {
     
-    if(!self.currStkFilePath || ![self.currStkFilePath containsString:self.currStkUUID]){
+    if(!self.currStkFilePath) // || ![self.currStkFilePath containsString:self.currStkUUID]){
+    {
         GSAssert(NO);
         return nil;
     }
