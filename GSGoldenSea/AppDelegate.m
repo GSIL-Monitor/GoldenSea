@@ -31,11 +31,11 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your applicati
+    // Insert code here to initialize your application
     
     
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
-    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
+//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
     _stkID = @"600418"; //002481
     
     [GSDataInit shareManager].standardDate = 20110101;
@@ -73,17 +73,25 @@
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_max = 2.5f;
-    t0con.close_min = 1.f;
+    t0con.close_min = 1.3f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
-    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    t1con.open_max = -0.1f;
-    t1con.open_min = -1.f;
-//    t1con.open_max = 1.1f;
-//    t1con.open_min = 0.f;
-    t1con.close_max = -0.7f;
-    t1con.close_min = -1.7f;
-    [GSAnalysisManager shareManager].t1dayCond = t1con;
+//    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+////    t1con.open_max = -0.1f;
+////    t1con.open_min = -1.f;
+////    t1con.open_max = 1.1f;
+////    t1con.open_min = 0.f;
+//    t1con.close_max = -0.6f;
+//    t1con.close_min = -1.8f;
+//    [GSAnalysisManager shareManager].t1dayCond = t1con;
+    
+    
+    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+        t2con.open_max = 1.f;
+        t2con.open_min = 0.3f;
+
+
+    [GSAnalysisManager shareManager].tp2dayCond = t2con;
 }
 
 
