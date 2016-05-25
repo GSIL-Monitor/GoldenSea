@@ -103,7 +103,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         }
 
         
-        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
+        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
         
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
 
@@ -167,8 +167,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     if(!passDict)
         return YES;
-    
-//    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
+    KDataModel* kTP6Data  = [passDict objectForKey:@"kTP6Data"];
+    KDataModel* kTP5Data  = [passDict objectForKey:@"kTP5Data"];
+    KDataModel* kTP4Data  = [passDict objectForKey:@"kTP4Data"];
+    KDataModel* kTP3Data  = [passDict objectForKey:@"kTP3Data"];
+    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
     KDataModel* kTP1Data  = [passDict objectForKey:@"kTP1Data"];
     KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
     KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
@@ -220,6 +223,18 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             }
         }
             break;
+            
+            
+        case ShapeCondition_HengPan_6Day:
+        {
+            long hengpanDays = [self isHengPan:kTP6Data base:kT0Data] + [self isHengPan:kTP5Data base:kT0Data] + [self isHengPan:kTP4Data base:kT0Data]
+            +[self isHengPan:kTP3Data base:kT0Data] + [self isHengPan:kTP2Data base:kT0Data] + [self isHengPan:kTP1Data base:kT0Data];
+            if(hengpanDays == 5){
+                return YES;
+            }
+        }
+            break;
+            
             
         default:
             return YES;
@@ -296,7 +311,19 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 
 
-
+-(int)isHengPan:(KDataModel*)kData base:(KDataModel*)kBaseData
+{
+    CGFloat baseValue = (kBaseData.high+kBaseData.low)/2;
+    
+    CGFloat waveDVValue = 2.f;
+    
+    if(fabs((kData.high-baseValue)*100/baseValue) < waveDVValue
+       && fabs((kData.low-baseValue)*100/baseValue) < waveDVValue){
+        return 1;
+    }
+    
+    return 0;
+}
 
 
 

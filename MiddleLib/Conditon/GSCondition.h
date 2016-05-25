@@ -13,7 +13,8 @@ typedef enum {
     ShapeCondition_WaiBaoRi_Down,
     ShapeCondition_WaiBaoRi_Up,
     ShapeCondition_FanZhuanRi_Down,
-    ShapeCondition_FanZhuanRi_Up
+    ShapeCondition_FanZhuanRi_Up,
+    ShapeCondition_HengPan_6Day, //其中5天横盘
 }ShapeCondition;
 
 

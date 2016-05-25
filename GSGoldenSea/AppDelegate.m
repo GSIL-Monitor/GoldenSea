@@ -36,7 +36,9 @@
     
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
 //    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
-    _stkID = @"600418"; //002481
+//    _stkID = @"600418"; //002481
+    _stkID = @"002298";
+    _stkID = @"002481";
     
     [GSDataInit shareManager].standardDate = 20110101;
     
@@ -60,8 +62,8 @@
 -(void)test2
 {
     //    [self setCodintionCase0Toady];
-    [self setNormalUp];
-//    [GSCondition shareManager].shapeCond = ShapeCondition_FanZhuanRi_Down;
+//    [self setNormalUp];
+    [GSCondition shareManager].shapeCond = ShapeCondition_HengPan_6Day;
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }
