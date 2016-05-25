@@ -39,6 +39,8 @@
 //    _stkID = @"600418"; //002481
     _stkID = @"002298";
     _stkID = @"002481";
+    _stkID = @"000592"; //pt
+
     
     [GSDataInit shareManager].standardDate = 20110101;
     
@@ -63,9 +65,39 @@
 {
     //    [self setCodintionCase0Toady];
 //    [self setNormalUp];
-    [GSCondition shareManager].shapeCond = ShapeCondition_HengPan_6Day;
+//    [GSCondition shareManager].shapeCond = ShapeCondition_HengPan_6Day;
+    
+    [self setNormalDown];
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
+}
+
+
+-(void)setNormalDown
+{
+    [GSCondition shareManager].t0Cond = T0Condition_Down;
+    
+    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+    t0con.close_max = -1.8f;
+    t0con.close_min = -3.2f;
+    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+    ////    t1con.open_max = -0.1f;
+    ////    t1con.open_min = -1.f;
+    ////    t1con.open_max = 1.1f;
+    ////    t1con.open_min = 0.f;
+    //    t1con.close_max = -0.6f;
+    //    t1con.close_min = -1.8f;
+    //    [GSAnalysisManager shareManager].t1dayCond = t1con;
+    
+    
+//    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    t2con.open_max = 1.f;
+//    t2con.open_min = 0.3f;
+//    
+//    
+//    [GSAnalysisManager shareManager].tp2dayCond = t2con;
 }
 
 

@@ -137,9 +137,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
     KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
     
-    if(kT1Data.low > kT0Data.low){
+    if((kT0Data.low - kT1Data.low > -0.1)
+    && (kT0Data.close - kT0Data.low < 0.1)){
         return YES;
     }
+    
+//    if(kT0Data.close - kT0Data.low < 0.1){
+//        return YES;
+//    }
 
     //        CGFloat wantBuy = kT0Data.close*0.97;
     //        if(wantBuy < kT1Data.low){
