@@ -78,8 +78,8 @@
     [GSCondition shareManager].t0Cond = T0Condition_Down;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = -1.8f;
-    t0con.close_min = -3.2f;
+    t0con.close_max = -2.4f;
+    t0con.close_min = -3.1f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
     //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
