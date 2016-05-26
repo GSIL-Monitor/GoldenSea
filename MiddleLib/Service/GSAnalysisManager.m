@@ -141,9 +141,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     if((kTP2Data.open > kTP2Data.close)
         &&(kTP1Data.open > kTP1Data.close)
-       &&(kT0Data.open > kT0Data.close)){
+       &&(kT0Data.open < kT0Data.close)){
         if(kTP2Data.dvT0.dvClose > -2.f
-           && kTP1Data.dvT0.dvClose > -2.f)
+           && kTP1Data.dvT0.dvClose > -2.f
+           && fabsf(kT0Data.open - kT0Data.close) < 0.15f
+           && kT0Data.dvT0.dvClose < 1.f)
         return YES;
     }
     
