@@ -102,10 +102,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
 
+        //pt
+//        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
         
+        //jh
         [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
-        
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
 
 //        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
         
@@ -132,15 +133,24 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     if(!passDict)
         return YES;
     
-    //    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
+    KDataModel* kTP2Data  = [passDict objectForKey:@"kTP2Data"];
     KDataModel* kTP1Data  = [passDict objectForKey:@"kTP1Data"];
     KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
     KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
     
-    if((kT0Data.low - kT1Data.low > -0.1)
-    && (kT0Data.close - kT0Data.low < 0.1)){
+    
+    if((kTP2Data.open > kTP2Data.close)
+        &&(kTP1Data.open > kTP1Data.close)
+       &&(kT0Data.open > kT0Data.close)){
+        if(kTP2Data.dvT0.dvClose > -2.f
+           && kTP1Data.dvT0.dvClose > -2.f)
         return YES;
     }
+    
+//    if((kT0Data.low - kT1Data.low > -0.1)
+//    && (kT0Data.close - kT0Data.low < 0.1)){
+//        return YES;
+//    }
     
 //    if(kT0Data.close - kT0Data.low < 0.1){
 //        return YES;
