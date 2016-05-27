@@ -15,6 +15,7 @@ typedef enum {
     ShapeCondition_FanZhuanRi_Down,
     ShapeCondition_FanZhuanRi_Up,
     ShapeCondition_HengPan_6Day, //其中5天横盘
+    ShapeCondition_ZhengDang, //
 }ShapeCondition;
 
 
@@ -30,5 +31,9 @@ typedef enum {
 
 @property (assign) ShapeCondition shapeCond;
 @property (assign) T0Condition t0Cond;
+
+
+-(BOOL)isMeetShapeCond:(NSDictionary*)passDict;
+
 
 @end

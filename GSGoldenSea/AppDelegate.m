@@ -69,8 +69,37 @@
     
 //    [self setNormalDown];
     
+    [self setNormalToday];
+    
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }
+
+
+-(void)setNormalToday
+{
+//    [GSCondition shareManager].t0Cond = T0Condition_Down;
+    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_max = -2.0f;
+//    t0con.close_min = -3.5f;
+//    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    t1con.open_max = 0.4f;
+//    t1con.open_min = -0.4f;
+//    t1con.high_max = 2.5f;
+//    t1con.high_min = 1.2f;
+    [GSAnalysisManager shareManager].t1dayCond = t1con;
+    
+    
+    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+    //    t2con.open_max = 1.f;
+    //    t2con.open_min = 0.3f;
+    //
+    //
+    //    [GSAnalysisManager shareManager].tp2dayCond = t2con;
+}
+
 
 
 -(void)setNormalDown
