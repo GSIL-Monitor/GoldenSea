@@ -98,9 +98,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        if(![self isMeetAddtionCond:passDict]){
-            continue;
-        }
+//        if(![self isMeetAddtionCond:passDict]){
+//            continue;
+//        }
 
         //pt
 //        [self dispatchResult2Array:kT0Data buy:kT1Data.close sell:kT2Data.high];
