@@ -42,6 +42,7 @@
 //    _stkID = @"000592"; //ptfz
 //    _stkID = @"000751"; //
 //    _stkID = @"SH#000001";
+    _stkID = @"600807"; //tygf
     
     [GSDataInit shareManager].standardDate = 20110101;
     
@@ -51,18 +52,40 @@
 //    [[STKManager shareManager]test];
     
 
-    [self test2];
+//    [self testForOne];
+    
+    [self testForAll];
     
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+
+
+
+-(void)testForAll
+{
+    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+    //    tp2con.close_max = 1.f;
+    //    tp2con.close_min = -1.2f;
+    //    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
+    //
+    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+    //    tp1con.close_max = 0.5f;
+    //    tp1con.close_min = -1.2f;
+    //    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    
+    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+    t0con.close_max = -0.f;
+    t0con.close_min = -1.f;
+    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    
+    [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
 }
 
 
 
 
--(void)test2
+-(void)testForOne
 {
     //    [self setCodintionCase0Toady];
 //    [self setNormalUp];
@@ -80,19 +103,19 @@
 {
 //    [GSCondition shareManager].t0Cond = T0Condition_Down;
     
-    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    tp2con.close_max = 1.f;
-    tp2con.close_min = -1.2f;
-    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    tp1con.close_max = 0.5f;
-    tp1con.close_min = -1.2f;
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+//    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+//    tp2con.close_max = 1.f;
+//    tp2con.close_min = -1.2f;
+//    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
+//    
+//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    tp1con.close_max = 0.5f;
+//    tp1con.close_min = -1.2f;
+//    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = 2.5f;
-    t0con.close_min = 0.2f;
+    t0con.close_max = -2.f;
+    t0con.close_min = -3.f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
@@ -205,8 +228,9 @@
 
 
 
-
-
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    // Insert code here to tear down your application
+}
 
 
 @end
