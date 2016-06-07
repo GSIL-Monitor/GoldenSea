@@ -26,22 +26,35 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
-    //reset.
-    self.currStkUUID = nil;
-    self.currStkFilePath = nil;
-    self.contentArray = [NSMutableArray array];
+      
+    NSString* filePath = [self findSourceFileWithStkUUID:stkUUID inDir:docsDir];
+    return [self getStkContentArray:filePath];
+}
 
+
+-(NSMutableArray*)findSourcesInDir:(NSString*)docsDir
+{
+    self.sourceFileArray = [NSMutableArray array];
     
-    [self findSourceFileWithStkUUID:stkUUID inDir:docsDir];
-    return [self getStkContentArray];
+    NSFileManager *localFileManager=[[NSFileManager alloc] init];
+    NSDirectoryEnumerator *dirEnum = [localFileManager enumeratorAtPath:docsDir];
+    
+    NSString *file;
+    while ((file = [dirEnum nextObject])) {
+        if ([file hasSuffix:@"txt"]) {
+            NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
+            [self.sourceFileArray addObject:fullPath];
+        }
+    }
+    
+    return self.sourceFileArray;
+    
 }
 
 
 -(NSString*)findSourceFileWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
- 
-    self.currStkUUID = stkUUID;
-    
+     
     NSFileManager *localFileManager=[[NSFileManager alloc] init];
     NSDirectoryEnumerator *dirEnum = [localFileManager enumeratorAtPath:docsDir];
     
@@ -54,9 +67,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
             NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
             NSRange range = [fullPath rangeOfString:stkUUID];
             if(range.length != 0)
-//            if([file containsString:stkUUID])
             {
-                self.currStkFilePath = fullPath; //tbd, why servel times?
+//                self.currStkFilePath = fullPath; //tbd, why servel times?
                 return fullPath;
             }
         }
@@ -84,22 +96,23 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 }
 
 
--(NSMutableArray*)getStkContentArray
+-(NSMutableArray*)getStkContentArray:(NSString*)filePath
 {
     
-    if(!self.currStkFilePath) // || ![self.currStkFilePath containsString:self.currStkUUID]){
+    if(!filePath)
     {
         GSAssert(NO);
         return nil;
     }
     
-    //    SMLog(@"getStkContentArray:%@",self.currStkFilePath);
+    self.contentArray = [NSMutableArray array];
+
     
     long index = 0;
     long lineIndex = 0;
     
     KDataModel* kData;
-    NSString* txt = [self readFileContent:self.currStkFilePath] ;
+    NSString* txt = [self readFileContent:filePath] ;
     if(!txt){
         return nil;
     }

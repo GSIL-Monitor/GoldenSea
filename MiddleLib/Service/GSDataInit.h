@@ -12,14 +12,15 @@
 +(GSDataInit*)shareManager;
 
 
-@property (nonatomic,strong) NSString* currStkUUID;
-@property (nonatomic,strong) NSString* currStkFilePath;
 @property (nonatomic,strong) NSMutableArray* contentArray;
+@property (nonatomic,strong) NSMutableArray* sourceFileArray;
 
 
 @property (assign) int standardDate; //start analysis date, such as 20140101
 
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;
+-(NSMutableArray*)findSourcesInDir:(NSString*)docsDir;
+-(NSMutableArray*)getStkContentArray:(NSString*)filePath;
 
 @end

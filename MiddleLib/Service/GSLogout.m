@@ -16,6 +16,39 @@
 SINGLETON_GENERATOR(GSLogout, shareManager);
 
 
+-(void)logOutResultForStk:(NSString*)stkID
+{
+    //logOut which loss item
+    NSMutableArray* tmpArray;
+    CGFloat percent = 0.f;
+    
+    
+    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
+    
+    //calulate percent firstly
+    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
+    for(long i=0; i<[analyMan.resultArray count]; i++){
+        tmpArray = [analyMan.resultArray objectAtIndex:i];
+        
+        percent = [tmpArray count]*100.f/analyMan.totalCount;
+        
+        if(i < 2){
+            winPercent += percent;
+        }
+        //        else if(i == 2){
+        //            holdPercent += percent;
+        //        }
+        else{
+            lossPercent += percent;
+        }
+    }
+    SMLog(@"STK:%@ - totalCount(%d): win(%.2f),loss(%.2f)",stkID,analyMan.totalCount,winPercent,lossPercent);
+    
+    
+    
+    
+}
+
 
 -(void)logOutResult
 {

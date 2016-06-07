@@ -10,6 +10,7 @@
 
 @interface ViewController : NSViewController
 
+//-(IBAction)selector:(id)sender;
 
 @end
 

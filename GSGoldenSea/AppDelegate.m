@@ -86,7 +86,7 @@
     [GSAnalysisManager shareManager].tp2dayCond = tp2con;
     
     OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    tp1con.close_max = 0.f;
+    tp1con.close_max = 0.5f;
     tp1con.close_min = -1.2f;
     [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     

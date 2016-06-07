@@ -42,6 +42,26 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     self.contentArray = [[GSDataInit shareManager] buildDataWithStkUUID:stkUUID inDir:docsDir];
     
     [self analysis];
+    
+    [[GSLogout shareManager] logOutResult];
+
+}
+
+-(void)analysisAllInDir:(NSString*)docsDir;
+{
+    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    for(NSString* file in files){
+        [self reset];
+        
+        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+        
+        [self analysis];
+        
+        [[GSLogout shareManager] logOutResultForStk:[file lastPathComponent]];
+
+    }
+    
+    
 }
 
 -(void)analysis
@@ -122,7 +142,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         self.totalCount++;
     }
     
-    [[GSLogout shareManager] logOutResult];
     
     
 }
