@@ -7,6 +7,7 @@
 //
 
 #import "HelpService.h"
+#import "HYLog.h"
 
 @implementation HelpService
 
@@ -52,8 +53,12 @@
         va_start(args, format);
         
         NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+        
+        message = [NSString stringWithFormat:@"%@\n",message];
  
-        printf("%s\n",[message UTF8String]);
+        printf("%s",[message UTF8String]);
+        
+        [[HYLog shareManager]logToFile:message];
         
         va_end(args);
     }

@@ -17,7 +17,7 @@
 
 #import "GSAnalysisManager.h"
 #import "GSCondition.h"
-
+#import "HYLog.h"
 
 @interface AppDelegate (){
     
@@ -33,6 +33,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
+//    [[HYLog shareManager] initLog];
     
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
 //    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
@@ -41,8 +42,8 @@
 //    _stkID = @"002481";
 //    _stkID = @"000592"; //ptfz
 //    _stkID = @"000751"; //
-//    _stkID = @"SH#000001";
-    _stkID = @"600807"; //tygf
+    _stkID = @"SH#000001";
+//    _stkID = @"600807"; //tygf
     
     [GSDataInit shareManager].standardDate = 20110101;
     
@@ -51,10 +52,11 @@
 //    [[STKManager shareManager]testGetFriPostsRequest];
 //    [[STKManager shareManager]test];
     
-
-//    [self testForOne];
-    
+#if 1
+    [self testForOne];
+#else
     [self testForAll];
+#endif
     
 }
 
@@ -108,14 +110,14 @@
 //    tp2con.close_min = -1.2f;
 //    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
 //    
-//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-//    tp1con.close_max = 0.5f;
-//    tp1con.close_min = -1.2f;
-//    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+    tp1con.close_max = -2.5f;
+    tp1con.close_min = -3.9f;
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = -2.f;
-    t0con.close_min = -3.f;
+    t0con.close_max = 0.8f;
+    t0con.close_min = 0.f;
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
