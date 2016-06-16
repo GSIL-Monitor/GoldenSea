@@ -13,7 +13,7 @@
 +(HYLog*)shareManager;
 
 
-- (void) initLog;
+- (void) enableLog;
 + (void) logObject:(NSObject*)obj;
 - (BOOL) logToFile:(NSString*)msg;
 

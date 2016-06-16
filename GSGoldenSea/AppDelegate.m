@@ -33,7 +33,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
-//    [[HYLog shareManager] initLog];
+//    [[HYLog shareManager] enableLog];
     
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
 //    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";

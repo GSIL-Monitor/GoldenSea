@@ -89,7 +89,7 @@ SINGLETON_GENERATOR(HYLog, shareManager);
     
 }
 
-- (void) initLog
+- (void) enableLog
 {
 //#ifndef DEBUG
 
