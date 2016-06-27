@@ -119,6 +119,22 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
             break;
             
             
+        case ShapeCondition_UpShadow:
+        {
+            if(kT0Data.dvT0.dvHigh - kT0Data.dvT0.dvClose > 2.5f){
+                return YES;
+            }
+        }
+            break;
+            
+        case ShapeCondition_DownShadow:
+        {
+            if(kT0Data.dvT0.dvLow - kT0Data.dvT0.dvClose < -2.5f){
+                return YES;
+            }
+        }
+            break;
+            
         default:
             return YES;
             break;

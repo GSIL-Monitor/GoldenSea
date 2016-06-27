@@ -16,6 +16,8 @@ typedef enum {
     ShapeCondition_FanZhuanRi_Up,
     ShapeCondition_HengPan_6Day, //其中5天横盘
     ShapeCondition_ZhengDang, //
+    ShapeCondition_UpShadow, //上影线
+    ShapeCondition_DownShadow, //下影线
 }ShapeCondition;
 
 
