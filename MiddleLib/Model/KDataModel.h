@@ -126,10 +126,11 @@
 @property (strong) DVValue* dvAvgTP1toTP5; //dv property , percent , t1 value vs t close
 
 
-//conditons.
-@property (assign) BOOL isMeetT0DayConditonOpen;
 
-
+@property (assign) CGFloat ma5;
+@property (assign) CGFloat ma10;
+@property (assign) CGFloat ma20;
+@property (assign) CGFloat ma30;
 
 
 
@@ -138,12 +139,6 @@
 //@property (assign) CGFloat chg; //
 //@property (assign) CGFloat percent; //换手率
 //@property (assign) CGFloat turnrate; //
-//
-//@property (assign) CGFloat ma5;
-//@property (assign) CGFloat ma10;
-//@property (assign) CGFloat ma20;
-//@property (assign) CGFloat ma30;
-//
 //@property (assign) CGFloat dif;
 //@property (assign) CGFloat dea;
 //@property (assign) CGFloat macd;

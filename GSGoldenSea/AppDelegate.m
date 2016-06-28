@@ -42,7 +42,7 @@
 //    _stkID = @"002481";
 //    _stkID = @"000592"; //ptfz
 //    _stkID = @"000751"; //
-//    _stkID = @"SH#000001";
+    _stkID = @"SH#000001";
 //    _stkID = @"600807"; //tygf
 //    _stkID = @"SH#601002";
 
@@ -77,10 +77,13 @@
     //    tp1con.close_min = -1.2f;
     //    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = -0.f;
-    t0con.close_min = -1.f;
-    [GSAnalysisManager shareManager].t0dayCond = t0con;
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_max = -0.f;
+//    t0con.close_min = -1.f;
+//    [GSAnalysisManager shareManager].t0dayCond = t0con;
+    
+    [self setOpenValue];
+
     
     
     [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
@@ -97,9 +100,12 @@
     
 //    [self setNormalDown];
     
-    [self setNormalToday];
+//    [self setNormalToday];
     
 //    [self setUpShadow];
+    
+    
+    [self setOpenValue];
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }
@@ -116,10 +122,10 @@
     //    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
     //
     
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    //    tp1con.close_min = -4.5f;
-    //    tp1con.close_max = -3.f;
-    //    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    tp1con.close_min = -0.5f;
+//    tp1con.close_max = 2.f;
+//    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.open_min = 1.0f;
@@ -166,10 +172,10 @@
 //    t0con.close_max = 2.0f;
 //    [GSAnalysisManager shareManager].t0dayCond = t0con;
     
-    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    tp1con.close_min = 1.f;
-    tp1con.close_max = 3.f;
-    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    tp1con.close_min = 1.f;
+//    tp1con.close_max = 3.f;
+//    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = -1.f;

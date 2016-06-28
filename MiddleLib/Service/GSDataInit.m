@@ -242,6 +242,31 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 }
 
 
+-(CGFloat)getMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(NSUInteger)t0Index
+{
+    if(days == 0 || !tmpContentArray){
+        return 0.f;
+    }
+    
+    CGFloat maValue = 0.f;
+    CGFloat totalValue = 0.f;
+    NSUInteger realDays = 0;
+    
+    for(long i = t0Index; i>=0; i--){
+        KDataModel* kData  = [tmpContentArray objectAtIndex:i];
+        maValue += kData.close;
+        realDays++;
+        
+        if(realDays == days){
+            break;
+        }
+    }
+    
+    maValue = totalValue/realDays;
+    
+    return maValue;
+}
+
 
 -(BOOL)isMeetPeriodCondition:(KDataModel*)kData;
 {

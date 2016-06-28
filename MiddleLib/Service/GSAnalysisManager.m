@@ -123,6 +123,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //        }
 
         [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.close];
+//        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
 
         //pt
 //        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT2Data.high];
