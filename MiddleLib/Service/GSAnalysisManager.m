@@ -86,6 +86,27 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
         KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
         KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+        
+        
+   
+        kT0Data.T1Data = kT1Data;
+        kT0Data.TP1Data = kTP1Data;
+
+        
+        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        
+        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+        
+        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
+        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
+        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
+        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
+        
+            
+           
 
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
         
@@ -122,25 +143,29 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //            continue;
 //        }
 
-        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.close];
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
+
+        [self dispatchResult2Array:kT0Data buyIndex:i+1 sellIndex:i+2];
+        
+
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.close];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
 
         //pt
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT2Data.high];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT2Data.high];
         
         //jh
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
 
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
         
-//        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT0Data.low];
+//        [self _dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT0Data.low];
 
-//        [self dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
+//        [self _dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
 
         
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
 
-//        [self dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
+//        [self _dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
         
         self.totalCount++;
     }

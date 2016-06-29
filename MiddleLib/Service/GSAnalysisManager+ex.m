@@ -86,8 +86,24 @@
 }
 
 
+-(void)dispatchResult2Array:(KDataModel*)kT0data buyIndex:(long)buyIndex sellIndex:(long)sellIndex
+{
+    long contentCount = [self.contentArray count];
+    if(!kT0data
+       || (sellIndex<0||sellIndex>contentCount-1)
+       || (buyIndex<0||buyIndex>contentCount-1)
+       || (buyIndex == sellIndex)){
+        return;
+    }
+    
+    KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
+    KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
 
--(void)dispatchResult2Array:(KDataModel*)kT0data buy:(CGFloat)buyValue sell:(CGFloat)sellValue
+    [self _dispatchResult2Array:kT0data buy:buyData.close sell:sellData.close];
+}
+
+
+-(void)_dispatchResult2Array:(KDataModel*)kT0data buy:(CGFloat)buyValue sell:(CGFloat)sellValue
 {
     CGFloat dvValue = (sellValue-buyValue)*100.f/buyValue;
     
@@ -105,17 +121,6 @@
         tmpArray = [self.resultArray objectAtIndex:3];
     }
     
-//    if(dvValue > 3.f){
-//        tmpArray = [self.resultArray objectAtIndex:0];
-//    }else if (dvValue > 1.f){
-//        tmpArray = [self.resultArray objectAtIndex:1];
-//    }else if (dvValue > 0.f){
-//        tmpArray = [self.resultArray objectAtIndex:2];
-//    }else if (dvValue > -1.5f){
-//        tmpArray = [self.resultArray objectAtIndex:3];
-//    }else if (dvValue > -11.f){
-//        tmpArray = [self.resultArray objectAtIndex:4];
-//    }
     
     [tmpArray addObject:kT0data];
 }

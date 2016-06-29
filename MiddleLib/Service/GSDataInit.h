@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDataModel.h"
 
 @interface GSDataInit : NSObject
 +(GSDataInit*)shareManager;
@@ -22,5 +23,11 @@
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;
 -(NSMutableArray*)findSourcesInDir:(NSString*)docsDir;
 -(NSMutableArray*)getStkContentArray:(NSString*)filePath;
+
+
+-(DVValue*)getDVValue:(NSArray*)tmpContentArray baseIndex:(long)baseIndex destIndex:(long)destIndex;
+-(DVValue*)getAvgDVValue:(NSUInteger)days array:(NSArray*)tmpContentArray index:(long)index;
+-(CGFloat)getMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(long)t0Index;
+
 
 @end

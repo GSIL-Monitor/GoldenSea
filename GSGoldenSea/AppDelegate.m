@@ -45,6 +45,7 @@
     _stkID = @"SH#000001";
 //    _stkID = @"600807"; //tygf
 //    _stkID = @"SH#601002";
+    _stkID = @"SH#600126"; //hggf
 
     
     [GSDataInit shareManager].standardDate = 20110101;
@@ -100,12 +101,12 @@
     
 //    [self setNormalDown];
     
-//    [self setNormalToday];
+    [self setNormalToday];
     
 //    [self setUpShadow];
     
     
-    [self setOpenValue];
+//    [self setOpenValue];
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }
@@ -172,10 +173,15 @@
 //    t0con.close_max = 2.0f;
 //    [GSAnalysisManager shareManager].t0dayCond = t0con;
     
-//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-//    tp1con.close_min = 1.f;
-//    tp1con.close_max = 3.f;
-//    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+    tp2con.close_min = 1.f;
+    tp2con.close_max = 3.f;
+    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
+    
+    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+    tp1con.close_min = 0.5f;
+    tp1con.close_max = 2.2f;
+    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = -1.f;
@@ -183,10 +189,8 @@
     [GSAnalysisManager shareManager].t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
-//    t1con.open_max = 0.4f;
-//    t1con.open_min = -0.4f;
-//    t1con.high_max = 2.5f;
-//    t1con.high_min = 1.2f;
+    t1con.close_min = -1.f;
+    t1con.close_max = 0.3f;
     [GSAnalysisManager shareManager].t1dayCond = t1con;
     
     

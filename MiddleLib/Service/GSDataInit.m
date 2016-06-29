@@ -7,7 +7,6 @@
 //
 
 #import "GSDataInit.h"
-#import "KDataModel.h"
 
 @implementation GSDataInit
 
@@ -191,58 +190,106 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
         index++; //just for debug.
     }
     
+    self.contentArray = tmpContentArray;
     
-    
-    //calulate value
-    for(long i=6; i<[tmpContentArray count]-3; i++ ){
-        KDataModel* kTP6Data  = [tmpContentArray objectAtIndex:(i-6)];
-        KDataModel* kTP5Data  = [tmpContentArray objectAtIndex:(i-5)];
-        KDataModel* kTP4Data  = [tmpContentArray objectAtIndex:(i-4)];
-        KDataModel* kTP3Data  = [tmpContentArray objectAtIndex:(i-3)];
-        KDataModel* kTP2Data  = [tmpContentArray objectAtIndex:(i-2)];
-        KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
-        KDataModel* kT1Data = [tmpContentArray objectAtIndex:i+1];
-        KDataModel* kT2Data = [tmpContentArray objectAtIndex:i+2];
-
-        
-        kT0Data.dvTP1.dvOpen = (kTP1Data.open - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1.dvHigh = (kTP1Data.high - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1.dvLow = (kTP1Data.low - kTP2Data.close)*100.f/kTP2Data.close;
-        kT0Data.dvTP1.dvClose = (kTP1Data.close - kTP2Data.close)*100.f/kTP2Data.close;
-        
-        kT0Data.dvT0.dvOpen = (kT0Data.open - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvT0.dvHigh = (kT0Data.high - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvT0.dvLow = (kT0Data.low - kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvT0.dvClose = (kT0Data.close - kTP1Data.close)*100.f/kTP1Data.close;
-        
-        kT0Data.dvT1.dvOpen = (kT1Data.open - kT0Data.close)*100.f/kT0Data.close;
-        kT0Data.dvT1.dvHigh = (kT1Data.high - kT0Data.close)*100.f/kT0Data.close;
-        kT0Data.dvT1.dvLow = (kT1Data.low - kT0Data.close)*100.f/kT0Data.close;
-        kT0Data.dvT1.dvClose = (kT1Data.close - kT0Data.close)*100.f/kT0Data.close;
-        
-        kT0Data.dvT2.dvOpen = (kT2Data.open - kT1Data.close)*100.f/kT1Data.close;
-        kT0Data.dvT2.dvHigh = (kT2Data.high - kT1Data.close)*100.f/kT1Data.close;
-        kT0Data.dvT2.dvLow = (kT2Data.low - kT1Data.close)*100.f/kT1Data.close;
-        kT0Data.dvT2.dvClose = (kT2Data.close - kT1Data.close)*100.f/kT1Data.close;
-        
-        //avaerage
-        kT0Data.dvAvgTP1toTP5.dvOpen = ((kTP5Data.open+kTP4Data.open+kTP3Data.open+kTP2Data.open+kTP6Data.open)-5*kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvAvgTP1toTP5.dvHigh = ((kTP5Data.high+kTP4Data.high+kTP3Data.high+kTP2Data.high+kTP6Data.high)-5*kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvAvgTP1toTP5.dvLow = ((kTP5Data.low+kTP4Data.low+kTP3Data.low+kTP2Data.low+kTP6Data.low)-5*kTP1Data.close)*100.f/kTP1Data.close;
-        kT0Data.dvAvgTP1toTP5.dvClose = ((kTP5Data.close+kTP4Data.close+kTP3Data.close+kTP2Data.close+kTP6Data.close)-5*kTP1Data.close)*100.f/kTP1Data.close;
-        
-        kT0Data.T1Data = kT1Data;
-        kT0Data.TP1Data = kTP1Data;
-        
-        [self.contentArray addObject:kT0Data];
-    }
+//    //calulate value
+//    for(long i=6; i<[tmpContentArray count]-3; i++ ){
+//
+//        KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
+//        KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
+//        KDataModel* kT1Data = [tmpContentArray objectAtIndex:i+1];
+//
+//        
+//        kT0Data.dvTP1 = [self getDVValue:tmpContentArray baseIndex:i-2 destIndex:i-1];
+//        kT0Data.dvT0 = [self getDVValue:tmpContentArray baseIndex:i-1 destIndex:i];
+//        kT0Data.dvT1 = [self getDVValue:tmpContentArray baseIndex:i destIndex:i+1];
+//        kT0Data.dvT2 = [self getDVValue:tmpContentArray baseIndex:i+1 destIndex:i+2];
+//
+//        
+//        //average
+//        kT0Data.dvAvgTP1toTP5 = [self getAvgDVValue:5 array:tmpContentArray index:i-1];
+//        
+//        kT0Data.T1Data = kT1Data;
+//        kT0Data.TP1Data = kTP1Data;
+//        
+//        kT0Data.ma5 = [self getMAValue:5 array:tmpContentArray t0Index:i];
+//        kT0Data.ma10 = [self getMAValue:10 array:tmpContentArray t0Index:i];
+//        kT0Data.ma20 = [self getMAValue:20 array:tmpContentArray t0Index:i];
+//        kT0Data.ma30 = [self getMAValue:30 array:tmpContentArray t0Index:i];
+//
+//        
+//        [self.contentArray addObject:kT0Data];
+//    }
     
     return self.contentArray;
 }
 
 
--(CGFloat)getMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(NSUInteger)t0Index
+//get dv value from index and destIndex
+-(DVValue*)getDVValue:(NSArray*)tmpContentArray baseIndex:(long)baseIndex destIndex:(long)destIndex
+{
+    if(!tmpContentArray || baseIndex<0 || destIndex<0){
+        return nil;
+    }
+    
+
+    
+    KDataModel* kBaseTData  = [tmpContentArray objectAtIndex:baseIndex];
+    KDataModel* kDestTData  = [tmpContentArray objectAtIndex:destIndex];
+    DVValue* dvValue = [[DVValue alloc]init];
+    
+
+    
+    dvValue.dvOpen = (kDestTData.open-kBaseTData.close)*100.f/kBaseTData.close;
+    dvValue.dvClose = (kDestTData.close-kBaseTData.close)*100.f/kBaseTData.close;
+    dvValue.dvHigh = (kDestTData.high-kBaseTData.close)*100.f/kBaseTData.close;
+    dvValue.dvLow = (kDestTData.low-kBaseTData.close)*100.f/kBaseTData.close;
+    
+    return dvValue;
+}
+
+
+-(DVValue*)getAvgDVValue:(NSUInteger)days array:(NSArray*)tmpContentArray index:(long)index
+{
+    if(days == 0 || !tmpContentArray || index<0){
+        return nil;
+    }
+    
+    
+    CGFloat totalOpenValue = 0.f;
+    CGFloat totalCloseValue = 0.f;
+    CGFloat totalHighValue = 0.f;
+    CGFloat totalLowValue = 0.f;
+
+    NSUInteger realDays = 0;
+    
+    KDataModel* kBaseTData  = [tmpContentArray objectAtIndex:index];
+    DVValue* dvAvgValue = [[DVValue alloc]init];
+    
+    for(long i = index; i>=0; i--){
+        KDataModel* kData  = [tmpContentArray objectAtIndex:i];
+        totalOpenValue += kData.open;
+        totalCloseValue += kData.close;
+        totalHighValue += kData.high;
+        totalLowValue += kData.low;
+
+        realDays++;
+        
+        if(realDays == days){
+            break;
+        }
+    }
+    
+    dvAvgValue.dvOpen = (totalOpenValue-realDays*kBaseTData.close)*100.f/kBaseTData.close;
+    dvAvgValue.dvClose = (totalCloseValue-realDays*kBaseTData.close)*100.f/kBaseTData.close;
+    dvAvgValue.dvHigh = (totalHighValue-realDays*kBaseTData.close)*100.f/kBaseTData.close;
+    dvAvgValue.dvLow = (totalLowValue-realDays*kBaseTData.close)*100.f/kBaseTData.close;
+
+    return dvAvgValue;
+}
+
+
+-(CGFloat)getMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(long)t0Index
 {
     if(days == 0 || !tmpContentArray){
         return 0.f;
@@ -254,7 +301,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
     for(long i = t0Index; i>=0; i--){
         KDataModel* kData  = [tmpContentArray objectAtIndex:i];
-        maValue += kData.close;
+        totalValue += kData.close;
         realDays++;
         
         if(realDays == days){
