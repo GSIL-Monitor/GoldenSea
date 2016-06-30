@@ -192,34 +192,6 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
     self.contentArray = tmpContentArray;
     
-//    //calulate value
-//    for(long i=6; i<[tmpContentArray count]-3; i++ ){
-//
-//        KDataModel* kTP1Data  = [tmpContentArray objectAtIndex:(i-1)];
-//        KDataModel* kT0Data = [tmpContentArray objectAtIndex:i];
-//        KDataModel* kT1Data = [tmpContentArray objectAtIndex:i+1];
-//
-//        
-//        kT0Data.dvTP1 = [self getDVValue:tmpContentArray baseIndex:i-2 destIndex:i-1];
-//        kT0Data.dvT0 = [self getDVValue:tmpContentArray baseIndex:i-1 destIndex:i];
-//        kT0Data.dvT1 = [self getDVValue:tmpContentArray baseIndex:i destIndex:i+1];
-//        kT0Data.dvT2 = [self getDVValue:tmpContentArray baseIndex:i+1 destIndex:i+2];
-//
-//        
-//        //average
-//        kT0Data.dvAvgTP1toTP5 = [self getAvgDVValue:5 array:tmpContentArray index:i-1];
-//        
-//        kT0Data.T1Data = kT1Data;
-//        kT0Data.TP1Data = kTP1Data;
-//        
-//        kT0Data.ma5 = [self getMAValue:5 array:tmpContentArray t0Index:i];
-//        kT0Data.ma10 = [self getMAValue:10 array:tmpContentArray t0Index:i];
-//        kT0Data.ma20 = [self getMAValue:20 array:tmpContentArray t0Index:i];
-//        kT0Data.ma30 = [self getMAValue:30 array:tmpContentArray t0Index:i];
-//
-//        
-//        [self.contentArray addObject:kT0Data];
-//    }
     
     return self.contentArray;
 }

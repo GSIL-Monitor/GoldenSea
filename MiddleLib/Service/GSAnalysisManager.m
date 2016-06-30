@@ -16,6 +16,7 @@
 @interface GSAnalysisManager ()
 
 
+
 @end
 
 
@@ -27,6 +28,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(id)init
 {
     if(self = [super init]){
+        _destDVValue = 0.8f;
     }
     
     return self;
@@ -71,9 +73,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     if(! [self isValidDataPassedIn]){
         return;
     }
-    
-    
-//    for(long i=0; i<[self.contentArray count]-1; i++ ){
     
     NSDictionary* passDict;
     for(long i=6; i<[self.contentArray count]-3; i++ ){
@@ -145,7 +144,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //            continue;
 //        }
 
-        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+10];
+        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+1];
 
 
 //        [self dispatchResult2Array:kT0Data buyIndex:i+1 sellIndex:i+2];
@@ -160,16 +159,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         //jh
 //        [self _dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.high];
 
-//        [self _dispatchResult2Array:kT0Data buy:kT0Data.close sell:kT1Data.close];
-        
-//        [self _dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT0Data.low];
 
-//        [self _dispatchResult2Array:kT0Data buy:kTP1Data.low sell:kT1Data.close];
-
-        
-//        [self _dispatchResult2Array:kT0Data buy:kT0Data.low sell:kT1Data.high];
-
-//        [self _dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.high];
         
         self.totalCount++;
     }

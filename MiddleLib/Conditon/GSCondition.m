@@ -139,7 +139,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
         {
             if((kT0Data.ma5 - kT0Data.ma10 >= 0.f)
                &&(kTP1Data.ma5 - kTP1Data.ma10 < 0.f)){
-                SMLog(@"kT0Data.ma5:");
+//                SMLog(@"kT0Data.ma5:");
                 return YES;
             }
         }

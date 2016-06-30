@@ -69,14 +69,11 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         if(i < 2){
             winPercent += percent;
         }
-//        else if(i == 2){
-//            holdPercent += percent;
-//        }
         else{
             lossPercent += percent;
         }
     }
-    SMLog(@"totalCount(%d): win(%.2f),loss(%.2f)",analyMan.totalCount,winPercent,lossPercent);
+    SMLog(@"totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
     
     //    return;
@@ -89,9 +86,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         if(i < 2){
             SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
-//        else if(i == 2){
-//            SMLog(@"hold itme array :%ld, percent(%.2f)",i,percent);
-//        }
         else{
             SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
         }

@@ -8,6 +8,10 @@
 
 #import "GSAnalysisManager+ex.h"
 
+
+@interface GSAnalysisManager ()
+@end
+
 @implementation GSAnalysisManager (ex)
 
 
@@ -99,7 +103,11 @@
     KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
     KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
 
-    [self _dispatchResult2Array:kT0data buy:buyData.close sell:sellData.close];
+    if((sellData.high-buyData.close)/buyData.close*100.f >= self.destDVValue){
+        [self _dispatchResult2Array:kT0data buy:buyData.close sell:(1+self.destDVValue/100.f)*buyData.close];
+    }else{
+        [self _dispatchResult2Array:kT0data buy:buyData.close sell:sellData.close];
+    }
 }
 
 
@@ -113,7 +121,7 @@
     NSMutableArray* tmpArray;
     if(dvValue > 3.f){
         tmpArray = [self.resultArray objectAtIndex:0];
-    }else if (dvValue > 0.6f){
+    }else if (dvValue >= self.destDVValue){
         tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > -1.5f){
         tmpArray = [self.resultArray objectAtIndex:2];
@@ -121,8 +129,15 @@
         tmpArray = [self.resultArray objectAtIndex:3];
     }
     
+    [self _calculateResult:dvValue];
     
     [tmpArray addObject:kT0data];
+}
+
+
+-(void)_calculateResult:(CGFloat)dvSelltoBuy
+{
+    self.totalS2BDVValue += dvSelltoBuy;
 }
 
 
@@ -135,8 +150,7 @@
     /*
      Sndday high vs fstday close
      >3%
-     >1%
-     >0%
+     >0.8%
      >-1.5%
      >-10%
      */
@@ -146,50 +160,6 @@
 }
 
 
-
-
-//
-//-(void)dispatchResult2Array:(KDataModel*)kSndData
-//{
-//    CGFloat dvValue = kSndData.dvT0.dvHigh;
-//    //    CGFloat dvUnit = 1.f;
-//    NSMutableArray* tmpArray;
-//    if(dvValue > 3.f){
-//        tmpArray = [self.resultArray objectAtIndex:0];
-//    }else if (dvValue > 1.f){
-//        tmpArray = [self.resultArray objectAtIndex:1];
-//    }else if (dvValue > 0.f){
-//        tmpArray = [self.resultArray objectAtIndex:2];
-//    }else if (dvValue > -1.5f){
-//        tmpArray = [self.resultArray objectAtIndex:3];
-//    }else if (dvValue > -11.f){
-//        tmpArray = [self.resultArray objectAtIndex:4];
-//    }
-//    
-//    [tmpArray addObject:kSndData];
-//}
-//
-//
-//-(void)dispatchResult2Array:(KDataModel*)KT0Data T1:(KDataModel*)kT1Data
-//{
-//    CGFloat dvValue = (kT1Data.high-KT0Data.open)*100.f/KT0Data.open;
-//    //    CGFloat dvUnit = 1.f;
-//    NSMutableArray* tmpArray;
-//    if(dvValue > 3.f){
-//        tmpArray = [self.resultArray objectAtIndex:0];
-//    }else if (dvValue > 1.f){
-//        tmpArray = [self.resultArray objectAtIndex:1];
-//    }else if (dvValue > 0.f){
-//        tmpArray = [self.resultArray objectAtIndex:2];
-//    }else if (dvValue > -1.5f){
-//        tmpArray = [self.resultArray objectAtIndex:3];
-//    }else if (dvValue > -11.f){
-//        tmpArray = [self.resultArray objectAtIndex:4];
-//    }
-//    
-//    [tmpArray addObject:KT0Data];
-//}
-//
 
 
 

@@ -25,9 +25,12 @@
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSMutableArray* resultArray;
 @property (assign) int totalCount;
+@property (nonatomic, assign) CGFloat totalS2BDVValue;
 
 
 //below is need set--->
+
+@property (assign) CGFloat destDVValue;
 
 
 //we will analysis the data which simlar as this value
