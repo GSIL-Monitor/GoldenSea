@@ -42,10 +42,10 @@
 //    _stkID = @"002481";
 //    _stkID = @"000592"; //ptfz
 //    _stkID = @"000751"; //
-    _stkID = @"SH#000001";
+//    _stkID = @"SH#000001";
 //    _stkID = @"600807"; //tygf
 //    _stkID = @"SH#601002";
-    _stkID = @"SH#600126"; //hggf
+//    _stkID = @"SH#600126"; //hggf
 
     
     [GSDataInit shareManager].standardDate = 20110101;
@@ -101,12 +101,14 @@
     
 //    [self setNormalDown];
     
-    [self setNormalToday];
+//    [self setNormalToday];
     
 //    [self setUpShadow];
     
     
 //    [self setOpenValue];
+    
+    [GSCondition shareManager].shapeCond= ShapeCondition_MA5UpMA10;
     
     [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
 }

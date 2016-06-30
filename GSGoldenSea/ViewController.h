@@ -11,6 +11,7 @@
 @interface ViewController : NSViewController
 
 //-(IBAction)selector:(id)sender;
+@property (weak) IBOutlet NSButton *a111;
 
 @end
 

@@ -18,6 +18,7 @@ typedef enum {
     ShapeCondition_ZhengDang, //
     ShapeCondition_UpShadow, //上影线
     ShapeCondition_DownShadow, //下影线
+    ShapeCondition_MA5UpMA10, //ma5上穿ma10
 }ShapeCondition;
 
 

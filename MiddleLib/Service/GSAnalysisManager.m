@@ -92,7 +92,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.T1Data = kT1Data;
         kT0Data.TP1Data = kTP1Data;
 
-        
+        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
         kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
         kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
         kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
@@ -112,6 +112,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         
         //dv condintoon
+        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvTP2]){
+            continue;
+        }
+        
         if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
             continue;
         }
@@ -124,9 +128,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvT2]){
-            continue;
-        }
+        
         
         
         //shape condition
@@ -143,8 +145,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //            continue;
 //        }
 
+        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+10];
 
-        [self dispatchResult2Array:kT0Data buyIndex:i+1 sellIndex:i+2];
+
+//        [self dispatchResult2Array:kT0Data buyIndex:i+1 sellIndex:i+2];
         
 
 //        [self _dispatchResult2Array:kT0Data buy:kT0Data.open sell:kT1Data.close];

@@ -135,6 +135,16 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
         }
             break;
             
+        case ShapeCondition_MA5UpMA10:
+        {
+            if((kT0Data.ma5 - kT0Data.ma10 >= 0.f)
+               &&(kTP1Data.ma5 - kTP1Data.ma10 < 0.f)){
+                SMLog(@"kT0Data.ma5:");
+                return YES;
+            }
+        }
+            break;
+            
         default:
             return YES;
             break;

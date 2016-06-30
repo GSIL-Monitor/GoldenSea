@@ -39,6 +39,10 @@
                 </subviews>
             </view>
         </window>
-        <viewController id="jy5-Kt-UX5"/>
+        <viewController id="jy5-Kt-UX5" customClass="ViewController">
+            <connections>
+                <outlet property="a111" destination="GkH-pK-nKl" id="O5X-VE-8ph"/>
+            </connections>
+        </viewController>
     </objects>
 </document>
