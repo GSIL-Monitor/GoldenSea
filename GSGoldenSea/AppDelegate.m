@@ -194,12 +194,10 @@
     [GSAnalysisManager shareManager].t1dayCond = t1con;
     
     
-    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    //    t2con.open_max = 1.f;
-    //    t2con.open_min = 0.3f;
-    //
-    //
-    //    [GSAnalysisManager shareManager].tp2dayCond = t2con;
+//    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    t2con.open_max = 1.5f;
+//    t2con.open_min = 0.5f;
+//    [GSAnalysisManager shareManager].t2 = t2con;
 }
 
 

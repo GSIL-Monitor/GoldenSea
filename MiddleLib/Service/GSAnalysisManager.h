@@ -42,7 +42,6 @@
 @property (strong) OneDayCondition* t1dayCond;  //t+1 day
 
 
-@property (assign) BOOL isWaibaoriDownCond;
 
 //<----------
 

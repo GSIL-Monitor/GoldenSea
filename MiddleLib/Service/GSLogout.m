@@ -107,12 +107,12 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)logResWithDV:(KDataModel*)kData
 {
-    SMLog(@"%@ TP1-Co:%.2f, T0-Op:%.2f,Hi:%.2f,Co:%.2f,Low:%.2f;  TS2B:%.2f;  T1-Op:%.2f,Hi:%.2f,Co:%.2f,Low:%.2f;  T2-Hi:%.2f,Co:%.2f",kData.time,
+    SMLog(@"%@ TP1-C:%.2f, T0-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  TS2B:%.2f;  T1-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  T2(O:%.2f,H:%.2f,C:%.2f,L:%.2f)",kData.time,
           kData.dvTP1.dvClose,
           kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
           kData.dvSelltoBuy,
           kData.dvT1.dvOpen,kData.dvT1.dvHigh,kData.dvT1.dvClose,kData.dvT1.dvLow,
-          kData.dvT2.dvHigh,kData.dvT2.dvClose);
+          kData.dvT2.dvOpen,kData.dvT2.dvHigh,kData.dvT2.dvClose,kData.dvT2.dvLow);
     
 }
 
