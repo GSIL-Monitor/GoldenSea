@@ -16,7 +16,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 -(id)init
 {
     if(self = [super init]){
-        self.standardDate = 20140101;
+        self.startDate = 20100101;
+        self.endDate = 20200101;
     }
     
     return self;
@@ -290,10 +291,12 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 -(BOOL)isMeetPeriodCondition:(KDataModel*)kData;
 {
     
+    
     int date =  [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
     
     //tmp solution
-    if(date > self.standardDate){
+    if(date > self.startDate
+       && date < self.endDate){
         return YES;
     }else{
         return NO;

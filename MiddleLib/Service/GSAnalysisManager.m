@@ -28,7 +28,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(id)init
 {
     if(self = [super init]){
-        _destDVValue = 0.8f;
+        _destDVValue = 2.5f;
+        _stopDVValue = -3.5f;
     }
     
     return self;

@@ -48,7 +48,21 @@
 //    _stkID = @"SH#600126"; //hggf
 
     
-    [GSDataInit shareManager].standardDate = 20110101;
+//    [GSDataInit shareManager].startDate = 20110101;
+//    [GSDataInit shareManager].endDate = 20120101;
+//    
+//    [GSDataInit shareManager].startDate = 20120101;
+//    [GSDataInit shareManager].endDate = 20130101;
+//
+//    [GSDataInit shareManager].startDate = 20140101;
+//    [GSDataInit shareManager].endDate = 20150101;
+//
+//    [GSDataInit shareManager].startDate = 20150101;
+//    [GSDataInit shareManager].endDate = 20160101;
+//    
+//    [GSDataInit shareManager].startDate = 20160101;
+//    [GSDataInit shareManager].endDate = 20170101;
+    
     
     //regsiter net
 //    [[HYRequestManager sharedInstance]initService];

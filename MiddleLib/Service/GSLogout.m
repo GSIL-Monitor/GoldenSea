@@ -32,7 +32,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
-        if(i < 2){
+        if(i < analyMan.segIndex){
             winPercent += percent;
         }
         //        else if(i == 2){
@@ -66,7 +66,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
-        if(i < 2){
+        if(i < analyMan.segIndex){
             winPercent += percent;
         }
         else{
@@ -83,7 +83,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
-        if(i < 2){
+        if(i < analyMan.segIndex){
             SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
         else{
@@ -91,7 +91,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         }
         
         for (KDataModel* kData in tmpArray) {
-                        [self logResWithDV:kData];
+//            [self logResWithDV:kData];
 //            [self logResWithValue:kData];
         }
     }

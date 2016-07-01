@@ -17,7 +17,8 @@
 @property (nonatomic,strong) NSMutableArray* sourceFileArray;
 
 
-@property (assign) int standardDate; //start analysis date, such as 20140101
+@property (assign) int startDate; //start analysis date, such as 20140101
+@property (assign) int endDate; //end analysis date, such as 20140101
 
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;

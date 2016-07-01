@@ -102,12 +102,29 @@
     
     KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
     KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
-
+    CGFloat dvValue;
+    
+    //we don't know which is first appear for high or low. so only switch two case.
+#if 0
+    //case 1. judge with high
     if((sellData.high-buyData.close)/buyData.close*100.f >= self.destDVValue){
-        [self _dispatchResult2Array:kT0data buy:buyData.close sell:(1+self.destDVValue/100.f)*buyData.close];
+//        dvValue = self.destDVValue;
+        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }else{
-        [self _dispatchResult2Array:kT0data buy:buyData.close sell:sellData.close];
+        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }
+#else
+    //case 2. judge with low
+    if((sellData.low-buyData.close)/buyData.close*100.f <= self.stopDVValue){
+        dvValue = self.stopDVValue;
+//        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
+    }else{
+        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
+    }
+#endif
+    
+    [self _calculateResult:kT0data dvValue:dvValue];
+
 }
 
 
@@ -115,29 +132,43 @@
 {
     CGFloat dvValue = (sellValue-buyValue)*100.f/buyValue;
     
+    [self _calculateResult:kT0data dvValue:dvValue];
+    
+}
+
+
+-(void)_calculateResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
+{
     kT0data.dvSelltoBuy = dvValue;
     
     //    CGFloat dvUnit = 1.f;
     NSMutableArray* tmpArray;
-    if(dvValue > 3.f){
+    //    if(dvValue > 3.f){
+    //        tmpArray = [self.resultArray objectAtIndex:0];
+    //    }else if (dvValue >= self.destDVValue){
+    //        tmpArray = [self.resultArray objectAtIndex:1];
+    //    }else if (dvValue > -1.5f){
+    //        tmpArray = [self.resultArray objectAtIndex:2];
+    //    }else if (dvValue > -11.f){
+    //        tmpArray = [self.resultArray objectAtIndex:3];
+    //    }
+    
+    if (dvValue >= self.destDVValue){
         tmpArray = [self.resultArray objectAtIndex:0];
-    }else if (dvValue >= self.destDVValue){
-        tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > -1.5f){
-        tmpArray = [self.resultArray objectAtIndex:2];
+        tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
-        tmpArray = [self.resultArray objectAtIndex:3];
+        tmpArray = [self.resultArray objectAtIndex:2];
     }
     
-    [self _calculateResult:dvValue];
+    self.segIndex = 1;
     
     [tmpArray addObject:kT0data];
-}
-
-
--(void)_calculateResult:(CGFloat)dvSelltoBuy
-{
-    self.totalS2BDVValue += dvSelltoBuy;
+    
+    self.totalS2BDVValue += dvValue;
+    
+    
+    
 }
 
 
