@@ -35,8 +35,37 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     return self;
 }
 
+-(void)analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
+{
+    [GSDataInit shareManager].startDate = 20110101;
+    [GSDataInit shareManager].endDate = 20120101;
+    [self _analysisFile:stkUUID inDir:docsDir];
 
--(void)analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
+    [GSDataInit shareManager].startDate = 20120101;
+    [GSDataInit shareManager].endDate = 20130101;
+    [self _analysisFile:stkUUID inDir:docsDir];
+
+
+    [GSDataInit shareManager].startDate = 20140101;
+    [GSDataInit shareManager].endDate = 20150101;
+    [self _analysisFile:stkUUID inDir:docsDir];
+
+
+    [GSDataInit shareManager].startDate = 20150101;
+    [GSDataInit shareManager].endDate = 20160101;
+    [self _analysisFile:stkUUID inDir:docsDir];
+
+
+    [GSDataInit shareManager].startDate = 20160101;
+    [GSDataInit shareManager].endDate = 20170101;
+    [self _analysisFile:stkUUID inDir:docsDir];
+    
+//    [self _analysisFile:stkUUID inDir:docsDir];
+
+
+}
+
+-(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
     //reset content when every time read file.
     [self reset];

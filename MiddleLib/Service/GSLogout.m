@@ -10,6 +10,7 @@
 
 #import "KDataModel.h"
 #import "GSAnalysisManager.h"
+#import "GSDataInit.h"
 
 @implementation GSLogout
 
@@ -73,7 +74,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             lossPercent += percent;
         }
     }
-    SMLog(@"totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+    SMLog(@"%d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
     
     //    return;
@@ -87,11 +88,12 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
         else{
-            SMLog(@"--loss itme array :%ld, percent(%.2f)",i,percent);
+            if([tmpArray count])
+                SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
         }
         
         for (KDataModel* kData in tmpArray) {
-//            [self logResWithDV:kData];
+            [self logResWithDV:kData];
 //            [self logResWithValue:kData];
         }
     }
