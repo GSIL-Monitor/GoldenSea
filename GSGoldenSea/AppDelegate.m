@@ -35,8 +35,8 @@
     
 //    [[HYLog shareManager] enableLog];
     
-    _dir = @"/Users/frankweng/Code/1HelpCode/0数据";
-//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据";
+    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/export";
+    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
     _stkID = @"600418"; //jhqc
 //    _stkID = @"002298"; //stsp
 //    _stkID = @"002481";
@@ -46,6 +46,9 @@
 //    _stkID = @"600807"; //tygf
 //    _stkID = @"SH#601002";
 //    _stkID = @"SH#600126"; //hggf
+    _stkID = @"002430"; //hygf
+    _stkID = @"600006"; //for test use.
+
 
     
 //    [GSDataInit shareManager].startDate = 20110101;
@@ -69,13 +72,14 @@
 //    [[STKManager shareManager]testGetFriPostsRequest];
 //    [[STKManager shareManager]test];
     
-#if 1
+#if 0
     [self testForOne];
 #else
     [self testForAll];
 #endif
     
 }
+
 
 
 
@@ -96,12 +100,15 @@
 //    t0con.close_max = -0.f;
 //    t0con.close_min = -1.f;
 //    [GSAnalysisManager shareManager].t0dayCond = t0con;
-    
-    [self setOpenValue];
-
-    
-    
+//    
+//    [self setOpenValue];
+//
+//    
+//    
+    [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
+    
+    
 }
 
 
@@ -122,9 +129,11 @@
     
 //    [self setOpenValue];
     
-    [GSCondition shareManager].shapeCond= ShapeCondition_MA5UpMA10;
+//    [GSCondition shareManager].shapeCond= ShapeCondition_MA5UpMA10;
+//    
+    [[GSAnalysisManager shareManager]_analysisFile:_stkID inDir:_dir];
     
-    [[GSAnalysisManager shareManager]analysisFile:_stkID inDir:_dir];
+
 }
 
 

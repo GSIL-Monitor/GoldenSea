@@ -73,7 +73,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     self.contentArray = [[GSDataInit shareManager] buildDataWithStkUUID:stkUUID inDir:docsDir];
     
-    [self analysis];
+    //        [self analysis];
+    [self analysisForRaisingLimit];
     
     [[GSLogout shareManager] logOutResult];
 
@@ -87,9 +88,17 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
         
-        [self analysis];
+//        [self analysis];
+        [self analysisForRaisingLimit];
+
         
-        [[GSLogout shareManager] logOutResultForStk:[file lastPathComponent]];
+        
+        
+        if(self.totalCount > 0){
+            //        [[GSLogout shareManager] logOutResultForStk:[file lastPathComponent]];
+            self.stkID = [file lastPathComponent];
+            [[GSLogout shareManager] logOutResult];
+        }
 
     }
     
@@ -198,6 +207,154 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
 }
 
+
+
+
+-(void)analysisForRaisingLimit
+{
+    self.totalCount=0;
+    
+    if(! [self isValidDataPassedIn]){
+        return;
+    }
+    
+    NSDictionary* passDict;
+    for(long i=6; i<[self.contentArray count]-9; i++ ){
+//        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
+//        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
+//        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
+//        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
+//        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+        
+        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+        KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
+        
+//        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+//        KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
+//        KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
+//        KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
+//        KDataModel* kT6Data = [self.contentArray objectAtIndex:i+6];
+//        KDataModel* kT7Data = [self.contentArray objectAtIndex:i+7];
+//        KDataModel* kT8Data = [self.contentArray objectAtIndex:i+8];
+//
+//        
+//        
+//        kT0Data.T1Data = kT1Data;
+//        kT0Data.TP1Data = kTP1Data;
+//        
+//        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+//        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+//        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+//        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+//        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+//        
+//        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+//        
+//        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
+//        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
+//        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
+//        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
+        
+
+        
+      
+        
+        if([HelpService isRasingLimitValue:kTP1Data.close T0Close:kT0Data.close]){
+            kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+
+            if(kT0Data.dvT1.dvClose < 0.f){
+                
+                CGFloat theLowestValue = kT1Data.low;
+                CGFloat theHighestValue = kT5Data.high;
+
+                
+                //check t1-4 low
+                for(long j=i+1; j<i+5; j++){
+                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
+                    if(tempData.low < theLowestValue){
+                        theLowestValue = tempData.low;
+                    }
+                }
+                
+                //check t5-8 high
+                for(long j=i+5; j<i+9; j++){
+                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
+                    if(tempData.high > theHighestValue){
+                        theHighestValue = tempData.high;
+                    }
+                }
+                
+                
+                if(theLowestValue > kT0Data.low){
+                    continue;
+                }
+                
+                
+                //filter up much in shorttime
+                kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
+                kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
+                CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
+                CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+
+                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
+                    continue;
+                }
+                
+                
+                [self _dispatchResult2Array:kT0Data buy:kT0Data.low sell:theHighestValue];
+                
+                
+                self.totalCount++;
+
+            }
+        }
+        
+//        passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
+//        
+//        
+//        //dv condintoon
+//        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvTP2]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.t0dayCond DVValue:kT0Data.dvT0]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.t1dayCond DVValue:kT0Data.dvT1]){
+//            continue;
+//        }
+//        
+//        
+//        //shape condition
+//        if(![[GSCondition shareManager] isMeetShapeCond:passDict]){
+//            continue;
+//        }
+//        
+//        //t0 condition
+//        if(![self isMeetT0Condition:passDict]){
+//            continue;
+//        }
+//        
+//        
+//        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+1];
+//        
+        
+ 
+        
+        
+//        self.totalCount++;
+    }
+    
+    
+    
+}
 
 -(BOOL)isMeetAddtionCond:(NSDictionary*)passDict
 {

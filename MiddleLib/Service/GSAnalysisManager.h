@@ -26,7 +26,7 @@
 @property (nonatomic,strong) NSMutableArray* resultArray;
 @property (assign) int totalCount;
 @property (nonatomic, assign) CGFloat totalS2BDVValue;
-
+@property (nonatomic,strong) NSString* stkID;
 
 //below is need set--->
 
@@ -53,6 +53,9 @@
 
 -(void)analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
 -(void)analysisAllInDir:(NSString*)docsDir;
+
+
+-(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
 
 
 

@@ -43,7 +43,10 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             lossPercent += percent;
         }
     }
-    SMLog(@"STK:%@ - totalCount(%d): win(%.2f),loss(%.2f)",stkID,analyMan.totalCount,winPercent,lossPercent);
+    
+    if(analyMan.totalCount > 0){
+        SMLog(@"STK:%@ - totalCount(%d): win(%.2f),loss(%.2f)",stkID,analyMan.totalCount,winPercent,lossPercent);
+    }
     
     
     
@@ -74,10 +77,10 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             lossPercent += percent;
         }
     }
-    SMLog(@"%d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
     
-    //    return;
+//        return;
     
     for(long i=0; i<[analyMan.resultArray count]; i++){
         tmpArray = [analyMan.resultArray objectAtIndex:i];
@@ -85,17 +88,23 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
         if(i < analyMan.segIndex){
-            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+//            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
         else{
-            if([tmpArray count])
-                SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
+            if([tmpArray count]){
+//                SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
+                for (KDataModel* kData in tmpArray) {
+                    SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
+                    //            [self logResWithDV:kData];
+                    //            [self logResWithValue:kData];
+                }
+            }
         }
         
-        for (KDataModel* kData in tmpArray) {
-            [self logResWithDV:kData];
-//            [self logResWithValue:kData];
-        }
+//        for (KDataModel* kData in tmpArray) {
+//            [self logResWithDV:kData];
+////            [self logResWithValue:kData];
+//        }
     }
     
     

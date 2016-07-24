@@ -197,6 +197,15 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     return self.contentArray;
 }
 
+-(CGFloat)getDVValueWithBaseValue:(CGFloat)baseValue destValue:(CGFloat)destValue;
+{
+    CGFloat val = 0.f;
+    
+    val = (destValue-baseValue)*100.f/baseValue;
+    
+    return val;
+}
+
 
 //get dv value from index and destIndex
 -(DVValue*)getDVValue:(NSArray*)tmpContentArray baseIndex:(long)baseIndex destIndex:(long)destIndex

@@ -20,4 +20,7 @@
 
 + (void)log:(NSString *)format, ... ;
 
+
++(BOOL)isRasingLimitValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close;
+
 @end

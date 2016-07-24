@@ -175,6 +175,7 @@
 -(void)reset
 {
     self.totalCount = 0;
+    self.totalS2BDVValue = 0;
     self.contentArray = [NSMutableArray array];
     self.resultArray = [NSMutableArray array];
     

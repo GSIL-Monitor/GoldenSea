@@ -64,5 +64,22 @@
     }
 }
 
++(CGFloat)raisingLimitValue:(CGFloat)lastClose
+{
+    //1.1倍再四舍五入
+    CGFloat val = (int)((lastClose*1.1)*100+0.5)/100.f;
+    return val;
+}
+
+
++(BOOL)isRasingLimitValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close
+{
+    CGFloat val  = [HelpService raisingLimitValue:TP1Close];
+    if(fabsf((val - T0Close)) < 0.01){
+        return YES;
+    }
+    
+    return NO;
+}
 
 @end
