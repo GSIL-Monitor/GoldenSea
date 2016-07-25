@@ -91,14 +91,14 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         else{
             if(isJustLogFail && [tmpArray count] ){
                 for (KDataModel* kData in tmpArray) {
-                    SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
+                    SMLog(@"%@  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.highValDayIndex,kData.dvSelltoBuy);
                 }
             }
         }
         
         if(!isJustLogFail){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
+                SMLog(@"%@  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.highValDayIndex,kData.dvSelltoBuy);
             }
         }
         

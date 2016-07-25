@@ -35,49 +35,53 @@
     
 //    [[HYLog shareManager] enableLog];
     
-    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
-//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
-    _stkID = @"600418"; //jhqc
-//    _stkID = @"002298"; //stsp
-//    _stkID = @"002481";
-//    _stkID = @"000592"; //ptfz
-//    _stkID = @"000751"; //
-//    _stkID = @"SH#000001";
-//    _stkID = @"600807"; //tygf
-//    _stkID = @"SH#601002";
-//    _stkID = @"SH#600126"; //hggf
-    _stkID = @"002430"; //hygf
-    _stkID = @"601558"; //for test use.
-
-
-    
-//    [GSDataInit shareManager].startDate = 20110101;
-//    [GSDataInit shareManager].endDate = 20120101;
-//    
-//    [GSDataInit shareManager].startDate = 20120101;
-//    [GSDataInit shareManager].endDate = 20130101;
-//
-//    [GSDataInit shareManager].startDate = 20140101;
-//    [GSDataInit shareManager].endDate = 20150101;
-//
-//    [GSDataInit shareManager].startDate = 20150101;
-//    [GSDataInit shareManager].endDate = 20160101;
-//    
-//    [GSDataInit shareManager].startDate = 20160101;
-//    [GSDataInit shareManager].endDate = 20170101;
+    //    [GSDataInit shareManager].startDate = 20110101;
+    //    [GSDataInit shareManager].endDate = 20120101;
+    //
+    //    [GSDataInit shareManager].startDate = 20120101;
+    //    [GSDataInit shareManager].endDate = 20130101;
+    //
+    //    [GSDataInit shareManager].startDate = 20140101;
+    //    [GSDataInit shareManager].endDate = 20150101;
+    //
+    //    [GSDataInit shareManager].startDate = 20150101;
+    //    [GSDataInit shareManager].endDate = 20160101;
+    //
+    //    [GSDataInit shareManager].startDate = 20160101;
+    //    [GSDataInit shareManager].endDate = 20170101;
     
     
     //regsiter net
-//    [[HYRequestManager sharedInstance]initService];
-//    [[STKManager shareManager]testGetFriPostsRequest];
-//    [[STKManager shareManager]test];
+    //    [[HYRequestManager sharedInstance]initService];
+    //    [[STKManager shareManager]testGetFriPostsRequest];
+    //    [[STKManager shareManager]test];
     
-#if 1
+    [self doInit];
+    
+}
+
+-(void)doInit{
+    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
+    //    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
+    _stkID = @"600418"; //jhqc
+    //    _stkID = @"002298"; //stsp
+    //    _stkID = @"002481";
+    //    _stkID = @"000592"; //ptfz
+    //    _stkID = @"000751"; //
+    //    _stkID = @"SH#000001";
+    //    _stkID = @"600807"; //tygf
+    //    _stkID = @"SH#601002";
+    //    _stkID = @"SH#600126"; //hggf
+    _stkID = @"002430"; //hygf
+    _stkID = @"601558"; //for test use.
+    
+   
+    
+#if 0
     [self testForOne];
 #else
     [self testForAll];
 #endif
-    
 }
 
 

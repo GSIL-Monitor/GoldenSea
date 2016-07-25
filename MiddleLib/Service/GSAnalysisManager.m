@@ -200,6 +200,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
+    long theHighestIndex = 5;
     NSDictionary* passDict;
     for(long i=6; i<[self.contentArray count]-9; i++ ){
 
@@ -234,9 +235,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.high > theHighestValue){
                         theHighestValue = tempData.high;
+                        theHighestIndex = j-i;
                     }
                 }
-                
+                kT0Data.highValDayIndex = theHighestIndex;
                 
                 if(theLowestValue > kT0Data.low){
                     continue;

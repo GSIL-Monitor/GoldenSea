@@ -116,6 +116,8 @@
 @property (strong) KDataModel* T1Data;
 
 @property (assign) CGFloat dvSelltoBuy;
+@property (assign) long highValDayIndex; //after buy day
+
 
 @property (strong) DVValue* dvTP2; //tp2 dv property , percent ,  tp2 vs tp3 close
 @property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close
