@@ -102,7 +102,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     self.totalCount=0;
     
-    if(! [self isValidDataPassedIn]){
+    if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
         return;
     }
     
@@ -196,14 +196,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     self.totalCount=0;
     
-    if(! [self isValidDataPassedIn]){
+    if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
         return;
     }
     
     long theHighestIndex = 5;
     NSDictionary* passDict;
     for(long i=6; i<[self.contentArray count]-9; i++ ){
-
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];

@@ -39,11 +39,51 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     NSFileManager *localFileManager=[[NSFileManager alloc] init];
     NSDirectoryEnumerator *dirEnum = [localFileManager enumeratorAtPath:docsDir];
     
+    
     NSString *file;
     while ((file = [dirEnum nextObject])) {
         if ([file hasSuffix:@"txt"]) {
-            NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
-            [self.sourceFileArray addObject:fullPath];
+            
+            BOOL isMapMarket = NO;
+            switch (self.marketType) {
+                case marketType_All:
+                    isMapMarket = YES;
+                    break;
+                    
+                case marketType_ShangHai:
+                    if([file hasPrefix:@"SH"]){
+                        isMapMarket = YES;
+                    }
+                    break;
+                    
+                case marketType_ShenZhenAll:
+                    if([file hasPrefix:@"SZ"]){
+                        isMapMarket = YES;
+                    }
+                    break;
+                    
+                case marketType_ShenZhenMainAndZhenXiaoBan:
+                    if([file hasPrefix:@"SZ"] && ![file hasPrefix:@"SZ#300"]){
+                        isMapMarket = YES;
+                    }
+                    break;
+                    
+                case marketType_ShenZhenChuanYeBan:
+                    if([file hasPrefix:@"SZ#300"]){
+                        isMapMarket = YES;
+                    }
+                    break;
+                    
+                default:
+                    isMapMarket = YES;
+                    break;
+            }
+
+            
+            if(isMapMarket){
+                NSString* fullPath = [NSString stringWithFormat:@"%@/%@",docsDir,file];
+                [self.sourceFileArray addObject:fullPath];
+            }
         }
     }
     

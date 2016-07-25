@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "KDataModel.h"
 
+typedef enum {
+    marketType_All = 0,
+    marketType_ShangHai,
+    marketType_ShenZhenAll,
+    marketType_ShenZhenMainAndZhenXiaoBan,
+    marketType_ShenZhenChuanYeBan
+}MarketType;
+
 @interface GSDataInit : NSObject
 +(GSDataInit*)shareManager;
 
@@ -20,6 +28,7 @@
 @property (assign) int startDate; //start analysis date, such as 20140101
 @property (assign) int endDate; //end analysis date, such as 20140101
 
+@property (assign) MarketType marketType;
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;
 -(NSMutableArray*)findSourcesInDir:(NSString*)docsDir;

@@ -35,11 +35,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         if(i < analyMan.segIndex){
             winPercent += percent;
-        }
-        //        else if(i == 2){
-        //            holdPercent += percent;
-        //        }
-        else{
+        }else{
             lossPercent += percent;
         }
     }
@@ -101,9 +97,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
                 SMLog(@"%@  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.highValDayIndex,kData.dvSelltoBuy);
             }
         }
-        
     }
-    
     
 }
 
@@ -142,24 +136,16 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
         if(i < analyMan.segIndex){
-//            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
-
+            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
         else{
-            if([tmpArray count]){
-//                SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
-                for (KDataModel* kData in tmpArray) {
-                    SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
-                    //            [self logResWithDV:kData];
-                    //            [self logResWithValue:kData];
-                }
-            }
+            SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
         }
         
-//        for (KDataModel* kData in tmpArray) {
-//            [self logResWithDV:kData];
-////            [self logResWithValue:kData];
-//        }
+        for (KDataModel* kData in tmpArray) {
+            [self logResWithDV:kData];
+//            [self logResWithValue:kData];
+        }
     }
     
     

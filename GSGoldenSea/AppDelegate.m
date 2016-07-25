@@ -18,6 +18,7 @@
 #import "GSAnalysisManager.h"
 #import "GSCondition.h"
 #import "HYLog.h"
+#import "GSDataInit.h"
 
 @interface AppDelegate (){
     
@@ -108,7 +109,10 @@
 //    [self setOpenValue];
 //
 //    
-//    
+//
+    
+    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    
     [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
     
