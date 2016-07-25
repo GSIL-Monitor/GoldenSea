@@ -35,8 +35,8 @@
     
 //    [[HYLog shareManager] enableLog];
     
-    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/export";
-    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
+    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
+//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
     _stkID = @"600418"; //jhqc
 //    _stkID = @"002298"; //stsp
 //    _stkID = @"002481";
@@ -47,7 +47,7 @@
 //    _stkID = @"SH#601002";
 //    _stkID = @"SH#600126"; //hggf
     _stkID = @"002430"; //hygf
-    _stkID = @"600006"; //for test use.
+    _stkID = @"601558"; //for test use.
 
 
     
@@ -72,7 +72,7 @@
 //    [[STKManager shareManager]testGetFriPostsRequest];
 //    [[STKManager shareManager]test];
     
-#if 0
+#if 1
     [self testForOne];
 #else
     [self testForAll];

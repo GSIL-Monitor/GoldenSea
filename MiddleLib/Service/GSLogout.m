@@ -54,6 +54,60 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 }
 
 
+
+-(void)SimpleLogOutResult:(BOOL)isJustLogFail
+{
+    //logOut which loss item
+    NSMutableArray* tmpArray;
+    CGFloat percent = 0.f;
+    
+    
+    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
+    
+    //calulate percent firstly
+    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
+    for(long i=0; i<[analyMan.resultArray count]; i++){
+        tmpArray = [analyMan.resultArray objectAtIndex:i];
+        
+        percent = [tmpArray count]*100.f/analyMan.totalCount;
+        
+        if(i < analyMan.segIndex){
+            winPercent += percent;
+        }
+        else{
+            lossPercent += percent;
+        }
+    }
+    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+
+    for(long i=0; i<[analyMan.resultArray count]; i++){
+        tmpArray = [analyMan.resultArray objectAtIndex:i];
+        
+        percent = [tmpArray count]*100.f/analyMan.totalCount;
+        
+        if(i < analyMan.segIndex){
+            //            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+        }
+        else{
+            if(isJustLogFail && [tmpArray count] ){
+                for (KDataModel* kData in tmpArray) {
+                    SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
+                }
+            }
+        }
+        
+        if(!isJustLogFail){
+            for (KDataModel* kData in tmpArray) {
+                SMLog(@"%@   TS2B:%.2f; ",kData.time,kData.dvSelltoBuy);
+            }
+        }
+        
+    }
+    
+    
+}
+
+
 -(void)logOutResult
 {
     //logOut which loss item
@@ -89,6 +143,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         if(i < analyMan.segIndex){
 //            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
+
         }
         else{
             if([tmpArray count]){

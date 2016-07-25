@@ -15,4 +15,6 @@
 -(void)logOutResult;
 -(void)logOutResultForStk:(NSString*)stkID;
 
+-(void)SimpleLogOutResult:(BOOL)isJustLogFail;
+
 @end
