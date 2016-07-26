@@ -12,6 +12,17 @@
 #import "GSAnalysisManager.h"
 #import "GSDataInit.h"
 
+
+@interface GSLogout (){
+    long _numberArray[9];
+}
+
+@property (nonatomic, assign) long totalLowIndexCount;
+@property (nonatomic, assign) long totalHighIndexCount;
+@property (nonatomic, strong) NSMutableArray* countArray;
+
+@end
+
 @implementation GSLogout
 
 SINGLETON_GENERATOR(GSLogout, shareManager);
@@ -87,20 +98,56 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         else{
             if(isJustLogFail && [tmpArray count] ){
                 for (KDataModel* kData in tmpArray) {
-                    SMLog(@"%@  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.highValDayIndex,kData.dvSelltoBuy);
+                    SMLog(@"%@ LowVal:%ld,  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+                    [self statIndex:kData];
                 }
             }
         }
         
         if(!isJustLogFail){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.highValDayIndex,kData.dvSelltoBuy);
+                SMLog(@"%@  LowVal:%ld, HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+                [self statIndex:kData];
             }
         }
     }
     
 }
 
+-(void)statIndex:(KDataModel*)kData
+{
+    if(!kData
+       || kData.lowValDayIndex>[self.countArray count]-1
+       || kData.highValDayIndex>[self.countArray count]-1){
+        return;
+    }
+    
+    self.totalLowIndexCount++;
+    self.totalHighIndexCount++;
+    
+    long tmpLowCount = _numberArray[kData.lowValDayIndex]; // [self.countArray objectAtIndex:kData.lowValDayIndex];
+    _numberArray[kData.lowValDayIndex] = tmpLowCount+1;
+    
+    long tmpHighCount =  _numberArray[kData.highValDayIndex]; //[self.countArray objectAtIndex:kData.highValDayIndex];
+    _numberArray[kData.highValDayIndex] = tmpHighCount+1;
+    
+}
+
+
+-(void)logOutStatResult
+{
+    SMLog(@"logOutStatResult");
+    for(long i=1; i<=4; i++){
+        CGFloat percent = _numberArray[i]*100.f/self.totalLowIndexCount;
+        SMLog(@"Low: index(%ld), percent(%.2f)",i,percent);
+    }
+    
+    for(long i=5; i<=8; i++){
+        CGFloat percent = _numberArray[i]*100.f/self.totalHighIndexCount;
+        SMLog(@"High: index(%ld), percent(%.2f)",i,percent);
+    }
+
+}
 
 -(void)logOutResult
 {
@@ -180,6 +227,17 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 //}
 
 
-
+#pragma mark - getter&setter
+-(NSMutableArray*)countArray{
+    if(!_countArray){
+        _countArray = [NSMutableArray array];
+        for(long i=0; i<9; i++){
+            NSNumber* count = [NSNumber numberWithInt:0];
+            [_countArray addObject:count];
+        }
+    }
+    
+    return _countArray;
+}
 
 @end

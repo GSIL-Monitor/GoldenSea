@@ -96,6 +96,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         [self analysisForRaisingLimit];
 
     }
+    
+    
+    [[GSLogout shareManager]logOutStatResult];
 }
 
 -(void)analysis
@@ -200,7 +203,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
-    long theHighestIndex = 5;
     NSDictionary* passDict;
     for(long i=6; i<[self.contentArray count]-9; i++ ){
         
@@ -210,7 +212,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
         KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
         
-
+        kT0Data.lowValDayIndex = 1;
+        kT0Data.highValDayIndex = 5;
         
         if([HelpService isRasingLimitValue:kTP1Data.close T0Close:kT0Data.close]){
             kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
@@ -226,6 +229,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.low < theLowestValue){
                         theLowestValue = tempData.low;
+                        kT0Data.lowValDayIndex = j-i;
                     }
                 }
                 
@@ -234,10 +238,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.high > theHighestValue){
                         theHighestValue = tempData.high;
-                        theHighestIndex = j-i;
+                        kT0Data.highValDayIndex = j-i;
                     }
                 }
-                kT0Data.highValDayIndex = theHighestIndex;
                 
                 if(theLowestValue > kT0Data.low){
                     continue;

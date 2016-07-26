@@ -74,11 +74,11 @@
     //    _stkID = @"SH#601002";
     //    _stkID = @"SH#600126"; //hggf
     _stkID = @"002430"; //hygf
-    _stkID = @"002654"; //for test use.
+//    _stkID = @"002654"; //for test use.
     
    
     
-#if 1
+#if 0
     [self testForOne];
 #else
     [self testForAll];

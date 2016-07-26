@@ -117,6 +117,7 @@
 
 @property (assign) CGFloat dvSelltoBuy;
 @property (assign) long highValDayIndex; //after buy day
+@property (assign) long lowValDayIndex; //before buy day
 
 
 @property (strong) DVValue* dvTP2; //tp2 dv property , percent ,  tp2 vs tp3 close
