@@ -84,6 +84,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
     self.startLogCount = 2;
+    long dbgNum = 0;
     
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
@@ -95,6 +96,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //        [self analysis];
         [self analysisForRaisingLimit];
 
+        
+//        //debug
+//        if(dbgNum++ > 20){
+//            break;
+//        }
     }
     
     
@@ -204,11 +210,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     NSDictionary* passDict;
-    for(long i=6; i<[self.contentArray count]-9; i++ ){
+    long statDays = 12;
+    for(long i=6; i<[self.contentArray count]-statDays; i++ ){
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
         KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+        KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
         KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
         KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
         
@@ -220,25 +229,60 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
             if(kT0Data.dvT1.dvClose < 0.f){
                 
+                //filter raise much in shorttime
+                kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
+                kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
+                CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
+                CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
+                    continue;
+                }
+                
+                //filter
+                if(!(kT3Data.close < kT1Data.close || kT4Data.close < kT1Data.close)){
+                    continue;
+                }
+                
                 CGFloat theLowestValue = kT1Data.low;
                 CGFloat theHighestValue = kT5Data.high;
 
                 
                 //check t1-4 low
-                for(long j=i+1; j<i+5; j++){
+                for(long j=i+1; j<=i+4; j++){
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.low < theLowestValue){
                         theLowestValue = tempData.low;
-                        kT0Data.lowValDayIndex = j-i;
+//                        kT0Data.lowValDayIndex = j-i;
                     }
                 }
                 
                 //check t5-8 high
-                for(long j=i+5; j<i+9; j++){
+                for(long j=i+5; j<=i+9; j++){
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.high > theHighestValue){
                         theHighestValue = tempData.high;
+//                        kT0Data.highValDayIndex = j-i;
+                    }
+                }
+                
+                
+                //get low or high index in total periord
+                CGFloat tmpHigh = kT2Data.high;
+                CGFloat tmpLow = kT2Data.low;
+                for(long j=i+2; j<=i+statDays; j++){
+                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
+                    if(tempData.high >= tmpHigh){
+                        tmpHigh = tempData.high;
                         kT0Data.highValDayIndex = j-i;
+                    }
+                    
+                    if(tempData.low <= tmpLow){
+                        tmpLow = tempData.low;
+                        kT0Data.lowValDayIndex = j-i;
+                    }
+                    
+                    if(kT0Data.lowValDayIndex == 1){
+                        NSLog(@"aa");
                     }
                 }
                 
@@ -247,15 +291,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 }
                 
                 
-                //filter up much in shorttime
-                kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
-                kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
-                CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
-                CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
-
-                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
-                    continue;
-                }
+                
                 
                 
                 CGFloat buyValue = kT0Data.low;

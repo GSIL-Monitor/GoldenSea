@@ -14,12 +14,13 @@
 
 
 @interface GSLogout (){
-    long _numberArray[9];
+    long _lowIndexArray[20];
+    long _HighIndexArray[20];
+
 }
 
-@property (nonatomic, assign) long totalLowIndexCount;
-@property (nonatomic, assign) long totalHighIndexCount;
-@property (nonatomic, strong) NSMutableArray* countArray;
+@property (nonatomic, assign) long totalIndexCount;
+//@property (nonatomic, strong) NSMutableArray* countArray;
 
 @end
 
@@ -98,7 +99,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         else{
             if(isJustLogFail && [tmpArray count] ){
                 for (KDataModel* kData in tmpArray) {
-                    SMLog(@"%@ LowVal:%ld,  HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+                    SMLog(@"%@ LowIndex:%ld,  HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
                     [self statIndex:kData];
                 }
             }
@@ -106,7 +107,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         if(!isJustLogFail){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@  LowVal:%ld, HighVal:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
                 [self statIndex:kData];
             }
         }
@@ -117,19 +118,19 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 -(void)statIndex:(KDataModel*)kData
 {
     if(!kData
-       || kData.lowValDayIndex>[self.countArray count]-1
-       || kData.highValDayIndex>[self.countArray count]-1){
+//       || kData.lowValDayIndex>[self.countArray count]-1
+//       || kData.highValDayIndex>[self.countArray count]-1
+       ){
         return;
     }
     
-    self.totalLowIndexCount++;
-    self.totalHighIndexCount++;
+    self.totalIndexCount++;
     
-    long tmpLowCount = _numberArray[kData.lowValDayIndex]; // [self.countArray objectAtIndex:kData.lowValDayIndex];
-    _numberArray[kData.lowValDayIndex] = tmpLowCount+1;
+    long tmpLowCount = _lowIndexArray[kData.lowValDayIndex]; // [self.countArray objectAtIndex:kData.lowValDayIndex];
+    _lowIndexArray[kData.lowValDayIndex] = tmpLowCount+1;
     
-    long tmpHighCount =  _numberArray[kData.highValDayIndex]; //[self.countArray objectAtIndex:kData.highValDayIndex];
-    _numberArray[kData.highValDayIndex] = tmpHighCount+1;
+    long tmpHighCount =  _HighIndexArray[kData.highValDayIndex]; //[self.countArray objectAtIndex:kData.highValDayIndex];
+    _HighIndexArray[kData.highValDayIndex] = tmpHighCount+1;
     
 }
 
@@ -137,16 +138,21 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 -(void)logOutStatResult
 {
     SMLog(@"logOutStatResult");
-    for(long i=1; i<=4; i++){
-        CGFloat percent = _numberArray[i]*100.f/self.totalLowIndexCount;
-        SMLog(@"Low: index(%ld), percent(%.2f)",i,percent);
-    }
+//    for(long i=1; i<=4; i++){
+//        CGFloat percent = _indexArray[i]*100.f/self.totalLowIndexCount;
+//        SMLog(@"Low: index(%ld), percent(%.2f)",i,percent);
+//    }
+//    
+//    for(long i=5; i<=10; i++){
+//        CGFloat percent = _indexArray[i]*100.f/self.totalHighIndexCount;
+//        SMLog(@"High: index(%ld), percent(%.2f)",i,percent);
+//    }
     
-    for(long i=5; i<=8; i++){
-        CGFloat percent = _numberArray[i]*100.f/self.totalHighIndexCount;
-        SMLog(@"High: index(%ld), percent(%.2f)",i,percent);
+    for(long i=1; i<=12; i++){
+        CGFloat lowPercent = _lowIndexArray[i]*100.f/self.totalIndexCount;
+        CGFloat highPercent = _HighIndexArray[i]*100.f/self.totalIndexCount;
+        SMLog(@" index(%ld), LowPercent(%.2f), HighPercent(%.2f)",i,lowPercent,highPercent);
     }
-
 }
 
 -(void)logOutResult
@@ -228,16 +234,16 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 
 #pragma mark - getter&setter
--(NSMutableArray*)countArray{
-    if(!_countArray){
-        _countArray = [NSMutableArray array];
-        for(long i=0; i<9; i++){
-            NSNumber* count = [NSNumber numberWithInt:0];
-            [_countArray addObject:count];
-        }
-    }
-    
-    return _countArray;
-}
+//-(NSMutableArray*)countArray{
+//    if(!_countArray){
+//        _countArray = [NSMutableArray array];
+//        for(long i=0; i<9; i++){
+//            NSNumber* count = [NSNumber numberWithInt:0];
+//            [_countArray addObject:count];
+//        }
+//    }
+//    
+//    return _countArray;
+//}
 
 @end
