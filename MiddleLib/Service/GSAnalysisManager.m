@@ -83,7 +83,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
-    self.startLogCount = 2;
+//    self.startLogCount = 2;
     long dbgNum = 0;
     
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
@@ -105,6 +105,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     
     [[GSLogout shareManager]logOutStatResult];
+    
+    SMLog(@"end of analysisAll");
 }
 
 -(void)analysis
@@ -243,10 +245,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
                 CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
-//                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
-//                    continue;
-//                }
-//                
+                if(dvMa5AndClose > 6.f
+                   || dvMa10AndClose < -8.f
+                   ){
+                    continue;
+                }
+                
 //                //filter
 //                if(!(kT3Data.close < kT1Data.close || kT4Data.close < kT1Data.close)){
 //                    continue;
