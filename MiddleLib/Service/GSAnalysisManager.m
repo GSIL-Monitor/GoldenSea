@@ -210,7 +210,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     NSDictionary* passDict;
-    long statDays = 12;
+    long statDays = 9;
     for(long i=6; i<[self.contentArray count]-statDays; i++ ){
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
@@ -220,6 +220,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
         KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
         KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
+        KDataModel* kT7Data = [self.contentArray objectAtIndex:i+7];
+        KDataModel* kT8Data = [self.contentArray objectAtIndex:i+8];
+
         
         kT0Data.lowValDayIndex = 1;
         kT0Data.highValDayIndex = 5;
@@ -261,7 +264,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.high > theHighestValue){
                         theHighestValue = tempData.high;
-//                        kT0Data.highValDayIndex = j-i;
+                        kT0Data.highValDayIndex = j-i;
                     }
                 }
                 
@@ -271,19 +274,19 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 CGFloat tmpLow = kT2Data.low;
                 for(long j=i+2; j<=i+statDays; j++){
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
-                    if(tempData.high >= tmpHigh){
-                        tmpHigh = tempData.high;
-                        kT0Data.highValDayIndex = j-i;
-                    }
+//                    if(tempData.high >= tmpHigh){
+//                        tmpHigh = tempData.high;
+//                        kT0Data.highValDayIndex = j-i;
+//                    }
                     
                     if(tempData.low <= tmpLow){
                         tmpLow = tempData.low;
                         kT0Data.lowValDayIndex = j-i;
                     }
                     
-                    if(kT0Data.lowValDayIndex == 1){
-                        NSLog(@"aa");
-                    }
+//                    if(kT0Data.lowValDayIndex == 1){
+//                        NSLog(@"aa");
+//                    }
                 }
                 
                 if(theLowestValue > kT0Data.low){
@@ -298,8 +301,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 if(kT4Data.close < kT0Data.low){
                     buyValue = kT4Data.close;
                 }
-                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
-                
+                if(kT0Data.lowValDayIndex != 7){
+                    continue;
+                }
+                //                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
+                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.close];
                 
                 self.totalCount++;
 
