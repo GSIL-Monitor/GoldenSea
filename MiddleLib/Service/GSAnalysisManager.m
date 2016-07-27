@@ -314,11 +314,20 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 if(kT7Data.dvT0.dvClose > -6.0){
                     continue;
                 }
+                
+                if(kT8Data.dvT0.dvLow > -5.0){
+                    continue;
+                }
+                
                 //                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
 //                [self _dispatchResult2Array:kT0Data buy:kT6Data.close sell:kT7Data.close];
 
 //                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
-                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
+//                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
+                
+                buyValue = kT7Data.close*0.95;
+                [self _dispatchResult2Array:kT0Data buy:buyValue sell:kT9Data.open];
+
                 kT0Data.TnData = kT8Data;
                 kT0Data.Tn1Data = kT9Data;
                 
