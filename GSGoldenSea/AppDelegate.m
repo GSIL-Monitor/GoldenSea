@@ -63,7 +63,7 @@
 
 -(void)doInit{
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
-    //    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
+        _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
     _stkID = @"600418"; //jhqc
     //    _stkID = @"002298"; //stsp
     //    _stkID = @"002481";
@@ -111,7 +111,7 @@
 //    
 //
     
-    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+//    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
