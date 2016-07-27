@@ -220,8 +220,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
         KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
         KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
+        KDataModel* kT6Data = [self.contentArray objectAtIndex:i+6];
         KDataModel* kT7Data = [self.contentArray objectAtIndex:i+7];
         KDataModel* kT8Data = [self.contentArray objectAtIndex:i+8];
+        KDataModel* kT9Data = [self.contentArray objectAtIndex:i+9];
 
         
         kT0Data.lowValDayIndex = 1;
@@ -229,6 +231,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         if([HelpService isRasingLimitValue:kTP1Data.close T0Close:kT0Data.close]){
             kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+            kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
+            kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
+            kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
+
 
             if(kT0Data.dvT1.dvClose < 0.f){
                 
@@ -237,14 +243,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
                 CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
-                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
-                    continue;
-                }
-                
-                //filter
-                if(!(kT3Data.close < kT1Data.close || kT4Data.close < kT1Data.close)){
-                    continue;
-                }
+//                if(dvMa5AndClose > 5.f || dvMa10AndClose < -8.f){
+//                    continue;
+//                }
+//                
+//                //filter
+//                if(!(kT3Data.close < kT1Data.close || kT4Data.close < kT1Data.close)){
+//                    continue;
+//                }
                 
                 CGFloat theLowestValue = kT1Data.low;
                 CGFloat theHighestValue = kT5Data.high;
@@ -301,11 +307,16 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 if(kT4Data.close < kT0Data.low){
                     buyValue = kT4Data.close;
                 }
-                if(kT0Data.lowValDayIndex != 7){
+                if(kT7Data.dvT0.dvClose > -6.0){
                     continue;
                 }
                 //                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
-                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.close];
+//                [self _dispatchResult2Array:kT0Data buy:kT6Data.close sell:kT7Data.close];
+
+//                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
+                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
+                kT0Data.TnData = kT8Data;
+                kT0Data.Tn1Data = kT9Data;
                 
                 self.totalCount++;
 

@@ -12,6 +12,8 @@
 #import "GSAnalysisManager.h"
 #import "GSDataInit.h"
 
+//#define Stat_Enabled
+
 
 @interface GSLogout (){
     long _lowIndexArray[20];
@@ -100,15 +102,23 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             if(isJustLogFail && [tmpArray count] ){
                 for (KDataModel* kData in tmpArray) {
                     SMLog(@"%@ LowIndex:%ld,  HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+#ifdef Stat_Enabled
                     [self statIndex:kData];
+#endif
                 }
             }
         }
         
         if(!isJustLogFail){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; Tn-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    Tn1-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
+                      kData.TnData.dvT0.dvOpen,kData.TnData.dvT0.dvHigh,kData.TnData.dvT0.dvClose,kData.TnData.dvT0.dvLow,
+                      kData.Tn1Data.dvT0.dvOpen,kData.Tn1Data.dvT0.dvHigh,kData.Tn1Data.dvT0.dvClose,kData.Tn1Data.dvT0.dvLow                      );
+
+//                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
+#ifdef Stat_Enabled
                 [self statIndex:kData];
+#endif
             }
         }
     }
