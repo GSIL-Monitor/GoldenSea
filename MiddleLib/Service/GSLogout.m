@@ -147,6 +147,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)logOutStatResult
 {
+#ifdef Stat_Enabled
     SMLog(@"logOutStatResult");
 //    for(long i=1; i<=4; i++){
 //        CGFloat percent = _indexArray[i]*100.f/self.totalLowIndexCount;
@@ -163,6 +164,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         CGFloat highPercent = _HighIndexArray[i]*100.f/self.totalIndexCount;
         SMLog(@" index(%ld), LowPercent(%.2f), HighPercent(%.2f)",i,lowPercent,highPercent);
     }
+#endif
 }
 
 -(void)logOutResult
