@@ -102,7 +102,7 @@
 
 @interface KDataModel : HYBaseModel
 
-@property (strong) NSString* time;
+@property (assign) long time;
 
 @property (assign) CGFloat open;
 @property (assign) CGFloat high;

@@ -190,7 +190,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
             switch (i) {
                 case 0:
                     //2011/11/02
-                    kData.time = value;
+//                    kData.time = value;
+                    kData.time = [[value stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
                     break;
                     
                 case 1:
@@ -341,7 +342,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 {
     
     
-    int date =  [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
+    int date =  kData.time; // [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
     
     //tmp solution
     if(date > self.startDate
