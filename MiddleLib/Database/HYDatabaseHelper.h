@@ -54,4 +54,7 @@
  */
 - (BOOL)creatTableWithTable:(NSString *)table Param:(NSDictionary *)param;
 
+
+- (BOOL)exeQuery:(NSString *)sql;
+
 @end

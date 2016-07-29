@@ -29,9 +29,26 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     
     NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB.db"];
-
     
     DDLogInfo(@"dbpath========%@",dbPath);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *err=nil;
+    if ([fileManager fileExistsAtPath:dbPath]) {
+        [fileManager removeItemAtPath:dbPath error:&err];
+        if (err) {
+            NSLog(@"HYLog >>> 移除前天的目录失败：%@", err);
+        }
+    }
+//    if (![fileManager fileExistsAtPath:dbPath]) {
+//        [fileManager createDirectoryAtPath:dbPath withIntermediateDirectories:NO attributes:nil error:&err];
+//        if (err) {
+//            NSLog(@"HYLog >>> log目录创建失败：%@", err);
+//        }
+//    }
+    
+    
+    
     self.databaseQueue = [HYFMDatabaseQueue databaseQueueWithPath:dbPath];
     [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
         
@@ -76,6 +93,16 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
         NSString *sql = [NSString stringWithFormat:@"create table if not exists %@  (%@)",table,strParam];
         ret = [db executeUpdate:sql];
         
+    }];
+    return ret;
+}
+
+
+- (BOOL)exeQuery:(NSString *)sql;
+{
+    __block BOOL ret = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        ret = [db executeUpdate:sql];
     }];
     return ret;
 }

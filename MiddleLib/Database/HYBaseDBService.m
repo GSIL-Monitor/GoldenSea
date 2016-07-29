@@ -80,7 +80,15 @@
     [self isValidKeyToModel];
 #endif
     
-    return [self.dbHelper creatTableWithTable:self.tableName Param:param];
+    if([self.dbHelper creatTableWithTable:self.tableName Param:param]){
+        if (self.createIndexString) {
+            return [self.dbHelper exeQuery:self.createIndexString];
+        }
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 

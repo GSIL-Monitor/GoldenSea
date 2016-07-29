@@ -31,7 +31,8 @@
     self.modelClassString = NSStringFromClass([KDataModel class]);
     self.tableName =  tableName; // @"Table_kData";
     
-    NSDictionary *param = @{                            
+    NSDictionary *param = @{
+                            @"time"         : @"integer primary key",
                             @"volume"       : @"integer",
                             
                             @"open"         : @"float",
@@ -50,11 +51,12 @@
                             
                             @"dif"          : @"float",
                             @"dea"          : @"float",
-                            @"macd"         : @"float",
-                            @"time"         : @"text",
+                            @"macd"         : @"float"
                             };
     
     self.keyTypeDict = param;
+    
+    self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(time)",tableName];
     
     return [super createTable:param];
 }

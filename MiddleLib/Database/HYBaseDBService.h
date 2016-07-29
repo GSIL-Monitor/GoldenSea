@@ -28,6 +28,7 @@ typedef enum {
 @property (nonatomic,strong) NSString* tableName;
 @property (nonatomic,strong) NSDictionary* keyTypeDict; //key:db key, value: db type
 @property (nonatomic,strong) NSString* modelClassString;
+@property (nonatomic,strong) NSString* createIndexString;
 
 - (void)setup;
 
