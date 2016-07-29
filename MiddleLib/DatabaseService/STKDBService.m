@@ -10,6 +10,9 @@
 
 @implementation STKDBService
 
+SINGLETON_GENERATOR(STKDBService, shareManager)
+
+
 -(id)init
 {
     self = [super init];

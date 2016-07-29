@@ -36,7 +36,17 @@ typedef enum {
  *
  *  @return success or not
  */
-- (BOOL)createTable:(NSString*)tableName;
+- (BOOL)createTable;
+- (BOOL)createTable:(NSDictionary*)param;
+
+
+/**
+ *  get the record number of this table.
+ *
+ *  @return number.
+ */
+- (long long)getRecordNumber;
+
 
 /**
  *  get all records

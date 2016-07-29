@@ -9,9 +9,6 @@
 #import "HYDatabaseHelper.h"
 #import "HYFMDatabase.h"
 
-#define DATABASE_FILENAME @"dabase.db"
-
-
 @implementation HYDatabaseHelper
 
 static HYDatabaseHelper *defaultHelper = nil;
@@ -31,7 +28,8 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     __block BOOL rst = NO;
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     
-    NSString *dbPath = [HelpService savePath:DATABASE_FILENAME]; // [paths stringByAppendingPathComponent:DATABASE_FILENAME];
+    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB"];
+
     
     DDLogInfo(@"dbpath========%@",dbPath);
     self.databaseQueue = [HYFMDatabaseQueue databaseQueueWithPath:dbPath];

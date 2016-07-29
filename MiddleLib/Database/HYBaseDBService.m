@@ -45,18 +45,29 @@
 
 
 #pragma mark - interface functions
+-(BOOL)createTable
+{
+    GSAssert(NO,@"You MUST implement it in child class!");
+    
+    return NO;
+}
+
 
 /**
  *  create table
  *
  *  @return success or not
  */
-- (BOOL)createTable:(NSString*)tableName
+- (BOOL)createTable:(NSDictionary*)param
 {
-    NSMutableDictionary* param = [NSMutableDictionary dictionary];
-    for(NSString* key in [self.keyTypeDict allKeys]){
-        [param safeSetValue:[self dbDescriptionForKey:key] forKey:key];
+    NSMutableDictionary* keyType = [NSMutableDictionary dictionary];
+    for(NSString* key in [param allKeys]){
+        NSString* value = [param safeValueForKey:key];
+        [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
     }
+    
+    //get keytypedict.
+    self.keyTypeDict = keyType;
     
 #ifdef DEBUG
     [self isValidKeyToModel];
@@ -106,6 +117,21 @@
     return [NSArray arrayWithArray:allRecordArray];
 }
 
+
+- (long long)getRecordNumber
+{
+    
+    __block int64_t recordNumber = 0;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSString *sqlString = [NSString stringWithFormat:@"SELECT COUNT() FROM %@ ",self.tableName];
+        HYFMResultSet * rs = [db executeQuery:sqlString];
+        if ([rs next]) {
+            recordNumber = [rs intForColumn:@"COUNT()"];
+        }
+        [rs close];
+    }];
+    return recordNumber;
+}
 
 /**
  *  add record
@@ -337,7 +363,7 @@
 {
     NSString* value;
     
-    dbType type = [self dbType:key];
+    dbType type = [self dbTypeWithKey:key];
 
     id recordValue = [recordModel valueForKey:key];
     
@@ -396,7 +422,7 @@
     id value;
 
 
-    dbType type = [self dbType:key];
+    dbType type = [self dbTypeWithKey:key];
     
     switch (type) {
         case dbType_string:
@@ -458,7 +484,7 @@
 //    orig = (1 << 8) + dbType_string;
     isPrimaryKey = (orig >> 8) & 0xFF;
     
-    dbType type = [self dbType:key];
+    dbType type = [self dbTypeWithKey:key];
 
     
     switch (type) {
@@ -475,7 +501,7 @@
             break;
             
         case dbType_longlong:
-            value = @"";
+            value = @"integer";
             break;
             
         case dbType_bool:
@@ -483,11 +509,11 @@
             break;
             
         case dbType_float:
-            value = @"float";
+            value = @"";
             break;
             
         case dbType_double:
-            value = @"double";
+            value = @"";
             break;
             
         case dbType_date:
@@ -521,13 +547,85 @@
     return key;
 }
 
--(dbType)dbType:(NSString*)key
+-(dbType)dbTypeWithKey:(NSString*)key
 {
     NSInteger orig = [[self.keyTypeDict safeObjectForKey:key] integerValue];
     
     //    orig = (1 << 8) + dbType_string;
     
     dbType type = orig & 0xFF;
+    
+    return type;
+}
+
+-(dbType)dbTypeWithValue:(NSString*)valueIn
+{
+    dbType type = dbType_string;
+    NSArray* array = [valueIn componentsSeparatedByString:@" "];
+    NSString* value = [array safeObjectAtIndex:0];
+    
+//    case dbType_string:
+//        value = @"text";
+//        break;
+//        
+//    case dbType_int:
+//        value = @"integer";
+//        break;
+//        
+//    case dbType_long:
+//        value = @"integer";
+//        break;
+//        
+//    case dbType_longlong:
+//        value = @"integer";
+//        break;
+//        
+//    case dbType_bool:
+//        value = @"bool";
+//        break;
+//        
+//    case dbType_float:
+//        value = @"";
+//        break;
+//        
+//    case dbType_double:
+//        value = @"";
+//        break;
+//        
+//    case dbType_date:
+//        value = @"";
+//        break;
+//        
+//    case dbType_data:
+//        value = @"";
+//        break;
+//        
+//    case dbType_obj:
+//        value = @"";
+//        break;
+
+    
+    if([value isEqualToString:@"text"]){
+        type = dbType_string;
+    }else if([value isEqualToString:@"integer"] || [value isEqualToString:@"int"]){
+        type = dbType_int;
+    }else if([value isEqualToString:@"bigint"]){
+        type = dbType_longlong;
+    }else if([value isEqualToString:@"real"] || [value isEqualToString:@"double"]){
+        type = dbType_double;
+    }else if([value isEqualToString:@"float"]){
+        type = dbType_float;
+    }else if([value isEqualToString:@"bool"]){
+        type = dbType_bool;
+    }else if([value isEqualToString:@"date"]){
+        type = dbType_date;
+    }else if([value isEqualToString:@""]){
+        type = dbType_string;
+    }else if([value isEqualToString:@""]){
+        type = dbType_string;
+    }else if([value isEqualToString:@""]){
+        type = dbType_string;
+    }
     
     return type;
 }

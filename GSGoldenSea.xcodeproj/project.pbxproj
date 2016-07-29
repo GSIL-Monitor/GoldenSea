@@ -14,15 +14,16 @@
 		421265451C867A930053787E /* HYDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212653B1C867A930053787E /* HYDatabaseHelper.m */; };
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
-		4212654F1C8680360053787E /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654E1C8680360053787E /* KDataDBService.m */; };
 		4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4236ECBB1D0FF2C40001CF37 /* HYLog.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
-		426007101C896080009AF691 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4260070F1C896080009AF691 /* STKDBService.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
 		426980041CEEF22200D99888 /* GSLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataInit.m */; };
 		4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */; };
 		42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */; };
+		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
+		42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* KDataDBService.m */; };
+		42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* STKDBService.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
 		42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D741C7FF771004E4DC2 /* ViewController.m */; };
@@ -116,14 +117,10 @@
 		421265481C867B7D0053787E /* NSArrayEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayEX.m; sourceTree = "<group>"; };
 		421265491C867B7D0053787E /* NSDictionaryEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryEX.h; sourceTree = "<group>"; };
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
-		4212654D1C8680360053787E /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
-		4212654E1C8680360053787E /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
 		4236ECBA1D0FF2C40001CF37 /* HYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYLog.h; sourceTree = "<group>"; };
 		4236ECBB1D0FF2C40001CF37 /* HYLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLog.m; sourceTree = "<group>"; };
 		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
-		4260070E1C896080009AF691 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
-		4260070F1C896080009AF691 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
 		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
 		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKManager.m; sourceTree = "<group>"; };
 		426980021CEEF22200D99888 /* GSLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSLogout.h; sourceTree = "<group>"; };
@@ -134,6 +131,12 @@
 		426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSAnalysisManager+ex.m"; sourceTree = "<group>"; };
 		42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAnalysisManager.h; sourceTree = "<group>"; };
 		42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAnalysisManager.m; sourceTree = "<group>"; };
+		42C3C9021D4B29420050E676 /* HYDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDBManager.h; sourceTree = "<group>"; };
+		42C3C9031D4B29420050E676 /* HYDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDBManager.m; sourceTree = "<group>"; };
+		42C3C9041D4B29420050E676 /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
+		42C3C9051D4B29420050E676 /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
+		42C3C9061D4B29420050E676 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
+		42C3C9071D4B29420050E676 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -328,6 +331,19 @@
 			path = UtilLib;
 			sourceTree = SOURCE_ROOT;
 		};
+		42C3C9011D4B29420050E676 /* DatabaseService */ = {
+			isa = PBXGroup;
+			children = (
+				42C3C9021D4B29420050E676 /* HYDBManager.h */,
+				42C3C9031D4B29420050E676 /* HYDBManager.m */,
+				42C3C9041D4B29420050E676 /* KDataDBService.h */,
+				42C3C9051D4B29420050E676 /* KDataDBService.m */,
+				42C3C9061D4B29420050E676 /* STKDBService.h */,
+				42C3C9071D4B29420050E676 /* STKDBService.m */,
+			);
+			path = DatabaseService;
+			sourceTree = "<group>";
+		};
 		42E08D611C7FF771004E4DC2 = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				4212652A1C867A930053787E /* Database */,
+				42C3C9011D4B29420050E676 /* DatabaseService */,
 				42E08DD41C7FF8C0004E4DC2 /* Model */,
 				42E08DDA1C7FF8C0004E4DC2 /* Network */,
 				42E08DE91C7FF8C0004E4DC2 /* Request */,
@@ -471,10 +488,6 @@
 		42E08E381C7FF8C0004E4DC2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4212654D1C8680360053787E /* KDataDBService.h */,
-				4212654E1C8680360053787E /* KDataDBService.m */,
-				4260070E1C896080009AF691 /* STKDBService.h */,
-				4260070F1C896080009AF691 /* STKDBService.m */,
 				4204D0551C88160500D27135 /* HelpService.h */,
 				4204D0561C88160500D27135 /* HelpService.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
@@ -858,6 +871,7 @@
 				42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */,
 				42E097301C7FFAEB004E4DC2 /* UIImageView+AFNetworking.m in Sources */,
 				42E098C41C80237B004E4DC2 /* NSObject+JSON.m in Sources */,
+				42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */,
 				42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */,
 				4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */,
 				42E097261C7FFAEB004E4DC2 /* AFNetworkReachabilityManager.m in Sources */,
@@ -879,6 +893,7 @@
 				4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
+				42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */,
 				426007131C896EA5009AF691 /* STKManager.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,
@@ -889,7 +904,6 @@
 				42E08D721C7FF771004E4DC2 /* main.m in Sources */,
 				42E08E591C7FF8C1004E4DC2 /* HYBaseResponse.m in Sources */,
 				42E097951C7FFAEB004E4DC2 /* HYFMDatabasePool.m in Sources */,
-				4212654F1C8680360053787E /* KDataDBService.m in Sources */,
 				42E08E5C1C7FF8C1004E4DC2 /* HYRequestManager.m in Sources */,
 				42E08E571C7FF8C1004E4DC2 /* HYBaseModel.m in Sources */,
 				42E097CA1C7FFAEB004E4DC2 /* Reachability.m in Sources */,
@@ -904,7 +918,7 @@
 				42E0979A1C7FFAEB004E4DC2 /* iCarousel.m in Sources */,
 				42E097981C7FFAEB004E4DC2 /* DebugTool.c in Sources */,
 				42E098191C7FFAEB004E4DC2 /* YTKNetworkConfig.m in Sources */,
-				426007101C896080009AF691 /* STKDBService.m in Sources */,
+				42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
 				42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
