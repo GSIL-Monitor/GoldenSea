@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDataDBService.h"
+
 
 @interface HYDBManager : NSObject
 
@@ -16,5 +18,6 @@
 - (void)setupDB;
 - (BOOL)closeDB;
 
+-(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol;
 
 @end

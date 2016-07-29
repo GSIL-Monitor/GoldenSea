@@ -10,11 +10,11 @@
 #import "HYDatabaseHelper.h"
 
 #import "STKDBService.h"
-#import "KDataDBService.h"
 
 @interface HYDBManager()
 
 @property (nonatomic, strong) HYDatabaseHelper        *DBHelper;
+@property (strong) NSMutableDictionary* stkdbDict;
 
 @end
 
@@ -25,7 +25,7 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
 -(id)init
 {
     if(self = [super init]){
-        
+        _stkdbDict = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -52,5 +52,18 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
     return rst;
 }
 
+
+-(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol
+{
+    KDataDBService* dataDBService = [self.stkdbDict safeValueForKey:symbol];
+    if(!dataDBService){
+        dataDBService = [[KDataDBService alloc]init];
+        [dataDBService setup];
+        [dataDBService createTableWithName:symbol];
+        [self.stkdbDict safeSetValue:dataDBService forKey:symbol];
+    }
+    
+    return dataDBService;
+}
 
 @end

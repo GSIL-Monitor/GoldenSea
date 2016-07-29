@@ -40,18 +40,21 @@
                             @"close"        : @"float",
                             @"low"          : @"float",
                             
-                            @"chg"          : @"float",
-                            @"percent"      : @"float",
-                            @"turnrate"     : @"float",
-                            
                             @"ma5"          : @"float",
                             @"ma10"         : @"float",
                             @"ma20"         : @"float",
                             @"ma30"         : @"float",
                             
-                            @"dif"          : @"float",
-                            @"dea"          : @"float",
-                            @"macd"         : @"float"
+                            @"isLimitUp"          :@"bool",
+                            @"isLimitDown"          :@"bool",
+                            
+//                            @"chg"          : @"float",
+//                            @"percent"      : @"float",
+//                            @"turnrate"     : @"float",
+//                            
+//                            @"dif"          : @"float",
+//                            @"dea"          : @"float",
+//                            @"macd"         : @"float"
                             };
     
     self.keyTypeDict = param;

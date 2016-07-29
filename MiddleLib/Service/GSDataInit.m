@@ -7,6 +7,7 @@
 //
 
 #import "GSDataInit.h"
+#import "HYDBManager.h"
 
 @implementation GSDataInit
 
@@ -21,6 +22,84 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     }
     
     return self;
+}
+
+
+-(void)writeDataToDB:(NSString*)docsDir;
+{
+    //    self.startLogCount = 2;
+    long dbgNum = 0;
+    
+    self.startDate = 20020101;
+    self.endDate = 20200101;
+    
+    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    for(NSString* file in files){
+        NSString* stkID = [file lastPathComponent];
+        stkID = [stkID stringByDeletingPathExtension];
+        
+        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+        
+        KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
+
+        [self addDataToTable:service];
+    }
+    
+    
+    SMLog(@"end of writeDataToDB");
+}
+
+
+
+-(void)addDataToTable:(KDataDBService*) service
+{
+    
+    if(!service || [self.contentArray count]<20 ){
+        return;
+    }
+    
+    NSDictionary* passDict;
+    for(long i=6; i<[self.contentArray count]-3; i++ ){
+        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
+        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
+        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
+        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+        
+        
+        
+        kT0Data.T1Data = kT1Data;
+        kT0Data.TP1Data = kTP1Data;
+        
+        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        
+        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+        
+        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
+        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
+        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
+        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
+        
+        
+        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+        kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
+
+        
+        //add record.
+        [service addRecord:kT0Data];
+    }
+    
+    
+ 
+    
 }
 
 
@@ -340,11 +419,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 
 -(BOOL)isMeetPeriodCondition:(KDataModel*)kData;
 {
+    long date =  kData.time; // [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
     
-    
-    int date =  kData.time; // [[kData.time stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
-    
-    //tmp solution
     if(date > self.startDate
        && date < self.endDate){
         return YES;

@@ -231,7 +231,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.lowValDayIndex = 1;
         kT0Data.highValDayIndex = 5;
         
-        if([HelpService isRasingLimitValue:kTP1Data.close T0Close:kT0Data.close]){
+        if([HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close]){
             kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
             kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];

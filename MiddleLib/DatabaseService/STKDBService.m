@@ -44,7 +44,7 @@ SINGLETON_GENERATOR(STKDBService, shareManager)
     
     
     //test.
-    self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(stkID)",tableName];
+//    self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(stkID)",tableName];
 
     
     return [super createTable:param];

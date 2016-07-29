@@ -10,11 +10,11 @@
 #import "KDataRequest.h"
 #import "KDataDBService.h"
 #import "HYDatabaseHelper.h"
+#import "HYDBManager.h"
 
 
 @interface STKManager ()
 
-@property (strong) NSMutableDictionary* stkdbDict;
 
 @end
 
@@ -28,7 +28,6 @@ SINGLETON_GENERATOR(STKManager, shareManager);
 {
     self = [super init];
     if(self){
-        _stkdbDict = [NSMutableDictionary dictionary];
         
         [self setupDB];
     }
@@ -46,18 +45,7 @@ SINGLETON_GENERATOR(STKManager, shareManager);
 }
 
 
--(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol
-{
-    KDataDBService* dataDBService = [self.stkdbDict safeValueForKey:symbol];
-    if(!dataDBService){
-        dataDBService = [[KDataDBService alloc]init];
-        [dataDBService setup];
-        [dataDBService createTableWithName:symbol];
-        [self.stkdbDict safeSetValue:dataDBService forKey:symbol];
-    }
-    
-    return dataDBService;
-}
+
 
 -(void)test
 {
@@ -92,7 +80,7 @@ SINGLETON_GENERATOR(STKManager, shareManager);
         //save to db.
         for(long i = 0; i<[dataModel.chartlist count]; i++){
             KDataModel* ele = [dataModel.chartlist safeObjectAtIndex:i];
-            KDataDBService* service = [self dbserviceWithSymbol:reqModel.symbol];
+            KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
             [service addRecord:ele];
         }
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {

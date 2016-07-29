@@ -111,6 +111,8 @@
 
 @property (assign) int volume;
 
+@property (assign) BOOL isLimitUp;
+@property (assign) BOOL isLimitDown;
 
 @property (strong) KDataModel* TP1Data;
 @property (strong) KDataModel* T1Data;

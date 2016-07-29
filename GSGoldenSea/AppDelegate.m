@@ -66,7 +66,7 @@
 
 -(void)doInit{
     _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
-        _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
+//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
     _stkID = @"600418"; //jhqc
     //    _stkID = @"002298"; //stsp
     //    _stkID = @"002481";
@@ -79,7 +79,8 @@
     _stkID = @"002430"; //hygf
 //    _stkID = @"002654"; //for test use.
     
-   
+    [[GSDataInit shareManager]writeDataToDB:_dir];
+    return;
     
 #if 0
     [self testForOne];
