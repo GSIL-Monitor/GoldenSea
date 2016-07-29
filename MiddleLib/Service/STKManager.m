@@ -52,7 +52,7 @@ SINGLETON_GENERATOR(STKManager, shareManager);
     if(!dataDBService){
         dataDBService = [[KDataDBService alloc]init];
         [dataDBService setup];
-        [dataDBService createTable:symbol];
+        [dataDBService createTableWithName:symbol];
         [self.stkdbDict safeSetValue:dataDBService forKey:symbol];
     }
     

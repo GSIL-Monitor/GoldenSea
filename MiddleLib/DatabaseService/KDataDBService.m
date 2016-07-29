@@ -26,39 +26,37 @@
 
 
 
-- (BOOL)createTable:(NSString*)tableName
+- (BOOL)createTableWithName:(NSString*)tableName
 {
     self.modelClassString = NSStringFromClass([KDataModel class]);
     self.tableName =  tableName; // @"Table_kData";
     
-    NSDictionary *param = @{
-//                            @"kdataID"                    : [NSNumber numberWithInt:((1 << 8) + dbType_int)],
+    NSDictionary *param = @{                            
+                            @"volume"       : @"integer",
                             
-                            @"volume"                      : [NSNumber numberWithInt:dbType_int],
+                            @"open"         : @"float",
+                            @"high"         : @"float",
+                            @"close"        : @"float",
+                            @"low"          : @"float",
                             
-                            @"open"   : [NSNumber numberWithInt:dbType_float],
-                            @"high"       : [NSNumber numberWithInt:dbType_float],
-                            @"close"   : [NSNumber numberWithInt:dbType_float],
-                            @"low"       : [NSNumber numberWithInt:dbType_float],
+                            @"chg"          : @"float",
+                            @"percent"      : @"float",
+                            @"turnrate"     : @"float",
                             
-                            @"chg"   : [NSNumber numberWithInt:dbType_float],
-                            @"percent"   : [NSNumber numberWithInt:dbType_float],
-                            @"turnrate"       : [NSNumber numberWithInt:dbType_float],
+                            @"ma5"          : @"float",
+                            @"ma10"         : @"float",
+                            @"ma20"         : @"float",
+                            @"ma30"         : @"float",
                             
-                            @"ma5"   : [NSNumber numberWithInt:dbType_float],
-                            @"ma10"       : [NSNumber numberWithInt:dbType_float],
-                            @"ma20"   : [NSNumber numberWithInt:dbType_float],
-                            @"ma30"       : [NSNumber numberWithInt:dbType_float],
-                            
-                            @"dif"   : [NSNumber numberWithInt:dbType_float],
-                            @"dea"       : [NSNumber numberWithInt:dbType_float],
-                            @"macd"   : [NSNumber numberWithInt:dbType_float],
-                            @"time"       : [NSNumber numberWithInt:dbType_string],
+                            @"dif"          : @"float",
+                            @"dea"          : @"float",
+                            @"macd"         : @"float",
+                            @"time"         : @"text",
                             };
     
     self.keyTypeDict = param;
     
-    return [super createTable:tableName];
+    return [super createTable:param];
 }
 
 

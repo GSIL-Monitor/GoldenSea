@@ -7,6 +7,7 @@
 //
 
 #import "STKDBService.h"
+#import "STKModel.h"
 
 @implementation STKDBService
 
@@ -25,22 +26,23 @@ SINGLETON_GENERATOR(STKDBService, shareManager)
 
 
 
-- (BOOL)createTable:(NSString*)tableName
+- (BOOL)createTableWithName:(NSString*)tableName
 {
-//    self.modelClassString = NSStringFromClass([KDataModel class]);
+    self.modelClassString = NSStringFromClass([STKModel class]);
     self.tableName =  tableName; // @"Table_kData";
     
-    NSDictionary *param = @{
-                            @"kSTKID"                    : [NSNumber numberWithInt:((1 << 8) + dbType_int)],
-                            
-                            
+    NSDictionary *param = @{                            
+                            @"stkID"                    : @"text primary key",
+//                            @"type"                      : @"integer",
+//                            @"relatedRecordID"   : @"text",
+//                            @"createdTimeStamp"       : @"integer"
                             
       
                             };
     
     self.keyTypeDict = param;
     
-    return [super createTable:tableName];
+    return [super createTable:param];
 }
 
 

@@ -28,7 +28,7 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     __block BOOL rst = NO;
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     
-    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB"];
+    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB.db"];
 
     
     DDLogInfo(@"dbpath========%@",dbPath);

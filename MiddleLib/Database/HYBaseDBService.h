@@ -37,6 +37,8 @@ typedef enum {
  *  @return success or not
  */
 - (BOOL)createTable;
+- (BOOL)createTableWithName:(NSString*)tableName;
+
 - (BOOL)createTable:(NSDictionary*)param;
 
 

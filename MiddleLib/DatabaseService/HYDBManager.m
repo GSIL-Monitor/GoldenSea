@@ -39,7 +39,7 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
    
     
     [[STKDBService shareManager]setup];
-    if([[STKDBService shareManager]createTable]){
+    if([[STKDBService shareManager]createTableWithName:@"tSTKBasicInfo"]){
         DDLogInfo(@"STK table create success!");
     }
     

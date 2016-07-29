@@ -11,6 +11,7 @@
 #import "HYRequestManager.h"
 
 #import "HYDatabaseHelper.h"
+#import "HYDBManager.h"
 #import "KDataDBService.h"
 
 #import "STKManager.h"
@@ -33,6 +34,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    [[HYDBManager defaultManager]setupDB];
     
 //    [[HYLog shareManager] enableLog];
     

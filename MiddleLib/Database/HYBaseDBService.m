@@ -52,6 +52,13 @@
     return NO;
 }
 
+- (BOOL)createTableWithName:(NSString*)tableName;
+{
+    GSAssert(NO,@"You MUST implement it in child class!");
+    
+    return NO;
+}
+
 
 /**
  *  create table
