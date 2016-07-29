@@ -41,6 +41,7 @@ typedef enum {
 - (BOOL)createTableWithName:(NSString*)tableName;
 
 - (BOOL)createTable:(NSDictionary*)param;
+- (BOOL)createTableByArray:(NSArray*)param;
 
 
 /**

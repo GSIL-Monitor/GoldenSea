@@ -91,6 +91,32 @@
     return NO;
 }
 
+- (BOOL)createTableByArray:(NSArray*)param;
+{
+    NSMutableDictionary* keyType = [NSMutableDictionary dictionary];
+    for(NSString* key in [param allKeys]){
+        NSString* value = [param safeValueForKey:key];
+        [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
+    }
+    
+    //get keytypedict.
+    self.keyTypeDict = keyType;
+    
+#ifdef DEBUG
+    [self isValidKeyToModel];
+#endif
+    
+    if([self.dbHelper creatTableWithTable:self.tableName Param:param]){
+        if (self.createIndexString) {
+            return [self.dbHelper exeQuery:self.createIndexString];
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 
 
 - (NSArray *)getAllRecords

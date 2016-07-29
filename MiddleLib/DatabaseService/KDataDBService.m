@@ -57,6 +57,32 @@
 //                            @"macd"         : @"float"
                             };
     
+    NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
+                            @{@"volume"       : @"integer"},
+                            
+                            @{@"open"         : @"float"},
+                            @{@"high"         : @"float"},
+                            @{@"close"        : @"float"},
+                            @{@"low"          : @"float"},
+                            
+                            @{@"ma5"          : @"float"},
+                            @{@"ma10"         : @"float"},
+                            @{@"ma20"         : @"float"},
+                            @{@"ma30"         : @"float"},
+                            
+                            @{@"isLimitUp"          :@"bool"},
+                            @{@"isLimitDown"          :@"bool"}
+                            
+                            //                            @"chg"          : @"float",
+                            //                            @"percent"      : @"float",
+                            //                            @"turnrate"     : @"float",
+                            //
+                            //                            @"dif"          : @"float",
+                            //                            @"dea"          : @"float",
+                            //                            @"macd"         : @"float"
+                            
+                            ];
+    
     self.keyTypeDict = param;
     
     self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(time)",tableName];

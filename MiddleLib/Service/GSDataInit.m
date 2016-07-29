@@ -27,6 +27,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 
 -(void)writeDataToDB:(NSString*)docsDir;
 {
+    
+    
     //    self.startLogCount = 2;
     long dbgNum = 0;
     
@@ -37,12 +39,15 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     for(NSString* file in files){
         NSString* stkID = [file lastPathComponent];
         stkID = [stkID stringByDeletingPathExtension];
+        stkID = [stkID stringByReplacingOccurrencesOfString:@"#" withString:@""];
         
         self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
         
         KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
         [self addDataToTable:service];
+        
+        SMLog(@"bb");
     }
     
     
