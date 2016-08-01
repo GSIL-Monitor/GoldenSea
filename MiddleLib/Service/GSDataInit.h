@@ -31,6 +31,7 @@ typedef enum {
 @property (assign) MarketType marketType;
 
 -(void)writeDataToDB:(NSString*)docsDir;
+-(NSArray*)getDataFromDB:(NSString*)stkID;
 
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;

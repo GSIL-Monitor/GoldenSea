@@ -37,7 +37,7 @@ SINGLETON_GENERATOR(STKManager, shareManager);
 
 -(void)setupDB
 {
-    [[HYDatabaseHelper defaultHelper] setupDB];
+//    [[HYDatabaseHelper defaultHelper] setupDB];
     
 
     

@@ -41,7 +41,7 @@
 
 + (HYDatabaseHelper *)defaultHelper;
 
-- (BOOL)setupDB;
+- (BOOL)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 - (BOOL)closeDB;
 
 /**

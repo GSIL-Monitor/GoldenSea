@@ -24,6 +24,13 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     return self;
 }
 
+//stkid should be such as SH600011
+-(NSArray*)getDataFromDB:(NSString*)stkID;
+{
+    KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
+    NSArray* array = [service getAllRecords ];
+    return array;
+}
 
 -(void)writeDataToDB:(NSString*)docsDir;
 {
@@ -47,7 +54,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 
         [self addDataToTable:service];
         
-        SMLog(@"bb");
+        SMLog(@"%@",stkID);
     }
     
     
@@ -64,29 +71,30 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     }
     
     NSDictionary* passDict;
-    for(long i=6; i<[self.contentArray count]-3; i++ ){
-        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
-        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
-        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
-        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
-        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+    for(long i=1; i<[self.contentArray count]-1; i++ ){
+//        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
+//        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
+//        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
+//        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
+//        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+//        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+//        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+        
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+
         
         
-        
-        kT0Data.T1Data = kT1Data;
-        kT0Data.TP1Data = kTP1Data;
-        
-        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
-        
-        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+//        kT0Data.T1Data = kT1Data;
+//        kT0Data.TP1Data = kTP1Data;
+//        
+//        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+//        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+//        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+//        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+//        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+//        
+//        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
         
         kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
         kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];

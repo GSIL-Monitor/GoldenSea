@@ -51,7 +51,6 @@
 //<----------
 
 
--(void)analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
 -(void)analysisAllInDir:(NSString*)docsDir;
 
 

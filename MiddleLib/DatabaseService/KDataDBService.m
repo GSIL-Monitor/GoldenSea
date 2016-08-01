@@ -28,33 +28,8 @@
 - (BOOL)createTableWithName:(NSString*)tableName
 {
     self.modelClassString = NSStringFromClass([KDataModel class]);
-    self.tableName =  tableName; // @"Table_kData";
+    self.tableName =  tableName; 
     
-//    NSDictionary *param = @{
-//                            @"time"         : @"integer primary key",
-//                            @"volume"       : @"integer",
-//                            
-//                            @"open"         : @"float",
-//                            @"high"         : @"float",
-//                            @"close"        : @"float",
-//                            @"low"          : @"float",
-//                            
-//                            @"ma5"          : @"float",
-//                            @"ma10"         : @"float",
-//                            @"ma20"         : @"float",
-//                            @"ma30"         : @"float",
-//                            
-//                            @"isLimitUp"          :@"bool",
-//                            @"isLimitDown"          :@"bool",
-//                            
-////                            @"chg"          : @"float",
-////                            @"percent"      : @"float",
-////                            @"turnrate"     : @"float",
-////                            
-////                            @"dif"          : @"float",
-////                            @"dea"          : @"float",
-////                            @"macd"         : @"float"
-//                            };
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
                             @{@"volume"       : @"integer"},
@@ -83,7 +58,7 @@
                             ];
     
     
-    self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(time)",tableName];
+    self.createIndexString = [NSString stringWithFormat: @"create index index_time_%@ on %@(time)",tableName,tableName];
     
     return [super createTable:paramArray];
 }

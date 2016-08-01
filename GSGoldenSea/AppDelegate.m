@@ -23,7 +23,8 @@
 
 @interface AppDelegate (){
     
-    NSString* _dir;
+    NSString* _filedir;
+    NSString* _dbdir;
     NSString* _stkID;
 
 }
@@ -34,8 +35,16 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/数据备份/KDay/20111110-20160729",[paths stringByDeletingLastPathComponent]];
+    _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160801.db",[paths stringByDeletingLastPathComponent]];
+
+
     
-    [[HYDBManager defaultManager]setupDB];
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
+    
+//    [[GSDataInit shareManager]writeDataToDB:_filedir];
+//    return;
     
 //    [[HYLog shareManager] enableLog];
     
@@ -65,24 +74,17 @@
 }
 
 -(void)doInit{
-    _dir = @"/Users/frankweng/Code/1HelpCode/0数据/data20160523";
-//    _dir = @"/Users/fieldwind/Code/1HelpCode/0数据/export";
-    _stkID = @"600418"; //jhqc
-    //    _stkID = @"002298"; //stsp
-    //    _stkID = @"002481";
-    //    _stkID = @"000592"; //ptfz
-    //    _stkID = @"000751"; //
-    //    _stkID = @"SH#000001";
-    //    _stkID = @"600807"; //tygf
-    //    _stkID = @"SH#601002";
-    //    _stkID = @"SH#600126"; //hggf
-    _stkID = @"002430"; //hygf
-//    _stkID = @"002654"; //for test use.
+
+    _stkID = @"SH600418"; //jhqc
     
-    [[GSDataInit shareManager]writeDataToDB:_dir];
-    return;
+    //    _stkID = @"SH601002";
+    //    _stkID = @"SH600126"; //hggf
+//    _stkID = @"SZ002430"; //hygf
+    _stkID = @"SZ002654"; //for test use.
     
-#if 0
+
+    
+#if 1
     [self testForOne];
 #else
     [self testForAll];
@@ -118,7 +120,7 @@
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
-    [[GSAnalysisManager shareManager]analysisAllInDir:_dir];
+    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
     
     
 }
@@ -143,7 +145,7 @@
     
 //    [GSCondition shareManager].shapeCond= ShapeCondition_MA5UpMA10;
 //    
-    [[GSAnalysisManager shareManager]_analysisFile:_stkID inDir:_dir];
+    [[GSAnalysisManager shareManager]_analysisFile:_stkID inDir:_filedir];
     
 
 }

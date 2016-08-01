@@ -31,16 +31,18 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
     return self;
 }
 
-- (void)setupDB
+- (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
     self.DBHelper = [HYDatabaseHelper defaultHelper];
-    [self.DBHelper setupDB];
+    [self.DBHelper setupDB:dbPath isReset:isReset];
     
    
     
     [[STKDBService shareManager]setup];
     if([[STKDBService shareManager]createTableWithName:@"tSTKBasicInfo"]){
-        DDLogInfo(@"STK table create success!");
+//        DDLogInfo(@"STK table create success!");
+    }else{
+        DDLogInfo(@"STK table create failed!");
     }
     
    

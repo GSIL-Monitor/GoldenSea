@@ -15,7 +15,7 @@
 +(HYDBManager *)defaultManager;
 
 
-- (void)setupDB;
+- (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;;
 - (BOOL)closeDB;
 
 -(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol;

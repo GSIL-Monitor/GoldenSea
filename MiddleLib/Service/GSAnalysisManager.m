@@ -36,35 +36,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     return self;
 }
 
--(void)analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
-{
-    [GSDataInit shareManager].startDate = 20110101;
-    [GSDataInit shareManager].endDate = 20120101;
-    [self _analysisFile:stkUUID inDir:docsDir];
-
-    [GSDataInit shareManager].startDate = 20120101;
-    [GSDataInit shareManager].endDate = 20130101;
-    [self _analysisFile:stkUUID inDir:docsDir];
-
-
-    [GSDataInit shareManager].startDate = 20140101;
-    [GSDataInit shareManager].endDate = 20150101;
-    [self _analysisFile:stkUUID inDir:docsDir];
-
-
-    [GSDataInit shareManager].startDate = 20150101;
-    [GSDataInit shareManager].endDate = 20160101;
-    [self _analysisFile:stkUUID inDir:docsDir];
-
-
-    [GSDataInit shareManager].startDate = 20160101;
-    [GSDataInit shareManager].endDate = 20170101;
-    [self _analysisFile:stkUUID inDir:docsDir];
-    
-//    [self _analysisFile:stkUUID inDir:docsDir];
-
-
-}
 
 -(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
@@ -74,7 +45,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     self.stkID = stkUUID;
     
     
-    self.contentArray = [[GSDataInit shareManager] buildDataWithStkUUID:stkUUID inDir:docsDir];
+//    self.contentArray = [[GSDataInit shareManager] buildDataWithStkUUID:stkUUID inDir:docsDir];
+    self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
     
     //        [self analysis];
     [self analysisForRaisingLimit];
@@ -91,7 +63,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         [self reset];
         self.stkID = [file lastPathComponent];
         
-        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+//        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+        self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
+
         
 //        [self analysis];
         [self analysisForRaisingLimit];

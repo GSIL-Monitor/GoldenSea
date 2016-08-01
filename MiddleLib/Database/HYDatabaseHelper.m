@@ -23,30 +23,24 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     return self;
 }
 
-- (BOOL)setupDB
+- (BOOL)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
     __block BOOL rst = NO;
-    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+//    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+//    
+//    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB.db"];
     
-    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB.db"];
     
-    DDLogInfo(@"dbpath========%@",dbPath);
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *err=nil;
-    if ([fileManager fileExistsAtPath:dbPath]) {
-        [fileManager removeItemAtPath:dbPath error:&err];
-        if (err) {
-            NSLog(@"HYLog >>> 移除前天的目录失败：%@", err);
+    if(isReset){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError *err=nil;
+        if ([fileManager fileExistsAtPath:dbPath]) {
+            [fileManager removeItemAtPath:dbPath error:&err];
+            if (err) {
+                NSLog(@"Remove old db failed：%@", err);
+            }
         }
     }
-//    if (![fileManager fileExistsAtPath:dbPath]) {
-//        [fileManager createDirectoryAtPath:dbPath withIntermediateDirectories:NO attributes:nil error:&err];
-//        if (err) {
-//            NSLog(@"HYLog >>> log目录创建失败：%@", err);
-//        }
-//    }
-    
     
     
     self.databaseQueue = [HYFMDatabaseQueue databaseQueueWithPath:dbPath];
@@ -56,11 +50,11 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
         if ([db open])
         {
             rst = YES;
-            DDLogInfo(@"数据库创建成功");
+//            DDLogInfo(@"数据库创建成功");
         }else
         {
             rst = NO;
-            DDLogInfo(@"数据库创建失败！");
+//            DDLogInfo(@"数据库创建失败！");
         }
     }];
     return rst;
