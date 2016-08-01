@@ -110,6 +110,13 @@
     [self isValidKeyToModel];
 #endif
     
+//    BOOL isAlreadyExist = NO;
+//    if (self.createIndexString){
+//        NSString* sqlString = [NSString stringWithFormat: @" SELECT * FROM sqlite_master WHERE name ='%@' and type='table'",self.tableName];
+//        isAlreadyExist = [self.dbHelper exeQuery:sqlString];
+//    }
+
+    
     BOOL res = NO;
     if([param isKindOfClass:[NSDictionary class]]){
         res = [self.dbHelper creatTableWithTable:self.tableName DictParam:param];
