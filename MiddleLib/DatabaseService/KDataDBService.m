@@ -18,7 +18,6 @@
 {
     self = [super init];
     if(self){
-        //        [self createTable];
     }
     
     return self;
@@ -31,31 +30,31 @@
     self.modelClassString = NSStringFromClass([KDataModel class]);
     self.tableName =  tableName; // @"Table_kData";
     
-    NSDictionary *param = @{
-                            @"time"         : @"integer primary key",
-                            @"volume"       : @"integer",
-                            
-                            @"open"         : @"float",
-                            @"high"         : @"float",
-                            @"close"        : @"float",
-                            @"low"          : @"float",
-                            
-                            @"ma5"          : @"float",
-                            @"ma10"         : @"float",
-                            @"ma20"         : @"float",
-                            @"ma30"         : @"float",
-                            
-                            @"isLimitUp"          :@"bool",
-                            @"isLimitDown"          :@"bool",
-                            
-//                            @"chg"          : @"float",
-//                            @"percent"      : @"float",
-//                            @"turnrate"     : @"float",
+//    NSDictionary *param = @{
+//                            @"time"         : @"integer primary key",
+//                            @"volume"       : @"integer",
 //                            
-//                            @"dif"          : @"float",
-//                            @"dea"          : @"float",
-//                            @"macd"         : @"float"
-                            };
+//                            @"open"         : @"float",
+//                            @"high"         : @"float",
+//                            @"close"        : @"float",
+//                            @"low"          : @"float",
+//                            
+//                            @"ma5"          : @"float",
+//                            @"ma10"         : @"float",
+//                            @"ma20"         : @"float",
+//                            @"ma30"         : @"float",
+//                            
+//                            @"isLimitUp"          :@"bool",
+//                            @"isLimitDown"          :@"bool",
+//                            
+////                            @"chg"          : @"float",
+////                            @"percent"      : @"float",
+////                            @"turnrate"     : @"float",
+////                            
+////                            @"dif"          : @"float",
+////                            @"dea"          : @"float",
+////                            @"macd"         : @"float"
+//                            };
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
                             @{@"volume"       : @"integer"},
@@ -83,11 +82,10 @@
                             
                             ];
     
-    self.keyTypeDict = param;
     
     self.createIndexString = [NSString stringWithFormat: @"create index index_time on %@(time)",tableName];
     
-    return [super createTable:param];
+    return [super createTable:paramArray];
 }
 
 

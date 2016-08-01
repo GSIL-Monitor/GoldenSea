@@ -28,7 +28,7 @@
 @protocol DatabaseHelperDelegate <NSObject>
 
 //创建数据库表
-- (BOOL)creatTableWithTable:(NSString *)table Param:(NSDictionary *)param;
+- (BOOL)creatTableWithTable:(NSString *)table DictParam:(NSDictionary *)param;
 
 @end
 
@@ -52,7 +52,8 @@
  *
  *  @return 是否创建成功
  */
-- (BOOL)creatTableWithTable:(NSString *)table Param:(NSDictionary *)param;
+- (BOOL)creatTableWithTable:(NSString *)table DictParam:(NSDictionary *)param;
+- (BOOL)creatTableWithTable:(NSString *)table ArrayParam:(NSArray *)param;
 
 
 - (BOOL)exeQuery:(NSString *)sql;

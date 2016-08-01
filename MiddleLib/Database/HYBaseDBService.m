@@ -45,13 +45,6 @@
 
 
 #pragma mark - interface functions
--(BOOL)createTable
-{
-    GSAssert(NO,@"You MUST implement it in child class!");
-    
-    return NO;
-}
-
 - (BOOL)createTableWithName:(NSString*)tableName;
 {
     GSAssert(NO,@"You MUST implement it in child class!");
@@ -65,39 +58,50 @@
  *
  *  @return success or not
  */
-- (BOOL)createTable:(NSDictionary*)param
-{
-    NSMutableDictionary* keyType = [NSMutableDictionary dictionary];
-    for(NSString* key in [param allKeys]){
-        NSString* value = [param safeValueForKey:key];
-        [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
-    }
-    
-    //get keytypedict.
-    self.keyTypeDict = keyType;
-    
-#ifdef DEBUG
-    [self isValidKeyToModel];
-#endif
-    
-    if([self.dbHelper creatTableWithTable:self.tableName Param:param]){
-        if (self.createIndexString) {
-            return [self.dbHelper exeQuery:self.createIndexString];
-        }
-        
-        return YES;
-    }
-    
-    return NO;
-}
+//- (BOOL)createTable:(NSDictionary*)param
+//{
+//    NSMutableDictionary* keyType = [NSMutableDictionary dictionary];
+//    for(NSString* key in [param allKeys]){
+//        NSString* value = [param safeValueForKey:key];
+//        [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
+//    }
+//    
+//    //get keytypedict.
+//    self.keyTypeDict = keyType;
+//    
+//#ifdef DEBUG
+//    [self isValidKeyToModel];
+//#endif
+//    
+//    if([self.dbHelper creatTableWithTable:self.tableName DictParam:param]){
+//        if (self.createIndexString) {
+//            return [self.dbHelper exeQuery:self.createIndexString];
+//        }
+//        
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
 
-- (BOOL)createTableByArray:(NSArray*)param;
+- (BOOL)createTable:(id)param;
 {
     NSMutableDictionary* keyType = [NSMutableDictionary dictionary];
-    for(NSString* key in [param allKeys]){
-        NSString* value = [param safeValueForKey:key];
-        [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
+    
+    if([param isKindOfClass:[NSDictionary class]]){
+        for(NSString* key in [param allKeys]){
+            NSString* value = [param safeValueForKey:key];
+            [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
+        }
+    }else{
+        for(NSDictionary* dict in param){
+            for(NSString* key in [dict allKeys]){
+                NSString* value = [dict safeValueForKey:key];
+                [keyType safeSetValue:[NSNumber numberWithInt:[self dbTypeWithValue:value]] forKey:key];
+            }
+        }
     }
+    
     
     //get keytypedict.
     self.keyTypeDict = keyType;
@@ -106,7 +110,14 @@
     [self isValidKeyToModel];
 #endif
     
-    if([self.dbHelper creatTableWithTable:self.tableName Param:param]){
+    BOOL res = NO;
+    if([param isKindOfClass:[NSDictionary class]]){
+        res = [self.dbHelper creatTableWithTable:self.tableName DictParam:param];
+    }else{
+        res = [self.dbHelper creatTableWithTable:self.tableName ArrayParam:param];
+    }
+    
+    if(res){
         if (self.createIndexString) {
             return [self.dbHelper exeQuery:self.createIndexString];
         }

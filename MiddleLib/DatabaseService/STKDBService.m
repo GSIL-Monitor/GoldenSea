@@ -18,7 +18,6 @@ SINGLETON_GENERATOR(STKDBService, shareManager)
 {
     self = [super init];
     if(self){
-        //        [self createTable];
     }
     
     return self;
@@ -40,7 +39,6 @@ SINGLETON_GENERATOR(STKDBService, shareManager)
       
                             };
     
-    self.keyTypeDict = param;
     
     
     //test.

@@ -74,7 +74,7 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     return rst;
 }
 
-- (BOOL)creatTableWithTable:(NSString *)table Param:(NSDictionary *)param
+- (BOOL)creatTableWithTable:(NSString *)table DictParam:(NSDictionary *)param
 {
     __block BOOL ret = NO;
     [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
@@ -97,6 +97,30 @@ SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
     return ret;
 }
 
+
+- (BOOL)creatTableWithTable:(NSString *)table ArrayParam:(NSArray *)param;
+{
+    __block BOOL ret = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        NSMutableString *strParam = nil;
+        
+        for(NSDictionary* dict in param){
+            for(NSString* key in [dict allKeys]){
+                NSString* obj = [dict safeValueForKey:key];
+                if (!strParam) {
+                    strParam = [[NSString stringWithFormat:@"%@ %@",key,obj]mutableCopy];
+                }else{
+                    [strParam appendString:[NSString stringWithFormat:@",%@ %@",key,obj]];
+                }
+            }           
+        }
+        
+        NSString *sql = [NSString stringWithFormat:@"create table if not exists %@  (%@)",table,strParam];
+        ret = [db executeUpdate:sql];
+        
+    }];
+    return ret;
+}
 
 - (BOOL)exeQuery:(NSString *)sql;
 {

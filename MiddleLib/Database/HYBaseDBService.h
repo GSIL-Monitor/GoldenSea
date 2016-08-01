@@ -37,11 +37,17 @@ typedef enum {
  *
  *  @return success or not
  */
-- (BOOL)createTable;
 - (BOOL)createTableWithName:(NSString*)tableName;
 
-- (BOOL)createTable:(NSDictionary*)param;
-- (BOOL)createTableByArray:(NSArray*)param;
+
+/**
+ *  create the Table, used by child class call
+ *
+ *  @param param
+ *
+ *  @return
+ */
+- (BOOL)createTable:(id)param;
 
 
 /**
