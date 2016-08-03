@@ -68,8 +68,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
         
 //        [self analysis];
-        [self analysisForRaisingLimit];
-
+//        [self analysisForRaisingLimit];
+        [self queryRaisingLimit];
         
 //        //debug
 //        if(dbgNum++ > 20){
@@ -168,6 +168,59 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 }
 
 
+-(void)queryRaisingLimit
+{
+    self.totalCount=0;
+    
+    if(![self.contentArray count]){
+        return;
+    }
+    
+    NSDictionary* passDict;
+    long statDays = 1;
+    for(long i=0; i<[self.contentArray count]-statDays; i++ ){
+        
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+//        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+//        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+//        KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
+//        KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
+//        KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
+//        KDataModel* kT6Data = [self.contentArray objectAtIndex:i+6];
+//        KDataModel* kT7Data = [self.contentArray objectAtIndex:i+7];
+//        KDataModel* kT8Data = [self.contentArray objectAtIndex:i+8];
+//        KDataModel* kT9Data = [self.contentArray objectAtIndex:i+9];
+        
+        
+        kT0Data.lowValDayIndex = 1;
+        kT0Data.highValDayIndex = 5;
+        
+        if(kT0Data.isLimitUp){
+            kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+//            kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
+//            kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
+//            kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
+            
+            SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+            continue;
+            
+            if(kT0Data.dvT1.dvClose < 0.f){
+                
+                SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+                continue;
+            }
+        }
+        
+    }
+    
+    
+    
+    if(self.totalCount > self.startLogCount){
+        [[GSLogout shareManager] SimpleLogOutResult:NO];
+    }
+    
+}
+
 
 
 -(void)analysisForRaisingLimit
@@ -203,9 +256,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
             kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
-
+            
+            SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+            continue;
 
             if(kT0Data.dvT1.dvClose < 0.f){
+                
+                SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+                continue;
                 
                 //filter raise much in shorttime
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];

@@ -10,4 +10,6 @@
 
 @interface KDataDBService : HYBaseDBService
 
+- (NSArray *)getRecords:(long)startTime end:(long)endTime;
+
 @end

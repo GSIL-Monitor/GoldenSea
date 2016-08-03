@@ -117,7 +117,9 @@
 //    
 //
     
-    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //marketType_ShenZhenMainAndZhenXiaoBan;
+//    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //marketType_ShenZhenMainAndZhenXiaoBan;
+    
+    [GSDataInit shareManager].startDate = 20160725;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];

@@ -28,7 +28,9 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 -(NSArray*)getDataFromDB:(NSString*)stkID;
 {
     KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
-    NSArray* array = [service getAllRecords ];
+//    NSArray* array = [service getAllRecords ];
+    NSArray* array = [service getRecords:self.startDate end:self.endDate ];
+
     return array;
 }
 
