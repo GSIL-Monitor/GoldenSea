@@ -32,15 +32,22 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     return array;
 }
 
+
 -(void)writeDataToDB:(NSString*)docsDir;
 {
-    
-    
+    [self _writeDataToDB:docsDir FromDate:20020101 EndDate:20200101];
+}
+
+-(void)writeDataToDB:(NSString*)docsDir FromDate:(int)startDate;
+{
+    [self _writeDataToDB:docsDir FromDate:startDate EndDate:20200101];
+}
+
+-(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
+{
     //    self.startLogCount = 2;
     long dbgNum = 0;
     
-    self.startDate = 20020101;
-    self.endDate = 20200101;
     
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
