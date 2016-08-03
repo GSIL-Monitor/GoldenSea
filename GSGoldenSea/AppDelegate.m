@@ -84,7 +84,7 @@
     
 
     
-#if 1
+#if 0
     [self testForOne];
 #else
     [self testForAll];
@@ -117,7 +117,7 @@
 //    
 //
     
-//    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //marketType_ShenZhenMainAndZhenXiaoBan;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];

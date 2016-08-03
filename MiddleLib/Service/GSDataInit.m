@@ -51,9 +51,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
-        NSString* stkID = [file lastPathComponent];
-        stkID = [stkID stringByDeletingPathExtension];
-        stkID = [stkID stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        NSString* stkID = [HelpService stkIDWithFile:file];
         
         self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
         

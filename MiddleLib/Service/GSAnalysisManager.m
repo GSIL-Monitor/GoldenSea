@@ -61,7 +61,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self reset];
-        self.stkID = [file lastPathComponent];
+        self.stkID = [HelpService stkIDWithFile:file];
         
 //        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
         self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
@@ -116,13 +116,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
         
-        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
-        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
-        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
-        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
-        
-            
-           
 
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
         
@@ -205,7 +198,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.lowValDayIndex = 1;
         kT0Data.highValDayIndex = 5;
         
-        if([HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close]){
+        if(kT0Data.isLimitUp){
             kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
             kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
@@ -215,8 +208,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             if(kT0Data.dvT1.dvClose < 0.f){
                 
                 //filter raise much in shorttime
-                kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
-                kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
                 CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
                 if(dvMa5AndClose > 6.f
@@ -282,16 +273,16 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 
                 
                 CGFloat buyValue = kT0Data.low;
-                if(kT4Data.close < kT0Data.low){
-                    buyValue = kT4Data.close;
-                }
-                if(kT7Data.dvT0.dvClose > -6.0){
-                    continue;
-                }
-                
-                if(kT8Data.dvT0.dvLow > -9.0){
-                    continue;
-                }
+//                if(kT4Data.close < kT0Data.low){
+//                    buyValue = kT4Data.close;
+//                }
+//                if(kT7Data.dvT0.dvClose > -6.0){
+//                    continue;
+//                }
+//                
+//                if(kT8Data.dvT0.dvLow > -9.0){
+//                    continue;
+//                }
                 
                 
                 if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
@@ -306,11 +297,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
 //                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
                 
-                buyValue = kT7Data.close*0.91;
-                [self _dispatchResult2Array:kT0Data buy:buyValue sell:kT9Data.high];
+//                buyValue = kT7Data.close*0.91;
+                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
 
-                kT0Data.TnData = kT8Data;
-                kT0Data.Tn1Data = kT9Data;
+//                kT0Data.TnData = kT8Data;
+//                kT0Data.Tn1Data = kT9Data;
                 
                 self.totalCount++;
 
@@ -449,6 +440,96 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 
 
+//-(void)analysis
+//{
+//    self.totalCount=0;
+//    
+//    if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
+//        return;
+//    }
+//    
+//    NSDictionary* passDict;
+//    for(long i=6; i<[self.contentArray count]-3; i++ ){
+//        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
+//        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
+//        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
+//        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
+//        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
+//        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
+//        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+//        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+//        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+//        
+//        
+//        
+//        kT0Data.T1Data = kT1Data;
+//        kT0Data.TP1Data = kTP1Data;
+//        
+//        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+//        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+//        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+//        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+//        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+//        
+//        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+//        
+//        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
+//        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
+//        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
+//        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
+//        
+//        
+//        
+//        
+//        passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
+//        
+//        
+//        //dv condintoon
+//        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvTP2]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvTP1]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.t0dayCond DVValue:kT0Data.dvT0]){
+//            continue;
+//        }
+//        
+//        if(![self isMeetDVConditon:self.t1dayCond DVValue:kT0Data.dvT1]){
+//            continue;
+//        }
+//        
+//        
+//        
+//        
+//        //shape condition
+//        if(![[GSCondition shareManager] isMeetShapeCond:passDict]){
+//            continue;
+//        }
+//        
+//        //t0 condition
+//        if(![self isMeetT0Condition:passDict]){
+//            continue;
+//        }
+//        
+//        //        if(![self isMeetAddtionCond:passDict]){
+//        //            continue;
+//        //        }
+//        
+//        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+1];
+//        
+//        self.totalCount++;
+//    }
+//    
+//    
+//    
+//    if(self.totalCount > self.startLogCount){
+//        [[GSLogout shareManager] logOutResult];
+//    }
+//    
+//}
 
 
 @end

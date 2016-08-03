@@ -100,4 +100,13 @@
 }
 
 
++(NSString*)stkIDWithFile:(NSString*)file;
+{
+    NSString* stkID = [file lastPathComponent];
+    stkID = [stkID stringByDeletingPathExtension];
+    stkID = [stkID stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    
+    return stkID;
+}
+
 @end

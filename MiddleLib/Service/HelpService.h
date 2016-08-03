@@ -23,4 +23,7 @@
 
 +(BOOL)isLimitUpValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close;
 +(BOOL)isLimitDownValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close;
+
++(NSString*)stkIDWithFile:(NSString*)file;
+
 @end

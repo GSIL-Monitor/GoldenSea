@@ -58,7 +58,7 @@
                             ];
     
     
-    self.createIndexString = [NSString stringWithFormat: @"create index index_time_%@ on %@(time)",tableName,tableName];
+    self.createIndexString = [NSString stringWithFormat: @"create index if not exists index_time_%@ on %@(time)",tableName,tableName];
     
     return [super createTable:paramArray];
 }
