@@ -80,8 +80,9 @@
     //    _stkID = @"SH601002";
     //    _stkID = @"SH600126"; //hggf
 //    _stkID = @"SZ002430"; //hygf
-    _stkID = @"SZ002654"; //for test use.
-    
+    _stkID = @"SZ000912";
+//    _stkID = @"SZ300460";
+
 
     
 #if 0
@@ -119,7 +120,7 @@
     
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //marketType_ShenZhenMainAndZhenXiaoBan;
     
-    [GSDataInit shareManager].startDate = 20160725;
+//    [GSDataInit shareManager].startDate = 20160725;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
     [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];

@@ -68,8 +68,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
         
 //        [self analysis];
-//        [self analysisForRaisingLimit];
-        [self queryRaisingLimit];
+        [self analysisForRaisingLimit];
+//        [self queryRaisingLimit];
         
 //        //debug
 //        if(dbgNum++ > 20){
@@ -201,12 +201,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //            kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
 //            kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
             
-            SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+            SMLog(@"%@ kT0Data: %ld",[self.stkID substringFromIndex:2],kT0Data.time);
             continue;
             
             if(kT0Data.dvT1.dvClose < 0.f){
                 
-                SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
+                SMLog(@"%@ kT0Data: %ld",[self.stkID substringFromIndex:2],kT0Data.time);
                 continue;
             }
         }
@@ -257,13 +257,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
             kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
             
-            SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
-            continue;
+ 
 
             if(kT0Data.dvT1.dvClose < 0.f){
-                
-                SMLog(@"%@ kT0Data: %ld",self.stkID,kT0Data.time);
-                continue;
                 
                 //filter raise much in shorttime
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
@@ -280,7 +276,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                }
                 
                 CGFloat theLowestValue = kT1Data.low;
-                CGFloat theHighestValue = kT5Data.high;
+                CGFloat theHighestValue = kT7Data.high;
 
                 
                 //check t1-4 low
@@ -293,7 +289,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 }
                 
                 //check t5-8 high
-                for(long j=i+5; j<=i+9; j++){
+                for(long j=i+7; j<=i+9; j++){
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
                     if(tempData.high > theHighestValue){
                         theHighestValue = tempData.high;
@@ -355,7 +351,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
 //                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
                 
-//                buyValue = kT7Data.close*0.91;
+                buyValue = kT6Data.close;
                 [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
 
 //                kT0Data.TnData = kT8Data;

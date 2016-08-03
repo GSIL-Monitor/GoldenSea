@@ -12,7 +12,7 @@
 #import "GSAnalysisManager.h"
 #import "GSDataInit.h"
 
-//#define Stat_Enabled
+#define Stat_Enabled
 
 
 @interface GSLogout (){
