@@ -141,11 +141,12 @@
 @property (assign) CGFloat ma30;
 
 
+//@property (assign) CGFloat percent; //换手率
 
 
 ////below is reserved.
+// those tech index is rubbish! do wrong every time when you believe it.
 //@property (assign) CGFloat chg; //
-//@property (assign) CGFloat percent; //换手率
 //@property (assign) CGFloat turnrate; //
 //@property (assign) CGFloat dif;
 //@property (assign) CGFloat dea;

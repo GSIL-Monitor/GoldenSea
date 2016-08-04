@@ -49,8 +49,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
     
     //        [self analysis];
-    [self analysisForRaisingLimit];
-    
+//    [self analysisForRaisingLimit];
+    [self queryRaisingLimit];
 }
 
 -(void)analysisAllInDir:(NSString*)docsDir;

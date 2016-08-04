@@ -80,7 +80,7 @@
     //    _stkID = @"SH601002";
     //    _stkID = @"SH600126"; //hggf
 //    _stkID = @"SZ002430"; //hygf
-    _stkID = @"SZ000912";
+    _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
 
 
