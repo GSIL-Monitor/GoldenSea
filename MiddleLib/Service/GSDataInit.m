@@ -450,4 +450,15 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
 }
 
+
+-(BOOL)isSimlarValue:(CGFloat)destValue baseValue:(CGFloat)baseValue Offset:(CGFloat)offset;
+{
+    CGFloat dv = (destValue-baseValue)*100.f/baseValue;
+    if(fabs(dv) > offset){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 @end

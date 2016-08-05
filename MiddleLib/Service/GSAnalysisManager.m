@@ -232,7 +232,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     NSDictionary* passDict;
-    long statDays = 9;
+    long statDays = 11;
+    long middleIndex = 7;
     for(long i=6; i<[self.contentArray count]-statDays; i++ ){
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
@@ -275,41 +276,39 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                    continue;
 //                }
                 
-                CGFloat theLowestValue = kT1Data.low;
-                CGFloat theHighestValue = kT7Data.high;
+                CGFloat theLowestValue = 1000.f;
+                CGFloat theHighestValue = 0.f;
 
                 
                 //check t1-4 low
-                for(long j=i+1; j<=i+4; j++){
-                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
-                    if(tempData.low < theLowestValue){
-                        theLowestValue = tempData.low;
-//                        kT0Data.lowValDayIndex = j-i;
-                    }
-                }
-                
-                //check t5-8 high
-                for(long j=i+7; j<=i+9; j++){
-                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
-                    if(tempData.high > theHighestValue){
-                        theHighestValue = tempData.high;
-                        kT0Data.highValDayIndex = j-i;
-                    }
-                }
+//                for(long j=i+1; j<=i+4; j++){
+//                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
+//                    if(tempData.low < theLowestValue){
+//                        theLowestValue = tempData.low;
+////                        kT0Data.lowValDayIndex = j-i;
+//                    }
+//                }
+//                
+//                //check t5-8 high
+//                for(long j=i+7; j<=i+statDays; j++){
+//                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
+//                    if(tempData.high > theHighestValue){
+//                        theHighestValue = tempData.high;
+//                        kT0Data.highValDayIndex = j-i;
+//                    }
+//                }
                 
                 
                 //get low or high index in total periord
-                CGFloat tmpHigh = kT2Data.high;
-                CGFloat tmpLow = kT2Data.low;
-                for(long j=i+2; j<=i+statDays; j++){
+                for(long j=i+4; j<=i+statDays; j++){
                     KDataModel* tempData = [self.contentArray objectAtIndex:j];
-//                    if(tempData.high >= tmpHigh){
-//                        tmpHigh = tempData.high;
-//                        kT0Data.highValDayIndex = j-i;
-//                    }
+                    if(tempData.high >= theHighestValue){
+                        theHighestValue = tempData.high;
+                        kT0Data.highValDayIndex = j-i;
+                    }
                     
-                    if(tempData.low <= tmpLow){
-                        tmpLow = tempData.low;
+                    if(tempData.low <= theLowestValue){
+                        theLowestValue = tempData.low;
                         kT0Data.lowValDayIndex = j-i;
                     }
                     
@@ -351,11 +350,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
 //                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
                 
-                buyValue = kT6Data.close;
+                buyValue = kT8Data.open;
+                theHighestValue = kT9Data.close;
                 [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
 
-//                kT0Data.TnData = kT8Data;
-//                kT0Data.Tn1Data = kT9Data;
+                kT0Data.TnData = kT8Data;
+                kT0Data.Tn1Data = kT9Data;
                 
                 self.totalCount++;
 
