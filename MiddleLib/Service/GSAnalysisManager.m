@@ -262,6 +262,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
             if(kT0Data.dvT1.dvClose < 0.f){
                 
+                if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
+                   ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
+                   ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+                    continue;
+                }
+                
                 //filter raise much in shorttime
                 CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
                 CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
@@ -338,13 +344,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //                }
                 
                 
-                if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
-                   ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
-                   ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
-                    continue;
-                }
                 
-                //                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
+                
+//                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
 //                [self _dispatchResult2Array:kT0Data buy:kT6Data.close sell:kT7Data.close];
 
 //                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
