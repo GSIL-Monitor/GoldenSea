@@ -141,11 +141,6 @@
 
 -(void)_dispatchResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
 {
-    self.segIndex = 1;
-    self.totalCount++;
-    self.allTotalCount++;
-
-    
     kT0data.dvSelltoBuy = dvValue;
     
     NSMutableArray* tmpArray;
@@ -162,7 +157,15 @@
         tmpArray = [self.resultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
+    self.totalS2BDVValue += dvValue;
+    self.totalCount++;
+
     
+    
+    //if no money, skip
+    if([self isMoneyInUse:kT0data]){
+        return;
+    }
     
     //save to all
     if (dvValue >= self.destDVValue-0.01){
@@ -175,11 +178,36 @@
         tmpArray = [self.allResultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
-    
-    self.totalS2BDVValue += dvValue;
     self.allTotalS2BDVValue += dvValue;
     
+    self.allTotalCount++;
+
+}
+
+-(BOOL)isMoneyInUse:(KDataModel*)kT0data
+{
+    BOOL isInUse = NO;
     
+    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+        NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
+
+        NSObject* ele = [self.allResultDict objectForKey:keyTime];
+        if(ele){
+            isInUse = YES;
+            break;
+        }
+    }
+    
+    if(!isInUse){
+        for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+            NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
+            
+            [self.allResultDict setObject:@YES forKey:keyTime];
+        }
+    }
+    
+    
+    return isInUse;
 }
 
 
@@ -207,6 +235,7 @@
 -(void)resetForAll
 {
     self.allResultArray = [NSMutableArray array];
+    self.allResultDict = [NSMutableDictionary dictionary];
     self.allTotalCount = 0;
     self.allTotalS2BDVValue = 0;
     

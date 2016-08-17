@@ -31,6 +31,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         _destDVValue = 2.5f;
         _stopDVValue = -3.5f;
         _startLogCount = 0;
+        _segIndex = 1;
     }
     
     return self;
@@ -182,11 +183,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 
                 
                 CGFloat destValue = (1+self.destDVValue/100.f)*buyValue;
-                long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+3 kT0data:kT0Data];
+                long durationAfterBuy = 3;
+                long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+durationAfterBuy kT0data:kT0Data];
                 if(sIndex != -1){ //find
                     sellValue = (1+self.destDVValue/100.f)*buyValue;
                 }else{
-                    kT0Data.TSellData = [self.contentArray objectAtIndex:(i+bIndex+3)];
+                    kT0Data.TSellData = [self.contentArray objectAtIndex:(i+bIndex+durationAfterBuy)];
                     sellValue = kT0Data.TSellData.close;
                 }
 

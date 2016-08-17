@@ -118,16 +118,24 @@
 //    
 //
     
-    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //
-    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-    
+//    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //
+//    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+//    [GSDataInit shareManager].marketType = marketType_ShangHai;
+    [GSDataInit shareManager].marketType = marketType_All;
+
     [GSDataInit shareManager].startDate = 20160125;
 //    [GSDataInit shareManager].startDate = 20160725;
     
-    [GSAnalysisManager shareManager].destDVValue = 5.f;
-    [GSAnalysisManager shareManager].destDVValue = 10.f;
-    
-    for(long i=1; i<15; i++){
+//    [GSAnalysisManager shareManager].destDVValue = 5.f;
+//    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+//    return;
+
+//    [GSAnalysisManager shareManager].destDVValue = 10.f;
+//    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+
+//    for(long i=3; i<15; i++)
+    for(long i=3; i<12; i++)
+    {
         [GSAnalysisManager shareManager].destDVValue = 1.f*i;
         
         [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
