@@ -109,4 +109,88 @@
     return stkID;
 }
 
+
++(long)indexOfValueSmallThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
+{
+    long index = -1;
+    
+    
+    
+    for(long j=startIndex; j<=stopIndex; j++){
+        KDataModel* tempData = [array objectAtIndex:j];
+        
+        if(tempData.low <= theValue){
+            
+            index = j-startIndex;
+        }
+    }
+    
+    return index;
+}
+
++(long)indexOfValueGreatThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
+{
+    long index = -1;
+    
+    
+    
+    for(long j=startIndex; j<=stopIndex; j++){
+        KDataModel* tempData = [array objectAtIndex:j];
+        
+        if(tempData.high >= theValue){
+            
+            index = j-startIndex;
+        }
+    }
+    
+    return index;
+}
+
+
++(CGFloat)minValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
+{
+    CGFloat theLowestValue = 1000.f;
+    CGFloat theHighestValue = 0.f;
+    
+    
+    for(long j=startIndex; j<=stopIndex; j++){
+        KDataModel* tempData = [array objectAtIndex:j];
+//        if(tempData.high >= theHighestValue){
+//            theHighestValue = tempData.high;
+//            kT0Data.highValDayIndex = j-startIndex;
+//        }
+        
+        if(tempData.low <= theLowestValue){
+            theLowestValue = tempData.low;
+            kT0Data.lowValDayIndex = j-startIndex;
+        }
+    }
+    
+    return theLowestValue;
+}
+
++(CGFloat)maxValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
+{
+    CGFloat theLowestValue = 1000.f;
+    CGFloat theHighestValue = 0.f;
+    
+    
+    for(long j=startIndex; j<=stopIndex; j++){
+        KDataModel* tempData = [array objectAtIndex:j];
+        if(tempData.high >= theHighestValue){
+            theHighestValue = tempData.high;
+            kT0Data.highValDayIndex = j-startIndex;
+        }
+        
+//        if(tempData.low <= theLowestValue){
+//            theLowestValue = tempData.low;
+//            kT0Data.lowValDayIndex = j-startIndex;
+//        }
+    }
+    
+    return theHighestValue;
+}
+
+
+
 @end

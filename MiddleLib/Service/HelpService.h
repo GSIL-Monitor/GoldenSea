@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDataModel.h"
+
 
 #define SMLog(frmt, ...) \
 [HelpService log: (frmt), ## __VA_ARGS__]
@@ -25,5 +27,17 @@
 +(BOOL)isLimitDownValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close;
 
 +(NSString*)stkIDWithFile:(NSString*)file;
+
+
++(CGFloat)minValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
++(CGFloat)maxValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
+
+//find the index of first day(from start to stop) which value is samll than the give "theValue"
+//if not find, return -1
++(long)indexOfValueSmallThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
+
+//simaler as indexOfValueSmallThan, just this is great than.
++(long)indexOfValueGreatThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
+
 
 @end

@@ -235,6 +235,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     long statDays = 11;
     long middleIndex = 7;
     for(long i=6; i<[self.contentArray count]-statDays; i++ ){
+        CGFloat buyValue = 0.f;
+        CGFloat sellValue = 0.f;
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
@@ -260,7 +262,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             
  
 
-            if(kT0Data.dvT1.dvClose < 0.f){
+//            if(kT0Data.dvT1.dvClose < 0.f)
+            {
                 
                 if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
                    ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
@@ -277,87 +280,19 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     continue;
                 }
                 
-//                //filter
-//                if(!(kT3Data.close < kT1Data.close || kT4Data.close < kT1Data.close)){
-//                    continue;
-//                }
-                
-                CGFloat theLowestValue = 1000.f;
-                CGFloat theHighestValue = 0.f;
 
-                
-                //check t1-4 low
-//                for(long j=i+1; j<=i+4; j++){
-//                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
-//                    if(tempData.low < theLowestValue){
-//                        theLowestValue = tempData.low;
-////                        kT0Data.lowValDayIndex = j-i;
-//                    }
-//                }
-//                
-//                //check t5-8 high
-//                for(long j=i+7; j<=i+statDays; j++){
-//                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
-//                    if(tempData.high > theHighestValue){
-//                        theHighestValue = tempData.high;
-//                        kT0Data.highValDayIndex = j-i;
-//                    }
-//                }
-                
-                
-                //get low or high index in total periord
-                for(long j=i+4; j<=i+statDays; j++){
-                    KDataModel* tempData = [self.contentArray objectAtIndex:j];
-                    if(tempData.high >= theHighestValue){
-                        theHighestValue = tempData.high;
-                        kT0Data.highValDayIndex = j-i;
-                    }
-                    
-                    if(tempData.low <= theLowestValue){
-                        theLowestValue = tempData.low;
-                        kT0Data.lowValDayIndex = j-i;
-                    }
-                    
-//                    if(kT0Data.lowValDayIndex == 1){
-//                        NSLog(@"aa");
-//                    }
-                }
-                
-                if(theLowestValue > kT0Data.low){
+                buyValue = kTP1Data.ma5 * 0.95;
+                long mIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
+                if(mIndex == -1){ //not find
                     continue;
                 }
                 
+                CGFloat theHighestValue = [HelpService maxValueInArray:self.contentArray start:i+5 stop:i+8 kT0data:kT0Data];
                 
-                
-                
-                
-                CGFloat buyValue = kT0Data.low;
-//                if(kT4Data.close < kT0Data.low){
-//                    buyValue = kT4Data.close;
-//                }
-//                if(kT7Data.dvT0.dvClose > -6.0){
-//                    continue;
-//                }
-//                
-//                if(kT8Data.dvT0.dvLow > -9.0){
-//                    continue;
-//                }
-                
-                
-                
-                
-//                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
-//                [self _dispatchResult2Array:kT0Data buy:kT6Data.close sell:kT7Data.close];
+                [self _dispatchResult2Array:kT0Data buy:buyValue sell:sellValue];
 
-//                [self _dispatchResult2Array:kT0Data buy:kT7Data.close sell:kT8Data.low];
-//                [self _dispatchResult2Array:kT0Data buy:kT8Data.close sell:kT9Data.high];
-                
-                buyValue = kT8Data.open;
-                theHighestValue = kT9Data.close;
-                [self _dispatchResult2Array:kT0Data buy:buyValue sell:theHighestValue];
-
-                kT0Data.TnData = kT8Data;
-                kT0Data.Tn1Data = kT9Data;
+//                kT0Data.TnData = kT8Data;
+//                kT0Data.Tn1Data = kT9Data;
                 
                 self.totalCount++;
 
