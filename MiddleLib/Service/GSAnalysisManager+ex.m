@@ -158,6 +158,8 @@
         tmpArray = [self.resultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
         tmpArray = [self.resultArray objectAtIndex:2];
+    }else{
+        tmpArray = [self.resultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
     
@@ -169,6 +171,8 @@
         tmpArray = [self.allResultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
         tmpArray = [self.allResultArray objectAtIndex:2];
+    }else{
+        tmpArray = [self.allResultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
     

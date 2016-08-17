@@ -98,9 +98,15 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
             lossPercent += percent;
         }
     }
-    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
     
-    if(isForAll){
+    if(!isForAll){
+        SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
+    }else{
+        for(long i=0; i<[resultArray count]; i++){
+            tmpArray = [resultArray objectAtIndex:i];
+            percent = [tmpArray count]*100.f/totalCount;
+            SMLog(@"\n index(%ld), percent(%.2f)", i, percent);
+        }
         return;
     }
 

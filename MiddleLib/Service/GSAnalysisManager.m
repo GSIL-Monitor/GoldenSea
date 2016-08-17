@@ -236,10 +236,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
             kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
-            
- 
 
-//            if(kT0Data.dvT1.dvClose < 0.f)
+            //            if(kT0Data.dvT1.dvClose < 0.f)
             {
                 
                 if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
@@ -267,11 +265,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 sellValue = [HelpService maxCloseValueInArray:self.contentArray start:i+bIndex+1 stop:i+8 kT0data:kT0Data];
                 
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
-
-//                kT0Data.TnData = kT8Data;
-//                kT0Data.Tn1Data = kT9Data;
-                
-
             }
         }
    
