@@ -145,7 +145,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 }
 
 
--(void)logOutStatResult
+-(void)logOutAllResult
 {
 #ifdef Stat_Enabled
     SMLog(@"logOutStatResult");

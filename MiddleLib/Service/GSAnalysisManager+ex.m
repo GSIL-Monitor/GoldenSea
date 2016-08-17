@@ -139,20 +139,15 @@
 
 -(void)_calculateResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
 {
+    self.segIndex = 1;
+
+    
     kT0data.dvSelltoBuy = dvValue;
     
-    //    CGFloat dvUnit = 1.f;
     NSMutableArray* tmpArray;
-    //    if(dvValue > 3.f){
-    //        tmpArray = [self.resultArray objectAtIndex:0];
-    //    }else if (dvValue >= self.destDVValue){
-    //        tmpArray = [self.resultArray objectAtIndex:1];
-    //    }else if (dvValue > -1.5f){
-    //        tmpArray = [self.resultArray objectAtIndex:2];
-    //    }else if (dvValue > -11.f){
-    //        tmpArray = [self.resultArray objectAtIndex:3];
-    //    }
     
+   
+    //save to one
     if (dvValue >= self.destDVValue){
         tmpArray = [self.resultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
@@ -160,9 +155,17 @@
     }else if (dvValue > -11.f){
         tmpArray = [self.resultArray objectAtIndex:2];
     }
+    [tmpArray addObject:kT0data];
     
-    self.segIndex = 1;
     
+    //save to all
+    if (dvValue >= self.destDVValue){
+        tmpArray = [self.allResultArray objectAtIndex:0];
+    }else if (dvValue > -1.5f){
+        tmpArray = [self.allResultArray objectAtIndex:1];
+    }else if (dvValue > -11.f){
+        tmpArray = [self.allResultArray objectAtIndex:2];
+    }
     [tmpArray addObject:kT0data];
     
     self.totalS2BDVValue += dvValue;
@@ -172,7 +175,7 @@
 }
 
 
--(void)reset
+-(void)resetForOne
 {
     self.totalCount = 0;
     self.totalS2BDVValue = 0;
@@ -192,6 +195,21 @@
 }
 
 
+-(void)resetForAll
+{
+    self.allResultArray = [NSMutableArray array];
+    
+    /*
+     Sndday high vs fstday close
+     >3%
+     >0.8%
+     >-1.5%
+     >-10%
+     */
+    for(long i=0; i<4; i++){
+        [self.allResultArray addObject:[NSMutableArray array]];
+    }
+}
 
 
 

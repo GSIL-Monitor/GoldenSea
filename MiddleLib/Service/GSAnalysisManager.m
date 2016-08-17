@@ -40,7 +40,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
     //reset content when every time read file.
-    [self reset];
+    [self resetForOne];
     
     self.stkID = stkUUID;
     
@@ -60,7 +60,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
-        [self reset];
+        [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
         
 //        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
@@ -78,7 +78,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     
-    [[GSLogout shareManager]logOutStatResult];
+    [[GSLogout shareManager]logOutAllResult];
     
     SMLog(@"end of analysisAll");
 }
