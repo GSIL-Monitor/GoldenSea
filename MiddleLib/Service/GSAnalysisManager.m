@@ -55,6 +55,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
+    [self resetForAll];
+    
 //    self.startLogCount = 2;
     long dbgNum = 0;
     
@@ -264,7 +266,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 
                 sellValue = [HelpService maxCloseValueInArray:self.contentArray start:i+bIndex+1 stop:i+8 kT0data:kT0Data];
                 
-                [self _dispatchResult2Array:kT0Data buy:buyValue sell:sellValue];
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
 
 //                kT0Data.TnData = kT8Data;
 //                kT0Data.Tn1Data = kT9Data;

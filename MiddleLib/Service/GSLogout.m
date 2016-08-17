@@ -79,7 +79,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     long totalCount = [GSAnalysisManager shareManager].totalCount;
     if(isForAll){
         resultArray = [GSAnalysisManager shareManager].allResultArray;
-        long totalCount = [GSAnalysisManager shareManager].allTotalCount;
+        totalCount = [GSAnalysisManager shareManager].allTotalCount;
     }
     
 //    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];

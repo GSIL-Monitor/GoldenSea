@@ -100,8 +100,7 @@
         return;
     }
     
-    self.totalCount++;
-    self.allTotalCount++;
+    
     
     KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
     KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
@@ -126,23 +125,25 @@
     }
 #endif
     
-    [self _calculateResult:kT0data dvValue:dvValue];
+    [self _dispatchResult:kT0data dvValue:dvValue];
 
 }
 
 
--(void)_dispatchResult2Array:(KDataModel*)kT0data buy:(CGFloat)buyValue sell:(CGFloat)sellValue
+-(void)dispatchResult2Array:(KDataModel*)kT0data buyValue:(CGFloat)buyValue sellValue:(CGFloat)sellValue
 {
     CGFloat dvValue = (sellValue-buyValue)*100.f/buyValue;
     
-    [self _calculateResult:kT0data dvValue:dvValue];
+    [self _dispatchResult:kT0data dvValue:dvValue];
     
 }
 
 
--(void)_calculateResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
+-(void)_dispatchResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
 {
     self.segIndex = 1;
+    self.totalCount++;
+    self.allTotalCount++;
 
     
     kT0data.dvSelltoBuy = dvValue;
