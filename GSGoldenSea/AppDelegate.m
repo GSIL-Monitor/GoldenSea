@@ -71,6 +71,8 @@
     
     [self doInit];
     
+    //分析最近周期（比如3个月）第一个涨停
+    
 }
 
 -(void)doInit{
