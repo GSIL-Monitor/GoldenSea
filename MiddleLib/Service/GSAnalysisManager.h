@@ -32,6 +32,7 @@
 
 @property (nonatomic,strong) NSMutableArray* allResultArray;
 @property (assign) int allTotalCount;
+@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
 
 
 

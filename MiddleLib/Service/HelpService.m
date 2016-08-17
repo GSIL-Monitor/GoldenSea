@@ -123,7 +123,10 @@
             
             index = j-startIndex;
             kT0Data.lowValDayIndex = index;
-
+            
+            
+            kT0Data.TBuyData = tempData;
+            break; //NOTICE: check the case not break!
         }
     }
     
@@ -135,15 +138,16 @@
     long index = -1;
     
     
-    
     for(long j=startIndex; j<=stopIndex; j++){
         KDataModel* tempData = [array objectAtIndex:j];
         
         if(tempData.high >= theValue){
             
             index = j-startIndex;
-            kT0Data.highValDayIndex = index;
-
+//            kT0Data.highValDayIndex = index;
+            kT0Data.TSellData = tempData;
+            
+            break;
         }
     }
     

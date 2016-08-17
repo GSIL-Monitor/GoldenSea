@@ -30,6 +30,7 @@
 
 
 +(CGFloat)minValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
+
 +(CGFloat)maxCloseValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
 +(CGFloat)maxHighValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
 
@@ -39,6 +40,8 @@
 
 //simaler as indexOfValueSmallThan, just this is great than.
 +(long)indexOfValueGreatThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
+
+
 
 
 @end

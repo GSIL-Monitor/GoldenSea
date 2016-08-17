@@ -106,7 +106,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         for(long i=0; i<[resultArray count]; i++){
             tmpArray = [resultArray objectAtIndex:i];
             percent = [tmpArray count]*100.f/totalCount;
-            SMLog(@"index(%ld), percent(%.2f)", i, percent);
+            SMLog(@"index(%ld), percent(%.2f)   --alltotalS2BDVValue(%2f)", i, percent,[GSAnalysisManager shareManager].allTotalS2BDVValue);
         }
         return;
     }

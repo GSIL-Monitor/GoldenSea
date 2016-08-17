@@ -47,7 +47,6 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
 {
-    //    self.startLogCount = 2;
     long dbgNum = 0;
     
     

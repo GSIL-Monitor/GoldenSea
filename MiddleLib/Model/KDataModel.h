@@ -118,7 +118,9 @@
 @property (strong) KDataModel* T1Data;
 @property (strong) KDataModel* TnData; //n is dynamicl.
 @property (strong) KDataModel* Tn1Data; //n+1 data.
-
+//for check is right
+@property (strong) KDataModel* TBuyData; //n is dynamicl.
+@property (strong) KDataModel* TSellData; //n+1 data.
 
 @property (assign) CGFloat dvSelltoBuy;
 @property (assign) long highValDayIndex; //after buy day

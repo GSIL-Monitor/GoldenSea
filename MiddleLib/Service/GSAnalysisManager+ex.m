@@ -165,7 +165,7 @@
     
     
     //save to all
-    if (dvValue >= self.destDVValue){
+    if (dvValue >= self.destDVValue-0.01){
         tmpArray = [self.allResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
         tmpArray = [self.allResultArray objectAtIndex:1];
@@ -177,7 +177,7 @@
     [tmpArray addObject:kT0data];
     
     self.totalS2BDVValue += dvValue;
-    
+    self.allTotalS2BDVValue += dvValue;
     
     
 }
@@ -185,9 +185,10 @@
 
 -(void)resetForOne
 {
+    self.contentArray = [NSMutableArray array];
+
     self.totalCount = 0;
     self.totalS2BDVValue = 0;
-    self.contentArray = [NSMutableArray array];
     self.resultArray = [NSMutableArray array];
     
     /*
@@ -207,6 +208,7 @@
 {
     self.allResultArray = [NSMutableArray array];
     self.allTotalCount = 0;
+    self.allTotalS2BDVValue = 0;
     
     /*
      Sndday high vs fstday close
