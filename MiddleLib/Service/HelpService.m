@@ -122,6 +122,8 @@
         if(tempData.low <= theValue){
             
             index = j-startIndex;
+            kT0Data.lowValDayIndex = index;
+
         }
     }
     
@@ -140,6 +142,8 @@
         if(tempData.high >= theValue){
             
             index = j-startIndex;
+            kT0Data.highValDayIndex = index;
+
         }
     }
     
@@ -169,7 +173,7 @@
     return theLowestValue;
 }
 
-+(CGFloat)maxValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
++(CGFloat)maxHighValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
 {
     CGFloat theLowestValue = 1000.f;
     CGFloat theHighestValue = 0.f;
@@ -191,6 +195,26 @@
     return theHighestValue;
 }
 
-
++(CGFloat)maxCloseValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
+{
+    CGFloat theLowestValue = 1000.f;
+    CGFloat theHighestValue = 0.f;
+    
+    
+    for(long j=startIndex; j<=stopIndex; j++){
+        KDataModel* tempData = [array objectAtIndex:j];
+        if(tempData.close >= theHighestValue){
+            theHighestValue = tempData.close;
+            kT0Data.highValDayIndex = j-startIndex;
+        }
+        
+        //        if(tempData.low <= theLowestValue){
+        //            theLowestValue = tempData.low;
+        //            kT0Data.lowValDayIndex = j-startIndex;
+        //        }
+    }
+    
+    return theHighestValue;
+}
 
 @end
