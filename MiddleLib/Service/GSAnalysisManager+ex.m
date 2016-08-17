@@ -100,6 +100,9 @@
         return;
     }
     
+    self.totalCount++;
+    self.allTotalCount++;
+    
     KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
     KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
     CGFloat dvValue;
@@ -198,6 +201,7 @@
 -(void)resetForAll
 {
     self.allResultArray = [NSMutableArray array];
+    self.allTotalCount = 0;
     
     /*
      Sndday high vs fstday close

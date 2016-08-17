@@ -64,38 +64,52 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 }
 
 
-
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail
+{
+    [self _SimpleLogOutForAll:NO isJustLogFail:isJustLogFail];
+}
+
+-(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail
 {
     //logOut which loss item
     NSMutableArray* tmpArray;
     CGFloat percent = 0.f;
     
+    NSArray* resultArray = [GSAnalysisManager shareManager].resultArray;
+    long totalCount = [GSAnalysisManager shareManager].totalCount;
+    if(isForAll){
+        resultArray = [GSAnalysisManager shareManager].allResultArray;
+        long totalCount = [GSAnalysisManager shareManager].allTotalCount;
+    }
     
-    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
+//    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
     
     //calulate percent firstly
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
-    for(long i=0; i<[analyMan.resultArray count]; i++){
-        tmpArray = [analyMan.resultArray objectAtIndex:i];
+    for(long i=0; i<[resultArray count]; i++){
+        tmpArray = [resultArray objectAtIndex:i];
         
-        percent = [tmpArray count]*100.f/analyMan.totalCount;
+        percent = [tmpArray count]*100.f/totalCount;
         
-        if(i < analyMan.segIndex){
+        if(i < [GSAnalysisManager shareManager].segIndex){
             winPercent += percent;
         }
         else{
             lossPercent += percent;
         }
     }
-    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
+    
+    if(isForAll){
+        return;
+    }
 
-    for(long i=0; i<[analyMan.resultArray count]; i++){
-        tmpArray = [analyMan.resultArray objectAtIndex:i];
+    for(long i=0; i<[resultArray count]; i++){
+        tmpArray = [resultArray objectAtIndex:i];
         
-        percent = [tmpArray count]*100.f/analyMan.totalCount;
+        percent = [tmpArray count]*100.f/totalCount;
         
-        if(i < analyMan.segIndex){
+        if(i < [GSAnalysisManager shareManager].segIndex){
             //            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
         }
         else{
@@ -165,6 +179,8 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         SMLog(@" index(%ld), LowPercent(%.2f), HighPercent(%.2f)",i,lowPercent,highPercent);
     }
 #endif
+    
+    [self _SimpleLogOutForAll:YES isJustLogFail:NO];
 }
 
 -(void)logOutResult

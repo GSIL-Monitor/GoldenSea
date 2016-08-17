@@ -23,11 +23,17 @@
 +(GSAnalysisManager*)shareManager;
 
 @property (nonatomic,strong) NSArray* contentArray;
+@property (nonatomic,strong) NSString* stkID;
+
+//reslut realted
 @property (nonatomic,strong) NSMutableArray* resultArray;
-@property (nonatomic,strong) NSMutableArray* allResultArray;
 @property (assign) int totalCount;
 @property (nonatomic, assign) CGFloat totalS2BDVValue;
-@property (nonatomic,strong) NSString* stkID;
+
+@property (nonatomic,strong) NSMutableArray* allResultArray;
+@property (assign) int allTotalCount;
+
+
 
 //below is need set--->
 
