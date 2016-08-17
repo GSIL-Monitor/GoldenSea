@@ -38,6 +38,32 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 }
 
 
+-(void)queryAllInDir:(NSString*)docsDir;
+{
+    [self resetForAll];
+    [GSDataInit shareManager].startDate = 20160717;
+    
+    long dbgNum = 0;
+    
+    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    for(NSString* file in files){
+        [self resetForOne];
+        self.stkID = [HelpService stkIDWithFile:file];
+        
+//        //dbg code.
+//        if([self.stkID isNotEqualTo:@"SZ000592"]){
+//            continue;
+//        }
+        
+        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+   
+        [self queryRaisingLimit];
+    }
+    
+    SMLog(@"end of queryAllInDir");
+
+}
+
 -(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
 {
     //reset content when every time read file.
@@ -50,8 +76,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
     
     //        [self analysis];
-//    [self analysisForRaisingLimit];
-    [self queryRaisingLimit];
+    [self analysisForRaisingLimit];
 }
 
 -(void)analysisAllInDir:(NSString*)docsDir;
@@ -64,14 +89,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
-        
-//        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
         self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
 
-        
 //        [self analysis];
         [self analysisForRaisingLimit];
-//        [self queryRaisingLimit];
         
 //        //debug
 //        if(dbgNum++ > 20){
@@ -88,25 +109,32 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(void)queryRaisingLimit
 {
-    
-    if(![self.contentArray count]){
+    //skip new stk.
+    if([self.contentArray count]<20){
         return;
     }
     
-    NSDictionary* passDict;
-    long statDays = 1;
-    for(long i=0; i<[self.contentArray count]-statDays; i++ ){
-        
+//    SMLog(@"stkID:%@",self.stkID);
+    for(long i=[self.contentArray count]-11; i<[self.contentArray count]-1; i++ ){
+        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        
-        kT0Data.lowValDayIndex = 1;
-        kT0Data.highValDayIndex = 5;
+        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+
+
         
         if(kT0Data.isLimitUp){
-            SMLog(@"%@ kT0Data: %ld",[self.stkID substringFromIndex:2],kT0Data.time);
-            continue;
+            
+            kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
+
+
+            //filter raise much in shorttime
+            if([[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
+                SMLog(@"%@ kT0Data: %ld",[self.stkID substringFromIndex:2],kT0Data.time);
+            }else{
+                
+            }
         }
-        
     }
     
     
@@ -164,11 +192,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 }
                 
                 //filter raise much in shorttime
-                CGFloat dvMa5AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
-                CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
-                if(dvMa5AndClose > 6.f
-                   || dvMa10AndClose < -8.f
-                   ){
+                if(![[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
                     continue;
                 }
                 

@@ -83,7 +83,8 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
 
-
+    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
+    return;
     
 #if 0
     [self testForOne];

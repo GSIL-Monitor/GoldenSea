@@ -17,4 +17,7 @@
 @property (assign) long durationAfterBuy;
 @property (assign) CGFloat buyPercent; //such as 0.95
 
+
+-(BOOL)isMapRasingLimitAvgConditon:(KDataModel*)kTP1Data;
+
 @end
