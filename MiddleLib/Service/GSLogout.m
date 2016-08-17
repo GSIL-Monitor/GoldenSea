@@ -102,10 +102,11 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     if(!isForAll){
         SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
     }else{
+        SMLog(@"\n");
         for(long i=0; i<[resultArray count]; i++){
             tmpArray = [resultArray objectAtIndex:i];
             percent = [tmpArray count]*100.f/totalCount;
-            SMLog(@"\n index(%ld), percent(%.2f)", i, percent);
+            SMLog(@"index(%ld), percent(%.2f)", i, percent);
         }
         return;
     }
@@ -168,17 +169,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 -(void)logOutAllResult
 {
 #ifdef Stat_Enabled
-    SMLog(@"logOutStatResult");
-//    for(long i=1; i<=4; i++){
-//        CGFloat percent = _indexArray[i]*100.f/self.totalLowIndexCount;
-//        SMLog(@"Low: index(%ld), percent(%.2f)",i,percent);
-//    }
-//    
-//    for(long i=5; i<=10; i++){
-//        CGFloat percent = _indexArray[i]*100.f/self.totalHighIndexCount;
-//        SMLog(@"High: index(%ld), percent(%.2f)",i,percent);
-//    }
-    
     for(long i=1; i<=12; i++){
         CGFloat lowPercent = _lowIndexArray[i]*100.f/self.totalIndexCount;
         CGFloat highPercent = _HighIndexArray[i]*100.f/self.totalIndexCount;

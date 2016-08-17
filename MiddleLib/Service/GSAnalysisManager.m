@@ -87,7 +87,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 -(void)analysis
 {
-    
     if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
         return;
     }
