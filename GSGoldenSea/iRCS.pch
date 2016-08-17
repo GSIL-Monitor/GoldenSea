@@ -9,31 +9,10 @@
 #ifndef iRCS_iRCS_pch
 #define iRCS_iRCS_pch
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-
-/// TAGS FOR EASY DEBUGGING
-#if TARGET_IPHONE_SIMULATOR
-    #define __SKIP_LITTLEC_VOIP__
-    #define __SKIP_NAT__
-#else
-
-#endif
-
-#define __SKIP_LITTLEC_VOIP__
-
-
-
-#define Is_Test_Step
-
-
-//#import "CocoaLumberjack.h"
-
-//#import <LittlecIm/HDDLog.h>
 
 
 #import <objc/runtime.h>
@@ -63,6 +42,10 @@
 #import "YTKNetworkConfig.h"
 
 #import "HelpService.h"
+
+
+#import "RaisingLimitParam.h"
+
 
 #endif
 

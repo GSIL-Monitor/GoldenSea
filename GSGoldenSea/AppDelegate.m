@@ -98,25 +98,10 @@
 
 -(void)testForAll
 {
-    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    //    tp2con.close_max = 1.f;
-    //    tp2con.close_min = -1.2f;
-    //    [GSAnalysisManager shareManager].tp2dayCond = tp2con;
-    //
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    //    tp1con.close_max = 0.5f;
-    //    tp1con.close_min = -1.2f;
-    //    [GSAnalysisManager shareManager].tp1dayCond = tp1con;
+   
+    [RaisingLimitParam shareInstance].durationAfterBuy = 3;
+    [RaisingLimitParam shareInstance].buyPercent = 0.95;
     
-//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-//    t0con.close_max = -0.f;
-//    t0con.close_min = -1.f;
-//    [GSAnalysisManager shareManager].t0dayCond = t0con;
-//    
-//    [self setOpenValue];
-//
-//    
-//
     
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;

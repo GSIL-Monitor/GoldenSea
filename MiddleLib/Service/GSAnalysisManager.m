@@ -173,7 +173,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 }
                 
 
-                buyValue = kTP1Data.ma5 * 0.95;
+                buyValue = kTP1Data.ma5 * [RaisingLimitParam shareInstance].buyPercent;
                 long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
                 if(bIndex == -1){ //not find
                     continue;
@@ -183,7 +183,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 
                 
                 CGFloat destValue = (1+self.destDVValue/100.f)*buyValue;
-                long durationAfterBuy = 3;
+                long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
                 long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+durationAfterBuy kT0data:kT0Data];
                 if(sIndex != -1){ //find
                     sellValue = (1+self.destDVValue/100.f)*buyValue;

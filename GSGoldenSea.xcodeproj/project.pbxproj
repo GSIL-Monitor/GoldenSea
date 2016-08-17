@@ -90,6 +90,7 @@
 		42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E74FF81CF2E7E5009D483D /* GSCondition.m */; };
 		E42D2D3D1CF4810E00E4D61C /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = E42D2D3C1CF4810E00E4D61C /* main.xib */; };
 		E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */; };
+		E4941B631D64BA15006B792B /* RaisingLimitParam.m in Sources */ = {isa = PBXBuildFile; fileRef = E4941B621D64BA15006B792B /* RaisingLimitParam.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +290,8 @@
 		42E74FF81CF2E7E5009D483D /* GSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCondition.m; sourceTree = "<group>"; };
 		E42D2D3C1CF4810E00E4D61C /* main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
 		E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		E4941B611D64BA15006B792B /* RaisingLimitParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaisingLimitParam.h; sourceTree = "<group>"; };
+		E4941B621D64BA15006B792B /* RaisingLimitParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaisingLimitParam.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +439,7 @@
 				42E08DD41C7FF8C0004E4DC2 /* Model */,
 				42E08DDA1C7FF8C0004E4DC2 /* Network */,
 				42E08DE91C7FF8C0004E4DC2 /* Request */,
+				E4941B601D64B9AD006B792B /* Parameter */,
 				42E08E381C7FF8C0004E4DC2 /* Service */,
 				42E74FF61CF2E7B1009D483D /* Conditon */,
 			);
@@ -759,6 +763,15 @@
 			path = Conditon;
 			sourceTree = "<group>";
 		};
+		E4941B601D64B9AD006B792B /* Parameter */ = {
+			isa = PBXGroup;
+			children = (
+				E4941B611D64BA15006B792B /* RaisingLimitParam.h */,
+				E4941B621D64BA15006B792B /* RaisingLimitParam.m */,
+			);
+			path = Parameter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -887,6 +900,7 @@
 				42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */,
 				4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */,
 				42E097B21C7FFAEB004E4DC2 /* DDMultiFormatter.m in Sources */,
+				E4941B631D64BA15006B792B /* RaisingLimitParam.m in Sources */,
 				42E098141C7FFAEB004E4DC2 /* YTKBatchRequest.m in Sources */,
 				42E0972D1C7FFAEB004E4DC2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				42E097AB1C7FFAEB004E4DC2 /* DDASLLogCapture.m in Sources */,
