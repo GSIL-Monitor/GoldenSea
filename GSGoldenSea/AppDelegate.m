@@ -36,7 +36,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/数据备份/KDay/20111110-20160729",[paths stringByDeletingLastPathComponent]];
+    _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160801.db",[paths stringByDeletingLastPathComponent]];
 
 
@@ -118,12 +118,22 @@
 //    
 //
     
-    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //marketType_ShenZhenMainAndZhenXiaoBan;
+    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //
+    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     
+    [GSDataInit shareManager].startDate = 20160125;
 //    [GSDataInit shareManager].startDate = 20160725;
     
     [GSAnalysisManager shareManager].destDVValue = 5.f;
-    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+    [GSAnalysisManager shareManager].destDVValue = 10.f;
+    
+    for(long i=1; i<15; i++){
+        [GSAnalysisManager shareManager].destDVValue = 1.f*i;
+        
+        [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+
+    }
+    
     
     
 }

@@ -12,8 +12,8 @@
 #import "GSAnalysisManager.h"
 #import "GSDataInit.h"
 
-#define Stat_Enabled
-
+//#define Stat_Enabled
+#define Key_JustLogOut_All 1
 
 @interface GSLogout (){
     long _lowIndexArray[20];
@@ -71,6 +71,12 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail
 {
+    if(Key_JustLogOut_All){
+        if(!isForAll){
+            return;
+        }
+    }
+    
     //logOut which loss item
     NSMutableArray* tmpArray;
     CGFloat percent = 0.f;
@@ -102,7 +108,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     if(!isForAll){
         SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
     }else{
-        SMLog(@"\n");
         for(long i=0; i<[resultArray count]; i++){
             tmpArray = [resultArray objectAtIndex:i];
             percent = [tmpArray count]*100.f/totalCount;
@@ -132,9 +137,9 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         if(!isJustLogFail){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; Tn-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    Tn1-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
-                      kData.TnData.dvT0.dvOpen,kData.TnData.dvT0.dvHigh,kData.TnData.dvT0.dvClose,kData.TnData.dvT0.dvLow,
-                      kData.Tn1Data.dvT0.dvOpen,kData.Tn1Data.dvT0.dvHigh,kData.Tn1Data.dvT0.dvClose,kData.Tn1Data.dvT0.dvLow                      );
+                SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
+                      kData.TBuyData.time,kData.TBuyData.dvT0.dvOpen,kData.TBuyData.dvT0.dvHigh,kData.TBuyData.dvT0.dvClose,kData.TBuyData.dvT0.dvLow,
+                      kData.TSellData.time, kData.TSellData.dvT0.dvOpen,kData.TSellData.dvT0.dvHigh,kData.TSellData.dvT0.dvClose,kData.TSellData.dvT0.dvLow                      );
 
 //                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
 #ifdef Stat_Enabled
@@ -176,6 +181,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     }
 #endif
     
+    SMLog(@"\nLogOutAllResult - destDV(%.2f)",[GSAnalysisManager shareManager].destDVValue);
     [self _SimpleLogOutForAll:YES isJustLogFail:NO];
 }
 
