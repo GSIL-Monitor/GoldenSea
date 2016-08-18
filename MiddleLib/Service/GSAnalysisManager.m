@@ -114,7 +114,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
+    NSMutableArray* queryArray = [NSMutableArray array];
+    
 //    SMLog(@"stkID:%@",self.stkID);
+    long lastIndex = [self.contentArray count]-1;
     for(long i=[self.contentArray count]-11; i<[self.contentArray count]-1; i++ ){
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
@@ -130,12 +133,15 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
             //filter raise much in shorttime
             if([[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
-                if(kT0Data.time >= 20160814 && kT0Data.time <= 20160815){
-                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+                if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
+                    KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
+                    CGFloat dvLast2kTP1DataMA5 = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
+                    
+//                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+//                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
 
-                    if (kT2Data.close < kT1Data.close) {
-                        SMLog(@"%@ kT0Data: %ld",[self.stkID substringFromIndex:2],kT0Data.time);
+                    if (dvLast2kTP1DataMA5 < 5.f) {
+                        SMLog(@"%@ kT0Data: %ld.  dvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, dvLast2kTP1DataMA5);
                     }
                 }
             }else{
