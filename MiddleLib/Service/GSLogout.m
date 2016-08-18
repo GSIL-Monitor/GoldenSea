@@ -107,11 +107,11 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     
     if(!isForAll){
         SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
-    }else{
+    }else{ //for all
         for(long i=0; i<[resultArray count]; i++){
             tmpArray = [resultArray objectAtIndex:i];
             percent = [tmpArray count]*100.f/totalCount;
-            SMLog(@"index(%ld), percent(%.2f)   --alltotalS2BDVValue(%2f)", i, percent,[GSAnalysisManager shareManager].allTotalS2BDVValue);
+            SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
         return;
     }
@@ -181,7 +181,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     }
 #endif
     
-    SMLog(@"\nLogOutAllResult - destDV(%.2f)",[GSAnalysisManager shareManager].destDVValue);
+    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSAnalysisManager shareManager].destDVValue,[GSAnalysisManager shareManager].allTotalCount,[GSAnalysisManager shareManager].allTotalS2BDVValue);
     [self _SimpleLogOutForAll:YES isJustLogFail:NO];
 }
 

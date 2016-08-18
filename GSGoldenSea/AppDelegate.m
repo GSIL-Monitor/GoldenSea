@@ -37,12 +37,12 @@
     // Insert code here to initialize your application
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160801.db",[paths stringByDeletingLastPathComponent]];
+    _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160817.db",[paths stringByDeletingLastPathComponent]];
 
 
     
     [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
-    
+//    
 //    [[GSDataInit shareManager]writeDataToDB:_filedir];
 //    return;
     
@@ -85,8 +85,8 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
 
-    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
-    return;
+//    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
+//    return;
     
 #if 0
     [self testForOne];
@@ -122,13 +122,20 @@
 //    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
 
 //    for(long i=3; i<15; i++)
-    for(long i=3; i<12; i++)
-    {
-        [GSAnalysisManager shareManager].destDVValue = 1.f*i;
+    
+    for(long j = 3;j<8;j++){
+        [RaisingLimitParam shareInstance].buyPercent  = 0.9+(j*0.01);
+        SMLog(@"\n----[RaisingLimitParam shareInstance].buyPercent: %.2f",[RaisingLimitParam shareInstance].buyPercent);
         
-        [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
-
+        for(long i=3; i<12; i++)
+        {
+            [GSAnalysisManager shareManager].destDVValue = 1.f*i;
+            
+            [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+            
+        }
     }
+   
     
     
     
