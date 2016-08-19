@@ -13,6 +13,7 @@
 #import "HYDatabaseHelper.h"
 #import "HYDBManager.h"
 #import "KDataDBService.h"
+#import "QueryDBManager.h"
 
 #import "STKManager.h"
 
@@ -25,8 +26,9 @@
     
     NSString* _filedir;
     NSString* _dbdir;
+    NSString* _queryDbdir; //for query result.
     NSString* _stkID;
-
+    
 }
 
 @end
@@ -35,14 +37,27 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    //get data.
+    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+    [df setDateFormat:@"yyyyMMdd HH.mm.ss"];
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    NSString * strNowDateTime = [df stringFromDate:currentDate];
+    NSString *strNowDate= [strNowDateTime substringToIndex:8];
+    
+    
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160817.db",[paths stringByDeletingLastPathComponent]];
-
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
 
     
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
-//    
+    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
+    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:YES];
+
+    
+//
 //    [[GSDataInit shareManager]writeDataToDB:_filedir];
 //    return;
     

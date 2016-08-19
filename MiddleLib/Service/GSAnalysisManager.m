@@ -143,6 +143,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     if (dvLast2kTP1DataMA5 < 5.f) {
                         SMLog(@"%@ kT0Data: %ld.  dvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, dvLast2kTP1DataMA5);
                     }
+                    
+                    QueryResModel* model = [[QueryResModel alloc]init];
+                    model.stkID = self.stkID;
+                    model.time = kT0Data.time;
+                    [[QueryDBManager defaultManager].qREsDBService addRecord:model];
                 }
             }else{
                 

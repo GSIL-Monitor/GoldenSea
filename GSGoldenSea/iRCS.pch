@@ -48,6 +48,10 @@
 #import "KDataModel.h"
 #import "GSDataInit.h"
 
+
+#import "QueryDBManager.h"
+#import "QueryResModel.h"
+
 #endif
 
 #endif
