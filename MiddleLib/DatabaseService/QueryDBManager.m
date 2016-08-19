@@ -35,7 +35,7 @@ SINGLETON_GENERATOR(QueryDBManager, defaultManager)
     self.qREsDBService = [[QueryResDBService alloc]init];
     [self.qREsDBService setup];
     if([self.qREsDBService createTableWithName:@"tQueryBasicInfo"]){
-        DDLogInfo(@"tQueryBasicInfo table create success!");
+//        DDLogInfo(@"tQueryBasicInfo table create success!");
     }else{
         DDLogInfo(@"tQueryBasicInfo table create failed!");
     }

@@ -24,6 +24,8 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     return self;
 }
 
+
+#pragma mark - db action
 //stkid should be such as SH600011
 -(NSArray*)getDataFromDB:(NSString*)stkID;
 {
@@ -121,6 +123,24 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
 }
 
+
+
+-(NSArray*)getStkRangeFromQueryDB;
+{
+    NSMutableArray* array = [NSMutableArray array];
+    
+    NSArray* qesArray = [[QueryDBManager defaultManager].qREsDBService getAllRecords];
+    for(long i=0; i<[qesArray count]; i++){
+        QueryResModel* qModel = [qesArray objectAtIndex:i];
+        [array addObject:qModel.stkID];
+    }
+    
+    return array;
+}
+
+
+
+#pragma mark - file action
 
 -(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir
 {

@@ -253,4 +253,15 @@
 
 
 
+-(BOOL)isInRange:(NSString*)stkID;
+{
+    if(!self.stkRangeArray || ![self.stkRangeArray count]){
+        return YES;
+    }
+    
+    return [self.stkRangeArray containsObject:stkID];
+
+}
+
+
 @end

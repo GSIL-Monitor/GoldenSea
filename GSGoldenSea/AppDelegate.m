@@ -54,7 +54,7 @@
 
     
     _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
-    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:YES];
+    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
 
     
 //
@@ -99,6 +99,10 @@
 //    _stkID = @"SZ002430"; //hygf
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
+    
+//    [GSAnalysisManager shareManager].stkRangeArray = @[@"SH600000"];
+    [GSAnalysisManager shareManager].stkRangeArray = [[GSDataInit shareManager]getStkRangeFromQueryDB];
+
 
     [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
     return;

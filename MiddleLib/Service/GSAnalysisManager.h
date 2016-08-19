@@ -38,6 +38,9 @@
 
 
 //below is need set--->
+//such as SZ300112 etc.
+@property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
+
 
 @property (assign) CGFloat destDVValue;
 @property (assign) CGFloat stopDVValue;
@@ -66,6 +69,7 @@
 
 //query action
 -(void)queryAllInDir:(NSString*)docsDir;
+-(void)buildQueryAllDBInDir:(NSString*)docsDir;
 
 
 @end

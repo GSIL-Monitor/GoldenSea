@@ -17,6 +17,8 @@
 
 @property (nonatomic,assign) long startLogCount;
 
+@property (nonatomic, assign) BOOL isWriteToQueryDB;
+
 @end
 
 
@@ -37,9 +39,15 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     return self;
 }
 
+-(void)buildQueryAllDBInDir:(NSString*)docsDir;
+{
+    self.isWriteToQueryDB = YES;
+}
 
 -(void)queryAllInDir:(NSString*)docsDir;
 {
+    self.isWriteToQueryDB = NO;
+    
     [self resetForAll];
     [GSDataInit shareManager].startDate = 20160717;
     
@@ -50,10 +58,9 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
         
-//        //dbg code.
-//        if([self.stkID isNotEqualTo:@"SZ000592"]){
-//            continue;
-//        }
+        if(![self isInRange:self.stkID]){
+            continue;
+        }
         
         self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
    
@@ -89,6 +96,12 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
+        
+        
+        if(![self isInRange:self.stkID]){
+            continue;
+        }
+        
         self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
 
 //        [self analysis];
@@ -144,10 +157,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                         SMLog(@"%@ kT0Data: %ld.  dvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, dvLast2kTP1DataMA5);
                     }
                     
-                    QueryResModel* model = [[QueryResModel alloc]init];
-                    model.stkID = self.stkID;
-                    model.time = kT0Data.time;
-                    [[QueryDBManager defaultManager].qREsDBService addRecord:model];
+                    
+                    //write to queryDB if need.
+                    if(self.isWriteToQueryDB){
+                        QueryResModel* model = [[QueryResModel alloc]init];
+                        model.stkID = self.stkID;
+                        model.time = kT0Data.time;
+                        [[QueryDBManager defaultManager].qREsDBService addRecord:model];
+                    }
                 }
             }else{
                 

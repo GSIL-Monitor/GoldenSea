@@ -14,7 +14,7 @@
 +(RaisingLimitParam*)shareInstance;
 
 
-@property (assign) long durationAfterBuy;
+@property (assign) long durationAfterBuy; //the duaration(t+n day) after the buy day.
 @property (assign) CGFloat buyPercent; //such as 0.95
 
 
