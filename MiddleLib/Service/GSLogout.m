@@ -12,12 +12,11 @@
 #import "GSAnalysisManager.h"
 #import "GSDataInit.h"
 
-//#define Stat_Enabled
 #define Key_JustLogOut_All 1
 
 @interface GSLogout (){
-    long _lowIndexArray[20];
-    long _HighIndexArray[20];
+//    long _lowIndexArray[20];
+//    long _HighIndexArray[20];
 
 }
 
@@ -31,37 +30,7 @@
 SINGLETON_GENERATOR(GSLogout, shareManager);
 
 
--(void)logOutResultForStk:(NSString*)stkID
-{
-    //logOut which loss item
-    NSMutableArray* tmpArray;
-    CGFloat percent = 0.f;
-    
-    
-    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
-    
-    //calulate percent firstly
-    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
-    for(long i=0; i<[analyMan.resultArray count]; i++){
-        tmpArray = [analyMan.resultArray objectAtIndex:i];
-        
-        percent = [tmpArray count]*100.f/analyMan.totalCount;
-        
-        if(i < analyMan.segIndex){
-            winPercent += percent;
-        }else{
-            lossPercent += percent;
-        }
-    }
-    
-    if(analyMan.totalCount > 0){
-        SMLog(@"STK:%@ - totalCount(%d): win(%.2f),loss(%.2f)",stkID,analyMan.totalCount,winPercent,lossPercent);
-    }
-    
-    
-    
-    
-}
+
 
 
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail
@@ -77,9 +46,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         }
     }
     
-    //logOut which loss item
-    NSMutableArray* tmpArray;
-    CGFloat percent = 0.f;
     
     NSArray* resultArray = [GSAnalysisManager shareManager].resultArray;
     long totalCount = [GSAnalysisManager shareManager].totalCount;
@@ -91,96 +57,46 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 //    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
     
     //calulate percent firstly
+    NSMutableArray* tmpArray;
+    CGFloat percent = 0.f;
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
     for(long i=0; i<[resultArray count]; i++){
         tmpArray = [resultArray objectAtIndex:i];
-        
         percent = [tmpArray count]*100.f/totalCount;
         
-        if(i < [GSAnalysisManager shareManager].segIndex){
-            winPercent += percent;
-        }
-        else{
-            lossPercent += percent;
-        }
-    }
-    
-    if(!isForAll){
-        SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
-    }else{ //for all
-        for(long i=0; i<[resultArray count]; i++){
-            tmpArray = [resultArray objectAtIndex:i];
-            percent = [tmpArray count]*100.f/totalCount;
+        if(!isForAll){
+            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
+        }else{ //for all
             SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
-        return;
-    }
-
-    for(long i=0; i<[resultArray count]; i++){
-        tmpArray = [resultArray objectAtIndex:i];
         
-        percent = [tmpArray count]*100.f/totalCount;
         
-        if(i < [GSAnalysisManager shareManager].segIndex){
-            //            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
-        }
-        else{
-            if(isJustLogFail && [tmpArray count] ){
-                for (KDataModel* kData in tmpArray) {
-                    SMLog(@"%6ld LowIndex:%ld,  HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
-#ifdef Stat_Enabled
-                    [self statIndex:kData];
-#endif
-                }
+        
+        //logout detail.
+        if(isForAll){
+            for (KDataModel* kData in tmpArray) {
+                SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,kData.TSellData.time, kData.dvSelltoBuy);
             }
-        }
-        
-        if(!isJustLogFail){
+        }else{
             for (KDataModel* kData in tmpArray) {
                 SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
                       kData.TBuyData.time,kData.TBuyData.dvT0.dvOpen,kData.TBuyData.dvT0.dvHigh,kData.TBuyData.dvT0.dvClose,kData.TBuyData.dvT0.dvLow,
                       kData.TSellData.time, kData.TSellData.dvT0.dvOpen,kData.TSellData.dvT0.dvHigh,kData.TSellData.dvT0.dvClose,kData.TSellData.dvT0.dvLow                      );
-
-//                SMLog(@"%@  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy);
-#ifdef Stat_Enabled
-                [self statIndex:kData];
-#endif
             }
         }
+        
     }
     
-}
+    
+    
 
--(void)statIndex:(KDataModel*)kData
-{
-    if(!kData
-//       || kData.lowValDayIndex>[self.countArray count]-1
-//       || kData.highValDayIndex>[self.countArray count]-1
-       ){
-        return;
-    }
     
-    self.totalIndexCount++;
-    
-    long tmpLowCount = _lowIndexArray[kData.lowValDayIndex]; // [self.countArray objectAtIndex:kData.lowValDayIndex];
-    _lowIndexArray[kData.lowValDayIndex] = tmpLowCount+1;
-    
-    long tmpHighCount =  _HighIndexArray[kData.highValDayIndex]; //[self.countArray objectAtIndex:kData.highValDayIndex];
-    _HighIndexArray[kData.highValDayIndex] = tmpHighCount+1;
     
 }
 
 
 -(void)logOutAllResult
 {
-#ifdef Stat_Enabled
-    for(long i=1; i<=12; i++){
-        CGFloat lowPercent = _lowIndexArray[i]*100.f/self.totalIndexCount;
-        CGFloat highPercent = _HighIndexArray[i]*100.f/self.totalIndexCount;
-        SMLog(@" index(%ld), LowPercent(%.2f), HighPercent(%.2f)",i,lowPercent,highPercent);
-    }
-#endif
-    
     SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSAnalysisManager shareManager].destDVValue,[GSAnalysisManager shareManager].allTotalCount,[GSAnalysisManager shareManager].allTotalS2BDVValue);
     [self _SimpleLogOutForAll:YES isJustLogFail:NO];
 }
@@ -201,12 +117,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
-        if(i < analyMan.segIndex){
-            winPercent += percent;
-        }
-        else{
-            lossPercent += percent;
-        }
     }
     SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
@@ -218,13 +128,6 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
-        if(i < analyMan.segIndex){
-            SMLog(@"win itme array :%ld, percent(%.2f)",i,percent);
-        }
-        else{
-            SMLog(@"loss itme array :%ld, percent(%.2f)",i,percent);
-        }
-        
         for (KDataModel* kData in tmpArray) {
             [self logResWithDV:kData];
 //            [self logResWithValue:kData];
@@ -233,6 +136,8 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     
     
 }
+
+
 
 -(void)logResWithDV:(KDataModel*)kData
 {
@@ -255,12 +160,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 }
 
 
-//-(void)logResWithValue:(KDataModel*)kData
-//{
-//    SMLog(@"%6ld  TP1-High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
-//          kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
-//          kData.dvT1.dvOpen,kData.dvT1.dvHigh);
-//}
+
 
 
 #pragma mark - getter&setter

@@ -44,7 +44,6 @@
 
 @property (assign) CGFloat destDVValue;
 @property (assign) CGFloat stopDVValue;
-@property (assign) NSUInteger segIndex;
 
 
 //we will analysis the data which simlar as this value

@@ -33,7 +33,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         _destDVValue = 2.5f;
         _stopDVValue = -3.5f;
         _startLogCount = 0;
-        _segIndex = 1;
     }
     
     return self;
@@ -206,6 +205,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
                 continue;
             }
+            kT0Data.stkID = self.stkID;
+            
             
             if([RaisingLimitParam shareInstance].daysAfterLastLimit == 0)
             {

@@ -13,7 +13,6 @@
 +(GSLogout*)shareManager;
 
 -(void)logOutResult;
--(void)logOutResultForStk:(NSString*)stkID;
 
 -(void)logOutAllResult;
 
