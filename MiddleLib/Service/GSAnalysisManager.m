@@ -42,6 +42,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 -(void)buildQueryAllDBInDir:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = YES;
+    
+    [self queryAllInDir:docsDir];
 }
 
 -(void)queryAllInDir:(NSString*)docsDir;
@@ -77,13 +79,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     [self resetForAll];
     
-    long dbgNum = 0;
-    
     NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
-        
         
         if(![self isInRange:self.stkID]){
             continue;
@@ -94,10 +93,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 //        [self analysis];
         [self analysisForRaisingLimit];
         
-//        //debug
-//        if(dbgNum++ > 20){
-//            break;
-//        }
     }
     
     
@@ -175,6 +170,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         return;
     }
     
+    
+    
     NSDictionary* passDict;
     long statDays = 11;
     long middleIndex = 7;
@@ -204,15 +201,14 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
             kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
 
-            //            if(kT0Data.dvT1.dvClose < 0.f)
+            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
+               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
+               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+                continue;
+            }
+            
+            if([RaisingLimitParam shareInstance].daysAfterLastLimit == 0)
             {
-                
-                if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
-                   ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
-                   ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
-                    continue;
-                }
-                
                 //filter raise much in shorttime
                 if(![[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
                     continue;
@@ -228,16 +224,34 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
                 
                 
-                CGFloat destValue = (1+self.destDVValue/100.f)*buyValue;
-                long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
-                long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+durationAfterBuy kT0data:kT0Data];
-                if(sIndex != -1){ //find
-                    sellValue = (1+self.destDVValue/100.f)*buyValue;
-                }else{
-                    kT0Data.TSellData = [self.contentArray objectAtIndex:(i+bIndex+durationAfterBuy)];
-                    sellValue = kT0Data.TSellData.close;
+                sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
+                
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+            }
+            else
+            {
+                //filter raise much in shorttime
+                if(![[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditonMa30:kTP1Data]){
+                    continue;
                 }
+                
+                long bIndex = 2;
+                kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
+                buyValue = kT0Data.TBuyData.close;
+                
+                sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
 
+                
+//                CGFloat destValue = (1+self.destDVValue/100.f)*buyValue;
+//                long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
+//                long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+durationAfterBuy kT0data:kT0Data];
+//                if(sIndex != -1){ //find
+//                    sellValue = (1+self.destDVValue/100.f)*buyValue;
+//                }else{
+//                    kT0Data.TSellData = [self.contentArray objectAtIndex:(i+bIndex+durationAfterBuy)];
+//                    sellValue = kT0Data.TSellData.close;
+//                }
+                
                 
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }

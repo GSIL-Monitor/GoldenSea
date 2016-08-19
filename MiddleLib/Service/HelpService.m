@@ -8,6 +8,7 @@
 
 #import "HelpService.h"
 #import "HYLog.h"
+#import "GSAnalysisManager.h"
 
 @implementation HelpService
 
@@ -107,6 +108,27 @@
     stkID = [stkID stringByReplacingOccurrencesOfString:@"#" withString:@""];
     
     return stkID;
+}
+
+
+
++(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
+{
+    CGFloat sellValue;
+    
+    GSAnalysisManager* man = [GSAnalysisManager shareManager];
+    CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
+    long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
+    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
+    if(sIndex != -1){ //find
+        sellValue = (1+man.destDVValue/100.f)*buyValue;
+    }else{
+        kT0Data.TSellData = [man.contentArray objectAtIndex:(bIndexInArray+durationAfterBuy)];
+        sellValue = kT0Data.TSellData.close;
+    }
+
+    
+    return sellValue;
 }
 
 

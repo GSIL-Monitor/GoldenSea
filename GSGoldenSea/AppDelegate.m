@@ -50,7 +50,7 @@
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160817.db",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
     
     
 //    [[GSDataInit shareManager]writeDataToDB:_filedir];
@@ -102,7 +102,7 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
     
-    [GSAnalysisManager shareManager].stkRangeArray = @[@"SH600000"];
+//    [GSAnalysisManager shareManager].stkRangeArray = @[@"SH600000"];
 //    [GSAnalysisManager shareManager].stkRangeArray = [[GSDataInit shareManager]getStkRangeFromQueryDB];
 
 
@@ -130,9 +130,9 @@
     [GSDataInit shareManager].startDate = 20160125;
 //    [GSDataInit shareManager].startDate = 20160725;
     
-//    [GSAnalysisManager shareManager].destDVValue = 5.f;
-//    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
-//    return;
+    [GSAnalysisManager shareManager].destDVValue = 5.f;
+    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+    return;
 
 //    [GSAnalysisManager shareManager].destDVValue = 10.f;
 //    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];

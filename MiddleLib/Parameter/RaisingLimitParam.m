@@ -36,5 +36,19 @@ SINGLETON_GENERATOR(RaisingLimitParam, shareInstance);
     return YES;
 }
 
+-(BOOL)isMapRasingLimitAvgConditonMa30:(KDataModel*)kTP1Data
+{
+    CGFloat dvMa30AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma30 destValue:kTP1Data.close];
+//    CGFloat dvMa10AndClose = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+    if(dvMa30AndClose > 10.f
+//       || dvMa10AndClose < -8.f
+       ){
+        return NO;
+    }
+    
+    return YES;
+}
+
+
 
 @end
