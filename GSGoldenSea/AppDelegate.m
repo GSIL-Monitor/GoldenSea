@@ -120,7 +120,7 @@
    
     [RaisingLimitParam shareInstance].durationAfterBuy = 3;
     [RaisingLimitParam shareInstance].buyPercent = 0.95;
-    
+    [RaisingLimitParam shareInstance].daysAfterLastLimit = 30;
     
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataInit shareManager].marketType = marketType_ShenZhenMainAndZhenXiaoBan;

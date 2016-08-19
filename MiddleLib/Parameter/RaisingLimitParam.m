@@ -50,5 +50,24 @@ SINGLETON_GENERATOR(RaisingLimitParam, shareInstance);
 }
 
 
+-(BOOL)isNoLimitInLastDaysBeforeIndex:(KDataModel*)kT0Data contentArray:(NSArray*)contentArray;
+{
+    if(self.daysAfterLastLimit == 0){
+        return YES;
+    }
+    
+    long currIndex = kT0Data.tIndex;
+    long lastIndex = currIndex>=self.daysAfterLastLimit ? (currIndex-self.daysAfterLastLimit):0;
+    
+    for(long i=lastIndex; i<currIndex; i++){
+        KDataModel* tmp = [contentArray objectAtIndex:i];
+        if(tmp.isLimitUp){
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 
 @end

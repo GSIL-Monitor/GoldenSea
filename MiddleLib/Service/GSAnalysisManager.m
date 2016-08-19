@@ -230,6 +230,10 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     continue;
                 }
                 
+                if(![[RaisingLimitParam shareInstance] isNoLimitInLastDaysBeforeIndex:kT0Data contentArray:self.contentArray]){
+                    continue;
+                }
+                
                 long bIndex = 2;
                 kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
                 buyValue = kT0Data.TBuyData.close;
