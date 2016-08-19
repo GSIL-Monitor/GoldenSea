@@ -23,6 +23,6 @@
 -(BOOL)isMapRasingLimitAvgConditonMa30:(KDataModel*)kTP1Data;
 
 
--(BOOL)isNoLimitInLastDaysBeforeIndex:(KDataModel*)kT0Data contentArray:(NSArray*)contentArray;
+-(BOOL)isNoLimitInLastDaysBeforeIndex:(long)currIndex contentArray:(NSArray*)contentArray;
 
 @end

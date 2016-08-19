@@ -130,30 +130,47 @@
     [GSDataInit shareManager].startDate = 20160125;
 //    [GSDataInit shareManager].startDate = 20160725;
     
-    [GSAnalysisManager shareManager].destDVValue = 5.f;
-    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
-    return;
+//    [GSAnalysisManager shareManager].destDVValue = 5.f;
+//    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+//    return;
 
 //    [GSAnalysisManager shareManager].destDVValue = 10.f;
 //    [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
 
+#if 0
+    //短期机会
 //    for(long i=3; i<15; i++)
-    
-    for(long j = 3;j<8;j++){
+//    for(long j = 3;j<8;j++)
+    for(long j = 9;j<12;j++)
+    {
         [RaisingLimitParam shareInstance].buyPercent  = 0.9+(j*0.01);
         SMLog(@"\n----[RaisingLimitParam shareInstance].buyPercent: %.2f",[RaisingLimitParam shareInstance].buyPercent);
         
-        for(long i=3; i<12; i++)
+//        for(long i=3; i<12; i++)
+        for(long i=3; i<6; i++)
         {
             [GSAnalysisManager shareManager].destDVValue = 1.f*i;
-            
             [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
-            
         }
     }
-   
-    
-    
+#else
+    //中期机会
+    for(long k=2; k<5; k++){
+        [RaisingLimitParam shareInstance].daysAfterLastLimit = k;
+        for(long j = 9;j<13;j++)
+        {
+            [RaisingLimitParam shareInstance].buyPercent  = 0.9+(j*0.02);
+            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",[RaisingLimitParam shareInstance].daysAfterLastLimit,[RaisingLimitParam shareInstance].buyPercent);
+            
+            //        for(long i=3; i<12; i++)
+            for(long i=2; i<=5; i++)
+            {
+                [GSAnalysisManager shareManager].destDVValue = 1.5f*i;
+                [[GSAnalysisManager shareManager]analysisAllInDir:_filedir];
+            }
+        }
+    }
+#endif
     
 }
 

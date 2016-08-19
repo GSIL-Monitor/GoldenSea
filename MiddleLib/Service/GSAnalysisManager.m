@@ -230,13 +230,23 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     continue;
                 }
                 
-                if(![[RaisingLimitParam shareInstance] isNoLimitInLastDaysBeforeIndex:kT0Data contentArray:self.contentArray]){
+                if(![[RaisingLimitParam shareInstance] isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
                     continue;
                 }
                 
+#if 0
                 long bIndex = 2;
                 kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
                 buyValue = kT0Data.TBuyData.close;
+#else
+                buyValue = kTP1Data.ma5 * [RaisingLimitParam shareInstance].buyPercent;
+                long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
+                if(bIndex == -1){ //not find
+                    continue;
+                }
+#endif
+                
+                kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
                 
                 sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
        
