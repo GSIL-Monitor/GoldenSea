@@ -33,6 +33,7 @@
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
                             @{@"volume"       : @"integer"},
+                            @{@"tIndex"       : @"integer"},
                             
                             @{@"open"         : @"float"},
                             @{@"high"         : @"float"},
