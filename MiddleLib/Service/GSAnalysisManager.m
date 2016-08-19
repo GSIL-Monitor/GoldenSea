@@ -170,36 +170,30 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     
-    
     NSDictionary* passDict;
-    long statDays = 11;
+    long statDays = 2;
     long middleIndex = 7;
     for(long i=6; i<[self.contentArray count]-statDays; i++ ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
-        KDataModel* kT3Data = [self.contentArray objectAtIndex:i+3];
-        KDataModel* kT4Data = [self.contentArray objectAtIndex:i+4];
-        KDataModel* kT5Data = [self.contentArray objectAtIndex:i+5];
-        KDataModel* kT6Data = [self.contentArray objectAtIndex:i+6];
-        KDataModel* kT7Data = [self.contentArray objectAtIndex:i+7];
-        KDataModel* kT8Data = [self.contentArray objectAtIndex:i+8];
-        KDataModel* kT9Data = [self.contentArray objectAtIndex:i+9];
+        KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
+        KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
+//        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:i+1];
+//        KDataModel* kT2Data = [self.contentArray safeObjectAtIndex:i+2];
+//        KDataModel* kT3Data = [self.contentArray safeObjectAtIndex:i+3];
+//        KDataModel* kT4Data = [self.contentArray safeObjectAtIndex:i+4];
+//        KDataModel* kT5Data = [self.contentArray safeObjectAtIndex:i+5];
+//        KDataModel* kT6Data = [self.contentArray safeObjectAtIndex:i+6];
+//        KDataModel* kT7Data = [self.contentArray safeObjectAtIndex:i+7];
+//        KDataModel* kT8Data = [self.contentArray safeObjectAtIndex:i+8];
+//        KDataModel* kT9Data = [self.contentArray safeObjectAtIndex:i+9];
 
         
         kT0Data.lowValDayIndex = 1;
         kT0Data.highValDayIndex = 5;
         
         if(kT0Data.isLimitUp){
-            kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-            kT7Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+6 destIndex:i+7];
-            kT8Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+7 destIndex:i+8];
-            kT9Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+8 destIndex:i+9];
-
             if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
                ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
                ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
@@ -215,7 +209,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                     continue;
                 }
                 
-
                 buyValue = kTP1Data.ma5 * [RaisingLimitParam shareInstance].buyPercent;
                 long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
                 if(bIndex == -1){ //not find
@@ -227,7 +220,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 
                 sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
                 
-                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+                if(kT0Data.TSellData)
+                    [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
             else
             {
@@ -237,24 +231,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
                 }
                 
                 long bIndex = 2;
-                kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
+                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
                 buyValue = kT0Data.TBuyData.close;
                 
                 sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
-
-                
-//                CGFloat destValue = (1+self.destDVValue/100.f)*buyValue;
-//                long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
-//                long sIndex = [HelpService indexOfValueGreatThan:destValue Array:self.contentArray start:i+bIndex+1 stop:i+bIndex+durationAfterBuy kT0data:kT0Data];
-//                if(sIndex != -1){ //find
-//                    sellValue = (1+self.destDVValue/100.f)*buyValue;
-//                }else{
-//                    kT0Data.TSellData = [self.contentArray objectAtIndex:(i+bIndex+durationAfterBuy)];
-//                    sellValue = kT0Data.TSellData.close;
-//                }
-                
-                
-                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+       
+                if(kT0Data.TSellData)
+                    [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
         }
    

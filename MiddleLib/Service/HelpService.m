@@ -123,8 +123,12 @@
     if(sIndex != -1){ //find
         sellValue = (1+man.destDVValue/100.f)*buyValue;
     }else{
-        kT0Data.TSellData = [man.contentArray objectAtIndex:(bIndexInArray+durationAfterBuy)];
-        sellValue = kT0Data.TSellData.close;
+        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy)];
+        if(kT0Data.TSellData){ //if had data in that day.
+            sellValue = kT0Data.TSellData.close;
+        }else{
+            sellValue = buyValue;
+        }
     }
 
     
@@ -139,7 +143,7 @@
     
     
     for(long j=startIndex; j<=stopIndex; j++){
-        KDataModel* tempData = [array objectAtIndex:j];
+        KDataModel* tempData = [array safeObjectAtIndex:j];
         
         if(tempData.low <= theValue){
             
@@ -161,7 +165,7 @@
     
     
     for(long j=startIndex; j<=stopIndex; j++){
-        KDataModel* tempData = [array objectAtIndex:j];
+        KDataModel* tempData = [array safeObjectAtIndex:j];
         
         if(tempData.high >= theValue){
             
@@ -184,7 +188,7 @@
     
     
     for(long j=startIndex; j<=stopIndex; j++){
-        KDataModel* tempData = [array objectAtIndex:j];
+        KDataModel* tempData = [array safeObjectAtIndex:j];
 //        if(tempData.high >= theHighestValue){
 //            theHighestValue = tempData.high;
 //            kT0Data.highValDayIndex = j-startIndex;
@@ -206,7 +210,7 @@
     
     
     for(long j=startIndex; j<=stopIndex; j++){
-        KDataModel* tempData = [array objectAtIndex:j];
+        KDataModel* tempData = [array safeObjectAtIndex:j];
         if(tempData.high >= theHighestValue){
             theHighestValue = tempData.high;
             kT0Data.highValDayIndex = j-startIndex;
@@ -228,7 +232,7 @@
     
     
     for(long j=startIndex; j<=stopIndex; j++){
-        KDataModel* tempData = [array objectAtIndex:j];
+        KDataModel* tempData = [array safeObjectAtIndex:j];
         if(tempData.close >= theHighestValue){
             theHighestValue = tempData.close;
             kT0Data.highValDayIndex = j-startIndex;
