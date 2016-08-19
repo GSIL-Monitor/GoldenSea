@@ -71,20 +71,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
 }
 
--(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir
-{
-    //reset content when every time read file.
-    [self resetForOne];
-    
-    self.stkID = stkUUID;
-    
-    
-//    self.contentArray = [[GSDataInit shareManager] buildDataWithStkUUID:stkUUID inDir:docsDir];
-    self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
-    
-    //        [self analysis];
-    [self analysisForRaisingLimit];
-}
+
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {

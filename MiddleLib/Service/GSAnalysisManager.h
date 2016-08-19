@@ -64,7 +64,6 @@
 
 
 -(void)analysisAllInDir:(NSString*)docsDir;
--(void)_analysisFile:(NSString*)stkUUID inDir:(NSString*)docsDir;
 
 
 //query action

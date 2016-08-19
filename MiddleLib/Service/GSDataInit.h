@@ -39,7 +39,6 @@ typedef enum {
 
 
 
--(NSArray*)buildDataWithStkUUID:(NSString*)stkUUID inDir:(NSString*)docsDir;
 -(NSMutableArray*)findSourcesInDir:(NSString*)docsDir;
 -(NSMutableArray*)getStkContentArray:(NSString*)filePath;
 

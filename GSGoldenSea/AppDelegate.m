@@ -102,21 +102,16 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
     
-//    [GSAnalysisManager shareManager].stkRangeArray = @[@"SH600000"];
-    [GSAnalysisManager shareManager].stkRangeArray = [[GSDataInit shareManager]getStkRangeFromQueryDB];
+    [GSAnalysisManager shareManager].stkRangeArray = @[@"SH600000"];
+//    [GSAnalysisManager shareManager].stkRangeArray = [[GSDataInit shareManager]getStkRangeFromQueryDB];
 
 
 //    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
 //    return;
     
-#if 0
-    [self testForOne];
-#else
+
     [self testForAll];
-#endif
 }
-
-
 
 
 
@@ -160,31 +155,6 @@
     
     
     
-}
-
-
-
-
--(void)testForOne
-{
-    //    [self setCodintionCase0Toady];
-//    [self setNormalUp];
-//    [GSCondition shareManager].shapeCond = ShapeCondition_HengPan_6Day;
-    
-//    [self setNormalDown];
-    
-//    [self setNormalToday];
-    
-//    [self setUpShadow];
-    
-    
-//    [self setOpenValue];
-    
-//    [GSCondition shareManager].shapeCond= ShapeCondition_MA5UpMA10;
-//    
-    [[GSAnalysisManager shareManager]_analysisFile:_stkID inDir:_filedir];
-    
-
 }
 
 
