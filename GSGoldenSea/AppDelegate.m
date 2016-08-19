@@ -50,16 +50,18 @@
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160817.db",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
-
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
     
-    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
-    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
-
     
-//
 //    [[GSDataInit shareManager]writeDataToDB:_filedir];
 //    return;
+
+    
+//    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
+//    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
+
+    
+
     
 //    [[HYLog shareManager] enableLog];
     
@@ -104,8 +106,8 @@
     [GSAnalysisManager shareManager].stkRangeArray = [[GSDataInit shareManager]getStkRangeFromQueryDB];
 
 
-    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
-    return;
+//    [[GSAnalysisManager shareManager]queryAllInDir:_filedir];
+//    return;
     
 #if 0
     [self testForOne];

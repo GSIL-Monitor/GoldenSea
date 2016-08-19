@@ -268,6 +268,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     
     long index = 0;
     long lineIndex = 0;
+    long tIndex = 0;
     
     KDataModel* kData;
     NSString* txt = [self readFileContent:filePath] ;
@@ -344,6 +345,7 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
         
         if ([self isMeetPeriodCondition:kData]) {
             [tmpContentArray addObject:kData];
+            kData.tIndex = tIndex++;
         }
         
         
