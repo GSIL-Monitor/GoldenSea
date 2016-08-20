@@ -1,16 +1,13 @@
 //
-//  LimitLogout.h
+//  LimitAnalysisMgr.h
 //  GSGoldenSea
 //
 //  Created by frank weng on 16/8/20.
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "GSBaseLogout.h"
+#import "GSBaseAnalysisMgr.h"
 
-@interface LimitLogout : GSBaseLogout
-
-+(LimitLogout*)shareInstance;
-
+@interface LimitAnalysisMgr : GSBaseAnalysisMgr
 
 @end

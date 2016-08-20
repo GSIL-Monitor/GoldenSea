@@ -22,6 +22,8 @@
 #import "HYLog.h"
 #import "GSDataMgr.h"
 
+#import "LimitAnalysisMgr.h"
+
 @interface AppDelegate (){
     
     NSString* _filedir;
@@ -110,14 +112,19 @@
 //    return;
     
     
-    [[HYLog shareInstance]enableLog];
+    //dbg code.
+    LimitLogout* inst = [LimitLogout shareInstance];
+    [[LimitLogout shareInstance]logOutAllResult];
+    return;
+    
+//    [[HYLog shareInstance]enableLog];
 
-    [self testForAll];
+    [self testForAllLimit];
 }
 
 
 
--(void)testForAll
+-(void)testForAllLimit
 {
    
     [RaisingLimitParam shareInstance].durationAfterBuy = 3;
@@ -132,12 +139,12 @@
     [GSDataMgr shareInstance].startDate = 20160125;
 //    [GSDataMgr shareInstance].startDate = 20160725;
     
-    [GSBaseAnalysisMgr shareInstance].destDVValue = 5.f;
-    [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+    [LimitAnalysisMgr shareInstance].destDVValue = 5.f;
+    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
     return;
 
-//    [GSBaseAnalysisMgr shareInstance].destDVValue = 10.f;
-//    [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+//    [LimitAnalysisMgr shareInstance].destDVValue = 10.f;
+//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
 
 #if 0
     //短期机会
@@ -151,8 +158,8 @@
 //        for(long i=3; i<12; i++)
         for(long i=3; i<6; i++)
         {
-            [GSBaseAnalysisMgr shareInstance].destDVValue = 1.f*i;
-            [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+            [LimitAnalysisMgr shareInstance].destDVValue = 1.f*i;
+            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
         }
     }
 #else
@@ -167,8 +174,8 @@
             //        for(long i=3; i<12; i++)
             for(long i=2; i<=5; i++)
             {
-                [GSBaseAnalysisMgr shareInstance].destDVValue = 1.5f*i;
-                [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+                [LimitAnalysisMgr shareInstance].destDVValue = 1.5f*i;
+                [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
             }
         }
     }
