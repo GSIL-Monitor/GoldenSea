@@ -21,7 +21,7 @@
 
 @implementation GSCondition
 
-SINGLETON_GENERATOR(GSCondition, shareManager);
+SINGLETON_GENERATOR(GSCondition, shareInstance);
 
 
 -(id)init
@@ -39,7 +39,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
 
 -(BOOL)isMeetShapeCond:(NSDictionary*)passDict
 {
-    if(!passDict || [GSCondition shareManager].shapeCond==ShapeCondition_Null)
+    if(!passDict || [GSCondition shareInstance].shapeCond==ShapeCondition_Null)
         return YES;
     
     
@@ -53,7 +53,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     KDataModel* kT1Data = [passDict objectForKey:@"kT1Data"];
     
     
-    switch ([GSCondition shareManager].shapeCond) {
+    switch ([GSCondition shareInstance].shapeCond) {
         case ShapeCondition_WaiBaoRi_Down:
         {
             if(kT0Data.high > kTP1Data.high
@@ -194,7 +194,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.8f;
     
-    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [GSAnalysisManager shareInstance].t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -211,7 +211,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [GSAnalysisManager shareInstance].t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -229,7 +229,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [GSAnalysisManager shareInstance].t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -247,7 +247,7 @@ SINGLETON_GENERATOR(GSCondition, shareManager);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSAnalysisManager shareManager].t0dayCond = theCond;
+    [GSAnalysisManager shareInstance].t0dayCond = theCond;
     [theCond logOutCondition];
     
     

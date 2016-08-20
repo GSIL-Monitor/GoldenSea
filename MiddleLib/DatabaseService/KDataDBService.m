@@ -11,7 +11,7 @@
 
 @implementation KDataDBService
 
-//SINGLETON_GENERATOR(KDataDBService, shareManager);
+//SINGLETON_GENERATOR(KDataDBService, shareInstance);
 
 
 -(id)init

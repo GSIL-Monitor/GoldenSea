@@ -10,7 +10,7 @@
 
 @interface STKManager : NSObject
 
-+(STKManager*)shareManager;
++(STKManager*)shareInstance;
 
 
 -(void)test;

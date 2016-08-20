@@ -20,7 +20,7 @@
 
 @interface GSAnalysisManager : NSObject
 
-+(GSAnalysisManager*)shareManager;
++(GSAnalysisManager*)shareInstance;
 
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSString* stkID;

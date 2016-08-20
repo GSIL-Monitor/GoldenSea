@@ -10,6 +10,6 @@
 
 @interface STKDBService : HYBaseDBService
 
-+(STKDBService*)shareManager;
++(STKDBService*)shareInstance;
 
 @end

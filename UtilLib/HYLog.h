@@ -10,10 +10,12 @@
 
 @interface HYLog : NSObject
 
-+(HYLog*)shareManager;
++(HYLog*)shareInstance;
 
 
 - (void) enableLog;
+- (void) disableLog;
+
 + (void) logObject:(NSObject*)obj;
 - (BOOL) logToFile:(NSString*)msg;
 

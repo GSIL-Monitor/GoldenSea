@@ -1,0 +1,19 @@
+LogOutAllResult - destDV(5.00) -totalCount(13) --alltotalS2BDVValue(43.168095)
+index(0), percent(84.62)  count(11) 
+SH600075 TBuyData:20160729, TSellData:20160801, dvSelltoBuy:5.00
+SH600106 TBuyData:20160225, TSellData:20160226, dvSelltoBuy:5.00
+SH600226 TBuyData:20160307, TSellData:20160308, dvSelltoBuy:5.00
+SH600401 TBuyData:20160506, TSellData:20160509, dvSelltoBuy:5.00
+SH600806 TBuyData:20160205, TSellData:20160215, dvSelltoBuy:5.00
+SH600858 TBuyData:20160229, TSellData:20160301, dvSelltoBuy:5.00
+SH603085 TBuyData:20160510, TSellData:20160511, dvSelltoBuy:5.00
+SZ000628 TBuyData:20160422, TSellData:20160427, dvSelltoBuy:5.00
+SZ000702 TBuyData:20160519, TSellData:20160520, dvSelltoBuy:5.00
+SZ002651 TBuyData:20160303, TSellData:20160304, dvSelltoBuy:5.00
+SZ300100 TBuyData:20160613, TSellData:20160614, dvSelltoBuy:5.00
+index(1), percent(0.00)  count(0) 
+index(2), percent(15.38)  count(2) 
+SH600136 TBuyData:20160513, TSellData:20160518, dvSelltoBuy:-8.36
+SZ002145 TBuyData:20160616, TSellData:20160621, dvSelltoBuy:-3.47
+index(3), percent(0.00)  count(0) 
+end of analysisAll

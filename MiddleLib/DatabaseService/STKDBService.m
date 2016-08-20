@@ -11,7 +11,7 @@
 
 @implementation STKDBService
 
-SINGLETON_GENERATOR(STKDBService, shareManager)
+SINGLETON_GENERATOR(STKDBService, shareInstance)
 
 
 -(id)init

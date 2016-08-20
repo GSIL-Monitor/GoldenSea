@@ -20,7 +20,7 @@
 
 @implementation STKManager
 
-SINGLETON_GENERATOR(STKManager, shareManager);
+SINGLETON_GENERATOR(STKManager, shareInstance);
 
 
 

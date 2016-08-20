@@ -16,7 +16,7 @@
 
 @implementation HYLog
 
-SINGLETON_GENERATOR(HYLog, shareManager);
+SINGLETON_GENERATOR(HYLog, shareInstance);
 
 
 -(id)init{
@@ -98,6 +98,10 @@ SINGLETON_GENERATOR(HYLog, shareManager);
 //#endif
 }
 
+- (void) disableLog;
+{
+    _isEnableLog = NO;
+}
 
 -(BOOL)logToFile:(NSString*)msg
 {

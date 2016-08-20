@@ -18,7 +18,7 @@ typedef enum {
 }MarketType;
 
 @interface GSDataInit : NSObject
-+(GSDataInit*)shareManager;
++(GSDataInit*)shareInstance;
 
 
 @property (nonatomic,strong) NSMutableArray* contentArray;

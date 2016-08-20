@@ -30,7 +30,7 @@ typedef enum {
 
 @interface GSCondition : NSObject
 
-+(GSCondition*)shareManager;
++(GSCondition*)shareInstance;
 
 @property (assign) ShapeCondition shapeCond;
 @property (assign) T0Condition t0Cond;

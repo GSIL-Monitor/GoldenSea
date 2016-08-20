@@ -8,14 +8,13 @@
 
 #import "GSAnalysisManager.h"
 #import "KDataModel.h"
-#import "GSLogout.h"
+#import "GSBaseLogout.h"
 #import "GSDataInit.h"
 #import "GSAnalysisManager+ex.h"
 #import "GSCondition.h"
 
 @interface GSAnalysisManager ()
 
-@property (nonatomic,assign) long startLogCount;
 
 @property (nonatomic, assign) BOOL isWriteToQueryDB;
 
@@ -24,7 +23,7 @@
 
 @implementation GSAnalysisManager
 
-SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
+SINGLETON_GENERATOR(GSAnalysisManager, shareInstance);
 
 
 -(id)init
@@ -32,7 +31,6 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     if(self = [super init]){
         _destDVValue = 2.5f;
         _stopDVValue = -3.5f;
-        _startLogCount = 0;
     }
     
     return self;
@@ -50,11 +48,11 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     self.isWriteToQueryDB = NO;
     
     [self resetForAll];
-    [GSDataInit shareManager].startDate = 20160717;
+    [GSDataInit shareInstance].startDate = 20160717;
     
     long dbgNum = 0;
     
-    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    NSMutableArray* files = [[GSDataInit shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
@@ -63,7 +61,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+        self.contentArray = [[GSDataInit shareInstance] getStkContentArray:file];
    
         [self queryRaisingLimit];
     }
@@ -78,7 +76,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 {
     [self resetForAll];
     
-    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    NSMutableArray* files = [[GSDataInit shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
@@ -87,7 +85,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
             continue;
         }
         
-        self.contentArray = [[GSDataInit shareManager]getDataFromDB:self.stkID];
+        self.contentArray = [[GSDataInit shareInstance]getDataFromDB:self.stkID];
 
 //        [self analysis];
         [self analysisForRaisingLimit];
@@ -95,7 +93,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     
-    [[GSLogout shareManager]logOutAllResult];
+    [[GSBaseLogout shareInstance]logOutAllResult];
     
     SMLog(@"end of analysisAll");
 }
@@ -121,15 +119,15 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         if(kT0Data.isLimitUp){
             
-            kTP1Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma5 = [[GSDataInit shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma10 = [[GSDataInit shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
 
 
             //filter raise much in shorttime
             if([[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
                 if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
                     KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
-                    CGFloat dvLast2kTP1DataMA5 = [[GSDataInit shareManager]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
+                    CGFloat dvLast2kTP1DataMA5 = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
                     
 //                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
 //                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
@@ -155,9 +153,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     
     
-    if(self.totalCount > self.startLogCount){
-        [[GSLogout shareManager] SimpleLogOutResult:NO];
-    }
+    [[GSBaseLogout shareInstance] SimpleLogOutResult:NO];
+
     
 }
 
@@ -258,11 +255,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     }
     
     
-    
-    if(self.totalCount > self.startLogCount){
-        [[GSLogout shareManager] SimpleLogOutResult:NO];
-    }
-    
+    [[GSBaseLogout shareInstance] SimpleLogOutResult:NO];
+
 }
 
 
@@ -292,13 +286,13 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         kT0Data.T1Data = kT1Data;
         kT0Data.TP1Data = kTP1Data;
         
-        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        kT0Data.dvTP2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvTP1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvT0 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvT1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvT2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
         
-        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
         
         
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
@@ -325,7 +319,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
         
         
         //shape condition
-        if(![[GSCondition shareManager] isMeetShapeCond:passDict]){
+        if(![[GSCondition shareInstance] isMeetShapeCond:passDict]){
             continue;
         }
         
@@ -344,9 +338,8 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
     
     
     
-    if(self.totalCount > self.startLogCount){
-        [[GSLogout shareManager] logOutResult];
-    }
+    [[GSBaseLogout shareInstance] logOutResult];
+
     
 }
 
@@ -391,7 +384,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareManager);
 
     KDataModel* kT0Data = [passDict objectForKey:@"kT0Data"];
     
-    switch ([GSCondition shareManager].t0Cond) {
+    switch ([GSCondition shareInstance].t0Cond) {
         case T0Condition_Up:
         {
             if(kT0Data.open < kT0Data.close){

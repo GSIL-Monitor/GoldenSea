@@ -11,7 +11,7 @@
 
 @implementation GSDataInit
 
-SINGLETON_GENERATOR(GSDataInit, shareManager);
+SINGLETON_GENERATOR(GSDataInit, shareInstance);
 
 
 -(id)init
@@ -52,11 +52,11 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
     long dbgNum = 0;
     
     
-    NSMutableArray* files = [[GSDataInit shareManager]findSourcesInDir:docsDir];
+    NSMutableArray* files = [[GSDataInit shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         NSString* stkID = [HelpService stkIDWithFile:file];
         
-        self.contentArray = [[GSDataInit shareManager] getStkContentArray:file];
+        self.contentArray = [[GSDataInit shareInstance] getStkContentArray:file];
         
         KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
@@ -96,18 +96,18 @@ SINGLETON_GENERATOR(GSDataInit, shareManager);
 //        kT0Data.T1Data = kT1Data;
 //        kT0Data.TP1Data = kTP1Data;
 //        
-//        kT0Data.dvTP2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-//        kT0Data.dvTP1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-//        kT0Data.dvT0 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-//        kT0Data.dvT1 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-//        kT0Data.dvT2 = [[GSDataInit shareManager] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+//        kT0Data.dvTP2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+//        kT0Data.dvTP1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+//        kT0Data.dvT0 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+//        kT0Data.dvT1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+//        kT0Data.dvT2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
 //        
-//        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareManager] getAvgDVValue:5 array:self.contentArray index:i-1];
+//        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
         
-        kT0Data.ma5 = [[GSDataInit shareManager] getMAValue:5 array:self.contentArray t0Index:i];
-        kT0Data.ma10 = [[GSDataInit shareManager] getMAValue:10 array:self.contentArray t0Index:i];
-        kT0Data.ma20 = [[GSDataInit shareManager] getMAValue:20 array:self.contentArray t0Index:i];
-        kT0Data.ma30 = [[GSDataInit shareManager] getMAValue:30 array:self.contentArray t0Index:i];
+        kT0Data.ma5 = [[GSDataInit shareInstance] getMAValue:5 array:self.contentArray t0Index:i];
+        kT0Data.ma10 = [[GSDataInit shareInstance] getMAValue:10 array:self.contentArray t0Index:i];
+        kT0Data.ma20 = [[GSDataInit shareInstance] getMAValue:20 array:self.contentArray t0Index:i];
+        kT0Data.ma30 = [[GSDataInit shareInstance] getMAValue:30 array:self.contentArray t0Index:i];
         
         
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];

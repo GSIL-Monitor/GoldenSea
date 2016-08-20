@@ -8,15 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GSLogout : NSObject
+@interface GSBaseLogout : NSObject
 
-+(GSLogout*)shareManager;
++(GSBaseLogout*)shareInstance;
 
+
+
+//interface
 -(void)logOutResult;
 
 -(void)logOutAllResult;
 
 
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail;
+
+
+
+//protected.
+-(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail;
+
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "GSLogout.h"
+#import "GSBaseLogout.h"
 
 #import "KDataModel.h"
 #import "GSAnalysisManager.h"
@@ -14,7 +14,7 @@
 
 #define Key_JustLogOut_All 1
 
-@interface GSLogout (){
+@interface GSBaseLogout (){
 //    long _lowIndexArray[20];
 //    long _HighIndexArray[20];
 
@@ -25,9 +25,9 @@
 
 @end
 
-@implementation GSLogout
+@implementation GSBaseLogout
 
-SINGLETON_GENERATOR(GSLogout, shareManager);
+SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 
 
@@ -47,14 +47,14 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     }
     
     
-    NSArray* resultArray = [GSAnalysisManager shareManager].resultArray;
-    long totalCount = [GSAnalysisManager shareManager].totalCount;
+    NSArray* resultArray = [GSAnalysisManager shareInstance].resultArray;
+    long totalCount = [GSAnalysisManager shareInstance].totalCount;
     if(isForAll){
-        resultArray = [GSAnalysisManager shareManager].allResultArray;
-        totalCount = [GSAnalysisManager shareManager].allTotalCount;
+        resultArray = [GSAnalysisManager shareInstance].allResultArray;
+        totalCount = [GSAnalysisManager shareInstance].allTotalCount;
     }
     
-//    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
+//    GSAnalysisManager* analyMan = [GSAnalysisManager shareInstance];
     
     //calulate percent firstly
     NSMutableArray* tmpArray;
@@ -65,7 +65,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         percent = [tmpArray count]*100.f/totalCount;
         
         if(!isForAll){
-            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareManager].stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareManager].totalS2BDVValue);
+            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareInstance].stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareInstance].totalS2BDVValue);
         }else{ //for all
             SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
@@ -97,8 +97,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
 
 -(void)logOutAllResult
 {
-    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSAnalysisManager shareManager].destDVValue,[GSAnalysisManager shareManager].allTotalCount,[GSAnalysisManager shareManager].allTotalS2BDVValue);
-    [self _SimpleLogOutForAll:YES isJustLogFail:NO];
+    GSAssert(NO, @"need implenet in child class");
 }
 
 -(void)logOutResult
@@ -108,7 +107,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
     CGFloat percent = 0.f;
     
     
-    GSAnalysisManager* analyMan = [GSAnalysisManager shareManager];
+    GSAnalysisManager* analyMan = [GSAnalysisManager shareInstance];
     
     //calulate percent firstly
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
@@ -118,7 +117,7 @@ SINGLETON_GENERATOR(GSLogout, shareManager);
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
     }
-    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareManager].startDate,[GSDataInit shareManager].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
     
 //        return;

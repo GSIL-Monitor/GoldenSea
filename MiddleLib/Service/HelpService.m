@@ -59,7 +59,7 @@
  
         printf("%s",[message UTF8String]);
         
-        [[HYLog shareManager]logToFile:message];
+        [[HYLog shareInstance]logToFile:message];
         
         va_end(args);
     }
@@ -116,7 +116,7 @@
 {
     CGFloat sellValue;
     
-    GSAnalysisManager* man = [GSAnalysisManager shareManager];
+    GSAnalysisManager* man = [GSAnalysisManager shareInstance];
     CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
     long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
     long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
