@@ -157,10 +157,6 @@
 //@property (assign) CGFloat dea;
 //@property (assign) CGFloat macd;
 
-
-
-
-
 @end
 
 

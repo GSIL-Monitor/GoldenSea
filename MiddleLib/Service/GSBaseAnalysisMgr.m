@@ -71,6 +71,8 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
+    SMLog(@"start analysisAllInDir with Param(destDVValue:.2f)",self.param.destDVValue);
+    
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
@@ -86,10 +88,8 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         
     }
     
+    [[GSBaseLogout shareInstance].paramArray addObject:self.param];
     
-//    [[GSBaseLogout shareInstance]logOutAllResult];
-    
-//    SMLog(@"end of analysisAll");
 }
 
 

@@ -13,23 +13,22 @@
 +(GSBaseLogout*)shareInstance;
 
 
+@property (nonatomic, strong) NSMutableArray* paramArray;
 
 //interface
 -(void)logOutResult;
-
--(void)logOutAllResult;
 
 
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail;
 
 
+//log all and save to file.
 -(void)analysisAndLogtoFile;
 
 
 
 //protected.
-
--(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail;
+-(void)logWithParam:(GSBaseParam*)param;
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import "LimitLogout.h"
 #import "GSBaseAnalysisMgr.h"
-
+#import "RaisingLimitParam.h"
 
 @interface LimitLogout ()
 
@@ -18,19 +18,28 @@
 
 
 
--(void)logOutAllResult
-{
-    [self _SimpleLogOutForAll:YES isJustLogFail:NO];
-}
-
 
 -(void)analysisAndLogtoFile;
 {
+    [super analysisAndLogtoFile];
+    
     [[HYLog shareInstance] enableLog];
     
+    SMLog(@"---summary report---");
+    for (long i=0; i<[self.paramArray count]; i++) {
+        RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
+        SMLog(@"Index(%d) - Conditon: daysAfterLastLimit(%d), buyPercent(%.2f), destDVValue(%.2f), durationAfterBuy(%d)  Result:totalCount(%d), alltotalS2BDVValue(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allTotalCount,ele.allTotalS2BDVValue );
+    }
     
-//    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSBaseAnalysisMgr shareInstance].destDVValue,[GSBaseAnalysisMgr shareInstance].allTotalCount,[GSBaseAnalysisMgr shareInstance].allTotalS2BDVValue);
-
+    SMLog(@"\n");
+    SMLog(@"\n");
+    SMLog(@"\n");
+    SMLog(@"---detail report---");
+    for (long i=0; i<[self.paramArray count]; i++) {
+        RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
+        SMLog(@"Index(%d) - Conditon: daysAfterLastLimit(%d), buyPercent(%.2f), destDVValue(%.2f), durationAfterBuy(%d)  Result:totalCount(%d), alltotalS2BDVValue(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allTotalCount,ele.allTotalS2BDVValue );
+        
+    }
     
     
     [[HYLog shareInstance] disableLog];

@@ -30,7 +30,14 @@
 SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 
-
+-(id)init
+{
+    if(self = [super init]){
+        self.paramArray = [NSMutableArray array];
+    }
+    
+    return self;
+}
 
 
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail
@@ -97,14 +104,13 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 -(void)analysisAndLogtoFile;
 {
-    GSAssert(NO, @"need implenet in child class");
+    [self reOrderParamArray];
+    
+//    GSAssert(NO, @"need implenet in child class");
 }
 
 
--(void)logOutAllResult
-{
-    GSAssert(NO, @"need implenet in child class");
-}
+
 
 -(void)logOutResult
 {
@@ -166,6 +172,63 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 
 
+
+#pragma mark - new
+-(void)reOrderParamArray
+{
+    NSMutableArray* array = self.paramArray;
+    
+//    NSMutableArray *array = [NSMutableArray arrayWithObjects:
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj0", [NSNumber numberWithInt:0], nil],
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj5", [NSNumber numberWithInt:5], nil],
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj2", [NSNumber numberWithInt:2], nil],
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj3", [NSNumber numberWithInt:3], nil],
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj1", [NSNumber numberWithInt:1], nil],
+//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj4", [NSNumber numberWithInt:4], nil], nil];
+//    
+//    //    NSArray *resultArray = [array sortedArrayUsingSelector:@selector(compare:)];
+    
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        GSBaseParam* par1 = obj1;
+        GSBaseParam* par2 = obj2;
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.allTotalS2BDVValue];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.allTotalS2BDVValue];
+        
+//        NSNumber *number1 = [[obj1 allKeys] objectAtIndex:0];
+//        NSNumber *number2 = [[obj2 allKeys] objectAtIndex:0];
+        
+        NSComparisonResult result = [number1 compare:number2];
+        
+        return result == NSOrderedDescending; // 升序
+        //        return result == NSOrderedAscending;  // 降序
+    }];
+    
+    
+    self.paramArray = (NSMutableArray*)resultArray;
+}
+
+-(void)logWithParam:(GSBaseParam*)param;
+{
+    NSArray* resultArray = param.allResultArray;
+    long totalCount = param.allTotalCount;
+    
+    //calulate percent firstly
+    NSMutableArray* tmpArray;
+    CGFloat percent = 0.f;
+    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
+    for(long i=0; i<[resultArray count]; i++){
+        tmpArray = [resultArray objectAtIndex:i];
+        percent = [tmpArray count]*100.f/totalCount;
+        
+     
+        SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
+
+        for (KDataModel* kData in tmpArray) {
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,kData.TSellData.time, kData.dvSelltoBuy);
+        }
+    }
+
+}
 
 
 #pragma mark - getter&setter
