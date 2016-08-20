@@ -109,16 +109,15 @@
     //we don't know which is first appear for high or low. so only switch two case.
 #if 0
     //case 1. judge with high
-    if((sellData.high-buyData.close)/buyData.close*100.f >= self.destDVValue){
-//        dvValue = self.destDVValue;
+    if((sellData.high-buyData.close)/buyData.close*100.f >= self.param.destDVValue){
         dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }else{
         dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }
 #else
     //case 2. judge with low
-    if((sellData.low-buyData.close)/buyData.close*100.f <= self.stopDVValue){
-        dvValue = self.stopDVValue;
+    if((sellData.low-buyData.close)/buyData.close*100.f <= self.param.stopDVValue){
+        dvValue = self.param.stopDVValue;
 //        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }else{
         dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
@@ -147,7 +146,7 @@
     
    
     //save to one
-    if (dvValue >= self.destDVValue){
+    if (dvValue >= self.param.destDVValue){
         tmpArray = [self.resultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
         tmpArray = [self.resultArray objectAtIndex:1];
@@ -168,19 +167,19 @@
     }
     
     //save to all
-    if (dvValue >= self.destDVValue-0.01){
-        tmpArray = [self.allResultArray objectAtIndex:0];
+    if (dvValue >= self.param.destDVValue-0.01){
+        tmpArray = [self.param.allResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
-        tmpArray = [self.allResultArray objectAtIndex:1];
+        tmpArray = [self.param.allResultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
-        tmpArray = [self.allResultArray objectAtIndex:2];
+        tmpArray = [self.param.allResultArray objectAtIndex:2];
     }else{
-        tmpArray = [self.allResultArray objectAtIndex:3];
+        tmpArray = [self.param.allResultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
-    self.allTotalS2BDVValue += dvValue;
+    self.param.allTotalS2BDVValue += dvValue;
     
-    self.allTotalCount++;
+    self.param.allTotalCount++;
 
 }
 
@@ -191,7 +190,7 @@
     for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
         NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
 
-        NSObject* ele = [self.allResultDict objectForKey:keyTime];
+        NSObject* ele = [self.param.allResultDict objectForKey:keyTime];
         if(ele){
             isInUse = YES;
             break;
@@ -202,7 +201,7 @@
         for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
             NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
             
-            [self.allResultDict setObject:@YES forKey:keyTime];
+            [self.param.allResultDict setObject:@YES forKey:keyTime];
         }
     }
     
@@ -232,24 +231,7 @@
 }
 
 
--(void)resetForAll
-{
-    self.allResultArray = [NSMutableArray array];
-    self.allResultDict = [NSMutableDictionary dictionary];
-    self.allTotalCount = 0;
-    self.allTotalS2BDVValue = 0;
-    
-    /*
-     Sndday high vs fstday close
-     >3%
-     >0.8%
-     >-1.5%
-     >-10%
-     */
-    for(long i=0; i<4; i++){
-        [self.allResultArray addObject:[NSMutableArray array]];
-    }
-}
+
 
 
 

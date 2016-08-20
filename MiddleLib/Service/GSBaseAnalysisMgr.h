@@ -30,10 +30,6 @@
 @property (assign) int totalCount;
 @property (nonatomic, assign) CGFloat totalS2BDVValue;
 
-@property (nonatomic,strong) NSMutableArray* allResultArray;
-@property (nonatomic,strong) NSMutableDictionary* allResultDict;
-@property (assign) int allTotalCount;
-@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
 
 
 
@@ -42,8 +38,7 @@
 @property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
 @property (nonatomic, strong) RaisingLimitParam* param;
 
-@property (assign) CGFloat destDVValue;
-@property (assign) CGFloat stopDVValue;
+
 
 
 //we will analysis the data which simlar as this value

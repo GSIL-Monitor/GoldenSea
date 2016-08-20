@@ -125,6 +125,7 @@
     param.durationAfterBuy = 3;
     param.buyPercent = 0.95;
     param.daysAfterLastLimit = 30;
+    param.destDVValue = 5.f;
     
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -138,49 +139,46 @@
 //    NSObject* obj1= [LimitAnalysisMgr shareInstance];
 //    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
 
-    [LimitAnalysisMgr shareInstance].destDVValue = 5.f;
+    
     [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
     
     
     return;
 
-//    [LimitAnalysisMgr shareInstance].destDVValue = 10.f;
-//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-
-#if 0
-    //短期机会
-//    for(long i=3; i<15; i++)
-//    for(long j = 3;j<8;j++)
-    for(long j = 9;j<12;j++)
-    {
-        param.buyPercent  = 0.9+(j*0.01);
-        SMLog(@"\n----[param].buyPercent: %.2f",param.buyPercent);
-        
-//        for(long i=3; i<12; i++)
-        for(long i=3; i<6; i++)
-        {
-            [LimitAnalysisMgr shareInstance].destDVValue = 1.f*i;
-            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-        }
-    }
-#else
-    //中期机会
-    for(long k=2; k<5; k++){
-        param.daysAfterLastLimit = k;
-        for(long j = 9;j<13;j++)
-        {
-            param.buyPercent  = 0.9+(j*0.02);
-//            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",param.daysAfterLastLimit,param.buyPercent);
-            
-            //        for(long i=3; i<12; i++)
-            for(long i=2; i<=5; i++)
-            {
-                [LimitAnalysisMgr shareInstance].destDVValue = 1.5f*i;
-                [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-            }
-        }
-    }
-#endif
+//#if 0
+//    //短期机会
+////    for(long i=3; i<15; i++)
+////    for(long j = 3;j<8;j++)
+//    for(long j = 9;j<12;j++)
+//    {
+//        param.buyPercent  = 0.9+(j*0.01);
+//        SMLog(@"\n----[param].buyPercent: %.2f",param.buyPercent);
+//        
+////        for(long i=3; i<12; i++)
+//        for(long i=3; i<6; i++)
+//        {
+//            [LimitAnalysisMgr shareInstance].destDVValue = 1.f*i;
+//            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+//        }
+//    }
+//#else
+//    //中期机会
+//    for(long k=2; k<5; k++){
+//        param.daysAfterLastLimit = k;
+//        for(long j = 9;j<13;j++)
+//        {
+//            param.buyPercent  = 0.9+(j*0.02);
+////            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",param.daysAfterLastLimit,param.buyPercent);
+//            
+//            //        for(long i=3; i<12; i++)
+//            for(long i=2; i<=5; i++)
+//            {
+//                [LimitAnalysisMgr shareInstance].destDVValue = 1.5f*i;
+//                [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+//            }
+//        }
+//    }
+//#endif
     
 }
 

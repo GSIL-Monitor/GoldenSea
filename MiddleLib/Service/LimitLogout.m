@@ -29,7 +29,7 @@
     [[HYLog shareInstance] enableLog];
     
     
-    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSBaseAnalysisMgr shareInstance].destDVValue,[GSBaseAnalysisMgr shareInstance].allTotalCount,[GSBaseAnalysisMgr shareInstance].allTotalS2BDVValue);
+//    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSBaseAnalysisMgr shareInstance].destDVValue,[GSBaseAnalysisMgr shareInstance].allTotalCount,[GSBaseAnalysisMgr shareInstance].allTotalS2BDVValue);
 
     
     

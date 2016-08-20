@@ -29,8 +29,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 -(id)init
 {
     if(self = [super init]){
-        _destDVValue = 2.5f;
-        _stopDVValue = -3.5f;
+        
     }
     
     return self;
@@ -47,7 +46,6 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 {
     self.isWriteToQueryDB = NO;
     
-    [self resetForAll];
     [GSDataMgr shareInstance].startDate = 20160717;
     
     long dbgNum = 0;
@@ -74,8 +72,6 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
-    [self resetForAll];
-    
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
@@ -349,11 +345,11 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     CGFloat sellValue;
     
     GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
-    CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
+    CGFloat destValue = (1+man.param.destDVValue/100.f)*buyValue;
     long durationAfterBuy = self.param.durationAfterBuy;
     long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
     if(sIndex != -1){ //find
-        sellValue = (1+man.destDVValue/100.f)*buyValue;
+        sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
         kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy)];
         if(kT0Data.TSellData){ //if had data in that day.

@@ -13,7 +13,6 @@
 -(BOOL)isValidDataPassedIn;
 
 -(void)resetForOne;
--(void)resetForAll;
 
 
 -(void)dispatchResult2Array:(KDataModel*)kT0data buyIndex:(long)buyIndex sellIndex:(long)sellIndex;

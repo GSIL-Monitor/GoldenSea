@@ -50,8 +50,8 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     NSArray* resultArray = [GSBaseAnalysisMgr shareInstance].resultArray;
     long totalCount = [GSBaseAnalysisMgr shareInstance].totalCount;
     if(isForAll){
-        resultArray = [GSBaseAnalysisMgr shareInstance].allResultArray;
-        totalCount = [GSBaseAnalysisMgr shareInstance].allTotalCount;
+        resultArray = [GSBaseAnalysisMgr shareInstance].param.allResultArray;
+        totalCount = [GSBaseAnalysisMgr shareInstance].param.allTotalCount;
     }
     
 //    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
