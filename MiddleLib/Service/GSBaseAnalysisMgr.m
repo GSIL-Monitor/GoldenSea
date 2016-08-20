@@ -286,11 +286,11 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
     CGFloat destValue = (1+man.param.destDVValue/100.f)*buyValue;
     long durationAfterBuy = self.param.durationAfterBuy;
-    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
+    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray stop:bIndexInArray+durationAfterBuy-1 kT0data:kT0Data];
     if(sIndex != -1){ //find
         sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
-        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy)];
+        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy-1)];
         if(kT0Data.TSellData){ //if had data in that day.
             sellValue = kT0Data.TSellData.close;
         }else{

@@ -101,7 +101,7 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
     
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600000"];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600075"];
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
 
 

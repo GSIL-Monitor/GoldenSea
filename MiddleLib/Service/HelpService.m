@@ -124,9 +124,9 @@
     for(long j=startIndex; j<=stopIndex; j++){
         KDataModel* tempData = [array safeObjectAtIndex:j];
         
-        if(tempData.low <= theValue){
+        if(tempData &&  (tempData.low <= theValue)){
             
-            index = j-startIndex;
+            index = j-startIndex+1; //+1是因为相对index总是以t0开始计算，而此处的startIndex是t1
             kT0Data.lowValDayIndex = index;
             
             
@@ -146,6 +146,7 @@
     for(long j=startIndex; j<=stopIndex; j++){
         KDataModel* tempData = [array safeObjectAtIndex:j];
         
+        //假如之后无数据，则为空，则会返回-1
         if(tempData.high >= theValue){
             
             index = j-startIndex;

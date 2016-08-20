@@ -34,8 +34,19 @@
 +(CGFloat)maxCloseValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
 +(CGFloat)maxHighValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
 
-//find the index of first day(from start to stop) which value is samll than the give "theValue"
-//if not find, return -1
+
+
+/**
+ *  find the index of first day(from start to stop) which value is samll than the give "theValue"
+ *
+ *  @param theValue
+ *  @param array
+ *  @param startIndex 必须为t1的index!
+ *  @param stopIndex
+ *  @param kT0Data
+ *
+ *  @return 返回的index总是以t0开始计算, if not find, return -1
+ */
 +(long)indexOfValueSmallThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;
 
 //simaler as indexOfValueSmallThan, just this is great than.

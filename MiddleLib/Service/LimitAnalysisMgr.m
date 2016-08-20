@@ -125,20 +125,6 @@
                 if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
                     continue;
                 }
-                
-                buyValue = kTP1Data.ma5 * self.param.buyPercent;
-                long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
-                if(bIndex == -1){ //not find
-                    continue;
-                }
-                
-                kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
-                
-                
-                sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
-                
-                if(kT0Data.TSellData)
-                    [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
             else
             {
@@ -150,26 +136,25 @@
                 if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
                     continue;
                 }
-                
-#if 0
-                long bIndex = 2;
-                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
-                buyValue = kT0Data.TBuyData.close;
-#else
-                buyValue = kTP1Data.ma5 * self.param.buyPercent;
-                long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
-                if(bIndex == -1){ //not find
-                    continue;
-                }
-#endif
-                
-                kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
-                
-                sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
-                
-                if(kT0Data.TSellData)
-                    [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
+                
+//                long bIndex = 2;
+//                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
+//                buyValue = kT0Data.TBuyData.close;
+            buyValue = kTP1Data.ma5 * self.param.buyPercent;
+            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
+            if(bIndex == -1){ //not find
+                continue;
+            }
+            
+            kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
+            
+            
+            sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex+1 kT0data:kT0Data];
+            
+            if(kT0Data.TSellData)
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+            
         }
         
     }
