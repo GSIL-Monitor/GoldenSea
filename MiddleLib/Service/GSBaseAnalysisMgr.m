@@ -16,7 +16,6 @@
 @interface GSBaseAnalysisMgr ()
 
 
-@property (nonatomic, assign) BOOL isWriteToQueryDB;
 
 @end
 
@@ -61,7 +60,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         
         self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
    
-        [self queryRaisingLimit];
+        [self query];
     }
     
     SMLog(@"end of queryAllInDir");
@@ -94,67 +93,11 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 }
 
 
--(void)queryRaisingLimit
+
+-(void)query
 {
-    //skip new stk.
-    if([self.contentArray count]<20){
-        return;
-    }
-    
-    NSMutableArray* queryArray = [NSMutableArray array];
-    
-//    SMLog(@"stkID:%@",self.stkID);
-    long lastIndex = [self.contentArray count]-1;
-    for(long i=[self.contentArray count]-11; i<[self.contentArray count]-1; i++ ){
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
-
-
-        
-        if(kT0Data.isLimitUp){
-            
-            kTP1Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
-
-
-            //filter raise much in shorttime
-            if([self.param isMapRasingLimitAvgConditon:kTP1Data]){
-                if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
-                    KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
-                    CGFloat dvLast2kTP1DataMA5 = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
-                    
-//                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-//                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
-
-                    if (dvLast2kTP1DataMA5 < 5.f) {
-                        SMLog(@"%@ kT0Data: %ld.  dvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, dvLast2kTP1DataMA5);
-                    }
-                    
-                    
-                    //write to queryDB if need.
-                    if(self.isWriteToQueryDB){
-                        QueryResModel* model = [[QueryResModel alloc]init];
-                        model.stkID = self.stkID;
-                        model.time = kT0Data.time;
-                        [[QueryDBManager defaultManager].qREsDBService addRecord:model];
-                    }
-                }
-            }else{
-                
-            }
-        }
-    }
-    
-    
-    
-    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
-
-    
+    GSAssert(NO);
 }
-
-
-
 
 
 
@@ -268,10 +211,6 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 
 #pragma mark - condition
-
-
-
-
 -(BOOL)isMeetT0Condition:(NSDictionary*)passDict
 {
     if(!passDict)

@@ -25,20 +25,20 @@
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSString* stkID;
 
+
 //reslut realted
 @property (nonatomic,strong) NSMutableArray* resultArray;
 @property (assign) int totalCount;
 @property (nonatomic, assign) CGFloat totalS2BDVValue;
 
 
+//for query
+@property (nonatomic, assign) BOOL isWriteToQueryDB;
 
 
-//below is need set--->
 //such as SZ300112 etc.
 @property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
 @property (nonatomic, strong) RaisingLimitParam* param;
-
-
 
 
 //we will analysis the data which simlar as this value
@@ -54,17 +54,11 @@
 
 
 
-//<----------
-
-
 -(void)analysisAllInDir:(NSString*)docsDir;
-
 
 //query action
 -(void)queryAllInDir:(NSString*)docsDir;
 -(void)buildQueryAllDBInDir:(NSString*)docsDir;
-
-
 
 
 

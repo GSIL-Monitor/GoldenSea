@@ -13,14 +13,20 @@
  */
 @interface GSBaseParam : NSObject
 
+//for result
 @property (nonatomic,strong) NSMutableArray* allResultArray;
 @property (nonatomic,strong) NSMutableDictionary* allResultDict;
 @property (assign) int allTotalCount;
 @property (nonatomic, assign) CGFloat allTotalS2BDVValue;
 
 
+
+//condition
 @property (assign) CGFloat destDVValue; //目标位
-@property (assign) CGFloat stopDVValue; //止损位
+@property (assign) CGFloat cutDVValue; //止损位
+
+@property (assign) long durationAfterBuy; //the duaration(t+n day) after the buy day.
+
 
 
 //检测kTP1Data的数据是否满足MA5和MA10的要求，即不能超出太多

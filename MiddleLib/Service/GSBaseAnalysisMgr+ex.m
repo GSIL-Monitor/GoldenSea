@@ -116,8 +116,8 @@
     }
 #else
     //case 2. judge with low
-    if((sellData.low-buyData.close)/buyData.close*100.f <= self.param.stopDVValue){
-        dvValue = self.param.stopDVValue;
+    if((sellData.low-buyData.close)/buyData.close*100.f <= self.param.cutDVValue){
+        dvValue = self.param.cutDVValue;
 //        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
     }else{
         dvValue = (sellData.close-buyData.close)*100.f/buyData.close;

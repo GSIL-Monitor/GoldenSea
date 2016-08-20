@@ -13,6 +13,7 @@
 #define RCSDefaultNotificationCenter [NSNotificationCenter defaultCenter]
 
 #define kInvalidData_Base 10000.f
+#define kInvalidData_Base_Small (kInvalidData_Base-1)
 
 
 

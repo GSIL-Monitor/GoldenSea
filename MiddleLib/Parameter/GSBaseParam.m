@@ -16,7 +16,7 @@
         [self resetForAll];
         
         _destDVValue = 2.5f;
-        _stopDVValue = -3.5f;
+        _cutDVValue = kInvalidData_Base;
     }
     
     return self;
