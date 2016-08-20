@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KDataModel.h"
 #import "OneDayCondition.h"
-#import "GSDataInit.h"
+#import "GSDataMgr.h"
 
 
 

@@ -9,7 +9,7 @@
 #import "GSBaseAnalysisMgr.h"
 #import "KDataModel.h"
 #import "GSBaseLogout.h"
-#import "GSDataInit.h"
+#import "GSDataMgr.h"
 #import "GSBaseAnalysisMgr+ex.h"
 #import "GSCondition.h"
 
@@ -48,11 +48,11 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     self.isWriteToQueryDB = NO;
     
     [self resetForAll];
-    [GSDataInit shareInstance].startDate = 20160717;
+    [GSDataMgr shareInstance].startDate = 20160717;
     
     long dbgNum = 0;
     
-    NSMutableArray* files = [[GSDataInit shareInstance]findSourcesInDir:docsDir];
+    NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
@@ -61,7 +61,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
             continue;
         }
         
-        self.contentArray = [[GSDataInit shareInstance] getStkContentArray:file];
+        self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
    
         [self queryRaisingLimit];
     }
@@ -76,7 +76,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 {
     [self resetForAll];
     
-    NSMutableArray* files = [[GSDataInit shareInstance]findSourcesInDir:docsDir];
+    NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
@@ -85,7 +85,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
             continue;
         }
         
-        self.contentArray = [[GSDataInit shareInstance]getDataFromDB:self.stkID];
+        self.contentArray = [[GSDataMgr shareInstance]getDataFromDB:self.stkID];
 
 //        [self analysis];
         [self analysisForRaisingLimit];
@@ -119,15 +119,15 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         
         if(kT0Data.isLimitUp){
             
-            kTP1Data.ma5 = [[GSDataInit shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma10 = [[GSDataInit shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
 
 
             //filter raise much in shorttime
             if([[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
                 if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
                     KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
-                    CGFloat dvLast2kTP1DataMA5 = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
+                    CGFloat dvLast2kTP1DataMA5 = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
                     
 //                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
 //                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
@@ -286,13 +286,13 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         kT0Data.T1Data = kT1Data;
         kT0Data.TP1Data = kTP1Data;
         
-        kT0Data.dvTP2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvTP1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvT0 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvT1 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvT2 = [[GSDataInit shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        kT0Data.dvTP2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvTP1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvT0 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvT1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvT2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
         
-        kT0Data.dvAvgTP1toTP5 = [[GSDataInit shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
+        kT0Data.dvAvgTP1toTP5 = [[GSDataMgr shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
         
         
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};

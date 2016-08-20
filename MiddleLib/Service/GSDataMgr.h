@@ -1,5 +1,5 @@
 //
-//  GSDataInit.h
+//  GSDataMgr.h
 //  GSGoldenSea
 //
 //  Created by frank weng on 16/5/20.
@@ -17,8 +17,8 @@ typedef enum {
     marketType_ShenZhenChuanYeBan
 }MarketType;
 
-@interface GSDataInit : NSObject
-+(GSDataInit*)shareInstance;
+@interface GSDataMgr : NSObject
++(GSDataMgr*)shareInstance;
 
 
 @property (nonatomic,strong) NSMutableArray* contentArray;

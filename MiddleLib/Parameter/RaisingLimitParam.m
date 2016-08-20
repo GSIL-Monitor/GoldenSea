@@ -25,8 +25,8 @@ SINGLETON_GENERATOR(RaisingLimitParam, shareInstance);
 
 -(BOOL)isMapRasingLimitAvgConditon:(KDataModel*)kTP1Data
 {
-    CGFloat dvMa5AndClose = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
-    CGFloat dvMa10AndClose = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+    CGFloat dvMa5AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
+    CGFloat dvMa10AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
     if(dvMa5AndClose > 6.f
        || dvMa10AndClose < -8.f
        ){
@@ -38,8 +38,8 @@ SINGLETON_GENERATOR(RaisingLimitParam, shareInstance);
 
 -(BOOL)isMapRasingLimitAvgConditonMa30:(KDataModel*)kTP1Data
 {
-    CGFloat dvMa30AndClose = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma30 destValue:kTP1Data.close];
-//    CGFloat dvMa10AndClose = [[GSDataInit shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+    CGFloat dvMa30AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma30 destValue:kTP1Data.close];
+//    CGFloat dvMa10AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
     if(dvMa30AndClose > 10.f
 //       || dvMa10AndClose < -8.f
        ){

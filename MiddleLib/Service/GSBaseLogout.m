@@ -10,7 +10,7 @@
 
 #import "KDataModel.h"
 #import "GSBaseAnalysisMgr.h"
-#import "GSDataInit.h"
+#import "GSDataMgr.h"
 
 #define Key_JustLogOut_All 1
 
@@ -65,7 +65,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         percent = [tmpArray count]*100.f/totalCount;
         
         if(!isForAll){
-            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSBaseAnalysisMgr shareInstance].stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,totalCount,winPercent,lossPercent,[GSBaseAnalysisMgr shareInstance].totalS2BDVValue);
+            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSBaseAnalysisMgr shareInstance].stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,totalCount,winPercent,lossPercent,[GSBaseAnalysisMgr shareInstance].totalS2BDVValue);
         }else{ //for all
             SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
@@ -117,7 +117,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         percent = [tmpArray count]*100.f/analyMan.totalCount;
         
     }
-    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
     
     
 //        return;

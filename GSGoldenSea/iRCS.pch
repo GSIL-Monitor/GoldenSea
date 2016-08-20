@@ -46,7 +46,7 @@
 
 #import "RaisingLimitParam.h"
 #import "KDataModel.h"
-#import "GSDataInit.h"
+#import "GSDataMgr.h"
 
 
 #import "QueryDBManager.h"

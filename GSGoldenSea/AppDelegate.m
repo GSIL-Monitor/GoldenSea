@@ -20,7 +20,7 @@
 #import "GSBaseAnalysisMgr.h"
 #import "GSCondition.h"
 #import "HYLog.h"
-#import "GSDataInit.h"
+#import "GSDataMgr.h"
 
 @interface AppDelegate (){
     
@@ -53,7 +53,7 @@
     [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
     
     
-//    [[GSDataInit shareInstance]writeDataToDB:_filedir];
+//    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
 //    return;
 
     
@@ -65,20 +65,20 @@
     
 //    [[HYLog shareInstance] enableLog];
     
-    //    [GSDataInit shareInstance].startDate = 20110101;
-    //    [GSDataInit shareInstance].endDate = 20120101;
+    //    [GSDataMgr shareInstance].startDate = 20110101;
+    //    [GSDataMgr shareInstance].endDate = 20120101;
     //
-    //    [GSDataInit shareInstance].startDate = 20120101;
-    //    [GSDataInit shareInstance].endDate = 20130101;
+    //    [GSDataMgr shareInstance].startDate = 20120101;
+    //    [GSDataMgr shareInstance].endDate = 20130101;
     //
-    //    [GSDataInit shareInstance].startDate = 20140101;
-    //    [GSDataInit shareInstance].endDate = 20150101;
+    //    [GSDataMgr shareInstance].startDate = 20140101;
+    //    [GSDataMgr shareInstance].endDate = 20150101;
     //
-    //    [GSDataInit shareInstance].startDate = 20150101;
-    //    [GSDataInit shareInstance].endDate = 20160101;
+    //    [GSDataMgr shareInstance].startDate = 20150101;
+    //    [GSDataMgr shareInstance].endDate = 20160101;
     //
-    //    [GSDataInit shareInstance].startDate = 20160101;
-    //    [GSDataInit shareInstance].endDate = 20170101;
+    //    [GSDataMgr shareInstance].startDate = 20160101;
+    //    [GSDataMgr shareInstance].endDate = 20170101;
     
     
     //regsiter net
@@ -103,7 +103,7 @@
 //    _stkID = @"SZ300460";
     
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600000"];
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataInit shareInstance]getStkRangeFromQueryDB];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
 
 
 //    [[GSBaseAnalysisMgr shareInstance]queryAllInDir:_filedir];
@@ -124,13 +124,13 @@
     [RaisingLimitParam shareInstance].buyPercent = 0.95;
     [RaisingLimitParam shareInstance].daysAfterLastLimit = 30;
     
-//    [GSDataInit shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
-//    [GSDataInit shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-//    [GSDataInit shareInstance].marketType = marketType_ShangHai;
-    [GSDataInit shareInstance].marketType = marketType_All;
+//    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
+//    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+//    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+    [GSDataMgr shareInstance].marketType = marketType_All;
 
-    [GSDataInit shareInstance].startDate = 20160125;
-//    [GSDataInit shareInstance].startDate = 20160725;
+    [GSDataMgr shareInstance].startDate = 20160125;
+//    [GSDataMgr shareInstance].startDate = 20160725;
     
     [GSBaseAnalysisMgr shareInstance].destDVValue = 5.f;
     [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
