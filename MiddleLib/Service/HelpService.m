@@ -8,7 +8,7 @@
 
 #import "HelpService.h"
 #import "HYLog.h"
-#import "GSAnalysisManager.h"
+#import "GSBaseAnalysisMgr.h"
 
 @implementation HelpService
 
@@ -116,7 +116,7 @@
 {
     CGFloat sellValue;
     
-    GSAnalysisManager* man = [GSAnalysisManager shareInstance];
+    GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
     CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
     long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
     long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];

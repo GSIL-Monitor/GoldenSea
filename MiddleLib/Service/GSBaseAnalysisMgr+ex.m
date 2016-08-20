@@ -1,18 +1,18 @@
 //
-//  GSAnalysisManager+ex.m
+//  GSBaseAnalysisMgr+ex.m
 //  GSGoldenSea
 //
 //  Created by frank weng on 16/5/20.
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "GSAnalysisManager+ex.h"
+#import "GSBaseAnalysisMgr+ex.h"
 
 
-@interface GSAnalysisManager ()
+@interface GSBaseAnalysisMgr ()
 @end
 
-@implementation GSAnalysisManager (ex)
+@implementation GSBaseAnalysisMgr (ex)
 
 
 

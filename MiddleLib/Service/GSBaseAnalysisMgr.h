@@ -18,9 +18,9 @@
 
 
 
-@interface GSAnalysisManager : NSObject
+@interface GSBaseAnalysisMgr : NSObject
 
-+(GSAnalysisManager*)shareInstance;
++(GSBaseAnalysisMgr*)shareInstance;
 
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSString* stkID;

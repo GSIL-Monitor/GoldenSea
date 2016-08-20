@@ -22,8 +22,8 @@
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
 		426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSBaseLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataInit.m */; };
-		4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */; };
-		42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */; };
+		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
+		42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */; };
 		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
 		42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* KDataDBService.m */; };
 		42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* STKDBService.m */; };
@@ -138,10 +138,10 @@
 		426980031CEEF22200D99888 /* GSBaseLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseLogout.m; sourceTree = "<group>"; };
 		426980051CEEF5F000D99888 /* GSDataInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataInit.h; sourceTree = "<group>"; };
 		426980061CEEF5F000D99888 /* GSDataInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDataInit.m; sourceTree = "<group>"; };
-		426980081CEEF96000D99888 /* GSAnalysisManager+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSAnalysisManager+ex.h"; sourceTree = "<group>"; };
-		426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSAnalysisManager+ex.m"; sourceTree = "<group>"; };
-		42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAnalysisManager.h; sourceTree = "<group>"; };
-		42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAnalysisManager.m; sourceTree = "<group>"; };
+		426980081CEEF96000D99888 /* GSBaseAnalysisMgr+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSBaseAnalysisMgr+ex.h"; sourceTree = "<group>"; };
+		426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSBaseAnalysisMgr+ex.m"; sourceTree = "<group>"; };
+		42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseAnalysisMgr.h; sourceTree = "<group>"; };
+		42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseAnalysisMgr.m; sourceTree = "<group>"; };
 		42C3C9021D4B29420050E676 /* HYDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDBManager.h; sourceTree = "<group>"; };
 		42C3C9031D4B29420050E676 /* HYDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDBManager.m; sourceTree = "<group>"; };
 		42C3C9041D4B29420050E676 /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
@@ -514,10 +514,10 @@
 				4204D0561C88160500D27135 /* HelpService.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
 				426007121C896EA5009AF691 /* STKManager.m */,
-				426980081CEEF96000D99888 /* GSAnalysisManager+ex.h */,
-				426980091CEEF96000D99888 /* GSAnalysisManager+ex.m */,
-				42ABCC3A1CCDBE40008BD830 /* GSAnalysisManager.h */,
-				42ABCC3B1CCDBE40008BD830 /* GSAnalysisManager.m */,
+				426980081CEEF96000D99888 /* GSBaseAnalysisMgr+ex.h */,
+				426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */,
+				42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */,
+				42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */,
 				426980021CEEF22200D99888 /* GSBaseLogout.h */,
 				426980031CEEF22200D99888 /* GSBaseLogout.m */,
 				42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */,
@@ -924,7 +924,7 @@
 				42E098141C7FFAEB004E4DC2 /* YTKBatchRequest.m in Sources */,
 				42E0972D1C7FFAEB004E4DC2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				42E097AB1C7FFAEB004E4DC2 /* DDASLLogCapture.m in Sources */,
-				4269800A1CEEF96000D99888 /* GSAnalysisManager+ex.m in Sources */,
+				4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
 				42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */,
@@ -955,7 +955,7 @@
 				42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */,
 				425840251D66AC680031AC39 /* QueryDBManager.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
-				42ABCC3C1CCDBE40008BD830 /* GSAnalysisManager.m in Sources */,
+				42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
 				42E0981B1C7FFAEB004E4DC2 /* YTKRequest.m in Sources */,
 				42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */,

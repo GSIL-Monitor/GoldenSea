@@ -17,7 +17,7 @@
 
 #import "STKManager.h"
 
-#import "GSAnalysisManager.h"
+#import "GSBaseAnalysisMgr.h"
 #import "GSCondition.h"
 #import "HYLog.h"
 #import "GSDataInit.h"
@@ -102,11 +102,11 @@
     _stkID = @"SZ000912"; //泸天化
 //    _stkID = @"SZ300460";
     
-//    [GSAnalysisManager shareInstance].stkRangeArray = @[@"SH600000"];
-//    [GSAnalysisManager shareInstance].stkRangeArray = [[GSDataInit shareInstance]getStkRangeFromQueryDB];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600000"];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataInit shareInstance]getStkRangeFromQueryDB];
 
 
-//    [[GSAnalysisManager shareInstance]queryAllInDir:_filedir];
+//    [[GSBaseAnalysisMgr shareInstance]queryAllInDir:_filedir];
 //    return;
     
     
@@ -132,12 +132,12 @@
     [GSDataInit shareInstance].startDate = 20160125;
 //    [GSDataInit shareInstance].startDate = 20160725;
     
-    [GSAnalysisManager shareInstance].destDVValue = 5.f;
-    [[GSAnalysisManager shareInstance]analysisAllInDir:_filedir];
+    [GSBaseAnalysisMgr shareInstance].destDVValue = 5.f;
+    [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
     return;
 
-//    [GSAnalysisManager shareInstance].destDVValue = 10.f;
-//    [[GSAnalysisManager shareInstance]analysisAllInDir:_filedir];
+//    [GSBaseAnalysisMgr shareInstance].destDVValue = 10.f;
+//    [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
 
 #if 0
     //短期机会
@@ -151,8 +151,8 @@
 //        for(long i=3; i<12; i++)
         for(long i=3; i<6; i++)
         {
-            [GSAnalysisManager shareInstance].destDVValue = 1.f*i;
-            [[GSAnalysisManager shareInstance]analysisAllInDir:_filedir];
+            [GSBaseAnalysisMgr shareInstance].destDVValue = 1.f*i;
+            [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
         }
     }
 #else
@@ -167,8 +167,8 @@
             //        for(long i=3; i<12; i++)
             for(long i=2; i<=5; i++)
             {
-                [GSAnalysisManager shareInstance].destDVValue = 1.5f*i;
-                [[GSAnalysisManager shareInstance]analysisAllInDir:_filedir];
+                [GSBaseAnalysisMgr shareInstance].destDVValue = 1.5f*i;
+                [[GSBaseAnalysisMgr shareInstance]analysisAllInDir:_filedir];
             }
         }
     }
@@ -185,18 +185,18 @@
     //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     //    tp2con.close_max = 1.f;
     //    tp2con.close_min = -1.2f;
-    //    [GSAnalysisManager shareInstance].tp2dayCond = tp2con;
+    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
     //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -0.5f;
 //    tp1con.close_max = 2.f;
-//    [GSAnalysisManager shareInstance].tp1dayCond = tp1con;
+//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.open_min = 1.0f;
     t0con.open_max = 2.0f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
 //    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
     
@@ -206,7 +206,7 @@
     //    t1con.open_min = -0.4f;
     //    t1con.high_max = 2.5f;
     //    t1con.high_min = 1.2f;
-    [GSAnalysisManager shareInstance].t1dayCond = t1con;
+    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
     
     
     //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -214,7 +214,7 @@
     //    t2con.open_min = 0.3f;
     //
     //
-    //    [GSAnalysisManager shareInstance].tp2dayCond = t2con;
+    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
 }
 
 
@@ -225,44 +225,44 @@
 //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
 //    tp2con.close_max = 1.f;
 //    tp2con.close_min = -1.2f;
-//    [GSAnalysisManager shareInstance].tp2dayCond = tp2con;
+//    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
 //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -4.5f;
 //    tp1con.close_max = -3.f;
-//    [GSAnalysisManager shareInstance].tp1dayCond = tp1con;
+//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
 //    
 //    OneDayCondition* t0con = [[OneDayCondition alloc]init];
 //    t0con.close_min = 0.5f;
 //    t0con.close_max = 2.0f;
-//    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+//    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
     OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     tp2con.close_min = 1.f;
     tp2con.close_max = 3.f;
-    [GSAnalysisManager shareInstance].tp2dayCond = tp2con;
+    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
     
     OneDayCondition* tp1con = [[OneDayCondition alloc]init];
     tp1con.close_min = 0.5f;
     tp1con.close_max = 2.2f;
-    [GSAnalysisManager shareInstance].tp1dayCond = tp1con;
+    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = -1.f;
     t0con.close_max = 0.3f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
     t1con.close_min = -1.f;
     t1con.close_max = 0.3f;
-    [GSAnalysisManager shareInstance].t1dayCond = t1con;
+    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
     
     
 //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
 //    t2con.open_max = 1.5f;
 //    t2con.open_min = 0.5f;
-//    [GSAnalysisManager shareInstance].t2 = t2con;
+//    [GSBaseAnalysisMgr shareInstance].t2 = t2con;
 }
 
 
@@ -274,18 +274,18 @@
     //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     //    tp2con.close_max = 1.f;
     //    tp2con.close_min = -1.2f;
-    //    [GSAnalysisManager shareInstance].tp2dayCond = tp2con;
+    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
     //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -4.5f;
 //    tp1con.close_max = -3.f;
-//    [GSAnalysisManager shareInstance].tp1dayCond = tp1con;
+//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = 0.5f;
     t0con.close_max = 2.0f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
 
     [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
  
@@ -295,7 +295,7 @@
     //    t1con.open_min = -0.4f;
     //    t1con.high_max = 2.5f;
     //    t1con.high_min = 1.2f;
-    [GSAnalysisManager shareInstance].t1dayCond = t1con;
+    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
     
     
     //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -303,7 +303,7 @@
     //    t2con.open_min = 0.3f;
     //
     //
-    //    [GSAnalysisManager shareInstance].tp2dayCond = t2con;
+    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
 }
 
 
@@ -316,7 +316,7 @@
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_max = -2.0f;
     t0con.close_min = -3.5f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
     t1con.open_max = 1.f;
@@ -325,7 +325,7 @@
     t1con.high_min = 1.2f;
 //    t1con.close_max = -0.6f;
 //    t1con.close_min = -1.8f;
-    [GSAnalysisManager shareInstance].t1dayCond = t1con;
+    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
     
     
 //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -333,7 +333,7 @@
 //    t2con.open_min = 0.3f;
 //    
 //    
-//    [GSAnalysisManager shareInstance].tp2dayCond = t2con;
+//    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
 }
 
 
@@ -344,7 +344,7 @@
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_max = 2.5f;
     t0con.close_min = 1.3f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
 //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
 ////    t1con.open_max = -0.1f;
@@ -353,7 +353,7 @@
 ////    t1con.open_min = 0.f;
 //    t1con.close_max = -0.6f;
 //    t1con.close_min = -1.8f;
-//    [GSAnalysisManager shareInstance].t1dayCond = t1con;
+//    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
     
     
     OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -361,7 +361,7 @@
         t2con.open_min = 0.3f;
 
 
-    [GSAnalysisManager shareInstance].tp2dayCond = t2con;
+    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
 }
 
 
@@ -387,13 +387,13 @@
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
     //    theCond.dvRange = 0.9;
     
-    [GSAnalysisManager shareInstance].tp1dayCond = theCond;
+    [GSBaseAnalysisMgr shareInstance].tp1dayCond = theCond;
     [theCond logOutCondition];
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     //    t0con.open_max = -0.2f;
     //    t0con.open_min = -2.f;
-    [GSAnalysisManager shareInstance].t0dayCond = t0con;
+    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
     
     return theCond;
 }

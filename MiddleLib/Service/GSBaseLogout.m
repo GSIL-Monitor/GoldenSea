@@ -9,7 +9,7 @@
 #import "GSBaseLogout.h"
 
 #import "KDataModel.h"
-#import "GSAnalysisManager.h"
+#import "GSBaseAnalysisMgr.h"
 #import "GSDataInit.h"
 
 #define Key_JustLogOut_All 1
@@ -47,14 +47,14 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     }
     
     
-    NSArray* resultArray = [GSAnalysisManager shareInstance].resultArray;
-    long totalCount = [GSAnalysisManager shareInstance].totalCount;
+    NSArray* resultArray = [GSBaseAnalysisMgr shareInstance].resultArray;
+    long totalCount = [GSBaseAnalysisMgr shareInstance].totalCount;
     if(isForAll){
-        resultArray = [GSAnalysisManager shareInstance].allResultArray;
-        totalCount = [GSAnalysisManager shareInstance].allTotalCount;
+        resultArray = [GSBaseAnalysisMgr shareInstance].allResultArray;
+        totalCount = [GSBaseAnalysisMgr shareInstance].allTotalCount;
     }
     
-//    GSAnalysisManager* analyMan = [GSAnalysisManager shareInstance];
+//    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
     
     //calulate percent firstly
     NSMutableArray* tmpArray;
@@ -65,7 +65,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         percent = [tmpArray count]*100.f/totalCount;
         
         if(!isForAll){
-            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSAnalysisManager shareInstance].stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,totalCount,winPercent,lossPercent,[GSAnalysisManager shareInstance].totalS2BDVValue);
+            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSBaseAnalysisMgr shareInstance].stkID,[GSDataInit shareInstance].startDate,[GSDataInit shareInstance].endDate,totalCount,winPercent,lossPercent,[GSBaseAnalysisMgr shareInstance].totalS2BDVValue);
         }else{ //for all
             SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
@@ -107,7 +107,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     CGFloat percent = 0.f;
     
     
-    GSAnalysisManager* analyMan = [GSAnalysisManager shareInstance];
+    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
     
     //calulate percent firstly
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;

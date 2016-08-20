@@ -6,14 +6,14 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "GSAnalysisManager.h"
+#import "GSBaseAnalysisMgr.h"
 #import "KDataModel.h"
 #import "GSBaseLogout.h"
 #import "GSDataInit.h"
-#import "GSAnalysisManager+ex.h"
+#import "GSBaseAnalysisMgr+ex.h"
 #import "GSCondition.h"
 
-@interface GSAnalysisManager ()
+@interface GSBaseAnalysisMgr ()
 
 
 @property (nonatomic, assign) BOOL isWriteToQueryDB;
@@ -21,9 +21,9 @@
 @end
 
 
-@implementation GSAnalysisManager
+@implementation GSBaseAnalysisMgr
 
-SINGLETON_GENERATOR(GSAnalysisManager, shareInstance);
+SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 
 -(id)init
@@ -153,7 +153,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareInstance);
     
     
     
-    [[GSBaseLogout shareInstance] SimpleLogOutResult:NO];
+    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
 
     
 }
@@ -255,7 +255,7 @@ SINGLETON_GENERATOR(GSAnalysisManager, shareInstance);
     }
     
     
-    [[GSBaseLogout shareInstance] SimpleLogOutResult:NO];
+    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
 
 }
 
