@@ -41,6 +41,8 @@
     
     
     [[HYLog shareInstance] disableLog];
+    
+    SMLog(@"<--end of analysisAndLogtoFile");
 }
 
 @end

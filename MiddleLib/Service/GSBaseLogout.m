@@ -224,7 +224,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,kData.TSellData.time, kData.dvSelltoBuy);
+            SMLog(@"%@ TBuyData:%ld(%d), TSellData:%ld(%d), dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,(kData.TBuyData.tIndex-kData.tIndex),kData.TSellData.time, (kData.TSellData.tIndex-kData.TBuyData.tIndex),kData.dvSelltoBuy);
         }
     }
 

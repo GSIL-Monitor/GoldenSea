@@ -102,6 +102,8 @@
 //    _stkID = @"SZ300460";
     
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600075"];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600401"]; //why case0 no, but case 16 have??
+
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
 
 
@@ -119,17 +121,12 @@
 {
 
     
-    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
-    param.durationAfterBuy = 3;
-    param.buyPercent = 0.95;
-    param.daysAfterLastLimit = 30;
-    param.destDVValue = 5.f;
+    
     
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
 //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
-
     [GSDataMgr shareInstance].startDate = 20160125;
 //    [GSDataMgr shareInstance].startDate = 20160725;
 
@@ -137,31 +134,44 @@
 //    NSObject* obj1= [LimitAnalysisMgr shareInstance];
 //    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
 
+    
+    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
+    //tmp best.
+    param.daysAfterLastLimit = 30;
+    param.buyPercent = 1.01;
+    param.destDVValue = 5.f;
+    param.durationAfterBuy = 3;
+
+    
 //    [LimitAnalysisMgr shareInstance].param = param;
 //    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
 //    
 //    [[LimitLogout shareInstance]analysisAndLogtoFile];
 //    return;
 
+    
+    long percentStart = 0, percentEnd = 0;
+    long destDVStart = 4, destDVEnd = 6;
+
 #if 1
     //短期机会
-    long percentStart = 9, percentEnd = 12;
-    long destDVStart = 3, destDVEnd = 6;
-
-    for(long pIndex = percentStart; pIndex <percentEnd;pIndex++)
+     percentStart = 8, percentEnd = 17;
+#else
+    //中期机会
+#endif
+    
+    for(long pIndex = percentStart; pIndex <=percentEnd;pIndex++)
     {
         param.buyPercent  = 0.9+(pIndex*0.01);
         
-        for(long dvIndex=destDVStart; dvIndex<destDVEnd; dvIndex++)
+        for(long dvIndex=destDVStart; dvIndex<=destDVEnd; dvIndex++)
         {
             param.destDVValue = 1.f*dvIndex;
             [LimitAnalysisMgr shareInstance].param = param;
             [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
         }
     }
-#else
-    //中期机会
-#endif
+
     
     
     [[LimitLogout shareInstance]analysisAndLogtoFile];
