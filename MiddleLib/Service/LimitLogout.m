@@ -9,15 +9,31 @@
 #import "LimitLogout.h"
 #import "GSBaseAnalysisMgr.h"
 
+
+@interface LimitLogout ()
+
+@end
+
 @implementation LimitLogout
 
 
 
 -(void)logOutAllResult
 {
-    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSBaseAnalysisMgr shareInstance].destDVValue,[GSBaseAnalysisMgr shareInstance].allTotalCount,[GSBaseAnalysisMgr shareInstance].allTotalS2BDVValue);
     [self _SimpleLogOutForAll:YES isJustLogFail:NO];
 }
 
+
+-(void)analysisAndLogtoFile;
+{
+    [[HYLog shareInstance] enableLog];
+    
+    
+    SMLog(@"LogOutAllResult - destDV(%.2f) -totalCount(%d) --alltotalS2BDVValue(%2f)",[GSBaseAnalysisMgr shareInstance].destDVValue,[GSBaseAnalysisMgr shareInstance].allTotalCount,[GSBaseAnalysisMgr shareInstance].allTotalS2BDVValue);
+
+    
+    
+    [[HYLog shareInstance] disableLog];
+}
 
 @end

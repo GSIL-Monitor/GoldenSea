@@ -112,28 +112,7 @@
 
 
 
-+(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
-{
-    CGFloat sellValue;
-    
-    GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
-    CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
-    long durationAfterBuy = [RaisingLimitParam shareInstance].durationAfterBuy;
-    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
-    if(sIndex != -1){ //find
-        sellValue = (1+man.destDVValue/100.f)*buyValue;
-    }else{
-        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy)];
-        if(kT0Data.TSellData){ //if had data in that day.
-            sellValue = kT0Data.TSellData.close;
-        }else{
-            sellValue = buyValue;
-        }
-    }
 
-    
-    return sellValue;
-}
 
 
 +(long)indexOfValueSmallThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;

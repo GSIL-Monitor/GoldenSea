@@ -12,7 +12,7 @@
 #import "GSDataMgr.h"
 
 
-
+#import "GSBaseParam.h"
 
 
 
@@ -40,7 +40,7 @@
 //below is need set--->
 //such as SZ300112 etc.
 @property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
-
+@property (nonatomic, strong) RaisingLimitParam* param;
 
 @property (assign) CGFloat destDVValue;
 @property (assign) CGFloat stopDVValue;
@@ -68,6 +68,13 @@
 //query action
 -(void)queryAllInDir:(NSString*)docsDir;
 -(void)buildQueryAllDBInDir:(NSString*)docsDir;
+
+
+
+
+
+//protected class used function
+-(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
 
 
 @end

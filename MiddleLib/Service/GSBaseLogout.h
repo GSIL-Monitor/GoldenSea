@@ -23,8 +23,12 @@
 -(void)SimpleLogOutResult:(BOOL)isJustLogFail;
 
 
+-(void)analysisAndLogtoFile;
+
+
 
 //protected.
+
 -(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail;
 
 

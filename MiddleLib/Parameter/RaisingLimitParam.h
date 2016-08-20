@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GSBaseParam.h"
 
 //tbd.
 @interface RaisingLimitParam : NSObject
 
-+(RaisingLimitParam*)shareInstance;
 
 
 @property (assign) long durationAfterBuy; //the duaration(t+n day) after the buy day.

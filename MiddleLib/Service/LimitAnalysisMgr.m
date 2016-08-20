@@ -12,30 +12,9 @@
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
-//    [self resetForAll];
-//    
-//    NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
-//    for(NSString* file in files){
-//        [self resetForOne];
-//        self.stkID = [HelpService stkIDWithFile:file];
-//        
-//        if(![self isInRange:self.stkID]){
-//            continue;
-//        }
-//        
-//        self.contentArray = [[GSDataMgr shareInstance]getDataFromDB:self.stkID];
-//        
-//        //        [self analysis];
-//        [self analysisForRaisingLimit];
-//        
-//    }
-//    
     
     [super analysisAllInDir:docsDir];
     
-    [[LimitLogout shareInstance]logOutAllResult];
-    
-    SMLog(@"end of analysisAll");
 }
 
 
@@ -79,14 +58,14 @@
             kT0Data.stkID = self.stkID;
             
             
-            if([RaisingLimitParam shareInstance].daysAfterLastLimit == 0)
+            if(self.param.daysAfterLastLimit == 0)
             {
                 //filter raise much in shorttime
-                if(![[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
+                if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
                     continue;
                 }
                 
-                buyValue = kTP1Data.ma5 * [RaisingLimitParam shareInstance].buyPercent;
+                buyValue = kTP1Data.ma5 * self.param.buyPercent;
                 long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
                 if(bIndex == -1){ //not find
                     continue;
@@ -95,7 +74,7 @@
                 kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
                 
                 
-                sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
+                sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
                 
                 if(kT0Data.TSellData)
                     [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
@@ -103,11 +82,11 @@
             else
             {
                 //filter raise much in shorttime
-                if(![[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditonMa30:kTP1Data]){
+                if(![self.param isMapRasingLimitAvgConditonMa30:kTP1Data]){
                     continue;
                 }
                 
-                if(![[RaisingLimitParam shareInstance] isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
+                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
                     continue;
                 }
                 
@@ -116,7 +95,7 @@
                 kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
                 buyValue = kT0Data.TBuyData.close;
 #else
-                buyValue = kTP1Data.ma5 * [RaisingLimitParam shareInstance].buyPercent;
+                buyValue = kTP1Data.ma5 * self.param.buyPercent;
                 long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
                 if(bIndex == -1){ //not find
                     continue;
@@ -125,7 +104,7 @@
                 
                 kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
                 
-                sellValue = [HelpService getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
+                sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex kT0data:kT0Data];
                 
                 if(kT0Data.TSellData)
                     [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];

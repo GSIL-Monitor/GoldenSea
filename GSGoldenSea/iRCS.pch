@@ -49,6 +49,7 @@
 #import "QueryResModel.h"
 
 #import "LimitLogout.h"
+#import "HYLog.h"
 
 #endif
 

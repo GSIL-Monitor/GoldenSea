@@ -43,7 +43,6 @@
 
 
 
-+(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
 
 
 

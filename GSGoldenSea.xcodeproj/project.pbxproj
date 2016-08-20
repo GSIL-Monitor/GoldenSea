@@ -24,6 +24,7 @@
 		426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataMgr.m */; };
 		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
 		42A6EA5C1D680EDE00430CEC /* LimitAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */; };
+		42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA611D6856EF00430CEC /* GSBaseParam.m */; };
 		42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */; };
 		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
 		42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* KDataDBService.m */; };
@@ -143,6 +144,8 @@
 		426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSBaseAnalysisMgr+ex.m"; sourceTree = "<group>"; };
 		42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitAnalysisMgr.h; sourceTree = "<group>"; };
 		42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitAnalysisMgr.m; sourceTree = "<group>"; };
+		42A6EA601D6856EF00430CEC /* GSBaseParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseParam.h; sourceTree = "<group>"; };
+		42A6EA611D6856EF00430CEC /* GSBaseParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseParam.m; sourceTree = "<group>"; };
 		42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseAnalysisMgr.h; sourceTree = "<group>"; };
 		42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseAnalysisMgr.m; sourceTree = "<group>"; };
 		42C3C9021D4B29420050E676 /* HYDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDBManager.h; sourceTree = "<group>"; };
@@ -791,6 +794,8 @@
 		E4941B601D64B9AD006B792B /* Parameter */ = {
 			isa = PBXGroup;
 			children = (
+				42A6EA601D6856EF00430CEC /* GSBaseParam.h */,
+				42A6EA611D6856EF00430CEC /* GSBaseParam.m */,
 				E4941B611D64BA15006B792B /* RaisingLimitParam.h */,
 				E4941B621D64BA15006B792B /* RaisingLimitParam.m */,
 			);
@@ -954,6 +959,7 @@
 				42E097AF1C7FFAEB004E4DC2 /* DDTTYLogger.m in Sources */,
 				42E097AE1C7FFAEB004E4DC2 /* DDLog.m in Sources */,
 				42E097971C7FFAEB004E4DC2 /* HYFMResultSet.m in Sources */,
+				42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */,
 				424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */,
 				42E0979A1C7FFAEB004E4DC2 /* iCarousel.m in Sources */,
 				42E097981C7FFAEB004E4DC2 /* DebugTool.c in Sources */,

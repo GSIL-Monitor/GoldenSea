@@ -95,6 +95,12 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 }
 
 
+-(void)analysisAndLogtoFile;
+{
+    GSAssert(NO, @"need implenet in child class");
+}
+
+
 -(void)logOutAllResult
 {
     GSAssert(NO, @"need implenet in child class");

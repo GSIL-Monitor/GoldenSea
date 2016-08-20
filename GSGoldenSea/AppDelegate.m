@@ -89,9 +89,7 @@
     //    [[STKManager shareInstance]test];
     
     [self doInit];
-    
-    //分析最近周期（比如3个月）第一个涨停
-    
+        
 }
 
 -(void)doInit{
@@ -123,10 +121,10 @@
 
 -(void)testForAllLimit
 {
-   
-    [RaisingLimitParam shareInstance].durationAfterBuy = 3;
-    [RaisingLimitParam shareInstance].buyPercent = 0.95;
-    [RaisingLimitParam shareInstance].daysAfterLastLimit = 30;
+    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
+    param.durationAfterBuy = 3;
+    param.buyPercent = 0.95;
+    param.daysAfterLastLimit = 30;
     
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -135,9 +133,15 @@
 
     [GSDataMgr shareInstance].startDate = 20160125;
 //    [GSDataMgr shareInstance].startDate = 20160725;
-    
+
+//    //why use as first shareInstance???
+//    NSObject* obj1= [LimitAnalysisMgr shareInstance];
+//    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
+
     [LimitAnalysisMgr shareInstance].destDVValue = 5.f;
     [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+    
+    
     return;
 
 //    [LimitAnalysisMgr shareInstance].destDVValue = 10.f;
@@ -149,8 +153,8 @@
 //    for(long j = 3;j<8;j++)
     for(long j = 9;j<12;j++)
     {
-        [RaisingLimitParam shareInstance].buyPercent  = 0.9+(j*0.01);
-        SMLog(@"\n----[RaisingLimitParam shareInstance].buyPercent: %.2f",[RaisingLimitParam shareInstance].buyPercent);
+        param.buyPercent  = 0.9+(j*0.01);
+        SMLog(@"\n----[param].buyPercent: %.2f",param.buyPercent);
         
 //        for(long i=3; i<12; i++)
         for(long i=3; i<6; i++)
@@ -162,11 +166,11 @@
 #else
     //中期机会
     for(long k=2; k<5; k++){
-        [RaisingLimitParam shareInstance].daysAfterLastLimit = k;
+        param.daysAfterLastLimit = k;
         for(long j = 9;j<13;j++)
         {
-            [RaisingLimitParam shareInstance].buyPercent  = 0.9+(j*0.02);
-            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",[RaisingLimitParam shareInstance].daysAfterLastLimit,[RaisingLimitParam shareInstance].buyPercent);
+            param.buyPercent  = 0.9+(j*0.02);
+//            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",param.daysAfterLastLimit,param.buyPercent);
             
             //        for(long i=3; i<12; i++)
             for(long i=2; i<=5; i++)

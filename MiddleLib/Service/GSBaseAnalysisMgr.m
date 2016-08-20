@@ -123,7 +123,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 
             //filter raise much in shorttime
-            if([[RaisingLimitParam shareInstance] isMapRasingLimitAvgConditon:kTP1Data]){
+            if([self.param isMapRasingLimitAvgConditon:kTP1Data]){
                 if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
                     KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
                     CGFloat dvLast2kTP1DataMA5 = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
@@ -343,7 +343,29 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 
 
-
+#pragma mark - common
+-(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
+{
+    CGFloat sellValue;
+    
+    GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
+    CGFloat destValue = (1+man.destDVValue/100.f)*buyValue;
+    long durationAfterBuy = self.param.durationAfterBuy;
+    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray+1 stop:bIndexInArray+durationAfterBuy kT0data:kT0Data];
+    if(sIndex != -1){ //find
+        sellValue = (1+man.destDVValue/100.f)*buyValue;
+    }else{
+        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy)];
+        if(kT0Data.TSellData){ //if had data in that day.
+            sellValue = kT0Data.TSellData.close;
+        }else{
+            sellValue = buyValue;
+        }
+    }
+    
+    
+    return sellValue;
+}
 
 
 
