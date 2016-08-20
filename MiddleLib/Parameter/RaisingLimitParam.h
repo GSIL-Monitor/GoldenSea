@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GSBaseParam.h"
 
-//tbd.
+
 @interface RaisingLimitParam : GSBaseParam
 
 

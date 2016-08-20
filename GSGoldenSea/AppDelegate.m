@@ -95,7 +95,6 @@
 -(void)doInit{
 
     _stkID = @"SH600418"; //jhqc
-    
     //    _stkID = @"SH601002";
     //    _stkID = @"SH600126"; //hggf
 //    _stkID = @"SZ002430"; //hygf
@@ -110,9 +109,6 @@
 //    return;
     
     
-
-    
-//    [[HYLog shareInstance]enableLog];
 
     [self testForAllLimit];
 }
@@ -139,7 +135,7 @@
 //    NSObject* obj1= [LimitAnalysisMgr shareInstance];
 //    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
 
-    
+    [LimitAnalysisMgr shareInstance].param = param;
     [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
     
     
