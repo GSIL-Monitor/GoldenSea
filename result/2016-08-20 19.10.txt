@@ -1,0 +1,10 @@
+---summary report(20160125-20200101)---
+Index(0) - Conditon: daysAfterLastLimit(30), buyPercent(0.95), destDVValue(5.00), durationAfterBuy(3)  Result:totalCount(13), alltotalS2BDVValue(43.168095) 
+
+
+
+
+
+
+---detail report(20160125-20200101)---
+Index(0) - Conditon: daysAfterLastLimit(30), buyPercent(0.95), destDVValue(5.00), durationAfterBuy(3)  Result:totalCount(13), alltotalS2BDVValue(43.168095) 

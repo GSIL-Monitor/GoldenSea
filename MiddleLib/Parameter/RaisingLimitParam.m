@@ -10,7 +10,6 @@
 
 @implementation RaisingLimitParam
 
-SINGLETON_GENERATOR(RaisingLimitParam, shareInstance);
 
 
 -(id)init

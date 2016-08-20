@@ -199,8 +199,8 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         
         NSComparisonResult result = [number1 compare:number2];
         
-        return result == NSOrderedDescending; // 升序
-        //        return result == NSOrderedAscending;  // 降序
+//        return result == NSOrderedDescending; // 升序
+        return result == NSOrderedAscending;  // 降序
     }];
     
     

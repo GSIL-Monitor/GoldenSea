@@ -117,6 +117,8 @@
 
 -(void)testForAllLimit
 {
+
+    
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
     param.durationAfterBuy = 3;
     param.buyPercent = 0.95;
@@ -135,47 +137,35 @@
 //    NSObject* obj1= [LimitAnalysisMgr shareInstance];
 //    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
 
-    [LimitAnalysisMgr shareInstance].param = param;
-    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-    
-    
-    return;
+//    [LimitAnalysisMgr shareInstance].param = param;
+//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+//    
+//    [[LimitLogout shareInstance]analysisAndLogtoFile];
+//    return;
 
-//#if 0
-//    //短期机会
-////    for(long i=3; i<15; i++)
-////    for(long j = 3;j<8;j++)
-//    for(long j = 9;j<12;j++)
-//    {
-//        param.buyPercent  = 0.9+(j*0.01);
-//        SMLog(@"\n----[param].buyPercent: %.2f",param.buyPercent);
-//        
-////        for(long i=3; i<12; i++)
-//        for(long i=3; i<6; i++)
-//        {
-//            [LimitAnalysisMgr shareInstance].destDVValue = 1.f*i;
-//            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-//        }
-//    }
-//#else
-//    //中期机会
-//    for(long k=2; k<5; k++){
-//        param.daysAfterLastLimit = k;
-//        for(long j = 9;j<13;j++)
-//        {
-//            param.buyPercent  = 0.9+(j*0.02);
-////            SMLog(@"\n----daysAfterLastLimit:%d. buyPercent: %.2f",param.daysAfterLastLimit,param.buyPercent);
-//            
-//            //        for(long i=3; i<12; i++)
-//            for(long i=2; i<=5; i++)
-//            {
-//                [LimitAnalysisMgr shareInstance].destDVValue = 1.5f*i;
-//                [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-//            }
-//        }
-//    }
-//#endif
+#if 1
+    //短期机会
+    long percentStart = 9, percentEnd = 12;
+    long destDVStart = 3, destDVEnd = 6;
+
+    for(long pIndex = percentStart; pIndex <percentEnd;pIndex++)
+    {
+        param.buyPercent  = 0.9+(pIndex*0.01);
+        
+        for(long dvIndex=destDVStart; dvIndex<destDVEnd; dvIndex++)
+        {
+            param.destDVValue = 1.f*dvIndex;
+            [LimitAnalysisMgr shareInstance].param = param;
+            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+        }
+    }
+#else
+    //中期机会
+#endif
     
+    
+    [[LimitLogout shareInstance]analysisAndLogtoFile];
+
 }
 
 
