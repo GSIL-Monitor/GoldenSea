@@ -112,10 +112,7 @@
 //    return;
     
     
-    //dbg code.
-    LimitLogout* inst = [LimitLogout shareInstance];
-    [[LimitLogout shareInstance]logOutAllResult];
-    return;
+
     
 //    [[HYLog shareInstance]enableLog];
 

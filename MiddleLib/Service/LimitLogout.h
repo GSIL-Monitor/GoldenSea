@@ -10,7 +10,6 @@
 
 @interface LimitLogout : GSBaseLogout
 
-+(LimitLogout*)shareInstance;
 
 
 @end

@@ -11,7 +11,6 @@
 
 @implementation LimitLogout
 
-SINGLETON_GENERATOR(LimitLogout, shareInstance);
 
 
 -(void)logOutAllResult
