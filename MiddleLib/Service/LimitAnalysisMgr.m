@@ -118,16 +118,20 @@
     self.queryResArray = (NSMutableArray*)resultArray;
     
     
-    
+    [[HYLog shareInstance] enableLog];
+
     for(long i=0; i<[self.queryResArray count]; i++){
         QueryResModel* model = [self.queryResArray objectAtIndex:i];
         SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f), buyVal(%.2f)",[model.stkID substringFromIndex:2],model.time, model.pvLast2kTP1DataMA5, model.buyVal);
         
-        //write to queryDB if need.
-        if(self.isWriteToQueryDB){
-            [[QueryDBManager defaultManager].qREsDBService addRecord:model];
-        }
+//        //write to queryDB if need.
+//        if(self.isWriteToQueryDB){
+//            [[QueryDBManager defaultManager].qREsDBService addRecord:model];
+//        }
     }
+    
+    [[HYLog shareInstance] disableLog];
+
 }
 
 

@@ -44,7 +44,10 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 -(void)queryAllWithDB:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = NO;
-        
+    
+    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
+
+    
     [self _queryAllWithDB:docsDir];
 
 }
@@ -53,7 +56,6 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 {
     [GSDataMgr shareInstance].startDate = 20160601;
     
-    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
     self.queryResArray = [NSMutableArray array];
 
     
@@ -66,7 +68,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
             continue;
         }
         
-        self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
+        self.contentArray = [[GSDataMgr shareInstance] getDataFromDB:self.stkID];
         
         [self query];
     }

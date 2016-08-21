@@ -87,7 +87,7 @@
 
 -(void)doInit{
     
-    _isDoAnalysis = NO;
+    _isDoAnalysis = YES; //tbd. fix two intance can't both exist.
     
     if(_isDoAnalysis){
         [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
@@ -124,7 +124,7 @@
     
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
     //tmp best.
-    param.daysAfterLastLimit = 30;
+    param.daysAfterLastLimit = 15; //30;
     param.buyPercent = 1.03;
     param.destDVValue = 5.f;
     param.durationAfterBuy = 3;
@@ -135,10 +135,10 @@
     return;
 
     
-//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-//    
-//    [[LimitLogout shareInstance]analysisAndLogtoFile];
-//    return;
+    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+    
+    [[LimitLogout shareInstance]analysisAndLogtoFile];
+    return;
 
     
     long percentStart = 0, percentEnd = 0;
