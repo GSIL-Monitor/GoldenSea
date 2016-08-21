@@ -38,16 +38,26 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 {
     self.isWriteToQueryDB = YES;
     
-    [self queryAllWithDB:docsDir];
+    [self _queryAllWithDB:docsDir];
 }
 
 -(void)queryAllWithDB:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = NO;
+        
+    [self _queryAllWithDB:docsDir];
+
+}
+
+-(void)_queryAllWithDB:(NSString*)docsDir;
+{
+    self.isWriteToQueryDB = NO;
     
-    [GSDataMgr shareInstance].startDate = 20160717;
+    [GSDataMgr shareInstance].startDate = 20160601;
     
-    long dbgNum = 0;
+    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
+    self.queryResArray = [NSMutableArray array];
+
     
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
@@ -59,12 +69,14 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         }
         
         self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
-   
+        
         [self query];
     }
     
+    [self queryAndLogtoDB];
+    
     SMLog(@"end of queryAllInDir");
-
+    
 }
 
 

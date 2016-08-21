@@ -102,13 +102,11 @@
 //    _stkID = @"SZ300460";
     
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600075"];
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600401"]; //why case0 no, but case 16 have??
-
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
+//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600401"];
 
 
-//    [[GSBaseAnalysisMgr shareInstance]queryAllInDir:_filedir];
-//    return;
+
+
     
     
 
@@ -141,9 +139,13 @@
     param.buyPercent = 1.01;
     param.destDVValue = 5.f;
     param.durationAfterBuy = 3;
+    [LimitAnalysisMgr shareInstance].param = param;
+    
+    [[LimitAnalysisMgr shareInstance]queryAllAndSaveToDBWithFile:_filedir];
+//    [[LimitAnalysisMgr shareInstance]queryAllWithDB:_filedir];
+    return;
 
     
-//    [LimitAnalysisMgr shareInstance].param = param;
 //    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
 //    
 //    [[LimitLogout shareInstance]analysisAndLogtoFile];

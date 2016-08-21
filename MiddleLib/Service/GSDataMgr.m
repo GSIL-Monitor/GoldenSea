@@ -37,6 +37,15 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 
+
+-(void)updateDataToDB
+{
+    //tbd.
+    //判断当期db最后t日，从网络取t+1到当天数据，
+    //然后从db取t-30日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
+    //最后将数据写回db
+}
+
 -(void)writeDataToDB:(NSString*)docsDir;
 {
     [self _writeDataToDB:docsDir FromDate:20020101 EndDate:20200101];

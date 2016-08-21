@@ -8,6 +8,11 @@
 
 #import "LimitAnalysisMgr.h"
 
+@interface LimitAnalysisMgr ()
+
+
+@end
+
 @implementation LimitAnalysisMgr
 
 -(void)analysisAllInDir:(NSString*)docsDir;
@@ -26,7 +31,6 @@
         return;
     }
     
-    NSMutableArray* queryArray = [NSMutableArray array];
     
     //    SMLog(@"stkID:%@",self.stkID);
     long lastIndex = [self.contentArray count]-1;
@@ -41,43 +45,89 @@
             
             kTP1Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
             kTP1Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:self.contentArray t0Index:i-1];
+
+            
+            if(self.param.daysAfterLastLimit == 0)
+            {
+                //filter raise much in shorttime
+                if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
+                    continue;
+                }
+            }
+            else
+            {
+                //filter raise much in shorttime
+                if(![self.param isMapRasingLimitAvgConditonMa30:kTP1Data]){
+                    continue;
+                }
+                
+                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
+                    continue;
+                }
+            }
             
             
             //filter raise much in shorttime
-            if([self.param isMapRasingLimitAvgConditon:kTP1Data]){
-                if(kT0Data.time >= 20160814){ // && kT0Data.time <= 20160816
-                    KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
-                    CGFloat dvLast2kTP1DataMA5 = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTLastData.close];
-                    
-                    //                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-                    //                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
-                    
-                    if (dvLast2kTP1DataMA5 < 5.f) {
-                        SMLog(@"%@ kT0Data: %ld.  dvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, dvLast2kTP1DataMA5);
-                    }
-                    
-                    
-                    //write to queryDB if need.
-                    if(self.isWriteToQueryDB){
-                        QueryResModel* model = [[QueryResModel alloc]init];
-                        model.stkID = self.stkID;
-                        model.time = kT0Data.time;
-                        [[QueryDBManager defaultManager].qREsDBService addRecord:model];
-                    }
-                }
-            }else{
+            if(kT0Data.time >= 20160816){ // && kT0Data.time <= 20160816
+                KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
+                CGFloat pvLast2kTP1DataMA5 = kTLastData.close/kTP1Data.ma5;
                 
+                //                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
+                //                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+                
+//                if (pvLast2kTP1DataMA5 < 5.f) {
+//                    SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, pvLast2kTP1DataMA5);
+//                }
+                
+                
+                //save to array
+                QueryResModel* model = [[QueryResModel alloc]init];
+                model.stkID = self.stkID;
+                model.time = kT0Data.time;
+                model.pvLast2kTP1DataMA5 = pvLast2kTP1DataMA5;
+                [self.queryResArray addObject:model];
             }
         }
     }
     
     
     
-    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
+//    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
     
     
 }
 
+
+-(void)queryAndLogtoDB;
+{
+    //reorder
+    NSMutableArray* array = self.queryResArray;
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        QueryResModel* par1 = obj1;
+        QueryResModel* par2 = obj2;
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.pvLast2kTP1DataMA5];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.pvLast2kTP1DataMA5];
+        
+        NSComparisonResult result = [number1 compare:number2];
+        
+        return result == NSOrderedDescending; // 升序
+        //        return result == NSOrderedAscending;  // 降序
+    }];
+    self.queryResArray = (NSMutableArray*)resultArray;
+    
+    
+    
+    for(long i=0; i<[self.queryResArray count]; i++){
+        QueryResModel* model = [self.queryResArray objectAtIndex:i];
+        SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f)",[model.stkID substringFromIndex:2],model.time, model.pvLast2kTP1DataMA5);
+        
+        //write to queryDB if need.
+        if(self.isWriteToQueryDB){
+            [[QueryDBManager defaultManager].qREsDBService addRecord:model];
+        }
+    }
+}
 
 
 -(void)analysis

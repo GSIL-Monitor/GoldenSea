@@ -110,6 +110,11 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 }
 
 
+-(void)queryAndLogtoDB;
+{
+    GSAssert(NO);
+}
+
 
 
 -(void)logOutResult
@@ -178,24 +183,12 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 {
     NSMutableArray* array = self.paramArray;
     
-//    NSMutableArray *array = [NSMutableArray arrayWithObjects:
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj0", [NSNumber numberWithInt:0], nil],
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj5", [NSNumber numberWithInt:5], nil],
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj2", [NSNumber numberWithInt:2], nil],
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj3", [NSNumber numberWithInt:3], nil],
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj1", [NSNumber numberWithInt:1], nil],
-//                             [NSDictionary dictionaryWithObjectsAndKeys:@"Obj4", [NSNumber numberWithInt:4], nil], nil];
-//    
-//    //    NSArray *resultArray = [array sortedArrayUsingSelector:@selector(compare:)];
     
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         GSBaseParam* par1 = obj1;
         GSBaseParam* par2 = obj2;
         NSNumber *number1 = [NSNumber numberWithFloat: par1.allTotalS2BDVValue];
         NSNumber *number2 = [NSNumber numberWithFloat: par2.allTotalS2BDVValue];
-        
-//        NSNumber *number1 = [[obj1 allKeys] objectAtIndex:0];
-//        NSNumber *number2 = [[obj2 allKeys] objectAtIndex:0];
         
         NSComparisonResult result = [number1 compare:number2];
         

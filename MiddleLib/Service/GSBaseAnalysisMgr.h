@@ -31,6 +31,8 @@
 @property (assign) int totalCount;
 @property (nonatomic, assign) CGFloat totalS2BDVValue;
 
+@property (nonatomic, strong) NSMutableArray* queryResArray;
+
 
 //for query
 @property (nonatomic, assign) BOOL isWriteToQueryDB;
@@ -64,6 +66,7 @@
 
 //protected class used function
 -(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
+-(void)queryAndLogtoDB;
 
 
 @end

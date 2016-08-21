@@ -25,7 +25,7 @@
 //log all and save to file.
 -(void)analysisAndLogtoFile;
 
-
+//-(void)queryAndLogtoDB;
 
 //protected.
 -(void)logWithParam:(GSBaseParam*)param;
