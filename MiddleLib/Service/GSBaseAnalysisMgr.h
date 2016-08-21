@@ -57,8 +57,8 @@
 -(void)analysisAllInDir:(NSString*)docsDir;
 
 //query action
--(void)queryAllInDir:(NSString*)docsDir;
--(void)buildQueryAllDBInDir:(NSString*)docsDir;
+-(void)queryAllWithDB:(NSString*)docsDir;
+-(void)queryAllAndSaveToDBWithFile:(NSString*)docsDir;
 
 
 

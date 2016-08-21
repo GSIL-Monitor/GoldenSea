@@ -34,14 +34,14 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     return self;
 }
 
--(void)buildQueryAllDBInDir:(NSString*)docsDir;
+-(void)queryAllAndSaveToDBWithFile:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = YES;
     
-    [self queryAllInDir:docsDir];
+    [self queryAllWithDB:docsDir];
 }
 
--(void)queryAllInDir:(NSString*)docsDir;
+-(void)queryAllWithDB:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = NO;
     
