@@ -79,7 +79,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
     NSDictionary* passDict;
-    for(long i=1; i<[self.contentArray count]-1; i++ ){
+    for(long i=1; i<[self.contentArray count]; i++ ){
 //        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
 //        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
 //        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
