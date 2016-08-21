@@ -55,8 +55,8 @@
     [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
     
     
-    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
-    return;
+//    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
+//    return;
 
     
 //    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
