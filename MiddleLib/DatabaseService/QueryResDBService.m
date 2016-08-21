@@ -21,8 +21,8 @@
     
     NSArray* paramArray = @[@{@"stkID"        : @"text primary key",},
                             @{@"time"         : @"integer"},
-                            @{@"pvLast2kTP1DataMA5"         : @"float"}
-                            
+                            @{@"pvLast2kTP1DataMA5"         : @"float"},
+                            @{@"buyVal"         : @"float"}
 //                            @{@"tIndex"       : @"integer"}
                             
 //                            @{@"open"         : @"float"},

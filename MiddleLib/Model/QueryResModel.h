@@ -13,5 +13,5 @@
 @property (nonatomic, strong) NSString* stkID;
 @property (assign) long time;
 @property (nonatomic, assign) CGFloat pvLast2kTP1DataMA5;
-
+@property (nonatomic, assign) CGFloat buyVal;
 @end

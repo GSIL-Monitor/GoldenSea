@@ -51,8 +51,6 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 -(void)_queryAllWithDB:(NSString*)docsDir;
 {
-    self.isWriteToQueryDB = NO;
-    
     [GSDataMgr shareInstance].startDate = 20160601;
     
     self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];

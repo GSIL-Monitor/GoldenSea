@@ -31,6 +31,8 @@
     NSString* _queryDbdir; //for query result.
     NSString* _stkID;
     
+    BOOL _isDoAnalysis;
+    
 }
 
 @end
@@ -52,18 +54,9 @@
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160819.db",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
-    
-    
-//    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
-//    return;
+    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
 
     
-//    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
-//    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
-
-    
-
     
 //    [[HYLog shareInstance] enableLog];
     
@@ -88,27 +81,27 @@
     //    [[STKManager shareInstance]testGetFriPostsRequest];
     //    [[STKManager shareInstance]test];
     
+    
     [self doInit];
-        
 }
 
 -(void)doInit{
+    
+    _isDoAnalysis = NO;
+    
+    if(_isDoAnalysis){
+        [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
+        
+        
+        //    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
+        //    return;
+    }else{
+        [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
+    }
 
-    _stkID = @"SH600418"; //jhqc
-    //    _stkID = @"SH601002";
-    //    _stkID = @"SH600126"; //hggf
-//    _stkID = @"SZ002430"; //hygf
-    _stkID = @"SZ000912"; //泸天化
-//    _stkID = @"SZ300460";
     
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600075"];
 //    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600401"];
-
-
-
-
-    
-    
 
     [self testForAllLimit];
 }
@@ -117,10 +110,6 @@
 
 -(void)testForAllLimit
 {
-
-    
-    
-    
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
 //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
 //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
@@ -136,7 +125,7 @@
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
     //tmp best.
     param.daysAfterLastLimit = 30;
-    param.buyPercent = 1.01;
+    param.buyPercent = 1.03;
     param.destDVValue = 5.f;
     param.durationAfterBuy = 3;
     [LimitAnalysisMgr shareInstance].param = param;

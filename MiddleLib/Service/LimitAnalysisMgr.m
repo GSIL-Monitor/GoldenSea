@@ -86,6 +86,7 @@
                 model.stkID = self.stkID;
                 model.time = kT0Data.time;
                 model.pvLast2kTP1DataMA5 = pvLast2kTP1DataMA5;
+                model.buyVal = kTP1Data.ma5*self.param.buyPercent;
                 [self.queryResArray addObject:model];
             }
         }
@@ -120,7 +121,7 @@
     
     for(long i=0; i<[self.queryResArray count]; i++){
         QueryResModel* model = [self.queryResArray objectAtIndex:i];
-        SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f)",[model.stkID substringFromIndex:2],model.time, model.pvLast2kTP1DataMA5);
+        SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f), buyVal(%.2f)",[model.stkID substringFromIndex:2],model.time, model.pvLast2kTP1DataMA5, model.buyVal);
         
         //write to queryDB if need.
         if(self.isWriteToQueryDB){
