@@ -15,19 +15,15 @@
 #define Key_JustLogOut_All 1
 
 @interface GSBaseLogout (){
-//    long _lowIndexArray[20];
-//    long _HighIndexArray[20];
 
 }
 
-@property (nonatomic, assign) long totalIndexCount;
-//@property (nonatomic, strong) NSMutableArray* countArray;
+
 
 @end
 
 @implementation GSBaseLogout
 
-SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 
 -(id)init
@@ -54,14 +50,14 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     }
     
     
-    NSArray* resultArray = [GSBaseAnalysisMgr shareInstance].resultArray;
-    long totalCount = [GSBaseAnalysisMgr shareInstance].totalCount;
+    NSArray* resultArray = [GSObjMgr shareInstance].mgr.resultArray;
+    long totalCount = [GSObjMgr shareInstance].mgr.totalCount;
     if(isForAll){
-        resultArray = [GSBaseAnalysisMgr shareInstance].param.selResultArray;
-        totalCount = [GSBaseAnalysisMgr shareInstance].param.selTotalCount;
+        resultArray = [GSObjMgr shareInstance].mgr.param.selResultArray;
+        totalCount = [GSObjMgr shareInstance].mgr.param.selTotalCount;
     }
     
-//    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
+//    GSBaseAnalysisMgr* analyMan = [GSObjMgr shareInstance].mgr;
     
     //calulate percent firstly
     NSMutableArray* tmpArray;
@@ -72,7 +68,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         percent = [tmpArray count]*100.f/totalCount;
         
         if(!isForAll){
-            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSBaseAnalysisMgr shareInstance].stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,totalCount,winPercent,lossPercent,[GSBaseAnalysisMgr shareInstance].totalS2BDVValue);
+            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSObjMgr shareInstance].mgr.stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,totalCount,winPercent,lossPercent,[GSObjMgr shareInstance].mgr.totalS2BDVValue);
         }else{ //for all
             SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         }
@@ -124,7 +120,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     CGFloat percent = 0.f;
     
     
-    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
+    GSBaseAnalysisMgr* analyMan = [GSObjMgr shareInstance].mgr;
     
     //calulate percent firstly
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;

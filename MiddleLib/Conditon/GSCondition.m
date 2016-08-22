@@ -194,7 +194,7 @@ SINGLETON_GENERATOR(GSCondition, shareInstance);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.8f;
     
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = theCond;
+    [GSObjMgr shareInstance].mgr.t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -211,7 +211,7 @@ SINGLETON_GENERATOR(GSCondition, shareInstance);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = theCond;
+    [GSObjMgr shareInstance].mgr.t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -229,7 +229,7 @@ SINGLETON_GENERATOR(GSCondition, shareInstance);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = theCond;
+    [GSObjMgr shareInstance].mgr.t0dayCond = theCond;
     [theCond logOutCondition];
     
     
@@ -247,7 +247,7 @@ SINGLETON_GENERATOR(GSCondition, shareInstance);
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKDataDVValue:dvValue];
     theCond.dvRange = 0.5;
     
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = theCond;
+    [GSObjMgr shareInstance].mgr.t0dayCond = theCond;
     [theCond logOutCondition];
     
     

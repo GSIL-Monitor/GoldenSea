@@ -23,6 +23,7 @@
 		426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSBaseLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataMgr.m */; };
 		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
+		427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E871C1D6B1BA0002468FD /* GSObjMgr.m */; };
 		42A6EA5C1D680EDE00430CEC /* LimitAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */; };
 		42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA611D6856EF00430CEC /* GSBaseParam.m */; };
 		42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */; };
@@ -142,6 +143,8 @@
 		426980061CEEF5F000D99888 /* GSDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDataMgr.m; sourceTree = "<group>"; };
 		426980081CEEF96000D99888 /* GSBaseAnalysisMgr+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSBaseAnalysisMgr+ex.h"; sourceTree = "<group>"; };
 		426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSBaseAnalysisMgr+ex.m"; sourceTree = "<group>"; };
+		427E871B1D6B1BA0002468FD /* GSObjMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSObjMgr.h; sourceTree = "<group>"; };
+		427E871C1D6B1BA0002468FD /* GSObjMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSObjMgr.m; sourceTree = "<group>"; };
 		42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitAnalysisMgr.h; sourceTree = "<group>"; };
 		42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitAnalysisMgr.m; sourceTree = "<group>"; };
 		42A6EA601D6856EF00430CEC /* GSBaseParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseParam.h; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 		42E08E381C7FF8C0004E4DC2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				427E871B1D6B1BA0002468FD /* GSObjMgr.h */,
+				427E871C1D6B1BA0002468FD /* GSObjMgr.m */,
 				4204D0551C88160500D27135 /* HelpService.h */,
 				4204D0561C88160500D27135 /* HelpService.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
@@ -944,6 +949,7 @@
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,
 				42E098161C7FFAEB004E4DC2 /* YTKChainRequest.m in Sources */,
 				42E097A91C7FFAEB004E4DC2 /* CLIColor.m in Sources */,
+				427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */,
 				42E0981A1C7FFAEB004E4DC2 /* YTKNetworkPrivate.m in Sources */,
 				421265441C867A930053787E /* HYBaseDBService.m in Sources */,
 				42E08D721C7FF771004E4DC2 /* main.m in Sources */,

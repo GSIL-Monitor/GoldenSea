@@ -89,6 +89,9 @@
     
     _isDoAnalysis = YES; //tbd. fix two intance can't both exist.
     
+    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
+    [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
+    
     if(_isDoAnalysis){
         [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
         
@@ -100,8 +103,8 @@
     }
 
     
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600075"];
-//    [GSBaseAnalysisMgr shareInstance].stkRangeArray = @[@"SH600401"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600075"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
 
     [self testForAllLimit];
 }
@@ -122,8 +125,8 @@
 
 
 //    //why use as first shareInstance???
-//    NSObject* obj1= [LimitAnalysisMgr shareInstance];
-//    NSObject* obj=  [GSBaseAnalysisMgr shareInstance];
+//    NSObject* obj1= [[GSObjMgr shareInstance].mgr];
+//    NSObject* obj=  [GSObjMgr shareInstance].mgr;
 
     
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
@@ -134,10 +137,10 @@
     param.durationAfterBuy = 3;
     param.buyStartIndex = 1;
     param.buyEndIndex = 4; //param.buyStartIndex;
-    [LimitAnalysisMgr shareInstance].param = param;
+    [GSObjMgr shareInstance].mgr.param = param;
     
-//    [[LimitAnalysisMgr shareInstance]queryAllAndSaveToDBWithFile:_filedir];
-////    [[LimitAnalysisMgr shareInstance]queryAllWithDB:_filedir];
+//    [[[GSObjMgr shareInstance].mgr]queryAllAndSaveToDBWithFile:_filedir];
+////    [[[GSObjMgr shareInstance].mgr]queryAllWithDB:_filedir];
 //    return;
 
 
@@ -150,11 +153,11 @@
 //        param.buyStartIndex = buyIndex;
 //        param.buyEndIndex = param.buyStartIndex;
 
-        [LimitAnalysisMgr shareInstance].param = param;
-        [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+        [GSObjMgr shareInstance].mgr.param = param;
+        [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
     }
     
-    [[LimitLogout shareInstance]analysisAndLogtoFile];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
 
     return;
 
@@ -176,14 +179,14 @@
         for(long dvIndex=destDVStart; dvIndex<=destDVEnd; dvIndex++)
         {
             param.destDVValue = 1.f*dvIndex;
-            [LimitAnalysisMgr shareInstance].param = param;
-            [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+            [GSObjMgr shareInstance].mgr.param = param;
+            [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
         }
     }
 
     
     
-    [[LimitLogout shareInstance]analysisAndLogtoFile];
+    [[GSObjMgr shareInstance].log analysisAndLogtoFile];
 
 }
 
@@ -196,18 +199,18 @@
     //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     //    tp2con.close_max = 1.f;
     //    tp2con.close_min = -1.2f;
-    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
+    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
     //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -0.5f;
 //    tp1con.close_max = 2.f;
-//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
+//    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.open_min = 1.0f;
     t0con.open_max = 2.0f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
 //    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
     
@@ -217,7 +220,7 @@
     //    t1con.open_min = -0.4f;
     //    t1con.high_max = 2.5f;
     //    t1con.high_min = 1.2f;
-    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
+    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
     
     
     //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -225,7 +228,7 @@
     //    t2con.open_min = 0.3f;
     //
     //
-    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
+    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
 }
 
 
@@ -236,44 +239,44 @@
 //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
 //    tp2con.close_max = 1.f;
 //    tp2con.close_min = -1.2f;
-//    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
+//    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
 //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -4.5f;
 //    tp1con.close_max = -3.f;
-//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
+//    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
 //    
 //    OneDayCondition* t0con = [[OneDayCondition alloc]init];
 //    t0con.close_min = 0.5f;
 //    t0con.close_max = 2.0f;
-//    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
     OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     tp2con.close_min = 1.f;
     tp2con.close_max = 3.f;
-    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
+    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
     
     OneDayCondition* tp1con = [[OneDayCondition alloc]init];
     tp1con.close_min = 0.5f;
     tp1con.close_max = 2.2f;
-    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
+    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = -1.f;
     t0con.close_max = 0.3f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
     t1con.close_min = -1.f;
     t1con.close_max = 0.3f;
-    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
+    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
     
     
 //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
 //    t2con.open_max = 1.5f;
 //    t2con.open_min = 0.5f;
-//    [GSBaseAnalysisMgr shareInstance].t2 = t2con;
+//    [GSObjMgr shareInstance].mgr.t2 = t2con;
 }
 
 
@@ -285,18 +288,18 @@
     //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
     //    tp2con.close_max = 1.f;
     //    tp2con.close_min = -1.2f;
-    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = tp2con;
+    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
     //
     
 //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
 //    tp1con.close_min = -4.5f;
 //    tp1con.close_max = -3.f;
-//    [GSBaseAnalysisMgr shareInstance].tp1dayCond = tp1con;
+//    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_min = 0.5f;
     t0con.close_max = 2.0f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
 
     [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
  
@@ -306,7 +309,7 @@
     //    t1con.open_min = -0.4f;
     //    t1con.high_max = 2.5f;
     //    t1con.high_min = 1.2f;
-    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
+    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
     
     
     //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -314,7 +317,7 @@
     //    t2con.open_min = 0.3f;
     //
     //
-    //    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
+    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
 }
 
 
@@ -327,7 +330,7 @@
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_max = -2.0f;
     t0con.close_min = -3.5f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
     OneDayCondition* t1con = [[OneDayCondition alloc]init];
     t1con.open_max = 1.f;
@@ -336,7 +339,7 @@
     t1con.high_min = 1.2f;
 //    t1con.close_max = -0.6f;
 //    t1con.close_min = -1.8f;
-    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
+    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
     
     
 //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -344,7 +347,7 @@
 //    t2con.open_min = 0.3f;
 //    
 //    
-//    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
+//    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
 }
 
 
@@ -355,7 +358,7 @@
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     t0con.close_max = 2.5f;
     t0con.close_min = 1.3f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
 //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
 ////    t1con.open_max = -0.1f;
@@ -364,7 +367,7 @@
 ////    t1con.open_min = 0.f;
 //    t1con.close_max = -0.6f;
 //    t1con.close_min = -1.8f;
-//    [GSBaseAnalysisMgr shareInstance].t1dayCond = t1con;
+//    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
     
     
     OneDayCondition* t2con = [[OneDayCondition alloc]init];
@@ -372,7 +375,7 @@
         t2con.open_min = 0.3f;
 
 
-    [GSBaseAnalysisMgr shareInstance].tp2dayCond = t2con;
+    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
 }
 
 
@@ -398,13 +401,13 @@
     OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
     //    theCond.dvRange = 0.9;
     
-    [GSBaseAnalysisMgr shareInstance].tp1dayCond = theCond;
+    [GSObjMgr shareInstance].mgr.tp1dayCond = theCond;
     [theCond logOutCondition];
     
     OneDayCondition* t0con = [[OneDayCondition alloc]init];
     //    t0con.open_max = -0.2f;
     //    t0con.open_min = -2.f;
-    [GSBaseAnalysisMgr shareInstance].t0dayCond = t0con;
+    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
     
     return theCond;
 }

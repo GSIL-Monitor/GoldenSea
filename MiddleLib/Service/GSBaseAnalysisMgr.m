@@ -22,7 +22,6 @@
 
 @implementation GSBaseAnalysisMgr
 
-SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 
 
 -(id)init
@@ -102,7 +101,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     
     [self.param calcSelAvg]; 
     
-    [[GSBaseLogout shareInstance].paramArray addObject:self.param];
+    [[GSObjMgr shareInstance].log.paramArray addObject:self.param];
     
 }
 
@@ -190,7 +189,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     
     
     
-    [[GSBaseLogout shareInstance] logOutResult];
+    [[GSObjMgr shareInstance].log  logOutResult];
 
     
 }
@@ -297,7 +296,7 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
 {
     CGFloat sellValue;
     
-    GSBaseAnalysisMgr* man = [GSBaseAnalysisMgr shareInstance];
+    GSBaseAnalysisMgr* man = self;
     CGFloat destValue = (1+man.param.destDVValue/100.f)*buyValue;
     long durationAfterBuy = self.param.durationAfterBuy;
     long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray stop:bIndexInArray+durationAfterBuy-1 kT0data:kT0Data];

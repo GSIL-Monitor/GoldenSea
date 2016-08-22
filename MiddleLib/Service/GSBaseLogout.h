@@ -10,7 +10,6 @@
 
 @interface GSBaseLogout : NSObject
 
-+(GSBaseLogout*)shareInstance;
 
 
 @property (nonatomic, strong) NSMutableArray* paramArray;

@@ -94,7 +94,7 @@
     
     
     
-//    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
+//    [[GSObjMgr shareInstance].log  SimpleLogOutResult:NO];
     
     
 }
@@ -220,7 +220,7 @@
     }
     
     
-    [[LimitLogout shareInstance] SimpleLogOutResult:NO];
+    [[GSObjMgr shareInstance].log  SimpleLogOutResult:NO];
     
 }
 

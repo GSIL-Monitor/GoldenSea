@@ -20,7 +20,6 @@
 
 @interface GSBaseAnalysisMgr : NSObject
 
-+(GSBaseAnalysisMgr*)shareInstance;
 
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSString* stkID;
