@@ -186,8 +186,8 @@
 //        NSNumber *number1 = [NSNumber numberWithFloat: par1.selTotalS2BDVValue];
 //        NSNumber *number2 = [NSNumber numberWithFloat: par2.selTotalS2BDVValue];
 
-        NSNumber *number1 = [NSNumber numberWithFloat: par1.allAvgS2BDVValue];
-        NSNumber *number2 = [NSNumber numberWithFloat: par2.allAvgS2BDVValue];
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.selAvgS2BDVValue];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.selAvgS2BDVValue];
 
         
         NSComparisonResult result = [number1 compare:number2];
