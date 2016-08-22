@@ -121,7 +121,7 @@
 //    [GSDataMgr shareInstance].startDate = 20160725;
     
     //dbg
-    [GSDataMgr shareInstance].startDate = 20160811;
+    [GSDataMgr shareInstance].startDate = 20160725;
 
 
 //    //why use as first shareInstance???
