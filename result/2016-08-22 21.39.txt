@@ -1,0 +1,20 @@
+---summary report(20160801-20200101)---
+No.(0)- Conditon: LastLimit(15),buyIndex(1-4) BUYPERCENT(1.03), DESTDVVALUE(3.00), duration(3)  Result:totalAvgVal(1.39),totalCount(10), SelCount(4), selAvg(1.53) 
+
+
+---detail report(20160801-20200101)---
+No.(0)- Conditon: LastLimit(15), BUYPERCENT(1.03), DESTDVVALUE(3.00), duration(3)  Result:avgVal(1.39),totalCount(10), SelCount(4), selAvg(1.53) 
+index(0), percent(70.00)  count(7) 
+SH603958 TBuyData:20160808(3), pvHi2Op(1.019), TSellData:20160809(1), dvSelltoBuy:3.00
+SZ000426 TBuyData:20160808(3), pvHi2Op(1.014), TSellData:20160810(2), dvSelltoBuy:3.00
+SZ000768 TBuyData:20160811(3), pvHi2Op(1.013), TSellData:20160815(2), dvSelltoBuy:3.00
+SZ002488 TBuyData:20160808(2), pvHi2Op(1.032), TSellData:20160809(1), dvSelltoBuy:3.00
+SZ002504 TBuyData:20160815(4), pvHi2Op(1.016), TSellData:20160816(1), dvSelltoBuy:3.00
+SZ002798 TBuyData:20160808(3), pvHi2Op(1.054), TSellData:20160809(1), dvSelltoBuy:3.00
+SZ300509 TBuyData:20160808(3), pvHi2Op(1.040), TSellData:20160809(1), dvSelltoBuy:3.00
+index(1), percent(20.00)  count(2) 
+SZ000038 TBuyData:20160805(2), pvHi2Op(1.003), TSellData:20160810(3), dvSelltoBuy:-1.18
+SZ002652 TBuyData:20160808(2), pvHi2Op(1.006), TSellData:20160811(3), dvSelltoBuy:-1.00
+index(2), percent(10.00)  count(1) 
+SZ300501 TBuyData:20160808(3), pvHi2Op(1.033), TSellData:20160811(3), dvSelltoBuy:-4.92
+index(3), percent(0.00)  count(0) 

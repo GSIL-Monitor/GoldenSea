@@ -1,2 +1,0 @@
----summary report(20160715-20200101)---
-No.(0)- Conditon: LastLimit(15),buyIndex(1-4) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(-1.70),totalCount(44), SelCount(12), selAvg(-1.24) 

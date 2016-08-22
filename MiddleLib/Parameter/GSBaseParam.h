@@ -26,6 +26,8 @@
 @property (assign) int selTotalCount;
 @property (nonatomic, assign) CGFloat selTotalS2BDVValue;
 @property (nonatomic,strong) NSMutableDictionary* selResultDict;
+//selAvgS2BDVValue的计算原理：1，将每次相同购买时间的交易汇总到一个字典里，算出其平均收益率
+//2,将字典里不同时间的交易平均收益率相加除以时间次数（即字典元素个数），算出最后的平均收益率
 @property (nonatomic, assign) CGFloat selAvgS2BDVValue; //平均每次收益率
 
 

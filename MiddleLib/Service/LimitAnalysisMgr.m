@@ -15,12 +15,7 @@
 
 @implementation LimitAnalysisMgr
 
--(void)analysisAllInDir:(NSString*)docsDir;
-{
-    
-    [super analysisAllInDir:docsDir];
-    
-}
+
 
 
 
@@ -143,7 +138,6 @@
     }
     
     
-    NSDictionary* passDict;
     long statDays = 2;
     long middleIndex = 7;
     for(long i=1; i<[self.contentArray count]-statDays; i++ ){
@@ -194,18 +188,16 @@
                 }
             }
             
-            //dbg
-            if([self.stkID isEqual:@"SZ002643"] && kT0Data.time == 20160519){
-                SMLog(@"");
-            }
+//            //dbg
+//            if([self.stkID isEqual:@"SZ002643"] && kT0Data.time == 20160519){
+//                SMLog(@"");
+//            }
+//            
+//            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
+//                SMLog(@"");
+//            }
             
-            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
-                SMLog(@"");
-            }
-                
-//                long bIndex = 2;
-//                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
-//                buyValue = kT0Data.TBuyData.close;
+
             buyValue = kTP1Data.ma5 * self.param.buyPercent;
             long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
             if(bIndex == -1){ //not find

@@ -23,6 +23,7 @@
 #import "GSDataMgr.h"
 
 #import "LimitAnalysisMgr.h"
+#import "AvgAnalysisMgr.h"
 
 @interface AppDelegate (){
     
@@ -89,8 +90,7 @@
     
     _isDoAnalysis = YES; //tbd. fix two intance can't both exist.
     
-    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
-    [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
+    
     
     if(_isDoAnalysis){
         [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
@@ -105,25 +105,42 @@
     
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600075"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+    [GSDataMgr shareInstance].marketType = marketType_All;
+    [GSDataMgr shareInstance].startDate = 20160125;
+    //    [GSDataMgr shareInstance].startDate = 20160725;
+    
+    //dbg
+//    [GSDataMgr shareInstance].startDate = 20160801;
 
-    [self testForAllLimit];
+//    [self testForAllLimit];
+    [self testForAvg];
 }
 
 
 
+-(void)testForAvg
+{
+    [GSObjMgr shareInstance].mgr = [[AvgAnalysisMgr alloc]init];
+    [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
+    
+    GSBaseParam* param = [[GSBaseParam alloc]init];
+    param.destDVValue = 3.f;
+    param.durationAfterBuy = 3;
+
+    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+}
+
 -(void)testForAllLimit
 {
-//    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
-//    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-//    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-    [GSDataMgr shareInstance].marketType = marketType_All;
-    [GSDataMgr shareInstance].startDate = 20160125;
-//    [GSDataMgr shareInstance].startDate = 20160725;
+
+    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
+    [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
     
-    //dbg
-    [GSDataMgr shareInstance].startDate = 20160728;
-
-
+    
 //    //why use as first shareInstance???
 //    NSObject* obj1= [[GSObjMgr shareInstance].mgr];
 //    NSObject* obj=  [GSObjMgr shareInstance].mgr;
@@ -133,11 +150,15 @@
     //tmp best.
     param.daysAfterLastLimit = 15; //30;
     param.buyPercent = 1.03;
-    param.destDVValue = 6.f;
+    param.destDVValue = 3.f;
     param.durationAfterBuy = 3;
     param.buyStartIndex = 1;
     param.buyEndIndex = 4; //param.buyStartIndex;
     [GSObjMgr shareInstance].mgr.param = param;
+    
+    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+    return;
     
 //    [[[GSObjMgr shareInstance].mgr]queryAllAndSaveToDBWithFile:_filedir];
 ////    [[[GSObjMgr shareInstance].mgr]queryAllWithDB:_filedir];
@@ -148,10 +169,10 @@
 //    param.buyPercent = 0.98;
 //    param.destDVValue = 6.f;
     
-//    for(long buyIndex = 1; buyIndex<=5; buyIndex++)
+    for(long buyIndex = 1; buyIndex<=4; buyIndex++)
     {
-//        param.buyStartIndex = buyIndex;
-//        param.buyEndIndex = param.buyStartIndex;
+        param.buyStartIndex = buyIndex;
+        param.buyEndIndex = param.buyStartIndex;
 
         [GSObjMgr shareInstance].mgr.param = param;
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];

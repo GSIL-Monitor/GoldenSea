@@ -1,6 +1,0 @@
----summary report(20160125-20200101)---
-No.(0)- Conditon: LastLimit(15),buyIndex(1-1) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(0.33),totalCount(182), SelCount(58), selAvg(-0.81) 
-No.(1)- Conditon: LastLimit(15),buyIndex(2-2) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(0.19),totalCount(321), SelCount(74), selAvg(-1.27) 
-No.(2)- Conditon: LastLimit(15),buyIndex(3-3) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(-1.17),totalCount(348), SelCount(83), selAvg(-1.08) 
-No.(3)- Conditon: LastLimit(15),buyIndex(5-5) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(-1.46),totalCount(448), SelCount(88), selAvg(-2.10) 
-No.(4)- Conditon: LastLimit(15),buyIndex(4-4) BUYPERCENT(1.03), DESTDVVALUE(6.00), duration(3)  Result:totalAvgVal(-1.84),totalCount(369), SelCount(87), selAvg(-1.03) 
