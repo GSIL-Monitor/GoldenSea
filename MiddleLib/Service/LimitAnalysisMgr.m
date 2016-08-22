@@ -137,7 +137,8 @@
 
 -(void)analysis
 {
-    if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
+    if(! [self isValidDataPassedIn] || [self.contentArray count]< 3 ) // || [self.contentArray count]<20)
+    {
         return;
     }
     
@@ -145,7 +146,7 @@
     NSDictionary* passDict;
     long statDays = 2;
     long middleIndex = 7;
-    for(long i=6; i<[self.contentArray count]-statDays; i++ ){
+    for(long i=1; i<[self.contentArray count]-statDays; i++ ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
@@ -197,6 +198,10 @@
             if([self.stkID isEqual:@"SZ002643"] && kT0Data.time == 20160519){
                 SMLog(@"");
             }
+            
+            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
+                SMLog(@"");
+            }
                 
 //                long bIndex = 2;
 //                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
@@ -220,7 +225,7 @@
     }
     
     
-    [[GSObjMgr shareInstance].log  SimpleLogOutResult:NO];
+    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
     
 }
 

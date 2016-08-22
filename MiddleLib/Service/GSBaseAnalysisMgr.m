@@ -93,6 +93,7 @@
             continue;
         }
         
+//        SMLog(@"stkID: %@",self.stkID);
         self.contentArray = [[GSDataMgr shareInstance]getDataFromDB:self.stkID];
 
         [self analysis];
