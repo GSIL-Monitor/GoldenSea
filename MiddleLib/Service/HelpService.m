@@ -133,8 +133,8 @@
         
         if(tempData &&  (tempData.low <= theValue)){
             
-            index = j-startIndex+1; //+1是因为相对index总是以t0开始计算，而此处的startIndex是t1
-            kT0Data.lowValDayIndex = index;
+            index = j-startIndex;
+//            kT0Data.lowValDayIndex = index;
             
             
             kT0Data.TBuyData = tempData;

@@ -192,20 +192,25 @@
                     continue;
                 }
             }
+            
+            //dbg
+            if([self.stkID isEqual:@"SZ002643"] && kT0Data.time == 20160519){
+                SMLog(@"");
+            }
                 
 //                long bIndex = 2;
 //                kT0Data.TBuyData = [self.contentArray safeObjectAtIndex:i+bIndex];
 //                buyValue = kT0Data.TBuyData.close;
             buyValue = kTP1Data.ma5 * self.param.buyPercent;
-            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+1 stop:i+4 kT0data:kT0Data];
+            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
             if(bIndex == -1){ //not find
                 continue;
             }
             
-            kT0Data.TBuyData = [self.contentArray objectAtIndex:i+bIndex];
+            kT0Data.TBuyData = [self.contentArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
             
             
-            sellValue = [self getSellValue:buyValue bIndexInArray:i+bIndex+1 kT0data:kT0Data];
+            sellValue = [self getSellValue:buyValue bIndexInArray:i+self.param.buyStartIndex+bIndex+1 kT0data:kT0Data];
             
             if(kT0Data.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];

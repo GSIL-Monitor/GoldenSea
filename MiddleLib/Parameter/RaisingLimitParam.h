@@ -13,7 +13,8 @@
 @interface RaisingLimitParam : GSBaseParam
 
 
-
+@property (nonatomic, assign) long buyStartIndex;
+@property (nonatomic, assign) long buyEndIndex;
 @property (assign) CGFloat buyPercent; //such as 0.95,相对于tp1data的ma5的百分比
 // daysAfterLastLimit = this rasieLimit time -  the last limit time. such as 30. if=0 means no this conditon 
 @property (nonatomic, assign) long daysAfterLastLimit;

@@ -326,6 +326,9 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
     param.destDVValue = oldParam.destDVValue;
     param.cutDVValue = oldParam.cutDVValue;
     
+    param.buyStartIndex = oldParam.buyStartIndex;
+    param.buyEndIndex = oldParam.buyEndIndex;
+    
     _param = param;
 }
 

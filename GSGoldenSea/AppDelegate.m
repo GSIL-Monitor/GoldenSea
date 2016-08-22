@@ -116,6 +116,10 @@
     [GSDataMgr shareInstance].marketType = marketType_All;
     [GSDataMgr shareInstance].startDate = 20160125;
 //    [GSDataMgr shareInstance].startDate = 20160725;
+    
+    //dbg
+    [GSDataMgr shareInstance].startDate = 20160811;
+
 
 //    //why use as first shareInstance???
 //    NSObject* obj1= [LimitAnalysisMgr shareInstance];
@@ -126,21 +130,33 @@
     //tmp best.
     param.daysAfterLastLimit = 15; //30;
     param.buyPercent = 1.03;
-    param.destDVValue = 5.f;
+    param.destDVValue = 6.f;
     param.durationAfterBuy = 3;
+    param.buyStartIndex = 1;
+    param.buyEndIndex = 4; //param.buyStartIndex;
     [LimitAnalysisMgr shareInstance].param = param;
     
 //    [[LimitAnalysisMgr shareInstance]queryAllAndSaveToDBWithFile:_filedir];
 ////    [[LimitAnalysisMgr shareInstance]queryAllWithDB:_filedir];
 //    return;
 
+
     
 //    param.buyPercent = 0.98;
 //    param.destDVValue = 6.f;
-//    [LimitAnalysisMgr shareInstance].param = param;
-//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-//    [[LimitLogout shareInstance]analysisAndLogtoFile];
-//    return;
+    
+//    for(long buyIndex = 1; buyIndex<=5; buyIndex++)
+    {
+//        param.buyStartIndex = buyIndex;
+//        param.buyEndIndex = param.buyStartIndex;
+
+        [LimitAnalysisMgr shareInstance].param = param;
+        [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+    }
+    
+    [[LimitLogout shareInstance]analysisAndLogtoFile];
+
+    return;
 
     
     long percentStart = 0, percentEnd = 0;
