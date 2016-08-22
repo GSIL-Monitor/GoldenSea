@@ -25,18 +25,22 @@
     
     [[HYLog shareInstance] enableLog];
     
+    
+    NSArray* arrayUsed = self.paramArray;
+    
     SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
-    for (long i=0; i<[self.paramArray count]; i++) {
-        RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
+    for (long i=0; i<[arrayUsed count]; i++) {
+        RaisingLimitParam* ele = [arrayUsed objectAtIndex:i];
         SMLog(@"No.(%d)- Conditon: LastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d), SelCount(%d), selVal(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selTotalS2BDVValue );
     }
 
     SMLog(@"\n");
     SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
-    for (long i=0; i<[self.paramArray count]; i++) {
-        RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
+    for (long i=0; i<[arrayUsed count]; i++) {
+        RaisingLimitParam* ele = [arrayUsed objectAtIndex:i];
         SMLog(@"No.(%d)- Conditon: LastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d), SelCount(%d), selVal(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selTotalS2BDVValue );
-        [self logWithParam:ele];
+//        [self logSelResultWithParam:ele];
+        [self logAllResultWithParam:ele];
     }
     
     

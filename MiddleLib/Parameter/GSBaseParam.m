@@ -39,6 +39,14 @@
     for(long i=0; i<4; i++){
         [self.selResultArray addObject:[NSMutableArray array]];
     }
+    
+    
+    self.allResultArray = [NSMutableArray array];
+    self.allTotalCount = 0;
+    self.allTotalS2BDVValue = 0;
+    for(long i=0; i<4; i++){
+        [self.allResultArray addObject:[NSMutableArray array]];
+    }
 }
 
 -(BOOL)isMapRasingLimitAvgConditon:(KDataModel*)kTP1Data
@@ -57,9 +65,9 @@
 -(BOOL)isMapRasingLimitAvgConditonMa30:(KDataModel*)kTP1Data
 {
     CGFloat dvMa30AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma30 destValue:kTP1Data.close];
-    //    CGFloat dvMa10AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
+//        CGFloat dvMa10AndClose = [[GSDataMgr shareInstance]getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
     if(dvMa30AndClose > 10.f
-       //       || dvMa10AndClose < -8.f
+//              || dvMa10AndClose < -8.f
        ){
         return NO;
     }

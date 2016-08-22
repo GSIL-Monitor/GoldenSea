@@ -119,10 +119,17 @@
 {
     long index = -1;
     
-    
+    CGFloat maxpvHi2Op = 0.f;
     
     for(long j=startIndex; j<=stopIndex; j++){
         KDataModel* tempData = [array safeObjectAtIndex:j];
+        
+        if(tempData && j!=startIndex){
+            CGFloat tmp = tempData.high/tempData.open;
+            if(tmp > maxpvHi2Op){
+                maxpvHi2Op = tmp;
+            }
+        }
         
         if(tempData &&  (tempData.low <= theValue)){
             
@@ -131,6 +138,8 @@
             
             
             kT0Data.TBuyData = tempData;
+            
+            kT0Data.pvHi2Op = maxpvHi2Op;
             break; //NOTICE: check the case not break!
         }
     }

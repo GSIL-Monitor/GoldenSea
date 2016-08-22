@@ -204,10 +204,25 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     self.paramArray = (NSMutableArray*)resultArray;
 }
 
--(void)logWithParam:(GSBaseParam*)param;
+-(void)logSelResultWithParam:(GSBaseParam*)param;
+{
+    [self logWithParam:param isForSel:YES];
+}
+
+-(void)logAllResultWithParam:(GSBaseParam*)param;
+{
+    [self logWithParam:param isForSel:NO];
+}
+
+-(void)logWithParam:(GSBaseParam*)param isForSel:(BOOL)isForSel;
 {
     NSArray* resultArray = param.selResultArray;
     long totalCount = param.selTotalCount;
+    
+    if(!isForSel){
+        resultArray = param.allResultArray;
+        totalCount = param.allTotalCount;
+    }
     
     //calulate percent firstly
     NSMutableArray* tmpArray;
@@ -221,7 +236,7 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@ TBuyData:%ld(%d), TSellData:%ld(%d), dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,(kData.TBuyData.tIndex-kData.tIndex),kData.TSellData.time, (kData.TSellData.tIndex-kData.TBuyData.tIndex),kData.dvSelltoBuy);
+            SMLog(@"%@ TBuyData:%ld(%d), pvHi2Op(%.3f), TSellData:%ld(%d), dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,(kData.TBuyData.tIndex-kData.tIndex),kData.pvHi2Op,kData.TSellData.time, (kData.TSellData.tIndex-kData.TBuyData.tIndex),kData.dvSelltoBuy);
         }
     }
 

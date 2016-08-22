@@ -146,7 +146,7 @@
     
    
     //save to one
-    if (dvValue >= self.param.destDVValue){
+    if (dvValue >= self.param.destDVValue-0.01){ //-0.01是为了float的精度问题
         tmpArray = [self.resultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
         tmpArray = [self.resultArray objectAtIndex:1];
@@ -160,7 +160,17 @@
     self.totalCount++;
 
     
-//    self.param.allResultArray 
+    //save to all.
+    if (dvValue >= self.param.destDVValue-0.01){
+        tmpArray = [self.param.allResultArray objectAtIndex:0];
+    }else if (dvValue > -1.5f){
+        tmpArray = [self.param.allResultArray objectAtIndex:1];
+    }else if (dvValue > -11.f){
+        tmpArray = [self.param.allResultArray objectAtIndex:2];
+    }else{
+        tmpArray = [self.param.allResultArray objectAtIndex:3];
+    }
+    [tmpArray addObject:kT0data];
     self.param.allTotalS2BDVValue += dvValue;
     self.param.allTotalCount++;
     self.param.allAvgS2BDVValue = self.param.allTotalS2BDVValue/self.param.allTotalCount;
@@ -170,7 +180,7 @@
         return;
     }
     
-    //save to all
+    //save to sel
     if (dvValue >= self.param.destDVValue-0.01){
         tmpArray = [self.param.selResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){

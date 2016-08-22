@@ -28,7 +28,8 @@
 //-(void)queryAndLogtoDB;
 
 //protected.
--(void)logWithParam:(GSBaseParam*)param;
+-(void)logSelResultWithParam:(GSBaseParam*)param;
+-(void)logAllResultWithParam:(GSBaseParam*)param;
 
 
 @end

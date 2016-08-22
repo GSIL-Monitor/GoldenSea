@@ -124,6 +124,7 @@
 @property (strong) KDataModel* TBuyData; //n is dynamicl.
 @property (strong) KDataModel* TSellData; //n+1 data.
 @property (strong) NSString* stkID;
+@property (nonatomic, assign) CGFloat pvHi2Op; //T1至Tbuy日中，high值与open值的差值最高的值
 
 @property (assign) CGFloat dvSelltoBuy;
 @property (assign) long highValDayIndex; //after buy day
