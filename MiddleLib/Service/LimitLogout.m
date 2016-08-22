@@ -28,14 +28,14 @@
     SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
     for (long i=0; i<[self.paramArray count]; i++) {
         RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
-        SMLog(@"Index(%d) - Conditon: daysAfterLastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), durationAfterBuy(%d)  Result:totalCount(%d), alltotalS2BDVValue(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allSelTotalCount,ele.allSelTotalS2BDVValue );
+        SMLog(@"No.(%d)- Conditon: LastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d), SelCount(%d), selVal(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selTotalS2BDVValue );
     }
 
     SMLog(@"\n");
     SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
     for (long i=0; i<[self.paramArray count]; i++) {
         RaisingLimitParam* ele = [self.paramArray objectAtIndex:i];
-        SMLog(@"Index(%d) - Conditon: daysAfterLastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), durationAfterBuy(%d)  Result:totalCount(%d), alltotalS2BDVValue(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allSelTotalCount,ele.allSelTotalS2BDVValue );
+        SMLog(@"No.(%d)- Conditon: LastLimit(%d), BUYPERCENT(%.2f), DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d), SelCount(%d), selVal(%2f) ",i, ele.daysAfterLastLimit,ele.buyPercent, ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selTotalS2BDVValue );
         [self logWithParam:ele];
     }
     

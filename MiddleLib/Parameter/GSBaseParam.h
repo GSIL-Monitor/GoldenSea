@@ -14,18 +14,18 @@
 @interface GSBaseParam : NSObject
 
 //for result
+//选择后的结果队列，排除了日期的机会成本.但是存在选择的不确定性
+@property (nonatomic,strong) NSMutableArray* selResultArray;
+@property (assign) int selTotalCount;
+@property (nonatomic, assign) CGFloat selTotalS2BDVValue;
 @property (nonatomic,strong) NSMutableDictionary* allSelResultDict;
 
-@property (nonatomic,strong) NSMutableArray* allSelResultArray;
-@property (assign) int allSelTotalCount;
-@property (nonatomic, assign) CGFloat allSelTotalS2BDVValue;
 
-
-
-//@property (nonatomic,strong) NSMutableArray* allResultArray;
-//@property (assign) int allTotalCount;
-//@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
-
+//原始结果
+@property (nonatomic,strong) NSMutableArray* allResultArray;
+@property (assign) int allTotalCount;
+@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
+@property (nonatomic, assign) CGFloat allAvgS2BDVValue; //平均每次收益率
 
 
 //condition

@@ -130,13 +130,15 @@
     param.durationAfterBuy = 3;
     [LimitAnalysisMgr shareInstance].param = param;
     
-    [[LimitAnalysisMgr shareInstance]queryAllAndSaveToDBWithFile:_filedir];
-//    [[LimitAnalysisMgr shareInstance]queryAllWithDB:_filedir];
-    return;
+//    [[LimitAnalysisMgr shareInstance]queryAllAndSaveToDBWithFile:_filedir];
+////    [[LimitAnalysisMgr shareInstance]queryAllWithDB:_filedir];
+//    return;
 
     
+    param.buyPercent = 0.98;
+    param.destDVValue = 6.f;
+    [LimitAnalysisMgr shareInstance].param = param;
     [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-    
     [[LimitLogout shareInstance]analysisAndLogtoFile];
     return;
 

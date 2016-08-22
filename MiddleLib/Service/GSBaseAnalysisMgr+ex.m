@@ -160,6 +160,10 @@
     self.totalCount++;
 
     
+//    self.param.allResultArray 
+    self.param.allTotalS2BDVValue += dvValue;
+    self.param.allTotalCount++;
+    self.param.allAvgS2BDVValue = self.param.allTotalS2BDVValue/self.param.allTotalCount;
     
     //if no money, skip
     if([self isMoneyInUse:kT0data]){
@@ -168,18 +172,17 @@
     
     //save to all
     if (dvValue >= self.param.destDVValue-0.01){
-        tmpArray = [self.param.allSelResultArray objectAtIndex:0];
+        tmpArray = [self.param.selResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
-        tmpArray = [self.param.allSelResultArray objectAtIndex:1];
+        tmpArray = [self.param.selResultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
-        tmpArray = [self.param.allSelResultArray objectAtIndex:2];
+        tmpArray = [self.param.selResultArray objectAtIndex:2];
     }else{
-        tmpArray = [self.param.allSelResultArray objectAtIndex:3];
+        tmpArray = [self.param.selResultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
-    self.param.allSelTotalS2BDVValue += dvValue;
-    
-    self.param.allSelTotalCount++;
+    self.param.selTotalS2BDVValue += dvValue;
+    self.param.selTotalCount++;
 
 }
 

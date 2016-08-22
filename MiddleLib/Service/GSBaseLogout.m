@@ -57,8 +57,8 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     NSArray* resultArray = [GSBaseAnalysisMgr shareInstance].resultArray;
     long totalCount = [GSBaseAnalysisMgr shareInstance].totalCount;
     if(isForAll){
-        resultArray = [GSBaseAnalysisMgr shareInstance].param.allSelResultArray;
-        totalCount = [GSBaseAnalysisMgr shareInstance].param.allSelTotalCount;
+        resultArray = [GSBaseAnalysisMgr shareInstance].param.selResultArray;
+        totalCount = [GSBaseAnalysisMgr shareInstance].param.selTotalCount;
     }
     
 //    GSBaseAnalysisMgr* analyMan = [GSBaseAnalysisMgr shareInstance];
@@ -187,8 +187,12 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         GSBaseParam* par1 = obj1;
         GSBaseParam* par2 = obj2;
-        NSNumber *number1 = [NSNumber numberWithFloat: par1.allSelTotalS2BDVValue];
-        NSNumber *number2 = [NSNumber numberWithFloat: par2.allSelTotalS2BDVValue];
+//        NSNumber *number1 = [NSNumber numberWithFloat: par1.selTotalS2BDVValue];
+//        NSNumber *number2 = [NSNumber numberWithFloat: par2.selTotalS2BDVValue];
+
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.allAvgS2BDVValue];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.allAvgS2BDVValue];
+
         
         NSComparisonResult result = [number1 compare:number2];
         
@@ -202,8 +206,8 @@ SINGLETON_GENERATOR(GSBaseLogout, shareInstance);
 
 -(void)logWithParam:(GSBaseParam*)param;
 {
-    NSArray* resultArray = param.allSelResultArray;
-    long totalCount = param.allSelTotalCount;
+    NSArray* resultArray = param.selResultArray;
+    long totalCount = param.selTotalCount;
     
     //calulate percent firstly
     NSMutableArray* tmpArray;
