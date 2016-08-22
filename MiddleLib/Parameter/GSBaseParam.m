@@ -8,6 +8,11 @@
 
 #import "GSBaseParam.h"
 
+@implementation KeyTimeObj
+
+
+@end
+
 @implementation GSBaseParam
 
 -(id)init
@@ -25,7 +30,7 @@
 -(void)resetForAll
 {
     self.selResultArray = [NSMutableArray array];
-    self.allSelResultDict = [NSMutableDictionary dictionary];
+    self.selResultDict = [NSMutableDictionary dictionary];
     self.selTotalCount = 0;
     self.selTotalS2BDVValue = 0;
     
@@ -42,6 +47,7 @@
     
     
     self.allResultArray = [NSMutableArray array];
+    self.allResultDict = [NSMutableDictionary dictionary];
     self.allTotalCount = 0;
     self.allTotalS2BDVValue = 0;
     for(long i=0; i<4; i++){
@@ -75,5 +81,17 @@
     return YES;
 }
 
+
+-(void)calcSelAvg;
+{
+    long i=0;
+    CGFloat val = 0.f;
+    for(NSString* key in self.selResultDict){
+        KeyTimeObj* ele = [self.selResultDict objectForKey:key];
+        val += ele.avgVal;
+        i++;
+    }
+    self.selAvgS2BDVValue = val/i;
+}
 
 @end

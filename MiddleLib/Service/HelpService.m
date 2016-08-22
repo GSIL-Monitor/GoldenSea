@@ -124,7 +124,7 @@
     for(long j=startIndex; j<=stopIndex; j++){
         KDataModel* tempData = [array safeObjectAtIndex:j];
         
-        if(tempData && j!=startIndex){
+        if(tempData && j!=startIndex && j!=stopIndex){
             CGFloat tmp = tempData.high/tempData.open;
             if(tmp > maxpvHi2Op){
                 maxpvHi2Op = tmp;

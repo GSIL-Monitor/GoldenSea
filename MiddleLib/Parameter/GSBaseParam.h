@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@interface KeyTimeObj : NSObject
+@property (nonatomic, assign) CGFloat totalVal;
+@property (nonatomic, assign) long totalDays;
+@property (nonatomic, assign) CGFloat avgVal;
+@end
+
+
 /**
  *  for record the analysis param and result.
  */
@@ -18,7 +25,8 @@
 @property (nonatomic,strong) NSMutableArray* selResultArray;
 @property (assign) int selTotalCount;
 @property (nonatomic, assign) CGFloat selTotalS2BDVValue;
-@property (nonatomic,strong) NSMutableDictionary* allSelResultDict;
+@property (nonatomic,strong) NSMutableDictionary* selResultDict;
+@property (nonatomic, assign) CGFloat selAvgS2BDVValue; //平均每次收益率
 
 
 //原始结果
@@ -26,6 +34,7 @@
 @property (assign) int allTotalCount;
 @property (nonatomic, assign) CGFloat allTotalS2BDVValue;
 @property (nonatomic, assign) CGFloat allAvgS2BDVValue; //平均每次收益率
+@property (nonatomic,strong) NSMutableDictionary* allResultDict;
 
 
 //condition
@@ -41,5 +50,8 @@
 
 //检测kTP1Data的数据是否满足MA30的要求，即不能超出太多
 -(BOOL)isMapRasingLimitAvgConditonMa30:(KDataModel*)kTP1Data;
+
+
+-(void)calcSelAvg;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "GSBaseAnalysisMgr.h"
 
+
 @interface GSBaseAnalysisMgr (ex)
 
 -(BOOL)isValidDataPassedIn;

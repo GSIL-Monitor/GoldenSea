@@ -9,6 +9,8 @@
 #import "GSBaseAnalysisMgr+ex.h"
 
 
+
+
 @interface GSBaseAnalysisMgr ()
 @end
 
@@ -200,21 +202,30 @@
 {
     BOOL isInUse = NO;
     
-    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+    //    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+    for(long time = kT0data.TBuyData.time; time<=kT0data.TBuyData.time; time++){
         NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
 
-        NSObject* ele = [self.param.allSelResultDict objectForKey:keyTime];
-        if(ele){
+        KeyTimeObj* keyTimeObj = [self.param.selResultDict objectForKey:keyTime];
+        if(keyTimeObj){
             isInUse = YES;
+            
+            keyTimeObj.totalVal += kT0data.dvSelltoBuy;
+            keyTimeObj.totalDays ++;
+            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
+            
             break;
         }
     }
     
     if(!isInUse){
-        for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+        for(long time = kT0data.TBuyData.time; time<=kT0data.TBuyData.time; time++){
             NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
-            
-            [self.param.allSelResultDict setObject:@YES forKey:keyTime];
+            KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
+            keyTimeObj.totalVal += kT0data.dvSelltoBuy;
+            keyTimeObj.totalDays ++;
+            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
+            [self.param.selResultDict setObject:keyTimeObj forKey:keyTime];
         }
     }
     

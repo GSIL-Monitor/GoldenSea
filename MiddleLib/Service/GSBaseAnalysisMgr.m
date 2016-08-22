@@ -100,6 +100,8 @@ SINGLETON_GENERATOR(GSBaseAnalysisMgr, shareInstance);
         
     }
     
+    [self.param calcSelAvg]; 
+    
     [[GSBaseLogout shareInstance].paramArray addObject:self.param];
     
 }

@@ -135,12 +135,12 @@
 //    return;
 
     
-    param.buyPercent = 0.98;
-    param.destDVValue = 6.f;
-    [LimitAnalysisMgr shareInstance].param = param;
-    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
-    [[LimitLogout shareInstance]analysisAndLogtoFile];
-    return;
+//    param.buyPercent = 0.98;
+//    param.destDVValue = 6.f;
+//    [LimitAnalysisMgr shareInstance].param = param;
+//    [[LimitAnalysisMgr shareInstance]analysisAllInDir:_filedir];
+//    [[LimitLogout shareInstance]analysisAndLogtoFile];
+//    return;
 
     
     long percentStart = 0, percentEnd = 0;
