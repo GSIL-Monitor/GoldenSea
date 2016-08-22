@@ -122,7 +122,7 @@
 
     for(long i=0; i<[self.queryResArray count]; i++){
         QueryResModel* model = [self.queryResArray objectAtIndex:i];
-        SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f), buyVal(%.2f)",[model.stkID substringFromIndex:2],model.time, model.pvLast2kTP1DataMA5, model.buyVal);
+        SMLog(@"%@ kT0Data:%ld, buyVal(%.2f), pvLast(%.2f)",[model.stkID substringFromIndex:2],model.time, model.buyVal, model.pvLast2kTP1DataMA5);
         
 //        //write to queryDB if need.
 //        if(self.isWriteToQueryDB){

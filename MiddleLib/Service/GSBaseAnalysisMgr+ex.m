@@ -168,18 +168,18 @@
     
     //save to all
     if (dvValue >= self.param.destDVValue-0.01){
-        tmpArray = [self.param.allResultArray objectAtIndex:0];
+        tmpArray = [self.param.allSelResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
-        tmpArray = [self.param.allResultArray objectAtIndex:1];
+        tmpArray = [self.param.allSelResultArray objectAtIndex:1];
     }else if (dvValue > -11.f){
-        tmpArray = [self.param.allResultArray objectAtIndex:2];
+        tmpArray = [self.param.allSelResultArray objectAtIndex:2];
     }else{
-        tmpArray = [self.param.allResultArray objectAtIndex:3];
+        tmpArray = [self.param.allSelResultArray objectAtIndex:3];
     }
     [tmpArray addObject:kT0data];
-    self.param.allTotalS2BDVValue += dvValue;
+    self.param.allSelTotalS2BDVValue += dvValue;
     
-    self.param.allTotalCount++;
+    self.param.allSelTotalCount++;
 
 }
 
@@ -190,7 +190,7 @@
     for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
         NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
 
-        NSObject* ele = [self.param.allResultDict objectForKey:keyTime];
+        NSObject* ele = [self.param.allSelResultDict objectForKey:keyTime];
         if(ele){
             isInUse = YES;
             break;
@@ -201,7 +201,7 @@
         for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
             NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
             
-            [self.param.allResultDict setObject:@YES forKey:keyTime];
+            [self.param.allSelResultDict setObject:@YES forKey:keyTime];
         }
     }
     

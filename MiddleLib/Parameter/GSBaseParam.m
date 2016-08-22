@@ -24,10 +24,10 @@
 
 -(void)resetForAll
 {
-    self.allResultArray = [NSMutableArray array];
-    self.allResultDict = [NSMutableDictionary dictionary];
-    self.allTotalCount = 0;
-    self.allTotalS2BDVValue = 0;
+    self.allSelResultArray = [NSMutableArray array];
+    self.allSelResultDict = [NSMutableDictionary dictionary];
+    self.allSelTotalCount = 0;
+    self.allSelTotalS2BDVValue = 0;
     
     /*
      Sndday high vs fstday close
@@ -37,7 +37,7 @@
      >-10%
      */
     for(long i=0; i<4; i++){
-        [self.allResultArray addObject:[NSMutableArray array]];
+        [self.allSelResultArray addObject:[NSMutableArray array]];
     }
 }
 

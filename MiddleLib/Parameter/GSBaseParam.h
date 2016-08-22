@@ -14,10 +14,17 @@
 @interface GSBaseParam : NSObject
 
 //for result
-@property (nonatomic,strong) NSMutableArray* allResultArray;
-@property (nonatomic,strong) NSMutableDictionary* allResultDict;
-@property (assign) int allTotalCount;
-@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
+@property (nonatomic,strong) NSMutableDictionary* allSelResultDict;
+
+@property (nonatomic,strong) NSMutableArray* allSelResultArray;
+@property (assign) int allSelTotalCount;
+@property (nonatomic, assign) CGFloat allSelTotalS2BDVValue;
+
+
+
+//@property (nonatomic,strong) NSMutableArray* allResultArray;
+//@property (assign) int allTotalCount;
+//@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
 
 
 
