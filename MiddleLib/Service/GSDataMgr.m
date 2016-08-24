@@ -89,29 +89,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     NSDictionary* passDict;
     for(long i=1; i<[self.contentArray count]; i++ ){
-//        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
-//        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
-//        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
-//        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
-//        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
-//        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-//        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+
         
         KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
 
-        
-        
-//        kT0Data.T1Data = kT1Data;
-//        kT0Data.TP1Data = kTP1Data;
-//        
-//        kT0Data.dvTP2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-//        kT0Data.dvTP1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-//        kT0Data.dvT0 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-//        kT0Data.dvT1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-//        kT0Data.dvT2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
-//        
-//        kT0Data.dvAvgTP1toTP5 = [[GSDataMgr shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
         
         kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i];
         kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i];
