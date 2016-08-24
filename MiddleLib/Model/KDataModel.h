@@ -145,7 +145,15 @@
 @property (assign) CGFloat ma10;
 @property (assign) CGFloat ma20;
 @property (assign) CGFloat ma30;
+@property (assign) CGFloat ma60;
+@property (assign) CGFloat ma120;
 
+@property (assign) CGFloat slopema5;
+@property (assign) CGFloat slopema10;
+@property (assign) CGFloat slopema20;
+@property (assign) CGFloat slopema30;
+@property (assign) CGFloat slopema60;
+@property (assign) CGFloat slopema120;
 
 //@property (assign) CGFloat percent; //换手率
 

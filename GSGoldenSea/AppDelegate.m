@@ -57,7 +57,13 @@
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160819.db",[paths stringByDeletingLastPathComponent]];
     _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
 
-    
+    float a = atanf(1);
+    a = tanf(45);
+    a = sinf(1);
+    a = atan2f(4, 6.92);
+    float b = a*180/3.1415926;
+    SMLog(@"");
+    return;
     
 //    [[HYLog shareInstance] enableLog];
     

@@ -83,7 +83,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 -(void)addDataToTable:(KDataDBService*) service
 {
     
-    if(!service || [self.contentArray count]<20 ){
+    if(!service || [self.contentArray count]<30 ){ //skip cixingu.
         return;
     }
     
@@ -99,18 +99,27 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i];
         kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:self.contentArray t0Index:i];
         kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:self.contentArray t0Index:i];
-        
+//        kT0Data.ma60 = [[GSDataMgr shareInstance] getMAValue:60 array:self.contentArray t0Index:i];
+//        kT0Data.ma120 = [[GSDataMgr shareInstance] getMAValue:120 array:self.contentArray t0Index:i];
+
         
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
         kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
 
         
+//        //add record.
+//        [service addRecord:kT0Data];
+    }
+    
+    for(long i=1; i<[self.contentArray count]; i++ ){
+        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+       
+        //设置为15，考虑到此值比较能反应近期表现.以后可以修正之
+        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:15 array:self.contentArray t0Index:i];
+        
         //add record.
         [service addRecord:kT0Data];
     }
-    
-    
- 
     
 }
 
@@ -349,6 +358,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     return self.contentArray;
 }
 
+
+#pragma mark - util function
+
 -(CGFloat)getDVValueWithBaseValue:(CGFloat)baseValue destValue:(CGFloat)destValue;
 {
     CGFloat val = 0.f;
@@ -448,6 +460,80 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     return maValue;
 }
 
+
+-(CGFloat)getDegree:(CGFloat)duibian lingBian:(CGFloat)lingbian
+{
+//    CGFloat duibian , lingbian;
+    //角度=对边/邻边
+    CGFloat td = atan2f(duibian, lingbian);   //atan2f(4, 6.92);
+    return td*180/3.1415926; //atan等三角函数是弧度，需要转换成角度
+}
+
+-(CGFloat)getSlopeMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(long)t0Index
+{
+    if(days == 0 || !tmpContentArray){
+        return 0.f;
+    }
+    
+    CGFloat slopemaValue = 0.f;
+    KDataModel* kT0Data  = [tmpContentArray objectAtIndex:t0Index];
+    KDataModel* kSlopeStartData;
+    NSUInteger realDays = 0;
+    
+    //简单以两点之间直线计算
+    if(t0Index <= days){
+        realDays = t0Index;
+    }
+    
+    kSlopeStartData = [tmpContentArray objectAtIndex:t0Index-realDays];
+    CGFloat dvValue = [self getDVValueWithBaseValue:kSlopeStartData.ma30 destValue:kT0Data.ma30];
+//    dvValue = kT0Data.ma30-kSlopeStartData.ma30;
+    
+    //need factor number fix?
+    slopemaValue = [self getDegree:dvValue lingBian:realDays];
+
+    
+    
+    
+//
+//    NSUInteger realDays = 0;
+//    CGFloat minMAValue = kInvalidData_Base, maxMAValue=0.f;
+//    NSUInteger minDay = 0, maxDay = 0;
+//    
+//    for(long i = t0Index; i>=0; i--){
+//        KDataModel* kData  = [tmpContentArray objectAtIndex:i];
+//        CGFloat tmpMAVal = kData.ma30;
+//        
+//        if(tmpMAVal > maxMAValue){
+//            maxMAValue = tmpMAVal;
+//            maxDay = i;
+//        }
+//        
+//        if(tmpMAVal < minMAValue){
+//            minMAValue = tmpMAVal;
+//            minDay = i;
+//        }
+//        
+//        realDays++;
+//        if(realDays == days){
+//            break;
+//        }
+//    }
+//    
+////    //以中间为准
+////    if((t0Index-minDay) > realDays/2){
+////        
+////    }
+//    
+//
+//    if(minDay < maxDay){ //minday在maxDay之前,采用maxday
+//        kSlopeStartData = [tmpContentArray objectAtIndex:t0Index-maxDay];
+//        slopemaValue = (kT0Data.ma30 - kSlopeStartData.ma30)/(t0Index-maxDay);
+//    }
+    
+    
+    return slopemaValue;
+}
 
 -(BOOL)isMeetPeriodCondition:(KDataModel*)kData;
 {
