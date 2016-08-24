@@ -65,6 +65,12 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     for(NSString* file in files){
         NSString* stkID = [HelpService stkIDWithFile:file];
         
+        //dbg code.
+        if(![[GSObjMgr shareInstance].mgr isInRange:stkID]){
+            continue;
+        }
+
+        
         self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
         
         KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
@@ -115,7 +121,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
        
         //设置为15，考虑到此值比较能反应近期表现.以后可以修正之
-        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:15 array:self.contentArray t0Index:i];
+        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:self.contentArray t0Index:i];
         
         //add record.
         [service addRecord:kT0Data];
@@ -483,16 +489,24 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     //简单以两点之间直线计算
     if(t0Index <= days){
         realDays = t0Index;
+    }else{
+        realDays = days;
     }
     
     kSlopeStartData = [tmpContentArray objectAtIndex:t0Index-realDays];
+    if(kSlopeStartData.ma30 < 0.5f){
+        return 0.f;
+    }
     CGFloat dvValue = [self getDVValueWithBaseValue:kSlopeStartData.ma30 destValue:kT0Data.ma30];
+    CGFloat diff = kT0Data.ma30 - kSlopeStartData.ma30;
+    CGFloat roc = dvValue*realDays;
 //    dvValue = kT0Data.ma30-kSlopeStartData.ma30;
     
     //need factor number fix?
-    slopemaValue = [self getDegree:dvValue lingBian:realDays];
-
+    slopemaValue = atanf((dvValue+100)/realDays); //;[self getDegree:dvValue lingBian:realDays];
+    slopemaValue = atanf(dvValue)*180/3.1415926;
     
+    SMLog(@"%d: roc:%.2f, slopemaValue:%.2f",kT0Data.time,dvValue,slopemaValue);
     
     
 //

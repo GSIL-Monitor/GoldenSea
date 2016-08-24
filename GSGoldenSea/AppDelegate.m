@@ -57,31 +57,11 @@
     _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160819.db",[paths stringByDeletingLastPathComponent]];
     _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
 
-    float a = atanf(1);
-    a = tanf(45);
-    a = sinf(1);
-    a = atan2f(4, 6.92);
-    float b = a*180/3.1415926;
-    SMLog(@"");
-    return;
+    
     
 //    [[HYLog shareInstance] enableLog];
     
-    //    [GSDataMgr shareInstance].startDate = 20110101;
-    //    [GSDataMgr shareInstance].endDate = 20120101;
-    //
-    //    [GSDataMgr shareInstance].startDate = 20120101;
-    //    [GSDataMgr shareInstance].endDate = 20130101;
-    //
-    //    [GSDataMgr shareInstance].startDate = 20140101;
-    //    [GSDataMgr shareInstance].endDate = 20150101;
-    //
-    //    [GSDataMgr shareInstance].startDate = 20150101;
-    //    [GSDataMgr shareInstance].endDate = 20160101;
-    //
-    //    [GSDataMgr shareInstance].startDate = 20160101;
-    //    [GSDataMgr shareInstance].endDate = 20170101;
-    
+  
     
     //regsiter net
     //    [[HYRequestManager sharedInstance]initService];
@@ -99,8 +79,7 @@
     
     
     if(_isDoAnalysis){
-        [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
-        
+        [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
         
         //    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
         //    return;
@@ -108,20 +87,23 @@
         [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
     }
 
-    
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600075"];
+    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
+
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
     [GSDataMgr shareInstance].startDate = 20160125;
-    //    [GSDataMgr shareInstance].startDate = 20160725;
+//    [GSDataMgr shareInstance].startDate = 20160725;
     
-    //dbg
-//    [GSDataMgr shareInstance].startDate = 20160801;
+    
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir];
+    return;
+    
 
-//    [self testForAllLimit];
+    [self testForAllLimit];
     [self testForAvg];
 }
 
