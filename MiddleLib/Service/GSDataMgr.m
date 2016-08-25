@@ -414,14 +414,14 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 //query data must start with 指定日期-30 以保证ma的计算
 -(void)queryYahooData:(STKModel*)stkModel
 {
-    KDataReqModel* reqModel = [[KDataReqModel alloc]init];
+//    KDataReqModel* reqModel = [[KDataReqModel alloc]init];
+//    
+//    reqModel.symbol = stkModel.stkID; // @"SH000001";
+//    reqModel.period = @"1day";
+//    reqModel.begin = stkModel.lastUpdateTime;
+//    reqModel.end = Key_Max_Date;
     
-    reqModel.symbol = stkModel.stkID; // @"SH000001";
-    reqModel.period = @"1day";
-    reqModel.begin = stkModel.lastUpdateTime;
-    reqModel.end = Key_Max_Date;
-    
-    YahooDataReq* kdataReq = [YahooDataReq requestWith:reqModel];
+    YahooDataReq* kdataReq = [YahooDataReq requestWith:stkModel];
     
     [kdataReq startWithSuccess:^(HYBaseRequest *request, HYBaseResponse *response) {
         

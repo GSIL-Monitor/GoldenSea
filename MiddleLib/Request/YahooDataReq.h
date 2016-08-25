@@ -7,10 +7,11 @@
 //
 
 #import "HYBaseRequest.h"
+#import "STKModel.h"
 
 @interface YahooDataReq : HYBaseRequest
 
-+(YahooDataReq*)requestWith:(KDataReqModel*)reqModel;
++(YahooDataReq*)requestWith:(STKModel*)reqModel;
 
 
 @end
