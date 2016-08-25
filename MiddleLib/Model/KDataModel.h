@@ -186,8 +186,8 @@
 
 @property (nonatomic,strong) NSString* symbol;
 @property (nonatomic,strong) NSString* period;
-@property (nonatomic,strong) NSString* begin;
-@property (nonatomic,strong) NSString* end;
+@property (nonatomic,assign) long begin;
+@property (nonatomic,assign) long end;
 
 
 @end

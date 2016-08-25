@@ -91,11 +91,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         }
 
         
-        self.contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
+        NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
         
         KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
-        [self addDataToTable:service];
+        [self addDataToTable:service contentArray:contentArray fromDate:startDate];
         
         SMLog(@"%@",stkID);
     }
@@ -106,44 +106,49 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 
 
--(void)addDataToTable:(KDataDBService*) service
+-(void)addDataToTable:(KDataDBService*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate
 {
     
-    if(!service || [self.contentArray count]<30 ){ //skip cixingu.
+    if(!service || [contentArray count]<30 ){ //skip cixingu.
         return;
     }
     
     NSDictionary* passDict;
-    for(long i=1; i<[self.contentArray count]; i++ ){
+    for(long i=1; i<[contentArray count]; i++ ){
 
         
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+        KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [contentArray objectAtIndex:i];
+        
+        if(kT0Data.time < fromDate){
+            continue;
+        }
 
         
-        kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i];
-        kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i];
-        kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:self.contentArray t0Index:i];
-        kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:self.contentArray t0Index:i];
-//        kT0Data.ma60 = [[GSDataMgr shareInstance] getMAValue:60 array:self.contentArray t0Index:i];
-//        kT0Data.ma120 = [[GSDataMgr shareInstance] getMAValue:120 array:self.contentArray t0Index:i];
+        kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:contentArray t0Index:i];
+        kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:contentArray t0Index:i];
+        kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:contentArray t0Index:i];
+        kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:contentArray t0Index:i];
+//        kT0Data.ma60 = [[GSDataMgr shareInstance] getMAValue:60 array:contentArray t0Index:i];
+//        kT0Data.ma120 = [[GSDataMgr shareInstance] getMAValue:120 array:contentArray t0Index:i];
 
         
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
         kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
 
-        
-//        //add record.
-//        [service addRecord:kT0Data];
     }
     
-    for(long i=1; i<[self.contentArray count]; i++ ){
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+    for(long i=1; i<[contentArray count]; i++ ){
+        KDataModel* kT0Data = [contentArray objectAtIndex:i];
+        if(kT0Data.time < fromDate){
+            continue;
+        }
        
         //设置为15，考虑到此值比较能反应近期表现.以后可以修正之
-        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:self.contentArray t0Index:i];
+        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:contentArray t0Index:i];
         
         //add record.
+        kT0Data.tdIndex = i;
         [service addRecord:kT0Data];
     }
     
@@ -289,8 +294,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         return nil;
     }
     
-    self.contentArray = [NSMutableArray array];
-
     
     NSString* txt = [self readFileContent:filePath] ;
     if(!txt){
@@ -301,9 +304,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     NSArray *contentlines = [txt componentsSeparatedByString:@"\n"];
     NSRange range = {2,[contentlines count]-2 }; //dbg, need check.
     NSArray *lines = [contentlines subarrayWithRange:range];
-    self.contentArray = [self parseData:lines dataType:DateType_tdx];
+    NSMutableArray* contentArray = [self parseData:lines dataType:DateType_tdx];
     
-    return self.contentArray;
+    return contentArray;
 }
 
 
@@ -391,11 +394,12 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         index++; //just for debug.
     }
     
-     return tmpContentArray;
+    return tmpContentArray;
 }
 
 
 #pragma mark - yahoo
+//query data must start with 指定日期-30 以保证ma的计算
 -(void)queryYahooData:(KDataReqModel*)reqModel
 {
     YahooDataReq* kdataReq = [YahooDataReq requestWith:reqModel];
@@ -410,16 +414,16 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
         
-        //save to file firstly
-        //        NSString* fileName = [NSString stringWithFormat:@"%@.json",reqModel.symbol];
-        //        [HelpService saveContent:request.responseString withName:fileName];
-        //
-        //        //save to db.
-        //        for(long i = 0; i<[dataModel.chartlist count]; i++){
-        //            KDataModel* ele = [dataModel.chartlist safeObjectAtIndex:i];
-        //            KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
-        //            [service addRecord:ele];
-        //        }
+        
+        KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
+
+        //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
+        //考虑到停牌因素，将当前日期-1年，保证拿到数据
+        NSArray* oldDataArray = [service getRecords:(reqModel.begin-10000) end:reqModel.begin];
+        
+        NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
+        [self addDataToTable:service contentArray:contentArray fromDate:reqModel.begin];
+        
         SMLog(@"");
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
         NSLog(@"failed");

@@ -33,8 +33,12 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
+    
+    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString* stkdbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160819.db",[paths stringByDeletingLastPathComponent]];
+    
     self.DBHelper = [[HYDatabaseHelper alloc]init];
-    [self.DBHelper setupDB:dbPath isReset:isReset];
+    [self.DBHelper setupDB:stkdbdir isReset:isReset];
     
    
     

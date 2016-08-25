@@ -32,9 +32,6 @@
     NSString* _dbdir;
     NSString* _queryDbdir; //for query result.
     NSString* _stkID;
-    
-    BOOL _isDoAnalysis;
-    
 }
 
 @end
@@ -44,20 +41,24 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     //get data.
-    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
-    [df setDateFormat:@"yyyyMMdd HH.mm.ss"];
-    NSDate * date = [NSDate date];
-    NSTimeInterval sec = [date timeIntervalSinceNow];
-    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
-    NSString * strNowDateTime = [df stringFromDate:currentDate];
-    NSString *strNowDate= [strNowDateTime substringToIndex:8];
     
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    _dbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB160819.db",[paths stringByDeletingLastPathComponent]];
-    _queryDbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
+    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
 
+
+    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
+    
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+    //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+    [GSDataMgr shareInstance].marketType = marketType_All;
+    [GSDataMgr shareInstance].startDate = 20160125;
+    //    [GSDataMgr shareInstance].startDate = 20160725;
     
     
 //    [[HYLog shareInstance] enableLog];
@@ -70,7 +71,6 @@
     //    [[STKManager shareInstance]testGetFriPostsRequest];
     //    [[STKManager shareInstance]test];
     
-    
     [self doInit];
 }
 
@@ -81,30 +81,6 @@
 }
 
 -(void)doInit{
-    
-    _isDoAnalysis = YES; //tbd. fix two intance can't both exist.
-    
-    
-    
-    if(_isDoAnalysis){
-        [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
-        
-        //    [[GSDataMgr shareInstance]writeDataToDB:_filedir];
-        //    return;
-    }else{
-        [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
-    }
-
-    [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
-
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
-    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
-    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-    [GSDataMgr shareInstance].marketType = marketType_All;
-    [GSDataMgr shareInstance].startDate = 20160125;
-//    [GSDataMgr shareInstance].startDate = 20160725;
     
     
     [[GSDataMgr shareInstance] writeDataToDB:_filedir];

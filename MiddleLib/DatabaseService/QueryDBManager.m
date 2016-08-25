@@ -28,8 +28,19 @@ SINGLETON_GENERATOR(QueryDBManager, defaultManager)
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
+    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+    [df setDateFormat:@"yyyyMMdd HH.mm.ss"];
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    NSString * strNowDateTime = [df stringFromDate:currentDate];
+    NSString *strNowDate= [strNowDateTime substringToIndex:8];
+    
+    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString* querydbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
+    
     self.DBHelper = [[HYDatabaseHelper alloc]init];
-    [self.DBHelper setupDB:dbPath isReset:isReset];
+    [self.DBHelper setupDB:querydbdir isReset:isReset];
     
     
     self.qREsDBService = [[QueryResDBService alloc]init];

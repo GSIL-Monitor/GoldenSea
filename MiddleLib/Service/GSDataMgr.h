@@ -21,7 +21,7 @@ typedef enum {
 +(GSDataMgr*)shareInstance;
 
 
-@property (nonatomic,strong) NSMutableArray* contentArray;
+//@property (nonatomic,strong) NSMutableArray* contentArray;
 @property (nonatomic,strong) NSMutableArray* sourceFileArray;
 
 
