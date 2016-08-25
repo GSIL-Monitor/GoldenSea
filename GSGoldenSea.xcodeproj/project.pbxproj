@@ -32,6 +32,7 @@
 		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
 		42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* KDataDBService.m */; };
 		42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* STKDBService.m */; };
+		42D546B21D6E90E600603E6A /* YahooDataReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D546B11D6E90E600603E6A /* YahooDataReq.m */; };
 		42DA6F9D1D680A0500CD5E63 /* LimitLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
@@ -137,12 +138,12 @@
 		425840211D66A2800031AC39 /* QueryResModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResModel.m; sourceTree = "<group>"; };
 		425840231D66AC680031AC39 /* QueryDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryDBManager.h; sourceTree = "<group>"; };
 		425840241D66AC680031AC39 /* QueryDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryDBManager.m; sourceTree = "<group>"; };
-		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKManager.h; sourceTree = "<group>"; };
-		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKManager.m; sourceTree = "<group>"; };
+		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKManager.h; path = Service/STKManager.h; sourceTree = "<group>"; };
+		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKManager.m; path = Service/STKManager.m; sourceTree = "<group>"; };
 		426980021CEEF22200D99888 /* GSBaseLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseLogout.h; sourceTree = "<group>"; };
 		426980031CEEF22200D99888 /* GSBaseLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseLogout.m; sourceTree = "<group>"; };
-		426980051CEEF5F000D99888 /* GSDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDataMgr.h; sourceTree = "<group>"; };
-		426980061CEEF5F000D99888 /* GSDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDataMgr.m; sourceTree = "<group>"; };
+		426980051CEEF5F000D99888 /* GSDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSDataMgr.h; path = Service/GSDataMgr.h; sourceTree = "<group>"; };
+		426980061CEEF5F000D99888 /* GSDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSDataMgr.m; path = Service/GSDataMgr.m; sourceTree = "<group>"; };
 		426980081CEEF96000D99888 /* GSBaseAnalysisMgr+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSBaseAnalysisMgr+ex.h"; sourceTree = "<group>"; };
 		426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSBaseAnalysisMgr+ex.m"; sourceTree = "<group>"; };
 		427E871B1D6B1BA0002468FD /* GSObjMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSObjMgr.h; sourceTree = "<group>"; };
@@ -163,6 +164,8 @@
 		42C3C9051D4B29420050E676 /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
 		42C3C9061D4B29420050E676 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
 		42C3C9071D4B29420050E676 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
+		42D546B01D6E90E600603E6A /* YahooDataReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooDataReq.h; sourceTree = "<group>"; };
+		42D546B11D6E90E600603E6A /* YahooDataReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooDataReq.m; sourceTree = "<group>"; };
 		42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitLogout.h; sourceTree = "<group>"; };
 		42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitLogout.m; sourceTree = "<group>"; };
 		42E08D6A1C7FF771004E4DC2 /* GSGoldenSea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSGoldenSea.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +381,17 @@
 			path = DatabaseService;
 			sourceTree = "<group>";
 		};
+		42D5468C1D6E8EF500603E6A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				426980051CEEF5F000D99888 /* GSDataMgr.h */,
+				426980061CEEF5F000D99888 /* GSDataMgr.m */,
+				426007111C896EA5009AF691 /* STKManager.h */,
+				426007121C896EA5009AF691 /* STKManager.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		42E08D611C7FF771004E4DC2 = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +484,7 @@
 				42E08DD41C7FF8C0004E4DC2 /* Model */,
 				42E08DDA1C7FF8C0004E4DC2 /* Network */,
 				42E08DE91C7FF8C0004E4DC2 /* Request */,
+				42D5468C1D6E8EF500603E6A /* Data */,
 				E4941B601D64B9AD006B792B /* Parameter */,
 				42E08E381C7FF8C0004E4DC2 /* Service */,
 				42E74FF61CF2E7B1009D483D /* Conditon */,
@@ -518,6 +533,8 @@
 			children = (
 				42E098D91C802A5D004E4DC2 /* KDataRequest.h */,
 				42E098DA1C802A5D004E4DC2 /* KDataRequest.m */,
+				42D546B01D6E90E600603E6A /* YahooDataReq.h */,
+				42D546B11D6E90E600603E6A /* YahooDataReq.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -529,8 +546,6 @@
 				427E871C1D6B1BA0002468FD /* GSObjMgr.m */,
 				4204D0551C88160500D27135 /* HelpService.h */,
 				4204D0561C88160500D27135 /* HelpService.m */,
-				426007111C896EA5009AF691 /* STKManager.h */,
-				426007121C896EA5009AF691 /* STKManager.m */,
 				426980081CEEF96000D99888 /* GSBaseAnalysisMgr+ex.h */,
 				426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */,
 				42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */,
@@ -545,8 +560,6 @@
 				42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */,
 				42BB4D281D6B3F76003FB5DD /* AvgLogout.h */,
 				42BB4D291D6B3F76003FB5DD /* AvgLogout.m */,
-				426980051CEEF5F000D99888 /* GSDataMgr.h */,
-				426980061CEEF5F000D99888 /* GSDataMgr.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -962,6 +975,7 @@
 				42E097A91C7FFAEB004E4DC2 /* CLIColor.m in Sources */,
 				427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */,
 				42E0981A1C7FFAEB004E4DC2 /* YTKNetworkPrivate.m in Sources */,
+				42D546B21D6E90E600603E6A /* YahooDataReq.m in Sources */,
 				421265441C867A930053787E /* HYBaseDBService.m in Sources */,
 				42E08D721C7FF771004E4DC2 /* main.m in Sources */,
 				42E08E591C7FF8C1004E4DC2 /* HYBaseResponse.m in Sources */,

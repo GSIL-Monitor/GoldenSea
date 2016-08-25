@@ -25,6 +25,7 @@
 #import "LimitAnalysisMgr.h"
 #import "AvgAnalysisMgr.h"
 
+
 @interface AppDelegate (){
     
     NSString* _filedir;
@@ -61,7 +62,8 @@
     
 //    [[HYLog shareInstance] enableLog];
     
-  
+    [self testNet];
+    return;
     
     //regsiter net
     //    [[HYRequestManager sharedInstance]initService];
@@ -70,6 +72,12 @@
     
     
     [self doInit];
+}
+
+
+-(void)testNet
+{
+    [[GSDataMgr shareInstance]updateDataToDB];
 }
 
 -(void)doInit{

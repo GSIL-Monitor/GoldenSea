@@ -83,6 +83,14 @@
 
 
 
+/*yahoo data
+
+ Date,Open,High,Low,Close,Volume,Adj Close
+ 2016-08-24,6.81,6.92,6.80,6.85,9806100,6.85
+ 2016-08-23,6.85,6.95,6.72,6.85,14494200,6.85
+ 2016-08-22,6.72,7.18,6.69,6.87,21862000,6.87
+ */
+
 @interface KFullDataModel : HYBaseModel
 @property (nonatomic, strong) NSArray* chartlist;
 @end
@@ -103,7 +111,7 @@
 @interface KDataModel : HYBaseModel
 
 @property (assign) long time;
-@property (assign) long tIndex;
+@property (assign) long tdIndex;
 
 
 @property (assign) CGFloat open;

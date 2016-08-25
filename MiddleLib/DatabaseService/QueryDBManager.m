@@ -28,12 +28,12 @@ SINGLETON_GENERATOR(QueryDBManager, defaultManager)
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
-    self.DBHelper = [HYDatabaseHelper defaultHelper];
+    self.DBHelper = [[HYDatabaseHelper alloc]init];
     [self.DBHelper setupDB:dbPath isReset:isReset];
     
     
     self.qREsDBService = [[QueryResDBService alloc]init];
-    [self.qREsDBService setup];
+    [self.qREsDBService setup:self.DBHelper];
     if([self.qREsDBService createTableWithName:@"tQueryBasicInfo"]){
 //        DDLogInfo(@"tQueryBasicInfo table create success!");
     }else{

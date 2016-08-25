@@ -7,7 +7,6 @@
 //
 
 #import "HYBaseDBService.h"
-#import "HYDatabaseHelper.h"
 
 
 @interface HYBaseDBService ()
@@ -28,7 +27,6 @@
 {
     self = [super init];
     if(self){
-        [self setup];
     }
     
     return self;
@@ -36,9 +34,9 @@
 
 
 
-- (void)setup
+- (void)setup:(HYDatabaseHelper*)dbHelper
 {
-    self.dbHelper = [HYDatabaseHelper defaultHelper];
+    self.dbHelper = dbHelper;
     self.database = self.dbHelper.database;
     self.databaseQueue = self.dbHelper.databaseQueue;
 }

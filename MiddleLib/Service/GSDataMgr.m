@@ -8,6 +8,12 @@
 
 #import "GSDataMgr.h"
 #import "HYDBManager.h"
+#import "YahooDataReq.h"
+
+typedef enum {
+    DateType_tdx = 0,
+    DateType_yahoo
+}DateType;
 
 @implementation GSDataMgr
 
@@ -44,6 +50,20 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     //判断当期db最后t日，从网络取t+1到当天数据，
     //然后从db取t-30日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
     //最后将数据写回db
+    
+    
+    KDataReqModel* reqModel = [[KDataReqModel alloc]init];
+    
+    
+    //dbg code
+    //symbol=SH000001&period=1day&type=normal&begin=1424954307755&end=1456490307755&_=1456490307755
+    reqModel.symbol = @"SH000001";
+    reqModel.period = @"1day";
+    reqModel.begin = @"1424954307755";
+    reqModel.end = @"1456490307755";
+    
+    
+    [self queryYahooData:reqModel];
 }
 
 -(void)writeDataToDB:(NSString*)docsDir;
@@ -272,36 +292,46 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     self.contentArray = [NSMutableArray array];
 
     
-    long index = 0;
-    long lineIndex = 0;
-    long tIndex = 0;
-    
-    KDataModel* kData;
     NSString* txt = [self readFileContent:filePath] ;
     if(!txt){
         return nil;
     }
     
-    NSMutableArray* tmpContentArray = [NSMutableArray array];
     
-    NSArray *lines = [txt componentsSeparatedByString:@"\n"];
+    NSArray *contentlines = [txt componentsSeparatedByString:@"\n"];
+    NSRange range = {2,[contentlines count]-2 }; //dbg, need check.
+    NSArray *lines = [contentlines subarrayWithRange:range];
+    self.contentArray = [self parseData:lines dataType:DateType_tdx];
+    
+    return self.contentArray;
+}
+
+
+-(NSMutableArray*)parseData:(NSArray*)lines dataType:(long)dataType
+{
+    long index = 0;
+    KDataModel* kData;
+    NSMutableArray* tmpContentArray = [NSMutableArray array];
+
+    
     for(NSString* oneline in lines){
+        //tdx: 2011/10/10	5.22	5.25	5.12	5.13	32428434	274365568.00
+        //yahoo: 2016-08-24,6.81,6.92,6.80,6.85,9806100,6.85
         
         //        SMLog(@"oneline:%@",oneline);
-        
-        //skip addtional info
-        lineIndex++;
-        if(lineIndex <= 2 ){
-            continue;
+    
+        NSArray* tmpArray;
+        if(dataType == DateType_tdx){
+            tmpArray = [oneline componentsSeparatedByString:@"\t"] ;
+        }else{ //yahoo
+            tmpArray = [oneline componentsSeparatedByString:@","] ;
         }
         
-        NSArray* tmpArray = [oneline componentsSeparatedByString:@"\t"] ;
         if([tmpArray count] != 7){
             continue;
         }
         
         //        SMLog(@"oneline:%@",oneline);
-        
         
         //deal with real data.
         kData = [[KDataModel alloc]init];
@@ -315,8 +345,12 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             switch (i) {
                 case 0:
                     //2011/11/02
-//                    kData.time = value;
-                    kData.time = [[value stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
+                    //                    kData.time = value;
+                    if(dataType == DateType_tdx){
+                        kData.time = [[value stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
+                    }else{
+                        kData.time = [[value stringByReplacingOccurrencesOfString:@"-" withString:@""]intValue];
+                    }
                     break;
                     
                 case 1:
@@ -351,19 +385,46 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         if ([self isMeetPeriodCondition:kData]) {
             [tmpContentArray addObject:kData];
-            kData.tIndex = tIndex++;
         }
         
         
         index++; //just for debug.
     }
     
-    self.contentArray = tmpContentArray;
-    
-    
-    return self.contentArray;
+     return tmpContentArray;
 }
 
+
+#pragma mark - yahoo
+-(void)queryYahooData:(KDataReqModel*)reqModel
+{
+    YahooDataReq* kdataReq = [YahooDataReq requestWith:reqModel];
+    
+    [kdataReq startWithSuccess:^(HYBaseRequest *request, HYBaseResponse *response) {
+        
+        NSString *content = [request responseString];
+        NSArray *contentlines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        NSRange range = {1,[contentlines count]-1 }; //dbg, need check.
+        NSArray *lines = [contentlines subarrayWithRange:range];
+        
+        NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
+        
+        //save to file firstly
+        //        NSString* fileName = [NSString stringWithFormat:@"%@.json",reqModel.symbol];
+        //        [HelpService saveContent:request.responseString withName:fileName];
+        //
+        //        //save to db.
+        //        for(long i = 0; i<[dataModel.chartlist count]; i++){
+        //            KDataModel* ele = [dataModel.chartlist safeObjectAtIndex:i];
+        //            KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
+        //            [service addRecord:ele];
+        //        }
+        SMLog(@"");
+    } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
+        NSLog(@"failed");
+    }];
+}
 
 #pragma mark - util function
 

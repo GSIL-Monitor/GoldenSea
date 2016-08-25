@@ -39,7 +39,7 @@
 // 用于获取数据的数据库
 @property (nonatomic, strong) HYFMDatabase *database;
 
-+ (HYDatabaseHelper *)defaultHelper;
+//+ (HYDatabaseHelper *)defaultHelper;
 
 - (BOOL)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 - (BOOL)closeDB;

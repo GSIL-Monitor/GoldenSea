@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HYBaseModel.h"
+#import "HYDatabaseHelper.h"
+
 
 typedef enum {
     dbType_string = 0,
@@ -30,7 +32,7 @@ typedef enum {
 @property (nonatomic,strong) NSString* modelClassString;
 @property (nonatomic,strong) NSString* createIndexString;
 
-- (void)setup;
+- (void)setup:(HYDatabaseHelper*)dbHelper;
 
 /**
  *  create the table in db

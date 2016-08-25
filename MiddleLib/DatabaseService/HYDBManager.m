@@ -33,12 +33,12 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
-    self.DBHelper = [HYDatabaseHelper defaultHelper];
+    self.DBHelper = [[HYDatabaseHelper alloc]init];
     [self.DBHelper setupDB:dbPath isReset:isReset];
     
    
     
-    [[STKDBService shareInstance]setup];
+    [[STKDBService shareInstance]setup:self.DBHelper];
     if([[STKDBService shareInstance]createTableWithName:@"tSTKBasicInfo"]){
 //        DDLogInfo(@"STK table create success!");
     }else{
@@ -60,7 +60,7 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
     KDataDBService* dataDBService = [self.stkdbDict safeValueForKey:symbol];
     if(!dataDBService){
         dataDBService = [[KDataDBService alloc]init];
-        [dataDBService setup];
+        [dataDBService setup:self.DBHelper];
         [dataDBService createTableWithName:symbol];
         [self.stkdbDict safeSetValue:dataDBService forKey:symbol];
     }

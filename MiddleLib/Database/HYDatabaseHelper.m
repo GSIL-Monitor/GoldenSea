@@ -15,7 +15,7 @@ static HYDatabaseHelper *defaultHelper = nil;
 
 
 //获取默认的静态的局部类
-SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
+//SINGLETON_GENERATOR(HYDatabaseHelper, defaultHelper)
 
 - (instancetype)init
 {
