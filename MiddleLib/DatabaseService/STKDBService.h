@@ -12,4 +12,7 @@
 
 +(STKDBService*)shareInstance;
 
+
+-(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID;
+
 @end

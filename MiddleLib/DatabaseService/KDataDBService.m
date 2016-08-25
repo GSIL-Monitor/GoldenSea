@@ -76,7 +76,7 @@
 #pragma mark - self
 - (NSArray *)getRecords:(long)startTime end:(long)endTime;
 {
-    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<%ld ",startTime, endTime];
+    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld ",startTime, endTime];
     return [super getAllRecordsWithAditonCondition:sql];
 }
 

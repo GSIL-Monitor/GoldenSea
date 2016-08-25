@@ -45,7 +45,7 @@
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
     [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
 
 

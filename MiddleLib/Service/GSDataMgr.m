@@ -10,6 +10,12 @@
 #import "HYDBManager.h"
 #import "YahooDataReq.h"
 
+#import "STKDBService.h"
+#import "STKModel.h"
+
+
+#define Key_Max_Date 21680808
+
 typedef enum {
     DateType_tdx = 0,
     DateType_yahoo
@@ -24,7 +30,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 {
     if(self = [super init]){
         self.startDate = 20100101;
-        self.endDate = 20200101;
+        self.endDate = Key_Max_Date;
     }
     
     return self;
@@ -48,32 +54,35 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 {
     //tbd.
     //判断当期db最后t日，从网络取t+1到当天数据，
-    //然后从db取t-30日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
+    //然后从db取t-1Y日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
     //最后将数据写回db
     
     
-    KDataReqModel* reqModel = [[KDataReqModel alloc]init];
+    NSArray* stkArray = [[STKDBService shareInstance]getAllRecords];
+    if(![stkArray count]){
+        GSAssert(NO,@"no existed stk in table STKDB!");
+    }
     
-    
-    //dbg code
-    //symbol=SH000001&period=1day&type=normal&begin=1424954307755&end=1456490307755&_=1456490307755
-    reqModel.symbol = @"SH000001";
-    reqModel.period = @"1day";
-    reqModel.begin = @"1424954307755";
-    reqModel.end = @"1456490307755";
-    
-    
-    [self queryYahooData:reqModel];
+    for(STKModel* ele in stkArray){
+        
+        if(![[GSObjMgr shareInstance].mgr isInRange:ele.stkID]){
+            continue;
+        }
+        
+       
+        
+        [self queryYahooData:ele];
+    }
 }
 
 -(void)writeDataToDB:(NSString*)docsDir;
 {
-    [self _writeDataToDB:docsDir FromDate:20020101 EndDate:20200101];
+    [self _writeDataToDB:docsDir FromDate:20020101 EndDate:Key_Max_Date];
 }
 
 -(void)writeDataToDB:(NSString*)docsDir FromDate:(int)startDate;
 {
-    [self _writeDataToDB:docsDir FromDate:startDate EndDate:20200101];
+    [self _writeDataToDB:docsDir FromDate:startDate EndDate:Key_Max_Date];
 }
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
@@ -85,7 +94,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     for(NSString* file in files){
         NSString* stkID = [HelpService stkIDWithFile:file];
         
-        //dbg code.
         if(![[GSObjMgr shareInstance].mgr isInRange:stkID]){
             continue;
         }
@@ -105,11 +113,16 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 
-
+//fromDate should be lastUpdate time
 -(void)addDataToTable:(KDataDBService*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate
 {
     
-    if(!service || [contentArray count]<30 ){ //skip cixingu.
+    if(!service ){
+        return;
+    }
+    
+    if([contentArray count]<30 ){
+        GSAssert(NO,@"contentArray count is < 30!");
         return;
     }
     
@@ -120,7 +133,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         
-        if(kT0Data.time < fromDate){
+        if(kT0Data.time <= fromDate){ //skip fromdate for update db case. because fromDate is lastUpdate time
             continue;
         }
 
@@ -151,6 +164,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.tdIndex = i;
         [service addRecord:kT0Data];
     }
+    
     
 }
 
@@ -347,8 +361,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             
             switch (i) {
                 case 0:
-                    //2011/11/02
-                    //                    kData.time = value;
                     if(dataType == DateType_tdx){
                         kData.time = [[value stringByReplacingOccurrencesOfString:@"/" withString:@""]intValue];
                     }else{
@@ -400,8 +412,15 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 #pragma mark - yahoo
 //query data must start with 指定日期-30 以保证ma的计算
--(void)queryYahooData:(KDataReqModel*)reqModel
+-(void)queryYahooData:(STKModel*)stkModel
 {
+    KDataReqModel* reqModel = [[KDataReqModel alloc]init];
+    
+    reqModel.symbol = stkModel.stkID; // @"SH000001";
+    reqModel.period = @"1day";
+    reqModel.begin = stkModel.lastUpdateTime;
+    reqModel.end = Key_Max_Date;
+    
     YahooDataReq* kdataReq = [YahooDataReq requestWith:reqModel];
     
     [kdataReq startWithSuccess:^(HYBaseRequest *request, HYBaseResponse *response) {
@@ -409,25 +428,33 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         NSString *content = [request responseString];
         NSArray *contentlines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
-        NSRange range = {1,[contentlines count]-1 }; //dbg, need check.
-        NSArray *lines = [contentlines subarrayWithRange:range];
         
-        NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
-        
-        
-        KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
-
-        //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
-        //考虑到停牌因素，将当前日期-1年，保证拿到数据
-        NSArray* oldDataArray = [service getRecords:(reqModel.begin-10000) end:reqModel.begin];
-        
-        NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
-        [self addDataToTable:service contentArray:contentArray fromDate:reqModel.begin];
-        
-        SMLog(@"");
+        SMLog(@"%@ success!", reqModel.symbol);
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
-        NSLog(@"failed");
+        SMLog(@"%@ failed",reqModel.symbol);
     }];
+}
+
+
+-(void)saveYahooDataToDB:(NSArray*)contentlines stkModel:(STKModel*)stkModel
+{
+    NSRange range = {1,[contentlines count]-1 }; //dbg, need check.
+    NSArray *lines = [contentlines subarrayWithRange:range];
+    
+    NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
+    
+    
+    KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkModel.stkID];
+    
+    //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
+    //考虑到停牌因素，将当前日期-1年，保证拿到数据
+    NSArray* oldDataArray = [service getRecords:(stkModel.lastUpdateTime-10000) end:stkModel.lastUpdateTime];
+    
+    NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
+    [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime];
+    
+    stkModel.lastUpdateTime = [HelpService getCurrDate];
+    [[STKDBService shareInstance]updateRecord:stkModel];
 }
 
 #pragma mark - util function

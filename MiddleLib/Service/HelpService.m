@@ -111,8 +111,18 @@
 }
 
 
-
-
++(long)getCurrDate
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+    [df setDateFormat:@"yyyyMMdd HH.mm.ss"];
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    NSString * strNowDateTime = [df stringFromDate:currentDate];
+    NSString *strNowDate= [strNowDateTime substringToIndex:8];
+    
+    return [strNowDate intValue];
+}
 
 
 +(long)indexOfValueSmallThan:(CGFloat)theValue Array:(NSArray*)array start:(long)startIndex stop:(long)stopIndex  kT0data:(KDataModel*)kT0Data;

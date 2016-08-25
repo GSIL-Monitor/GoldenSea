@@ -14,6 +14,7 @@
 
 +(HYDBManager *)defaultManager;
 
++(NSString*)defaultDBPath;
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;;
 - (BOOL)closeDB;

@@ -30,14 +30,15 @@ SINGLETON_GENERATOR(STKDBService, shareInstance)
     self.modelClassString = NSStringFromClass([STKModel class]);
     self.tableName =  tableName; // @"Table_kData";
     
-    NSDictionary *param = @{                            
-                            @"stkID"                    : @"text primary key",
+    NSArray *param = @[@{@"stkID"                    : @"text primary key"},
+                       @{@"lastUpdateTime"           : @"integer"},
+
 //                            @"type"                      : @"integer",
 //                            @"relatedRecordID"   : @"text",
 //                            @"createdTimeStamp"       : @"integer"
                             
       
-                            };
+                    ];
     
     
     
@@ -48,6 +49,33 @@ SINGLETON_GENERATOR(STKDBService, shareInstance)
     return [super createTable:param];
 }
 
+
+-(STKModel*)getRecordWithID:(NSString *)recordID
+{
+    NSString* sql = [NSString stringWithFormat:@"where stkID = '%@' ",recordID];
+    NSArray* res = [super getAllRecordsWithAditonCondition:sql];
+    if(!res || ![res count]){
+        return nil;
+    }
+    
+    return [res objectAtIndex:0];
+}
+
+-(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID
+{
+    
+    STKModel* model = [self getRecordWithID:recordID];
+    if(!model){
+        model = [[STKModel alloc]init];
+    }
+    
+    model.stkID = recordID;
+    model.lastUpdateTime = updateTime;
+    
+    NSString* condition = [NSString stringWithFormat:@"stkID = '%@'",recordID];
+
+    return [self updateRecord:model WithAditonCondition:condition];
+}
 
 
 @end

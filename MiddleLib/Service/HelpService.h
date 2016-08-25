@@ -27,6 +27,7 @@
 +(BOOL)isLimitDownValue:(CGFloat)TP1Close T0Close:(CGFloat)T0Close;
 
 +(NSString*)stkIDWithFile:(NSString*)file;
++(long)getCurrDate;
 
 
 +(CGFloat)minValueInArray:(NSArray*)array start:(long)startIndex stop:(long)stopIndex kT0data:(KDataModel*)kT0Data;
