@@ -82,6 +82,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
     }else{
         //from the lastUpdateTime, in case the lastUpdateTime day date not in db.
+        //Don't! 
         [self _writeDataToDB:docsDir FromDate:(int)dbInfo.lastUpdateTime EndDate:dataEndDate];
     }
     
@@ -106,7 +107,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
-        [self addDataToTable:service contentArray:contentArray fromDate:startDate];
+        [self addDataToTable:service contentArray:contentArray fromDate:startDate EndDate:endDate];
         
         SMLog(@"%@",stkID);
     }
@@ -118,7 +119,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 
 //fromDate should be lastUpdate time
--(void)addDataToTable:(TKData*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate
+-(void)addDataToTable:(TKData*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate EndDate:(int)endDate
 {
     
     if(!service ){
@@ -130,6 +131,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         return;
     }
     
+    
     NSDictionary* passDict;
     for(long i=1; i<[contentArray count]; i++ ){
 
@@ -138,8 +140,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         
         //skip fromdate for update db case. because fromDate is lastUpdate time
-        //NOT SKIP now!
-        if(kT0Data.time < fromDate){
+        if(kT0Data.time <= fromDate || kT0Data.time > endDate){
             continue;
         }
 
@@ -159,7 +160,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
-        if(kT0Data.time < fromDate){
+        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
             continue;
         }
        
@@ -168,6 +169,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         //add record.
         kT0Data.tdIndex = i; //tbd
+        
+        
+        
+        
         [service addRecord:kT0Data];
     }
     
@@ -457,7 +462,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     NSArray* oldDataArray = [service getRecords:(stkModel.lastUpdateTime-10000) end:stkModel.lastUpdateTime];
     
     NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
-    [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime];
+    [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime EndDate:Key_Max_Date];
     
     stkModel.lastUpdateTime = [HelpService getCurrDate];
     [[TSTK shareInstance]updateRecord:stkModel];
@@ -604,7 +609,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     slopemaValue = atanf((dvValue+100)/realDays); //;[self getDegree:dvValue lingBian:realDays];
     slopemaValue = atanf(dvValue)*180/3.1415926;
     
-    SMLog(@"%d: roc:%.2f, slopemaValue:%.2f",kT0Data.time,dvValue,slopemaValue);
+//    SMLog(@"%d: roc:%.2f, slopemaValue:%.2f",kT0Data.time,dvValue,slopemaValue);
     
     
 //
