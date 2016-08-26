@@ -8,7 +8,7 @@
 
 #import "QueryDBManager.h"
 #import "HYDatabaseHelper.h"
-#import "QueryResDBService.h"
+#import "TQueryRes.h"
 
 @interface QueryDBManager ()
 @property (nonatomic, strong) HYDatabaseHelper        *DBHelper;
@@ -43,7 +43,7 @@ SINGLETON_GENERATOR(QueryDBManager, defaultManager)
     [self.DBHelper setupDB:querydbdir isReset:isReset];
     
     
-    self.qREsDBService = [[QueryResDBService alloc]init];
+    self.qREsDBService = [[TQueryRes alloc]init];
     [self.qREsDBService setup:self.DBHelper];
     if([self.qREsDBService createTableWithName:@"tQueryBasicInfo"]){
 //        DDLogInfo(@"tQueryBasicInfo table create success!");

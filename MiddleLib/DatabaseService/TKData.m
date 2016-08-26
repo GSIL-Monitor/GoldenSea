@@ -6,10 +6,10 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "KDataDBService.h"
+#import "TKData.h"
 #import "KDataModel.h"
 
-@implementation KDataDBService
+@implementation TKData
 
 //SINGLETON_GENERATOR(KDataDBService, shareInstance);
 

@@ -6,10 +6,10 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "QueryResDBService.h"
+#import "TQueryRes.h"
 #import "QueryResModel.h"
 
-@implementation QueryResDBService
+@implementation TQueryRes
 
 
 

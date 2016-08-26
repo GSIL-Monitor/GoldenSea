@@ -8,7 +8,7 @@
 
 #import "HYBaseDBService.h"
 
-@interface KDataDBService : HYBaseDBService
+@interface TKData : HYBaseDBService
 
 - (NSArray *)getRecords:(long)startTime end:(long)endTime;
 

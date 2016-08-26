@@ -6,12 +6,12 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "STKDBService.h"
+#import "TSTK.h"
 #import "STKModel.h"
 
-@implementation STKDBService
+@implementation TSTK
 
-SINGLETON_GENERATOR(STKDBService, shareInstance)
+SINGLETON_GENERATOR(TSTK, shareInstance)
 
 
 -(id)init

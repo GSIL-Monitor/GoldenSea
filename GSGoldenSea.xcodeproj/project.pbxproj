@@ -14,9 +14,10 @@
 		421265451C867A930053787E /* HYDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212653B1C867A930053787E /* HYDatabaseHelper.m */; };
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
+		4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */; };
 		4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4236ECBB1D0FF2C40001CF37 /* HYLog.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
-		4258401F1D669FB80031AC39 /* QueryResDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* QueryResDBService.m */; };
+		4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* TQueryRes.m */; };
 		425840221D66A2800031AC39 /* QueryResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840211D66A2800031AC39 /* QueryResModel.m */; };
 		425840251D66AC680031AC39 /* QueryDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840241D66AC680031AC39 /* QueryDBManager.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
@@ -30,8 +31,8 @@
 		42BB4D271D6B3BD9003FB5DD /* AvgAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */; };
 		42BB4D2A1D6B3F76003FB5DD /* AvgLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BB4D291D6B3F76003FB5DD /* AvgLogout.m */; };
 		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
-		42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* KDataDBService.m */; };
-		42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* STKDBService.m */; };
+		42C3C9091D4B29420050E676 /* TKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* TKData.m */; };
+		42C3C90A1D4B29420050E676 /* TSTK.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* TSTK.m */; };
 		42D546B21D6E90E600603E6A /* YahooDataReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D546B11D6E90E600603E6A /* YahooDataReq.m */; };
 		42DA6F9D1D680A0500CD5E63 /* LimitLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
@@ -128,12 +129,14 @@
 		421265481C867B7D0053787E /* NSArrayEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayEX.m; sourceTree = "<group>"; };
 		421265491C867B7D0053787E /* NSDictionaryEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryEX.h; sourceTree = "<group>"; };
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
+		4223A1121D6FD3AC005A1CA4 /* TDBInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBInfo.h; sourceTree = "<group>"; };
+		4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBInfo.m; sourceTree = "<group>"; };
 		4236ECBA1D0FF2C40001CF37 /* HYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYLog.h; sourceTree = "<group>"; };
 		4236ECBB1D0FF2C40001CF37 /* HYLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLog.m; sourceTree = "<group>"; };
 		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
-		4258401D1D669FB80031AC39 /* QueryResDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResDBService.h; sourceTree = "<group>"; };
-		4258401E1D669FB80031AC39 /* QueryResDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResDBService.m; sourceTree = "<group>"; };
+		4258401D1D669FB80031AC39 /* TQueryRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQueryRes.h; sourceTree = "<group>"; };
+		4258401E1D669FB80031AC39 /* TQueryRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQueryRes.m; sourceTree = "<group>"; };
 		425840201D66A2800031AC39 /* QueryResModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResModel.h; sourceTree = "<group>"; };
 		425840211D66A2800031AC39 /* QueryResModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryResModel.m; sourceTree = "<group>"; };
 		425840231D66AC680031AC39 /* QueryDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryDBManager.h; sourceTree = "<group>"; };
@@ -160,10 +163,10 @@
 		42BB4D291D6B3F76003FB5DD /* AvgLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvgLogout.m; sourceTree = "<group>"; };
 		42C3C9021D4B29420050E676 /* HYDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDBManager.h; sourceTree = "<group>"; };
 		42C3C9031D4B29420050E676 /* HYDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDBManager.m; sourceTree = "<group>"; };
-		42C3C9041D4B29420050E676 /* KDataDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataDBService.h; sourceTree = "<group>"; };
-		42C3C9051D4B29420050E676 /* KDataDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDataDBService.m; sourceTree = "<group>"; };
-		42C3C9061D4B29420050E676 /* STKDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDBService.h; sourceTree = "<group>"; };
-		42C3C9071D4B29420050E676 /* STKDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDBService.m; sourceTree = "<group>"; };
+		42C3C9041D4B29420050E676 /* TKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKData.h; sourceTree = "<group>"; };
+		42C3C9051D4B29420050E676 /* TKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKData.m; sourceTree = "<group>"; };
+		42C3C9061D4B29420050E676 /* TSTK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTK.h; sourceTree = "<group>"; };
+		42C3C9071D4B29420050E676 /* TSTK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTK.m; sourceTree = "<group>"; };
 		42D546B01D6E90E600603E6A /* YahooDataReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooDataReq.h; sourceTree = "<group>"; };
 		42D546B11D6E90E600603E6A /* YahooDataReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooDataReq.m; sourceTree = "<group>"; };
 		42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitLogout.h; sourceTree = "<group>"; };
@@ -371,12 +374,14 @@
 				42C3C9031D4B29420050E676 /* HYDBManager.m */,
 				425840231D66AC680031AC39 /* QueryDBManager.h */,
 				425840241D66AC680031AC39 /* QueryDBManager.m */,
-				42C3C9041D4B29420050E676 /* KDataDBService.h */,
-				42C3C9051D4B29420050E676 /* KDataDBService.m */,
-				42C3C9061D4B29420050E676 /* STKDBService.h */,
-				42C3C9071D4B29420050E676 /* STKDBService.m */,
-				4258401D1D669FB80031AC39 /* QueryResDBService.h */,
-				4258401E1D669FB80031AC39 /* QueryResDBService.m */,
+				4223A1121D6FD3AC005A1CA4 /* TDBInfo.h */,
+				4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */,
+				42C3C9061D4B29420050E676 /* TSTK.h */,
+				42C3C9071D4B29420050E676 /* TSTK.m */,
+				42C3C9041D4B29420050E676 /* TKData.h */,
+				42C3C9051D4B29420050E676 /* TKData.m */,
+				4258401D1D669FB80031AC39 /* TQueryRes.h */,
+				4258401E1D669FB80031AC39 /* TQueryRes.m */,
 			);
 			path = DatabaseService;
 			sourceTree = "<group>";
@@ -943,7 +948,7 @@
 				42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */,
 				42E097301C7FFAEB004E4DC2 /* UIImageView+AFNetworking.m in Sources */,
 				42E098C41C80237B004E4DC2 /* NSObject+JSON.m in Sources */,
-				42C3C9091D4B29420050E676 /* KDataDBService.m in Sources */,
+				42C3C9091D4B29420050E676 /* TKData.m in Sources */,
 				42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */,
 				4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */,
 				42E097261C7FFAEB004E4DC2 /* AFNetworkReachabilityManager.m in Sources */,
@@ -969,6 +974,7 @@
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
 				42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */,
 				426007131C896EA5009AF691 /* STKManager.m in Sources */,
+				4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,
 				42E098161C7FFAEB004E4DC2 /* YTKChainRequest.m in Sources */,
@@ -995,7 +1001,7 @@
 				42E0979A1C7FFAEB004E4DC2 /* iCarousel.m in Sources */,
 				42E097981C7FFAEB004E4DC2 /* DebugTool.c in Sources */,
 				42E098191C7FFAEB004E4DC2 /* YTKNetworkConfig.m in Sources */,
-				42C3C90A1D4B29420050E676 /* STKDBService.m in Sources */,
+				42C3C90A1D4B29420050E676 /* TSTK.m in Sources */,
 				425840251D66AC680031AC39 /* QueryDBManager.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
 				42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */,
@@ -1005,7 +1011,7 @@
 				42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */,
 				426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */,
 				42E097241C7FFAEB004E4DC2 /* AFHTTPRequestOperationManager.m in Sources */,
-				4258401F1D669FB80031AC39 /* QueryResDBService.m in Sources */,
+				4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */,
 				425840221D66A2800031AC39 /* QueryResModel.m in Sources */,
 				42E098131C7FFAEB004E4DC2 /* YTKBaseRequest.m in Sources */,
 				42E097931C7FFAEB004E4DC2 /* FMDatabaseAdditions.m in Sources */,

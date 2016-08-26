@@ -8,6 +8,6 @@
 
 #import "HYBaseDBService.h"
 
-@interface QueryResDBService : HYBaseDBService
+@interface TQueryRes : HYBaseDBService
 
 @end

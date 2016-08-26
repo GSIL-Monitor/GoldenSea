@@ -9,7 +9,7 @@
 #import "HYDBManager.h"
 #import "HYDatabaseHelper.h"
 
-#import "STKDBService.h"
+#import "TSTK.h"
 
 @interface HYDBManager()
 
@@ -48,8 +48,8 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
     [self.DBHelper setupDB:[HYDBManager defaultDBPath] isReset:isReset];
    
     
-    [[STKDBService shareInstance]setup:self.DBHelper];
-    if([[STKDBService shareInstance]createTableWithName:@"tSTKBasicInfo"]){
+    [[TSTK shareInstance]setup:self.DBHelper];
+    if([[TSTK shareInstance]createTableWithName:@"tSTKBasicInfo"]){
 //        DDLogInfo(@"STK table create success!");
     }else{
         DDLogInfo(@"STK table create failed!");
@@ -65,11 +65,11 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
 }
 
 
--(KDataDBService*)dbserviceWithSymbol:(NSString*)symbol
+-(TKData*)dbserviceWithSymbol:(NSString*)symbol
 {
-    KDataDBService* dataDBService = [self.stkdbDict safeValueForKey:symbol];
+    TKData* dataDBService = [self.stkdbDict safeValueForKey:symbol];
     if(!dataDBService){
-        dataDBService = [[KDataDBService alloc]init];
+        dataDBService = [[TKData alloc]init];
         [dataDBService setup:self.DBHelper];
         [dataDBService createTableWithName:symbol];
         [self.stkdbDict safeSetValue:dataDBService forKey:symbol];

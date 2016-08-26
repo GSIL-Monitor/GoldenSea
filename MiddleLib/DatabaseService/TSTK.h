@@ -8,9 +8,9 @@
 
 #import "HYBaseDBService.h"
 
-@interface STKDBService : HYBaseDBService
+@interface TSTK : HYBaseDBService
 
-+(STKDBService*)shareInstance;
++(TSTK*)shareInstance;
 
 
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID;

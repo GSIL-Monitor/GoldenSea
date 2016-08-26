@@ -10,7 +10,7 @@
 #import "HYDBManager.h"
 #import "YahooDataReq.h"
 
-#import "STKDBService.h"
+#import "TSTK.h"
 #import "STKModel.h"
 
 
@@ -41,7 +41,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 //stkid should be such as SH600011
 -(NSArray*)getDataFromDB:(NSString*)stkID;
 {
-    KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 //    NSArray* array = [service getAllRecords ];
     NSArray* array = [service getRecords:self.startDate end:self.endDate ];
 
@@ -58,7 +58,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     //最后将数据写回db
     
     
-    NSArray* stkArray = [[STKDBService shareInstance]getAllRecords];
+    NSArray* stkArray = [[TSTK shareInstance]getAllRecords];
     if(![stkArray count]){
         GSAssert(NO,@"no existed stk in table STKDB!");
     }
@@ -101,7 +101,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
         
-        KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
+        TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
         [self addDataToTable:service contentArray:contentArray fromDate:startDate];
         
@@ -114,7 +114,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 
 //fromDate should be lastUpdate time
--(void)addDataToTable:(KDataDBService*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate
+-(void)addDataToTable:(TKData*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate
 {
     
     if(!service ){
@@ -429,9 +429,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         NSArray *contentlines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         
-        SMLog(@"%@ success!", reqModel.symbol);
+        SMLog(@"%@ success!", stkModel.stkID);
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
-        SMLog(@"%@ failed",reqModel.symbol);
+        SMLog(@"%@ failed",stkModel.stkID);
     }];
 }
 
@@ -444,7 +444,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
     
     
-    KDataDBService* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkModel.stkID];
+    TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkModel.stkID];
     
     //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
     //考虑到停牌因素，将当前日期-1年，保证拿到数据
@@ -454,7 +454,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime];
     
     stkModel.lastUpdateTime = [HelpService getCurrDate];
-    [[STKDBService shareInstance]updateRecord:stkModel];
+    [[TSTK shareInstance]updateRecord:stkModel];
 }
 
 #pragma mark - util function

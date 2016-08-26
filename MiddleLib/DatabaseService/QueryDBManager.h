@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QueryResDBService.h"
+#import "TQueryRes.h"
 
 @interface QueryDBManager : NSObject
 
 +(QueryDBManager *)defaultManager;
 
-@property (nonatomic, strong) QueryResDBService* qREsDBService;
+@property (nonatomic, strong) TQueryRes* qREsDBService;
 
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;;
