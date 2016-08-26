@@ -51,13 +51,13 @@
 
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
     
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
-    [GSDataMgr shareInstance].startDate = 20160125;
+//    [GSDataMgr shareInstance].startDate = 20160125;
     //    [GSDataMgr shareInstance].startDate = 20160725;
     
     

@@ -49,10 +49,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 
-
+//implement but not used and tested. because network data has mistake.
 -(void)updateDataToDB
 {
-    //tbd.
+  
     //判断当期db最后t日，从网络取t+1到当天数据，
     //然后从db取t-1Y日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
     //最后将数据写回db
@@ -127,7 +127,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
     if([contentArray count]<30 ){
-        GSAssert(NO,@"contentArray count is < 30!");
+//        GSAssert(NO,@"contentArray count is < 30!");
         return;
     }
     
@@ -282,7 +282,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             NSRange range = [fullPath rangeOfString:stkUUID];
             if(range.length != 0)
             {
-//                self.currStkFilePath = fullPath; //tbd, why servel times?
                 return fullPath;
             }
         }
