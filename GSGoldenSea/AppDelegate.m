@@ -45,7 +45,7 @@
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
+    [[HYDBManager defaultManager]setupDB:_dbdir isReset:YES];
     [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
 
 
@@ -62,14 +62,8 @@
     
     
 //    [[HYLog shareInstance] enableLog];
+
     
-    [self testNet];
-    return;
-    
-    //regsiter net
-    //    [[HYRequestManager sharedInstance]initService];
-    //    [[STKManager shareInstance]testGetFriPostsRequest];
-    //    [[STKManager shareInstance]test];
     
     [self doInit];
 }
@@ -77,13 +71,18 @@
 
 -(void)testNet
 {
+    //regsiter net
+    //    [[HYRequestManager sharedInstance]initService];
+    //    [[STKManager shareInstance]testGetFriPostsRequest];
+    //    [[STKManager shareInstance]test];
+    
     [[GSDataMgr shareInstance]updateDataToDB];
 }
 
 -(void)doInit{
     
     
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
     return;
     
 

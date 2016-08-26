@@ -11,6 +11,6 @@
 @interface STKModel : HYBaseModel
 
 @property (strong) NSString* stkID;
-@property (assign) long lastUpdateTime; //lastUpdateTime
+@property (assign) long lastUpdateTime;
 
 @end

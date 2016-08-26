@@ -10,6 +10,7 @@
 #import "HYDatabaseHelper.h"
 
 #import "TSTK.h"
+#import "TDBInfo.h"
 
 @interface HYDBManager()
 
@@ -53,6 +54,14 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
 //        DDLogInfo(@"STK table create success!");
     }else{
         DDLogInfo(@"STK table create failed!");
+    }
+    
+    
+    [[TDBInfo shareInstance]setup:self.DBHelper];
+    if([[TDBInfo shareInstance]createTableWithName:@"tDBInfo"]){
+        //        DDLogInfo(@"STK table create success!");
+    }else{
+        DDLogInfo(@"tDBInfo table create failed!");
     }
     
    

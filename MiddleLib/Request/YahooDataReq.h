@@ -9,6 +9,9 @@
 #import "HYBaseRequest.h"
 #import "STKModel.h"
 
+/**
+ *  Yahoo data had many mistadk -_-.
+ */
 @interface YahooDataReq : HYBaseRequest
 
 +(YahooDataReq*)requestWith:(STKModel*)reqModel;

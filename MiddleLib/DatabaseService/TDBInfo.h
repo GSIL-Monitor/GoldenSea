@@ -8,6 +8,19 @@
 
 #import "HYBaseDBService.h"
 
+@interface DBInfoModel : HYBaseModel
+
+@property (strong) NSString* version;
+@property (assign) long lastUpdateTime;
+
+@end
+
+
 @interface TDBInfo : HYBaseDBService
+
++(TDBInfo*)shareInstance;
+
+-(DBInfoModel*)getRecord;
+-(BOOL)updateTime:(long)updateTime;
 
 @end

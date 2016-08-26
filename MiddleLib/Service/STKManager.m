@@ -7,7 +7,7 @@
 //
 
 #import "STKManager.h"
-#import "KDataRequest.h"
+#import "XueQiuDataRequest.h"
 #import "TKData.h"
 #import "HYDatabaseHelper.h"
 #import "HYDBManager.h"
@@ -68,7 +68,7 @@ SINGLETON_GENERATOR(STKManager, shareInstance);
 
 -(void)queryKData:(KDataReqModel*)reqModel
 {
-    KDataRequest* kdataReq = [KDataRequest requestWith:reqModel];
+    XueQiuDataRequest* kdataReq = [XueQiuDataRequest requestWith:reqModel];
     
     [kdataReq startWithSuccess:^(HYBaseRequest *request, HYBaseResponse *response) {
         KFullDataModel* dataModel = (KFullDataModel*)response.data;

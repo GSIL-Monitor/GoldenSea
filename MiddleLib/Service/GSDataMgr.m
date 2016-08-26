@@ -12,7 +12,7 @@
 
 #import "TSTK.h"
 #import "STKModel.h"
-
+#import "TDBInfo.h"
 
 #define Key_Max_Date 21680808
 
@@ -75,15 +75,18 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
 }
 
--(void)writeDataToDB:(NSString*)docsDir;
+-(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {
-    [self _writeDataToDB:docsDir FromDate:20020101 EndDate:Key_Max_Date];
+    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
+    if(!dbInfo){ //no result. means first time.
+        [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
+    }else{
+        //from the lastUpdateTime, in case the lastUpdateTime day date not in db.
+        [self _writeDataToDB:docsDir FromDate:(int)dbInfo.lastUpdateTime EndDate:dataEndDate];
+    }
+    
 }
 
--(void)writeDataToDB:(NSString*)docsDir FromDate:(int)startDate;
-{
-    [self _writeDataToDB:docsDir FromDate:startDate EndDate:Key_Max_Date];
-}
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
 {
@@ -108,6 +111,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         SMLog(@"%@",stkID);
     }
     
+    [[TDBInfo shareInstance]updateTime:endDate];
     
     SMLog(@"end of writeDataToDB");
 }
@@ -133,7 +137,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         
-        if(kT0Data.time <= fromDate){ //skip fromdate for update db case. because fromDate is lastUpdate time
+        //skip fromdate for update db case. because fromDate is lastUpdate time
+        //NOT SKIP now!
+        if(kT0Data.time < fromDate){
             continue;
         }
 
@@ -161,7 +167,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:contentArray t0Index:i];
         
         //add record.
-        kT0Data.tdIndex = i;
+        kT0Data.tdIndex = i; //tbd
         [service addRecord:kT0Data];
     }
     

@@ -13,9 +13,9 @@
 
 
 
-@interface KDataRequest : HYBaseRequest
+@interface XueQiuDataRequest : HYBaseRequest
 
-+(KDataRequest*)requestWith:(KDataReqModel*)reqModel;
++(XueQiuDataRequest*)requestWith:(KDataReqModel*)reqModel;
 
 
 @end

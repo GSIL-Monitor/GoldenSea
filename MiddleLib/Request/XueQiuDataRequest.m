@@ -6,18 +6,18 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "KDataRequest.h"
+#import "XueQiuDataRequest.h"
 
-@implementation KDataRequest
+@implementation XueQiuDataRequest
 
 
-+(KDataRequest*)requestWith:(KDataReqModel*)reqModel
++(XueQiuDataRequest*)requestWith:(KDataReqModel*)reqModel
 {
     //symbol=SH000001&period=1day&type=normal&begin=1424954307755&end=1456490307755&_=1456490307755
 
     NSMutableString* url = [reqModel toQueryString];
     [url appendString:@"&_=1456490307755"]; //tbd.
-    KDataRequest* req = [[KDataRequest alloc]initWithUrl:url];
+    XueQiuDataRequest* req = [[XueQiuDataRequest alloc]initWithUrl:url];
     return req;
 }
 
