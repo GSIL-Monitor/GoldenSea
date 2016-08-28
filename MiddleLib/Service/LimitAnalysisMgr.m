@@ -146,7 +146,7 @@
         
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-        //        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:i+1];
+        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:i+1];
         //        KDataModel* kT2Data = [self.contentArray safeObjectAtIndex:i+2];
         //        KDataModel* kT3Data = [self.contentArray safeObjectAtIndex:i+3];
         //        KDataModel* kT4Data = [self.contentArray safeObjectAtIndex:i+4];
@@ -186,6 +186,14 @@
                 if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
                     continue;
                 }
+            }
+            
+            if (kT0Data.ma30 < kTP1Data.ma30) {
+                continue;
+            }
+            
+            if(kT1Data.volume > kT0Data.volume){ //缩量
+                continue;
             }
             
 //            //dbg
