@@ -39,7 +39,7 @@ SINGLETON_GENERATOR(HYLog, shareInstance);
     NSDateFormatter * df = [[NSDateFormatter alloc] init ];
 //    [df setDateFormat:@"yyyy-MM-dd HH.mm.ss"];
     
-    [df setDateFormat:@"yyyy-MM-dd HH.mm"];
+    [df setDateFormat:@"yyyy-MM-dd:HH.mm"];
 
     
     // 前天的日期

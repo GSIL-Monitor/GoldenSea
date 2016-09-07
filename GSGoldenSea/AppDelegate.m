@@ -51,13 +51,13 @@
 
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
     
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600401"];
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
-//    [GSDataMgr shareInstance].startDate = 20160125;
+    [GSDataMgr shareInstance].startDate = 20160125;
     //    [GSDataMgr shareInstance].startDate = 20160725;
     
     
@@ -81,14 +81,13 @@
 
 -(void)doInit{
     
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
-
+//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160826];
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
-    return;
+//    return;
     
 
     [self testForAllLimit];
-    [self testForAvg];
+//    [self testForAvg];
 }
 
 
@@ -111,7 +110,8 @@
 
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
     [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
-    
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+
     
 //    //why use as first shareInstance???
 //    NSObject* obj1= [[GSObjMgr shareInstance].mgr];
