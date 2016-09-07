@@ -44,6 +44,8 @@
                             @{@"ma10"         : @"float"},
                             @{@"ma20"         : @"float"},
                             @{@"ma30"         : @"float"},
+                            @{@"ma60"         : @"float"},
+                            @{@"ma120"         : @"float"},
                             
 //                            @{@"ma5"          : @"float"},
 //                            @{@"ma10"         : @"float"},

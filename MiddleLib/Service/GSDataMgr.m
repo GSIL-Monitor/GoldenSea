@@ -149,8 +149,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:contentArray t0Index:i];
         kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:contentArray t0Index:i];
         kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:contentArray t0Index:i];
-//        kT0Data.ma60 = [[GSDataMgr shareInstance] getMAValue:60 array:contentArray t0Index:i];
-//        kT0Data.ma120 = [[GSDataMgr shareInstance] getMAValue:120 array:contentArray t0Index:i];
+        kT0Data.ma60 = [[GSDataMgr shareInstance] getMAValue:60 array:contentArray t0Index:i];
+        kT0Data.ma120 = [[GSDataMgr shareInstance] getMAValue:120 array:contentArray t0Index:i];
 
         
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
@@ -164,7 +164,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             continue;
         }
        
-        //设置为15，考虑到此值比较能反应近期表现.以后可以修正之
+        //起始day间隔设置为10，考虑到此值比较能反应近期表现.以后可以修正之
         kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:contentArray t0Index:i];
         
         //add record.
