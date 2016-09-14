@@ -40,6 +40,9 @@
                             @{@"close"        : @"float"},
                             @{@"low"          : @"float"},
                             
+                            @{@"isWeekEnd"          :@"bool"},
+                            @{@"isMonthEnd"          :@"bool"},
+                            
                             @{@"ma5"          : @"float"},
                             @{@"ma10"         : @"float"},
                             @{@"ma20"         : @"float"},
