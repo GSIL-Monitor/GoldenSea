@@ -85,6 +85,7 @@
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
 //    return;
     
+    return;
 
     [self testForAllLimit];
 //    [self testForAvg];

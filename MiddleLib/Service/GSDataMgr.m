@@ -143,6 +143,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         if(kT0Data.time <= fromDate || kT0Data.time > endDate){
             continue;
         }
+        
+        [self setCanlendarInfo:kT0Data];
 
         
         kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:contentArray t0Index:i];
@@ -159,18 +161,19 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
     for(long i=1; i<[contentArray count]; i++ ){
+        KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
             continue;
         }
+        
+        [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
        
         //起始day间隔设置为10，考虑到此值比较能反应近期表现.以后可以修正之
         kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:contentArray t0Index:i];
         
         //add record.
         kT0Data.tdIndex = i; //tbd
-        
-        
         
         
         [service addRecord:kT0Data];
@@ -674,5 +677,58 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         return YES;
     }
 }
+
+
+#pragma mark - dates
+static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit | NSCalendarUnitWeekOfYear);
+static NSCalendar *sharedCalendar = nil;
++ (NSCalendar *) currentCalendar
+{
+    if (!sharedCalendar){
+//        sharedCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierChinese];//农历
+        sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
+    }
+    return sharedCalendar;
+}
+
+-(void)setCanlendarInfo:(KDataModel*)kData
+{
+    NSString* str = [NSString stringWithFormat:@"%ld",kData.time]; // @"20160914 ";
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    NSDate *date = [formatter dateFromString:str];
+    
+//    NSDateFormatter *weekday = [[NSDateFormatter alloc] init] ;
+//    [weekday setDateFormat: @"EEEE"];
+    
+    NSDateComponents *components = [[GSDataMgr currentCalendar] components:componentFlags fromDate:date];
+    components.weekday--; //because orginal component from 周日 as 1
+    
+    kData.month = components.month;
+    kData.monthday = components.day;
+    kData.week = components.weekOfYear;
+    kData.weekday = components.weekday;
+    
+    kData.isMonthEnd = YES;
+    kData.isWeekEnd = YES;
+    
+}
+
+
+-(void)setRealEndInfo:(KDataModel*)kData  kTP1Data:(KDataModel*)kTP1Data
+{
+    if(kTP1Data){
+        if(kData.month == kTP1Data.month){
+            kTP1Data.isMonthEnd = NO;
+        }
+        
+        if(kData.week == kTP1Data.week){
+            kTP1Data.isWeekEnd = NO;
+        }
+    }
+}
+
 
 @end

@@ -124,6 +124,10 @@
 @property (assign) BOOL isLimitUp;
 @property (assign) BOOL isLimitDown;
 
+
+@property (assign) BOOL isWeekEnd; //周线
+@property (assign) BOOL isMonthEnd; //月线
+
 @property (strong) KDataModel* TP1Data;
 @property (strong) KDataModel* T1Data;
 @property (strong) KDataModel* TnData; //n is dynamicl.
@@ -162,6 +166,12 @@
 @property (assign) CGFloat slopema30;
 @property (assign) CGFloat slopema60;
 @property (assign) CGFloat slopema120;
+
+
+@property (assign) long month; //第几月
+@property (assign) long monthday;
+@property (assign) long week; //第几周
+@property (assign) long weekday;
 
 //@property (assign) CGFloat percent; //换手率
 

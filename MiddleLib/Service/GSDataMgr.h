@@ -55,4 +55,6 @@ typedef enum {
 
 -(BOOL)isSimlarValue:(CGFloat)destValue baseValue:(CGFloat)baseValue Offset:(CGFloat)offset;
 
+
+
 @end
