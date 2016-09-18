@@ -125,8 +125,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     NSMutableArray* weekArray = [NSMutableArray array];
     NSMutableArray* monthArray = [NSMutableArray array];
-    KDataModel* kTLastData; //last update end data. the data is always existed in week&month db.
-
+    KDataModel* kTLastEndData; //last update end data. the data is always existed in week&month db.
+    KDataModel* kEndData; //this end data.
     
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
@@ -148,6 +148,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             [monthArray addObject:kTP1Data];
         }
 
+        kEndData = kT0Data;
         
         kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:contentArray t0Index:i];
         kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:contentArray t0Index:i];
@@ -161,6 +162,14 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
     }
     
+    if(![weekArray containsObject:kEndData]){
+        [weekArray addObject:kEndData];
+    }
+    
+    if(![monthArray containsObject:kEndData]){
+        [monthArray addObject:kEndData];
+    }
+    
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
@@ -170,7 +179,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             KDataModel* kT1Data = [contentArray objectAtIndex:i+1];
             [self setRealEndInfo:kT1Data kTP1Data:kT0Data];
             [dayService updateRecord:kT0Data];
-            kTLastData = kT0Data;
+            kTLastEndData = kT0Data;
         }else{
             [dayService addRecord:kT0Data];
         }
@@ -185,11 +194,16 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             continue;
         }
         
+        kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:weekArray t0Index:i];
+        kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:weekArray t0Index:i];
+        kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:weekArray t0Index:i];
+        kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:weekArray t0Index:i];
+        
         [weekService addRecord:kT0Data];
     }
     
-    if(![weekArray containsObject:kTLastData]){
-        [weekService deleteRecordWithTime:kTLastData.time];
+    if(![weekArray containsObject:kTLastEndData]){
+        [weekService deleteRecordWithTime:kTLastEndData.time];
     }
     
     //2, deal with month data
@@ -199,11 +213,16 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             continue;
         }
         
+        kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:monthArray t0Index:i];
+        kT0Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:monthArray t0Index:i];
+        kT0Data.ma20 = [[GSDataMgr shareInstance] getMAValue:20 array:monthArray t0Index:i];
+        kT0Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:monthArray t0Index:i];
+        
         [monthService addRecord:kT0Data];
     }
     
-    if(![monthArray containsObject:kTLastData]){
-        [monthService deleteRecordWithTime:kTLastData.time];
+    if(![monthArray containsObject:kTLastEndData]){
+        [monthService deleteRecordWithTime:kTLastEndData.time];
     }
     
 }
