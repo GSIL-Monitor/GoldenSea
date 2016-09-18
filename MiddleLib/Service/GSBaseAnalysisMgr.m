@@ -67,7 +67,7 @@
             continue;
         }
         
-        self.contentArray = [[GSDataMgr shareInstance] getDataFromDB:self.stkID];
+        self.contentArray = [[GSDataMgr shareInstance] getDayDataFromDB:self.stkID];
         
         [self query];
     }
@@ -94,7 +94,7 @@
         }
         
 //        SMLog(@"stkID: %@",self.stkID);
-        self.contentArray = [[GSDataMgr shareInstance]getDataFromDB:self.stkID];
+        self.contentArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
 
         [self analysis];
         

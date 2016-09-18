@@ -53,6 +53,11 @@
 
 #import "GSObjMgr.h"
 
+#import "HYDayDBManager.h"
+#import "HYWeekDBManager.h"
+#import "HYMonthDBManager.h"
+
+
 #endif
 
 #endif

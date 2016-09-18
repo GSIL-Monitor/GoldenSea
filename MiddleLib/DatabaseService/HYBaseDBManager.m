@@ -1,27 +1,20 @@
 //
-//  HYDBManager.m
-//  HYBaseProject
+//  HYBaseDBManager.m
+//  GSGoldenSea
 //
-//  Created by frank weng on 16/6/21.
+//  Created by frank weng on 16/9/18.
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "HYDBManager.h"
-#import "HYDatabaseHelper.h"
+#import "HYBaseDBManager.h"
 
-#import "TSTK.h"
-#import "TDBInfo.h"
+@interface HYBaseDBManager ()
 
-@interface HYDBManager()
-
-@property (nonatomic, strong) HYDatabaseHelper        *DBHelper;
 @property (strong) NSMutableDictionary* stkdbDict;
 
 @end
 
-@implementation HYDBManager
-
-SINGLETON_GENERATOR(HYDBManager, defaultManager)
+@implementation HYBaseDBManager
 
 -(id)init
 {
@@ -32,26 +25,21 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
     return self;
 }
 
-+(NSString*)defaultDBPath
+-(NSString*)defaultDBPath
 {
-    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    NSString* stkdbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSStkDB.db",[paths stringByDeletingLastPathComponent]];
-    
-    return stkdbdir;
+    return nil;
 }
 
 - (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
     
-    
-    
     self.DBHelper = [[HYDatabaseHelper alloc]init];
-    [self.DBHelper setupDB:[HYDBManager defaultDBPath] isReset:isReset];
-   
+    [self.DBHelper setupDB:[self defaultDBPath] isReset:isReset];
+    
     
     [[TSTK shareInstance]setup:self.DBHelper];
     if([[TSTK shareInstance]createTableWithName:@"tSTKBasicInfo"]){
-//        DDLogInfo(@"STK table create success!");
+        //        DDLogInfo(@"STK table create success!");
     }else{
         DDLogInfo(@"STK table create failed!");
     }
@@ -64,8 +52,8 @@ SINGLETON_GENERATOR(HYDBManager, defaultManager)
         DDLogInfo(@"tDBInfo table create failed!");
     }
     
-   
 }
+
 
 - (BOOL)closeDB
 {

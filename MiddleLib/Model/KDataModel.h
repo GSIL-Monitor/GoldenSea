@@ -111,7 +111,6 @@
 @interface KDataModel : HYBaseModel
 
 @property (assign) long time;
-@property (assign) long tdIndex;
 
 
 @property (assign) CGFloat open;

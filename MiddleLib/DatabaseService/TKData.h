@@ -11,5 +11,8 @@
 @interface TKData : HYBaseDBService
 
 - (NSArray *)getRecords:(long)startTime end:(long)endTime;
+- (NSArray *)getWeekRecords:(long)startTime end:(long)endTime;
+- (NSArray *)getMonthRecords:(long)startTime end:(long)endTime;
+-(BOOL)deleteRecordWithTime:(long)time;
 
 @end

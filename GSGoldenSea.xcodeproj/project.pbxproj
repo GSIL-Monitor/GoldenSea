@@ -21,6 +21,9 @@
 		425840221D66A2800031AC39 /* QueryResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840211D66A2800031AC39 /* QueryResModel.m */; };
 		425840251D66AC680031AC39 /* QueryDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840241D66AC680031AC39 /* QueryDBManager.m */; };
 		426007131C896EA5009AF691 /* STKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 426007121C896EA5009AF691 /* STKManager.m */; };
+		4264EDD21D8E7649006DF8A3 /* HYWeekDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD11D8E7649006DF8A3 /* HYWeekDBManager.m */; };
+		4264EDD51D8E765D006DF8A3 /* HYMonthDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */; };
+		4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */; };
 		426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSBaseLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataMgr.m */; };
 		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
@@ -30,7 +33,7 @@
 		42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */; };
 		42BB4D271D6B3BD9003FB5DD /* AvgAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */; };
 		42BB4D2A1D6B3F76003FB5DD /* AvgLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BB4D291D6B3F76003FB5DD /* AvgLogout.m */; };
-		42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDBManager.m */; };
+		42C3C9081D4B29420050E676 /* HYDayDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9031D4B29420050E676 /* HYDayDBManager.m */; };
 		42C3C9091D4B29420050E676 /* TKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9051D4B29420050E676 /* TKData.m */; };
 		42C3C90A1D4B29420050E676 /* TSTK.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3C9071D4B29420050E676 /* TSTK.m */; };
 		42D546B21D6E90E600603E6A /* YahooDataReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D546B11D6E90E600603E6A /* YahooDataReq.m */; };
@@ -143,6 +146,12 @@
 		425840241D66AC680031AC39 /* QueryDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryDBManager.m; sourceTree = "<group>"; };
 		426007111C896EA5009AF691 /* STKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STKManager.h; path = Service/STKManager.h; sourceTree = "<group>"; };
 		426007121C896EA5009AF691 /* STKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STKManager.m; path = Service/STKManager.m; sourceTree = "<group>"; };
+		4264EDD01D8E7649006DF8A3 /* HYWeekDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYWeekDBManager.h; sourceTree = "<group>"; };
+		4264EDD11D8E7649006DF8A3 /* HYWeekDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYWeekDBManager.m; sourceTree = "<group>"; };
+		4264EDD31D8E765D006DF8A3 /* HYMonthDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYMonthDBManager.h; sourceTree = "<group>"; };
+		4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYMonthDBManager.m; sourceTree = "<group>"; };
+		4264EDD61D8E7694006DF8A3 /* HYBaseDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseDBManager.h; sourceTree = "<group>"; };
+		4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseDBManager.m; sourceTree = "<group>"; };
 		426980021CEEF22200D99888 /* GSBaseLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseLogout.h; sourceTree = "<group>"; };
 		426980031CEEF22200D99888 /* GSBaseLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseLogout.m; sourceTree = "<group>"; };
 		426980051CEEF5F000D99888 /* GSDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSDataMgr.h; path = Service/GSDataMgr.h; sourceTree = "<group>"; };
@@ -161,8 +170,8 @@
 		42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvgAnalysisMgr.m; sourceTree = "<group>"; };
 		42BB4D281D6B3F76003FB5DD /* AvgLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvgLogout.h; sourceTree = "<group>"; };
 		42BB4D291D6B3F76003FB5DD /* AvgLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvgLogout.m; sourceTree = "<group>"; };
-		42C3C9021D4B29420050E676 /* HYDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDBManager.h; sourceTree = "<group>"; };
-		42C3C9031D4B29420050E676 /* HYDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDBManager.m; sourceTree = "<group>"; };
+		42C3C9021D4B29420050E676 /* HYDayDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDayDBManager.h; sourceTree = "<group>"; };
+		42C3C9031D4B29420050E676 /* HYDayDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDayDBManager.m; sourceTree = "<group>"; };
 		42C3C9041D4B29420050E676 /* TKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKData.h; sourceTree = "<group>"; };
 		42C3C9051D4B29420050E676 /* TKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKData.m; sourceTree = "<group>"; };
 		42C3C9061D4B29420050E676 /* TSTK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTK.h; sourceTree = "<group>"; };
@@ -370,8 +379,14 @@
 		42C3C9011D4B29420050E676 /* DatabaseService */ = {
 			isa = PBXGroup;
 			children = (
-				42C3C9021D4B29420050E676 /* HYDBManager.h */,
-				42C3C9031D4B29420050E676 /* HYDBManager.m */,
+				4264EDD61D8E7694006DF8A3 /* HYBaseDBManager.h */,
+				4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */,
+				42C3C9021D4B29420050E676 /* HYDayDBManager.h */,
+				42C3C9031D4B29420050E676 /* HYDayDBManager.m */,
+				4264EDD01D8E7649006DF8A3 /* HYWeekDBManager.h */,
+				4264EDD11D8E7649006DF8A3 /* HYWeekDBManager.m */,
+				4264EDD31D8E765D006DF8A3 /* HYMonthDBManager.h */,
+				4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */,
 				425840231D66AC680031AC39 /* QueryDBManager.h */,
 				425840241D66AC680031AC39 /* QueryDBManager.m */,
 				4223A1121D6FD3AC005A1CA4 /* TDBInfo.h */,
@@ -955,6 +970,7 @@
 				42E097941C7FFAEB004E4DC2 /* HYFMDatabase.m in Sources */,
 				42E097231C7FFAEB004E4DC2 /* AFHTTPRequestOperation.m in Sources */,
 				4204D0571C88160500D27135 /* HelpService.m in Sources */,
+				4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */,
 				42E097B01C7FFAEB004E4DC2 /* DDContextFilterLogFormatter.m in Sources */,
 				42E097291C7FFAEB004E4DC2 /* AFURLRequestSerialization.m in Sources */,
 				42E097281C7FFAEB004E4DC2 /* AFURLConnectionOperation.m in Sources */,
@@ -972,10 +988,12 @@
 				4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
 				42E097AD1C7FFAEB004E4DC2 /* DDFileLogger.m in Sources */,
-				42C3C9081D4B29420050E676 /* HYDBManager.m in Sources */,
+				42C3C9081D4B29420050E676 /* HYDayDBManager.m in Sources */,
 				426007131C896EA5009AF691 /* STKManager.m in Sources */,
 				4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */,
+				4264EDD51D8E765D006DF8A3 /* HYMonthDBManager.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
+				4264EDD21D8E7649006DF8A3 /* HYWeekDBManager.m in Sources */,
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,
 				42E098161C7FFAEB004E4DC2 /* YTKChainRequest.m in Sources */,
 				42E097A91C7FFAEB004E4DC2 /* CLIColor.m in Sources */,

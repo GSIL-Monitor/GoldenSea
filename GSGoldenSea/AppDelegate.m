@@ -11,7 +11,7 @@
 #import "HYRequestManager.h"
 
 #import "HYDatabaseHelper.h"
-#import "HYDBManager.h"
+#import "HYDayDBManager.h"
 #import "TKData.h"
 #import "QueryDBManager.h"
 
@@ -45,7 +45,9 @@
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    [[HYDBManager defaultManager]setupDB:_dbdir isReset:NO];
+    [[HYDayDBManager defaultManager]setupDB:nil isReset:NO];
+    [[HYWeekDBManager defaultManager]setupDB:nil isReset:NO];
+    [[HYMonthDBManager defaultManager]setupDB:nil isReset:NO];
     [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:NO];
 
 
@@ -63,33 +65,15 @@
     
 //    [[HYLog shareInstance] enableLog];
 
-    
-    
-    [self doInit];
-}
-
-
--(void)testNet
-{
-    //regsiter net
-    //    [[HYRequestManager sharedInstance]initService];
-    //    [[STKManager shareInstance]testGetFriPostsRequest];
-    //    [[STKManager shareInstance]test];
-    
-    [[GSDataMgr shareInstance]updateDataToDB];
-}
-
--(void)doInit{
-    
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160826];
-//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
-//    return;
-    
     return;
-
+    
+    
     [self testForAllLimit];
-//    [self testForAvg];
+    //[self testForAvg];
 }
+
 
 
 
@@ -112,11 +96,6 @@
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
     [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
     [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-
-    
-//    //why use as first shareInstance???
-//    NSObject* obj1= [[GSObjMgr shareInstance].mgr];
-//    NSObject* obj=  [GSObjMgr shareInstance].mgr;
 
     
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];

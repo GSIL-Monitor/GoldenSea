@@ -33,7 +33,7 @@
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
                             @{@"volume"       : @"integer"},
-                            @{@"tdIndex"       : @"integer"},
+//                            @{@"tdIndex"       : @"integer"},
                             
                             @{@"open"         : @"float"},
                             @{@"high"         : @"float"},
@@ -49,11 +49,8 @@
                             @{@"ma30"         : @"float"},
                             @{@"ma60"         : @"float"},
                             @{@"ma120"         : @"float"},
-                            
-//                            @{@"ma5"          : @"float"},
-//                            @{@"ma10"         : @"float"},
-//                            @{@"ma20"         : @"float"},
-                            @{@"slopema30"         : @"float"},
+
+//                            @{@"slopema30"         : @"float"},
                             
                             
                             @{@"isLimitUp"          :@"bool"},
@@ -85,14 +82,34 @@
     return [super getAllRecordsWithAditonCondition:sql];
 }
 
-
--(BOOL)deleteRecordWithID:(NSString *)recordID
+- (NSArray *)getWeekRecords:(long)startTime end:(long)endTime;
 {
-    NSString* condition = [NSString stringWithFormat:@"kdataID = '%@'",recordID];
+    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld and isWeekEnd=true ",startTime, endTime];
+    return [super getAllRecordsWithAditonCondition:sql];
+}
+
+
+- (NSArray *)getMonthRecords:(long)startTime end:(long)endTime;
+{
+    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld and isMonthEnd=true ",startTime, endTime];
+    return [super getAllRecordsWithAditonCondition:sql];
+}
+
+
+
+-(BOOL)deleteRecordWithTime:(long)time;
+{
+    NSString* condition = [NSString stringWithFormat:@"time = %ld",time];
     
     return [self deleteRecordWithAddtionConditon:condition];
 }
 
+-(BOOL)updateRecord:(KDataModel *)recordModel
+{
+    NSString* condition = [NSString stringWithFormat:@"time = %ld",recordModel.time];
+
+    return [self updateRecord:recordModel WithAditonCondition:condition];
+}
 
 
 @end

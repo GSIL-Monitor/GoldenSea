@@ -31,11 +31,14 @@ typedef enum {
 @property (assign) MarketType marketType;
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
--(NSArray*)getDataFromDB:(NSString*)stkID;
+-(NSArray*)getDayDataFromDB:(NSString*)stkID;
+-(NSArray*)getWeekDataFromDB:(NSString*)stkID;
+-(NSArray*)getMonthDataFromDB:(NSString*)stkID;
+
 /**
  *  add the record from db last data last day. from network.
  */
--(void)updateDataToDB;
+-(void)updateDataToDBFromNet;
 
 -(NSArray*)getStkRangeFromQueryDB;
 

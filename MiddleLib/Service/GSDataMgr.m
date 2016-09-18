@@ -7,7 +7,7 @@
 //
 
 #import "GSDataMgr.h"
-#import "HYDBManager.h"
+#import "HYDayDBManager.h"
 #import "YahooDataReq.h"
 
 #import "TSTK.h"
@@ -39,41 +39,31 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 #pragma mark - db action
 //stkid should be such as SH600011
--(NSArray*)getDataFromDB:(NSString*)stkID;
+-(NSArray*)getDayDataFromDB:(NSString*)stkID;
 {
-    TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
-//    NSArray* array = [service getAllRecords ];
+    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
     NSArray* array = [service getRecords:self.startDate end:self.endDate ];
 
     return array;
 }
 
-
-//implement but not used and tested. because network data has mistake.
--(void)updateDataToDB
+-(NSArray*)getWeekDataFromDB:(NSString*)stkID;
 {
-  
-    //判断当期db最后t日，从网络取t+1到当天数据，
-    //然后从db取t-1Y日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
-    //最后将数据写回db
+    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    NSArray* array = [service getWeekRecords:self.startDate end:self.endDate ];
     
-    
-    NSArray* stkArray = [[TSTK shareInstance]getAllRecords];
-    if(![stkArray count]){
-        GSAssert(NO,@"no existed stk in table STKDB!");
-    }
-    
-    for(STKModel* ele in stkArray){
-        
-        if(![[GSObjMgr shareInstance].mgr isInRange:ele.stkID]){
-            continue;
-        }
-        
-       
-        
-        [self queryYahooData:ele];
-    }
+    return array;
 }
+
+-(NSArray*)getMonthDataFromDB:(NSString*)stkID;
+{
+    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    NSArray* array = [service getMonthRecords:20020101 end:Key_Max_Date ];
+    
+    return array;
+}
+
+
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {
@@ -105,9 +95,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
         
-        TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkID];
 
-        [self addDataToTable:service contentArray:contentArray fromDate:startDate EndDate:endDate];
+        [self addDataToTable:stkID contentArray:contentArray fromDate:startDate EndDate:endDate];
         
         SMLog(@"%@",stkID);
     }
@@ -119,10 +108,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 
 //fromDate should be lastUpdate time
--(void)addDataToTable:(TKData*) service  contentArray:(NSArray*)contentArray fromDate:(long)fromDate EndDate:(int)endDate
+-(void)addDataToTable:(NSString*) stkID  contentArray:(NSArray*)contentArray fromDate:(long)fromDate EndDate:(int)endDate
 {
-    
-    if(!service ){
+    TKData* dayService = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* weekService = [[HYWeekDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* monthService = [[HYMonthDBManager defaultManager] dbserviceWithSymbol:stkID];
+
+    if(!dayService || !weekService || !monthService){
         return;
     }
     
@@ -131,20 +123,30 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         return;
     }
     
-    
-    NSDictionary* passDict;
-    for(long i=1; i<[contentArray count]; i++ ){
+    NSMutableArray* weekArray = [NSMutableArray array];
+    NSMutableArray* monthArray = [NSMutableArray array];
+    KDataModel* kTLastData; //last update end data. the data is always existed in week&month db.
 
-        
+    
+    for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         
         //skip fromdate for update db case. because fromDate is lastUpdate time
-        if(kT0Data.time <= fromDate || kT0Data.time > endDate){
+        if(kT0Data.time < fromDate || kT0Data.time > endDate){
             continue;
         }
         
         [self setCanlendarInfo:kT0Data];
+        [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
+        
+        if(kTP1Data.isWeekEnd){
+            [weekArray addObject:kTP1Data];
+        }
+        
+        if(kTP1Data.isMonthEnd){
+            [monthArray addObject:kTP1Data];
+        }
 
         
         kT0Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:contentArray t0Index:i];
@@ -157,28 +159,52 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
         kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
-
     }
     
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
-        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
+        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+            continue;
+        }else if(kT0Data.time == fromDate){ //更新数据库的历史记录,假设存在
+            KDataModel* kT1Data = [contentArray objectAtIndex:i+1];
+            [self setRealEndInfo:kT1Data kTP1Data:kT0Data];
+            [dayService updateRecord:kT0Data];
+            kTLastData = kT0Data;
+        }else{
+            [dayService addRecord:kT0Data];
+        }
+    }
+    
+
+    
+    //2, deal with week data
+    for(long i=0; i<[weekArray count]; i++ ){
+        KDataModel* kT0Data = [weekArray objectAtIndex:i];
+        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;
         }
         
-        [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
-       
-        //起始day间隔设置为10，考虑到此值比较能反应近期表现.以后可以修正之
-        kT0Data.slopema30 = [[GSDataMgr shareInstance] getSlopeMAValue:10 array:contentArray t0Index:i];
-        
-        //add record.
-        kT0Data.tdIndex = i; //tbd
-        
-        
-        [service addRecord:kT0Data];
+        [weekService addRecord:kT0Data];
     }
     
+    if(![weekArray containsObject:kTLastData]){
+        [weekService deleteRecordWithTime:kTLastData.time];
+    }
+    
+    //2, deal with month data
+    for(long i=0; i<[monthArray count]; i++ ){
+        KDataModel* kT0Data = [monthArray objectAtIndex:i];
+        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+            continue;
+        }
+        
+        [monthService addRecord:kT0Data];
+    }
+    
+    if(![monthArray containsObject:kTLastData]){
+        [monthService deleteRecordWithTime:kTLastData.time];
+    }
     
 }
 
@@ -424,6 +450,28 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 
 #pragma mark - yahoo
+//implement but not used. because found the network data has mistake .
+-(void)updateDataToDBFromNet
+{
+    //判断当期db最后t日，从网络取t+1到当天数据，
+    //然后从db取t-1Y日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
+    //最后将数据写回db
+    
+    NSArray* stkArray = [[TSTK shareInstance]getAllRecords];
+    if(![stkArray count]){
+        GSAssert(NO,@"no existed stk in table STKDB!");
+    }
+    
+    for(STKModel* ele in stkArray){
+        
+        if(![[GSObjMgr shareInstance].mgr isInRange:ele.stkID]){
+            continue;
+        }
+        
+        [self queryYahooData:ele];
+    }
+}
+
 //query data must start with 指定日期-30 以保证ma的计算
 -(void)queryYahooData:(STKModel*)stkModel
 {
@@ -451,23 +499,23 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 -(void)saveYahooDataToDB:(NSArray*)contentlines stkModel:(STKModel*)stkModel
 {
-    NSRange range = {1,[contentlines count]-1 }; //dbg, need check.
-    NSArray *lines = [contentlines subarrayWithRange:range];
-    
-    NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
-    
-    
-    TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:stkModel.stkID];
-    
-    //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
-    //考虑到停牌因素，将当前日期-1年，保证拿到数据
-    NSArray* oldDataArray = [service getRecords:(stkModel.lastUpdateTime-10000) end:stkModel.lastUpdateTime];
-    
-    NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
-    [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime EndDate:Key_Max_Date];
-    
-    stkModel.lastUpdateTime = [HelpService getCurrDate];
-    [[TSTK shareInstance]updateRecord:stkModel];
+//    NSRange range = {1,[contentlines count]-1 }; //dbg, need check.
+//    NSArray *lines = [contentlines subarrayWithRange:range];
+//    
+//    NSMutableArray* dataArray = [self parseData:lines dataType:DateType_yahoo];
+//    
+//    
+//    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkModel.stkID];
+//    
+//    //假如网络取到的数据是从我们指定的日期开始,则从数据库里拿之前的数据
+//    //考虑到停牌因素，将当前日期-1年，保证拿到数据
+//    NSArray* oldDataArray = [service getRecords:(stkModel.lastUpdateTime-10000) end:stkModel.lastUpdateTime];
+//    
+//    NSMutableArray* contentArray = [NSMutableArray arrayWithArray: [oldDataArray arrayByAddingObjectsFromArray:dataArray]];
+//    [self addDataToTable:service contentArray:contentArray fromDate:stkModel.lastUpdateTime EndDate:Key_Max_Date];
+//    
+//    stkModel.lastUpdateTime = [HelpService getCurrDate];
+//    [[TSTK shareInstance]updateRecord:stkModel];
 }
 
 #pragma mark - util function
@@ -677,6 +725,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         return YES;
     }
 }
+
+#pragma mark - tech data
+//macd, kdj
 
 
 #pragma mark - dates

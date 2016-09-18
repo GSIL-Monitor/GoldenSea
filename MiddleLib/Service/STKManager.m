@@ -10,7 +10,7 @@
 #import "XueQiuDataRequest.h"
 #import "TKData.h"
 #import "HYDatabaseHelper.h"
-#import "HYDBManager.h"
+#import "HYDayDBManager.h"
 
 
 @interface STKManager ()
@@ -80,7 +80,7 @@ SINGLETON_GENERATOR(STKManager, shareInstance);
         //save to db.
         for(long i = 0; i<[dataModel.chartlist count]; i++){
             KDataModel* ele = [dataModel.chartlist safeObjectAtIndex:i];
-            TKData* service = [[HYDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
+            TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:reqModel.symbol];
             [service addRecord:ele];
         }
     } failure:^(HYBaseRequest *request, HYBaseResponse *response) {
