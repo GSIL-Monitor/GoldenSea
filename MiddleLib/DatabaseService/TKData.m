@@ -54,7 +54,7 @@
                             
                             
                             @{@"isLimitUp"          :@"bool"},
-                            @{@"isLimitDown"          :@"bool"}
+                            @{@"isLimitDown"          :@"bool"},
                             
                             //                            @"chg"          : @"float",
                             //                            @"percent"      : @"float",
@@ -62,7 +62,12 @@
                             //
                             //                            @"dif"          : @"float",
                             //                            @"dea"          : @"float",
-                            //                            @"macd"         : @"float"
+                            @{@"macd"         : @"float"},
+                            
+                            @{@"kdjK"         : @"float"},
+                            @{@"kdjD"         : @"float"},
+                            @{@"kdjJ"         : @"float"},
+                            
                             
                             ];
     

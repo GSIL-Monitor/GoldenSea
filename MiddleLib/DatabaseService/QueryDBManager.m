@@ -37,7 +37,7 @@ SINGLETON_GENERATOR(QueryDBManager, defaultManager)
     NSString *strNowDate= [strNowDateTime substringToIndex:8];
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    NSString* querydbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
+    NSString* querydbdir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/GSZQuery%@.db",[paths stringByDeletingLastPathComponent],strNowDate];
     
     self.DBHelper = [[HYDatabaseHelper alloc]init];
     [self.DBHelper setupDB:querydbdir isReset:isReset];

@@ -16,6 +16,7 @@
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
 		4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */; };
 		4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4236ECBB1D0FF2C40001CF37 /* HYLog.m */; };
+		42486C511D92817C0018D4C1 /* UtilData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42486C501D92817C0018D4C1 /* UtilData.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
 		4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* TQueryRes.m */; };
 		425840221D66A2800031AC39 /* QueryResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840211D66A2800031AC39 /* QueryResModel.m */; };
@@ -136,6 +137,8 @@
 		4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBInfo.m; sourceTree = "<group>"; };
 		4236ECBA1D0FF2C40001CF37 /* HYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYLog.h; sourceTree = "<group>"; };
 		4236ECBB1D0FF2C40001CF37 /* HYLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLog.m; sourceTree = "<group>"; };
+		42486C4F1D92817C0018D4C1 /* UtilData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilData.h; path = Service/UtilData.h; sourceTree = "<group>"; };
+		42486C501D92817C0018D4C1 /* UtilData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilData.m; path = Service/UtilData.m; sourceTree = "<group>"; };
 		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
 		4258401D1D669FB80031AC39 /* TQueryRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQueryRes.h; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				426980061CEEF5F000D99888 /* GSDataMgr.m */,
 				426007111C896EA5009AF691 /* STKManager.h */,
 				426007121C896EA5009AF691 /* STKManager.m */,
+				42486C4F1D92817C0018D4C1 /* UtilData.h */,
+				42486C501D92817C0018D4C1 /* UtilData.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1024,6 +1029,7 @@
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
 				42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
+				42486C511D92817C0018D4C1 /* UtilData.m in Sources */,
 				42BB4D2A1D6B3F76003FB5DD /* AvgLogout.m in Sources */,
 				42E0981B1C7FFAEB004E4DC2 /* YTKRequest.m in Sources */,
 				42E08E5A1C7FF8C1004E4DC2 /* HYCacheManager.m in Sources */,

@@ -138,13 +138,13 @@
         kT0Data.T1Data = kT1Data;
         kT0Data.TP1Data = kTP1Data;
         
-        kT0Data.dvTP2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvTP1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvT0 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvT1 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvT2 = [[GSDataMgr shareInstance] getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        kT0Data.dvTP2 = [UtilData getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvTP1 = [UtilData getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvT0 = [UtilData getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvT1 = [UtilData getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvT2 = [UtilData getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
         
-        kT0Data.dvAvgTP1toTP5 = [[GSDataMgr shareInstance] getAvgDVValue:5 array:self.contentArray index:i-1];
+        kT0Data.dvAvgTP1toTP5 = [UtilData getAvgDVValue:5 array:self.contentArray index:i-1];
         
         
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};

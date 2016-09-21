@@ -38,9 +38,9 @@
         
         if(kT0Data.isLimitUp){
             
-            kTP1Data.ma5 = [[GSDataMgr shareInstance] getMAValue:5 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma10 = [[GSDataMgr shareInstance] getMAValue:10 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma30 = [[GSDataMgr shareInstance] getMAValue:30 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma5 = [UtilData getMAValue:5 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma10 = [UtilData getMAValue:10 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma30 = [UtilData getMAValue:30 array:self.contentArray t0Index:i-1];
 
             
             if(self.param.daysAfterLastLimit == 0)

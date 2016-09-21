@@ -176,12 +176,18 @@
 
 
 ////below is reserved.
-// those tech index is rubbish! do wrong every time when you believe it.
+// those tech index is rubbish! do wrong every time when you believe it if used as daily refer.
 //@property (assign) CGFloat chg; //
 //@property (assign) CGFloat turnrate; //
+
 //@property (assign) CGFloat dif;
 //@property (assign) CGFloat dea;
-//@property (assign) CGFloat macd;
+@property (assign) CGFloat macd;
+
+@property (assign) CGFloat kdjK;
+@property (assign) CGFloat kdjD;
+@property (assign) CGFloat kdjJ;
+
 
 @end
 
