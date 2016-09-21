@@ -10,6 +10,75 @@
 
 @implementation UtilData
 
+#pragma mark - tech data
+//macd, kdj
+//di(demand index)
++(CGFloat)getDI:(KDataModel*)kData
+{
+    CGFloat val = (kData.high+kData.low+kData.close*2)/4;
+    return val;
+}
+
+//平滑系数
++(CGFloat)getSL:(long)days
+{
+    CGFloat val;
+    
+    val = 2/(days+1);
+    
+    return val;
+}
+
++(CGFloat)getEMA:(KDataModel*)kData days:(long)days lastDayEMA:(CGFloat)lastDayEMA
+{
+    CGFloat val;
+    
+    val = [UtilData getSL:days]*([UtilData getDI:kData]-lastDayEMA)*lastDayEMA; //* or + ?
+    
+    return val;
+}
+
+//such as:fst-10, snd-22
++(CGFloat)getDiff:(KDataModel*)kData  fstdays:(long)fstdays snddays:(long)snddays
+{
+    CGFloat val;
+    
+//    val = [UtilData getEMA:kData days:fstdays lastDayEMA:(CGFloat)]
+    
+    return val;
+}
+
+
+/*
+ EMA（12）= 前一日EMA（12）×11/13＋今日收盘价×2/13
+ EMA（26）= 前一日EMA（26）×25/27＋今日收盘价×2/27
+ DIFF=今日EMA（12）- 今日EMA（26）
+ DEA（MACD）= 前一日DEA×8/10＋今日DIF×2/10
+ BAR=2×(DIFF－DEA)
+ */
++(CGFloat)getDEA:(NSArray*)tmpContentArray baseIndex:(long)baseIndex  fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
+{
+    CGFloat val;
+    
+    //    val = [UtilData getEMA:kData days:fstdays lastDayEMA:(CGFloat)]
+    
+    return val;
+}
+
+
+//xueqiu: 12,26,9
+//baseIndex: 基准日(周..)
++(CGFloat)getMACDBar:(NSArray*)tmpContentArray baseIndex:(long)baseIndex fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
+{
+    //bar = 2*(diff-dea);
+
+    CGFloat val;
+    
+    
+    
+    return val;
+}
+
 #pragma mark - util
 +(CGFloat)getDVValueWithBaseValue:(CGFloat)baseValue destValue:(CGFloat)destValue;
 {
@@ -204,7 +273,6 @@
 }
 
 
-#pragma mark - tech data
-//macd, kdj
+
 
 @end
