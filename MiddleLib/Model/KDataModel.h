@@ -148,6 +148,19 @@
 
 @end
 
+
+@interface UnitDebugData : NSObject
+
+@property (assign) BOOL isWeekEnd; //周线
+@property (assign) BOOL isMonthEnd; //月线
+
+@property (assign) long month; //第几月
+@property (assign) long monthday;
+@property (assign) long week; //第几周
+@property (assign) long weekday;
+
+@end
+
 @interface KDataModel : HYBaseModel
 
 @property (assign) long time;
@@ -166,12 +179,12 @@
 @property (assign) BOOL isLimitDown;
 
 
-@property (assign) BOOL isWeekEnd; //周线
-@property (assign) BOOL isMonthEnd; //月线
+
 
 
 @property (strong) TradeDebugData* tradeDbg;
 @property (strong) DVDebugData* dvDbg;
+@property (strong) UnitDebugData* unitDbg;
 
 @property (assign) CGFloat ma5;
 @property (assign) CGFloat ma10;
@@ -181,12 +194,6 @@
 @property (assign) CGFloat ma120;
 
 
-
-@property (assign) long month; //第几月
-@property (assign) long monthday;
-@property (assign) long week; //第几周
-@property (assign) long weekday;
-
 //@property (assign) CGFloat percent; //换手率
 
 
@@ -194,14 +201,10 @@
 // those tech index is rubbish! do wrong every time when you believe it if used as daily refer.
 //@property (assign) CGFloat chg; //
 //@property (assign) CGFloat turnrate; //
-
-//@property (assign) CGFloat dif;
-//@property (assign) CGFloat dea;
 @property (assign) CGFloat macd;
 @property (assign) CGFloat macdbar;
 @property (assign) CGFloat ema1; //12
 @property (assign) CGFloat ema2; //26
-
 
 
 @property (assign) CGFloat kdjK;

@@ -140,11 +140,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         [self setCanlendarInfo:kT0Data];
         [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
         
-        if(kTP1Data.isWeekEnd){
+        if(kTP1Data.unitDbg.isWeekEnd){
             [weekArray addObject:kTP1Data];
         }
         
-        if(kTP1Data.isMonthEnd){
+        if(kTP1Data.unitDbg.isMonthEnd){
             [monthArray addObject:kTP1Data];
         }
 
@@ -593,13 +593,13 @@ static NSCalendar *sharedCalendar = nil;
     NSDateComponents *components = [[GSDataMgr currentCalendar] components:componentFlags fromDate:date];
     components.weekday--; //because orginal component from 周日 as 1
     
-    kData.month = components.month;
-    kData.monthday = components.day;
-    kData.week = components.weekOfYear;
-    kData.weekday = components.weekday;
+    kData.unitDbg.month = components.month;
+    kData.unitDbg.monthday = components.day;
+    kData.unitDbg.week = components.weekOfYear;
+    kData.unitDbg.weekday = components.weekday;
     
-    kData.isMonthEnd = YES;
-    kData.isWeekEnd = YES;
+    kData.unitDbg.isMonthEnd = YES;
+    kData.unitDbg.isWeekEnd = YES;
     
 }
 
@@ -607,12 +607,12 @@ static NSCalendar *sharedCalendar = nil;
 -(void)setRealEndInfo:(KDataModel*)kData  kTP1Data:(KDataModel*)kTP1Data
 {
     if(kTP1Data){
-        if(kData.month == kTP1Data.month){
-            kTP1Data.isMonthEnd = NO;
+        if(kData.unitDbg.month == kTP1Data.unitDbg.month){
+            kTP1Data.unitDbg.isMonthEnd = NO;
         }
         
-        if(kData.week == kTP1Data.week){
-            kTP1Data.isWeekEnd = NO;
+        if(kData.unitDbg.week == kTP1Data.unitDbg.week){
+            kTP1Data.unitDbg.isWeekEnd = NO;
         }
     }
 }

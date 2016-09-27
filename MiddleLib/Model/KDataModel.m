@@ -50,6 +50,16 @@
 
 @end
 
+@implementation TradeDebugData
+
+
+@end
+
+@implementation UnitDebugData
+
+
+@end
+
 
 @implementation DVValue
 
@@ -81,6 +91,8 @@
         self.low = kInvalidData_Base+1;
         
         self.dvDbg = [[DVDebugData alloc]init];
+        self.tradeDbg = [[TradeDebugData alloc]init];
+        self.unitDbg = [[UnitDebugData alloc]init];
     }
     
     return self;
