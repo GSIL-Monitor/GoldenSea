@@ -24,7 +24,7 @@
 {
     CGFloat val;
     
-    val = 2/(days+1);
+    val = 2.0/(days+1);
     
     return val;
 }
@@ -33,8 +33,10 @@
 {
     CGFloat val;
     
-    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
-
+    KDataModel* kT0Data = [tmpContentArray safeObjectAtIndex:baseIndex];
+    if(!kT0Data){
+        return;
+    }
     
     if(baseIndex == 0){ //第一天的EMA取di值
         kT0Data.ema1 = [UtilData getDI:kT0Data];
@@ -59,7 +61,7 @@
     
     [UtilData setEMA:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays];
     
-    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
+    KDataModel* kT0Data = [tmpContentArray safeObjectAtIndex:(baseIndex)];
 
     val = kT0Data.ema1 - kT0Data.ema2;
 
@@ -82,7 +84,6 @@
     if(baseIndex < trddays){ //9日之内
         CGFloat totaldiff = 0.f;
         for (long i=0; i<trddays; i++) {
-            KDataModel* tmpData = [tmpContentArray objectAtIndex:i];
             totaldiff += [UtilData getDiff:tmpContentArray baseIndex:i fstdays:fstdays snddays:snddays];
         }
         kT0Data.macd = totaldiff/trddays;
@@ -107,7 +108,7 @@
     
     [UtilData setMACD:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays trddays:trddays];
     
-    kT0Data.macdbar = todayDiff-kT0Data.macd;
+    kT0Data.macdbar = 2.0*(todayDiff-kT0Data.macd);
     
 }
 

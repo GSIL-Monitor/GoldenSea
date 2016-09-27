@@ -194,6 +194,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     //2, deal with week data
     for(long i=0; i<[weekArray count]; i++ ){
+        [UtilData setMACDBar:weekArray baseIndex:i fstdays:12 snddays:26 trddays:9];
+
         KDataModel* kT0Data = [weekArray objectAtIndex:i];
         if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;
@@ -213,6 +215,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     //3, deal with month data
     for(long i=0; i<[monthArray count]; i++ ){
+        [UtilData setMACDBar:monthArray baseIndex:i fstdays:12 snddays:26 trddays:9];
+
         KDataModel* kT0Data = [monthArray objectAtIndex:i];
         if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;

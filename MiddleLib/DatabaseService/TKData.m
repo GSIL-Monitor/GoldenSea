@@ -32,16 +32,22 @@
     
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
-                            @{@"volume"       : @"integer"},
-//                            @{@"tdIndex"       : @"integer"},
+                            
+                            @{@"macd"         : @"float"},
+                            @{@"macdbar"         : @"float"},
+
+                            
+                            @{@"kdjK"         : @"float"},
+                            @{@"kdjD"         : @"float"},
+                            @{@"kdjJ"         : @"float"},
                             
                             @{@"open"         : @"float"},
                             @{@"high"         : @"float"},
                             @{@"close"        : @"float"},
                             @{@"low"          : @"float"},
                             
-//                            @{@"isWeekEnd"          :@"bool"},
-//                            @{@"isMonthEnd"          :@"bool"},
+                            @{@"volume"       : @"integer"},
+
                             
                             @{@"ma5"          : @"float"},
                             @{@"ma10"         : @"float"},
@@ -50,23 +56,10 @@
                             @{@"ma60"         : @"float"},
                             @{@"ma120"         : @"float"},
 
-//                            @{@"slopema30"         : @"float"},
-                            
-                            
+                           
+
                             @{@"isLimitUp"          :@"bool"},
                             @{@"isLimitDown"          :@"bool"},
-                            
-                            //                            @"chg"          : @"float",
-                            //                            @"percent"      : @"float",
-                            //                            @"turnrate"     : @"float",
-                            //
-                            //                            @"dif"          : @"float",
-                            //                            @"dea"          : @"float",
-                            @{@"macd"         : @"float"},
-                            
-                            @{@"kdjK"         : @"float"},
-                            @{@"kdjD"         : @"float"},
-                            @{@"kdjJ"         : @"float"},
                             
                             
                             ];
