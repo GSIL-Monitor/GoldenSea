@@ -83,8 +83,8 @@
         }else{
             for (KDataModel* kData in tmpArray) {
                 SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
-                      kData.TBuyData.time,kData.TBuyData.dvT0.dvOpen,kData.TBuyData.dvT0.dvHigh,kData.TBuyData.dvT0.dvClose,kData.TBuyData.dvT0.dvLow,
-                      kData.TSellData.time, kData.TSellData.dvT0.dvOpen,kData.TSellData.dvT0.dvHigh,kData.TSellData.dvT0.dvClose,kData.TSellData.dvT0.dvLow                      );
+                      kData.TBuyData.time,kData.TBuyData.dvDebugData.dvT0.dvOpen,kData.TBuyData.dvDebugData.dvT0.dvHigh,kData.TBuyData.dvDebugData.dvT0.dvClose,kData.TBuyData.dvDebugData.dvT0.dvLow,
+                      kData.TSellData.time, kData.TSellData.dvDebugData.dvT0.dvOpen,kData.TSellData.dvDebugData.dvT0.dvHigh,kData.TSellData.dvDebugData.dvT0.dvClose,kData.TSellData.dvDebugData.dvT0.dvLow                      );
             }
         }
         
@@ -151,12 +151,13 @@
 
 
 
--(void)logResWithDV:(KDataModel*)kData
+-(void)logResWithDV:(KDataModel*)kDataIn
 {
-    SMLog(@"%6ld TP1-C:%.2f, T0-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  TS2B:%.2f;  T1-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  T2(O:%.2f,H:%.2f,C:%.2f,L:%.2f)",kData.time,
+    DVDebugData* kData = kDataIn.dvDebugData;
+    SMLog(@"%6ld TP1-C:%.2f, T0-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  TS2B:%.2f;  T1-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  T2(O:%.2f,H:%.2f,C:%.2f,L:%.2f)",kDataIn.time,
           kData.dvTP1.dvClose,
           kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
-          kData.dvSelltoBuy,
+          kDataIn.dvSelltoBuy,
           kData.dvT1.dvOpen,kData.dvT1.dvHigh,kData.dvT1.dvClose,kData.dvT1.dvLow,
           kData.dvT2.dvOpen,kData.dvT2.dvHigh,kData.dvT2.dvClose,kData.dvT2.dvLow);
     

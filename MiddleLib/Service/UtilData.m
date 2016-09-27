@@ -12,7 +12,7 @@
 
 #pragma mark - tech data
 //macd, kdj
-//di(demand index)
+//di(demand index),
 +(CGFloat)getDI:(KDataModel*)kData
 {
     CGFloat val = (kData.high+kData.low+kData.close*2)/4;
@@ -29,22 +29,40 @@
     return val;
 }
 
-+(CGFloat)getEMA:(KDataModel*)kData days:(long)days lastDayEMA:(CGFloat)lastDayEMA
++(void)setEMA:(NSArray*)tmpContentArray baseIndex:(long)baseIndex  fstdays:(long)fstdays snddays:(long)snddays
 {
     CGFloat val;
     
-    val = [UtilData getSL:days]*([UtilData getDI:kData]-lastDayEMA)*lastDayEMA; //* or + ?
+    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
+
     
-    return val;
+    if(baseIndex == 0){ //第一天的EMA取di值
+        kT0Data.ema1 = [UtilData getDI:kT0Data];
+        kT0Data.ema2 = kT0Data.ema1;
+        return ;
+    }
+    
+    KDataModel* kTP1Data = [tmpContentArray objectAtIndex:(baseIndex-1)];
+    
+    CGFloat lastDayEMA = kTP1Data.ema1; //[UtilData getEMA:tmpContentArray baseIndex:baseIndex days:tmpDays];
+    kT0Data.ema1 = [UtilData getSL:fstdays]*([UtilData getDI:kT0Data]-lastDayEMA)+lastDayEMA;
+    lastDayEMA = kTP1Data.ema2;
+    kT0Data.ema2 = [UtilData getSL:snddays]*([UtilData getDI:kT0Data]-lastDayEMA)+lastDayEMA;
+    
+    
 }
 
-//such as:fst-10, snd-22
-+(CGFloat)getDiff:(KDataModel*)kData  fstdays:(long)fstdays snddays:(long)snddays
+//such as:fst-12, snd-26
++(CGFloat)getDiff:(NSArray*)tmpContentArray baseIndex:(long)baseIndex  fstdays:(long)fstdays snddays:(long)snddays
 {
     CGFloat val;
     
-//    val = [UtilData getEMA:kData days:fstdays lastDayEMA:(CGFloat)]
+    [UtilData setEMA:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays];
     
+    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
+
+    val = kT0Data.ema1 - kT0Data.ema2;
+
     return val;
 }
 
@@ -56,27 +74,41 @@
  DEA（MACD）= 前一日DEA×8/10＋今日DIF×2/10
  BAR=2×(DIFF－DEA)
  */
-+(CGFloat)getDEA:(NSArray*)tmpContentArray baseIndex:(long)baseIndex  fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
++(void)setMACD:(NSArray*)tmpContentArray baseIndex:(long)baseIndex  fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
 {
-    CGFloat val;
+    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
+
     
-    //    val = [UtilData getEMA:kData days:fstdays lastDayEMA:(CGFloat)]
+    if(baseIndex < trddays){ //9日之内
+        CGFloat totaldiff = 0.f;
+        for (long i=0; i<trddays; i++) {
+            KDataModel* tmpData = [tmpContentArray objectAtIndex:i];
+            totaldiff += [UtilData getDiff:tmpContentArray baseIndex:i fstdays:fstdays snddays:snddays];
+        }
+        kT0Data.macd = totaldiff/trddays;
+    }else{
+        KDataModel* kTP1Data = [tmpContentArray objectAtIndex:(baseIndex-1)];
+        CGFloat todayDiff = [UtilData getDiff:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays];
+        kT0Data.macd = kTP1Data.macd*(trddays-1)/(trddays+1) + todayDiff*2/(trddays+1);
+    }
     
-    return val;
 }
 
 
 //xueqiu: 12,26,9
 //baseIndex: 基准日(周..)
-+(CGFloat)getMACDBar:(NSArray*)tmpContentArray baseIndex:(long)baseIndex fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
++(void)setMACDBar:(NSArray*)tmpContentArray baseIndex:(long)baseIndex fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
 {
     //bar = 2*(diff-dea);
 
-    CGFloat val;
     
+    KDataModel* kT0Data = [tmpContentArray objectAtIndex:(baseIndex)];
+    CGFloat todayDiff = [UtilData getDiff:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays];
     
+    [UtilData setMACD:tmpContentArray baseIndex:baseIndex fstdays:fstdays snddays:snddays trddays:trddays];
     
-    return val;
+    kT0Data.macdbar = todayDiff-kT0Data.macd;
+    
 }
 
 #pragma mark - util

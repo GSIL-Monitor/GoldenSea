@@ -19,4 +19,6 @@
 +(DVValue*)getAvgDVValue:(NSUInteger)days array:(NSArray*)tmpContentArray index:(long)index;
 +(CGFloat)getMAValue:(NSUInteger)days array:(NSArray*)tmpContentArray t0Index:(long)t0Index;
 
++(void)setMACDBar:(NSArray*)tmpContentArray baseIndex:(long)baseIndex fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays;
+
 @end

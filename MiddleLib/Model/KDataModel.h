@@ -108,6 +108,29 @@
 @end
 
 
+@interface DebugData : NSObject
+
+@property (assign) CGFloat slopema5;
+@property (assign) CGFloat slopema10;
+@property (assign) CGFloat slopema20;
+@property (assign) CGFloat slopema30;
+@property (assign) CGFloat slopema60;
+@property (assign) CGFloat slopema120;
+
+@end
+
+@interface DVDebugData : NSObject
+
+@property (strong) DVValue* dvTP2; //tp2 dv property , percent ,  tp2 vs tp3 close
+@property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close
+@property (strong) DVValue* dvT0; //dv property , percent , t value vs tp1 close
+@property (strong) DVValue* dvT1; //dv property , percent , t1 value vs t close
+@property (strong) DVValue* dvT2; //dv property , percent , t2 value vs t1 close
+@property (strong) DVValue* dvAvgTP1toTP5; //dv property , percent , t1 value vs t close
+
+@end
+
+
 @interface KDataModel : HYBaseModel
 
 @property (assign) long time;
@@ -142,15 +165,7 @@
 @property (assign) long lowValDayIndex; //before buy day
 
 
-@property (strong) DVValue* dvTP2; //tp2 dv property , percent ,  tp2 vs tp3 close
-@property (strong) DVValue* dvTP1; //tp1 dv property , percent ,  tp1 vs tp2 close
-@property (strong) DVValue* dvT0; //dv property , percent , t value vs tp1 close
-@property (strong) DVValue* dvT1; //dv property , percent , t1 value vs t close
-@property (strong) DVValue* dvT2; //dv property , percent , t2 value vs t1 close
-
-@property (strong) DVValue* dvAvgTP1toTP5; //dv property , percent , t1 value vs t close
-
-
+@property (strong) DVDebugData* dvDebugData;
 
 @property (assign) CGFloat ma5;
 @property (assign) CGFloat ma10;
@@ -159,12 +174,6 @@
 @property (assign) CGFloat ma60;
 @property (assign) CGFloat ma120;
 
-@property (assign) CGFloat slopema5;
-@property (assign) CGFloat slopema10;
-@property (assign) CGFloat slopema20;
-@property (assign) CGFloat slopema30;
-@property (assign) CGFloat slopema60;
-@property (assign) CGFloat slopema120;
 
 
 @property (assign) long month; //第几月
@@ -183,6 +192,11 @@
 //@property (assign) CGFloat dif;
 //@property (assign) CGFloat dea;
 @property (assign) CGFloat macd;
+@property (assign) CGFloat macdbar;
+@property (assign) CGFloat ema1; //12
+@property (assign) CGFloat ema2; //26
+
+
 
 @property (assign) CGFloat kdjK;
 @property (assign) CGFloat kdjD;

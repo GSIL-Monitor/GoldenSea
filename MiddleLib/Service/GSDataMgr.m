@@ -172,9 +172,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     
     //1,deal with day data
-#if 0
-    for(long i=1; i<[contentArray count]; i++ ){
-        KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
+#if 1
+    for(long i=0; i<[contentArray count]; i++ ){
+        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
+
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;
@@ -186,6 +187,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         }else{
             [dayService addRecord:kT0Data];
         }
+        
     }
 #endif
 
