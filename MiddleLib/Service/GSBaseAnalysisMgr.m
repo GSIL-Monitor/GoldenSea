@@ -135,35 +135,35 @@
         
         
         
-        kT0Data.T1Data = kT1Data;
-        kT0Data.TP1Data = kTP1Data;
+        kT0Data.tradeDbg.T1Data = kT1Data;
+        kT0Data.tradeDbg.TP1Data = kTP1Data;
         
-        kT0Data.dvDebugData.dvTP2 = [UtilData getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvDebugData.dvTP1 = [UtilData getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvDebugData.dvT0 = [UtilData getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvDebugData.dvT1 = [UtilData getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvDebugData.dvT2 = [UtilData getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        kT0Data.dvDbg.dvTP2 = [UtilData getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvDbg.dvTP1 = [UtilData getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvDbg.dvT0 = [UtilData getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvDbg.dvT1 = [UtilData getDVValue:self.contentArray baseIndex:i destIndex:i+1];
+        kT0Data.dvDbg.dvT2 = [UtilData getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
         
-        kT0Data.dvDebugData.dvAvgTP1toTP5 = [UtilData getAvgDVValue:5 array:self.contentArray index:i-1];
+        kT0Data.dvDbg.dvAvgTP1toTP5 = [UtilData getAvgDVValue:5 array:self.contentArray index:i-1];
         
         
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
         
         
         //dv condintoon
-        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvDebugData.dvTP2]){
+        if(![self isMeetDVConditon:self.tp2dayCond DVValue:kT0Data.dvDbg.dvTP2]){
             continue;
         }
         
-        if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvDebugData.dvTP1]){
+        if(![self isMeetDVConditon:self.tp1dayCond DVValue:kT0Data.dvDbg.dvTP1]){
             continue;
         }
         
-        if(![self isMeetDVConditon:self.t0dayCond DVValue:kT0Data.dvDebugData.dvT0]){
+        if(![self isMeetDVConditon:self.t0dayCond DVValue:kT0Data.dvDbg.dvT0]){
             continue;
         }
         
-        if(![self isMeetDVConditon:self.t1dayCond DVValue:kT0Data.dvDebugData.dvT1]){
+        if(![self isMeetDVConditon:self.t1dayCond DVValue:kT0Data.dvDbg.dvT1]){
             continue;
         }
         
@@ -210,10 +210,10 @@
     if((kTP2Data.open > kTP2Data.close)
         &&(kTP1Data.open > kTP1Data.close)
        &&(kT0Data.open < kT0Data.close)){
-        if(kTP2Data.dvDebugData.dvT0.dvClose > -2.f
-           && kTP1Data.dvDebugData.dvT0.dvClose > -2.f
+        if(kTP2Data.dvDbg.dvT0.dvClose > -2.f
+           && kTP1Data.dvDbg.dvT0.dvClose > -2.f
            && fabs(kT0Data.open - kT0Data.close) < 0.15f
-           && kT0Data.dvDebugData.dvT0.dvClose < 1.f)
+           && kT0Data.dvDbg.dvT0.dvClose < 1.f)
         return YES;
     }
     
@@ -304,9 +304,9 @@
     if(sIndex != -1){ //find
         sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
-        kT0Data.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy-1)];
-        if(kT0Data.TSellData){ //if had data in that day.
-            sellValue = kT0Data.TSellData.close;
+        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy-1)];
+        if(kT0Data.tradeDbg.TSellData){ //if had data in that day.
+            sellValue = kT0Data.tradeDbg.TSellData.close;
         }else{
             sellValue = buyValue;
         }

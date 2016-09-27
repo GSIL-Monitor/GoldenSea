@@ -80,7 +80,7 @@
         self.high = kInvalidData_Base+1;
         self.low = kInvalidData_Base+1;
         
-        self.dvDebugData = [[DVDebugData alloc]init];
+        self.dvDbg = [[DVDebugData alloc]init];
     }
     
     return self;

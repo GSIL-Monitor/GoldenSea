@@ -142,7 +142,7 @@
 
 -(void)_dispatchResult:(KDataModel*)kT0data dvValue:(CGFloat)dvValue
 {
-    kT0data.dvSelltoBuy = dvValue;
+    kT0data.tradeDbg.dvSelltoBuy = dvValue;
     
     NSMutableArray* tmpArray;
     
@@ -203,14 +203,14 @@
     BOOL isInUse = NO;
     
     //    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
-    for(long time = kT0data.TBuyData.time; time<=kT0data.TBuyData.time; time++){
+    for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
         NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
 
         KeyTimeObj* keyTimeObj = [self.param.selResultDict objectForKey:keyTime];
         if(keyTimeObj){
             isInUse = YES;
             
-            keyTimeObj.totalVal += kT0data.dvSelltoBuy;
+            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
             keyTimeObj.totalDays ++;
             keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
             
@@ -219,10 +219,10 @@
     }
     
     if(!isInUse){
-        for(long time = kT0data.TBuyData.time; time<=kT0data.TBuyData.time; time++){
+        for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
             NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
             KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
-            keyTimeObj.totalVal += kT0data.dvSelltoBuy;
+            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
             keyTimeObj.totalDays ++;
             keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
             [self.param.selResultDict setObject:keyTimeObj forKey:keyTime];

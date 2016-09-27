@@ -157,8 +157,8 @@
         //        KDataModel* kT9Data = [self.contentArray safeObjectAtIndex:i+9];
         
         
-        kT0Data.lowValDayIndex = 1;
-        kT0Data.highValDayIndex = 5;
+        kT0Data.tradeDbg.lowValDayIndex = 1;
+        kT0Data.tradeDbg.highValDayIndex = 5;
         
         if(kT0Data.isLimitUp){
             if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
@@ -212,12 +212,12 @@
                 continue;
             }
             
-            kT0Data.TBuyData = [self.contentArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
+            kT0Data.tradeDbg.TBuyData = [self.contentArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
             
             
             sellValue = [self getSellValue:buyValue bIndexInArray:i+self.param.buyStartIndex+bIndex+1 kT0data:kT0Data];
             
-            if(kT0Data.TSellData)
+            if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             
         }

@@ -130,6 +130,23 @@
 
 @end
 
+@class KDataModel;
+@interface TradeDebugData : NSObject
+
+@property (strong) KDataModel* TP1Data;
+@property (strong) KDataModel* T1Data;
+@property (strong) KDataModel* TnData; //n is dynamicl.
+@property (strong) KDataModel* Tn1Data; //n+1 data.
+//for check is right
+@property (strong) KDataModel* TBuyData; //n is dynamicl.
+@property (strong) KDataModel* TSellData; //n+1 data.
+@property (nonatomic, assign) CGFloat pvHi2Op; //T1至Tbuy日中，high值与open值的差值最高的值
+
+@property (assign) CGFloat dvSelltoBuy;
+@property (assign) long highValDayIndex; //after buy day
+@property (assign) long lowValDayIndex; //before buy day
+
+@end
 
 @interface KDataModel : HYBaseModel
 
@@ -143,6 +160,8 @@
 
 @property (assign) int volume;
 
+@property (strong) NSString* stkID;
+
 @property (assign) BOOL isLimitUp;
 @property (assign) BOOL isLimitDown;
 
@@ -150,22 +169,9 @@
 @property (assign) BOOL isWeekEnd; //周线
 @property (assign) BOOL isMonthEnd; //月线
 
-@property (strong) KDataModel* TP1Data;
-@property (strong) KDataModel* T1Data;
-@property (strong) KDataModel* TnData; //n is dynamicl.
-@property (strong) KDataModel* Tn1Data; //n+1 data.
-//for check is right
-@property (strong) KDataModel* TBuyData; //n is dynamicl.
-@property (strong) KDataModel* TSellData; //n+1 data.
-@property (strong) NSString* stkID;
-@property (nonatomic, assign) CGFloat pvHi2Op; //T1至Tbuy日中，high值与open值的差值最高的值
 
-@property (assign) CGFloat dvSelltoBuy;
-@property (assign) long highValDayIndex; //after buy day
-@property (assign) long lowValDayIndex; //before buy day
-
-
-@property (strong) DVDebugData* dvDebugData;
+@property (strong) TradeDebugData* tradeDbg;
+@property (strong) DVDebugData* dvDbg;
 
 @property (assign) CGFloat ma5;
 @property (assign) CGFloat ma10;

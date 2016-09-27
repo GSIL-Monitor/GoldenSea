@@ -47,7 +47,7 @@
             
             sellValue = [self getSellValue:buyValue bIndexInArray:i+1 kT0data:kT0Data];
             
-            if(kT0Data.TSellData)
+            if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             
             

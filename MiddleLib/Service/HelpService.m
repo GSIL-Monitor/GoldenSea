@@ -147,9 +147,9 @@
 //            kT0Data.lowValDayIndex = index;
             
             
-            kT0Data.TBuyData = tempData;
+            kT0Data.tradeDbg.TBuyData = tempData;
             
-            kT0Data.pvHi2Op = maxpvHi2Op;
+            kT0Data.tradeDbg.pvHi2Op = maxpvHi2Op;
             break; //NOTICE: check the case not break!
         }
     }
@@ -170,7 +170,7 @@
             
             index = j-startIndex;
 //            kT0Data.highValDayIndex = index;
-            kT0Data.TSellData = tempData;
+            kT0Data.tradeDbg.TSellData = tempData;
             
             break;
         }
@@ -195,7 +195,7 @@
         
         if(tempData.low <= theLowestValue){
             theLowestValue = tempData.low;
-            kT0Data.lowValDayIndex = j-startIndex;
+            kT0Data.tradeDbg.lowValDayIndex = j-startIndex;
         }
     }
     
@@ -212,7 +212,7 @@
         KDataModel* tempData = [array safeObjectAtIndex:j];
         if(tempData.high >= theHighestValue){
             theHighestValue = tempData.high;
-            kT0Data.highValDayIndex = j-startIndex;
+            kT0Data.tradeDbg.highValDayIndex = j-startIndex;
         }
         
 //        if(tempData.low <= theLowestValue){
@@ -234,7 +234,7 @@
         KDataModel* tempData = [array safeObjectAtIndex:j];
         if(tempData.close >= theHighestValue){
             theHighestValue = tempData.close;
-            kT0Data.highValDayIndex = j-startIndex;
+            kT0Data.tradeDbg.highValDayIndex = j-startIndex;
         }
         
         //        if(tempData.low <= theLowestValue){

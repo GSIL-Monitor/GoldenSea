@@ -78,13 +78,13 @@
         //logout detail.
         if(isForAll){
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,kData.TSellData.time, kData.dvSelltoBuy);
+                SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time, kData.tradeDbg.dvSelltoBuy);
             }
         }else{
             for (KDataModel* kData in tmpArray) {
-                SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
-                      kData.TBuyData.time,kData.TBuyData.dvDebugData.dvT0.dvOpen,kData.TBuyData.dvDebugData.dvT0.dvHigh,kData.TBuyData.dvDebugData.dvT0.dvClose,kData.TBuyData.dvDebugData.dvT0.dvLow,
-                      kData.TSellData.time, kData.TSellData.dvDebugData.dvT0.dvOpen,kData.TSellData.dvDebugData.dvT0.dvHigh,kData.TSellData.dvDebugData.dvT0.dvClose,kData.TSellData.dvDebugData.dvT0.dvLow                      );
+//                SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
+//                      kData.TBuyData.time,kData.TBuyData.dvDebugData.dvT0.dvOpen,kData.TBuyData.dvDebugData.dvT0.dvHigh,kData.TBuyData.dvDebugData.dvT0.dvClose,kData.TBuyData.dvDebugData.dvT0.dvLow,
+//                      kData.TSellData.time, kData.TSellData.dvDebugData.dvT0.dvOpen,kData.TSellData.dvDebugData.dvT0.dvHigh,kData.TSellData.dvDebugData.dvT0.dvClose,kData.TSellData.dvDebugData.dvT0.dvLow                      );
             }
         }
         
@@ -142,7 +142,6 @@
         
         for (KDataModel* kData in tmpArray) {
             [self logResWithDV:kData];
-//            [self logResWithValue:kData];
         }
     }
     
@@ -153,23 +152,14 @@
 
 -(void)logResWithDV:(KDataModel*)kDataIn
 {
-    DVDebugData* kData = kDataIn.dvDebugData;
+    DVDebugData* kData = kDataIn.dvDbg;
     SMLog(@"%6ld TP1-C:%.2f, T0-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  TS2B:%.2f;  T1-O:%.2f,H:%.2f,C:%.2f,L:%.2f;  T2(O:%.2f,H:%.2f,C:%.2f,L:%.2f)",kDataIn.time,
           kData.dvTP1.dvClose,
           kData.dvT0.dvOpen,kData.dvT0.dvHigh,kData.dvT0.dvClose,kData.dvT0.dvLow,
-          kDataIn.dvSelltoBuy,
+          kDataIn.tradeDbg.dvSelltoBuy,
           kData.dvT1.dvOpen,kData.dvT1.dvHigh,kData.dvT1.dvClose,kData.dvT1.dvLow,
           kData.dvT2.dvOpen,kData.dvT2.dvHigh,kData.dvT2.dvClose,kData.dvT2.dvLow);
     
-}
-
-
-//for debug: to check the programe is right.
--(void)logResWithValue:(KDataModel*)kData
-{
-    SMLog(@"%6ld TP1-Open:%.2f,High:%.2f,Low:%.2f,Close:%.2f,  T0-Open:%.2f,High:%.2f,Close:%.2f,Low:%.2f ;  T1-Open:%.2f,High:%.2f",kData.time,kData.TP1Data.open, kData.TP1Data.high,kData.TP1Data.low,kData.TP1Data.close,
-          kData.open,kData.high, kData.close,kData.low,
-          kData.T1Data.open,kData.T1Data.high);
 }
 
 
@@ -233,7 +223,7 @@
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@ TBuyData:%ld, pvHi2Op(%.3f), TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.TBuyData.time,kData.pvHi2Op,kData.TSellData.time,kData.dvSelltoBuy);
+            SMLog(@"%@ TBuyData:%ld, pvHi2Op(%.3f), TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.pvHi2Op,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy);
         }
     }
 
