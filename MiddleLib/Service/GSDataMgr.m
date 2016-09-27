@@ -150,16 +150,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
         kEndData = kT0Data;
         
-        kT0Data.ma5 = [UtilData getMAValue:5 array:contentArray t0Index:i];
-        kT0Data.ma10 = [UtilData getMAValue:10 array:contentArray t0Index:i];
-        kT0Data.ma20 = [UtilData getMAValue:20 array:contentArray t0Index:i];
-        kT0Data.ma30 = [UtilData getMAValue:30 array:contentArray t0Index:i];
-        kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
-        kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
-
-        
-        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
-        kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
     }
     
     if(![weekArray containsObject:kEndData]){
@@ -172,21 +162,29 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     
     //1,deal with day data
-#if 1
+#if 0
     for(long i=0; i<[contentArray count]; i++ ){
         [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;
-        }else if(kT0Data.time == fromDate){ //更新数据库的历史记录,假设存在
-            KDataModel* kT1Data = [contentArray objectAtIndex:i+1];
-            [self setRealEndInfo:kT1Data kTP1Data:kT0Data];
-            [dayService updateRecord:kT0Data];
-            kTLastEndData = kT0Data;
-        }else{
-            [dayService addRecord:kT0Data];
         }
+        
+        kT0Data.ma5 = [UtilData getMAValue:5 array:contentArray t0Index:i];
+        kT0Data.ma10 = [UtilData getMAValue:10 array:contentArray t0Index:i];
+        kT0Data.ma20 = [UtilData getMAValue:20 array:contentArray t0Index:i];
+        kT0Data.ma30 = [UtilData getMAValue:30 array:contentArray t0Index:i];
+        kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
+        kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
+        
+        if(i>=1){
+            KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
+            kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+            kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
+        }
+        
+        [dayService addRecord:kT0Data];
         
     }
 #endif
