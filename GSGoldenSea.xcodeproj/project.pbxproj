@@ -18,6 +18,7 @@
 		4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4236ECBB1D0FF2C40001CF37 /* HYLog.m */; };
 		42486C511D92817C0018D4C1 /* UtilData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42486C501D92817C0018D4C1 /* UtilData.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
+		42504D861D9B6C5700754E99 /* TechAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */; };
 		4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* TQueryRes.m */; };
 		425840221D66A2800031AC39 /* QueryResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840211D66A2800031AC39 /* QueryResModel.m */; };
 		425840251D66AC680031AC39 /* QueryDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840241D66AC680031AC39 /* QueryDBManager.m */; };
@@ -141,6 +142,8 @@
 		42486C501D92817C0018D4C1 /* UtilData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilData.m; path = Service/UtilData.m; sourceTree = "<group>"; };
 		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
+		42504D841D9B6C5700754E99 /* TechAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechAnalysisMgr.h; sourceTree = "<group>"; };
+		42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechAnalysisMgr.m; sourceTree = "<group>"; };
 		4258401D1D669FB80031AC39 /* TQueryRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQueryRes.h; sourceTree = "<group>"; };
 		4258401E1D669FB80031AC39 /* TQueryRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQueryRes.m; sourceTree = "<group>"; };
 		425840201D66A2800031AC39 /* QueryResModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResModel.h; sourceTree = "<group>"; };
@@ -575,6 +578,8 @@
 				426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */,
 				42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */,
 				42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */,
+				42504D841D9B6C5700754E99 /* TechAnalysisMgr.h */,
+				42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */,
 				42BB4D251D6B3BD9003FB5DD /* AvgAnalysisMgr.h */,
 				42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */,
 				42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */,
@@ -1028,6 +1033,7 @@
 				425840251D66AC680031AC39 /* QueryDBManager.m in Sources */,
 				4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */,
 				42ABCC3C1CCDBE40008BD830 /* GSBaseAnalysisMgr.m in Sources */,
+				42504D861D9B6C5700754E99 /* TechAnalysisMgr.m in Sources */,
 				42E0972E1C7FFAEB004E4DC2 /* UIAlertView+AFNetworking.m in Sources */,
 				42486C511D92817C0018D4C1 /* UtilData.m in Sources */,
 				42BB4D2A1D6B3F76003FB5DD /* AvgLogout.m in Sources */,
