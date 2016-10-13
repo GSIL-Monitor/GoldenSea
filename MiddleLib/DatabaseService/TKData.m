@@ -46,7 +46,7 @@
                             @{@"close"        : @"float"},
                             @{@"low"          : @"float"},
                             
-                            @{@"volume"       : @"integer"},
+                            @{@"volume"       : @"float"},
 
                             
                             @{@"ma5"          : @"float"},

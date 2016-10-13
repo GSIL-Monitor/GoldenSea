@@ -159,6 +159,10 @@
 @property (assign) long week; //第几周
 @property (assign) long weekday;
 
+@property (assign) CGFloat weekVolume;
+@property (assign) CGFloat monthVolume;
+
+
 @end
 
 @interface KDataModel : HYBaseModel
@@ -171,7 +175,7 @@
 @property (assign) CGFloat low;
 @property (assign) CGFloat close;
 
-@property (assign) int volume;
+@property (assign) CGFloat volume; //万手
 
 @property (strong) NSString* stkID;
 

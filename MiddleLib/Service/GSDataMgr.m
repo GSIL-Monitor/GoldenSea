@@ -129,6 +129,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     KDataModel* kEndData; //this end data.
     
     for(long i=1; i<[contentArray count]; i++ ){
+        KDataModel* kTP2Data  = [contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         
@@ -162,7 +163,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     
     //1,deal with day data
-#if 0
+#if 1
     for(long i=0; i<[contentArray count]; i++ ){
         [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
@@ -189,6 +190,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
 #endif
 
+    CGFloat tmpVolume;
     
     //2, deal with week data
     for(long i=0; i<[weekArray count]; i++ ){
@@ -204,7 +206,12 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma20 = [UtilData getMAValue:20 array:weekArray t0Index:i];
         kT0Data.ma30 = [UtilData getMAValue:30 array:weekArray t0Index:i];
         
+        tmpVolume = kT0Data.volume;
+        kT0Data.volume = kT0Data.unitDbg.weekVolume;
+        
         [weekService addRecord:kT0Data];
+        
+        kT0Data.volume = tmpVolume;
     }
     
     if(![weekArray containsObject:kTLastEndData]){
@@ -225,7 +232,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma20 = [UtilData getMAValue:20 array:monthArray t0Index:i];
         kT0Data.ma30 = [UtilData getMAValue:30 array:monthArray t0Index:i];
         
+        tmpVolume = kT0Data.volume;
+        kT0Data.volume = kT0Data.unitDbg.monthVolume;
+        
         [monthService addRecord:kT0Data];
+        
+        kT0Data.volume = tmpVolume;
+
     }
     
     if(![monthArray containsObject:kTLastEndData]){
@@ -450,7 +463,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
                     break;
                     
                 case 5:
-                    kData.volume = [value intValue];
+                    kData.volume = [value floatValue]/100/10000; //[value intValue];
                     break;
                     
                 case 6:
@@ -612,11 +625,29 @@ static NSCalendar *sharedCalendar = nil;
         if(kData.unitDbg.month == kTP1Data.unitDbg.month){
             kTP1Data.unitDbg.isMonthEnd = NO;
         }
-        
         if(kData.unitDbg.week == kTP1Data.unitDbg.week){
             kTP1Data.unitDbg.isWeekEnd = NO;
         }
     }
+    
+    //0801: 16.1, 8082
+//    
+//    if(kTP1Data.time == 20160801){
+//        NSLog(@"");
+//    }
+    
+    if(kTP1Data.unitDbg.isMonthEnd){
+        kData.unitDbg.monthVolume = kData.volume;
+    }else{
+        kData.unitDbg.monthVolume = kTP1Data.unitDbg.monthVolume+kData.volume;
+    }
+    
+    if(kTP1Data.unitDbg.isWeekEnd ){
+        kData.unitDbg.weekVolume = kData.volume;
+    }else{
+        kData.unitDbg.weekVolume = kTP1Data.unitDbg.weekVolume+kData.volume;
+    }
+
 }
 
 

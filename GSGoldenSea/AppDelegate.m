@@ -45,22 +45,22 @@
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    BOOL isRest = NO;
+    BOOL isRest = YES;
     [[HYDayDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYWeekDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
-    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
+//    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
 
 
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-//        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
+        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
-//    [GSDataMgr shareInstance].startDate = 20160125;
+    [GSDataMgr shareInstance].startDate = 20160125;
     //    [GSDataMgr shareInstance].startDate = 20160725;
     
     
@@ -68,8 +68,8 @@
 
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160717];
 
-//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
-//    return;
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
+    return;
     
     
     [self testForAllLimit];
