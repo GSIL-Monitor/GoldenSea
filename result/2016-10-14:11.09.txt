@@ -1,0 +1,94 @@
+---summary report(20160125-21680808)---
+No.(0)- Conditon:  DESTDVVALUE(3.00), duration(5)  Result:allTotalS2BDVValue(14.11), totalAvgVal(1.28),totalCount(11), SelCount(11), selAvg(1.28) 
+No.(1)- Conditon:  DESTDVVALUE(3.00), duration(1)  Result:allTotalS2BDVValue(12.41), totalAvgVal(0.95),totalCount(13), SelCount(13), selAvg(0.95) 
+No.(2)- Conditon:  DESTDVVALUE(3.00), duration(2)  Result:allTotalS2BDVValue(8.66), totalAvgVal(0.72),totalCount(12), SelCount(12), selAvg(0.72) 
+No.(3)- Conditon:  DESTDVVALUE(3.00), duration(3)  Result:allTotalS2BDVValue(6.59), totalAvgVal(0.55),totalCount(12), SelCount(12), selAvg(0.55) 
+No.(4)- Conditon:  DESTDVVALUE(3.00), duration(4)  Result:allTotalS2BDVValue(6.00), totalAvgVal(0.50),totalCount(12), SelCount(12), selAvg(0.50) 
+
+
+---detail report(20160125-21680808)---
+No.(0)- Conditon:  DESTDVVALUE(3.00), duration(5)  Result:avgVal(1.28),totalCount(11), SelCount(11), selAvg(1.28) 
+index(0), percent(18.18)  count(2) 
+SH600108 TBuyData:20160310, pvHi2Op(0.000), TSellData:20160317, dvSelltoBuy:3.93
+SH600108 TBuyData:20160530, pvHi2Op(0.000), TSellData:20160606, dvSelltoBuy:4.74
+index(1), percent(72.73)  count(8) 
+SH600108 TBuyData:20160202, pvHi2Op(0.000), TSellData:20160216, dvSelltoBuy:2.96
+SH600108 TBuyData:20160324, pvHi2Op(0.000), TSellData:20160331, dvSelltoBuy:0.90
+SH600108 TBuyData:20160401, pvHi2Op(0.000), TSellData:20160412, dvSelltoBuy:1.08
+SH600108 TBuyData:20160425, pvHi2Op(0.000), TSellData:20160503, dvSelltoBuy:2.09
+SH600108 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160621, dvSelltoBuy:0.20
+SH600108 TBuyData:20160623, pvHi2Op(0.000), TSellData:20160630, dvSelltoBuy:1.41
+SH600108 TBuyData:20160708, pvHi2Op(0.000), TSellData:20160715, dvSelltoBuy:-0.19
+SH600108 TBuyData:20160718, pvHi2Op(0.000), TSellData:20160725, dvSelltoBuy:1.16
+index(2), percent(9.09)  count(1) 
+SH600108 TBuyData:20160726, pvHi2Op(0.000), TSellData:20160802, dvSelltoBuy:-4.17
+index(3), percent(0.00)  count(0) 
+No.(1)- Conditon:  DESTDVVALUE(3.00), duration(1)  Result:avgVal(0.95),totalCount(13), SelCount(13), selAvg(0.95) 
+index(0), percent(23.08)  count(3) 
+SH600108 TBuyData:20160324, pvHi2Op(0.000), TSellData:20160325, dvSelltoBuy:5.24
+SH600108 TBuyData:20160530, pvHi2Op(0.000), TSellData:20160531, dvSelltoBuy:3.92
+SH600108 TBuyData:20160718, pvHi2Op(0.000), TSellData:20160719, dvSelltoBuy:3.85
+index(1), percent(61.54)  count(8) 
+SH600108 TBuyData:20160202, pvHi2Op(0.000), TSellData:20160203, dvSelltoBuy:-0.59
+SH600108 TBuyData:20160310, pvHi2Op(0.000), TSellData:20160311, dvSelltoBuy:0.79
+SH600108 TBuyData:20160330, pvHi2Op(0.000), TSellData:20160331, dvSelltoBuy:-0.71
+SH600108 TBuyData:20160401, pvHi2Op(0.000), TSellData:20160405, dvSelltoBuy:2.53
+SH600108 TBuyData:20160425, pvHi2Op(0.000), TSellData:20160426, dvSelltoBuy:0.76
+SH600108 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160615, dvSelltoBuy:2.02
+SH600108 TBuyData:20160708, pvHi2Op(0.000), TSellData:20160711, dvSelltoBuy:-0.57
+SH600108 TBuyData:20160801, pvHi2Op(0.000), TSellData:20160802, dvSelltoBuy:0.40
+index(2), percent(15.38)  count(2) 
+SH600108 TBuyData:20160623, pvHi2Op(0.000), TSellData:20160624, dvSelltoBuy:-1.61
+SH600108 TBuyData:20160726, pvHi2Op(0.000), TSellData:20160727, dvSelltoBuy:-3.61
+index(3), percent(0.00)  count(0) 
+No.(2)- Conditon:  DESTDVVALUE(3.00), duration(2)  Result:avgVal(0.72),totalCount(12), SelCount(12), selAvg(0.72) 
+index(0), percent(25.00)  count(3) 
+SH600108 TBuyData:20160310, pvHi2Op(0.000), TSellData:20160314, dvSelltoBuy:3.54
+SH600108 TBuyData:20160530, pvHi2Op(0.000), TSellData:20160601, dvSelltoBuy:3.71
+SH600108 TBuyData:20160718, pvHi2Op(0.000), TSellData:20160720, dvSelltoBuy:3.28
+index(1), percent(58.33)  count(7) 
+SH600108 TBuyData:20160202, pvHi2Op(0.000), TSellData:20160204, dvSelltoBuy:0.99
+SH600108 TBuyData:20160324, pvHi2Op(0.000), TSellData:20160328, dvSelltoBuy:1.99
+SH600108 TBuyData:20160425, pvHi2Op(0.000), TSellData:20160427, dvSelltoBuy:0.38
+SH600108 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160616, dvSelltoBuy:-0.20
+SH600108 TBuyData:20160623, pvHi2Op(0.000), TSellData:20160627, dvSelltoBuy:-0.40
+SH600108 TBuyData:20160708, pvHi2Op(0.000), TSellData:20160712, dvSelltoBuy:0.38
+SH600108 TBuyData:20160801, pvHi2Op(0.000), TSellData:20160803, dvSelltoBuy:0.40
+index(2), percent(16.67)  count(2) 
+SH600108 TBuyData:20160330, pvHi2Op(0.000), TSellData:20160401, dvSelltoBuy:-1.60
+SH600108 TBuyData:20160726, pvHi2Op(0.000), TSellData:20160728, dvSelltoBuy:-3.80
+index(3), percent(0.00)  count(0) 
+No.(3)- Conditon:  DESTDVVALUE(3.00), duration(3)  Result:avgVal(0.55),totalCount(12), SelCount(12), selAvg(0.55) 
+index(0), percent(16.67)  count(2) 
+SH600108 TBuyData:20160530, pvHi2Op(0.000), TSellData:20160602, dvSelltoBuy:4.12
+SH600108 TBuyData:20160718, pvHi2Op(0.000), TSellData:20160721, dvSelltoBuy:3.66
+index(1), percent(75.00)  count(9) 
+SH600108 TBuyData:20160202, pvHi2Op(0.000), TSellData:20160205, dvSelltoBuy:0.20
+SH600108 TBuyData:20160310, pvHi2Op(0.000), TSellData:20160315, dvSelltoBuy:1.57
+SH600108 TBuyData:20160324, pvHi2Op(0.000), TSellData:20160329, dvSelltoBuy:-1.08
+SH600108 TBuyData:20160330, pvHi2Op(0.000), TSellData:20160405, dvSelltoBuy:0.89
+SH600108 TBuyData:20160425, pvHi2Op(0.000), TSellData:20160428, dvSelltoBuy:-1.33
+SH600108 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160617, dvSelltoBuy:1.01
+SH600108 TBuyData:20160623, pvHi2Op(0.000), TSellData:20160628, dvSelltoBuy:-0.20
+SH600108 TBuyData:20160708, pvHi2Op(0.000), TSellData:20160713, dvSelltoBuy:0.76
+SH600108 TBuyData:20160801, pvHi2Op(0.000), TSellData:20160804, dvSelltoBuy:0.60
+index(2), percent(8.33)  count(1) 
+SH600108 TBuyData:20160726, pvHi2Op(0.000), TSellData:20160729, dvSelltoBuy:-3.61
+index(3), percent(0.00)  count(0) 
+No.(4)- Conditon:  DESTDVVALUE(3.00), duration(4)  Result:avgVal(0.50),totalCount(12), SelCount(12), selAvg(0.50) 
+index(0), percent(8.33)  count(1) 
+SH600108 TBuyData:20160530, pvHi2Op(0.000), TSellData:20160603, dvSelltoBuy:4.33
+index(1), percent(75.00)  count(9) 
+SH600108 TBuyData:20160202, pvHi2Op(0.000), TSellData:20160215, dvSelltoBuy:-0.99
+SH600108 TBuyData:20160310, pvHi2Op(0.000), TSellData:20160316, dvSelltoBuy:1.96
+SH600108 TBuyData:20160324, pvHi2Op(0.000), TSellData:20160330, dvSelltoBuy:1.63
+SH600108 TBuyData:20160331, pvHi2Op(0.000), TSellData:20160407, dvSelltoBuy:0.00
+SH600108 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160620, dvSelltoBuy:1.81
+SH600108 TBuyData:20160623, pvHi2Op(0.000), TSellData:20160629, dvSelltoBuy:0.60
+SH600108 TBuyData:20160708, pvHi2Op(0.000), TSellData:20160714, dvSelltoBuy:0.76
+SH600108 TBuyData:20160718, pvHi2Op(0.000), TSellData:20160722, dvSelltoBuy:0.96
+SH600108 TBuyData:20160802, pvHi2Op(0.000), TSellData:20160808, dvSelltoBuy:0.99
+index(2), percent(16.67)  count(2) 
+SH600108 TBuyData:20160425, pvHi2Op(0.000), TSellData:20160429, dvSelltoBuy:-1.52
+SH600108 TBuyData:20160726, pvHi2Op(0.000), TSellData:20160801, dvSelltoBuy:-4.55
+index(3), percent(0.00)  count(0) 

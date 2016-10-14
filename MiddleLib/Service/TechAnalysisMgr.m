@@ -19,17 +19,28 @@
     
     
     long statDays = 2;
-    long middleIndex = 7;
-    for(long i=3; i<[self.contentArray count]-statDays;  ){
+    for(long i=4; i<[self.contentArray count]-statDays;  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
+        KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
         KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
         
-        if(kTP2Data.volume > kTP1Data.volume
-           && kTP1Data.volume > kT0Data.volume)
+        if(
+           (kTP2Data.volume > kTP1Data.volume
+           && kTP1Data.volume > kT0Data.volume
+           && kTP3Data.volume > kTP2Data.volume
+//           && kTP4Data.volume > kTP3Data.volume
+           )
+            &&
+           (kTP2Data.close > kTP1Data.close
+            && kTP1Data.close > kT0Data.close
+            && kTP3Data.close > kTP2Data.close
+            )
+           )
         {
             if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
                ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)

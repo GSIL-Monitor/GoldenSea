@@ -89,9 +89,9 @@
     [self configureMgr];
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
-    GSBaseParam* param = [[GSBaseParam alloc]init];
     
-    for(long i=1; i<=5; i++){
+    for(long i=1; i<=15; i++){
+        GSBaseParam* param = [[GSBaseParam alloc]init];
         param.destDVValue = 3.f;
         param.durationAfterBuy = i;
         [GSObjMgr shareInstance].mgr.param = param;
