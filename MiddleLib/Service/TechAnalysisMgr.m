@@ -36,13 +36,13 @@
         if(
            (kTP2Data.volume > kTP1Data.volume
            && kTP1Data.volume > kT0Data.volume
-//           && kTP3Data.volume > kTP2Data.volume
+           && kTP3Data.volume > kTP2Data.volume
 //           && kTP4Data.volume > kTP3Data.volume
            )
             &&
            (kTP2Data.close > kTP1Data.close
             && kTP1Data.close > kT0Data.close
-//            && kTP3Data.close > kTP2Data.close
+            && kTP3Data.close > kTP2Data.close
             )
            )
         {
