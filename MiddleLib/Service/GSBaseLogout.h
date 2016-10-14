@@ -30,5 +30,6 @@
 -(void)logSelResultWithParam:(GSBaseParam*)param;
 -(void)logAllResultWithParam:(GSBaseParam*)param;
 
+-(void)reOrderParamArray;
 
 @end

@@ -317,19 +317,19 @@
 }
 
 #pragma setter
--(void)setParam:(RaisingLimitParam *)oldParam
-{
-    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
-    param.durationAfterBuy = oldParam.durationAfterBuy;
-    param.buyPercent = oldParam.buyPercent;
-    param.daysAfterLastLimit = oldParam.daysAfterLastLimit;
-    param.destDVValue = oldParam.destDVValue;
-    param.cutDVValue = oldParam.cutDVValue;
-    
-    param.buyStartIndex = oldParam.buyStartIndex;
-    param.buyEndIndex = oldParam.buyEndIndex;
-    
-    _param = param;
-}
+//-(void)setParam:(RaisingLimitParam *)oldParam
+//{
+//    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
+//    param.durationAfterBuy = oldParam.durationAfterBuy;
+//    param.buyPercent = oldParam.buyPercent;
+//    param.daysAfterLastLimit = oldParam.daysAfterLastLimit;
+//    param.destDVValue = oldParam.destDVValue;
+//    param.cutDVValue = oldParam.cutDVValue;
+//    
+//    param.buyStartIndex = oldParam.buyStartIndex;
+//    param.buyEndIndex = oldParam.buyEndIndex;
+//    
+//    _param = param;
+//}
 
 @end

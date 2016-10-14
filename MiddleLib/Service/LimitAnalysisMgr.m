@@ -7,8 +7,11 @@
 //
 
 #import "LimitAnalysisMgr.h"
+#import "RaisingLimitParam.h"
 
 @interface LimitAnalysisMgr ()
+
+@property (nonatomic, strong) RaisingLimitParam* param;
 
 
 @end

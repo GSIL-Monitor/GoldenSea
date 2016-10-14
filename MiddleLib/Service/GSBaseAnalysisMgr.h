@@ -39,7 +39,7 @@
 
 //such as SZ300112 etc.
 @property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
-@property (nonatomic, strong) RaisingLimitParam* param;
+@property (nonatomic, strong) GSBaseParam* param;
 
 
 //we will analysis the data which simlar as this value

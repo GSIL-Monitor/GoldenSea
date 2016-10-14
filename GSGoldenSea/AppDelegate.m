@@ -45,24 +45,19 @@
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
-    BOOL isRest = YES;
+    BOOL isRest = NO;
     [[HYDayDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYWeekDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
 
-
-    [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
-    
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
-    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
-    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-    [GSDataMgr shareInstance].marketType = marketType_All;
     [GSDataMgr shareInstance].startDate = 20160125;
     //    [GSDataMgr shareInstance].startDate = 20160725;
-    
+
+
+#if 0
+    [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
+    [self configureMgr];
     
 //    [[HYLog shareInstance] enableLog];
 
@@ -70,23 +65,54 @@
 
     [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
     return;
+#endif
     
-    
-    [self testForAllLimit];
+    [self testForTech];
+//    [self testForAllLimit];
     //[self testForAvg];
 }
 
+-(void)configureMgr
+{
+    //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
+    //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+    [GSDataMgr shareInstance].marketType = marketType_All;
+}
 
 
+-(void)testForTech
+{
+    [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
+    [self configureMgr];
+    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
+    
+    GSBaseParam* param = [[GSBaseParam alloc]init];
+    
+    for(long i=1; i<=5; i++){
+        param.destDVValue = 3.f;
+        param.durationAfterBuy = i;
+        [GSObjMgr shareInstance].mgr.param = param;
+        
+        [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    }
+    
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+}
 
 -(void)testForAvg
 {
     [GSObjMgr shareInstance].mgr = [[AvgAnalysisMgr alloc]init];
+    [self configureMgr];
     [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
     param.destDVValue = 3.f;
     param.durationAfterBuy = 3;
+    [GSObjMgr shareInstance].mgr.param = param;
+
 
     [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
     [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
@@ -96,8 +122,8 @@
 {
 
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
+    [self configureMgr];
     [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 
     
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];

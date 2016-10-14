@@ -20,37 +20,46 @@
     
     long statDays = 2;
     long middleIndex = 7;
-    for(long i=1; i<[self.contentArray count]-statDays; i++ ){
+    for(long i=3; i<[self.contentArray count]-statDays;  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
+        KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
         
-        //        if(kT0Data.isLimitUp)
+        if(kTP2Data.volume > kTP1Data.volume
+           && kTP1Data.volume > kT0Data.volume)
         {
             if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
                ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
                ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+                i++;
                 continue;
             }
             kT0Data.stkID = self.stkID;
             
-            buyValue = kTP1Data.ma5 * 1.f+0.1; //self.param.buyPercent;
-            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i stop:i kT0data:kT0Data];
-            if(bIndex == -1){ //not find
-                continue;
-            }
+            buyValue = kT0Data.close;
             
-            //            kT0Data.TBuyData = [self.contentArray objectAtIndex:i];
+            kT0Data.tradeDbg.TBuyData = kT0Data;
+            kT0Data.tradeDbg.TSellData = [self.contentArray safeObjectAtIndex:i+self.param.durationAfterBuy];
             
-            sellValue = [self getSellValue:buyValue bIndexInArray:i+1 kT0data:kT0Data];
+            
+            sellValue = kT0Data.tradeDbg.TSellData.close;
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             
             
+            
+            
         }
+        
+        //increase i.
+        if(kT0Data.tradeDbg.TSellData)
+            i += self.param.durationAfterBuy+1;
+        else
+            i++;
         
     }
     

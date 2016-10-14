@@ -21,7 +21,7 @@
 
 -(void)analysisAndLogtoFile;
 {
-    [super analysisAndLogtoFile];
+    [self reOrderParamArray];
     
     [[HYLog shareInstance] enableLog];
     
