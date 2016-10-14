@@ -10,7 +10,7 @@
 
 @implementation TechAnalysisMgr
 
--(void)analysis //tbd.
+-(void)analysis
 {
     if(! [self isValidDataPassedIn] || [self.contentArray count]< 3 ) // || [self.contentArray count]<20)
     {
@@ -29,16 +29,20 @@
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
         
+        if(kT0Data.time == 20160527){
+            NSLog(@"");
+        }
+        
         if(
            (kTP2Data.volume > kTP1Data.volume
            && kTP1Data.volume > kT0Data.volume
-           && kTP3Data.volume > kTP2Data.volume
+//           && kTP3Data.volume > kTP2Data.volume
 //           && kTP4Data.volume > kTP3Data.volume
            )
             &&
            (kTP2Data.close > kTP1Data.close
             && kTP1Data.close > kT0Data.close
-            && kTP3Data.close > kTP2Data.close
+//            && kTP3Data.close > kTP2Data.close
             )
            )
         {
@@ -53,10 +57,13 @@
             buyValue = kT0Data.close;
             
             kT0Data.tradeDbg.TBuyData = kT0Data;
-            kT0Data.tradeDbg.TSellData = [self.contentArray safeObjectAtIndex:i+self.param.durationAfterBuy];
             
             
-            sellValue = kT0Data.tradeDbg.TSellData.close;
+//            kT0Data.tradeDbg.TSellData = [self.contentArray safeObjectAtIndex:i+self.param.durationAfterBuy];
+//            sellValue = kT0Data.tradeDbg.TSellData.close;
+            
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data start:i+1 stop:i+self.param.durationAfterBuy];
+
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];

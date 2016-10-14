@@ -217,8 +217,9 @@
             
             kT0Data.tradeDbg.TBuyData = [self.contentArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
             
-            
-            sellValue = [self getSellValue:buyValue bIndexInArray:i+self.param.buyStartIndex+bIndex+1 kT0data:kT0Data];
+            long start = i+self.param.buyStartIndex+bIndex+1;
+            long stop = start+self.param.durationAfterBuy;
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data start:start stop:stop];
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];

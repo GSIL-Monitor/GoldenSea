@@ -293,18 +293,19 @@
 
 
 #pragma mark - common
--(CGFloat)getSellValue:(CGFloat)buyValue bIndexInArray:(NSUInteger)bIndexInArray kT0data:(KDataModel*)kT0Data;
+//start:(long)startIndex stop:(long)stopIndex
+-(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data start:(long)startIndex stop:(long)stopIndex;
 {
     CGFloat sellValue;
     
     GSBaseAnalysisMgr* man = self;
     CGFloat destValue = (1+man.param.destDVValue/100.f)*buyValue;
     long durationAfterBuy = self.param.durationAfterBuy;
-    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:bIndexInArray stop:bIndexInArray+durationAfterBuy-1 kT0data:kT0Data];
+    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:startIndex stop:stopIndex kT0data:kT0Data];
     if(sIndex != -1){ //find
         sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
-        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:(bIndexInArray+durationAfterBuy-1)];
+        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:stopIndex];
         if(kT0Data.tradeDbg.TSellData){ //if had data in that day.
             sellValue = kT0Data.tradeDbg.TSellData.close;
         }else{

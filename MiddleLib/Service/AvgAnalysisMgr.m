@@ -45,7 +45,7 @@
             
 //            kT0Data.TBuyData = [self.contentArray objectAtIndex:i];
             
-            sellValue = [self getSellValue:buyValue bIndexInArray:i+1 kT0data:kT0Data];
+//            sellValue = [self getSellValue:buyValue bIndexInArray:i+1 kT0data:kT0Data];
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
