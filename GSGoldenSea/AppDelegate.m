@@ -98,7 +98,7 @@
     
     for(long i=1; i<=2; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 1.5f;
+        param.destDVValue = 2.5f;
         param.durationAfterBuy = i;
         [GSObjMgr shareInstance].mgr.param = param;
         

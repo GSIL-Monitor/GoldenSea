@@ -23,11 +23,11 @@
 
 
 //原始结果, 在分析过程中已经将时间成本考虑进去
-@property (nonatomic,strong) NSMutableArray* allResultArray;
-@property (assign) int allTotalCount;
-@property (nonatomic, assign) CGFloat allTotalS2BDVValue;
-@property (nonatomic, assign) CGFloat allAvgS2BDVValue; //平均每次收益率
-
+@property (nonatomic,strong) NSMutableArray* resultArray;
+@property (assign) int totalCount;
+@property (nonatomic, assign) CGFloat totalS2BDVValue;
+@property (nonatomic, assign) CGFloat avgS2BDVValue; //平均每次收益率
+//@property (nonatomic, assign) CGFloat sucPecent;
 
 //condition
 @property (assign) CGFloat destDVValue; //目标位
@@ -35,6 +35,8 @@
 
 @property (assign) long durationAfterBuy; //the duaration(t+n day) after the buy day.
 
+
+-(CGFloat)getSucPecent;
 
 
 //检测kTP1Data的数据是否满足MA5和MA10的要求，即不能超出太多

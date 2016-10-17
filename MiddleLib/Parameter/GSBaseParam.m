@@ -46,12 +46,19 @@
 //    }
     
     
-    self.allResultArray = [NSMutableArray array];
-    self.allTotalCount = 0;
-    self.allTotalS2BDVValue = 0;
+    self.resultArray = [NSMutableArray array];
+    self.totalCount = 0;
+    self.totalS2BDVValue = 0;
     for(long i=0; i<3; i++){
-        [self.allResultArray addObject:[NSMutableArray array]];
+        [self.resultArray addObject:[NSMutableArray array]];
     }
+}
+
+-(CGFloat)getSucPecent;
+{
+    NSArray* sucArray = [self.resultArray safeObjectAtIndex:0];
+    NSUInteger sucCount = [sucArray count];
+    return  sucCount*100.f/self.totalCount;
 }
 
 -(BOOL)isMapRasingLimitAvgConditon:(KDataModel*)kTP1Data

@@ -27,7 +27,7 @@
 -(id)init
 {
     if(self = [super init]){
-        
+        self.realStkRangeArray = [NSMutableArray array];
     }
     
     return self;
@@ -91,6 +91,10 @@
         
         if(![self isInRange:self.stkID]){
             continue;
+        }
+        
+        if(![self.realStkRangeArray containsObject:self.stkID]){
+            [self.realStkRangeArray addObject:self.stkID];
         }
         
 //        SMLog(@"stkID: %@",self.stkID);

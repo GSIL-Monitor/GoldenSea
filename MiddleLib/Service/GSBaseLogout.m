@@ -53,7 +53,7 @@
     
     GSBaseResult* reslut = [GSObjMgr shareInstance].mgr.reslut;
     
-    NSArray* stkArray = [GSObjMgr shareInstance].mgr.stkRangeArray;
+    NSArray* stkArray = [GSObjMgr shareInstance].mgr.realStkRangeArray;
     
     for(long i = 0; i<[stkArray count]; i++){
         NSString* stk = [stkArray objectAtIndex:i];
@@ -64,14 +64,14 @@
         SMLog(@"%@---summary report (%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
         for (long i=0; i<[arrayUsed count]; i++) {
             GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-            SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount );
+            SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
         }
         
         SMLog(@"\n");
         SMLog(@"%@---detail report(%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
         for (long i=0; i<[arrayUsed count]; i++) {
             GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-            SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount);
+            SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
             [self logAllResultWithParam:ele];
         }
 
@@ -150,8 +150,8 @@
         GSBaseParam* par1 = obj1;
         GSBaseParam* par2 = obj2;
 
-        NSNumber *number1 = [NSNumber numberWithFloat: par1.allAvgS2BDVValue];
-        NSNumber *number2 = [NSNumber numberWithFloat: par2.allAvgS2BDVValue];
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.avgS2BDVValue];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.avgS2BDVValue];
 
         
         NSComparisonResult result = [number1 compare:number2];
@@ -173,12 +173,12 @@
 
 -(void)logWithParam:(GSBaseParam*)param isForSel:(BOOL)isForSel;
 {
-    NSArray* resultArray = param.allResultArray;
-    long totalCount = param.allTotalCount;
+    NSArray* resultArray = param.resultArray;
+    long totalCount = param.totalCount;
     
     if(!isForSel){
-        resultArray = param.allResultArray;
-        totalCount = param.allTotalCount;
+        resultArray = param.resultArray;
+        totalCount = param.totalCount;
     }
     
     //calulate percent firstly
@@ -193,7 +193,7 @@
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@ TBuyData:%ld, pvHi2Op(%.3f), TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.pvHi2Op,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy);
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy);
         }
     }
 

@@ -38,7 +38,8 @@
 
 
 //such as SZ300112 etc.
-@property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
+@property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk. it's passed by client
+@property (nonatomic, strong) NSMutableArray* realStkRangeArray; //if nil,wiil add all stk.
 @property (nonatomic, strong) GSBaseParam* param;
 @property (nonatomic, strong) GSBaseResult* reslut;
 
