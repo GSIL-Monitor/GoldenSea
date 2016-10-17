@@ -61,14 +61,14 @@
     SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
     for (long i=0; i<[arrayUsed count]; i++) {
         GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d), SelCount(%d), selAvg(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selAvgS2BDVValue );
+        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount );
     }
     
     SMLog(@"\n");
     SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
     for (long i=0; i<[arrayUsed count]; i++) {
         GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d), SelCount(%d), selAvg(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount,ele.selTotalCount,ele.selAvgS2BDVValue );
+        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount);
         //        [self logSelResultWithParam:ele];
         [self logAllResultWithParam:ele];
     }
@@ -151,8 +151,8 @@
 //        NSNumber *number1 = [NSNumber numberWithFloat: par1.selTotalS2BDVValue];
 //        NSNumber *number2 = [NSNumber numberWithFloat: par2.selTotalS2BDVValue];
 
-        NSNumber *number1 = [NSNumber numberWithFloat: par1.selAvgS2BDVValue];
-        NSNumber *number2 = [NSNumber numberWithFloat: par2.selAvgS2BDVValue];
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.allAvgS2BDVValue];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.allAvgS2BDVValue];
 
         
         NSComparisonResult result = [number1 compare:number2];
@@ -177,8 +177,8 @@
 
 -(void)logWithParam:(GSBaseParam*)param isForSel:(BOOL)isForSel;
 {
-    NSArray* resultArray = param.selResultArray;
-    long totalCount = param.selTotalCount;
+    NSArray* resultArray = param.allResultArray;
+    long totalCount = param.allTotalCount;
     
     if(!isForSel){
         resultArray = param.allResultArray;

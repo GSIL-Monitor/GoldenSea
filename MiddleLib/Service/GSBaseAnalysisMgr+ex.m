@@ -168,18 +168,18 @@
     }
     
     //save to sel
-    if (dvValue >= self.param.destDVValue-0.01){
-        tmpArray = [self.param.selResultArray objectAtIndex:0];
-    }else if (dvValue > -1.5f){
-        tmpArray = [self.param.selResultArray objectAtIndex:1];
-    }else if (dvValue > -11.f){
-        tmpArray = [self.param.selResultArray objectAtIndex:2];
-    }else{
-        tmpArray = [self.param.selResultArray objectAtIndex:3];
-    }
-    [tmpArray addObject:kT0data];
-    self.param.selTotalS2BDVValue += dvValue;
-    self.param.selTotalCount++;
+//    if (dvValue >= self.param.destDVValue-0.01){
+//        tmpArray = [self.param.selResultArray objectAtIndex:0];
+//    }else if (dvValue > -1.5f){
+//        tmpArray = [self.param.selResultArray objectAtIndex:1];
+//    }else if (dvValue > -11.f){
+//        tmpArray = [self.param.selResultArray objectAtIndex:2];
+//    }else{
+//        tmpArray = [self.param.selResultArray objectAtIndex:3];
+//    }
+//    [tmpArray addObject:kT0data];
+//    self.param.selTotalS2BDVValue += dvValue;
+//    self.param.selTotalCount++;
 
 }
 
@@ -187,32 +187,32 @@
 {
     BOOL isInUse = NO;
     
-    //    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
-    for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
-        NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
-
-        KeyTimeObj* keyTimeObj = [self.param.selResultDict objectForKey:keyTime];
-        if(keyTimeObj){
-            isInUse = YES;
-            
-            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
-            keyTimeObj.totalDays ++;
-            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
-            
-            break;
-        }
-    }
-    
-    if(!isInUse){
-        for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
-            NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
-            KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
-            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
-            keyTimeObj.totalDays ++;
-            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
-            [self.param.selResultDict setObject:keyTimeObj forKey:keyTime];
-        }
-    }
+//    //    for(long time = kT0data.TBuyData.time; time<=kT0data.TSellData.time; time++){
+//    for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
+//        NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
+//
+//        KeyTimeObj* keyTimeObj = [self.param.selResultDict objectForKey:keyTime];
+//        if(keyTimeObj){
+//            isInUse = YES;
+//            
+//            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
+//            keyTimeObj.totalDays ++;
+//            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
+//            
+//            break;
+//        }
+//    }
+//    
+//    if(!isInUse){
+//        for(long time = kT0data.tradeDbg.TBuyData.time; time<=kT0data.tradeDbg.TBuyData.time; time++){
+//            NSString* keyTime = [NSString stringWithFormat:@"%ld",time];
+//            KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
+//            keyTimeObj.totalVal += kT0data.tradeDbg.dvSelltoBuy;
+//            keyTimeObj.totalDays ++;
+//            keyTimeObj.avgVal = keyTimeObj.totalVal/keyTimeObj.totalDays;
+//            [self.param.selResultDict setObject:keyTimeObj forKey:keyTime];
+//        }
+//    }
     
     
     return isInUse;

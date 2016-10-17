@@ -29,21 +29,21 @@
 
 -(void)resetForAll
 {
-    self.selResultArray = [NSMutableArray array];
-    self.selResultDict = [NSMutableDictionary dictionary];
-    self.selTotalCount = 0;
-    self.selTotalS2BDVValue = 0;
-    
-    /*
-     Sndday high vs fstday close
-     >3%
-     >0.8%
-     >-1.5%
-     >-10%
-     */
-    for(long i=0; i<4; i++){
-        [self.selResultArray addObject:[NSMutableArray array]];
-    }
+//    self.selResultArray = [NSMutableArray array];
+//    self.selResultDict = [NSMutableDictionary dictionary];
+//    self.selTotalCount = 0;
+//    self.selTotalS2BDVValue = 0;
+//    
+//    /*
+//     Sndday high vs fstday close
+//     >3%
+//     >0.8%
+//     >-1.5%
+//     >-10%
+//     */
+//    for(long i=0; i<4; i++){
+//        [self.selResultArray addObject:[NSMutableArray array]];
+//    }
     
     
     self.allResultArray = [NSMutableArray array];
@@ -84,14 +84,14 @@
 
 -(void)calcSelAvg;
 {
-    long i=0;
-    CGFloat val = 0.f;
-    for(NSString* key in self.selResultDict){
-        KeyTimeObj* ele = [self.selResultDict objectForKey:key];
-        val += ele.avgVal;
-        i++;
-    }
-    self.selAvgS2BDVValue = val/i;
+//    long i=0;
+//    CGFloat val = 0.f;
+//    for(NSString* key in self.selResultDict){
+//        KeyTimeObj* ele = [self.selResultDict objectForKey:key];
+//        val += ele.avgVal;
+//        i++;
+//    }
+//    self.selAvgS2BDVValue = val/i;
 }
 
 @end
