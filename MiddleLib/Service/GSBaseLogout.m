@@ -45,7 +45,7 @@
 }
 
 
-//base analysis: deal to one stk.
+//base analysis
 -(void)analysisAndLogtoFile;
 {
     [[HYLog shareInstance] enableLog];
@@ -61,18 +61,17 @@
         NSMutableArray* paramArray = [reslut paramArrayWithSymbol:stk];
         NSArray* arrayUsed = [self reOrderParamArray:paramArray];
         
-        SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
+        SMLog(@"%@---summary report (%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
         for (long i=0; i<[arrayUsed count]; i++) {
             GSBaseParam* ele = [arrayUsed objectAtIndex:i];
             SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount );
         }
         
         SMLog(@"\n");
-        SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
+        SMLog(@"%@---detail report(%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
         for (long i=0; i<[arrayUsed count]; i++) {
             GSBaseParam* ele = [arrayUsed objectAtIndex:i];
             SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount);
-            //        [self logSelResultWithParam:ele];
             [self logAllResultWithParam:ele];
         }
 
@@ -150,8 +149,6 @@
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         GSBaseParam* par1 = obj1;
         GSBaseParam* par2 = obj2;
-//        NSNumber *number1 = [NSNumber numberWithFloat: par1.selTotalS2BDVValue];
-//        NSNumber *number2 = [NSNumber numberWithFloat: par2.selTotalS2BDVValue];
 
         NSNumber *number1 = [NSNumber numberWithFloat: par1.allAvgS2BDVValue];
         NSNumber *number2 = [NSNumber numberWithFloat: par2.allAvgS2BDVValue];
@@ -167,10 +164,7 @@
     return resultArray;
 }
 
--(void)logSelResultWithParam:(GSBaseParam*)param;
-{
-    [self logWithParam:param isForSel:YES];
-}
+
 
 -(void)logAllResultWithParam:(GSBaseParam*)param;
 {
@@ -206,17 +200,6 @@
 }
 
 
-#pragma mark - getter&setter
-//-(NSMutableArray*)countArray{
-//    if(!_countArray){
-//        _countArray = [NSMutableArray array];
-//        for(long i=0; i<9; i++){
-//            NSNumber* count = [NSNumber numberWithInt:0];
-//            [_countArray addObject:count];
-//        }
-//    }
-//    
-//    return _countArray;
-//}
+
 
 @end

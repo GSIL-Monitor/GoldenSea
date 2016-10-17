@@ -82,7 +82,7 @@
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
-    SMLog(@"start analysisAllInDir with Param(destDVValue:%.2f)",self.param.destDVValue);
+//    SMLog(@"start analysisAllInDir with Param(destDVValue:%.2f)",self.param.destDVValue);
     
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){

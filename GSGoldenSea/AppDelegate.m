@@ -75,7 +75,7 @@
 -(void)configureMgr
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;

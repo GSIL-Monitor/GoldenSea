@@ -47,10 +47,9 @@
     
     
     self.allResultArray = [NSMutableArray array];
-    self.allResultDict = [NSMutableDictionary dictionary];
     self.allTotalCount = 0;
     self.allTotalS2BDVValue = 0;
-    for(long i=0; i<4; i++){
+    for(long i=0; i<3; i++){
         [self.allResultArray addObject:[NSMutableArray array]];
     }
 }
@@ -82,16 +81,5 @@
 }
 
 
--(void)calcSelAvg;
-{
-//    long i=0;
-//    CGFloat val = 0.f;
-//    for(NSString* key in self.selResultDict){
-//        KeyTimeObj* ele = [self.selResultDict objectForKey:key];
-//        val += ele.avgVal;
-//        i++;
-//    }
-//    self.selAvgS2BDVValue = val/i;
-}
 
 @end

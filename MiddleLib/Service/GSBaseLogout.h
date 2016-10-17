@@ -12,8 +12,6 @@
 
 
 
-//@property (nonatomic, strong) NSMutableArray* paramArray;
-
 //interface
 -(void)logOutResult;
 
@@ -27,7 +25,6 @@
 //-(void)queryAndLogtoDB;
 
 //protected.
--(void)logSelResultWithParam:(GSBaseParam*)param;
 -(void)logAllResultWithParam:(GSBaseParam*)param;
 
 -(NSArray*)reOrderParamArray:(NSMutableArray*)array;
