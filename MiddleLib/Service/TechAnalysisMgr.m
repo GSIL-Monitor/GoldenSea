@@ -67,10 +67,6 @@
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
-            
-            
-            
-            
         }
         
         //increase i.

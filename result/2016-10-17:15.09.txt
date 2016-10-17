@@ -1,0 +1,13 @@
+---summary report(20160125-21680808)---
+No.(0)- Conditon:  DESTDVVALUE(2.50), duration(1)  Result:allTotalS2BDVValue(7.08), totalAvgVal(2.36),totalCount(3), SelCount(3), selAvg(2.36) 
+
+
+---detail report(20160125-21680808)---
+No.(0)- Conditon:  DESTDVVALUE(2.50), duration(1)  Result:avgVal(2.36),totalCount(3), SelCount(3), selAvg(2.36) 
+index(0), percent(66.67)  count(2) 
+SH600167 TBuyData:20160614, pvHi2Op(0.000), TSellData:20160615, dvSelltoBuy:2.50
+SH600167 TBuyData:20160620, pvHi2Op(0.000), TSellData:20160621, dvSelltoBuy:2.50
+index(1), percent(33.33)  count(1) 
+SH600167 TBuyData:20160701, pvHi2Op(0.000), TSellData:20160704, dvSelltoBuy:2.08
+index(2), percent(0.00)  count(0) 
+index(3), percent(0.00)  count(0) 

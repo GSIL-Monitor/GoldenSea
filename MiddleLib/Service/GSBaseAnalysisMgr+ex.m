@@ -145,25 +145,10 @@
     kT0data.tradeDbg.dvSelltoBuy = dvValue;
     
     NSMutableArray* tmpArray;
-    
-   
-    //save to one
-    if (dvValue >= self.param.destDVValue-0.01){ //-0.01是为了float的精度问题
-        tmpArray = [self.resultArray objectAtIndex:0];
-    }else if (dvValue > -1.5f){
-        tmpArray = [self.resultArray objectAtIndex:1];
-    }else if (dvValue > -11.f){
-        tmpArray = [self.resultArray objectAtIndex:2];
-    }else{
-        tmpArray = [self.resultArray objectAtIndex:3];
-    }
-    [tmpArray addObject:kT0data];
-    self.totalS2BDVValue += dvValue;
-    self.totalCount++;
 
     
     //save to all.
-    if (dvValue >= self.param.destDVValue-0.01){
+    if (dvValue >= self.param.destDVValue-0.01){ //-0.01是为了float的精度问题
         tmpArray = [self.param.allResultArray objectAtIndex:0];
     }else if (dvValue > -1.5f){
         tmpArray = [self.param.allResultArray objectAtIndex:1];
@@ -237,21 +222,6 @@
 -(void)resetForOne
 {
     self.contentArray = [NSMutableArray array];
-
-    self.totalCount = 0;
-    self.totalS2BDVValue = 0;
-    self.resultArray = [NSMutableArray array];
-    
-    /*
-     Sndday high vs fstday close
-     >3%
-     >0.8%
-     >-1.5%
-     >-10%
-     */
-    for(long i=0; i<4; i++){
-        [self.resultArray addObject:[NSMutableArray array]];
-    }
 }
 
 

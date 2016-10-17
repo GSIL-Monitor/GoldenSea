@@ -26,9 +26,9 @@
 
 
 //reslut realted
-@property (nonatomic,strong) NSMutableArray* resultArray;
-@property (assign) int totalCount;
-@property (nonatomic, assign) CGFloat totalS2BDVValue;
+//@property (nonatomic,strong) NSMutableArray* resultArray;
+//@property (assign) int totalCount;
+//@property (nonatomic, assign) CGFloat totalS2BDVValue;
 
 @property (nonatomic, strong) NSMutableArray* queryResArray;
 

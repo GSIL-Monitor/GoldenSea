@@ -43,58 +43,6 @@
 
 -(void)_SimpleLogOutForAll:(BOOL)isForAll isJustLogFail:(BOOL)isJustLogFail
 {
-    if(Key_JustLogOut_All){
-        if(!isForAll){
-            return;
-        }
-    }
-    
-    
-    NSArray* resultArray = [GSObjMgr shareInstance].mgr.resultArray;
-    long totalCount = [GSObjMgr shareInstance].mgr.totalCount;
-    if(isForAll){
-        resultArray = [GSObjMgr shareInstance].mgr.param.selResultArray;
-        totalCount = [GSObjMgr shareInstance].mgr.param.selTotalCount;
-    }
-    
-//    GSBaseAnalysisMgr* analyMan = [GSObjMgr shareInstance].mgr;
-    
-    //calulate percent firstly
-    NSMutableArray* tmpArray;
-    CGFloat percent = 0.f;
-    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
-    for(long i=0; i<[resultArray count]; i++){
-        tmpArray = [resultArray objectAtIndex:i];
-        percent = [tmpArray count]*100.f/totalCount;
-        
-        if(!isForAll){
-            SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",[GSObjMgr shareInstance].mgr.stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,totalCount,winPercent,lossPercent,[GSObjMgr shareInstance].mgr.totalS2BDVValue);
-        }else{ //for all
-            SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
-        }
-        
-        
-        
-        //logout detail.
-        if(isForAll){
-            for (KDataModel* kData in tmpArray) {
-                SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time, kData.tradeDbg.dvSelltoBuy);
-            }
-        }else{
-            for (KDataModel* kData in tmpArray) {
-//                SMLog(@"%6ld  LowIndex:%ld, HighIndex:%ld,  TS2B:%.2f; TBuy(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f;    TSell(%6ld)-O:%.2f,H:%.2f,C:%.2f,L:%.2f; ",kData.time,kData.lowValDayIndex,kData.highValDayIndex,kData.dvSelltoBuy,
-//                      kData.TBuyData.time,kData.TBuyData.dvDebugData.dvT0.dvOpen,kData.TBuyData.dvDebugData.dvT0.dvHigh,kData.TBuyData.dvDebugData.dvT0.dvClose,kData.TBuyData.dvDebugData.dvT0.dvLow,
-//                      kData.TSellData.time, kData.TSellData.dvDebugData.dvT0.dvOpen,kData.TSellData.dvDebugData.dvT0.dvHigh,kData.TSellData.dvDebugData.dvT0.dvClose,kData.TSellData.dvDebugData.dvT0.dvLow                      );
-            }
-        }
-        
-    }
-    
-    
-    
-
-    
-    
 }
 
 
@@ -148,28 +96,28 @@
     
     GSBaseAnalysisMgr* analyMan = [GSObjMgr shareInstance].mgr;
     
-    //calulate percent firstly
-    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
-    for(long i=0; i<[analyMan.resultArray count]; i++){
-        tmpArray = [analyMan.resultArray objectAtIndex:i];
-        
-        percent = [tmpArray count]*100.f/analyMan.totalCount;
-        
-    }
-    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
-    
-    
-//        return;
-    
-    for(long i=0; i<[analyMan.resultArray count]; i++){
-        tmpArray = [analyMan.resultArray objectAtIndex:i];
-        
-        percent = [tmpArray count]*100.f/analyMan.totalCount;
-        
-        for (KDataModel* kData in tmpArray) {
-            [self logResWithDV:kData];
-        }
-    }
+//    //calulate percent firstly
+//    CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
+//    for(long i=0; i<[analyMan.resultArray count]; i++){
+//        tmpArray = [analyMan.resultArray objectAtIndex:i];
+//        
+//        percent = [tmpArray count]*100.f/analyMan.totalCount;
+//        
+//    }
+//    SMLog(@"\nSTK:%@ %d-%d totalCount(%d): win(%.2f),loss(%.2f) --totalS2BDVValue(%2f) ",analyMan.stkID,[GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate,analyMan.totalCount,winPercent,lossPercent,analyMan.totalS2BDVValue);
+//    
+//    
+////        return;
+//    
+//    for(long i=0; i<[analyMan.resultArray count]; i++){
+//        tmpArray = [analyMan.resultArray objectAtIndex:i];
+//        
+//        percent = [tmpArray count]*100.f/analyMan.totalCount;
+//        
+//        for (KDataModel* kData in tmpArray) {
+//            [self logResWithDV:kData];
+//        }
+//    }
     
     
 }
