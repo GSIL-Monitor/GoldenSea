@@ -28,6 +28,8 @@
         KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
+        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
+
         
         if(kT0Data.time == 20160527){
             NSLog(@"");
@@ -54,19 +56,25 @@
             }
             kT0Data.stkID = self.stkID;
             
+#if 0
             buyValue = kT0Data.close;
-            
             kT0Data.tradeDbg.TBuyData = kT0Data;
             
-            
-//            kT0Data.tradeDbg.TSellData = [self.contentArray safeObjectAtIndex:i+self.param.durationAfterBuy];
-//            sellValue = kT0Data.tradeDbg.TSellData.close;
-            
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data start:i+1 stop:i+self.param.durationAfterBuy];
-
+#endif
             
-            if(kT0Data.tradeDbg.TSellData)
+            //case 2
+#if 1
+            buyValue = kT1Data.open;
+            kT0Data.tradeDbg.TBuyData = kT1Data;
+            
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data start:i+1+1 stop:i+1+self.param.durationAfterBuy];
+#endif
+            
+            
+            if(kT0Data.tradeDbg.TSellData){
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+            }
         }
         
         //increase i.
