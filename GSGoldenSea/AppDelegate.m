@@ -25,6 +25,7 @@
 #import "LimitAnalysisMgr.h"
 #import "AvgAnalysisMgr.h"
 #import "TechAnalysisMgr.h"
+#import "GSBaseResult.h"
 
 @interface AppDelegate (){
     
@@ -41,7 +42,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     //get data.
-    
     
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     _filedir = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/KDay",[paths stringByDeletingLastPathComponent]];
@@ -80,6 +80,10 @@
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
     [GSDataMgr shareInstance].marketType = marketType_All;
+    
+    GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
+    [GSObjMgr shareInstance].mgr.reslut = baseReslut;
+
 }
 
 
@@ -94,7 +98,7 @@
     
     for(long i=1; i<=2; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 4.5f;
+        param.destDVValue = 1.5f;
         param.durationAfterBuy = i;
         [GSObjMgr shareInstance].mgr.param = param;
         

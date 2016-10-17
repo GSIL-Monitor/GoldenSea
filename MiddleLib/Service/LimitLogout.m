@@ -21,14 +21,12 @@
 
 -(void)analysisAndLogtoFile;
 {
-    [self reOrderParamArray];
     
     [[HYLog shareInstance] enableLog];
     
 //    KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
 
     
-    NSArray* arrayUsed = self.paramArray;
     
 //    SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
 //    for (long i=0; i<[arrayUsed count]; i++) {

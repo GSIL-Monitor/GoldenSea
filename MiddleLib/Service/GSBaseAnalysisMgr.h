@@ -13,7 +13,7 @@
 
 
 #import "GSBaseParam.h"
-
+#import "GSBaseResult.h"
 
 
 
@@ -40,7 +40,7 @@
 //such as SZ300112 etc.
 @property (nonatomic, strong) NSArray* stkRangeArray; //if nil,means all stk.
 @property (nonatomic, strong) GSBaseParam* param;
-
+@property (nonatomic, strong) GSBaseResult* reslut;
 
 //we will analysis the data which simlar as this value
 @property (strong) KDataModel* currT0KData;

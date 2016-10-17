@@ -12,7 +12,7 @@
 
 
 
-@property (nonatomic, strong) NSMutableArray* paramArray;
+//@property (nonatomic, strong) NSMutableArray* paramArray;
 
 //interface
 -(void)logOutResult;
@@ -30,6 +30,6 @@
 -(void)logSelResultWithParam:(GSBaseParam*)param;
 -(void)logAllResultWithParam:(GSBaseParam*)param;
 
--(void)reOrderParamArray;
+-(NSArray*)reOrderParamArray:(NSMutableArray*)array;
 
 @end

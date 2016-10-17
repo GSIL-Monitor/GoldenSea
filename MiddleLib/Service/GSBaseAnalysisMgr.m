@@ -98,11 +98,13 @@
 
         [self analysis];
         
+        
+        [self.reslut setSTK:self.stkID pararm:self.param];
     }
     
-    [self.param calcSelAvg]; 
-    
-    [[GSObjMgr shareInstance].log.paramArray addObject:self.param];
+//    [self.param calcSelAvg]; 
+//    
+//    [[GSObjMgr shareInstance].log.paramArray addObject:self.param];
     
 }
 

@@ -13,14 +13,12 @@
 
 -(void)analysisAndLogtoFile;
 {
-    [self reOrderParamArray];
     
     [[HYLog shareInstance] enableLog];
     
     //    KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
     
     
-    NSArray* arrayUsed = self.paramArray;
     
  
     

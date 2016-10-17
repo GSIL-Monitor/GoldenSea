@@ -29,7 +29,6 @@
 -(id)init
 {
     if(self = [super init]){
-        self.paramArray = [NSMutableArray array];
     }
     
     return self;
@@ -49,28 +48,34 @@
 //base analysis: deal to one stk.
 -(void)analysisAndLogtoFile;
 {
-    [self reOrderParamArray];
-    
     [[HYLog shareInstance] enableLog];
+
     
-    //    KeyTimeObj* keyTimeObj = [[KeyTimeObj alloc]init];
+    GSBaseResult* reslut = [GSObjMgr shareInstance].mgr.reslut;
     
+    NSArray* stkArray = [GSObjMgr shareInstance].mgr.stkRangeArray;
     
-    NSArray* arrayUsed = self.paramArray;
-    
-    SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
-    for (long i=0; i<[arrayUsed count]; i++) {
-        GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount );
-    }
-    
-    SMLog(@"\n");
-    SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
-    for (long i=0; i<[arrayUsed count]; i++) {
-        GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-        SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount);
-        //        [self logSelResultWithParam:ele];
-        [self logAllResultWithParam:ele];
+    for(long i = 0; i<[stkArray count]; i++){
+        NSString* stk = [stkArray objectAtIndex:i];
+        
+        NSMutableArray* paramArray = [reslut paramArrayWithSymbol:stk];
+        NSArray* arrayUsed = [self reOrderParamArray:paramArray];
+        
+        SMLog(@"---summary report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
+        for (long i=0; i<[arrayUsed count]; i++) {
+            GSBaseParam* ele = [arrayUsed objectAtIndex:i];
+            SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:allTotalS2BDVValue(%.2f), totalAvgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allTotalS2BDVValue, ele.allAvgS2BDVValue ,ele.allTotalCount );
+        }
+        
+        SMLog(@"\n");
+        SMLog(@"---detail report(%d-%d)---", [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
+        for (long i=0; i<[arrayUsed count]; i++) {
+            GSBaseParam* ele = [arrayUsed objectAtIndex:i];
+            SMLog(@"No.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.allAvgS2BDVValue ,ele.allTotalCount);
+            //        [self logSelResultWithParam:ele];
+            [self logAllResultWithParam:ele];
+        }
+
     }
     
     
@@ -140,11 +145,8 @@
 
 
 #pragma mark - new
--(void)reOrderParamArray
+-(NSArray*)reOrderParamArray:(NSMutableArray*)array
 {
-    NSMutableArray* array = self.paramArray;
-    
-    
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         GSBaseParam* par1 = obj1;
         GSBaseParam* par2 = obj2;
@@ -162,7 +164,7 @@
     }];
     
     
-    self.paramArray = (NSMutableArray*)resultArray;
+    return resultArray;
 }
 
 -(void)logSelResultWithParam:(GSBaseParam*)param;

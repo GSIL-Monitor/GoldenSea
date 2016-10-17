@@ -26,6 +26,7 @@
 		4264EDD21D8E7649006DF8A3 /* HYWeekDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD11D8E7649006DF8A3 /* HYWeekDBManager.m */; };
 		4264EDD51D8E765D006DF8A3 /* HYMonthDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */; };
 		4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */; };
+		4265DC361DB4BBAF0019EC09 /* GSBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265DC351DB4BBAF0019EC09 /* GSBaseResult.m */; };
 		426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSBaseLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataMgr.m */; };
 		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
@@ -158,6 +159,8 @@
 		4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYMonthDBManager.m; sourceTree = "<group>"; };
 		4264EDD61D8E7694006DF8A3 /* HYBaseDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseDBManager.h; sourceTree = "<group>"; };
 		4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseDBManager.m; sourceTree = "<group>"; };
+		4265DC341DB4BBAF0019EC09 /* GSBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseResult.h; sourceTree = "<group>"; };
+		4265DC351DB4BBAF0019EC09 /* GSBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseResult.m; sourceTree = "<group>"; };
 		426980021CEEF22200D99888 /* GSBaseLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseLogout.h; sourceTree = "<group>"; };
 		426980031CEEF22200D99888 /* GSBaseLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseLogout.m; sourceTree = "<group>"; };
 		426980051CEEF5F000D99888 /* GSDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSDataMgr.h; path = Service/GSDataMgr.h; sourceTree = "<group>"; };
@@ -852,6 +855,8 @@
 		E4941B601D64B9AD006B792B /* Parameter */ = {
 			isa = PBXGroup;
 			children = (
+				4265DC341DB4BBAF0019EC09 /* GSBaseResult.h */,
+				4265DC351DB4BBAF0019EC09 /* GSBaseResult.m */,
 				42A6EA601D6856EF00430CEC /* GSBaseParam.h */,
 				42A6EA611D6856EF00430CEC /* GSBaseParam.m */,
 				E4941B611D64BA15006B792B /* RaisingLimitParam.h */,
@@ -1020,6 +1025,7 @@
 				42E08E5B1C7FF8C1004E4DC2 /* HYModelManager.m in Sources */,
 				42E097271C7FFAEB004E4DC2 /* AFSecurityPolicy.m in Sources */,
 				4204D0541C880AC800D27135 /* STKModel.m in Sources */,
+				4265DC361DB4BBAF0019EC09 /* GSBaseResult.m in Sources */,
 				42E097321C7FFAEB004E4DC2 /* UIRefreshControl+AFNetworking.m in Sources */,
 				42E097AF1C7FFAEB004E4DC2 /* DDTTYLogger.m in Sources */,
 				42E097AE1C7FFAEB004E4DC2 /* DDLog.m in Sources */,
