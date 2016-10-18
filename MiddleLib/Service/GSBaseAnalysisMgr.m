@@ -56,6 +56,7 @@
     [GSDataMgr shareInstance].startDate = 20160601;
     
     self.queryResArray = [NSMutableArray array];
+    self.querySTKArray = [NSMutableArray array];
 
     
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
@@ -75,6 +76,13 @@
     [self queryAndLogtoDB];
     
     SMLog(@"end of queryAllInDir");
+    
+    [self analysisQuerySTKArray:docsDir];
+    
+}
+
+-(void)analysisQuerySTKArray:(NSString*)docsDir;
+{
     
 }
 

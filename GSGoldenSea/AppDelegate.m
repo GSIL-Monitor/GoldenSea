@@ -57,7 +57,7 @@
     //    [GSDataMgr shareInstance].startDate = 20160725;
 
 
-#if 1
+#if 0
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
     

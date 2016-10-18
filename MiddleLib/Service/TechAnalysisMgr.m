@@ -10,6 +10,35 @@
 
 @implementation TechAnalysisMgr
 
+-(BOOL)isMapCondition:(long)i
+{
+    KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
+    KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
+    KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
+    KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
+    KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
+    KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
+    
+    
+    if(
+       (kTP2Data.volume > kTP1Data.volume
+        && kTP1Data.volume > kT0Data.volume
+        && kTP3Data.volume > kTP2Data.volume
+        //           && kTP4Data.volume > kTP3Data.volume
+        )
+       &&
+       (kTP2Data.close > kTP1Data.close
+        && kTP1Data.close > kT0Data.close
+        && kTP3Data.close > kTP2Data.close
+        )
+       ){
+        return YES;
+    }
+    
+    
+    return NO;
+}
+
 -(void)query
 {
     //skip new stk.
@@ -17,44 +46,21 @@
         return;
     }
     
-    
-    //    SMLog(@"stkID:%@",self.stkID);
-    long lastIndex = [self.contentArray count]-1;
-//    for(long i=[self.contentArray count]-11; i<[self.contentArray count]-1; i++ )
-    
     long i = [self.contentArray count]-1;
     {
-        KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
-        KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
-        KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
-        KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
+//        KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
+//        KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
+//        KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
+//        KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
+//        KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
+//        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
         
         
-        if(kT0Data.time == 20160527){
-            NSLog(@"");
-        }
-        
-        if(
-           (kTP2Data.volume > kTP1Data.volume
-            && kTP1Data.volume > kT0Data.volume
-            && kTP3Data.volume > kTP2Data.volume
-            //           && kTP4Data.volume > kTP3Data.volume
-            )
-           &&
-           (kTP2Data.close > kTP1Data.close
-            && kTP1Data.close > kT0Data.close
-            && kTP3Data.close > kTP2Data.close
-            )
-           ){
-            SMLog(@"%@ - %ld", self.stkID,kT0Data.time);
+        BOOL isMap = [self isMapCondition:i];
+        if(isMap){
+            [self.querySTKArray addObject:self.stkID];
         }
     }
-    
-    
-    
-    //    [[GSObjMgr shareInstance].log  SimpleLogOutResult:NO];
     
     
 }

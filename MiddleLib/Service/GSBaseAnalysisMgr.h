@@ -25,11 +25,8 @@
 @property (nonatomic,strong) NSString* stkID;
 
 
-//reslut realted
-//@property (nonatomic,strong) NSMutableArray* resultArray;
-//@property (assign) int totalCount;
-//@property (nonatomic, assign) CGFloat totalS2BDVValue;
 
+@property (nonatomic, strong) NSMutableArray* querySTKArray;
 @property (nonatomic, strong) NSMutableArray* queryResArray;
 
 
