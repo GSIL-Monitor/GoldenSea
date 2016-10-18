@@ -37,12 +37,12 @@
     [self.DBHelper setupDB:[self defaultDBPath] isReset:isReset];
     
     
-    [[TSTK shareInstance]setup:self.DBHelper];
-    if([[TSTK shareInstance]createTableWithName:@"tSTKBasicInfo"]){
-        //        DDLogInfo(@"STK table create success!");
-    }else{
-        DDLogInfo(@"STK table create failed!");
-    }
+//    [[TSTK shareInstance]setup:self.DBHelper];
+//    if([[TSTK shareInstance]createTableWithName:@"tSTKBasicInfo"]){
+//        //        DDLogInfo(@"STK table create success!");
+//    }else{
+//        DDLogInfo(@"STK table create failed!");
+//    }
     
     
     [[TDBInfo shareInstance]setup:self.DBHelper];

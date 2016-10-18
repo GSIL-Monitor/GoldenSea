@@ -10,7 +10,13 @@
 
 @interface STKModel : HYBaseModel
 
-@property (strong) NSString* stkID;
+@property (nonatomic, strong) NSString* stkID;
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* industry;
+@property (nonatomic, strong) NSString* province;
+@property (nonatomic, assign) CGFloat totalMV; //market value;
+@property (nonatomic, assign) CGFloat curMV; //current market value;
+
 @property (assign) long lastUpdateTime;
 
 @end

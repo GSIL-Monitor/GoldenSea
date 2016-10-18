@@ -75,7 +75,9 @@
 -(void)configureMgr
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
+
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
@@ -89,7 +91,7 @@
 
 -(void)testForTech
 {
-    [GSDataMgr shareInstance].startDate = 20160125;
+//    [GSDataMgr shareInstance].startDate = 20160125;
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
