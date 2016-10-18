@@ -18,7 +18,7 @@
 @interface HYBaseDBManager : NSObject
 
 @property (nonatomic, strong) HYDatabaseHelper        *DBHelper;
-
+@property (nonatomic, strong) TDBInfo* dbInfo;
 
 -(NSString*)defaultDBPath;
 

@@ -21,6 +21,15 @@ typedef enum {
     DateType_yahoo
 }DateType;
 
+
+@interface GSDataMgr ()
+
+@property (nonatomic, strong) DBInfoModel* dayDBInfo;
+@property (nonatomic, strong) DBInfoModel* weekDBInfo;
+@property (nonatomic, strong) DBInfoModel* monthDBInfo;
+
+@end
+
 @implementation GSDataMgr
 
 SINGLETON_GENERATOR(GSDataMgr, shareInstance);
@@ -67,14 +76,21 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {
-    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
-    if(!dbInfo){ //no result. means first time.
-        [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
-    }else{
-        //from the lastUpdateTime, in case the lastUpdateTime day date not in db.
-        //Don't! 
-        [self _writeDataToDB:docsDir FromDate:(int)dbInfo.lastUpdateTime EndDate:dataEndDate];
-    }
+    self.dayDBInfo = [[HYDayDBManager defaultManager].dbInfo getRecord];
+    self.weekDBInfo = [[HYWeekDBManager defaultManager].dbInfo getRecord];
+    self.monthDBInfo = [[HYMonthDBManager defaultManager].dbInfo getRecord];
+    
+//    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
+//    if(!dbInfo){ //no result. means first time.
+//        [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
+//    }else{
+//        //from the lastUpdateTime, in case the lastUpdateTime day date not in db.
+//        //Don't! 
+//        [self _writeDataToDB:docsDir FromDate:(int)dbInfo.lastUpdateTime EndDate:dataEndDate];
+//    }
+    
+    [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
+
     
 }
 
@@ -101,14 +117,18 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         SMLog(@"%@",stkID);
     }
     
-    [[TDBInfo shareInstance]updateTime:endDate];
+    
+    [[HYDayDBManager defaultManager].dbInfo updateTime:endDate];
+    [[HYWeekDBManager defaultManager].dbInfo updateTime:endDate];
+    [[HYMonthDBManager defaultManager].dbInfo updateTime:endDate];
+
     
     SMLog(@"end of writeDataToDB");
 }
 
 
 //fromDate should be lastUpdate time
--(void)addDataToTable:(NSString*) stkID  contentArray:(NSArray*)contentArray fromDate:(long)fromDate EndDate:(int)endDate
+-(void)addDataToTable:(NSString*) stkID  contentArray:(NSArray*)contentArray fromDate:(long)noUsefromDate EndDate:(int)endDate
 {
     TKData* dayService = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
     TKData* weekService = [[HYWeekDBManager defaultManager] dbserviceWithSymbol:stkID];
@@ -127,11 +147,17 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     NSMutableArray* monthArray = [NSMutableArray array];
     KDataModel* kTLastEndData; //last update end data. the data is always existed in week&month db.
     KDataModel* kEndData; //this end data.
+    long fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
     
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP2Data  = [contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
+        
+        if(kT0Data.time == fromDate) //fromdate = lastUpdatDate
+        {
+            kTLastEndData = kT0Data;
+        }
         
         //skip fromdate for update db case. because fromDate is lastUpdate time
         if(kT0Data.time < fromDate || kT0Data.time > endDate){
@@ -154,21 +180,21 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
     if(![weekArray containsObject:kEndData]){
-        [weekArray addObject:kEndData];
+        [weekArray safeAddObject:kEndData];
     }
     
     if(![monthArray containsObject:kEndData]){
-        [monthArray addObject:kEndData];
+        [monthArray safeAddObject:kEndData];
     }
     
     
     //1,deal with day data
-#if 1
+#if 0
     for(long i=0; i<[contentArray count]; i++ ){
         [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
-        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
             continue;
         }
         
@@ -188,16 +214,20 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         [dayService addRecord:kT0Data];
         
     }
+    
 #endif
 
-    CGFloat tmpVolume;
     
+    CGFloat tmpVolume;
+
+#if 1
     //2, deal with week data
+    fromDate = self.weekDBInfo.lastUpdateTime > 0 ? self.weekDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[weekArray count]; i++ ){
         [UtilData setMACDBar:weekArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [weekArray objectAtIndex:i];
-        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
             continue;
         }
         
@@ -218,12 +248,17 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         [weekService deleteRecordWithTime:kTLastEndData.time];
     }
     
+
+#endif
+    
+#if 0
     //3, deal with month data
+    fromDate = self.monthDBInfo.lastUpdateTime > 0 ? self.monthDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[monthArray count]; i++ ){
         [UtilData setMACDBar:monthArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [monthArray objectAtIndex:i];
-        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
             continue;
         }
         
@@ -244,6 +279,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     if(![monthArray containsObject:kTLastEndData]){
         [monthService deleteRecordWithTime:kTLastEndData.time];
     }
+    
+
+#endif
     
 }
 

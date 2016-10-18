@@ -16,7 +16,7 @@
 
 @implementation TDBInfo
 
-SINGLETON_GENERATOR(TDBInfo, shareInstance)
+//SINGLETON_GENERATOR(TDBInfo, shareInstance)
 
 
 -(id)init

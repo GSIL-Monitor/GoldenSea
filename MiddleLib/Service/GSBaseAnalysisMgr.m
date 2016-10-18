@@ -44,7 +44,7 @@
 {
     self.isWriteToQueryDB = NO;
     
-    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB];
+//    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB]; //tmp
 
     
     [self _queryAllWithDB:docsDir];
@@ -78,7 +78,10 @@
     
 }
 
-
+-(void)queryAndLogtoDB
+{
+    
+}
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {

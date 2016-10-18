@@ -18,7 +18,6 @@
 
 @interface TDBInfo : HYBaseDBService
 
-+(TDBInfo*)shareInstance;
 
 -(DBInfoModel*)getRecord;
 -(BOOL)updateTime:(long)updateTime;

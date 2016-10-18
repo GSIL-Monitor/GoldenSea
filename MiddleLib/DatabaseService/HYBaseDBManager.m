@@ -44,9 +44,9 @@
 //        DDLogInfo(@"STK table create failed!");
 //    }
     
-    
-    [[TDBInfo shareInstance]setup:self.DBHelper];
-    if([[TDBInfo shareInstance]createTableWithName:@"tDBInfo"]){
+    self.dbInfo = [[TDBInfo alloc]init];
+    [self.dbInfo setup:self.DBHelper];
+    if([self.dbInfo createTableWithName:@"tDBInfo"]){
         //        DDLogInfo(@"STK table create success!");
     }else{
         DDLogInfo(@"tDBInfo table create failed!");

@@ -27,6 +27,8 @@
 #import "TechAnalysisMgr.h"
 #import "GSBaseResult.h"
 
+#import "STKxlsReader.h"
+
 @interface AppDelegate (){
     
     NSString* _filedir;
@@ -55,7 +57,7 @@
     //    [GSDataMgr shareInstance].startDate = 20160725;
 
 
-#if 0
+#if 1
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
     
@@ -63,7 +65,7 @@
 
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160717];
 
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160819];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161017];
     return;
 #endif
     
@@ -76,7 +78,7 @@
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -91,11 +93,17 @@
 
 -(void)testForTech
 {
+    
 //    [GSDataMgr shareInstance].startDate = 20160125;
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
+    
+    
+    //do query;
+    [[GSObjMgr shareInstance].mgr queryAllWithDB:_filedir];
+    return;
     
     
     for(long i=1; i<=2; i++){
