@@ -53,7 +53,7 @@
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
 
-//    [GSDataMgr shareInstance].startDate = 20160125;
+    [GSDataMgr shareInstance].startDate = 20150125;
     //    [GSDataMgr shareInstance].startDate = 20160725;
 
 
@@ -63,9 +63,9 @@
     
 //    [[HYLog shareInstance] enableLog];
 
-//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160717];
+//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20160718];
 
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161017];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161018];
     return;
 #endif
     
@@ -78,7 +78,7 @@
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600108"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -102,11 +102,25 @@
     
     
     //do query;
-    [[GSObjMgr shareInstance].mgr queryAllWithDB:_filedir];
+#if 1
+    [[GSObjMgr shareInstance].mgr queryAllWithFile:_filedir];
+    
+    
+    for(long i=1; i<=1; i++){
+        GSBaseParam* param = [[GSBaseParam alloc]init];
+        param.destDVValue = 2.5f;
+        param.durationAfterBuy = i;
+        [GSObjMgr shareInstance].mgr.param = param;
+        
+        [[GSObjMgr shareInstance].mgr analysisQuerySTKArray:_filedir];
+    }
+    
+    [ [GSObjMgr shareInstance].log analysisAndLogSummry];
     return;
+#endif
     
     
-    for(long i=1; i<=2; i++){
+    for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
         param.destDVValue = 2.5f;
         param.durationAfterBuy = i;
@@ -174,7 +188,7 @@
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
     }
     
-    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+    [ [GSObjMgr shareInstance].log analysisAndLogSummry];
 
     return;
 

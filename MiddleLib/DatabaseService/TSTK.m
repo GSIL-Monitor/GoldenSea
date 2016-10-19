@@ -11,7 +11,6 @@
 
 @implementation TSTK
 
-SINGLETON_GENERATOR(TSTK, shareInstance)
 
 
 -(id)init

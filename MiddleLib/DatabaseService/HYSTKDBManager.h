@@ -12,4 +12,7 @@
 
 +(HYSTKDBManager *)defaultManager;
 
+@property (nonatomic, strong) TSTK* allSTK;
+@property (nonatomic, strong) TSTK* querySTK;
+
 @end

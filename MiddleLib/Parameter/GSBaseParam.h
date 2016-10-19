@@ -18,7 +18,7 @@
 /**
  *  for record the analysis param and result.
  */
-@interface GSBaseParam : NSObject
+@interface GSBaseParam : NSObject<NSCopying>
 
 
 

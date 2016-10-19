@@ -10,7 +10,6 @@
 
 @interface TSTK : HYBaseDBService
 
-+(TSTK*)shareInstance;
 
 
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID;

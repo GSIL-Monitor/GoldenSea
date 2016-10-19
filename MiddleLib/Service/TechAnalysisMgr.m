@@ -20,6 +20,10 @@
     KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
     
     
+    if([self.stkID isEqualToString:@"SH600019"]){
+        SMLog(@"");
+    }
+    
     if(
        (kTP2Data.volume > kTP1Data.volume
         && kTP1Data.volume > kT0Data.volume

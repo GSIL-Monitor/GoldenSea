@@ -45,10 +45,9 @@
 //        [self.selResultArray addObject:[NSMutableArray array]];
 //    }
     
-    
-    self.resultArray = [NSMutableArray array];
     self.totalCount = 0;
     self.totalS2BDVValue = 0;
+    self.resultArray = [NSMutableArray array];
     for(long i=0; i<3; i++){
         [self.resultArray addObject:[NSMutableArray array]];
     }
@@ -85,6 +84,26 @@
     }
     
     return YES;
+}
+
+
+
+#pragma mark - copy
+-(id)copyWithZone:(NSZone *)zone
+{
+    GSBaseParam* one = [self.class new];
+    
+    one.resultArray = [NSMutableArray array];
+    for(long i=0; i<3; i++){
+        [one.resultArray addObject:[NSMutableArray array]];
+    }
+    one.totalCount = _totalCount;
+    one.totalS2BDVValue = _totalS2BDVValue;
+    one.destDVValue = _destDVValue;
+    one.cutDVValue = _cutDVValue;
+    one.durationAfterBuy = _durationAfterBuy;
+    
+    return one;
 }
 
 

@@ -22,6 +22,9 @@
 //log all and save to file.
 -(void)analysisAndLogtoFile;
 
+-(void)analysisAndLogSummry;
+
+
 //-(void)queryAndLogtoDB;
 
 //protected.

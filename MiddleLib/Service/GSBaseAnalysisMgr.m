@@ -33,7 +33,7 @@
     return self;
 }
 
--(void)queryAllAndSaveToDBWithFile:(NSString*)docsDir;
+-(void)queryAllWithFile:(NSString*)docsDir;
 {
     self.isWriteToQueryDB = YES;
     
@@ -44,7 +44,7 @@
 {
     self.isWriteToQueryDB = NO;
     
-//    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB]; //tmp
+    self.stkRangeArray = [[GSDataMgr shareInstance]getStkRangeFromQueryDB]; //tmp
 
     
     [self _queryAllWithDB:docsDir];
@@ -53,8 +53,6 @@
 
 -(void)_queryAllWithDB:(NSString*)docsDir;
 {
-    [GSDataMgr shareInstance].startDate = 20160601;
-    
     self.queryResArray = [NSMutableArray array];
     self.querySTKArray = [NSMutableArray array];
 
@@ -77,12 +75,17 @@
     
     SMLog(@"end of queryAllInDir");
     
-    [self analysisQuerySTKArray:docsDir];
-    
 }
 
 -(void)analysisQuerySTKArray:(NSString*)docsDir;
 {
+    if([self.querySTKArray count] == 0){
+        SMLog(@"no result stk with query!!!");
+        return;
+    }
+    
+    [self _analysisSTKInDir:docsDir rangeArray:self.querySTKArray];
+    
     
 }
 
@@ -93,14 +96,22 @@
 
 -(void)analysisAllInDir:(NSString*)docsDir;
 {
-//    SMLog(@"start analysisAllInDir with Param(destDVValue:%.2f)",self.param.destDVValue);
+    [self _analysisSTKInDir:docsDir rangeArray:self.stkRangeArray];
+}
+
+-(void)_analysisSTKInDir:(NSString*)docsDir rangeArray:(NSArray*)rangeArray;
+{
+    //    SMLog(@"start analysisAllInDir with Param(destDVValue:%.2f)",self.param.destDVValue);
     
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
         [self resetForOne];
         self.stkID = [HelpService stkIDWithFile:file];
         
-        if(![self isInRange:self.stkID]){
+        GSBaseParam* param = [self.param copy];
+        self.param = param;
+        
+        if(![self isInRange:self.stkID rangeArray:rangeArray]){
             continue;
         }
         
@@ -108,18 +119,15 @@
             [self.realStkRangeArray addObject:self.stkID];
         }
         
-//        SMLog(@"stkID: %@",self.stkID);
+        //        SMLog(@"stkID: %@",self.stkID);
         self.contentArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
-
+        
         [self analysis];
         
         
         [self.reslut setSTK:self.stkID pararm:self.param];
     }
     
-//    [self.param calcSelAvg]; 
-//    
-//    [[GSObjMgr shareInstance].log.paramArray addObject:self.param];
     
 }
 

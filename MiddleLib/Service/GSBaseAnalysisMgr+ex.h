@@ -20,6 +20,7 @@
 
 -(void)dispatchResult2Array:(KDataModel*)kT0data buyValue:(CGFloat)buyValue sellValue:(CGFloat)sellValue;
 
+-(BOOL)isInRange:(NSString*)stkID rangeArray:(NSArray*)rangeArray;
 -(BOOL)isInRange:(NSString*)stkID;
 
 

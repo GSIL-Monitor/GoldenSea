@@ -52,12 +52,16 @@
 @property (strong) OneDayCondition* t1dayCond;  //t+1 day
 
 
-
+//analysis all.
 -(void)analysisAllInDir:(NSString*)docsDir;
+
+//anlaysis the query stk
+-(void)analysisQuerySTKArray:(NSString*)docsDir;
+
 
 //query action
 -(void)queryAllWithDB:(NSString*)docsDir;
--(void)queryAllAndSaveToDBWithFile:(NSString*)docsDir;
+-(void)queryAllWithFile:(NSString*)docsDir;
 
 
 

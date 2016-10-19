@@ -167,8 +167,6 @@
     self.contentArray = [NSMutableArray array];
 }
 
-
-
 -(BOOL)isInRange:(NSString*)stkID;
 {
     if(!self.stkRangeArray || ![self.stkRangeArray count]){
@@ -176,6 +174,16 @@
     }
     
     return [self.stkRangeArray containsObject:stkID];
+    
+}
+
+-(BOOL)isInRange:(NSString*)stkID rangeArray:(NSArray*)rangeArray;
+{
+    if(!rangeArray || ![rangeArray count]){
+        return YES;
+    }
+    
+    return [rangeArray containsObject:stkID];
 
 }
 

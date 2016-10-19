@@ -94,6 +94,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
 }
 
+#define EnalbeDayDB 1
+#define EnalbeWeekDB 1
+#define EnalbeMonthDB 1
+
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
 {
@@ -117,11 +121,15 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         SMLog(@"%@",stkID);
     }
     
-    
+#ifdef EnalbeDayDB
     [[HYDayDBManager defaultManager].dbInfo updateTime:endDate];
+#endif
+#ifdef EnalbeWeekDB
     [[HYWeekDBManager defaultManager].dbInfo updateTime:endDate];
+#endif
+#ifdef EnalbeMonthDB
     [[HYMonthDBManager defaultManager].dbInfo updateTime:endDate];
-
+#endif
     
     SMLog(@"end of writeDataToDB");
 }
@@ -189,7 +197,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     
     //1,deal with day data
-#if 0
+#ifdef EnalbeDayDB
     for(long i=0; i<[contentArray count]; i++ ){
         [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
@@ -220,7 +228,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     CGFloat tmpVolume;
 
-#if 1
+#ifdef EnalbeWeekDB
     //2, deal with week data
     fromDate = self.weekDBInfo.lastUpdateTime > 0 ? self.weekDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[weekArray count]; i++ ){
@@ -251,7 +259,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 #endif
     
-#if 0
+#ifdef EnalbeMonthDB
     //3, deal with month data
     fromDate = self.monthDBInfo.lastUpdateTime > 0 ? self.monthDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[monthArray count]; i++ ){
@@ -534,19 +542,19 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     //然后从db取t-1Y日数据，算出ma5等值（假如网络能直接拿到ma值则可以忽略此步）
     //最后将数据写回db
     
-    NSArray* stkArray = [[TSTK shareInstance]getAllRecords];
-    if(![stkArray count]){
-        GSAssert(NO,@"no existed stk in table STKDB!");
-    }
-    
-    for(STKModel* ele in stkArray){
-        
-        if(![[GSObjMgr shareInstance].mgr isInRange:ele.stkID]){
-            continue;
-        }
-        
-        [self queryYahooData:ele];
-    }
+//    NSArray* stkArray = [[TSTK shareInstance]getAllRecords];
+//    if(![stkArray count]){
+//        GSAssert(NO,@"no existed stk in table STKDB!");
+//    }
+//    
+//    for(STKModel* ele in stkArray){
+//        
+//        if(![[GSObjMgr shareInstance].mgr isInRange:ele.stkID]){
+//            continue;
+//        }
+//        
+//        [self queryYahooData:ele];
+//    }
 }
 
 //query data must start with 指定日期-30 以保证ma的计算

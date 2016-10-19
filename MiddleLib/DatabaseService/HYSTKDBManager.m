@@ -22,4 +22,28 @@ SINGLETON_GENERATOR(HYSTKDBManager, defaultManager)
 }
 
 
+
+- (void)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
+{
+    
+    [super setupDB:dbPath isReset:isReset];
+    
+    self.allSTK = [[TSTK alloc]init];
+    [self.allSTK setup:self.DBHelper];
+    if([self.allSTK createTableWithName:@"tAllSTK"]){
+        //        DDLogInfo(@"STK table create success!");
+    }else{
+        DDLogInfo(@"STK table create failed!");
+    }
+    
+    
+    self.querySTK = [[TSTK alloc]init];
+    [self.querySTK setup:self.DBHelper];
+    if([self.querySTK createTableWithName:@"tQuerySTK"]){
+        //        DDLogInfo(@"STK table create success!");
+    }else{
+        DDLogInfo(@"STK table create failed!");
+    }
+}
+
 @end

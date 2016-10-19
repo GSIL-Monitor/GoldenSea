@@ -1,0 +1,18 @@
+
+
+SH600113---summary report (20150125-21680808)---
+No.(0)- Conditon:  destDVVALUE(2.50), duration(1)  Result:totalS2BDVVal(-10.66), AvgVal(-1.18),totalCount(9), sucPercent(66.67) 
+SH600113---detail report(20150125-21680808)---
+No.(0)- Conditon:  destDVVALUE(2.50), duration(1)  Result:totalS2BDVVal(-10.66), AvgVal(-1.18),totalCount(9), sucPercent(66.67) 
+index(0), percent(66.67)  count(6) 
+SH600113 TBuyData:20150610, TSellData:20150611, dvSelltoBuy:2.50
+SH600113 TBuyData:20150716, TSellData:20150717, dvSelltoBuy:2.50
+SH600113 TBuyData:20150825, TSellData:20150826, dvSelltoBuy:2.50
+SH600113 TBuyData:20160301, TSellData:20160302, dvSelltoBuy:2.50
+SH600113 TBuyData:20160907, TSellData:20160908, dvSelltoBuy:2.50
+SH600113 TBuyData:20161017, TSellData:20161018, dvSelltoBuy:2.50
+index(1), percent(0.00)  count(0) 
+index(2), percent(33.33)  count(3) 
+SH600113 TBuyData:20150204, TSellData:20150205, dvSelltoBuy:-5.04
+SH600113 TBuyData:20150821, TSellData:20150824, dvSelltoBuy:-15.48
+SH600113 TBuyData:20151225, TSellData:20151228, dvSelltoBuy:-5.14
