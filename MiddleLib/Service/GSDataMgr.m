@@ -58,7 +58,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 -(NSArray*)getWeekDataFromDB:(NSString*)stkID;
 {
-    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* service = [[HYWeekDBManager defaultManager] dbserviceWithSymbol:stkID];
     NSArray* array = [service getWeekRecords:self.startDate end:self.endDate ];
     
     return array;
@@ -66,7 +66,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 -(NSArray*)getMonthDataFromDB:(NSString*)stkID;
 {
-    TKData* service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* service = [[HYMonthDBManager defaultManager] dbserviceWithSymbol:stkID];
     NSArray* array = [service getMonthRecords:20020101 end:Key_Max_Date ];
     
     return array;

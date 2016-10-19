@@ -82,14 +82,14 @@
 
 - (NSArray *)getWeekRecords:(long)startTime end:(long)endTime;
 {
-    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld and isWeekEnd=true ",startTime, endTime];
+    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld ",startTime, endTime];
     return [super getAllRecordsWithAditonCondition:sql];
 }
 
 
 - (NSArray *)getMonthRecords:(long)startTime end:(long)endTime;
 {
-    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld and isMonthEnd=true ",startTime, endTime];
+    NSString* sql = [NSString stringWithFormat:@"where time>%ld and  time<=%ld ",startTime, endTime];
     return [super getAllRecordsWithAditonCondition:sql];
 }
 

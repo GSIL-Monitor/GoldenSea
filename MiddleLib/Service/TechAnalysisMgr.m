@@ -10,37 +10,57 @@
 
 @implementation TechAnalysisMgr
 
--(BOOL)isMapCondition:(long)i
+//2问题：1，统计结果怎么相加了？ 2，周和月的值，除了close对，其它不对
+
+-(BOOL)isMapCondition:(long)i isQuery:(BOOL)isQuery
 {
     KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
     KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
     KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
     KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
     KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-    KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
+//    KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
     
     
-    if([self.stkID isEqualToString:@"SH600019"]){
-        SMLog(@"");
+//    if([self.stkID isEqualToString:@"SH600019"]){
+//        SMLog(@"");
+//    }
+    
+    BOOL volumeMap, closeMap, isMap;
+    if(isQuery){ //query, just check the last 2 days condition. today need check.
+        volumeMap = (kTP2Data.volume > kTP1Data.volume
+                     && kTP1Data.volume > kT0Data.volume
+                     //            && kTP3Data.volume > kTP2Data.volume
+                     );
+        
+        closeMap =  (kTP2Data.close > kTP1Data.close
+                     && kTP1Data.close > kT0Data.close
+                     //            && kTP3Data.close > kTP2Data.close
+                     );
+      
+    }else{
+        volumeMap =
+           (kTP2Data.volume > kTP1Data.volume
+            && kTP1Data.volume > kT0Data.volume
+            && kTP3Data.volume > kTP2Data.volume
+            && kTP4Data.volume > kTP3Data.volume
+            );
+                     
+        closeMap =
+           (kTP2Data.close > kTP1Data.close
+            && kTP1Data.close > kT0Data.close
+            && kTP3Data.close > kTP2Data.close
+            );
     }
     
-    if(
-       (kTP2Data.volume > kTP1Data.volume
-        && kTP1Data.volume > kT0Data.volume
-        && kTP3Data.volume > kTP2Data.volume
-        //           && kTP4Data.volume > kTP3Data.volume
-        )
-       &&
-       (kTP2Data.close > kTP1Data.close
-        && kTP1Data.close > kT0Data.close
-        && kTP3Data.close > kTP2Data.close
-        )
-       ){
-        return YES;
+    if(self.period == Period_day){
+        isMap = volumeMap && closeMap;
+    }else{
+        isMap = volumeMap;
     }
     
-    
-    return NO;
+
+    return isMap;
 }
 
 -(void)query
@@ -51,21 +71,11 @@
     }
     
     long i = [self.contentArray count]-1;
-    {
-//        KDataModel* kTP4Data  = [self.contentArray safeObjectAtIndex:(i-4)];
-//        KDataModel* kTP3Data  = [self.contentArray safeObjectAtIndex:(i-3)];
-//        KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
-//        KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
-//        KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-//        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
-        
-        
-        BOOL isMap = [self isMapCondition:i];
-        if(isMap){
-            [self.querySTKArray addObject:self.stkID];
-        }
-    }
     
+    BOOL isMap = [self isMapCondition:i isQuery:YES];
+    if(isMap){
+        [self.querySTKArray addObject:self.stkID];
+    }
     
 }
 
@@ -77,7 +87,6 @@
     {
         return;
     }
-    
     
     long statDays = 2;
     for(long i=4; i<[self.contentArray count]-statDays;  ){
@@ -92,32 +101,21 @@
         KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
 
         
-        if(kT0Data.time == 20160527){
-            NSLog(@"");
-        }
+//        if(kT0Data.time == 20160527){
+//            NSLog(@"");
+//        }
         
-        if(
-           (kTP2Data.volume > kTP1Data.volume
-           && kTP1Data.volume > kT0Data.volume
-           && kTP3Data.volume > kTP2Data.volume
-//           && kTP4Data.volume > kTP3Data.volume
-           )
-            &&
-           (kTP2Data.close > kTP1Data.close
-            && kTP1Data.close > kT0Data.close
-            && kTP3Data.close > kTP2Data.close
-            )
-           )
+        if([self isMapCondition:i isQuery:NO])
         {
-            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
-               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
-               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
-                i++;
-                continue;
-            }
+//            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
+//               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
+//               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+//                i++;
+//                continue;
+//            }
             kT0Data.stkID = self.stkID;
             
-#if 0
+#if 1
             buyValue = kT0Data.close;
             kT0Data.tradeDbg.TBuyData = kT0Data;
             
@@ -125,7 +123,7 @@
 #endif
             
             //case 2
-#if 1
+#if 0
             buyValue = kT1Data.open;
             kT0Data.tradeDbg.TBuyData = kT1Data;
             
@@ -140,7 +138,7 @@
         
         //increase i.
         if(kT0Data.tradeDbg.TSellData)
-            i += self.param.durationAfterBuy+1;
+            i = kT0Data.tradeDbg.TSellDataIndex+1; //
         else
             i++;
         

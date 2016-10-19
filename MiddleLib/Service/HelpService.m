@@ -169,7 +169,7 @@
         if(tempData.high >= theValue){
             
             index = j-startIndex;
-//            kT0Data.highValDayIndex = index;
+            kT0Data.tradeDbg.TSellDataIndex = j;
             kT0Data.tradeDbg.TSellData = tempData;
             
             break;

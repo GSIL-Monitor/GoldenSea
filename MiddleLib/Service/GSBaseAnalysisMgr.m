@@ -66,7 +66,7 @@
             continue;
         }
         
-        self.contentArray = [[GSDataMgr shareInstance] getDayDataFromDB:self.stkID];
+        [self readContentArrayFromDB];
         
         [self query];
     }
@@ -120,7 +120,7 @@
         }
         
         //        SMLog(@"stkID: %@",self.stkID);
-        self.contentArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
+        [self readContentArrayFromDB];
         
         [self analysis];
         
@@ -131,6 +131,26 @@
     
 }
 
+
+-(void)readContentArrayFromDB
+{
+    switch (self.period) {
+        case Period_day:
+            self.contentArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
+            break;
+            
+        case Period_week:
+            self.contentArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
+            break;
+            
+        case Period_month:
+            self.contentArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 
 -(void)query
@@ -333,6 +353,7 @@
         kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:stopIndex];
         if(kT0Data.tradeDbg.TSellData){ //if had data in that day.
             sellValue = kT0Data.tradeDbg.TSellData.close;
+            kT0Data.tradeDbg.TSellDataIndex = stopIndex;
         }else{
             sellValue = buyValue;
         }

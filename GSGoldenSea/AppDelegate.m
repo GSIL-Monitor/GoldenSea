@@ -78,7 +78,7 @@
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -98,11 +98,12 @@
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
+    [GSObjMgr shareInstance].mgr.period = Period_month;
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
     
     //do query;
-#if 1
+#if 0
     [[GSObjMgr shareInstance].mgr queryAllWithFile:_filedir];
     
     

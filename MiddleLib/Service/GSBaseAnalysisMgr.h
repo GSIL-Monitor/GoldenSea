@@ -16,6 +16,12 @@
 #import "GSBaseResult.h"
 
 
+typedef enum {
+    Period_day = 0,
+    Period_week,
+    Period_month
+}Period;
+
 
 
 @interface GSBaseAnalysisMgr : NSObject
@@ -24,6 +30,7 @@
 @property (nonatomic,strong) NSArray* contentArray;
 @property (nonatomic,strong) NSString* stkID;
 
+@property (nonatomic, assign) Period period;
 
 
 @property (nonatomic, strong) NSMutableArray* querySTKArray;
