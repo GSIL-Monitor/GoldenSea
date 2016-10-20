@@ -26,15 +26,21 @@
 //        SMLog(@"");
 //    }
     
-    BOOL volumeMap, closeMap, isMap;
+    if(kT0Data.time == 20160620){
+        SMLog(@"");
+    }
+    
+    BOOL volumeMap, isMap;
+    long closeMap = 0, minCloseMapTimes = 3;
     if(isQuery){ //query, just check the last 2 days condition. today need check.
+        minCloseMapTimes--;
         volumeMap = (kTP2Data.volume > kTP1Data.volume
                      && kTP1Data.volume > kT0Data.volume
                      //            && kTP3Data.volume > kTP2Data.volume
                      );
         
-        closeMap =  (kTP2Data.close > kTP1Data.close
-                     && kTP1Data.close > kT0Data.close
+        closeMap =  ((kTP2Data.close > kTP1Data.close)
+                     + (kTP1Data.close > kT0Data.close)
                      //            && kTP3Data.close > kTP2Data.close
                      );
       
@@ -47,14 +53,14 @@
             );
                      
         closeMap =
-           (kTP2Data.close > kTP1Data.close
-            && kTP1Data.close > kT0Data.close
-            && kTP3Data.close > kTP2Data.close
+        ((kTP2Data.close > kTP1Data.close )
+            + (kTP1Data.close > kT0Data.close )
+            + (kTP3Data.close > kTP2Data.close)
             );
     }
     
     if(self.period == Period_day){
-        isMap = volumeMap && closeMap;
+        isMap = volumeMap && (closeMap>=minCloseMapTimes);
     }else{
         isMap = volumeMap;
     }
