@@ -160,7 +160,14 @@
 @property (assign) long week; //第几周
 @property (assign) long weekday;
 
+
+@property (assign) CGFloat weekOpen;
+@property (assign) CGFloat weekHigh;
+@property (assign) CGFloat weekLow;
 @property (assign) CGFloat weekVolume;
+@property (assign) CGFloat monthOpen;
+@property (assign) CGFloat monthHigh;
+@property (assign) CGFloat monthLow;
 @property (assign) CGFloat monthVolume;
 
 

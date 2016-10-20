@@ -43,7 +43,7 @@
            (kTP2Data.volume > kTP1Data.volume
             && kTP1Data.volume > kT0Data.volume
             && kTP3Data.volume > kTP2Data.volume
-            && kTP4Data.volume > kTP3Data.volume
+//            && kTP4Data.volume > kTP3Data.volume
             );
                      
         closeMap =
@@ -88,7 +88,7 @@
         return;
     }
     
-    long statDays = 2;
+    long statDays = 0;
     for(long i=4; i<[self.contentArray count]-statDays;  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
@@ -98,7 +98,7 @@
         KDataModel* kTP2Data  = [self.contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
+//        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:(i+1)];
 
         
 //        if(kT0Data.time == 20160527){

@@ -53,7 +53,8 @@
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
 
-    [GSDataMgr shareInstance].startDate = 20150125;
+    [GSDataMgr shareInstance].startDate = 20140125;
+//    [GSDataMgr shareInstance].startDate = 20151001;
     //    [GSDataMgr shareInstance].startDate = 20160725;
 
 
@@ -77,7 +78,7 @@
 -(void)configureMgr
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167",@"SH600418",@"SZ000592"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
@@ -98,33 +99,33 @@
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
-    [GSObjMgr shareInstance].mgr.period = Period_month;
+    [GSObjMgr shareInstance].mgr.period = Period_day;
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
     
     //do query;
-#if 0
-    [[GSObjMgr shareInstance].mgr queryAllWithFile:_filedir];
+//#if 0
+//    [[GSObjMgr shareInstance].mgr queryAllWithFile:_filedir];
+//    
+//    
+//    for(long i=1; i<=3; i++){
+//        GSBaseParam* param = [[GSBaseParam alloc]init];
+//        param.destDVValue = 12.5f;
+//        param.durationAfterBuy = i;
+//        [GSObjMgr shareInstance].mgr.param = param;
+//        
+//        [[GSObjMgr shareInstance].mgr analysisQuerySTKArray:_filedir];
+//    }
+//    
+//    [ [GSObjMgr shareInstance].log analysisAndLogSummry];
+//    return;
+//#endif
     
     
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 2.5f;
-        param.durationAfterBuy = i;
-        [GSObjMgr shareInstance].mgr.param = param;
-        
-        [[GSObjMgr shareInstance].mgr analysisQuerySTKArray:_filedir];
-    }
-    
-    [ [GSObjMgr shareInstance].log analysisAndLogSummry];
-    return;
-#endif
-    
-    
-    for(long i=1; i<=1; i++){
-        GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 2.5f;
-        param.durationAfterBuy = i;
+        param.destDVValue = 12.5f;
+        param.durationAfterBuy = 3; //i
         [GSObjMgr shareInstance].mgr.param = param;
         
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];

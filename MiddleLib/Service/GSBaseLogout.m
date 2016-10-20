@@ -69,11 +69,19 @@
     for(long i = 0; i<[stkArray count]; i++){
         NSString* stk = [stkArray objectAtIndex:i];
         
-        SMLog(@"\n");
 
-        
         NSMutableArray* paramArray = [reslut paramArrayWithSymbol:stk];
         NSArray* arrayUsed = [self reOrderParamArray:paramArray];
+        
+        if([arrayUsed count] == 1){
+            GSBaseParam* ele = [arrayUsed objectAtIndex:0];
+            if(ele.totalCount == 0){
+                continue;
+            }
+        }
+        
+        SMLog(@"\n");
+
         
         SMLog(@"%@---summary report (%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
         for (long i=0; i<[arrayUsed count]; i++) {
@@ -204,8 +212,10 @@
     CGFloat winPercent =0.f, holdPercent =0.f, lossPercent=0.f;
     for(long i=0; i<[resultArray count]; i++){
         tmpArray = [resultArray objectAtIndex:i];
+        if([tmpArray count] == 0){
+            continue;
+        }
         percent = [tmpArray count]*100.f/totalCount;
-        
      
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 

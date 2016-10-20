@@ -56,6 +56,17 @@
 @end
 
 @implementation UnitDebugData
+-(id)init
+{
+    if(self = [super init]){
+        self.monthLow = kInvalidData_Base+1;
+        self.weekLow = kInvalidData_Base+1;
+        self.monthOpen = kInvalidData_Base+1;
+        self.weekOpen = kInvalidData_Base+1;
+    }
+    
+    return self;
+}
 
 
 @end

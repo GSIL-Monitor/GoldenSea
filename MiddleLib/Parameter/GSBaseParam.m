@@ -93,15 +93,18 @@
 {
     GSBaseParam* one = [self.class new];
     
+    //copy condition
+    one.destDVValue = _destDVValue;
+    one.cutDVValue = _cutDVValue;
+    one.durationAfterBuy = _durationAfterBuy;
+    
+    //reset result
     one.resultArray = [NSMutableArray array];
     for(long i=0; i<3; i++){
         [one.resultArray addObject:[NSMutableArray array]];
     }
-    one.totalCount = _totalCount;
-    one.totalS2BDVValue = _totalS2BDVValue;
-    one.destDVValue = _destDVValue;
-    one.cutDVValue = _cutDVValue;
-    one.durationAfterBuy = _durationAfterBuy;
+    one.totalCount = 0;
+    one.totalS2BDVValue = 0;
     
     return one;
 }

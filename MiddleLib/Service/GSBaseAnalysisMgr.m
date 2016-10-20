@@ -350,10 +350,17 @@
     if(sIndex != -1){ //find
         sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
-        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:stopIndex];
+        long sellIndex ;
+        if(stopIndex < [man.contentArray count]){
+            sellIndex = stopIndex;
+        }else{
+            sellIndex = ([man.contentArray count] - 1) > (startIndex+1) ? ([man.contentArray count] - 1):stopIndex;
+        }
+        
+        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:sellIndex];
         if(kT0Data.tradeDbg.TSellData){ //if had data in that day.
             sellValue = kT0Data.tradeDbg.TSellData.close;
-            kT0Data.tradeDbg.TSellDataIndex = stopIndex;
+            kT0Data.tradeDbg.TSellDataIndex = sellIndex;
         }else{
             sellValue = buyValue;
         }

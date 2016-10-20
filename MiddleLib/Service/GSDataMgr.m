@@ -156,7 +156,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     KDataModel* kTLastEndData; //last update end data. the data is always existed in week&month db.
     KDataModel* kEndData; //this end data.
     long fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
+    long fromWeekDate = self.weekDBInfo.lastUpdateTime > 0 ? self.weekDBInfo.lastUpdateTime:20020101;
+    long fromMonthDate = self.monthDBInfo.lastUpdateTime > 0 ? self.monthDBInfo.lastUpdateTime:20020101;
+    fromDate = fromDate<fromWeekDate?fromDate:fromWeekDate;
+    fromDate = fromDate<fromMonthDate?fromDate:fromMonthDate;
     
+
+    BOOL isFirstData = YES;
     for(long i=1; i<[contentArray count]; i++ ){
         KDataModel* kTP2Data  = [contentArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
@@ -171,6 +177,14 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         if(kT0Data.time < fromDate || kT0Data.time > endDate){
             continue;
         }
+        
+        if(isFirstData){
+            kT0Data.unitDbg.monthOpen = kT0Data.open;
+            kT0Data.unitDbg.weekOpen = kT0Data.open;
+            isFirstData = NO;
+        }
+        
+
         
         [self setCanlendarInfo:kT0Data];
         [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
@@ -198,6 +212,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
     //1,deal with day data
 #ifdef EnalbeDayDB
+    fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[contentArray count]; i++ ){
         [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
@@ -244,12 +259,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma20 = [UtilData getMAValue:20 array:weekArray t0Index:i];
         kT0Data.ma30 = [UtilData getMAValue:30 array:weekArray t0Index:i];
         
-        tmpVolume = kT0Data.volume;
-        kT0Data.volume = kT0Data.unitDbg.weekVolume;
         
-        [weekService addRecord:kT0Data];
-        
-        kT0Data.volume = tmpVolume;
+        [self addRecordByExchangeData:kT0Data service:weekService period:Period_week];
     }
     
     if(![weekArray containsObject:kTLastEndData]){
@@ -275,12 +286,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma20 = [UtilData getMAValue:20 array:monthArray t0Index:i];
         kT0Data.ma30 = [UtilData getMAValue:30 array:monthArray t0Index:i];
         
-        tmpVolume = kT0Data.volume;
-        kT0Data.volume = kT0Data.unitDbg.monthVolume;
-        
-        [monthService addRecord:kT0Data];
-        
-        kT0Data.volume = tmpVolume;
+        [self addRecordByExchangeData:kT0Data service:monthService period:Period_month];
 
     }
     
@@ -291,6 +297,65 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 #endif
     
+}
+
+-(void)addRecordByExchangeData:(KDataModel*) kT0Data service:(TKData* )service period:(Period)period
+{
+    CGFloat tmpVolume;
+    CGFloat tmpOpen;
+    CGFloat tmpHigh;
+    CGFloat tmpLow;
+    
+    
+    switch (period) {
+            
+        case Period_week:
+        {
+            tmpVolume = kT0Data.volume;
+            kT0Data.volume = kT0Data.unitDbg.monthVolume;
+            
+            tmpOpen = kT0Data.open;
+            kT0Data.open = kT0Data.unitDbg.weekOpen;
+            
+            tmpHigh = kT0Data.high;
+            kT0Data.high = kT0Data.unitDbg.weekHigh;
+            
+            tmpLow = kT0Data.low;
+            kT0Data.low = kT0Data.unitDbg.weekLow;
+            
+        }
+            break;
+            
+        case Period_month:
+        {
+            tmpVolume = kT0Data.volume;
+            kT0Data.volume = kT0Data.unitDbg.monthVolume;
+            
+            tmpOpen = kT0Data.open;
+            kT0Data.open = kT0Data.unitDbg.monthOpen;
+            
+            tmpHigh = kT0Data.high;
+            kT0Data.high = kT0Data.unitDbg.monthHigh;
+            
+            tmpLow = kT0Data.low;
+            kT0Data.low = kT0Data.unitDbg.monthLow;
+  
+        }
+            break;
+            
+            
+            
+        default:
+            break;
+    }
+    
+    [service addRecord:kT0Data];
+    
+    kT0Data.volume = tmpVolume;
+    kT0Data.open = tmpOpen;
+    kT0Data.high = tmpHigh;
+    kT0Data.low = tmpLow;
+
 }
 
 
@@ -684,14 +749,31 @@ static NSCalendar *sharedCalendar = nil;
     
     if(kTP1Data.unitDbg.isMonthEnd){
         kData.unitDbg.monthVolume = kData.volume;
+        
+        kData.unitDbg.monthOpen = kData.open;
+        kData.unitDbg.monthHigh = kData.high;
+        kData.unitDbg.monthLow = kData.low;
     }else{
         kData.unitDbg.monthVolume = kTP1Data.unitDbg.monthVolume+kData.volume;
+        
+        kData.unitDbg.monthLow = (kData.low < kTP1Data.unitDbg.monthLow )? kData.low : kTP1Data.unitDbg.monthLow;
+        kData.unitDbg.monthHigh = (kData.high > kTP1Data.unitDbg.monthHigh ) ? kData.high: kTP1Data.unitDbg.monthHigh;
+        kData.unitDbg.monthOpen = kTP1Data.unitDbg.monthOpen;
     }
     
     if(kTP1Data.unitDbg.isWeekEnd ){
         kData.unitDbg.weekVolume = kData.volume;
+        
+        kData.unitDbg.weekOpen = kData.open;
+        kData.unitDbg.weekHigh = kData.high;
+        kData.unitDbg.weekLow = kData.low;
     }else{
         kData.unitDbg.weekVolume = kTP1Data.unitDbg.weekVolume+kData.volume;
+        
+        kData.unitDbg.weekLow = (kData.low < kTP1Data.unitDbg.weekLow )? kData.low : kTP1Data.unitDbg.weekLow;
+        kData.unitDbg.weekHigh = (kData.high > kTP1Data.unitDbg.weekHigh ) ? kData.high: kTP1Data.unitDbg.weekHigh;
+        kData.unitDbg.weekOpen = kTP1Data.unitDbg.weekOpen;
+
     }
 
 }
