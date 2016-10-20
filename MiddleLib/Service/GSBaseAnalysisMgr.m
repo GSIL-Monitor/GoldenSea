@@ -136,15 +136,15 @@
 {
     switch (self.period) {
         case Period_day:
-            self.contentArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
+            self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
             break;
             
         case Period_week:
-            self.contentArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
+            self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
             break;
             
         case Period_month:
-            self.contentArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
+            self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
             break;
             
         default:
@@ -162,34 +162,36 @@
 
 -(void)analysis
 {
-    if(! [self isValidDataPassedIn] || [self.contentArray count]<20){
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    if(! [self isValidDataPassedIn] || [cxtArray count]<20){
         return;
     }
     
     NSDictionary* passDict;
-    for(long i=6; i<[self.contentArray count]-3; i++ ){
-        KDataModel* kTP6Data  = [self.contentArray objectAtIndex:(i-6)];
-        KDataModel* kTP5Data  = [self.contentArray objectAtIndex:(i-5)];
-        KDataModel* kTP4Data  = [self.contentArray objectAtIndex:(i-4)];
-        KDataModel* kTP3Data  = [self.contentArray objectAtIndex:(i-3)];
-        KDataModel* kTP2Data  = [self.contentArray objectAtIndex:(i-2)];
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-        KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+    for(long i=6; i<[cxtArray count]-3; i++ ){
+        KDataModel* kTP6Data  = [cxtArray objectAtIndex:(i-6)];
+        KDataModel* kTP5Data  = [cxtArray objectAtIndex:(i-5)];
+        KDataModel* kTP4Data  = [cxtArray objectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [cxtArray objectAtIndex:(i-3)];
+        KDataModel* kTP2Data  = [cxtArray objectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray objectAtIndex:i];
+        KDataModel* kT1Data = [cxtArray objectAtIndex:i+1];
+        KDataModel* kT2Data = [cxtArray objectAtIndex:i+2];
         
         
         
         kT0Data.tradeDbg.T1Data = kT1Data;
         kT0Data.tradeDbg.TP1Data = kTP1Data;
         
-        kT0Data.dvDbg.dvTP2 = [UtilData getDVValue:self.contentArray baseIndex:i-3 destIndex:i-2];
-        kT0Data.dvDbg.dvTP1 = [UtilData getDVValue:self.contentArray baseIndex:i-2 destIndex:i-1];
-        kT0Data.dvDbg.dvT0 = [UtilData getDVValue:self.contentArray baseIndex:i-1 destIndex:i];
-        kT0Data.dvDbg.dvT1 = [UtilData getDVValue:self.contentArray baseIndex:i destIndex:i+1];
-        kT0Data.dvDbg.dvT2 = [UtilData getDVValue:self.contentArray baseIndex:i+1 destIndex:i+2];
+        kT0Data.dvDbg.dvTP2 = [UtilData getDVValue:cxtArray baseIndex:i-3 destIndex:i-2];
+        kT0Data.dvDbg.dvTP1 = [UtilData getDVValue:cxtArray baseIndex:i-2 destIndex:i-1];
+        kT0Data.dvDbg.dvT0 = [UtilData getDVValue:cxtArray baseIndex:i-1 destIndex:i];
+        kT0Data.dvDbg.dvT1 = [UtilData getDVValue:cxtArray baseIndex:i destIndex:i+1];
+        kT0Data.dvDbg.dvT2 = [UtilData getDVValue:cxtArray baseIndex:i+1 destIndex:i+2];
         
-        kT0Data.dvDbg.dvAvgTP1toTP5 = [UtilData getAvgDVValue:5 array:self.contentArray index:i-1];
+        kT0Data.dvDbg.dvAvgTP1toTP5 = [UtilData getAvgDVValue:5 array:cxtArray index:i-1];
         
         
         passDict = @{@"kTP6Data":kTP6Data, @"kTP5Data":kTP5Data, @"kTP4Data":kTP4Data,@"kTP3Data":kTP3Data, @"kTP2Data":kTP2Data, @"kTP1Data":kTP1Data,@"kT0Data":kT0Data, @"kT1Data":kT1Data};
@@ -229,7 +231,7 @@
         //            continue;
         //        }
         
-        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+1];
+//        [self dispatchResult2Array:kT0Data buyIndex:i sellIndex:i+1];
         
     }
     
@@ -339,25 +341,25 @@
 
 #pragma mark - common
 //start:(long)startIndex stop:(long)stopIndex
--(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data start:(long)startIndex stop:(long)stopIndex;
+-(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data cxtArray:(NSArray*)cxtArray start:(long)startIndex stop:(long)stopIndex;
 {
     CGFloat sellValue;
     
     GSBaseAnalysisMgr* man = self;
     CGFloat destValue = (1+man.param.destDVValue/100.f)*buyValue;
     long durationAfterBuy = self.param.durationAfterBuy;
-    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:man.contentArray start:startIndex stop:stopIndex kT0data:kT0Data];
+    long sIndex = [HelpService indexOfValueGreatThan:destValue Array:cxtArray start:startIndex stop:stopIndex kT0data:kT0Data];
     if(sIndex != -1){ //find
         sellValue = (1+man.param.destDVValue/100.f)*buyValue;
     }else{
         long sellIndex ;
-        if(stopIndex < [man.contentArray count]){
+        if(stopIndex < [cxtArray count]){
             sellIndex = stopIndex;
         }else{
-            sellIndex = ([man.contentArray count] - 1) > (startIndex+1) ? ([man.contentArray count] - 1):stopIndex;
+            sellIndex = ([cxtArray count] - 1) > (startIndex+1) ? ([cxtArray count] - 1):stopIndex;
         }
         
-        kT0Data.tradeDbg.TSellData = [man.contentArray safeObjectAtIndex:sellIndex];
+        kT0Data.tradeDbg.TSellData = [cxtArray safeObjectAtIndex:sellIndex];
         if(kT0Data.tradeDbg.TSellData){ //if had data in that day.
             sellValue = kT0Data.tradeDbg.TSellData.close;
             kT0Data.tradeDbg.TSellDataIndex = sellIndex;
@@ -371,5 +373,25 @@
 }
 
 
+-(NSArray*)getCxtArray:(long)period;
+{
+    switch (period) {
+        case Period_day:
+            return self.dayCxtArray;
+            break;
+            
+        case Period_week:
+            return self.weekCxtArray;
+            break;
+            
+        case Period_month:
+            return self.monthCxtArray;
+            break;
+            
+        default:
+            return self.dayCxtArray;
+            break;
+    }
+}
 
 @end

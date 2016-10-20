@@ -27,7 +27,10 @@ typedef enum {
 @interface GSBaseAnalysisMgr : NSObject
 
 
-@property (nonatomic,strong) NSArray* contentArray;
+//@property (nonatomic,strong) NSArray* contentArray;
+@property (nonatomic,strong) NSArray* dayCxtArray;
+@property (nonatomic,strong) NSArray* weekCxtArray;
+@property (nonatomic,strong) NSArray* monthCxtArray;
 @property (nonatomic,strong) NSString* stkID;
 
 @property (nonatomic, assign) Period period;
@@ -73,8 +76,8 @@ typedef enum {
 
 
 //protected class used function
--(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data start:(long)startIndex stop:(long)stopIndex;
+-(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data  cxtArray:(NSArray*)cxtArray start:(long)startIndex stop:(long)stopIndex;
 -(void)queryAndLogtoDB;
-
+-(NSArray*)getCxtArray:(long)period;
 
 @end

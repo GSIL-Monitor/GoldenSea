@@ -24,26 +24,28 @@
 
 -(void)query
 {
+    NSArray* cxtArray = [self getCxtArray:self.period];
+
     //skip new stk.
-    if([self.contentArray count]<20){
+    if([cxtArray count]<20){
         return;
     }
     
     
     //    SMLog(@"stkID:%@",self.stkID);
-    long lastIndex = [self.contentArray count]-1;
-    for(long i=[self.contentArray count]-11; i<[self.contentArray count]-1; i++ ){
-        KDataModel* kTP1Data  = [self.contentArray objectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray objectAtIndex:i];
+    long lastIndex = [cxtArray count]-1;
+    for(long i=[cxtArray count]-11; i<[cxtArray count]-1; i++ ){
+        KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray objectAtIndex:i];
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
         
         
         
         if(kT0Data.isLimitUp){
             
-            kTP1Data.ma5 = [UtilData getMAValue:5 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma10 = [UtilData getMAValue:10 array:self.contentArray t0Index:i-1];
-            kTP1Data.ma30 = [UtilData getMAValue:30 array:self.contentArray t0Index:i-1];
+            kTP1Data.ma5 = [UtilData getMAValue:5 array:cxtArray t0Index:i-1];
+            kTP1Data.ma10 = [UtilData getMAValue:10 array:cxtArray t0Index:i-1];
+            kTP1Data.ma30 = [UtilData getMAValue:30 array:cxtArray t0Index:i-1];
 
             
             if(self.param.daysAfterLastLimit == 0)
@@ -60,7 +62,7 @@
                     continue;
                 }
                 
-                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
+                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:cxtArray]){
                     continue;
                 }
             }
@@ -68,11 +70,11 @@
             
             //filter raise much in shorttime
             if(kT0Data.time >= 20160816){ // && kT0Data.time <= 20160816
-                KDataModel* kTLastData = [self.contentArray objectAtIndex:lastIndex];
+                KDataModel* kTLastData = [cxtArray objectAtIndex:lastIndex];
                 CGFloat pvLast2kTP1DataMA5 = kTLastData.close/kTP1Data.ma5;
                 
-                //                    KDataModel* kT1Data = [self.contentArray objectAtIndex:i+1];
-                //                    KDataModel* kT2Data = [self.contentArray objectAtIndex:i+2];
+                //                    KDataModel* kT1Data = [cxtArray objectAtIndex:i+1];
+                //                    KDataModel* kT2Data = [cxtArray objectAtIndex:i+2];
                 
 //                if (pvLast2kTP1DataMA5 < 5.f) {
 //                    SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, pvLast2kTP1DataMA5);
@@ -135,7 +137,9 @@
 
 -(void)analysis
 {
-    if(! [self isValidDataPassedIn] || [self.contentArray count]< 3 ) // || [self.contentArray count]<20)
+    NSArray* cxtArray = [self getCxtArray:self.period];
+
+    if(! [self isValidDataPassedIn] || [cxtArray count]< 3 ) // || [cxtArray count]<20)
     {
         return;
     }
@@ -143,21 +147,21 @@
     
     long statDays = 2;
     long middleIndex = 7;
-    for(long i=1; i<[self.contentArray count]-statDays; i++ ){
+    for(long i=1; i<[cxtArray count]-statDays; i++ ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
-        KDataModel* kTP1Data  = [self.contentArray safeObjectAtIndex:(i-1)];
-        KDataModel* kT0Data = [self.contentArray safeObjectAtIndex:i];
-        KDataModel* kT1Data = [self.contentArray safeObjectAtIndex:i+1];
-        //        KDataModel* kT2Data = [self.contentArray safeObjectAtIndex:i+2];
-        //        KDataModel* kT3Data = [self.contentArray safeObjectAtIndex:i+3];
-        //        KDataModel* kT4Data = [self.contentArray safeObjectAtIndex:i+4];
-        //        KDataModel* kT5Data = [self.contentArray safeObjectAtIndex:i+5];
-        //        KDataModel* kT6Data = [self.contentArray safeObjectAtIndex:i+6];
-        //        KDataModel* kT7Data = [self.contentArray safeObjectAtIndex:i+7];
-        //        KDataModel* kT8Data = [self.contentArray safeObjectAtIndex:i+8];
-        //        KDataModel* kT9Data = [self.contentArray safeObjectAtIndex:i+9];
+        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
+        //        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
+        //        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
+        //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
+        //        KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+        //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
+        //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
+        //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
+        //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
         
         
         kT0Data.tradeDbg.lowValDayIndex = 1;
@@ -186,7 +190,7 @@
                     continue;
                 }
                 
-                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:self.contentArray]){
+                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:cxtArray]){
                     continue;
                 }
             }
@@ -210,16 +214,16 @@
             
 
             buyValue = kTP1Data.ma5 * self.param.buyPercent;
-            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:self.contentArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
+            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:cxtArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
             if(bIndex == -1){ //not find
                 continue;
             }
             
-            kT0Data.tradeDbg.TBuyData = [self.contentArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
+            kT0Data.tradeDbg.TBuyData = [cxtArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
             
             long start = i+self.param.buyStartIndex+bIndex+1;
             long stop = start+self.param.durationAfterBuy;
-            sellValue = [self getSellValue:buyValue  kT0data:kT0Data start:start stop:stop];
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
             
             if(kT0Data.tradeDbg.TSellData)
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];

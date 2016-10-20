@@ -55,7 +55,7 @@
 
     [GSDataMgr shareInstance].startDate = 20140125;
 //    [GSDataMgr shareInstance].startDate = 20151001;
-    //    [GSDataMgr shareInstance].startDate = 20160725;
+        [GSDataMgr shareInstance].startDate = 20160225;
 
 
 #if 0
@@ -125,7 +125,7 @@
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
         param.destDVValue = 12.5f;
-        param.durationAfterBuy = 3; //i
+        param.durationAfterBuy = 10; //i
         [GSObjMgr shareInstance].mgr.param = param;
         
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];

@@ -92,44 +92,6 @@
 }
 
 
--(void)dispatchResult2Array:(KDataModel*)kT0data buyIndex:(long)buyIndex sellIndex:(long)sellIndex
-{
-    long contentCount = [self.contentArray count];
-    if(!kT0data
-       || (sellIndex<0||sellIndex>contentCount-1)
-       || (buyIndex<0||buyIndex>contentCount-1)
-       || (buyIndex == sellIndex)){
-        return;
-    }
-    
-    
-    
-    KDataModel* sellData = [self.contentArray objectAtIndex:sellIndex];
-    KDataModel* buyData = [self.contentArray objectAtIndex:buyIndex];
-    CGFloat dvValue;
-    
-    //we don't know which is first appear for high or low. so only switch two case.
-#if 0
-    //case 1. judge with high
-    if((sellData.high-buyData.close)/buyData.close*100.f >= self.param.destDVValue){
-        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
-    }else{
-        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
-    }
-#else
-    //case 2. judge with low
-    if((sellData.low-buyData.close)/buyData.close*100.f <= self.param.cutDVValue){
-        dvValue = self.param.cutDVValue;
-//        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
-    }else{
-        dvValue = (sellData.close-buyData.close)*100.f/buyData.close;
-    }
-#endif
-    
-    [self _dispatchResult:kT0data dvValue:dvValue];
-
-}
-
 
 -(void)dispatchResult2Array:(KDataModel*)kT0data buyValue:(CGFloat)buyValue sellValue:(CGFloat)sellValue
 {
@@ -164,7 +126,10 @@
 
 -(void)resetForOne
 {
-    self.contentArray = [NSMutableArray array];
+    self.dayCxtArray = [NSMutableArray array];
+    self.weekCxtArray = [NSMutableArray array];
+    self.monthCxtArray = [NSMutableArray array];
+
 }
 
 -(BOOL)isInRange:(NSString*)stkID;
