@@ -62,7 +62,7 @@
     
     if(self.period == Period_day){
         CGFloat downRate = kT0Data.volume/kTP1Data.volume;
-        isMap = volumeMap && (closeMap>=minCloseMapTimes); // && (downRate<0.6);
+        isMap = volumeMap && (closeMap>=minCloseMapTimes); // && (downRate<0.7);
         
     }else{
         isMap = volumeMap;
@@ -70,6 +70,54 @@
     
 
     return isMap;
+}
+
+
+-(BOOL)isMapWeekCondition:(KDataModel*)kT0Data //vid day
+{
+    CGFloat high=0.f,low=kInvalidData_Base, dvHigh2Low=0.f;
+    CGFloat recentLow, dvRecentHigh2Low; //比如4周前的low值
+//    CGFloat latestClose=0.f, agoClose=0.f, dvClose=0.f;
+    BOOL find=NO;
+    long units = 8; //8周振幅
+    
+    NSArray* weekArray = [self getCxtArray:Period_week];
+    for(long i=[weekArray count]-1; i>=0; i--){
+        KDataModel* tmpData = [weekArray safeObjectAtIndex:i];
+        if(!find && ( tmpData.time < kT0Data.time)){ //means find the week.
+            find = YES;
+        }
+        
+        if(find){
+            if(high < tmpData.high){
+                high = tmpData.high;
+            }
+            
+            if(low > tmpData.low){
+                low = tmpData.low;
+            }
+            units--;
+        }
+        
+        if(units==4){
+            recentLow = low;
+        }
+        
+        if(units <=0){
+            break;
+        }
+    }
+    
+    if(find){
+        dvHigh2Low = high/low;
+        if(dvHigh2Low < 1.3
+           && dvRecentHigh2Low < 1.2
+           ){
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 -(void)query
@@ -115,9 +163,11 @@
         
 //        if(kT0Data.time == 20160527){
 //            NSLog(@"");
-//        }
+//        }`
         
-        if([self isMapCondition:i isQuery:NO])
+        if([self isMapCondition:i isQuery:NO]
+           && [self isMapWeekCondition:kT0Data]
+           )
         {
             if(Period_day == self.period){
 //                if((kT0Data.time > 20150813 && kT0Data.time < 20150819)

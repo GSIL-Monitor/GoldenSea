@@ -1,0 +1,9 @@
+
+
+SH600167---summary report (20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(10)  Result:totalS2BDVVal(5.48), AvgVal(2.74),totalCount(2), sucPercent(0.00) 
+SH600167---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(10)  Result:totalS2BDVVal(5.48), AvgVal(2.74),totalCount(2), sucPercent(0.00) 
+index(1), percent(100.00)  count(2) 
+SH600167 TBuyData:20160614, TSellData:20160628, dvSelltoBuy:3.53
+SH600167 TBuyData:20160701, TSellData:20160715, dvSelltoBuy:1.95

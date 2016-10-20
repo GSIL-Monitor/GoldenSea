@@ -78,13 +78,13 @@
 -(void)configureMgr
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-    //    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-    [GSDataMgr shareInstance].marketType = marketType_All;
+    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+//    [GSDataMgr shareInstance].marketType = marketType_All;
     
     GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
     [GSObjMgr shareInstance].mgr.reslut = baseReslut;
