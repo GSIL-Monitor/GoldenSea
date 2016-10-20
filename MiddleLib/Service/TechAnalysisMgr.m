@@ -76,16 +76,19 @@
 -(BOOL)isMapWeekCondition:(KDataModel*)kT0Data //vid day
 {
     CGFloat high=0.f,low=kInvalidData_Base, dvHigh2Low=0.f;
-    CGFloat recentLow, dvRecentHigh2Low; //比如4周前的low值
+    CGFloat recentLow=kInvalidData_Base, dvRecentHigh2Low; //比如4周前的low值
 //    CGFloat latestClose=0.f, agoClose=0.f, dvClose=0.f;
     BOOL find=NO;
     long units = 8; //8周振幅
+    long weekIndex = 0;
     
     NSArray* weekArray = [self getCxtArray:Period_week];
     for(long i=[weekArray count]-1; i>=0; i--){
         KDataModel* tmpData = [weekArray safeObjectAtIndex:i];
-        if(!find && ( tmpData.time < kT0Data.time)){ //means find the week.
+        if(!find && ( tmpData.time <= kT0Data.time)){ //means find the week.
             find = YES;
+            weekIndex = i;
+            break;
         }
         
         if(find){
@@ -109,11 +112,20 @@
     }
     
     if(find){
+       
+        
         dvHigh2Low = high/low;
+        dvRecentHigh2Low = high/recentLow;
         if(dvHigh2Low < 1.3
-           && dvRecentHigh2Low < 1.2
+//           && dvRecentHigh2Low < 1.2
            ){
-            return YES;
+            KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
+            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
+            KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
+            if(kT0WeekData.volume > kTP1WeekData.volume
+               && (kTP1WeekData.volume>kTP2WeekData.volume)){
+                return YES;
+            }
         }
     }
     
