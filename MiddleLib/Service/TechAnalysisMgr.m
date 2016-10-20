@@ -123,7 +123,9 @@
             KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
             KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
             if(kT0WeekData.volume > kTP1WeekData.volume
-               && (kTP1WeekData.volume>kTP2WeekData.volume)){
+               && (kTP1WeekData.volume>kTP2WeekData.volume)
+               && (kT0WeekData.ma20>kTP1WeekData.ma20)
+               && (kT0WeekData.ma5>kTP1WeekData.ma5)){
                 return YES;
             }
         }
