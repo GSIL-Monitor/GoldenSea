@@ -93,7 +93,7 @@
                 weekIndex = i;
             }
             
-//            break;
+            break;
         }
         
         if(find){
@@ -122,6 +122,8 @@
         KDataModel* kTP6WeekData = [weekArray safeObjectAtIndex:(weekIndex-6)];
         kT0Data.tradeDbg.MA5weekT0toTP5 = kTP1WeekData.ma5/kTP6WeekData.ma5;
         kT0Data.tradeDbg.MA10weekT0toTP5 = kTP1WeekData.ma10/kTP6WeekData.ma10;
+        kT0Data.tradeDbg.MA20weekT0toTP5 = kTP1WeekData.ma20/kTP6WeekData.ma20;
+
         
         dvHigh2Low = high/low;
         dvRecentHigh2Low = high/recentLow;
@@ -132,15 +134,23 @@
 ////           && dvLastWeekHigh2Low < 1.1
 //           )
         
-        if(kT0Data.tradeDbg.MA5weekT0toTP5  < 1.055
-           && kT0Data.tradeDbg.MA10weekT0toTP5 < 1.025)
+//        if(kT0Data.tradeDbg.MA5weekT0toTP5  < 1.055
+//           && kT0Data.tradeDbg.MA10weekT0toTP5 < 1.025)
+        
+        if(fabs(kT0Data.tradeDbg.MA5weekT0toTP5-1)  < 0.055
+           && fabs(kT0Data.tradeDbg.MA10weekT0toTP5-1) < 0.025
+           && dvLastWeekHigh2Low < 1.1
+           )
+            
         {
             KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
 //            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
             KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
-            if(kT0WeekData.volume > kTP1WeekData.volume
-               && (kTP1WeekData.volume>kTP2WeekData.volume)
-               && (kT0WeekData.ma20>kTP1WeekData.ma20)
+            if(
+//               kT0WeekData.volume > kTP1WeekData.volume
+//               && (kTP1WeekData.volume>kTP2WeekData.volume)
+//               &&
+               (kT0WeekData.ma20>kTP1WeekData.ma20)
                && (kT0WeekData.ma5>kTP1WeekData.ma5)){
                 
          

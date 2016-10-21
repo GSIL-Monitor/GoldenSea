@@ -1,0 +1,730 @@
+
+
+SZ000016---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.42), AvgVal(-1.21),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ000016 TBuyData:20131125, TSellData:20131129, dvSelltoBuy:12.50, MA5:1.031, MA10:1.012; dayMA5:1.042, dayMA10:1.003
+index(2), percent(50.00)  count(1) 
+SZ000016 TBuyData:20120301, TSellData:20120329, dvSelltoBuy:-14.92, MA5:1.054, MA10:0.932; dayMA5:1.093, dayMA10:1.067
+
+
+SZ000020---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-11.81), AvgVal(-11.81),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000020 TBuyData:20160701, TSellData:20160729, dvSelltoBuy:-11.81, MA5:0.917, MA10:0.918; dayMA5:1.100, dayMA10:1.057
+
+
+SZ000025---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-11.85), AvgVal(-11.85),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000025 TBuyData:20130531, TSellData:20130703, dvSelltoBuy:-11.85, MA5:1.014, MA10:0.981; dayMA5:1.024, dayMA10:1.020
+
+
+SZ000056---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.85), AvgVal(-3.85),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000056 TBuyData:20160701, TSellData:20160729, dvSelltoBuy:-3.85, MA5:0.944, MA10:0.934; dayMA5:1.074, dayMA10:1.035
+
+
+SZ000078---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.01), AvgVal(2.01),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000078 TBuyData:20131226, TSellData:20140124, dvSelltoBuy:2.01, MA5:1.034, MA10:1.016; dayMA5:1.034, dayMA10:1.030
+
+
+SZ000088---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.28), AvgVal(0.28),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000088 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:0.28, MA5:1.029, MA10:0.977; dayMA5:1.112, dayMA10:1.069
+
+
+SZ000151---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.88), AvgVal(-4.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000151 TBuyData:20140529, TSellData:20140627, dvSelltoBuy:-4.88, MA5:0.970, MA10:1.012; dayMA5:1.091, dayMA10:1.041
+
+
+SZ000418---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000418 TBuyData:20160324, TSellData:20160412, dvSelltoBuy:12.50, MA5:1.008, MA10:1.007; dayMA5:1.020, dayMA10:1.019
+
+
+SZ000425---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000425 TBuyData:20120116, TSellData:20120120, dvSelltoBuy:12.50, MA5:0.938, MA10:0.909; dayMA5:1.066, dayMA10:1.041
+
+
+SZ000507---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.34), AvgVal(-3.34),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000507 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-3.34, MA5:0.943, MA10:0.975; dayMA5:1.023, dayMA10:1.027
+
+
+SZ000514---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.66), AvgVal(-12.66),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000514 TBuyData:20131128, TSellData:20131226, dvSelltoBuy:-12.66, MA5:1.003, MA10:1.020; dayMA5:1.255, dayMA10:1.139
+
+
+SZ000518---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000518 TBuyData:20140709, TSellData:20140801, dvSelltoBuy:12.50, MA5:1.035, MA10:0.999; dayMA5:1.117, dayMA10:1.064
+
+
+SZ000529---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.48), AvgVal(-3.48),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000529 TBuyData:20120301, TSellData:20120329, dvSelltoBuy:-3.48, MA5:1.040, MA10:0.964; dayMA5:1.026, dayMA10:1.024
+
+
+SZ000531---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000531 TBuyData:20160310, TSellData:20160321, dvSelltoBuy:12.50, MA5:0.803, MA10:0.923; dayMA5:1.080, dayMA10:1.011
+
+
+SZ000536---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.17), AvgVal(-2.17),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000536 TBuyData:20130116, TSellData:20130220, dvSelltoBuy:-2.17, MA5:0.962, MA10:0.989; dayMA5:1.144, dayMA10:1.048
+
+
+SZ000547---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(18.68), AvgVal(9.34),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ000547 TBuyData:20130729, TSellData:20130802, dvSelltoBuy:12.50, MA5:0.899, MA10:0.968; dayMA5:1.032, dayMA10:1.042
+index(1), percent(50.00)  count(1) 
+SZ000547 TBuyData:20160226, TSellData:20160325, dvSelltoBuy:6.18, MA5:0.781, MA10:0.825; dayMA5:1.002, dayMA10:1.030
+
+
+SZ000559---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.51), AvgVal(7.51),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000559 TBuyData:20160614, TSellData:20160712, dvSelltoBuy:7.51, MA5:0.939, MA10:0.973; dayMA5:1.045, dayMA10:1.034
+
+
+SZ000560---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.63), AvgVal(-3.63),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000560 TBuyData:20160708, TSellData:20160805, dvSelltoBuy:-3.63, MA5:0.946, MA10:0.936; dayMA5:1.092, dayMA10:1.045
+
+
+SZ000573---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.43), AvgVal(2.43),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000573 TBuyData:20131206, TSellData:20140106, dvSelltoBuy:2.43, MA5:1.012, MA10:0.960; dayMA5:1.065, dayMA10:1.047
+
+
+SZ000576---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000576 TBuyData:20140331, TSellData:20140408, dvSelltoBuy:12.50, MA5:0.965, MA10:1.017; dayMA5:1.046, dayMA10:1.030
+
+
+SZ000595---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.94), AvgVal(-7.94),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000595 TBuyData:20131206, TSellData:20140106, dvSelltoBuy:-7.94, MA5:0.977, MA10:0.980; dayMA5:1.031, dayMA10:1.025
+
+
+SZ000599---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.89), AvgVal(4.89),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000599 TBuyData:20150130, TSellData:20150306, dvSelltoBuy:4.89, MA5:0.942, MA10:0.969; dayMA5:1.051, dayMA10:1.031
+
+
+SZ000601---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000601 TBuyData:20131206, TSellData:20131230, dvSelltoBuy:12.50, MA5:1.013, MA10:1.015; dayMA5:1.042, dayMA10:1.034
+
+
+SZ000612---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.36), AvgVal(-12.36),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000612 TBuyData:20160708, TSellData:20160808, dvSelltoBuy:-12.36, MA5:0.830, MA10:0.913; dayMA5:1.265, dayMA10:1.233
+
+
+SZ000615---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.45), AvgVal(-12.45),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000615 TBuyData:20130606, TSellData:20130709, dvSelltoBuy:-12.45, MA5:0.963, MA10:1.011; dayMA5:1.036, dayMA10:1.024
+
+
+SZ000619---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.09), AvgVal(-1.09),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000619 TBuyData:20160909, TSellData:20161018, dvSelltoBuy:-1.09, MA5:1.011, MA10:0.987; dayMA5:1.020, dayMA10:1.060
+
+
+SZ000629---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000629 TBuyData:20120116, TSellData:20120118, dvSelltoBuy:12.50, MA5:0.865, MA10:0.900; dayMA5:1.041, dayMA10:1.076
+
+
+SZ000633---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.38), AvgVal(1.38),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000633 TBuyData:20120601, TSellData:20120702, dvSelltoBuy:1.38, MA5:0.904, MA10:0.971; dayMA5:1.060, dayMA10:1.025
+
+
+SZ000683---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.72), AvgVal(-2.86),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ000683 TBuyData:20160826, TSellData:20160914, dvSelltoBuy:12.50, MA5:1.015, MA10:1.001; dayMA5:1.086, dayMA10:1.055
+index(2), percent(50.00)  count(1) 
+SZ000683 TBuyData:20131212, TSellData:20140110, dvSelltoBuy:-18.22, MA5:0.993, MA10:0.985; dayMA5:1.124, dayMA10:1.062
+
+
+SZ000705---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.86), AvgVal(1.86),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000705 TBuyData:20160701, TSellData:20160729, dvSelltoBuy:1.86, MA5:1.041, MA10:0.992; dayMA5:1.052, dayMA10:1.074
+
+
+SZ000709---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000709 TBuyData:20150327, TSellData:20150403, dvSelltoBuy:12.50, MA5:1.051, MA10:0.970; dayMA5:1.087, dayMA10:1.084
+
+
+SZ000710---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.89), AvgVal(0.89),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000710 TBuyData:20130110, TSellData:20130207, dvSelltoBuy:0.89, MA5:1.009, MA10:0.992; dayMA5:1.036, dayMA10:1.007
+
+
+SZ000716---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(10.94), AvgVal(10.94),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000716 TBuyData:20150129, TSellData:20150305, dvSelltoBuy:10.94, MA5:0.920, MA10:0.920; dayMA5:1.027, dayMA10:1.033
+
+
+SZ000717---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.64), AvgVal(-13.64),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000717 TBuyData:20120531, TSellData:20120702, dvSelltoBuy:-13.64, MA5:0.999, MA10:0.962; dayMA5:1.082, dayMA10:1.035
+
+
+SZ000722---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-23.92), AvgVal(-11.96),totalCount(2), sucPercent(0.00) 
+index(2), percent(100.00)  count(2) 
+SZ000722 TBuyData:20120816, TSellData:20120921, dvSelltoBuy:-18.60, MA5:0.947, MA10:0.967; dayMA5:1.131, dayMA10:1.083
+SZ000722 TBuyData:20131206, TSellData:20140106, dvSelltoBuy:-5.31, MA5:0.984, MA10:0.977; dayMA5:1.067, dayMA10:1.056
+
+
+SZ000725---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.15), AvgVal(-2.15),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000725 TBuyData:20140227, TSellData:20140327, dvSelltoBuy:-2.15, MA5:1.048, MA10:1.012; dayMA5:1.089, dayMA10:1.056
+
+
+SZ000752---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000752 TBuyData:20160928, TSellData:20161011, dvSelltoBuy:12.50, MA5:1.013, MA10:1.019; dayMA5:1.067, dayMA10:1.051
+
+
+SZ000756---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.16), AvgVal(3.16),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000756 TBuyData:20131226, TSellData:20140124, dvSelltoBuy:3.16, MA5:1.045, MA10:1.010; dayMA5:1.031, dayMA10:1.019
+
+
+SZ000757---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.88), AvgVal(-2.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000757 TBuyData:20140703, TSellData:20140731, dvSelltoBuy:-2.88, MA5:1.046, MA10:0.994; dayMA5:1.120, dayMA10:1.073
+
+
+SZ000777---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.71), AvgVal(8.71),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000777 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:8.71, MA5:0.993, MA10:0.976; dayMA5:1.030, dayMA10:1.029
+
+
+SZ000806---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000806 TBuyData:20140530, TSellData:20140612, dvSelltoBuy:12.50, MA5:0.982, MA10:0.999; dayMA5:1.121, dayMA10:1.071
+
+
+SZ000819---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000819 TBuyData:20111122, TSellData:20111125, dvSelltoBuy:12.50, MA5:0.993, MA10:0.994; dayMA5:0.990, dayMA10:0.995
+
+
+SZ000821---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000821 TBuyData:20160620, TSellData:20160627, dvSelltoBuy:12.50, MA5:0.954, MA10:0.962; dayMA5:0.963, dayMA10:1.005
+
+
+SZ000831---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(25.00), AvgVal(12.50),totalCount(2), sucPercent(100.00) 
+index(0), percent(100.00)  count(2) 
+SZ000831 TBuyData:20141106, TSellData:20141204, dvSelltoBuy:12.50, MA5:1.005, MA10:0.980; dayMA5:1.056, dayMA10:1.025
+SZ000831 TBuyData:20150415, TSellData:20150420, dvSelltoBuy:12.50, MA5:0.991, MA10:1.025; dayMA5:0.992, dayMA10:1.012
+
+
+SZ000862---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.90), AvgVal(-5.90),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000862 TBuyData:20140221, TSellData:20140324, dvSelltoBuy:-5.90, MA5:1.024, MA10:0.968; dayMA5:1.161, dayMA10:1.123
+
+
+SZ000905---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-15.10), AvgVal(-15.10),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000905 TBuyData:20111125, TSellData:20111223, dvSelltoBuy:-15.10, MA5:0.990, MA10:0.991; dayMA5:0.995, dayMA10:0.996
+
+
+SZ000927---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000927 TBuyData:20120217, TSellData:20120307, dvSelltoBuy:12.50, MA5:1.051, MA10:0.977; dayMA5:1.028, dayMA10:1.025
+
+
+SZ000929---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.16), AvgVal(3.16),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ000929 TBuyData:20140220, TSellData:20140320, dvSelltoBuy:3.16, MA5:0.954, MA10:0.997; dayMA5:1.044, dayMA10:1.038
+
+
+SZ000963---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.88), AvgVal(-3.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ000963 TBuyData:20131024, TSellData:20131121, dvSelltoBuy:-3.88, MA5:1.036, MA10:0.991; dayMA5:1.010, dayMA10:0.987
+
+
+SZ000970---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ000970 TBuyData:20150129, TSellData:20150213, dvSelltoBuy:12.50, MA5:0.914, MA10:0.978; dayMA5:1.084, dayMA10:1.043
+
+
+SZ002007---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.64), AvgVal(5.64),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002007 TBuyData:20131226, TSellData:20140124, dvSelltoBuy:5.64, MA5:0.998, MA10:0.984; dayMA5:1.040, dayMA10:1.041
+
+
+SZ002012---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-26.29), AvgVal(-26.29),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002012 TBuyData:20150821, TSellData:20150922, dvSelltoBuy:-26.29, MA5:0.756, MA10:0.922; dayMA5:1.130, dayMA10:1.160
+
+
+SZ002030---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.12), AvgVal(1.12),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002030 TBuyData:20140417, TSellData:20140519, dvSelltoBuy:1.12, MA5:0.916, MA10:0.980; dayMA5:1.184, dayMA10:1.103
+
+
+SZ002031---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.37), AvgVal(-13.37),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002031 TBuyData:20111125, TSellData:20111223, dvSelltoBuy:-13.37, MA5:0.948, MA10:0.956; dayMA5:1.041, dayMA10:1.027
+
+
+SZ002047---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.68), AvgVal(-0.84),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SZ002047 TBuyData:20130125, TSellData:20130301, dvSelltoBuy:2.74, MA5:1.042, MA10:1.005; dayMA5:1.020, dayMA10:1.014
+index(2), percent(50.00)  count(1) 
+SZ002047 TBuyData:20160714, TSellData:20160811, dvSelltoBuy:-4.42, MA5:1.031, MA10:0.965; dayMA5:1.069, dayMA10:1.054
+
+
+SZ002053---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002053 TBuyData:20140221, TSellData:20140319, dvSelltoBuy:12.50, MA5:1.003, MA10:0.972; dayMA5:1.035, dayMA10:1.036
+
+
+SZ002062---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002062 TBuyData:20140718, TSellData:20140815, dvSelltoBuy:12.50, MA5:1.015, MA10:0.978; dayMA5:1.136, dayMA10:1.071
+
+
+SZ002069---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.15), AvgVal(-6.15),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002069 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-6.15, MA5:0.935, MA10:0.928; dayMA5:1.012, dayMA10:1.020
+
+
+SZ002105---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.85), AvgVal(-6.85),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002105 TBuyData:20121017, TSellData:20121114, dvSelltoBuy:-6.85, MA5:1.052, MA10:1.020; dayMA5:1.164, dayMA10:1.081
+
+
+SZ002107---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002107 TBuyData:20120621, TSellData:20120709, dvSelltoBuy:12.50, MA5:0.969, MA10:0.988; dayMA5:1.054, dayMA10:1.039
+
+
+SZ002120---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.44), AvgVal(-9.44),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002120 TBuyData:20131213, TSellData:20140113, dvSelltoBuy:-9.44, MA5:1.005, MA10:1.007; dayMA5:1.155, dayMA10:1.074
+
+
+SZ002124---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002124 TBuyData:20150731, TSellData:20150811, dvSelltoBuy:12.50, MA5:0.698, MA10:0.997; dayMA5:1.162, dayMA10:1.303
+
+
+SZ002134---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(9.69), AvgVal(4.84),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ002134 TBuyData:20130418, TSellData:20130521, dvSelltoBuy:12.50, MA5:0.943, MA10:0.982; dayMA5:1.027, dayMA10:0.992
+index(2), percent(50.00)  count(1) 
+SZ002134 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-2.81, MA5:0.999, MA10:0.979; dayMA5:1.032, dayMA10:1.047
+
+
+SZ002137---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.92), AvgVal(3.92),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002137 TBuyData:20130523, TSellData:20130625, dvSelltoBuy:3.92, MA5:1.038, MA10:0.995; dayMA5:1.142, dayMA10:1.092
+
+
+SZ002149---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002149 TBuyData:20160311, TSellData:20160318, dvSelltoBuy:12.50, MA5:0.712, MA10:0.836; dayMA5:1.054, dayMA10:0.963
+
+
+SZ002152---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.37), AvgVal(-7.37),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002152 TBuyData:20160708, TSellData:20160805, dvSelltoBuy:-7.37, MA5:1.040, MA10:1.006; dayMA5:1.019, dayMA10:1.003
+
+
+SZ002156---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002156 TBuyData:20151103, TSellData:20151106, dvSelltoBuy:12.50, MA5:0.849, MA10:0.897; dayMA5:1.117, dayMA10:1.107
+
+
+SZ002169---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002169 TBuyData:20140110, TSellData:20140121, dvSelltoBuy:12.50, MA5:1.044, MA10:1.003; dayMA5:1.118, dayMA10:1.098
+
+
+SZ002184---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002184 TBuyData:20131219, TSellData:20140108, dvSelltoBuy:12.50, MA5:0.973, MA10:0.966; dayMA5:1.104, dayMA10:1.054
+
+
+SZ002189---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.13), AvgVal(-2.13),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002189 TBuyData:20130117, TSellData:20130221, dvSelltoBuy:-2.13, MA5:1.026, MA10:0.938; dayMA5:1.158, dayMA10:1.089
+
+
+SZ002193---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002193 TBuyData:20160310, TSellData:20160314, dvSelltoBuy:12.50, MA5:0.821, MA10:0.857; dayMA5:1.075, dayMA10:0.967
+
+
+SZ002219---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.16), AvgVal(-7.16),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002219 TBuyData:20120621, TSellData:20120720, dvSelltoBuy:-7.16, MA5:0.967, MA10:0.988; dayMA5:1.041, dayMA10:1.013
+
+
+SZ002223---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.20), AvgVal(6.20),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002223 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:6.20, MA5:1.041, MA10:1.019; dayMA5:1.046, dayMA10:1.026
+
+
+SZ002231---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-23.18), AvgVal(-23.18),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002231 TBuyData:20130531, TSellData:20130703, dvSelltoBuy:-23.18, MA5:0.977, MA10:0.937; dayMA5:1.055, dayMA10:1.048
+
+
+SZ002240---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002240 TBuyData:20120523, TSellData:20120525, dvSelltoBuy:12.50, MA5:0.993, MA10:1.005; dayMA5:1.079, dayMA10:1.034
+
+
+SZ002243---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.48), AvgVal(1.48),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002243 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:1.48, MA5:1.020, MA10:1.003; dayMA5:1.044, dayMA10:1.038
+
+
+SZ002245---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002245 TBuyData:20131219, TSellData:20140107, dvSelltoBuy:12.50, MA5:1.032, MA10:0.990; dayMA5:1.062, dayMA10:1.035
+
+
+SZ002253---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.65), AvgVal(-8.65),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002253 TBuyData:20160701, TSellData:20160729, dvSelltoBuy:-8.65, MA5:1.036, MA10:1.000; dayMA5:1.062, dayMA10:1.025
+
+
+SZ002259---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002259 TBuyData:20141014, TSellData:20141020, dvSelltoBuy:12.50, MA5:1.028, MA10:1.015; dayMA5:1.021, dayMA10:1.009
+
+
+SZ002270---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002270 TBuyData:20160708, TSellData:20160712, dvSelltoBuy:12.50, MA5:1.025, MA10:0.960; dayMA5:1.116, dayMA10:1.078
+
+
+SZ002286---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.68), AvgVal(2.68),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002286 TBuyData:20120621, TSellData:20120725, dvSelltoBuy:2.68, MA5:1.029, MA10:1.006; dayMA5:1.069, dayMA10:1.023
+
+
+SZ002307---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-16.13), AvgVal(-16.13),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002307 TBuyData:20120601, TSellData:20120703, dvSelltoBuy:-16.13, MA5:0.956, MA10:0.994; dayMA5:1.055, dayMA10:1.055
+
+
+SZ002335---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002335 TBuyData:20120605, TSellData:20120608, dvSelltoBuy:12.50, MA5:0.959, MA10:0.926; dayMA5:1.020, dayMA10:1.018
+
+
+SZ002339---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.89), AvgVal(-13.89),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002339 TBuyData:20131017, TSellData:20131114, dvSelltoBuy:-13.89, MA5:1.045, MA10:1.010; dayMA5:1.206, dayMA10:1.079
+
+
+SZ002344---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.55), AvgVal(-3.55),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002344 TBuyData:20130927, TSellData:20131101, dvSelltoBuy:-3.55, MA5:1.007, MA10:0.973; dayMA5:1.105, dayMA10:1.125
+
+
+SZ002346---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.97), AvgVal(-3.97),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002346 TBuyData:20130628, TSellData:20130726, dvSelltoBuy:-3.97, MA5:1.013, MA10:1.011; dayMA5:1.078, dayMA10:1.024
+
+
+SZ002351---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002351 TBuyData:20140527, TSellData:20140529, dvSelltoBuy:12.50, MA5:0.993, MA10:0.949; dayMA5:1.067, dayMA10:1.077
+
+
+SZ002357---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002357 TBuyData:20160614, TSellData:20160616, dvSelltoBuy:12.50, MA5:0.917, MA10:1.016; dayMA5:1.100, dayMA10:1.056
+
+
+SZ002369---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002369 TBuyData:20130304, TSellData:20130306, dvSelltoBuy:12.50, MA5:0.928, MA10:0.990; dayMA5:1.023, dayMA10:1.026
+
+
+SZ002376---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002376 TBuyData:20130415, TSellData:20130419, dvSelltoBuy:12.50, MA5:0.925, MA10:0.990; dayMA5:1.013, dayMA10:0.995
+
+
+SZ002387---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-24.88), AvgVal(-24.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002387 TBuyData:20130531, TSellData:20130703, dvSelltoBuy:-24.88, MA5:1.051, MA10:0.965; dayMA5:1.052, dayMA10:1.042
+
+
+SZ002396---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002396 TBuyData:20120605, TSellData:20120614, dvSelltoBuy:12.50, MA5:0.959, MA10:0.969; dayMA5:1.036, dayMA10:1.010
+
+
+SZ002412---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002412 TBuyData:20130729, TSellData:20130806, dvSelltoBuy:12.50, MA5:0.969, MA10:1.006; dayMA5:1.046, dayMA10:1.061
+
+
+SZ002423---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002423 TBuyData:20140609, TSellData:20140702, dvSelltoBuy:12.50, MA5:0.997, MA10:0.963; dayMA5:1.038, dayMA10:1.010
+
+
+SZ002448---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-26.98), AvgVal(-26.98),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002448 TBuyData:20111125, TSellData:20111223, dvSelltoBuy:-26.98, MA5:1.019, MA10:1.016; dayMA5:1.031, dayMA10:1.022
+
+
+SZ002449---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.59), AvgVal(1.59),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002449 TBuyData:20120815, TSellData:20120912, dvSelltoBuy:1.59, MA5:0.890, MA10:0.949; dayMA5:1.175, dayMA10:1.103
+
+
+SZ002458---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.07), AvgVal(-1.07),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002458 TBuyData:20130808, TSellData:20130905, dvSelltoBuy:-1.07, MA5:0.997, MA10:0.954; dayMA5:1.164, dayMA10:1.057
+
+
+SZ002460---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002460 TBuyData:20130514, TSellData:20130517, dvSelltoBuy:12.50, MA5:1.019, MA10:0.958; dayMA5:1.096, dayMA10:1.062
+
+
+SZ002470---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.06), AvgVal(-8.06),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002470 TBuyData:20120510, TSellData:20120607, dvSelltoBuy:-8.06, MA5:1.023, MA10:1.019; dayMA5:1.056, dayMA10:1.031
+
+
+SZ002527---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.71), AvgVal(-9.71),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002527 TBuyData:20131017, TSellData:20131114, dvSelltoBuy:-9.71, MA5:0.952, MA10:1.007; dayMA5:1.050, dayMA10:1.019
+
+
+SZ002536---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.08), AvgVal(-8.08),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002536 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-8.08, MA5:0.914, MA10:0.977; dayMA5:1.119, dayMA10:1.059
+
+
+SZ002538---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-17.70), AvgVal(-17.70),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002538 TBuyData:20130523, TSellData:20130625, dvSelltoBuy:-17.70, MA5:1.023, MA10:0.977; dayMA5:1.023, dayMA10:1.015
+
+
+SZ002541---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.98), AvgVal(-4.98),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002541 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-4.98, MA5:0.975, MA10:1.004; dayMA5:1.027, dayMA10:1.031
+
+
+SZ002547---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002547 TBuyData:20120608, TSellData:20120614, dvSelltoBuy:12.50, MA5:1.011, MA10:1.000; dayMA5:1.086, dayMA10:1.050
+
+
+SZ002557---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002557 TBuyData:20130912, TSellData:20130916, dvSelltoBuy:12.50, MA5:1.041, MA10:0.955; dayMA5:1.107, dayMA10:1.048
+
+
+SZ002561---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002561 TBuyData:20140221, TSellData:20140304, dvSelltoBuy:12.50, MA5:0.991, MA10:0.987; dayMA5:1.040, dayMA10:1.046
+
+
+SZ002575---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002575 TBuyData:20140116, TSellData:20140130, dvSelltoBuy:12.50, MA5:0.963, MA10:1.021; dayMA5:1.077, dayMA10:1.035
+
+
+SZ002592---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.01), AvgVal(4.01),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ002592 TBuyData:20130729, TSellData:20130805, dvSelltoBuy:12.50, MA5:0.936, MA10:0.976; dayMA5:1.003, dayMA10:1.008
+index(2), percent(50.00)  count(1) 
+SZ002592 TBuyData:20130808, TSellData:20130905, dvSelltoBuy:-4.49, MA5:0.983, MA10:0.973; dayMA5:1.114, dayMA10:1.060
+
+
+SZ002599---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002599 TBuyData:20140120, TSellData:20140124, dvSelltoBuy:12.50, MA5:0.974, MA10:0.996; dayMA5:1.006, dayMA10:0.995
+
+
+SZ002608---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(11.11), AvgVal(5.55),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SZ002608 TBuyData:20130729, TSellData:20130802, dvSelltoBuy:12.50, MA5:0.951, MA10:0.994; dayMA5:1.028, dayMA10:1.039
+index(1), percent(50.00)  count(1) 
+SZ002608 TBuyData:20130808, TSellData:20130905, dvSelltoBuy:-1.39, MA5:1.021, MA10:0.994; dayMA5:1.124, dayMA10:1.043
+
+
+SZ002611---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.69), AvgVal(-5.69),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002611 TBuyData:20131024, TSellData:20131121, dvSelltoBuy:-5.69, MA5:0.959, MA10:1.011; dayMA5:1.352, dayMA10:1.243
+
+
+SZ002616---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.72), AvgVal(0.72),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SZ002616 TBuyData:20160708, TSellData:20160805, dvSelltoBuy:0.72, MA5:0.983, MA10:1.017; dayMA5:1.014, dayMA10:1.014
+
+
+SZ002619---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-14.90), AvgVal(-14.90),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002619 TBuyData:20120621, TSellData:20120720, dvSelltoBuy:-14.90, MA5:0.952, MA10:0.966; dayMA5:1.043, dayMA10:1.011
+
+
+SZ002641---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.55), AvgVal(-4.55),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002641 TBuyData:20160708, TSellData:20160805, dvSelltoBuy:-4.55, MA5:1.005, MA10:0.959; dayMA5:1.045, dayMA10:1.048
+
+
+SZ002675---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.29), AvgVal(-9.29),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002675 TBuyData:20120913, TSellData:20121018, dvSelltoBuy:-9.29, MA5:0.957, MA10:0.941; dayMA5:1.046, dayMA10:1.019
+
+
+SZ002678---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.27), AvgVal(-8.27),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002678 TBuyData:20131122, TSellData:20131220, dvSelltoBuy:-8.27, MA5:0.874, MA10:0.988; dayMA5:1.168, dayMA10:1.072
+
+
+SZ002686---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.00), AvgVal(-4.00),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002686 TBuyData:20140221, TSellData:20140321, dvSelltoBuy:-4.00, MA5:1.015, MA10:1.007; dayMA5:1.093, dayMA10:1.069
+
+
+SZ002699---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SZ002699 TBuyData:20140522, TSellData:20140605, dvSelltoBuy:12.50, MA5:0.940, MA10:0.934; dayMA5:1.047, dayMA10:1.047
+
+
+SZ002753---detail report(20100101-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.66), AvgVal(-1.66),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SZ002753 TBuyData:20160325, TSellData:20160425, dvSelltoBuy:-1.66, MA5:0.984, MA10:0.845; dayMA5:1.054, dayMA10:1.044

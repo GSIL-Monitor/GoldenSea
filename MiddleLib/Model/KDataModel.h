@@ -149,6 +149,7 @@
 
 @property (nonatomic, assign) CGFloat MA5weekT0toTP5;
 @property (nonatomic, assign) CGFloat MA10weekT0toTP5;
+@property (nonatomic, assign) CGFloat MA20weekT0toTP5;
 
 @property (nonatomic, assign) CGFloat MA5dayT0toTP5;
 @property (nonatomic, assign) CGFloat MA10dayT0toTP5;

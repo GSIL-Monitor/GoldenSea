@@ -53,7 +53,7 @@
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
 
-    [GSDataMgr shareInstance].startDate = 20140125;
+//    [GSDataMgr shareInstance].startDate = 20140125;
 //    [GSDataMgr shareInstance].startDate = 20151001;
         [GSDataMgr shareInstance].startDate = 20160225;
 
@@ -79,11 +79,11 @@
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"];
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
-        [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-//    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+//        [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
+    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
 //    [GSDataMgr shareInstance].marketType = marketType_All;
     
     GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
@@ -124,8 +124,8 @@
     
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 12.5f;
-        param.durationAfterBuy = 20; //i
+        param.destDVValue = 2.5f;
+        param.durationAfterBuy = 5; //i
         [GSObjMgr shareInstance].mgr.param = param;
         
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];

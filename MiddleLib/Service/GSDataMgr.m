@@ -94,9 +94,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
 }
 
-#define EnalbeDayDB 1
+//#define EnalbeDayDB 1
 #define EnalbeWeekDB 1
-#define EnalbeMonthDB 1
+//#define EnalbeMonthDB 1
 
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
@@ -312,7 +312,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         case Period_week:
         {
             tmpVolume = kT0Data.volume;
-            kT0Data.volume = kT0Data.unitDbg.monthVolume;
+            kT0Data.volume = kT0Data.unitDbg.weekVolume;
             
             tmpOpen = kT0Data.open;
             kT0Data.open = kT0Data.unitDbg.weekOpen;
