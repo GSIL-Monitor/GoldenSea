@@ -220,7 +220,9 @@
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy);
+//            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, MA5:%.3f, MA10:%.3f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.MA5weekT0toTP5,kData.tradeDbg.MA10weekT0toTP5);
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, MA5:%.3f, MA10:%.3f; dayMA5:%.3f, dayMA10:%.3f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.MA5weekT0toTP5,kData.tradeDbg.MA10weekT0toTP5,kData.tradeDbg.MA5dayT0toTP5,kData.tradeDbg.MA10dayT0toTP5);
+
         }
     }
 

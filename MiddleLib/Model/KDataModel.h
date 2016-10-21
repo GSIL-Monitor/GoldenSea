@@ -147,6 +147,13 @@
 @property (assign) long highValDayIndex; //after buy day
 @property (assign) long lowValDayIndex; //before buy day
 
+@property (nonatomic, assign) CGFloat MA5weekT0toTP5;
+@property (nonatomic, assign) CGFloat MA10weekT0toTP5;
+
+@property (nonatomic, assign) CGFloat MA5dayT0toTP5;
+@property (nonatomic, assign) CGFloat MA10dayT0toTP5;
+
+
 @end
 
 
@@ -183,7 +190,7 @@
 @property (assign) CGFloat low;
 @property (assign) CGFloat close;
 
-@property (assign) CGFloat volume; //万手
+@property (assign) CGFloat volume; //万手= val/100/10000
 
 @property (strong) NSString* stkID;
 

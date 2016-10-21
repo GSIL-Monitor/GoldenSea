@@ -62,7 +62,7 @@
     
     if(self.period == Period_day){
         CGFloat downRate = kT0Data.volume/kTP1Data.volume;
-        isMap = volumeMap && (closeMap>=minCloseMapTimes); // && (downRate<0.7);
+        isMap = volumeMap && (closeMap>=minCloseMapTimes) && (downRate<0.75);
         
     }else{
         isMap = volumeMap;
@@ -87,7 +87,12 @@
         KDataModel* tmpData = [weekArray safeObjectAtIndex:i];
         if(!find && ( tmpData.time <= kT0Data.time)){ //means find the week.
             find = YES;
-            weekIndex = i;
+            if(tmpData.time < kT0Data.time){
+                weekIndex = i+1;
+            }else{ //==
+                weekIndex = i;
+            }
+            
 //            break;
         }
         
@@ -113,19 +118,33 @@
     
     if(find){
        
+        KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
+        KDataModel* kTP6WeekData = [weekArray safeObjectAtIndex:(weekIndex-6)];
+        kT0Data.tradeDbg.MA5weekT0toTP5 = kTP1WeekData.ma5/kTP6WeekData.ma5;
+        kT0Data.tradeDbg.MA10weekT0toTP5 = kTP1WeekData.ma10/kTP6WeekData.ma10;
         
         dvHigh2Low = high/low;
         dvRecentHigh2Low = high/recentLow;
-        if(dvHigh2Low < 1.3
-           && dvRecentHigh2Low < 1.18
-           ){
+        CGFloat dvLastWeekHigh2Low = kTP1WeekData.high/kTP1WeekData.low;
+//        if(
+////           dvHigh2Low < 1.3
+////           && dvRecentHigh2Low < 1.18
+////           && dvLastWeekHigh2Low < 1.1
+//           )
+        
+        if(kT0Data.tradeDbg.MA5weekT0toTP5  < 1.055
+           && kT0Data.tradeDbg.MA10weekT0toTP5 < 1.025)
+        {
             KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
-            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
+//            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
             KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
             if(kT0WeekData.volume > kTP1WeekData.volume
                && (kTP1WeekData.volume>kTP2WeekData.volume)
                && (kT0WeekData.ma20>kTP1WeekData.ma20)
                && (kT0WeekData.ma5>kTP1WeekData.ma5)){
+                
+         
+
                 return YES;
             }
         }
@@ -211,6 +230,10 @@
             
             
             if(kT0Data.tradeDbg.TSellData){
+                KDataModel* kTP6Data  = [cxtArray safeObjectAtIndex:(i-6)];
+                kT0Data.tradeDbg.MA5dayT0toTP5 = kTP1Data.ma5/kTP6Data.ma5;
+                kT0Data.tradeDbg.MA10dayT0toTP5 = kTP1Data.ma10/kTP6Data.ma10;
+
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
         }
