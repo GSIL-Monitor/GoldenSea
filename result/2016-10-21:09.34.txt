@@ -1,0 +1,2273 @@
+
+
+SH600004---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.49), AvgVal(7.49),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600004 TBuyData:20160802, TSellData:20160830, dvSelltoBuy:7.49
+
+
+SH600012---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.60), AvgVal(0.60),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600012 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:0.60
+
+
+SH600018---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.52), AvgVal(-1.52),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600018 TBuyData:20160919, TSellData:20161018, dvSelltoBuy:-1.52
+
+
+SH600022---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.03), AvgVal(4.03),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600022 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:4.03
+
+
+SH600023---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.93), AvgVal(-0.93),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600023 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-0.93
+
+
+SH600026---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.59), AvgVal(7.59),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600026 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:7.59
+
+
+SH600038---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.65), AvgVal(-1.65),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600038 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-1.65
+
+
+SH600048---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.56), AvgVal(-2.28),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600048 TBuyData:20161013, TSellData:20161018, dvSelltoBuy:-0.22
+index(2), percent(50.00)  count(1) 
+SH600048 TBuyData:20160324, TSellData:20160422, dvSelltoBuy:-4.34
+
+
+SH600050---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.01), AvgVal(-7.01),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600050 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-7.01
+
+
+SH600053---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600053 TBuyData:20160930, TSellData:20161013, dvSelltoBuy:12.50
+
+
+SH600055---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.28), AvgVal(-1.28),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600055 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-1.28
+
+
+SH600056---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.40), AvgVal(-0.40),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600056 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-0.40
+
+
+SH600058---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.24), AvgVal(-9.24),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600058 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-9.24
+
+
+SH600063---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.22), AvgVal(-0.22),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600063 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-0.22
+
+
+SH600064---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.52), AvgVal(-0.52),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600064 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-0.52
+
+
+SH600066---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.99), AvgVal(-4.99),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600066 TBuyData:20160802, TSellData:20160830, dvSelltoBuy:-4.99
+
+
+SH600069---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.01), AvgVal(-1.01),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600069 TBuyData:20161012, TSellData:20161018, dvSelltoBuy:-1.01
+
+
+SH600077---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(9.27), AvgVal(9.27),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600077 TBuyData:20160922, TSellData:20161018, dvSelltoBuy:9.27
+
+
+SH600080---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.33), AvgVal(-4.33),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600080 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:-4.33
+
+
+SH600082---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.34), AvgVal(-2.34),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600082 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-2.34
+
+
+SH600085---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.39), AvgVal(3.39),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600085 TBuyData:20160803, TSellData:20160831, dvSelltoBuy:3.39
+
+
+SH600086---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600086 TBuyData:20160629, TSellData:20160707, dvSelltoBuy:12.50
+
+
+SH600090---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.87), AvgVal(-7.87),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600090 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:-7.87
+
+
+SH600094---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.80), AvgVal(-9.80),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600094 TBuyData:20160829, TSellData:20160928, dvSelltoBuy:-9.80
+
+
+SH600095---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.90), AvgVal(4.90),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600095 TBuyData:20160921, TSellData:20161018, dvSelltoBuy:4.90
+
+
+SH600103---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.34), AvgVal(3.34),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600103 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:3.34
+
+
+SH600109---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600109 TBuyData:20160801, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH600110---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600110 TBuyData:20160630, TSellData:20161011, dvSelltoBuy:12.50
+
+
+SH600116---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.72), AvgVal(-1.72),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600116 TBuyData:20160722, TSellData:20160819, dvSelltoBuy:-1.72
+
+
+SH600119---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.23), AvgVal(-10.23),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600119 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-10.23
+
+
+SH600125---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.29), AvgVal(-0.29),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600125 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-0.29
+
+
+SH600126---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600126 TBuyData:20160921, TSellData:20161014, dvSelltoBuy:12.50
+
+
+SH600127---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.75), AvgVal(4.75),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600127 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:4.75
+
+
+SH600128---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.63), AvgVal(-0.63),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600128 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-0.63
+
+
+SH600130---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600130 TBuyData:20160728, TSellData:20160804, dvSelltoBuy:12.50
+
+
+SH600132---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.78), AvgVal(-0.89),totalCount(2), sucPercent(0.00) 
+index(1), percent(100.00)  count(2) 
+SH600132 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-1.33
+SH600132 TBuyData:20160929, TSellData:20161018, dvSelltoBuy:-0.45
+
+
+SH600137---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.46), AvgVal(4.46),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600137 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:4.46
+
+
+SH600148---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.09), AvgVal(-8.09),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600148 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-8.09
+
+
+SH600149---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-16.96), AvgVal(-16.96),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600149 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-16.96
+
+
+SH600150---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.08), AvgVal(0.08),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600150 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:0.08
+
+
+SH600152---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.22), AvgVal(-3.22),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600152 TBuyData:20160921, TSellData:20161018, dvSelltoBuy:-3.22
+
+
+SH600155---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.72), AvgVal(-3.72),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600155 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-3.72
+
+
+SH600156---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.02), AvgVal(-5.02),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600156 TBuyData:20160722, TSellData:20160819, dvSelltoBuy:-5.02
+
+
+SH600157---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.05), AvgVal(3.05),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600157 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:3.05
+
+
+SH600159---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.77), AvgVal(-1.77),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600159 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:-1.77
+
+
+SH600162---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600162 TBuyData:20160311, TSellData:20160407, dvSelltoBuy:12.50
+
+
+SH600177---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.49), AvgVal(-2.49),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600177 TBuyData:20160325, TSellData:20160425, dvSelltoBuy:-2.49
+
+
+SH600183---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600183 TBuyData:20160824, TSellData:20160831, dvSelltoBuy:12.50
+
+
+SH600185---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.11), AvgVal(4.05),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600185 TBuyData:20160801, TSellData:20160815, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600185 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-4.39
+
+
+SH600188---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-16.88), AvgVal(-16.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600188 TBuyData:20160418, TSellData:20160517, dvSelltoBuy:-16.88
+
+
+SH600192---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.46), AvgVal(-2.46),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600192 TBuyData:20160622, TSellData:20160720, dvSelltoBuy:-2.46
+
+
+SH600193---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.39), AvgVal(-12.39),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600193 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-12.39
+
+
+SH600197---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.54), AvgVal(-3.54),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600197 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:-3.54
+
+
+SH600198---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.14), AvgVal(-6.14),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600198 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-6.14
+
+
+SH600199---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600199 TBuyData:20160621, TSellData:20160706, dvSelltoBuy:12.50
+
+
+SH600201---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.75), AvgVal(0.75),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600201 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:0.75
+
+
+SH600203---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.66), AvgVal(-8.66),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600203 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-8.66
+
+
+SH600211---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(13.55), AvgVal(6.77),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600211 TBuyData:20160329, TSellData:20160413, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH600211 TBuyData:20160831, TSellData:20160930, dvSelltoBuy:1.05
+
+
+SH600219---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.71), AvgVal(6.71),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600219 TBuyData:20160620, TSellData:20160719, dvSelltoBuy:6.71
+
+
+SH600222---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.35), AvgVal(-7.35),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600222 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-7.35
+
+
+SH600223---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.76), AvgVal(-1.76),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600223 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:-1.76
+
+
+SH600225---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.34), AvgVal(4.17),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600225 TBuyData:20160801, TSellData:20160803, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600225 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-4.16
+
+
+SH600226---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.30), AvgVal(0.30),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600226 TBuyData:20161013, TSellData:20161018, dvSelltoBuy:0.30
+
+
+SH600229---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.22), AvgVal(-1.22),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600229 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-1.22
+
+
+SH600232---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.58), AvgVal(-7.58),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600232 TBuyData:20160621, TSellData:20160719, dvSelltoBuy:-7.58
+
+
+SH600233---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.44), AvgVal(6.22),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600233 TBuyData:20160831, TSellData:20160920, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH600233 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:-0.06
+
+
+SH600234---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-15.24), AvgVal(-15.24),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600234 TBuyData:20160325, TSellData:20160425, dvSelltoBuy:-15.24
+
+
+SH600242---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.76), AvgVal(1.76),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600242 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:1.76
+
+
+SH600243---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.88), AvgVal(-0.88),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600243 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:-0.88
+
+
+SH600249---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.18), AvgVal(1.18),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600249 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:1.18
+
+
+SH600255---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.09), AvgVal(2.09),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600255 TBuyData:20160718, TSellData:20160805, dvSelltoBuy:2.09
+
+
+SH600257---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.80), AvgVal(-3.80),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600257 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-3.80
+
+
+SH600266---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.64), AvgVal(2.32),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600266 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:8.10
+index(2), percent(50.00)  count(1) 
+SH600266 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-3.47
+
+
+SH600268---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.31), AvgVal(-1.31),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600268 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-1.31
+
+
+SH600272---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600272 TBuyData:20160801, TSellData:20160803, dvSelltoBuy:12.50
+
+
+SH600273---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.03), AvgVal(-0.02),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600273 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:2.15
+index(2), percent(50.00)  count(1) 
+SH600273 TBuyData:20160623, TSellData:20160721, dvSelltoBuy:-2.18
+
+
+SH600278---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600278 TBuyData:20160729, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH600283---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.44), AvgVal(5.44),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600283 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:5.44
+
+
+SH600285---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.69), AvgVal(3.69),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600285 TBuyData:20160831, TSellData:20160930, dvSelltoBuy:3.69
+
+
+SH600295---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.03), AvgVal(-3.02),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600295 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:2.99
+index(2), percent(50.00)  count(1) 
+SH600295 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:-9.02
+
+
+SH600298---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600298 TBuyData:20160329, TSellData:20160406, dvSelltoBuy:12.50
+
+
+SH600302---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.86), AvgVal(3.43),totalCount(2), sucPercent(0.00) 
+index(1), percent(100.00)  count(2) 
+SH600302 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:4.08
+SH600302 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:2.79
+
+
+SH600307---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.83), AvgVal(3.83),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600307 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:3.83
+
+
+SH600310---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600310 TBuyData:20160722, TSellData:20160817, dvSelltoBuy:12.50
+
+
+SH600311---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.47), AvgVal(-2.47),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600311 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-2.47
+
+
+SH600317---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.33), AvgVal(-6.33),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600317 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-6.33
+
+
+SH600318---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.42), AvgVal(0.42),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600318 TBuyData:20160927, TSellData:20161018, dvSelltoBuy:0.42
+
+
+SH600319---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.74), AvgVal(2.74),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600319 TBuyData:20160620, TSellData:20160718, dvSelltoBuy:2.74
+
+
+SH600320---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.20), AvgVal(1.20),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600320 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:1.20
+
+
+SH600322---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(9.49), AvgVal(4.75),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600322 TBuyData:20160310, TSellData:20160328, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600322 TBuyData:20160926, TSellData:20161018, dvSelltoBuy:-3.01
+
+
+SH600325---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600325 TBuyData:20160720, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH600326---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.64), AvgVal(-2.64),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600326 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-2.64
+
+
+SH600327---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.07), AvgVal(-1.07),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600327 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-1.07
+
+
+SH600335---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.25), AvgVal(0.25),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600335 TBuyData:20160429, TSellData:20160530, dvSelltoBuy:0.25
+
+
+SH600337---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.89), AvgVal(1.45),totalCount(2), sucPercent(0.00) 
+index(1), percent(100.00)  count(2) 
+SH600337 TBuyData:20160624, TSellData:20160722, dvSelltoBuy:3.11
+SH600337 TBuyData:20160818, TSellData:20160919, dvSelltoBuy:-0.21
+
+
+SH600338---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600338 TBuyData:20160621, TSellData:20160712, dvSelltoBuy:12.50
+
+
+SH600340---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.22), AvgVal(1.22),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600340 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:1.22
+
+
+SH600346---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.60), AvgVal(-8.60),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600346 TBuyData:20160324, TSellData:20160422, dvSelltoBuy:-8.60
+
+
+SH600352---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600352 TBuyData:20160803, TSellData:20160818, dvSelltoBuy:12.50
+
+
+SH600353---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600353 TBuyData:20160720, TSellData:20160816, dvSelltoBuy:12.50
+
+
+SH600355---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.95), AvgVal(-1.95),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600355 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-1.95
+
+
+SH600360---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600360 TBuyData:20160623, TSellData:20160628, dvSelltoBuy:12.50
+
+
+SH600362---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.24), AvgVal(-2.24),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600362 TBuyData:20160310, TSellData:20160408, dvSelltoBuy:-2.24
+
+
+SH600365---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-30.42), AvgVal(-30.42),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600365 TBuyData:20160426, TSellData:20160526, dvSelltoBuy:-30.42
+
+
+SH600368---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.36), AvgVal(1.36),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600368 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:1.36
+
+
+SH600372---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.82), AvgVal(-1.82),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600372 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-1.82
+
+
+SH600373---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600373 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH600376---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.64), AvgVal(-0.64),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600376 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-0.64
+
+
+SH600380---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.29), AvgVal(0.15),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600380 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:3.35
+index(2), percent(50.00)  count(1) 
+SH600380 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-3.05
+
+
+SH600395---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-19.48), AvgVal(-19.48),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600395 TBuyData:20160419, TSellData:20160518, dvSelltoBuy:-19.48
+
+
+SH600399---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.09), AvgVal(-9.09),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600399 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-9.09
+
+
+SH600403---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600403 TBuyData:20160324, TSellData:20160413, dvSelltoBuy:12.50
+
+
+SH600409---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.23), AvgVal(6.23),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600409 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:6.23
+
+
+SH600416---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(9.08), AvgVal(4.54),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600416 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600416 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:-3.42
+
+
+SH600418---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.15), AvgVal(-0.15),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600418 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:-0.15
+
+
+SH600429---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.92), AvgVal(-1.92),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600429 TBuyData:20160804, TSellData:20160901, dvSelltoBuy:-1.92
+
+
+SH600438---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.29), AvgVal(-4.29),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600438 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-4.29
+
+
+SH600452---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.15), AvgVal(3.15),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600452 TBuyData:20160922, TSellData:20161018, dvSelltoBuy:3.15
+
+
+SH600460---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.49), AvgVal(-13.49),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600460 TBuyData:20160630, TSellData:20160728, dvSelltoBuy:-13.49
+
+
+SH600466---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.30), AvgVal(-6.30),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600466 TBuyData:20160629, TSellData:20160727, dvSelltoBuy:-6.30
+
+
+SH600475---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.49), AvgVal(6.49),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600475 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:6.49
+
+
+SH600476---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.38), AvgVal(-3.38),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600476 TBuyData:20160328, TSellData:20160426, dvSelltoBuy:-3.38
+
+
+SH600479---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.85), AvgVal(-8.85),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600479 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-8.85
+
+
+SH600482---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.88), AvgVal(-6.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600482 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-6.88
+
+
+SH600486---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.78), AvgVal(-0.78),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600486 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-0.78
+
+
+SH600489---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(15.43), AvgVal(5.14),totalCount(3), sucPercent(66.67) 
+index(0), percent(66.67)  count(2) 
+SH600489 TBuyData:20160325, TSellData:20160412, dvSelltoBuy:12.50
+SH600489 TBuyData:20160621, TSellData:20160627, dvSelltoBuy:12.50
+index(2), percent(33.33)  count(1) 
+SH600489 TBuyData:20160418, TSellData:20160525, dvSelltoBuy:-9.57
+
+
+SH600493---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.08), AvgVal(6.08),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600493 TBuyData:20160623, TSellData:20160721, dvSelltoBuy:6.08
+
+
+SH600500---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.73), AvgVal(-10.73),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600500 TBuyData:20160721, TSellData:20160922, dvSelltoBuy:-10.73
+
+
+SH600502---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.27), AvgVal(-4.27),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600502 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:-4.27
+
+
+SH600506---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.82), AvgVal(1.82),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600506 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:1.82
+
+
+SH600512---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600512 TBuyData:20160823, TSellData:20160907, dvSelltoBuy:12.50
+
+
+SH600516---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600516 TBuyData:20160715, TSellData:20160725, dvSelltoBuy:12.50
+
+
+SH600518---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.44), AvgVal(0.44),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600518 TBuyData:20160804, TSellData:20160901, dvSelltoBuy:0.44
+
+
+SH600522---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.89), AvgVal(-7.89),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600522 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-7.89
+
+
+SH600529---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.63), AvgVal(0.63),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600529 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:0.63
+
+
+SH600531---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-14.57), AvgVal(-14.57),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600531 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:-14.57
+
+
+SH600532---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.93), AvgVal(3.93),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600532 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:3.93
+
+
+SH600533---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.10), AvgVal(1.10),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600533 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:1.10
+
+
+SH600535---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.66), AvgVal(4.66),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600535 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:4.66
+
+
+SH600543---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.69), AvgVal(-1.69),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600543 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:-1.69
+
+
+SH600547---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(37.50), AvgVal(12.50),totalCount(3), sucPercent(100.00) 
+index(0), percent(100.00)  count(3) 
+SH600547 TBuyData:20160325, TSellData:20160408, dvSelltoBuy:12.50
+SH600547 TBuyData:20160426, TSellData:20160429, dvSelltoBuy:12.50
+SH600547 TBuyData:20160725, TSellData:20160728, dvSelltoBuy:12.50
+
+
+SH600548---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.92), AvgVal(-3.92),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600548 TBuyData:20160328, TSellData:20160426, dvSelltoBuy:-3.92
+
+
+SH600551---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.74), AvgVal(-2.74),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600551 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-2.74
+
+
+SH600557---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.78), AvgVal(1.89),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600557 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:5.50
+index(2), percent(50.00)  count(1) 
+SH600557 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-1.72
+
+
+SH600559---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.81), AvgVal(-8.81),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600559 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-8.81
+
+
+SH600562---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.50), AvgVal(-0.75),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600562 TBuyData:20160329, TSellData:20160406, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600562 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:-14.00
+
+
+SH600563---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.87), AvgVal(-5.87),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600563 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-5.87
+
+
+SH600567---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.03), AvgVal(5.03),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600567 TBuyData:20160926, TSellData:20161018, dvSelltoBuy:5.03
+
+
+SH600573---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.50), AvgVal(4.25),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600573 TBuyData:20160323, TSellData:20160411, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600573 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-4.00
+
+
+SH600579---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(25.00), AvgVal(12.50),totalCount(2), sucPercent(100.00) 
+index(0), percent(100.00)  count(2) 
+SH600579 TBuyData:20160801, TSellData:20160819, dvSelltoBuy:12.50
+SH600579 TBuyData:20160824, TSellData:20160919, dvSelltoBuy:12.50
+
+
+SH600583---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.09), AvgVal(4.09),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600583 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:4.09
+
+
+SH600588---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.71), AvgVal(-10.71),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600588 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-10.71
+
+
+SH600593---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.85), AvgVal(1.85),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600593 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:1.85
+
+
+SH600595---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-25.81), AvgVal(-12.91),totalCount(2), sucPercent(0.00) 
+index(2), percent(100.00)  count(2) 
+SH600595 TBuyData:20160419, TSellData:20160518, dvSelltoBuy:-22.56
+SH600595 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-3.25
+
+
+SH600597---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.79), AvgVal(1.40),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600597 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:8.08
+index(2), percent(50.00)  count(1) 
+SH600597 TBuyData:20160825, TSellData:20160926, dvSelltoBuy:-5.29
+
+
+SH600598---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.93), AvgVal(-1.93),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600598 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-1.93
+
+
+SH600600---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.55), AvgVal(-0.78),totalCount(2), sucPercent(0.00) 
+index(1), percent(100.00)  count(2) 
+SH600600 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-1.49
+SH600600 TBuyData:20160923, TSellData:20161018, dvSelltoBuy:-0.06
+
+
+SH600602---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.36), AvgVal(-4.68),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600602 TBuyData:20160630, TSellData:20160728, dvSelltoBuy:0.00
+index(2), percent(50.00)  count(1) 
+SH600602 TBuyData:20160831, TSellData:20160930, dvSelltoBuy:-9.36
+
+
+SH600609---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600609 TBuyData:20160901, TSellData:20160914, dvSelltoBuy:12.50
+
+
+SH600612---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600612 TBuyData:20160629, TSellData:20160707, dvSelltoBuy:12.50
+
+
+SH600616---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.80), AvgVal(-2.80),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600616 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-2.80
+
+
+SH600618---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600618 TBuyData:20160801, TSellData:20160809, dvSelltoBuy:12.50
+
+
+SH600620---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600620 TBuyData:20160901, TSellData:20160905, dvSelltoBuy:12.50
+
+
+SH600623---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600623 TBuyData:20160429, TSellData:20160506, dvSelltoBuy:12.50
+
+
+SH600628---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.47), AvgVal(-7.47),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600628 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:-7.47
+
+
+SH600630---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.09), AvgVal(3.09),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600630 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:3.09
+
+
+SH600633---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-15.91), AvgVal(-15.91),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600633 TBuyData:20160418, TSellData:20160517, dvSelltoBuy:-15.91
+
+
+SH600638---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.69), AvgVal(2.56),totalCount(3), sucPercent(0.00) 
+index(1), percent(100.00)  count(3) 
+SH600638 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:3.42
+SH600638 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:4.48
+SH600638 TBuyData:20161010, TSellData:20161018, dvSelltoBuy:-0.20
+
+
+SH600640---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(25.00), AvgVal(12.50),totalCount(2), sucPercent(100.00) 
+index(0), percent(100.00)  count(2) 
+SH600640 TBuyData:20160830, TSellData:20160923, dvSelltoBuy:12.50
+SH600640 TBuyData:20160928, TSellData:20161011, dvSelltoBuy:12.50
+
+
+SH600648---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.03), AvgVal(-5.03),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600648 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-5.03
+
+
+SH600649---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600649 TBuyData:20160324, TSellData:20160405, dvSelltoBuy:12.50
+
+
+SH600660---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.86), AvgVal(-5.86),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600660 TBuyData:20160418, TSellData:20160517, dvSelltoBuy:-5.86
+
+
+SH600661---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.84), AvgVal(3.84),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600661 TBuyData:20160729, TSellData:20160826, dvSelltoBuy:3.84
+
+
+SH600663---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.83), AvgVal(-3.83),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600663 TBuyData:20160825, TSellData:20160926, dvSelltoBuy:-3.83
+
+
+SH600664---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.20), AvgVal(1.20),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600664 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:1.20
+
+
+SH600677---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.26), AvgVal(-2.26),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600677 TBuyData:20160920, TSellData:20161018, dvSelltoBuy:-2.26
+
+
+SH600678---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600678 TBuyData:20160801, TSellData:20160819, dvSelltoBuy:12.50
+
+
+SH600679---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600679 TBuyData:20160801, TSellData:20160817, dvSelltoBuy:12.50
+
+
+SH600682---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.92), AvgVal(8.92),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600682 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:8.92
+
+
+SH600692---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.91), AvgVal(-3.91),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600692 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-3.91
+
+
+SH600693---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600693 TBuyData:20160920, TSellData:20161014, dvSelltoBuy:12.50
+
+
+SH600694---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.78), AvgVal(0.89),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600694 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:3.91
+index(2), percent(50.00)  count(1) 
+SH600694 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-2.13
+
+
+SH600697---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.17), AvgVal(-1.17),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600697 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-1.17
+
+
+SH600699---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600699 TBuyData:20160329, TSellData:20160406, dvSelltoBuy:12.50
+
+
+SH600702---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600702 TBuyData:20160629, TSellData:20160706, dvSelltoBuy:12.50
+
+
+SH600703---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.88), AvgVal(-0.88),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600703 TBuyData:20160919, TSellData:20161018, dvSelltoBuy:-0.88
+
+
+SH600704---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.01), AvgVal(-0.01),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600704 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:3.15
+index(2), percent(50.00)  count(1) 
+SH600704 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-3.16
+
+
+SH600705---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(10.57), AvgVal(10.57),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600705 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:10.57
+
+
+SH600708---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.96), AvgVal(-1.96),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600708 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-1.96
+
+
+SH600711---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.09), AvgVal(-4.09),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600711 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-4.09
+
+
+SH600715---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.31), AvgVal(3.66),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600715 TBuyData:20160824, TSellData:20160905, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600715 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:-5.19
+
+
+SH600717---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.77), AvgVal(-3.77),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600717 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-3.77
+
+
+SH600718---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.18), AvgVal(-3.18),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600718 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-3.18
+
+
+SH600722---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.30), AvgVal(2.30),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600722 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:2.30
+
+
+SH600728---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.03), AvgVal(6.03),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600728 TBuyData:20160923, TSellData:20161018, dvSelltoBuy:6.03
+
+
+SH600730---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.12), AvgVal(-2.12),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600730 TBuyData:20160620, TSellData:20160718, dvSelltoBuy:-2.12
+
+
+SH600736---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.56), AvgVal(-3.56),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600736 TBuyData:20160829, TSellData:20160928, dvSelltoBuy:-3.56
+
+
+SH600737---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.08), AvgVal(-2.08),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600737 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-2.08
+
+
+SH600740---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.94), AvgVal(0.94),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600740 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:0.94
+
+
+SH600742---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.16), AvgVal(2.16),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600742 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:2.16
+
+
+SH600745---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.60), AvgVal(-8.60),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600745 TBuyData:20160722, TSellData:20160819, dvSelltoBuy:-8.60
+
+
+SH600746---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600746 TBuyData:20160930, TSellData:20161014, dvSelltoBuy:12.50
+
+
+SH600747---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.69), AvgVal(1.69),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600747 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:1.69
+
+
+SH600749---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600749 TBuyData:20160901, TSellData:20160909, dvSelltoBuy:12.50
+
+
+SH600751---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.39), AvgVal(-2.39),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600751 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-2.39
+
+
+SH600756---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.35), AvgVal(1.35),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600756 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:1.35
+
+
+SH600757---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.91), AvgVal(0.91),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600757 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:0.91
+
+
+SH600763---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.12), AvgVal(-7.12),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600763 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-7.12
+
+
+SH600766---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600766 TBuyData:20160629, TSellData:20160707, dvSelltoBuy:12.50
+
+
+SH600771---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.99), AvgVal(8.99),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600771 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:8.99
+
+
+SH600777---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.10), AvgVal(-5.10),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600777 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-5.10
+
+
+SH600779---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.30), AvgVal(-1.30),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600779 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-1.30
+
+
+SH600782---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-11.45), AvgVal(-5.73),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600782 TBuyData:20160822, TSellData:20160829, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600782 TBuyData:20160419, TSellData:20160518, dvSelltoBuy:-23.95
+
+
+SH600784---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.49), AvgVal(-7.49),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600784 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-7.49
+
+
+SH600785---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.55), AvgVal(-8.55),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600785 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-8.55
+
+
+SH600789---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.06), AvgVal(-3.53),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600789 TBuyData:20161013, TSellData:20161018, dvSelltoBuy:-0.89
+index(2), percent(50.00)  count(1) 
+SH600789 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-6.17
+
+
+SH600791---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600791 TBuyData:20160825, TSellData:20160922, dvSelltoBuy:12.50
+
+
+SH600800---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600800 TBuyData:20160801, TSellData:20160804, dvSelltoBuy:12.50
+
+
+SH600802---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.19), AvgVal(-1.19),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600802 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-1.19
+
+
+SH600805---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.80), AvgVal(-4.80),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600805 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-4.80
+
+
+SH600807---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600807 TBuyData:20160801, TSellData:20160810, dvSelltoBuy:12.50
+
+
+SH600808---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600808 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:12.50
+
+
+SH600809---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600809 TBuyData:20160526, TSellData:20160603, dvSelltoBuy:12.50
+
+
+SH600812---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.32), AvgVal(3.32),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600812 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:3.32
+
+
+SH600814---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.43), AvgVal(2.43),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600814 TBuyData:20160729, TSellData:20160826, dvSelltoBuy:2.43
+
+
+SH600833---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.80), AvgVal(-4.80),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600833 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:-4.80
+
+
+SH600834---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.31), AvgVal(-1.31),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600834 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-1.31
+
+
+SH600837---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.43), AvgVal(3.43),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600837 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:3.43
+
+
+SH600841---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.07), AvgVal(-5.07),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600841 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-5.07
+
+
+SH600843---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.14), AvgVal(-10.14),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600843 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-10.14
+
+
+SH600844---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(7.48), AvgVal(7.48),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600844 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:7.48
+
+
+SH600845---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600845 TBuyData:20160715, TSellData:20160720, dvSelltoBuy:12.50
+
+
+SH600854---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.48), AvgVal(-6.48),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600854 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-6.48
+
+
+SH600855---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.83), AvgVal(-7.83),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600855 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-7.83
+
+
+SH600858---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.83), AvgVal(2.83),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600858 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:2.83
+
+
+SH600861---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.95), AvgVal(0.95),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600861 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:0.95
+
+
+SH600869---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.00), AvgVal(-4.00),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600869 TBuyData:20160621, TSellData:20160719, dvSelltoBuy:0.76
+index(2), percent(50.00)  count(1) 
+SH600869 TBuyData:20160720, TSellData:20160818, dvSelltoBuy:-8.76
+
+
+SH600870---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.17), AvgVal(1.17),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600870 TBuyData:20160614, TSellData:20160712, dvSelltoBuy:1.17
+
+
+SH600873---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.22), AvgVal(-5.22),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600873 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-5.22
+
+
+SH600882---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.54), AvgVal(2.77),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600882 TBuyData:20160801, TSellData:20160805, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600882 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-6.96
+
+
+SH600883---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.26), AvgVal(6.26),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600883 TBuyData:20160729, TSellData:20160826, dvSelltoBuy:6.26
+
+
+SH600888---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.40), AvgVal(0.40),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600888 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:0.40
+
+
+SH600891---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(4.80), AvgVal(2.40),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600891 TBuyData:20160415, TSellData:20160512, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600891 TBuyData:20160629, TSellData:20160727, dvSelltoBuy:-7.70
+
+
+SH600894---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.09), AvgVal(-1.09),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600894 TBuyData:20161013, TSellData:20161018, dvSelltoBuy:-1.09
+
+
+SH600897---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.61), AvgVal(-2.61),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600897 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-2.61
+
+
+SH600917---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600917 TBuyData:20160930, TSellData:20161012, dvSelltoBuy:12.50
+
+
+SH600919---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-19.47), AvgVal(-19.47),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600919 TBuyData:20160818, TSellData:20160919, dvSelltoBuy:-19.47
+
+
+SH600936---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-14.89), AvgVal(-14.89),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600936 TBuyData:20160902, TSellData:20161011, dvSelltoBuy:-14.89
+
+
+SH600959---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.47), AvgVal(-3.47),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600959 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-3.47
+
+
+SH600963---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.88), AvgVal(5.88),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600963 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:5.88
+
+
+SH600966---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.44), AvgVal(-1.44),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600966 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-1.44
+
+
+SH600969---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.66), AvgVal(0.66),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600969 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:0.66
+
+
+SH600971---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.02), AvgVal(1.51),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600971 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:5.13
+index(2), percent(50.00)  count(1) 
+SH600971 TBuyData:20160824, TSellData:20160923, dvSelltoBuy:-2.11
+
+
+SH600975---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.41), AvgVal(-4.41),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600975 TBuyData:20160728, TSellData:20160825, dvSelltoBuy:-4.41
+
+
+SH600977---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-21.51), AvgVal(-21.51),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600977 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-21.51
+
+
+SH600981---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.72), AvgVal(-2.36),totalCount(2), sucPercent(0.00) 
+index(1), percent(50.00)  count(1) 
+SH600981 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-0.46
+index(2), percent(50.00)  count(1) 
+SH600981 TBuyData:20160825, TSellData:20160926, dvSelltoBuy:-4.26
+
+
+SH600984---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(9.15), AvgVal(9.15),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH600984 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:9.15
+
+
+SH600987---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.01), AvgVal(-4.34),totalCount(3), sucPercent(33.33) 
+index(0), percent(33.33)  count(1) 
+SH600987 TBuyData:20160324, TSellData:20160413, dvSelltoBuy:12.50
+index(2), percent(66.67)  count(2) 
+SH600987 TBuyData:20160418, TSellData:20160517, dvSelltoBuy:-21.31
+SH600987 TBuyData:20160803, TSellData:20160831, dvSelltoBuy:-4.20
+
+
+SH600988---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.68), AvgVal(-0.34),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH600988 TBuyData:20160325, TSellData:20160408, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH600988 TBuyData:20160426, TSellData:20160525, dvSelltoBuy:-13.18
+
+
+SH600997---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH600997 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:12.50
+
+
+SH601002---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(10.18), AvgVal(5.09),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601002 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH601002 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-2.32
+
+
+SH601011---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601011 TBuyData:20160715, TSellData:20160804, dvSelltoBuy:12.50
+
+
+SH601069---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.71), AvgVal(1.36),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601069 TBuyData:20160325, TSellData:20160412, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH601069 TBuyData:20160418, TSellData:20160517, dvSelltoBuy:-9.79
+
+
+SH601100---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601100 TBuyData:20160801, TSellData:20160826, dvSelltoBuy:12.50
+
+
+SH601107---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(13.96), AvgVal(6.98),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601107 TBuyData:20160620, TSellData:20160623, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH601107 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:1.46
+
+
+SH601117---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.17), AvgVal(3.17),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601117 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:3.17
+
+
+SH601118---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.15), AvgVal(1.15),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601118 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:1.15
+
+
+SH601137---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601137 TBuyData:20160428, TSellData:20160504, dvSelltoBuy:12.50
+
+
+SH601155---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601155 TBuyData:20160719, TSellData:20160803, dvSelltoBuy:12.50
+
+
+SH601166---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.08), AvgVal(5.08),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601166 TBuyData:20160324, TSellData:20160422, dvSelltoBuy:5.08
+
+
+SH601198---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601198 TBuyData:20160328, TSellData:20160331, dvSelltoBuy:12.50
+
+
+SH601199---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601199 TBuyData:20160823, TSellData:20160907, dvSelltoBuy:12.50
+
+
+SH601216---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.19), AvgVal(0.19),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601216 TBuyData:20160921, TSellData:20161018, dvSelltoBuy:0.19
+
+
+SH601226---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.62), AvgVal(-3.62),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601226 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-3.62
+
+
+SH601311---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.35), AvgVal(-2.35),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601311 TBuyData:20160621, TSellData:20160719, dvSelltoBuy:-2.35
+
+
+SH601318---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.17), AvgVal(6.17),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601318 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:6.17
+
+
+SH601336---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(5.97), AvgVal(2.99),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601336 TBuyData:20160801, TSellData:20160815, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH601336 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-6.53
+
+
+SH601339---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.48), AvgVal(0.48),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601339 TBuyData:20160620, TSellData:20160718, dvSelltoBuy:0.48
+
+
+SH601377---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.41), AvgVal(3.41),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601377 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:3.41
+
+
+SH601515---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.85), AvgVal(2.85),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601515 TBuyData:20160930, TSellData:20161018, dvSelltoBuy:2.85
+
+
+SH601555---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601555 TBuyData:20160803, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH601595---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.32), AvgVal(-3.32),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601595 TBuyData:20160909, TSellData:20161018, dvSelltoBuy:-3.32
+
+
+SH601607---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(2.04), AvgVal(2.04),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601607 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:2.04
+
+
+SH601608---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.12), AvgVal(-3.12),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601608 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-3.12
+
+
+SH601611---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-26.03), AvgVal(-26.03),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601611 TBuyData:20160708, TSellData:20160805, dvSelltoBuy:-26.03
+
+
+SH601618---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.33), AvgVal(-3.33),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601618 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:-3.33
+
+
+SH601628---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.10), AvgVal(3.10),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601628 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:3.10
+
+
+SH601633---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.15), AvgVal(-1.15),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601633 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-1.15
+
+
+SH601636---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.90), AvgVal(-4.90),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601636 TBuyData:20160826, TSellData:20160927, dvSelltoBuy:-4.90
+
+
+SH601668---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601668 TBuyData:20160720, TSellData:20160809, dvSelltoBuy:12.50
+
+
+SH601678---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.58), AvgVal(0.58),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601678 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:0.58
+
+
+SH601689---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-1.74), AvgVal(-1.74),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601689 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-1.74
+
+
+SH601800---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601800 TBuyData:20160720, TSellData:20160816, dvSelltoBuy:12.50
+
+
+SH601801---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.05), AvgVal(3.05),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601801 TBuyData:20160804, TSellData:20160901, dvSelltoBuy:3.05
+
+
+SH601811---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.76), AvgVal(-5.76),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601811 TBuyData:20160922, TSellData:20161018, dvSelltoBuy:-5.76
+
+
+SH601818---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.32), AvgVal(6.32),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH601818 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:6.32
+
+
+SH601877---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601877 TBuyData:20160715, TSellData:20160725, dvSelltoBuy:12.50
+
+
+SH601890---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.63), AvgVal(-5.63),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601890 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-5.63
+
+
+SH601899---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(8.91), AvgVal(4.45),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601899 TBuyData:20160629, TSellData:20160706, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH601899 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-3.59
+
+
+SH601900---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601900 TBuyData:20160329, TSellData:20160414, dvSelltoBuy:12.50
+
+
+SH601908---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.36), AvgVal(-5.36),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601908 TBuyData:20160823, TSellData:20160922, dvSelltoBuy:-5.36
+
+
+SH601958---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.74), AvgVal(-8.74),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601958 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-8.74
+
+
+SH601968---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.47), AvgVal(3.24),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH601968 TBuyData:20160824, TSellData:20161012, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH601968 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-6.03
+
+
+SH601992---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH601992 TBuyData:20160720, TSellData:20160815, dvSelltoBuy:12.50
+
+
+SH601997---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-17.88), AvgVal(-17.88),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601997 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-17.88
+
+
+SH601998---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.09), AvgVal(-8.09),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH601998 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-8.09
+
+
+SH603001---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.85), AvgVal(-2.85),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603001 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-2.85
+
+
+SH603003---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-4.70), AvgVal(-4.70),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603003 TBuyData:20160921, TSellData:20161018, dvSelltoBuy:-4.70
+
+
+SH603006---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(10.78), AvgVal(10.78),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603006 TBuyData:20160801, TSellData:20160829, dvSelltoBuy:10.78
+
+
+SH603007---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.55), AvgVal(1.55),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603007 TBuyData:20160927, TSellData:20161018, dvSelltoBuy:1.55
+
+
+SH603011---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.05), AvgVal(-3.05),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603011 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:-3.05
+
+
+SH603015---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.58), AvgVal(-9.58),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603015 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-9.58
+
+
+SH603020---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.54), AvgVal(-5.54),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603020 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-5.54
+
+
+SH603021---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603021 TBuyData:20160801, TSellData:20160823, dvSelltoBuy:12.50
+
+
+SH603022---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603022 TBuyData:20160614, TSellData:20160706, dvSelltoBuy:12.50
+
+
+SH603027---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(1.82), AvgVal(1.82),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603027 TBuyData:20160719, TSellData:20160816, dvSelltoBuy:1.82
+
+
+SH603029---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(19.10), AvgVal(9.55),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH603029 TBuyData:20160801, TSellData:20160816, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH603029 TBuyData:20160928, TSellData:20161018, dvSelltoBuy:6.60
+
+
+SH603069---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-21.20), AvgVal(-21.20),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603069 TBuyData:20160818, TSellData:20160919, dvSelltoBuy:-21.20
+
+
+SH603085---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(25.00), AvgVal(12.50),totalCount(2), sucPercent(100.00) 
+index(0), percent(100.00)  count(2) 
+SH603085 TBuyData:20160728, TSellData:20160817, dvSelltoBuy:12.50
+SH603085 TBuyData:20160822, TSellData:20160901, dvSelltoBuy:12.50
+
+
+SH603108---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(6.94), AvgVal(6.94),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603108 TBuyData:20160922, TSellData:20161018, dvSelltoBuy:6.94
+
+
+SH603116---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.23), AvgVal(-9.23),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603116 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-9.23
+
+
+SH603126---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.57), AvgVal(-3.57),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603126 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-3.57
+
+
+SH603158---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-8.92), AvgVal(-8.92),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603158 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-8.92
+
+
+SH603159---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.85), AvgVal(3.85),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603159 TBuyData:20160920, TSellData:20161018, dvSelltoBuy:3.85
+
+
+SH603166---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.95), AvgVal(-2.95),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603166 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-2.95
+
+
+SH603198---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.69), AvgVal(-3.69),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603198 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-3.69
+
+
+SH603199---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-2.78), AvgVal(-2.78),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603199 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-2.78
+
+
+SH603222---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603222 TBuyData:20160720, TSellData:20160725, dvSelltoBuy:12.50
+
+
+SH603268---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.72), AvgVal(-3.72),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603268 TBuyData:20160923, TSellData:20161018, dvSelltoBuy:-3.72
+
+
+SH603299---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.69), AvgVal(-5.69),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603299 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-5.69
+
+
+SH603311---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(15.75), AvgVal(7.88),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH603311 TBuyData:20160901, TSellData:20160907, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH603311 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:3.25
+
+
+SH603399---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-13.92), AvgVal(-13.92),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603399 TBuyData:20160715, TSellData:20160812, dvSelltoBuy:-13.92
+
+
+SH603456---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-11.49), AvgVal(-11.49),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603456 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-11.49
+
+
+SH603515---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-15.54), AvgVal(-15.54),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603515 TBuyData:20160909, TSellData:20161018, dvSelltoBuy:-15.54
+
+
+SH603518---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.10), AvgVal(-0.10),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603518 TBuyData:20160823, TSellData:20160829, dvSelltoBuy:-0.10
+
+
+SH603520---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.06), AvgVal(-6.03),totalCount(2), sucPercent(0.00) 
+index(2), percent(100.00)  count(2) 
+SH603520 TBuyData:20160426, TSellData:20160525, dvSelltoBuy:-9.01
+SH603520 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-3.06
+
+
+SH603569---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-21.22), AvgVal(-21.22),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603569 TBuyData:20160830, TSellData:20160929, dvSelltoBuy:-21.22
+
+
+SH603588---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603588 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:12.50
+
+
+SH603599---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603599 TBuyData:20160329, TSellData:20160405, dvSelltoBuy:12.50
+
+
+SH603600---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.74), AvgVal(-5.74),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603600 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-5.74
+
+
+SH603601---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-16.02), AvgVal(-8.01),totalCount(2), sucPercent(0.00) 
+index(2), percent(100.00)  count(2) 
+SH603601 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-2.03
+SH603601 TBuyData:20160831, TSellData:20160930, dvSelltoBuy:-14.00
+
+
+SH603609---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.67), AvgVal(-6.67),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603609 TBuyData:20160721, TSellData:20160818, dvSelltoBuy:-6.67
+
+
+SH603616---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(14.06), AvgVal(7.03),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH603616 TBuyData:20160801, TSellData:20160825, dvSelltoBuy:12.50
+index(1), percent(50.00)  count(1) 
+SH603616 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:1.56
+
+
+SH603636---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.61), AvgVal(-0.61),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603636 TBuyData:20160729, TSellData:20160826, dvSelltoBuy:-0.61
+
+
+SH603663---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603663 TBuyData:20160909, TSellData:20161010, dvSelltoBuy:12.50
+
+
+SH603701---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(12.50), AvgVal(12.50),totalCount(1), sucPercent(100.00) 
+index(0), percent(100.00)  count(1) 
+SH603701 TBuyData:20160509, TSellData:20160602, dvSelltoBuy:12.50
+
+
+SH603766---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.27), AvgVal(-7.27),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603766 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:-7.27
+
+
+SH603778---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.70), AvgVal(-3.70),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603778 TBuyData:20160914, TSellData:20161018, dvSelltoBuy:-3.70
+
+
+SH603779---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.22), AvgVal(-10.22),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603779 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-10.22
+
+
+SH603789---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-3.34), AvgVal(-3.34),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603789 TBuyData:20160328, TSellData:20160426, dvSelltoBuy:-3.34
+
+
+SH603799---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.63), AvgVal(-6.63),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603799 TBuyData:20160324, TSellData:20160422, dvSelltoBuy:-6.63
+
+
+SH603800---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-0.90), AvgVal(-0.90),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603800 TBuyData:20160722, TSellData:20160819, dvSelltoBuy:-0.90
+
+
+SH603818---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-6.73), AvgVal(-6.73),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603818 TBuyData:20160329, TSellData:20160427, dvSelltoBuy:-6.73
+
+
+SH603822---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.70), AvgVal(-7.70),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603822 TBuyData:20160720, TSellData:20160817, dvSelltoBuy:-7.70
+
+
+SH603828---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.92), AvgVal(0.92),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603828 TBuyData:20161013, TSellData:20161018, dvSelltoBuy:0.92
+
+
+SH603861---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(0.57), AvgVal(0.28),totalCount(2), sucPercent(50.00) 
+index(0), percent(50.00)  count(1) 
+SH603861 TBuyData:20160720, TSellData:20160815, dvSelltoBuy:12.50
+index(2), percent(50.00)  count(1) 
+SH603861 TBuyData:20160425, TSellData:20160524, dvSelltoBuy:-11.93
+
+
+SH603869---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-9.26), AvgVal(-9.26),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603869 TBuyData:20160419, TSellData:20160603, dvSelltoBuy:-9.26
+
+
+SH603901---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-10.40), AvgVal(-10.40),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603901 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-10.40
+
+
+SH603918---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-12.07), AvgVal(-12.07),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603918 TBuyData:20160819, TSellData:20160920, dvSelltoBuy:-12.07
+
+
+SH603958---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.03), AvgVal(-3.52),totalCount(2), sucPercent(0.00) 
+index(2), percent(100.00)  count(2) 
+SH603958 TBuyData:20160722, TSellData:20160819, dvSelltoBuy:-3.05
+SH603958 TBuyData:20160901, TSellData:20161010, dvSelltoBuy:-3.99
+
+
+SH603988---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-7.62), AvgVal(-7.62),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603988 TBuyData:20160725, TSellData:20160822, dvSelltoBuy:-7.62
+
+
+SH603989---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(3.67), AvgVal(3.67),totalCount(1), sucPercent(0.00) 
+index(1), percent(100.00)  count(1) 
+SH603989 TBuyData:20160822, TSellData:20160921, dvSelltoBuy:3.67
+
+
+SH603993---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(12.50), duration(20)  Result:totalS2BDVVal(-5.47), AvgVal(-5.47),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH603993 TBuyData:20160718, TSellData:20160815, dvSelltoBuy:-5.47

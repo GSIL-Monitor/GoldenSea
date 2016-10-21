@@ -83,11 +83,11 @@
         SMLog(@"\n");
 
         
-        SMLog(@"%@---summary report (%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
-        for (long i=0; i<[arrayUsed count]; i++) {
-            GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-            SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
-        }
+//        SMLog(@"%@---summary report (%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate );
+//        for (long i=0; i<[arrayUsed count]; i++) {
+//            GSBaseParam* ele = [arrayUsed objectAtIndex:i];
+//            SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
+//        }
         
         if(isAll){
             SMLog(@"%@---detail report(%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);

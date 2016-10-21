@@ -27,7 +27,7 @@
 //        SMLog(@"");
 //    }
     
-//    if(kT0Data.time == 20160620){
+//    if(kT0Data.time == 20160325){
 //        SMLog(@"");
 //    }
     
@@ -88,7 +88,7 @@
         if(!find && ( tmpData.time <= kT0Data.time)){ //means find the week.
             find = YES;
             weekIndex = i;
-            break;
+//            break;
         }
         
         if(find){
@@ -102,7 +102,7 @@
             units--;
         }
         
-        if(units==4){
+        if(units==3){
             recentLow = low;
         }
         
@@ -117,7 +117,7 @@
         dvHigh2Low = high/low;
         dvRecentHigh2Low = high/recentLow;
         if(dvHigh2Low < 1.3
-//           && dvRecentHigh2Low < 1.2
+           && dvRecentHigh2Low < 1.18
            ){
             KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
             KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];

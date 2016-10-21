@@ -79,7 +79,7 @@
 {
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600167"]; //,@"SH600418",@"SZ000592"];
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600113"]; //SH600108
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600234"]; //SH600108
 
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -125,7 +125,7 @@
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
         param.destDVValue = 12.5f;
-        param.durationAfterBuy = 10; //i
+        param.durationAfterBuy = 20; //i
         [GSObjMgr shareInstance].mgr.param = param;
         
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
