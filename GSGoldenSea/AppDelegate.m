@@ -124,7 +124,7 @@
     
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 2.5f;
+        param.destDVValue = 5.5f;
         param.durationAfterBuy = 5; //i
         [GSObjMgr shareInstance].mgr.param = param;
         

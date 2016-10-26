@@ -64,8 +64,13 @@
         CGFloat downRate = kT0Data.volume/kTP1Data.volume;
         isMap = volumeMap && (closeMap>=minCloseMapTimes) && (downRate<0.75);
         
+        
     }else{
         isMap = volumeMap;
+    }
+    
+    if(isMap){
+        kT0Data.tradeDbg.dvVolumT0toTHigh = kT0Data.volume/kTP3Data.volume;
     }
     
 

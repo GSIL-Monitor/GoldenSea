@@ -153,7 +153,7 @@
 
 @property (nonatomic, assign) CGFloat MA5dayT0toTP5;
 @property (nonatomic, assign) CGFloat MA10dayT0toTP5;
-
+@property (nonatomic, assign) CGFloat dvVolumT0toTHigh;
 
 @end
 
