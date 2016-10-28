@@ -83,45 +83,14 @@
     CGFloat high=0.f,low=kInvalidData_Base, dvHigh2Low=0.f;
     CGFloat recentLow=kInvalidData_Base, dvRecentHigh2Low; //比如4周前的low值
 //    CGFloat latestClose=0.f, agoClose=0.f, dvClose=0.f;
-    BOOL find=NO;
     long units = 8; //8周振幅
     long weekIndex = 0;
     
     NSArray* weekArray = [self getCxtArray:Period_week];
-    for(long i=[weekArray count]-1; i>=0; i--){
-        KDataModel* tmpData = [weekArray safeObjectAtIndex:i];
-        if(!find && ( tmpData.time <= kT0Data.time)){ //means find the week.
-            find = YES;
-            if(tmpData.time < kT0Data.time){
-                weekIndex = i+1;
-            }else{ //==
-                weekIndex = i;
-            }
-            
-            break;
-        }
-        
-        if(find){
-            if(high < tmpData.high){
-                high = tmpData.high;
-            }
-            
-            if(low > tmpData.low){
-                low = tmpData.low;
-            }
-            units--;
-        }
-        
-        if(units==3){
-            recentLow = low;
-        }
-        
-        if(units <=0){
-            break;
-        }
-    }
+    weekIndex = [HelpService findIndexInArray:weekArray kT0Data:kT0Data];
     
-    if(find){
+    
+    if(weekIndex){
        
         KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
         KDataModel* kTP6WeekData = [weekArray safeObjectAtIndex:(weekIndex-6)];
@@ -146,7 +115,6 @@
            && fabs(kT0Data.tradeDbg.MA10weekT0toTP5-1) < 0.025
            && dvLastWeekHigh2Low < 1.1
            )
-            
         {
             KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
 //            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
@@ -157,9 +125,6 @@
 //               &&
                (kT0WeekData.ma20>kTP1WeekData.ma20)
                && (kT0WeekData.ma5>kTP1WeekData.ma5)){
-                
-         
-
                 return YES;
             }
         }

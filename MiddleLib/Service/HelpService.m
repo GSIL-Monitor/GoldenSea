@@ -246,4 +246,54 @@
     return theHighestValue;
 }
 
+
+
++(long)findIndexInArray:(NSArray*)array kT0Data:(KDataModel*)kT0Data;
+{
+    
+    BOOL find=NO;
+    long units = 8; //8周振幅
+    long findIndex = -1;
+
+    
+    for(long i=[array count]-1; i>=0; i--){
+        KDataModel* tmpData = [array safeObjectAtIndex:i];
+        if(!find && ( tmpData.time <= kT0Data.time)){ //means find in the week(or month).
+            find = YES;
+            if(tmpData.time < kT0Data.time){
+                findIndex = i+1;
+            }else{ //==
+                findIndex = i;
+            }
+            
+            break;
+        }
+        
+//        if(find){
+//            if(high < tmpData.high){
+//                high = tmpData.high;
+//            }
+//            
+//            if(low > tmpData.low){
+//                low = tmpData.low;
+//            }
+//            units--;
+//        }
+//        
+//        if(units==3){
+//            recentLow = low;
+//        }
+//        
+//        if(units <=0){
+//            break;
+//        }
+    }
+    
+    
+    return findIndex;
+}
+
+
+
+
 @end
