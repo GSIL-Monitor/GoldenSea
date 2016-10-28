@@ -10,8 +10,84 @@
 
 @implementation TechAnalysisMgr
 
-
 -(BOOL)isMapCondition:(long)i isQuery:(BOOL)isQuery
+{
+    BOOL map;
+    
+//    map = [self isMapVolumeAndPrice:i isQuery:isQuery];
+    
+    map = [self isMapSuddenDown:i isQuery:isQuery];
+    
+    return map;
+}
+
+-(BOOL)isMapSuddenDown:(long)i isQuery:(BOOL)isQuery
+{
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
+    KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
+    KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
+    KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+    KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+    //    KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
+    
+    
+    //    if([self.stkID isEqualToString:@"SH600019"]){
+    //        SMLog(@"");
+    //    }
+    
+    //    if(kT0Data.time == 20160325){
+    //        SMLog(@"");
+    //    }
+    
+    BOOL  isMap;
+//    long closeMap = 0, minCloseMapTimes = 3;
+//    if(isQuery){ //query, just check the last 2 days condition. today need check.
+//        minCloseMapTimes--;
+//        volumeMap = (kTP2Data.volume > kTP1Data.volume
+//                     && kTP1Data.volume > kT0Data.volume
+//                     //            && kTP3Data.volume > kTP2Data.volume
+//                     );
+//        
+//        closeMap =  ((kTP2Data.close > kTP1Data.close)
+//                     + (kTP1Data.close > kT0Data.close)
+//                     //            && kTP3Data.close > kTP2Data.close
+//                     );
+//        
+//    }else{
+//        volumeMap =
+//        (kTP2Data.volume > kTP1Data.volume
+//         && kTP1Data.volume > kT0Data.volume
+//         && kTP3Data.volume > kTP2Data.volume
+//         //            && kTP4Data.volume > kTP3Data.volume
+//         );
+//        
+//        closeMap =
+//        ((kTP2Data.close > kTP1Data.close )
+//         + (kTP1Data.close > kT0Data.close )
+//         + (kTP3Data.close > kTP2Data.close)
+//         );
+//    }
+    
+    
+    CGFloat volDownRate, dvRate ;
+    
+    dvRate = kT0Data.close/kTP1Data.close;
+    volDownRate = kT0Data.volume/kTP1Data.volume;
+    isMap = (dvRate < 0.955) && (volDownRate<0.8);
+    
+    if(isMap){
+        kT0Data.tradeDbg.dvVolumT0toTHigh = kT0Data.volume/kTP1Data.volume;
+    }
+    
+    
+    return isMap;
+}
+
+
+
+-(BOOL)isMapVolumeAndPrice:(long)i isQuery:(BOOL)isQuery
 {
     NSArray* cxtArray = [self getCxtArray:self.period];
 
@@ -94,9 +170,9 @@
        
         KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
         KDataModel* kTP6WeekData = [weekArray safeObjectAtIndex:(weekIndex-6)];
-        kT0Data.tradeDbg.MA5weekT0toTP5 = kTP1WeekData.ma5/kTP6WeekData.ma5;
-        kT0Data.tradeDbg.MA10weekT0toTP5 = kTP1WeekData.ma10/kTP6WeekData.ma10;
-        kT0Data.tradeDbg.MA20weekT0toTP5 = kTP1WeekData.ma20/kTP6WeekData.ma20;
+        kT0Data.tradeDbg.wMA5Slope = kTP1WeekData.ma5/kTP6WeekData.ma5;
+        kT0Data.tradeDbg.wMA10Slope = kTP1WeekData.ma10/kTP6WeekData.ma10;
+        kT0Data.tradeDbg.wMA20Slope = kTP1WeekData.ma20/kTP6WeekData.ma20;
 
         
         dvHigh2Low = high/low;
@@ -109,24 +185,26 @@
 //           )
         
 //        if(kT0Data.tradeDbg.MA5weekT0toTP5  < 1.055
-//           && kT0Data.tradeDbg.MA10weekT0toTP5 < 1.025)
+//           && kT0Data.tradeDbg.wMA10Slope < 1.025)
         
-        if(fabs(kT0Data.tradeDbg.MA5weekT0toTP5-1)  < 0.055
-           && fabs(kT0Data.tradeDbg.MA10weekT0toTP5-1) < 0.025
+        if(fabs(kT0Data.tradeDbg.wMA5Slope-1)  < 0.055
+           && fabs(kT0Data.tradeDbg.wMA10Slope-1) < 0.025
            && dvLastWeekHigh2Low < 1.1
            )
         {
-            KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
-//            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
-            KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
-            if(
-//               kT0WeekData.volume > kTP1WeekData.volume
-//               && (kTP1WeekData.volume>kTP2WeekData.volume)
-//               &&
-               (kT0WeekData.ma20>kTP1WeekData.ma20)
-               && (kT0WeekData.ma5>kTP1WeekData.ma5)){
-                return YES;
-            }
+            return YES;
+//
+//            KDataModel* kT0WeekData = [weekArray safeObjectAtIndex:weekIndex];
+////            KDataModel* kTP1WeekData = [weekArray safeObjectAtIndex:(weekIndex-1)];
+//            KDataModel* kTP2WeekData = [weekArray safeObjectAtIndex:(weekIndex-2)];
+//            if(
+////               kT0WeekData.volume > kTP1WeekData.volume
+////               && (kTP1WeekData.volume>kTP2WeekData.volume)
+////               &&
+//               (kT0WeekData.ma20>kTP1WeekData.ma20)
+//               && (kT0WeekData.ma5>kTP1WeekData.ma5)){
+//                return YES;
+//            }
         }
     }
     
@@ -211,8 +289,8 @@
             
             if(kT0Data.tradeDbg.TSellData){
                 KDataModel* kTP6Data  = [cxtArray safeObjectAtIndex:(i-6)];
-                kT0Data.tradeDbg.MA5dayT0toTP5 = kTP1Data.ma5/kTP6Data.ma5;
-                kT0Data.tradeDbg.MA10dayT0toTP5 = kTP1Data.ma10/kTP6Data.ma10;
+                kT0Data.tradeDbg.dMA5Slope = kTP1Data.ma5/kTP6Data.ma5;
+                kT0Data.tradeDbg.dMA10Slope = kTP1Data.ma10/kTP6Data.ma10;
 
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }

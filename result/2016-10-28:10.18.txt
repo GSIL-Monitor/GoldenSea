@@ -1,0 +1,6 @@
+
+
+SH600185---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(5.50), duration(5)  Result:totalS2BDVVal(-4.10), AvgVal(-4.10),totalCount(1), sucPercent(0.00) 
+index(2), percent(100.00)  count(1) 
+SH600185 TBuyData:20160421, TSellData:20160428, dvSelltoBuy:-4.10, vol:0.470,                  MA5:1.041, MA10:1.008, MA20:0.970; dayMA5:1.106, dayMA10:1.055

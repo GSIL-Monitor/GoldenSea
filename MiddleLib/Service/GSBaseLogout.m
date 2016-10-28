@@ -220,10 +220,11 @@
         SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
-//            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, MA5:%.3f, MA10:%.3f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.MA5weekT0toTP5,kData.tradeDbg.MA10weekT0toTP5);
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, vol:%.3f, MA5:%.3f, MA10:%.3f, MA20:%.3f; dayMA5:%.3f, dayMA10:%.3f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.dvVolumT0toTHigh,
-                  kData.tradeDbg.MA5weekT0toTP5,kData.tradeDbg.MA10weekT0toTP5,kData.tradeDbg.MA20weekT0toTP5,
-                  kData.tradeDbg.MA5dayT0toTP5,kData.tradeDbg.MA10dayT0toTP5);
+//            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, MA5:%.3f, MA10:%.3f",kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.MA5weekT0toTP5,kData.tradeDbg.wMA10Slope);
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, vol:%.3f,MA5:%.3f, MA10:%.3f, MA20:%.3f; dayMA5:%.3f, dayMA10:%.3f",
+                  kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.dvVolumT0toTHigh,
+                  kData.tradeDbg.wMA5Slope,kData.tradeDbg.wMA10Slope,kData.tradeDbg.wMA20Slope,
+                  kData.tradeDbg.dMA5Slope,kData.tradeDbg.dMA10Slope);
 
         }
     }

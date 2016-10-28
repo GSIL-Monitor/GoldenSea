@@ -147,12 +147,12 @@
 @property (assign) long highValDayIndex; //after buy day
 @property (assign) long lowValDayIndex; //before buy day
 
-@property (nonatomic, assign) CGFloat MA5weekT0toTP5;
-@property (nonatomic, assign) CGFloat MA10weekT0toTP5;
-@property (nonatomic, assign) CGFloat MA20weekT0toTP5;
+@property (nonatomic, assign) CGFloat wMA5Slope;
+@property (nonatomic, assign) CGFloat wMA10Slope;
+@property (nonatomic, assign) CGFloat wMA20Slope;
 
-@property (nonatomic, assign) CGFloat MA5dayT0toTP5;
-@property (nonatomic, assign) CGFloat MA10dayT0toTP5;
+@property (nonatomic, assign) CGFloat dMA5Slope;
+@property (nonatomic, assign) CGFloat dMA10Slope;
 @property (nonatomic, assign) CGFloat dvVolumT0toTHigh;
 
 @end
