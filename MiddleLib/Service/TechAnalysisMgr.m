@@ -89,6 +89,7 @@
 
 -(BOOL)isMapVolumeAndPrice:(long)i isQuery:(BOOL)isQuery
 {
+   
     NSArray* cxtArray = [self getCxtArray:self.period];
 
     KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
@@ -98,16 +99,46 @@
     KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
 //    KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
     
+    if(kT0Data.time < 20160301){
+        return NO;
+    }
+    
+    if(kT0Data.time < 20160301 && kT0Data.time>20160201){
+        return NO;
+    }
+    if(kT0Data.time < 20150301 && kT0Data.time>20150201){
+        return NO;
+    }
+    long stop =  kT0Data.time%100;
+    long start = kT0Data.time%100;
+    if(stop < 25 ){
+        return NO;
+    }
+    
+        if([self.stkID isEqualToString:@"SH600588"]){
+            SMLog(@"");
+        }
+    
     CGFloat per = kT0Data.volume/kTP1Data.volume;
     if(per < 0.4){
-        return YES;
+        CGFloat p02 = kT0Data.volume/kTP2Data.volume;
+        CGFloat p03 = kTP2Data.volume/kTP3Data.volume;
+        CGFloat p04 = kTP4Data.volume/kTP4Data.volume;
+        CGFloat vp01 = kTP1Data.high /kTP2Data.close;
+        
+        if(
+//           p02 < 0.75 && p03<0.75 && p04 < 0.75 &&
+           vp01 < 1.2
+           ){
+            return YES;
+        }
+        
+        return NO;
     }else{
         return NO;
     }
     
-//    if([self.stkID isEqualToString:@"SH600019"]){
-//        SMLog(@"");
-//    }
+
     
 //    if(kT0Data.time == 20160325){
 //        SMLog(@"");
