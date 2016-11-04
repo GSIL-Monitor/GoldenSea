@@ -99,7 +99,7 @@
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
     [self configureMgr];
-    [GSObjMgr shareInstance].mgr.period = Period_day;
+    [GSObjMgr shareInstance].mgr.period = Period_month; // Period_day;
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
     
@@ -124,8 +124,8 @@
     
     for(long i=1; i<=1; i++){
         GSBaseParam* param = [[GSBaseParam alloc]init];
-        param.destDVValue = 5.5f;
-        param.durationAfterBuy = 5; //i
+        param.destDVValue = 25.5f;
+        param.durationAfterBuy = 1; //i
         [GSObjMgr shareInstance].mgr.param = param;
         
         [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];

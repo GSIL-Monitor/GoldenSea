@@ -14,9 +14,9 @@
 {
     BOOL map;
     
-//    map = [self isMapVolumeAndPrice:i isQuery:isQuery];
+    map = [self isMapVolumeAndPrice:i isQuery:isQuery];
     
-    map = [self isMapSuddenDown:i isQuery:isQuery];
+//    map = [self isMapSuddenDown:i isQuery:isQuery];
     
     return map;
 }
@@ -98,6 +98,12 @@
     KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
 //    KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
     
+    CGFloat per = kT0Data.volume/kTP1Data.volume;
+    if(per < 0.4){
+        return YES;
+    }else{
+        return NO;
+    }
     
 //    if([self.stkID isEqualToString:@"SH600019"]){
 //        SMLog(@"");
@@ -257,9 +263,14 @@
 //        }`
         
         if([self isMapCondition:i isQuery:NO]
-           && [self isMapWeekCondition:kT0Data]
+//           && [self isMapWeekCondition:kT0Data]
            )
         {
+            if(kT0Data.time < 20160301 && kT0Data.time>20160201){
+                i++;
+                continue;
+            }
+            
             if(Period_day == self.period){
 //                if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
 //                   ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
