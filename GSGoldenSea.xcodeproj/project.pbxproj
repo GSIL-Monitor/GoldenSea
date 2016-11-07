@@ -378,7 +378,7 @@
 		42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XueQiuDataRequest.m; sourceTree = "<group>"; };
 		42E74FF71CF2E7E5009D483D /* GSCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCondition.h; sourceTree = "<group>"; };
 		42E74FF81CF2E7E5009D483D /* GSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCondition.m; sourceTree = "<group>"; };
-		E42D2D3C1CF4810E00E4D61C /* main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
+		E42D2D3C1CF4810E00E4D61C /* main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = main.xib; path = ../GSGoldenSea/main.xib; sourceTree = "<group>"; };
 		E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		E4941B611D64BA15006B792B /* RaisingLimitParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaisingLimitParam.h; sourceTree = "<group>"; };
 		E4941B621D64BA15006B792B /* RaisingLimitParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaisingLimitParam.m; sourceTree = "<group>"; };
@@ -579,7 +579,6 @@
 				42E08D761C7FF771004E4DC2 /* Assets.xcassets */,
 				42E08D7B1C7FF771004E4DC2 /* Info.plist */,
 				42E08D701C7FF771004E4DC2 /* Supporting Files */,
-				E42D2D3C1CF4810E00E4D61C /* main.xib */,
 			);
 			path = GSGoldenSea;
 			sourceTree = "<group>";
@@ -721,6 +720,7 @@
 		42E08E3C1C7FF8C1004E4DC2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E42D2D3C1CF4810E00E4D61C /* main.xib */,
 				420E698E1DD01B860044CF3C /* MainVC.h */,
 				420E698F1DD01B860044CF3C /* MainVC.m */,
 			);
