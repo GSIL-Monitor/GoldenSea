@@ -10,6 +10,7 @@
 		4204D0541C880AC800D27135 /* STKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204D0531C880AC800D27135 /* STKModel.m */; };
 		4204D0571C88160500D27135 /* HelpService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204D0561C88160500D27135 /* HelpService.m */; };
 		4204D05A1C88175C00D27135 /* NSDateEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204D0591C88175C00D27135 /* NSDateEX.m */; };
+		420E69911DD01B860044CF3C /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 420E698F1DD01B860044CF3C /* MainVC.m */; };
 		421265441C867A930053787E /* HYBaseDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265391C867A930053787E /* HYBaseDBService.m */; };
 		421265451C867A930053787E /* HYDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212653B1C867A930053787E /* HYDatabaseHelper.m */; };
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
@@ -55,7 +56,6 @@
 		42DA6F9D1D680A0500CD5E63 /* LimitLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */; };
 		42E08D6F1C7FF771004E4DC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */; };
 		42E08D721C7FF771004E4DC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D711C7FF771004E4DC2 /* main.m */; };
-		42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D741C7FF771004E4DC2 /* ViewController.m */; };
 		42E08D771C7FF771004E4DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42E08D761C7FF771004E4DC2 /* Assets.xcassets */; };
 		42E08D851C7FF771004E4DC2 /* GSGoldenSeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08D841C7FF771004E4DC2 /* GSGoldenSeaTests.m */; };
 		42E08E561C7FF8C1004E4DC2 /* HYBaseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E08DDC1C7FF8C0004E4DC2 /* HYBaseCache.m */; };
@@ -139,6 +139,8 @@
 		4204D0561C88160500D27135 /* HelpService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpService.m; sourceTree = "<group>"; };
 		4204D0581C88175C00D27135 /* NSDateEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateEX.h; sourceTree = "<group>"; };
 		4204D0591C88175C00D27135 /* NSDateEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateEX.m; sourceTree = "<group>"; };
+		420E698E1DD01B860044CF3C /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		420E698F1DD01B860044CF3C /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		421265381C867A930053787E /* HYBaseDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseDBService.h; sourceTree = "<group>"; };
 		421265391C867A930053787E /* HYBaseDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseDBService.m; sourceTree = "<group>"; };
 		4212653A1C867A930053787E /* HYDatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDatabaseHelper.h; sourceTree = "<group>"; };
@@ -232,8 +234,6 @@
 		42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		42E08D711C7FF771004E4DC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		42E08D731C7FF771004E4DC2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		42E08D741C7FF771004E4DC2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		42E08D761C7FF771004E4DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42E08D7B1C7FF771004E4DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42E08D801C7FF771004E4DC2 /* GSGoldenSeaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GSGoldenSeaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -576,8 +576,6 @@
 				42E08E3C1C7FF8C1004E4DC2 /* UI */,
 				42E08D6D1C7FF771004E4DC2 /* AppDelegate.h */,
 				42E08D6E1C7FF771004E4DC2 /* AppDelegate.m */,
-				42E08D731C7FF771004E4DC2 /* ViewController.h */,
-				42E08D741C7FF771004E4DC2 /* ViewController.m */,
 				42E08D761C7FF771004E4DC2 /* Assets.xcassets */,
 				42E08D7B1C7FF771004E4DC2 /* Info.plist */,
 				42E08D701C7FF771004E4DC2 /* Supporting Files */,
@@ -723,6 +721,8 @@
 		42E08E3C1C7FF8C1004E4DC2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				420E698E1DD01B860044CF3C /* MainVC.h */,
+				420E698F1DD01B860044CF3C /* MainVC.m */,
 			);
 			path = UI;
 			sourceTree = SOURCE_ROOT;
@@ -1099,7 +1099,6 @@
 				42E097251C7FFAEB004E4DC2 /* AFHTTPSessionManager.m in Sources */,
 				42E098D81C8029D1004E4DC2 /* KDataModel.m in Sources */,
 				42E097961C7FFAEB004E4DC2 /* HYFMDatabaseQueue.m in Sources */,
-				42E08D751C7FF771004E4DC2 /* ViewController.m in Sources */,
 				42E097301C7FFAEB004E4DC2 /* UIImageView+AFNetworking.m in Sources */,
 				42E098C41C80237B004E4DC2 /* NSObject+JSON.m in Sources */,
 				42C3C9091D4B29420050E676 /* TKData.m in Sources */,
@@ -1146,6 +1145,7 @@
 				42D546B21D6E90E600603E6A /* YahooDataReq.m in Sources */,
 				421265441C867A930053787E /* HYBaseDBService.m in Sources */,
 				42E08D721C7FF771004E4DC2 /* main.m in Sources */,
+				420E69911DD01B860044CF3C /* MainVC.m in Sources */,
 				42E08E591C7FF8C1004E4DC2 /* HYBaseResponse.m in Sources */,
 				42E097951C7FFAEB004E4DC2 /* HYFMDatabasePool.m in Sources */,
 				42E08E5C1C7FF8C1004E4DC2 /* HYRequestManager.m in Sources */,
