@@ -23,6 +23,14 @@
 }
 
 
+/*
+ @property (nonatomic, strong) NSString* stkID;
+ @property (nonatomic, strong) NSString* name;
+ @property (nonatomic, strong) NSString* industry;
+ @property (nonatomic, strong) NSString* province;
+ @property (nonatomic, assign) CGFloat totalMV; //market value;
+ @property (nonatomic, assign) CGFloat curMV; //current market value;
+ */
 
 - (BOOL)createTableWithName:(NSString*)tableName
 {
@@ -30,7 +38,15 @@
     self.tableName =  tableName; // @"Table_kData";
     
     NSArray *param = @[@{@"stkID"                    : @"text primary key"},
-                       @{@"lastUpdateTime"           : @"integer"},
+                       
+                       @{@"name"                    : @"text"},
+                       @{@"industry"                    : @"text"},
+                       @{@"province"                    : @"text"},
+
+                       @{@"totalMV"         : @"float"},
+                       @{@"curMV"         : @"float"},
+                       
+//                       @{@"lastUpdateTime"           : @"integer"},
 
 //                            @"type"                      : @"integer",
 //                            @"relatedRecordID"   : @"text",

@@ -7,6 +7,8 @@
 //
 
 #import "STKxlsReader.h"
+
+#import "STKModel.h"
 #import "HYSTKDBManager.h"
 #import "XlsxReaderWriter.h"
 
@@ -27,7 +29,7 @@
 
 
 //cloumn index
-#define ColumnIndex_stkID       1
+#define ColumnIndex_stkID       0
 #define ColumnIndex_name        (ColumnIndex_stkID+1)
 #define ColumnIndex_industry    (ColumnIndex_name+1)
 #define ColumnIndex_province    (ColumnIndex_industry+1)
@@ -62,44 +64,95 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 
 - (void)startWithPath:(NSString *)xlsPath dbPath:(NSString*)dbPath;
 {
+    [self initDB];
+    
     _spreadsheet = [BRAOfficeDocumentPackage open:xlsPath];
     _workbook = _spreadsheet.workbook;
     
     
-    BRAWorksheet *worksheet = _workbook.worksheets[0];
+    NSInteger base=0;
+    for(long i=1; i<=4; i++){
+        BRAWorksheet *worksheet = _workbook.worksheets[i];
+        [self readWorkSheet:worksheet base:i];
+    }
     
-    NSLog(@"aa");
+    NSLog(@"end of startWithPath");
+}
 
+-(void)readWorkSheet:(BRAWorksheet*)worksheet base:(NSInteger)base
+{
+    for(long i=1; i<[worksheet.rows count]; i++){ //0 is title
+        BRARow* row = [worksheet.rows safeObjectAtIndex:i];
+        STKModel* stkMod = [[STKModel alloc]init];
+        for(long j=0; j<[row.cells count]; j++){
+            BRACell* cell = [row.cells safeObjectAtIndex:j];
+            switch (j) {
+                case ColumnIndex_stkID:
+                    stkMod.stkID = [self convertSTKID:base cell:cell];
+                    break;
+                    
+                case ColumnIndex_name:
+                    stkMod.name = cell.stringValue;
+                    break;
+                    
+                case ColumnIndex_industry:
+                    stkMod.industry = cell.stringValue;
+                    break;
+                    
+                case ColumnIndex_province:
+                    stkMod.province = cell.stringValue;
+                    break;
+                    
+                case ColumnIndex_totalMV:
+                    stkMod.totalMV = cell.floatValue;
+                    break;
+                    
+                case ColumnIndex_curPercent:
+                    stkMod.curMV = cell.floatValue*stkMod.totalMV;
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+        
+        [[HYSTKDBManager defaultManager].allSTK addRecord:stkMod];
+
+    }
+}
+
+
+-(NSString*)convertSTKID:(NSInteger)base cell:(BRACell*)cell
+{
+    NSString* stkID;
+    NSString *prefix = (cell.integerValue>=600000)? @"SH":@"SZ";
     
-//    DHxlsReader* reader = [DHxlsReader xlsReaderWithPath:xlsPath];
-//    NSInteger sheetNum = [reader numberOfSheets];
-//    if(sheetNum < SheetIndex_300){
-//        NSLog(@"invalid xls!");
-//        return;
-//    }
-//    NSString* name = [reader sheetNameAtIndex:SheetIndex_600];
-//    
-//    NSString* text;
-//    
-//
-//    int row = 2;
-//    while(YES) {
-//        DHcell *cell = [self.reader cellInWorkSheetIndex:0 row:row col:2];
-//        if(cell.type == cellBlank) break;
-//        DHcell *cell1 = [self.reader cellInWorkSheetIndex:0 row:row col:3];
-//        NSLog(@"\nCell:%@\nCell1:%@\n", [cell dump], [cell1 dump]);
-//        row++;
-//        
-//        //text = [text stringByAppendingFormat:@"\n%@\n", [cell dump]];
-//        //text = [text stringByAppendingFormat:@"\n%@\n", [cell1 dump]];
-//    }
+    switch (base) {
+        case 1: //600
+        case 4: //300
+            stkID = [NSString stringWithFormat:@"%@%ld",prefix,cell.integerValue];
+            break;
 
+        case 2: //000
+            stkID = [NSString stringWithFormat:@"%@000%ld",prefix,cell.integerValue];
+            break;
+
+        case 3: //002
+            stkID = [NSString stringWithFormat:@"%@002%ld",prefix,cell.integerValue];
+            break;
+
+        default:
+            break;
+    }
+    
+    return stkID;
 }
 
 
 -(void)initDB
 {
-    BOOL isRest = NO;
+    BOOL isRest = YES;
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
 
 }

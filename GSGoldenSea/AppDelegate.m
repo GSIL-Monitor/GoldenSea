@@ -47,7 +47,7 @@
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
     
-//    [self test];
+    [self test];
 
 
 }
@@ -57,7 +57,7 @@
 {
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     NSString* xlsPath = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/test.xlsx",[paths stringByDeletingLastPathComponent]];
-//    NSString* xlsPath = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/test1.xls",[paths stringByDeletingLastPathComponent]];
+//    NSString* xlsPath = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/test1.xlsx",[paths stringByDeletingLastPathComponent]];
 
     [[STKxlsReader shareInstance] startWithPath:xlsPath dbPath:nil];
 }
