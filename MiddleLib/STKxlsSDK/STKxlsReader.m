@@ -60,7 +60,7 @@
 SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 
 
-//代码， 名称
+
 
 - (void)startWithPath:(NSString *)xlsPath dbPath:(NSString*)dbPath;
 {
@@ -84,7 +84,7 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
     for(long i=1; i<[worksheet.rows count]; i++){ //0 is title
         BRARow* row = [worksheet.rows safeObjectAtIndex:i];
         STKModel* stkMod = [[STKModel alloc]init];
-        for(long j=0; j<[row.cells count]; j++){
+        for(long j=ColumnIndex_stkID; j<[row.cells count]; j++){
             BRACell* cell = [row.cells safeObjectAtIndex:j];
             switch (j) {
                 case ColumnIndex_stkID:
@@ -117,7 +117,9 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
             
         }
         
-        [[HYSTKDBManager defaultManager].allSTK addRecord:stkMod];
+        if([stkMod.name isValidString]){
+            [[HYSTKDBManager defaultManager].allSTK addRecord:stkMod];
+        }
 
     }
 }

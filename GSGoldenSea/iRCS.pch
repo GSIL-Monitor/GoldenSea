@@ -30,7 +30,7 @@
 /// categories
 #import "NSObject+JSON.h"
 
-//#import "NSStringEX.h"
+#import "NSString+ex.h"
 #import "NSArrayEX.h"
 #import "NSDictionaryEX.h"
 
