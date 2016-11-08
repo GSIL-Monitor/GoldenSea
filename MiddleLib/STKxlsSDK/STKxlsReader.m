@@ -8,6 +8,7 @@
 
 #import "STKxlsReader.h"
 #import "HYSTKDBManager.h"
+#import "XlsxReaderWriter.h"
 
 /*
  @property (nonatomic, strong) NSString* stkID;
@@ -48,7 +49,8 @@
 
 
 @interface STKxlsReader ()
-@property (nonatomic, strong) DHxlsReader* reader;
+@property (nonatomic, strong) BRAOfficeDocumentPackage *spreadsheet;
+@property (nonatomic, strong) BRAOfficeDocument *workbook;
 @end
 
 @implementation STKxlsReader
@@ -60,28 +62,37 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 
 - (void)startWithPath:(NSString *)xlsPath dbPath:(NSString*)dbPath;
 {
-    DHxlsReader* reader = [DHxlsReader xlsReaderWithPath:xlsPath];
-    NSInteger sheetNum = [reader numberOfSheets];
-    if(sheetNum < SheetIndex_300){
-        NSLog(@"invalid xls!");
-        return;
-    }
-    NSString* name = [reader sheetNameAtIndex:SheetIndex_600];
+    _spreadsheet = [BRAOfficeDocumentPackage open:xlsPath];
+    _workbook = _spreadsheet.workbook;
     
-    NSString* text;
     
+    BRAWorksheet *worksheet = _workbook.worksheets[0];
+    
+    NSLog(@"aa");
 
-    int row = 2;
-    while(YES) {
-        DHcell *cell = [self.reader cellInWorkSheetIndex:0 row:row col:2];
-        if(cell.type == cellBlank) break;
-        DHcell *cell1 = [self.reader cellInWorkSheetIndex:0 row:row col:3];
-        NSLog(@"\nCell:%@\nCell1:%@\n", [cell dump], [cell1 dump]);
-        row++;
-        
-        //text = [text stringByAppendingFormat:@"\n%@\n", [cell dump]];
-        //text = [text stringByAppendingFormat:@"\n%@\n", [cell1 dump]];
-    }
+    
+//    DHxlsReader* reader = [DHxlsReader xlsReaderWithPath:xlsPath];
+//    NSInteger sheetNum = [reader numberOfSheets];
+//    if(sheetNum < SheetIndex_300){
+//        NSLog(@"invalid xls!");
+//        return;
+//    }
+//    NSString* name = [reader sheetNameAtIndex:SheetIndex_600];
+//    
+//    NSString* text;
+//    
+//
+//    int row = 2;
+//    while(YES) {
+//        DHcell *cell = [self.reader cellInWorkSheetIndex:0 row:row col:2];
+//        if(cell.type == cellBlank) break;
+//        DHcell *cell1 = [self.reader cellInWorkSheetIndex:0 row:row col:3];
+//        NSLog(@"\nCell:%@\nCell1:%@\n", [cell dump], [cell1 dump]);
+//        row++;
+//        
+//        //text = [text stringByAppendingFormat:@"\n%@\n", [cell dump]];
+//        //text = [text stringByAppendingFormat:@"\n%@\n", [cell1 dump]];
+//    }
 
 }
 
