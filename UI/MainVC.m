@@ -63,7 +63,7 @@
     
     NSLog(@"onTest");
     
-    [self testForTech];
+    [self testForAvg];
 }
 
 
@@ -85,6 +85,8 @@
 #pragma mark - internal
 -(void)configureMgr
 {
+    [GSDataMgr shareInstance].startDate = 20160225;
+    
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
@@ -148,10 +150,10 @@
 {
     [GSObjMgr shareInstance].mgr = [[AvgAnalysisMgr alloc]init];
     [self configureMgr];
-    [GSObjMgr shareInstance].log = [[LimitLogout alloc]init];
+    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
-    param.destDVValue = 3.f;
+    param.destDVValue = 2.f;
     param.durationAfterBuy = 3;
     [GSObjMgr shareInstance].mgr.param = param;
     
