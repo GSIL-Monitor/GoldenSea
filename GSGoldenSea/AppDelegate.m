@@ -14,6 +14,7 @@
 #import "HYDayDBManager.h"
 #import "TKData.h"
 #import "QueryDBManager.h"
+#import "HYSTKDBManager.h"
 
 #import "STKManager.h"
 
@@ -45,9 +46,13 @@
     [[HYDayDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYWeekDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
+    
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
     
-    [self test];
+    [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
+
+    
+//    [self test];
 
 
 }

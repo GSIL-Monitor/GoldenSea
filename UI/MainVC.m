@@ -14,6 +14,8 @@
 #import "HYDayDBManager.h"
 #import "TKData.h"
 #import "QueryDBManager.h"
+#import "HYSTKDBManager.h"
+#import "STKModel.h"
 
 #import "STKManager.h"
 
@@ -25,6 +27,8 @@
 #import "LimitAnalysisMgr.h"
 #import "AvgAnalysisMgr.h"
 #import "TechAnalysisMgr.h"
+#import "MonthStatAnalysisMgr.h"
+
 #import "GSBaseResult.h"
 
 #import "STKxlsReader.h"
@@ -63,7 +67,7 @@
     
     NSLog(@"onTest");
     
-    [self testForAvg];
+    [self testForMonthStat];
 }
 
 
@@ -236,226 +240,251 @@
 }
 
 
-
--(void)setOpenValue
+-(void)testForMonthStat
 {
-    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
+    [GSObjMgr shareInstance].mgr = [[MonthStatAnalysisMgr alloc]init];
+    [self configureMgr];
+    NSMutableArray* rangeArray = [NSMutableArray array];
+    NSArray* stkArray = [[HYSTKDBManager defaultManager].allSTK getRecordsWithIndustry:@"农"];
+    for(long i=0; i<[stkArray count]; i++){
+        STKModel* stk = [stkArray safeObjectAtIndex:i];
+        [rangeArray addObject:stk.stkID];
+    }
+    [GSObjMgr shareInstance].mgr.stkRangeArray = rangeArray;
+    [GSObjMgr shareInstance].mgr.period = Period_month;
+    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
-    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    //    tp2con.close_max = 1.f;
-    //    tp2con.close_min = -1.2f;
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
-    //
-    
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    //    tp1con.close_min = -0.5f;
-    //    tp1con.close_max = 2.f;
-    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.open_min = 1.0f;
-    t0con.open_max = 2.0f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    //    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
+    GSBaseParam* param = [[GSBaseParam alloc]init];
+    param.destDVValue = 10.f;
+    param.durationAfterBuy = 1;
+    [GSObjMgr shareInstance].mgr.param = param;
     
     
-    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    //    t1con.open_max = 0.4f;
-    //    t1con.open_min = -0.4f;
-    //    t1con.high_max = 2.5f;
-    //    t1con.high_min = 1.2f;
-    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
-    
-    
-    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    //    t2con.open_max = 1.f;
-    //    t2con.open_min = 0.3f;
-    //
-    //
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
+    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
 }
 
 
--(void)setNormalToday
-{
-    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
-    
-    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    //    tp2con.close_max = 1.f;
-    //    tp2con.close_min = -1.2f;
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
-    //
-    
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    //    tp1con.close_min = -4.5f;
-    //    tp1con.close_max = -3.f;
-    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
-    //
-    //    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    //    t0con.close_min = 0.5f;
-    //    t0con.close_max = 2.0f;
-    //    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    tp2con.close_min = 1.f;
-    tp2con.close_max = 3.f;
-    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
-    
-    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    tp1con.close_min = 0.5f;
-    tp1con.close_max = 2.2f;
-    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_min = -1.f;
-    t0con.close_max = 0.3f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    t1con.close_min = -1.f;
-    t1con.close_max = 0.3f;
-    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
-    
-    
-    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    //    t2con.open_max = 1.5f;
-    //    t2con.open_min = 0.5f;
-    //    [GSObjMgr shareInstance].mgr.t2 = t2con;
-}
-
-
-
--(void)setUpShadow
-{
-    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
-    
-    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
-    //    tp2con.close_max = 1.f;
-    //    tp2con.close_min = -1.2f;
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
-    //
-    
-    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
-    //    tp1con.close_min = -4.5f;
-    //    tp1con.close_max = -3.f;
-    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_min = 0.5f;
-    t0con.close_max = 2.0f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
-    
-    
-    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    //    t1con.open_max = 0.4f;
-    //    t1con.open_min = -0.4f;
-    //    t1con.high_max = 2.5f;
-    //    t1con.high_min = 1.2f;
-    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
-    
-    
-    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    //    t2con.open_max = 1.f;
-    //    t2con.open_min = 0.3f;
-    //
-    //
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
-}
-
-
-
-
--(void)setNormalDown
-{
-    [GSCondition shareInstance].t0Cond = T0Condition_Down;
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = -2.0f;
-    t0con.close_min = -3.5f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    t1con.open_max = 1.f;
-    t1con.open_min = -1.f;
-    t1con.high_max = 2.5f;
-    t1con.high_min = 1.2f;
-    //    t1con.close_max = -0.6f;
-    //    t1con.close_min = -1.8f;
-    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
-    
-    
-    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    //    t2con.open_max = 1.f;
-    //    t2con.open_min = 0.3f;
-    //
-    //
-    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
-}
-
-
--(void)setNormalUp
-{
-    [GSCondition shareInstance].t0Cond = T0Condition_Up;
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    t0con.close_max = 2.5f;
-    t0con.close_min = 1.3f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
-    ////    t1con.open_max = -0.1f;
-    ////    t1con.open_min = -1.f;
-    ////    t1con.open_max = 1.1f;
-    ////    t1con.open_min = 0.f;
-    //    t1con.close_max = -0.6f;
-    //    t1con.close_min = -1.8f;
-    //    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
-    
-    
-    OneDayCondition* t2con = [[OneDayCondition alloc]init];
-    t2con.open_max = 1.f;
-    t2con.open_min = 0.3f;
-    
-    
-    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
-}
-
-
--(OneDayCondition*)setCodintionCase0Toady
-{
-    KDataModel* kData0 = [[KDataModel alloc]init];
-    kData0.open = 11.54;
-    kData0.high = 11.95;
-    kData0.low = 11.32;
-    kData0.close = 11.75;
-    
-    
-    KDataModel* kData1 = [[KDataModel alloc]init];
-    //    kData1.open = 11.60;
-    //    kData1.high = 11.66;
-    kData1.low = 11.23;
-    kData1.close = 11.57;
-    KDataModel* kData2 = [[KDataModel alloc]init];
-    kData2.close = 11.75;
-    
-    
-    //    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
-    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
-    //    theCond.dvRange = 0.9;
-    
-    [GSObjMgr shareInstance].mgr.tp1dayCond = theCond;
-    [theCond logOutCondition];
-    
-    OneDayCondition* t0con = [[OneDayCondition alloc]init];
-    //    t0con.open_max = -0.2f;
-    //    t0con.open_min = -2.f;
-    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
-    
-    return theCond;
-}
+//
+//-(void)setOpenValue
+//{
+//    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
+//    
+//    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+//    //    tp2con.close_max = 1.f;
+//    //    tp2con.close_min = -1.2f;
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
+//    //
+//    
+//    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    //    tp1con.close_min = -0.5f;
+//    //    tp1con.close_max = 2.f;
+//    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.open_min = 1.0f;
+//    t0con.open_max = 2.0f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    //    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
+//    
+//    
+//    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    //    t1con.open_max = 0.4f;
+//    //    t1con.open_min = -0.4f;
+//    //    t1con.high_max = 2.5f;
+//    //    t1con.high_min = 1.2f;
+//    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
+//    
+//    
+//    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    //    t2con.open_max = 1.f;
+//    //    t2con.open_min = 0.3f;
+//    //
+//    //
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
+//}
+//
+//
+//-(void)setNormalToday
+//{
+//    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
+//    
+//    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+//    //    tp2con.close_max = 1.f;
+//    //    tp2con.close_min = -1.2f;
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
+//    //
+//    
+//    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    //    tp1con.close_min = -4.5f;
+//    //    tp1con.close_max = -3.f;
+//    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
+//    //
+//    //    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    //    t0con.close_min = 0.5f;
+//    //    t0con.close_max = 2.0f;
+//    //    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+//    tp2con.close_min = 1.f;
+//    tp2con.close_max = 3.f;
+//    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
+//    
+//    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    tp1con.close_min = 0.5f;
+//    tp1con.close_max = 2.2f;
+//    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_min = -1.f;
+//    t0con.close_max = 0.3f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    t1con.close_min = -1.f;
+//    t1con.close_max = 0.3f;
+//    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
+//    
+//    
+//    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    //    t2con.open_max = 1.5f;
+//    //    t2con.open_min = 0.5f;
+//    //    [GSObjMgr shareInstance].mgr.t2 = t2con;
+//}
+//
+//
+//
+//-(void)setUpShadow
+//{
+//    //    [GSCondition shareInstance].t0Cond = T0Condition_Down;
+//    
+//    //    OneDayCondition* tp2con = [[OneDayCondition alloc]init];
+//    //    tp2con.close_max = 1.f;
+//    //    tp2con.close_min = -1.2f;
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = tp2con;
+//    //
+//    
+//    //    OneDayCondition* tp1con = [[OneDayCondition alloc]init];
+//    //    tp1con.close_min = -4.5f;
+//    //    tp1con.close_max = -3.f;
+//    //    [GSObjMgr shareInstance].mgr.tp1dayCond = tp1con;
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_min = 0.5f;
+//    t0con.close_max = 2.0f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    [GSCondition shareInstance].shapeCond= ShapeCondition_UpShadow;
+//    
+//    
+//    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    //    t1con.open_max = 0.4f;
+//    //    t1con.open_min = -0.4f;
+//    //    t1con.high_max = 2.5f;
+//    //    t1con.high_min = 1.2f;
+//    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
+//    
+//    
+//    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    //    t2con.open_max = 1.f;
+//    //    t2con.open_min = 0.3f;
+//    //
+//    //
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
+//}
+//
+//
+//
+//
+//-(void)setNormalDown
+//{
+//    [GSCondition shareInstance].t0Cond = T0Condition_Down;
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_max = -2.0f;
+//    t0con.close_min = -3.5f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    t1con.open_max = 1.f;
+//    t1con.open_min = -1.f;
+//    t1con.high_max = 2.5f;
+//    t1con.high_min = 1.2f;
+//    //    t1con.close_max = -0.6f;
+//    //    t1con.close_min = -1.8f;
+//    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
+//    
+//    
+//    //    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    //    t2con.open_max = 1.f;
+//    //    t2con.open_min = 0.3f;
+//    //
+//    //
+//    //    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
+//}
+//
+//
+//-(void)setNormalUp
+//{
+//    [GSCondition shareInstance].t0Cond = T0Condition_Up;
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    t0con.close_max = 2.5f;
+//    t0con.close_min = 1.3f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    //    OneDayCondition* t1con = [[OneDayCondition alloc]init];
+//    ////    t1con.open_max = -0.1f;
+//    ////    t1con.open_min = -1.f;
+//    ////    t1con.open_max = 1.1f;
+//    ////    t1con.open_min = 0.f;
+//    //    t1con.close_max = -0.6f;
+//    //    t1con.close_min = -1.8f;
+//    //    [GSObjMgr shareInstance].mgr.t1dayCond = t1con;
+//    
+//    
+//    OneDayCondition* t2con = [[OneDayCondition alloc]init];
+//    t2con.open_max = 1.f;
+//    t2con.open_min = 0.3f;
+//    
+//    
+//    [GSObjMgr shareInstance].mgr.tp2dayCond = t2con;
+//}
+//
+//
+//-(OneDayCondition*)setCodintionCase0Toady
+//{
+//    KDataModel* kData0 = [[KDataModel alloc]init];
+//    kData0.open = 11.54;
+//    kData0.high = 11.95;
+//    kData0.low = 11.32;
+//    kData0.close = 11.75;
+//    
+//    
+//    KDataModel* kData1 = [[KDataModel alloc]init];
+//    //    kData1.open = 11.60;
+//    //    kData1.high = 11.66;
+//    kData1.low = 11.23;
+//    kData1.close = 11.57;
+//    KDataModel* kData2 = [[KDataModel alloc]init];
+//    kData2.close = 11.75;
+//    
+//    
+//    //    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData0 baseCloseValue:11.47f];
+//    OneDayCondition* theCond = [[OneDayCondition alloc]initWithKData:kData1 baseCloseValue:11.75f];
+//    //    theCond.dvRange = 0.9;
+//    
+//    [GSObjMgr shareInstance].mgr.tp1dayCond = theCond;
+//    [theCond logOutCondition];
+//    
+//    OneDayCondition* t0con = [[OneDayCondition alloc]init];
+//    //    t0con.open_max = -0.2f;
+//    //    t0con.open_min = -2.f;
+//    [GSObjMgr shareInstance].mgr.t0dayCond = t0con;
+//    
+//    return theCond;
+//}
 
 
 

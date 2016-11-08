@@ -42,6 +42,7 @@
                        @{@"name"                    : @"text"},
                        @{@"industry"                    : @"text"},
                        @{@"province"                    : @"text"},
+                       @{@"property"                    : @"text"},
 
                        @{@"totalMV"         : @"float"},
                        @{@"curMV"         : @"float"},
@@ -74,6 +75,15 @@
     }
     
     return [res objectAtIndex:0];
+}
+
+- (NSArray *)getRecordsWithIndustry:(NSString*)keyWord;
+{
+    //ref http://www.cnblogs.com/wendingding/p/3871577.html
+    NSString* sql = [NSString stringWithFormat:@"where industry like '%%%@%%' ",keyWord];
+    NSArray* res = [super getAllRecordsWithAditonCondition:sql];
+    
+    return res;
 }
 
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID

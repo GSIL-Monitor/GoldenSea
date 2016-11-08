@@ -1,0 +1,712 @@
+
+
+SH600226---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(168.38), AvgVal(3.18),totalCount(53), sucPercent(26.42) 
+index(0), percent(26.42)  count(14) 
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:10.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:15.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:16.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:12.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:11.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:29.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:13.08, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:12.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:10.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:19.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:24.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150324, TSellData:0, dvSelltoBuy:22.48, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:92.70, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:18.52, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(37.74)  count(20) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:-0.93, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:8.33, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:1.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:0.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:1.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:0.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:0.93, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:2.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:0.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-0.99, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:2.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:9.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:1.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:1.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160226, TSellData:0, dvSelltoBuy:8.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:0.87, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:1.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:9.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:5.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:1.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(35.85)  count(19) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-21.45, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-14.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:-6.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-10.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-4.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-8.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-9.96, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-19.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-9.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-10.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-24.51, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:-2.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:-3.33, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-3.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-3.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:-3.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-30.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160427, TSellData:0, dvSelltoBuy:-1.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-8.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600251---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(25.11), AvgVal(0.42),totalCount(60), sucPercent(16.67) 
+index(0), percent(16.67)  count(10) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:15.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:11.21, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:11.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:66.21, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:13.59, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:13.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:13.52, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:32.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:20.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:16.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(38.33)  count(23) 
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:3.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:2.54, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:2.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:8.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:5.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:0.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:-1.27, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:9.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:2.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:2.04, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:-1.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:8.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:8.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:-0.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:8.48, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:5.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:3.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:0.75, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:7.10, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-1.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:0.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:-1.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:2.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(45.00)  count(27) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:-2.62, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-20.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-17.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-11.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-3.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-7.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-7.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-7.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-2.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-9.13, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-17.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:-26.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-9.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-3.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-3.03, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-4.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:-8.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-6.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-5.09, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:-3.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-8.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-14.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-13.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-6.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-37.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-2.27, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-8.25, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600275---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(185.45), AvgVal(3.37),totalCount(55), sucPercent(23.64) 
+index(0), percent(23.64)  count(13) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:15.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:17.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:10.54, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:11.83, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:22.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:19.60, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150408, TSellData:0, dvSelltoBuy:15.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:59.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:18.83, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:59.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:20.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:10.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:65.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(40.00)  count(22) 
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:0.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:9.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:9.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120503, TSellData:0, dvSelltoBuy:4.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:0.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:4.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:8.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:2.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:0.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:2.51, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:2.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131127, TSellData:0, dvSelltoBuy:-0.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:3.10, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:1.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:2.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:2.34, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:6.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:8.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:8.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:9.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:4.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161014, TSellData:0, dvSelltoBuy:-0.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(36.36)  count(20) 
+(null) TBuyData:20111229, TSellData:0, dvSelltoBuy:-20.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-5.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-6.60, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-18.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130408, TSellData:0, dvSelltoBuy:-3.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-23.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:-2.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-6.45, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131226, TSellData:0, dvSelltoBuy:-13.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-16.77, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-6.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140711, TSellData:0, dvSelltoBuy:-2.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:-2.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-37.13, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-23.59, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150824, TSellData:0, dvSelltoBuy:-7.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-14.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:-6.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160107, TSellData:0, dvSelltoBuy:-18.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-17.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600313---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(113.95), AvgVal(1.96),totalCount(58), sucPercent(27.59) 
+index(0), percent(27.59)  count(16) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:13.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:14.34, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:12.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:37.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:10.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:10.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:25.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140717, TSellData:0, dvSelltoBuy:22.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:21.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:28.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:12.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:11.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:14.15, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:10.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:10.25, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:12.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(32.76)  count(19) 
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:1.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:6.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:7.99, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:9.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:4.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-0.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:1.27, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:0.68, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:8.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:-0.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:4.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:5.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:6.51, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:5.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:-0.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-0.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:5.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:1.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:0.89, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(39.66)  count(23) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-12.54, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-6.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-8.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-14.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-1.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-5.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-6.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-34.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:-3.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-6.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-8.05, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-9.38, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-5.05, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-7.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:-3.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-1.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:-1.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-15.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-7.48, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-19.61, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-5.38, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-28.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-6.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600354---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(39.02), AvgVal(0.65),totalCount(60), sucPercent(26.67) 
+index(0), percent(26.67)  count(16) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:15.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:18.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:23.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:20.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:12.52, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:10.99, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:12.05, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:28.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:11.99, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:11.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:11.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:12.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:10.59, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:24.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:21.45, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:12.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(26.67)  count(16) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:5.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:4.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:0.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:7.92, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:6.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:5.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:0.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:2.81, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:6.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:0.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:9.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151214, TSellData:0, dvSelltoBuy:6.93, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:3.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:-0.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:5.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:1.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(46.67)  count(28) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-8.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:-17.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-5.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:-10.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:-11.13, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-12.91, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-2.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-7.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-14.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-4.62, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-13.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-10.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-27.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-4.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-11.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-5.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-8.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-5.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-1.75, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:-9.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-5.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-16.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-16.33, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-10.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-32.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-4.81, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-2.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:-4.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600359---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(85.47), AvgVal(1.42),totalCount(60), sucPercent(30.00) 
+index(0), percent(30.00)  count(18) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:21.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:23.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:14.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:10.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130809, TSellData:0, dvSelltoBuy:34.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:23.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:12.52, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:12.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:11.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:36.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:18.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:17.13, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:14.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:29.03, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:13.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:20.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:28.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:10.61, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(23.33)  count(14) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:-1.21, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:4.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:6.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120913, TSellData:0, dvSelltoBuy:4.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:8.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:2.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:6.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:8.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:4.54, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:5.68, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:-0.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:2.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:5.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:3.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(46.67)  count(28) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-27.77, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-18.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:-14.92, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-12.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-12.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-2.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-1.87, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-13.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-3.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-17.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-23.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-13.89, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-8.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-10.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:-7.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:-1.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-10.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-7.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:-2.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-37.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-14.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:-13.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-34.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-5.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:-3.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-6.91, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:-1.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:-1.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600371---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(138.79), AvgVal(2.31),totalCount(60), sucPercent(25.00) 
+index(0), percent(25.00)  count(15) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:14.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:15.62, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:21.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:18.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:28.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:33.03, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:18.10, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:10.99, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:22.51, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:20.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:56.25, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:31.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:25.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:40.38, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:22.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(33.33)  count(20) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:3.25, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:1.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:2.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:4.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-0.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:8.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:8.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:-1.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:9.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:5.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:0.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:3.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:6.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:0.62, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-0.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:3.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:1.50, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:6.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:1.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:1.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(41.67)  count(25) 
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-25.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:-7.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-7.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-6.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-2.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-11.45, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-3.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-12.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-5.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-24.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-8.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-6.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-14.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:-16.62, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:-13.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-9.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-10.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-12.89, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-35.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-19.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-26.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-5.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:-3.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-11.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-6.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600438---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(101.13), AvgVal(1.84),totalCount(55), sucPercent(23.64) 
+index(0), percent(23.64)  count(13) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:18.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:24.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:20.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:20.61, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:11.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:11.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:23.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:11.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150127, TSellData:0, dvSelltoBuy:17.15, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:67.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:10.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:10.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160203, TSellData:0, dvSelltoBuy:15.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(30.91)  count(17) 
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:1.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:9.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:2.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:2.93, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:6.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:6.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:8.30, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:5.23, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:0.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:3.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:9.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:4.51, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:0.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:5.96, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:7.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:5.18, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:-0.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(45.45)  count(25) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:-8.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-22.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-12.60, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:-9.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-15.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-6.10, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:-7.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-2.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-10.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-6.15, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-17.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-6.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-5.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:-2.06, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-4.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-6.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-19.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-21.11, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-9.21, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-2.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-16.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-11.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:-5.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-6.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:-3.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600506---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(164.51), AvgVal(2.94),totalCount(56), sucPercent(19.64) 
+index(0), percent(19.64)  count(11) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:14.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:14.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:19.34, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:16.77, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:20.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:27.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:22.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:29.55, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:16.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:24.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:38.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(44.64)  count(25) 
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:4.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:0.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:3.38, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:2.96, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:1.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:-0.45, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:3.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130417, TSellData:0, dvSelltoBuy:5.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:1.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:1.19, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:3.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:7.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:6.70, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:6.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:8.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:2.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:9.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-1.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:2.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:7.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:6.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:4.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:8.70, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:9.13, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:2.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(35.71)  count(20) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:-2.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-21.08, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-3.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-6.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-5.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-14.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-8.75, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:-6.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-5.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-5.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140113, TSellData:0, dvSelltoBuy:-8.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:-5.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-7.59, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-17.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-7.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-23.63, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-26.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-5.88, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-3.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:-4.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600540---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(69.29), AvgVal(1.19),totalCount(58), sucPercent(22.41) 
+index(0), percent(22.41)  count(13) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:11.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:11.95, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:13.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:19.85, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:11.28, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:19.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:36.91, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:10.68, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:19.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:11.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:15.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:18.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:13.54, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(41.38)  count(24) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:9.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:-0.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:9.02, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:1.74, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:0.48, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:0.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:0.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:9.89, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:5.86, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:2.49, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:0.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:0.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:9.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:8.90, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:8.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:2.17, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:9.35, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:0.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:0.14, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:4.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:1.32, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160603, TSellData:0, dvSelltoBuy:6.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:2.05, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:1.47, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(36.21)  count(21) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-19.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-18.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:-16.58, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-15.04, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-1.67, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-5.61, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:-5.75, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-9.05, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-6.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-18.11, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-2.72, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:-2.77, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-12.01, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:-12.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:-8.42, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-10.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-29.26, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-4.31, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-30.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-3.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-4.56, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+
+
+SH600543---detail report(20160225-21680808)---
+No.(0)- Conditon:  destDVVALUE(10.00), duration(1)  Result:totalS2BDVVal(94.22), AvgVal(1.57),totalCount(60), sucPercent(28.33) 
+index(0), percent(28.33)  count(17) 
+(null) TBuyData:20120229, TSellData:0, dvSelltoBuy:13.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120427, TSellData:0, dvSelltoBuy:15.97, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120531, TSellData:0, dvSelltoBuy:13.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120629, TSellData:0, dvSelltoBuy:19.61, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130228, TSellData:0, dvSelltoBuy:10.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130531, TSellData:0, dvSelltoBuy:10.04, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131231, TSellData:0, dvSelltoBuy:19.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140731, TSellData:0, dvSelltoBuy:11.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140930, TSellData:0, dvSelltoBuy:11.69, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150331, TSellData:0, dvSelltoBuy:14.22, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150430, TSellData:0, dvSelltoBuy:23.24, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150529, TSellData:0, dvSelltoBuy:21.39, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151030, TSellData:0, dvSelltoBuy:20.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151130, TSellData:0, dvSelltoBuy:11.15, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20151231, TSellData:0, dvSelltoBuy:12.91, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160331, TSellData:0, dvSelltoBuy:34.94, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160429, TSellData:0, dvSelltoBuy:31.64, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(1), percent(33.33)  count(20) 
+(null) TBuyData:20111130, TSellData:0, dvSelltoBuy:5.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120330, TSellData:0, dvSelltoBuy:-1.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121031, TSellData:0, dvSelltoBuy:-0.20, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121231, TSellData:0, dvSelltoBuy:7.80, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130731, TSellData:0, dvSelltoBuy:2.82, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130830, TSellData:0, dvSelltoBuy:8.59, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130930, TSellData:0, dvSelltoBuy:-0.38, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131129, TSellData:0, dvSelltoBuy:5.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140228, TSellData:0, dvSelltoBuy:0.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140331, TSellData:0, dvSelltoBuy:-1.16, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140530, TSellData:0, dvSelltoBuy:0.00, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140630, TSellData:0, dvSelltoBuy:1.37, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140829, TSellData:0, dvSelltoBuy:4.07, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141031, TSellData:0, dvSelltoBuy:9.27, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150130, TSellData:0, dvSelltoBuy:4.46, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150227, TSellData:0, dvSelltoBuy:9.84, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160729, TSellData:0, dvSelltoBuy:-0.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160831, TSellData:0, dvSelltoBuy:2.66, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160930, TSellData:0, dvSelltoBuy:1.44, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20161018, TSellData:0, dvSelltoBuy:2.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+index(2), percent(38.33)  count(23) 
+(null) TBuyData:20111230, TSellData:0, dvSelltoBuy:-13.40, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120131, TSellData:0, dvSelltoBuy:-6.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120731, TSellData:0, dvSelltoBuy:-21.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120831, TSellData:0, dvSelltoBuy:-11.93, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20120928, TSellData:0, dvSelltoBuy:-3.76, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20121130, TSellData:0, dvSelltoBuy:-9.33, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130131, TSellData:0, dvSelltoBuy:-6.41, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130329, TSellData:0, dvSelltoBuy:-13.08, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130426, TSellData:0, dvSelltoBuy:-5.78, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20130628, TSellData:0, dvSelltoBuy:-23.98, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20131031, TSellData:0, dvSelltoBuy:-5.79, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140130, TSellData:0, dvSelltoBuy:-23.48, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20140430, TSellData:0, dvSelltoBuy:-3.53, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141128, TSellData:0, dvSelltoBuy:-2.65, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20141231, TSellData:0, dvSelltoBuy:-2.29, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150630, TSellData:0, dvSelltoBuy:-16.57, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150731, TSellData:0, dvSelltoBuy:-26.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150831, TSellData:0, dvSelltoBuy:-14.71, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20150930, TSellData:0, dvSelltoBuy:-9.27, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160129, TSellData:0, dvSelltoBuy:-32.12, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160229, TSellData:0, dvSelltoBuy:-2.73, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160531, TSellData:0, dvSelltoBuy:-7.36, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000
+(null) TBuyData:20160630, TSellData:0, dvSelltoBuy:-2.43, vol:0.000,MA5:0.000, MA10:0.000, MA20:0.000; dayMA5:0.000, dayMA10:0.000

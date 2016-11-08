@@ -59,12 +59,18 @@
 
 SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 
-
+-(id)init
+{
+    if(self = [super init]){
+        [self initDB];
+    }
+    
+    return self;
+}
 
 
 - (void)startWithPath:(NSString *)xlsPath dbPath:(NSString*)dbPath;
 {
-    [self initDB];
     
     _spreadsheet = [BRAOfficeDocumentPackage open:xlsPath];
     _workbook = _spreadsheet.workbook;

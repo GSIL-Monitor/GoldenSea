@@ -14,4 +14,7 @@
 
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID;
 
+- (NSArray *)getRecordsWithIndustry:(NSString*)keyWord;
+
+
 @end

@@ -81,6 +81,7 @@
 		426B303D1DD164E900863C11 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 426B303C1DD164E900863C11 /* libz.1.1.3.tbd */; };
 		426B303E1DD1650900863C11 /* libSSZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426B30371DD163F400863C11 /* libSSZipArchive.a */; };
 		426B30411DD1B3C800863C11 /* NSString+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30401DD1B3C800863C11 /* NSString+ex.m */; };
+		426B30441DD1BA5200863C11 /* MonthStatAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */; };
 		427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E871C1D6B1BA0002468FD /* GSObjMgr.m */; };
 		42A6EA5C1D680EDE00430CEC /* LimitAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */; };
 		42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA611D6856EF00430CEC /* GSBaseParam.m */; };
@@ -343,6 +344,8 @@
 		426B303C1DD164E900863C11 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		426B303F1DD1B3C800863C11 /* NSString+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ex.h"; sourceTree = "<group>"; };
 		426B30401DD1B3C800863C11 /* NSString+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ex.m"; sourceTree = "<group>"; };
+		426B30421DD1BA5200863C11 /* MonthStatAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthStatAnalysisMgr.h; sourceTree = "<group>"; };
+		426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthStatAnalysisMgr.m; sourceTree = "<group>"; };
 		427E871B1D6B1BA0002468FD /* GSObjMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSObjMgr.h; sourceTree = "<group>"; };
 		427E871C1D6B1BA0002468FD /* GSObjMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSObjMgr.m; sourceTree = "<group>"; };
 		42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitAnalysisMgr.h; sourceTree = "<group>"; };
@@ -944,6 +947,8 @@
 				42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */,
 				42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */,
 				42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */,
+				426B30421DD1BA5200863C11 /* MonthStatAnalysisMgr.h */,
+				426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */,
 				426980021CEEF22200D99888 /* GSBaseLogout.h */,
 				426980031CEEF22200D99888 /* GSBaseLogout.m */,
 				42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */,
@@ -1385,6 +1390,7 @@
 				426B2FF51DD163F400863C11 /* BRAComments.m in Sources */,
 				426B30031DD163F400863C11 /* BRARelationships.m in Sources */,
 				42E097941C7FFAEB004E4DC2 /* HYFMDatabase.m in Sources */,
+				426B30441DD1BA5200863C11 /* MonthStatAnalysisMgr.m in Sources */,
 				42E097231C7FFAEB004E4DC2 /* AFHTTPRequestOperation.m in Sources */,
 				4204D0571C88160500D27135 /* HelpService.m in Sources */,
 				4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */,
