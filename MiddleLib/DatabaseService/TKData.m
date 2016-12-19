@@ -33,14 +33,6 @@
     
     NSArray* paramArray = @[@{@"time"         : @"integer primary key"},
                             
-                            @{@"macd"         : @"float"},
-                            @{@"macdbar"         : @"float"},
-
-                            
-                            @{@"kdjK"         : @"float"},
-                            @{@"kdjD"         : @"float"},
-                            @{@"kdjJ"         : @"float"},
-                            
                             @{@"open"         : @"float"},
                             @{@"high"         : @"float"},
                             @{@"close"        : @"float"},
@@ -56,10 +48,17 @@
                             @{@"ma60"         : @"float"},
                             @{@"ma120"         : @"float"},
 
-                           
 
                             @{@"isLimitUp"          :@"bool"},
                             @{@"isLimitDown"          :@"bool"},
+                            
+                            @{@"macd"         : @"float"},
+                            @{@"macdbar"         : @"float"},
+
+                            
+                            @{@"kdjK"         : @"float"},
+                            @{@"kdjD"         : @"float"},
+                            @{@"kdjJ"         : @"float"},
                             
                             
                             ];

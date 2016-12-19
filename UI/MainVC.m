@@ -68,7 +68,7 @@
     
     NSLog(@"onTest");
     
-    [self testForMonthStat];
+    [self testForNewSTK];
 }
 
 
@@ -114,8 +114,8 @@
     [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
-    param.destDVValue = 2.f;
-    param.durationAfterBuy = 3;
+    param.destDVValue = 5.f;
+    param.durationAfterBuy = 1;
     [GSObjMgr shareInstance].mgr.param = param;
     
     

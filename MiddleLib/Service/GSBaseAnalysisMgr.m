@@ -137,6 +137,7 @@
     self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
     self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
     self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
+    self.NSTKdayCxtArray = [[GSDataMgr shareInstance]getNSTKDayDataFromDB:self.stkID];
     return;
 
     

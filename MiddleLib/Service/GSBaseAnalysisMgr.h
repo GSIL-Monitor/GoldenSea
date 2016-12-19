@@ -31,6 +31,7 @@ typedef enum {
 @property (nonatomic,strong) NSArray* dayCxtArray;
 @property (nonatomic,strong) NSArray* weekCxtArray;
 @property (nonatomic,strong) NSArray* monthCxtArray;
+@property (nonatomic,strong) NSArray* NSTKdayCxtArray;
 @property (nonatomic,strong) NSString* stkID;
 
 @property (nonatomic, assign) Period period;
