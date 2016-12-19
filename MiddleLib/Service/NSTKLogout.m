@@ -12,6 +12,26 @@
 @implementation NSTKLogout
 
 
+-(NSArray*)reOrderResultArray:(NSMutableArray*)array
+{
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        KDataModel* par1 = obj1;
+        KDataModel* par2 = obj2;
+        
+        NSNumber *number1 = [NSNumber numberWithFloat: par1.time];
+        NSNumber *number2 = [NSNumber numberWithFloat: par2.time];
+        
+        
+        NSComparisonResult result = [number1 compare:number2];
+        
+        //        return result == NSOrderedDescending; // 升序
+        return result == NSOrderedAscending;  // 降序
+    }];
+    
+    
+    return resultArray;
+}
+
 
 -(void)analysisAndLogtoFile;
 {
@@ -27,9 +47,9 @@
     NSArray* resultArray = param.resultArray;
     
     //calulate percent firstly
-    NSMutableArray* tmpArray;
+    NSArray* tmpArray;
     for(long i=0; i<[resultArray count]; i++){
-        tmpArray = [resultArray objectAtIndex:i];
+        tmpArray = [self reOrderResultArray: [resultArray objectAtIndex:i]];
         if([tmpArray count] == 0){
             continue;
         }

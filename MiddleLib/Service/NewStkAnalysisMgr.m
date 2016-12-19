@@ -40,6 +40,7 @@
     for(long i=1; i<[cxtArray count]-statDays;i++  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
+        CGFloat destValue = 0.f;
         
         KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
         KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
@@ -79,12 +80,13 @@
             kT0Data.tradeDbg.TBuyData = kT0Data;
             kT0Data.tradeDbg.isOpenLimit = [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.open];
             
+            destValue = (1+self.param.destDVValue/100.f)*buyValue;
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data cxtArray:cxtArray start:i+1 stop:i+self.param.durationAfterBuy];
             
             
             if(kT0Data.tradeDbg.TSellData){
-                if(sellValue < kT1Data.low){
-                    sellValue = kT1Data.low;
+                if(destValue < kT1Data.open){
+                    sellValue = kT1Data.open;
                     SMLog(@"kt1Time:%ld,kT1Data.low:%.2f",kT1Data.time,kT1Data.low);
                 }
                 [self NSTKdispResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
