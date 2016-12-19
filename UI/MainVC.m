@@ -100,8 +100,8 @@
     
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //        [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
-    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-    //    [GSDataMgr shareInstance].marketType = marketType_All;
+//    [GSDataMgr shareInstance].marketType = marketType_ShangHai;
+        [GSDataMgr shareInstance].marketType = marketType_All;
     
     GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
     [GSObjMgr shareInstance].mgr.reslut = baseReslut;

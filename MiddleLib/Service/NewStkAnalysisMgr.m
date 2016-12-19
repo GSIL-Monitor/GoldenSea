@@ -87,7 +87,7 @@
             if(kT0Data.tradeDbg.TSellData){
                 if(destValue < kT1Data.open){
                     sellValue = kT1Data.open;
-                    SMLog(@"kt1Time:%ld,kT1Data.low:%.2f",kT1Data.time,kT1Data.low);
+//                    SMLog(@"kt1Time:%ld,kT1Data.low:%.2f",kT1Data.time,kT1Data.low);
                 }
                 [self NSTKdispResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
