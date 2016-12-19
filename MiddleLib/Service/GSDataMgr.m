@@ -79,7 +79,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 -(NSArray*)getNSTKDayDataFromDB:(NSString*)stkID;
 {
     TKData* service = [[HYNewSTKDayDBManager defaultManager] dbserviceWithSymbol:stkID];
-    NSArray* array = [service getRecords:self.startDate end:self.endDate ];
+    NSArray* array = [service getRecords:20020101 end:Key_Max_Date ];
     
     return array;
 }
@@ -129,14 +129,19 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
         
         
+//        if([stkID isEqualToString:@"SH600908"]){
+//            SMLog(@"");
+//        }
+        
         if(self.isJustWriteNSTK){
             BOOL isNSTK=YES;
             KDataModel* kT0Data = [contentArray safeObjectAtIndex:0];
             if(kT0Data.time >= 20160101){
-                for(long i =0; i<4; i++){
+                for(long i =1; i<3; i++){ //first day, some stk is move from 0 to 44. so skip it.
                     KDataModel* kT0Data = [contentArray safeObjectAtIndex:i];
-                    if(![HelpService isEqual:kT0Data.high with:kT0Data.low]){ //it's seem wrong.
+                    if(![HelpService isEqual:kT0Data.high with:kT0Data.low]){
                         isNSTK = NO;
+//                        SMLog(@"not newstk:%@",stkID);
                         continue;
                     }
                 }
@@ -152,7 +157,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
         [self addDataToTable:stkID contentArray:contentArray fromDate:startDate EndDate:endDate];
         
-        SMLog(@"%@",stkID);
+        SMLog(@"%@, dbgNum:%ld",stkID,dbgNum++);
     }
     
 #ifdef EnalbeDayDB

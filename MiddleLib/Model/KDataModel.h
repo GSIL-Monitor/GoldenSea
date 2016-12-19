@@ -156,6 +156,7 @@
 @property (nonatomic, assign) CGFloat dvVolumT0toTHigh;
 
 @property (nonatomic, assign) long oneValDay;
+@property (nonatomic, assign) BOOL isOpenLimit;
 
 @end
 

@@ -11,7 +11,6 @@
 
 @interface NewStkAnalysisMgr ()
 
-@property (nonatomic, strong) RaisingLimitParam* param;
 
 @end
 
@@ -33,8 +32,12 @@
         return;
     }
     
-    long statDays = 0, oneValDay=0;
-    for(long i=0; i<[cxtArray count]-statDays;i++  ){
+//    if([self.stkID isEqualToString:@"SH603608"]){
+//        SMLog(@"");
+//    }
+    
+    long statDays = 0, oneValDay=1;
+    for(long i=1; i<[cxtArray count]-statDays;i++  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
@@ -43,18 +46,29 @@
         KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
-        //KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
+        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
         
         
         if([self isOnePrice:kTP1Data]
            && ![self isOnePrice:kT0Data]
            )
         {
-//            if(kT0Data.time < 20160301 && kT0Data.time>20160201){
-//                i++;
-//                continue;
-//            }
-            buyValue = kTP1Data.close*1.02;
+            if(oneValDay > 11){
+                break;
+            }
+            
+            if(kT0Data.open >80){
+                break;
+            }
+            
+            kT0Data.tradeDbg.isOpenLimit = [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.open];
+            
+//            buyValue = kTP1Data.close*1.02;
+            if(!kT0Data.tradeDbg.isOpenLimit){
+                buyValue = kT0Data.open*0.99;
+            }else{
+                buyValue = kT0Data.open*0.92;
+            }
 
             if(kT0Data.low > buyValue){
                 break;
@@ -63,12 +77,17 @@
             kT0Data.stkID = self.stkID;
             kT0Data.tradeDbg.oneValDay = oneValDay;
             kT0Data.tradeDbg.TBuyData = kT0Data;
+            kT0Data.tradeDbg.isOpenLimit = [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.open];
             
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data cxtArray:cxtArray start:i+1 stop:i+self.param.durationAfterBuy];
             
             
             if(kT0Data.tradeDbg.TSellData){
-                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+                if(sellValue < kT1Data.low){
+                    sellValue = kT1Data.low;
+                    SMLog(@"kt1Time:%ld,kT1Data.low:%.2f",kT1Data.time,kT1Data.low);
+                }
+                [self NSTKdispResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
             
             break;

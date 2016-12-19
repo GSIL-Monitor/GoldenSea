@@ -22,6 +22,7 @@
 		42465B661DB5C5D8000FB12C /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42465B651DB5C5D8000FB12C /* libiconv.2.4.0.tbd */; };
 		42465B691DB5CB34000FB12C /* HYSTKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42465B681DB5CB34000FB12C /* HYSTKDBManager.m */; };
 		42486C511D92817C0018D4C1 /* UtilData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42486C501D92817C0018D4C1 /* UtilData.m */; };
+		42496A4E1E079C0400B5E613 /* NSTKLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42496A4D1E079C0400B5E613 /* NSTKLogout.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
 		42504D861D9B6C5700754E99 /* TechAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */; };
 		4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* TQueryRes.m */; };
@@ -224,6 +225,8 @@
 		42465B681DB5CB34000FB12C /* HYSTKDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSTKDBManager.m; sourceTree = "<group>"; };
 		42486C4F1D92817C0018D4C1 /* UtilData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilData.h; path = Service/UtilData.h; sourceTree = "<group>"; };
 		42486C501D92817C0018D4C1 /* UtilData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilData.m; path = Service/UtilData.m; sourceTree = "<group>"; };
+		42496A4C1E079C0400B5E613 /* NSTKLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTKLogout.h; sourceTree = "<group>"; };
+		42496A4D1E079C0400B5E613 /* NSTKLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTKLogout.m; sourceTree = "<group>"; };
 		424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneDayCondition.h; sourceTree = "<group>"; };
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
 		42504D841D9B6C5700754E99 /* TechAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechAnalysisMgr.h; sourceTree = "<group>"; };
@@ -961,6 +964,8 @@
 				426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */,
 				426980021CEEF22200D99888 /* GSBaseLogout.h */,
 				426980031CEEF22200D99888 /* GSBaseLogout.m */,
+				42496A4C1E079C0400B5E613 /* NSTKLogout.h */,
+				42496A4D1E079C0400B5E613 /* NSTKLogout.m */,
 				42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */,
 				42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */,
 				42BB4D281D6B3F76003FB5DD /* AvgLogout.h */,
@@ -1462,6 +1467,7 @@
 				42E08E571C7FF8C1004E4DC2 /* HYBaseModel.m in Sources */,
 				426B2FF91DD163F400863C11 /* BRADrawing.m in Sources */,
 				42E097CA1C7FFAEB004E4DC2 /* Reachability.m in Sources */,
+				42496A4E1E079C0400B5E613 /* NSTKLogout.m in Sources */,
 				42E08E5B1C7FF8C1004E4DC2 /* HYModelManager.m in Sources */,
 				42E097271C7FFAEB004E4DC2 /* AFSecurityPolicy.m in Sources */,
 				42465B641DB5C5CB000FB12C /* STKxlsReader.m in Sources */,

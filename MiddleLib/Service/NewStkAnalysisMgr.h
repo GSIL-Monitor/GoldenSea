@@ -9,5 +9,5 @@
 #import "GSBaseAnalysisMgr.h"
 
 @interface NewStkAnalysisMgr : GSBaseAnalysisMgr
-
+@property (nonatomic, strong) GSBaseParam* NSTKparam;
 @end

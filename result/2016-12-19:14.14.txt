@@ -1,0 +1,23 @@
+totalCount:22, totalS2BDVValue:17.68
+SH600909 TBuyData:20161213, buyDayOpen:13.90, dvSelltoBuy:5.00, oneValDay:5, isOpenLimit:NO
+SH600926 TBuyData:20161101, buyDayOpen:26.50, dvSelltoBuy:5.00, oneValDay:3, isOpenLimit:NO
+SH600936 TBuyData:20160830, buyDayOpen:19.71, dvSelltoBuy:-5.09, oneValDay:11, isOpenLimit:YES
+SH601020 TBuyData:20160329, buyDayOpen:23.87, dvSelltoBuy:5.00, oneValDay:9, isOpenLimit:NO
+SH601128 TBuyData:20161018, buyDayOpen:11.30, dvSelltoBuy:-4.42, oneValDay:7, isOpenLimit:NO
+SH601163 TBuyData:20160920, buyDayOpen:47.00, dvSelltoBuy:-3.47, oneValDay:5, isOpenLimit:NO
+SH601500 TBuyData:20160929, buyDayOpen:14.50, dvSelltoBuy:-3.38, oneValDay:8, isOpenLimit:NO
+SH601900 TBuyData:20160229, buyDayOpen:20.69, dvSelltoBuy:-4.06, oneValDay:10, isOpenLimit:NO
+SH601966 TBuyData:20160719, buyDayOpen:43.00, dvSelltoBuy:-6.60, oneValDay:9, isOpenLimit:NO
+SH601997 TBuyData:20160823, buyDayOpen:19.50, dvSelltoBuy:5.00, oneValDay:5, isOpenLimit:NO
+SH603029 TBuyData:20160513, buyDayOpen:34.00, dvSelltoBuy:5.00, oneValDay:11, isOpenLimit:NO
+SH603313 TBuyData:20161021, buyDayOpen:39.30, dvSelltoBuy:5.00, oneValDay:6, isOpenLimit:NO
+SH603377 TBuyData:20160224, buyDayOpen:50.32, dvSelltoBuy:5.00, oneValDay:8, isOpenLimit:NO
+SH603393 TBuyData:20160923, buyDayOpen:67.43, dvSelltoBuy:-10.81, oneValDay:7, isOpenLimit:NO
+SH603421 TBuyData:20161024, buyDayOpen:43.29, dvSelltoBuy:5.00, oneValDay:9, isOpenLimit:NO
+SH603520 TBuyData:20160322, buyDayOpen:40.97, dvSelltoBuy:5.00, oneValDay:9, isOpenLimit:NO
+SH603608 TBuyData:20160301, buyDayOpen:25.75, dvSelltoBuy:5.00, oneValDay:8, isOpenLimit:NO
+SH603727 TBuyData:20161202, buyDayOpen:62.00, dvSelltoBuy:5.00, oneValDay:8, isOpenLimit:NO
+SH603777 TBuyData:20161024, buyDayOpen:34.01, dvSelltoBuy:5.00, oneValDay:8, isOpenLimit:NO
+SH603816 TBuyData:20161021, buyDayOpen:57.20, dvSelltoBuy:5.00, oneValDay:5, isOpenLimit:YES
+SH603868 TBuyData:20160429, buyDayOpen:59.23, dvSelltoBuy:-3.61, oneValDay:9, isOpenLimit:NO
+SH603919 TBuyData:20160321, buyDayOpen:29.50, dvSelltoBuy:-5.86, oneValDay:7, isOpenLimit:NO

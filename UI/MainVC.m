@@ -23,6 +23,7 @@
 #import "GSCondition.h"
 #import "HYLog.h"
 #import "GSDataMgr.h"
+#import "NSTKLogout.h"
 
 #import "LimitAnalysisMgr.h"
 #import "AvgAnalysisMgr.h"
@@ -111,13 +112,19 @@
 {
     [GSObjMgr shareInstance].mgr = [[NewStkAnalysisMgr alloc]init];
     [self configureMgr];
-    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
+    [GSObjMgr shareInstance].log = [[NSTKLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
     param.destDVValue = 5.f;
     param.durationAfterBuy = 1;
     [GSObjMgr shareInstance].mgr.param = param;
     
+    
+    param = [[GSBaseParam alloc]init];
+    param.destDVValue = 5.f;
+    param.durationAfterBuy = 1;
+    NewStkAnalysisMgr* mgr  = (NewStkAnalysisMgr*)[GSObjMgr shareInstance].mgr;
+    mgr.NSTKparam = param;
     
     [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
     [ [GSObjMgr shareInstance].log analysisAndLogtoFile];

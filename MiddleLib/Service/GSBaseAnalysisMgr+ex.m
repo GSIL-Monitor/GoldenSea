@@ -7,7 +7,7 @@
 //
 
 #import "GSBaseAnalysisMgr+ex.h"
-
+#import "NewStkAnalysisMgr.h"
 
 
 
@@ -91,6 +91,23 @@
     return YES;
 }
 
+
+-(void)NSTKdispResult2Array:(KDataModel*)kT0data buyValue:(CGFloat)buyValue sellValue:(CGFloat)sellValue;
+{
+    NewStkAnalysisMgr* nstkMgr = (NewStkAnalysisMgr*)self;
+    
+    CGFloat dvValue = (sellValue-buyValue)*100.f/buyValue;
+
+    nstkMgr.NSTKparam.totalS2BDVValue += dvValue;
+    nstkMgr.NSTKparam.totalCount++;
+    nstkMgr.NSTKparam.avgS2BDVValue = nstkMgr.NSTKparam.totalS2BDVValue/nstkMgr.NSTKparam.totalCount;
+    
+    kT0data.tradeDbg.dvSelltoBuy = dvValue;
+    NSMutableArray* tmpArray = [nstkMgr.NSTKparam.resultArray objectAtIndex:0];
+    [tmpArray addObject:kT0data];
+
+
+}
 
 
 -(void)dispatchResult2Array:(KDataModel*)kT0data buyValue:(CGFloat)buyValue sellValue:(CGFloat)sellValue

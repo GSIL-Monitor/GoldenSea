@@ -90,10 +90,10 @@
 //        }
         
         if(isAll){
-            SMLog(@"%@---detail report(%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
+//            SMLog(@"%@---detail report(%d-%d)---",stk, [GSDataMgr shareInstance].startDate,[GSDataMgr shareInstance].endDate);
             for (long i=0; i<[arrayUsed count]; i++) {
                 GSBaseParam* ele = [arrayUsed objectAtIndex:i];
-                SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
+//                SMLog(@"No.(%d)- Conditon:  destDVVALUE(%.2f), duration(%d)  Result:totalS2BDVVal(%.2f), AvgVal(%.2f),totalCount(%d), sucPercent(%.2f) ",i,  ele.destDVValue,  ele.durationAfterBuy, ele.totalS2BDVValue, ele.avgS2BDVValue ,ele.totalCount, [ele getSucPecent] );
                 [self logAllResultWithParam:ele];
             }
         }
@@ -217,11 +217,12 @@
         }
         percent = [tmpArray count]*100.f/totalCount;
      
-        SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
+//        SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
 
         for (KDataModel* kData in tmpArray) {
             TradeDebugData* tradeDbg = kData.tradeDbg;
-            SMLog(@"%@ TBuyData:%ld, buyDayOpen:%.2f, dvSelltoBuy:%.2f, oneValDay:%ld",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TBuyData.open,tradeDbg.dvSelltoBuy,tradeDbg.oneValDay);
+            NSString* isOpenLimit = tradeDbg.isOpenLimit ? @"YES":@"NO";
+            SMLog(@"%@ TBuyData:%ld, buyDayOpen:%.2f, dvSelltoBuy:%.2f, oneValDay:%ld, isOpenLimit:%@",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TBuyData.open,tradeDbg.dvSelltoBuy,tradeDbg.oneValDay, isOpenLimit);
 //            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, vol:%.3f,MA5:%.3f, MA10:%.3f, MA20:%.3f; dayMA5:%.3f, dayMA10:%.3f",
 //                  kData.stkID, kData.tradeDbg.TBuyData.time,kData.tradeDbg.TSellData.time,kData.tradeDbg.dvSelltoBuy,kData.tradeDbg.dvVolumT0toTHigh,
 //                  kData.tradeDbg.wMA5Slope,kData.tradeDbg.wMA10Slope,kData.tradeDbg.wMA20Slope,
