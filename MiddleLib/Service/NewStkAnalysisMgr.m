@@ -32,9 +32,9 @@
         return;
     }
     
-    if([self.stkID isEqualToString:@"SZ002788"]){
-        SMLog(@"");
-    }
+//    if([self.stkID isEqualToString:@"SZ002788"]){
+//        SMLog(@"");
+//    }
     
     long statDays = 0, oneValDay=1;
     for(long i=1; i<[cxtArray count]-statDays;i++  ){
@@ -70,6 +70,9 @@
 //            buyValue = kTP1Data.close*1.02;
             if(!kT0Data.tradeDbg.isOpenLimit){
                 buyValue = kT0Data.open*0.99;
+                if(kT0Data.open > 40.f){
+                    buyValue = kT0Data.open*0.9;
+                }
             }else{
                 buyValue = kT0Data.open*0.92;
             }
