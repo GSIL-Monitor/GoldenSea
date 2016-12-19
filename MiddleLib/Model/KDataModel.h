@@ -155,6 +155,8 @@
 @property (nonatomic, assign) CGFloat dMA10Slope;
 @property (nonatomic, assign) CGFloat dvVolumT0toTHigh;
 
+@property (nonatomic, assign) long oneValDay;
+
 @end
 
 

@@ -13,6 +13,8 @@
 #import "GSBaseAnalysisMgr+ex.h"
 #import "GSCondition.h"
 
+#import "NewStkAnalysisMgr.h"
+
 @interface GSBaseAnalysisMgr ()
 
 
@@ -134,10 +136,14 @@
 
 -(void)readContentArrayFromDB
 {
-    self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
-    self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
-    self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
-    self.NSTKdayCxtArray = [[GSDataMgr shareInstance]getNSTKDayDataFromDB:self.stkID];
+    if(![self isKindOfClass:[NewStkAnalysisMgr class]]){
+        self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
+        self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
+        self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
+    }else{
+        self.NSTKdayCxtArray = [[GSDataMgr shareInstance]getNSTKDayDataFromDB:self.stkID];
+    }
+   
     return;
 
     

@@ -33,7 +33,7 @@
         return;
     }
     
-    long statDays = 0;
+    long statDays = 0, oneValDay=0;
     for(long i=0; i<[cxtArray count]-statDays;i++  ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
@@ -43,12 +43,8 @@
         KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
         KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
-        //        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
+        //KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
         
-        
-        //        if(kT0Data.time == 20160527){
-        //            NSLog(@"");
-        //        }
         
         if([self isOnePrice:kTP1Data]
            && ![self isOnePrice:kT0Data]
@@ -61,26 +57,24 @@
             buyValue = kTP1Data.close*1.02;
 
             if(kT0Data.low > buyValue){
-                continue;
+                break;
             }
           
             kT0Data.stkID = self.stkID;
-            
+            kT0Data.tradeDbg.oneValDay = oneValDay;
             kT0Data.tradeDbg.TBuyData = kT0Data;
             
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data cxtArray:cxtArray start:i+1 stop:i+self.param.durationAfterBuy];
             
-
             
             if(kT0Data.tradeDbg.TSellData){
-                KDataModel* kTP6Data  = [cxtArray safeObjectAtIndex:(i-6)];
-                kT0Data.tradeDbg.dMA5Slope = kTP1Data.ma5/kTP6Data.ma5;
-                kT0Data.tradeDbg.dMA10Slope = kTP1Data.ma10/kTP6Data.ma10;
-                
                 [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
             }
+            
+            break;
         }
-                
+        
+        oneValDay++;
     }
     
     
