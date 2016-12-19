@@ -158,6 +158,8 @@
 
 @property (nonatomic, assign) long oneValDay;
 @property (nonatomic, assign) BOOL isOpenLimit;
+@property (nonatomic, assign) CGFloat pvLow2Op; //T1至Tbuy日中，high值与open值的差值最高的值
+
 
 @end
 
