@@ -29,6 +29,7 @@ typedef enum {
 @property (assign) int endDate; //end analysis date, such as 20140101
 
 @property (assign) MarketType marketType;
+@property (nonatomic, assign) BOOL isJustWriteNSTK;
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 -(NSArray*)getDayDataFromDB:(NSString*)stkID;

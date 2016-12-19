@@ -47,6 +47,9 @@
     [[HYWeekDBManager defaultManager]setupDB:nil isReset:isRest];
     [[HYMonthDBManager defaultManager]setupDB:nil isReset:isRest];
     
+    [[HYNewSTKDayDBManager defaultManager]setupDB:nil isReset:isRest];
+
+    
 //    [[QueryDBManager defaultManager]setupDB:_queryDbdir isReset:isRest];
     
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];

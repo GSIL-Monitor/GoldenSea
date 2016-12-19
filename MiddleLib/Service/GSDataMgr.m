@@ -28,6 +28,9 @@ typedef enum {
 @property (nonatomic, strong) DBInfoModel* weekDBInfo;
 @property (nonatomic, strong) DBInfoModel* monthDBInfo;
 
+@property (nonatomic, strong) DBInfoModel* NSTKDayDBInfo;
+
+
 @end
 
 @implementation GSDataMgr
@@ -73,12 +76,21 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 
+-(NSArray*)getNSTKDayDataFromDB:(NSString*)stkID;
+{
+    TKData* service = [[HYNewSTKDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+    NSArray* array = [service getRecords:self.startDate end:self.endDate ];
+    
+    return array;
+}
+
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {
     self.dayDBInfo = [[HYDayDBManager defaultManager].dbInfo getRecord];
     self.weekDBInfo = [[HYWeekDBManager defaultManager].dbInfo getRecord];
     self.monthDBInfo = [[HYMonthDBManager defaultManager].dbInfo getRecord];
+    self.NSTKDayDBInfo = [[HYNewSTKDayDBManager defaultManager].dbInfo getRecord];
     
 //    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
 //    if(!dbInfo){ //no result. means first time.
@@ -95,8 +107,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 //#define EnalbeDayDB 1
-#define EnalbeWeekDB 1
+//#define EnalbeWeekDB 1
 //#define EnalbeMonthDB 1
+#define EnalbeNSTKDayDB 1
 
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
@@ -111,9 +124,30 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         if(![[GSObjMgr shareInstance].mgr isInRange:stkID]){
             continue;
         }
-
+        
         
         NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
+        
+        
+        if(self.isJustWriteNSTK){
+            BOOL isNSTK=YES;
+            KDataModel* kT0Data = [contentArray safeObjectAtIndex:0];
+            if(kT0Data.time >= 20160101){
+                for(long i =0; i<4; i++){
+                    KDataModel* kT0Data = [contentArray safeObjectAtIndex:i];
+                    if(![HelpService isEqual:kT0Data.high with:kT0Data.low]){ //it's seem wrong.
+                        isNSTK = NO;
+                        continue;
+                    }
+                }
+            }else{
+                continue;
+            }
+            
+            if(!isNSTK){
+                continue;
+            }
+        }
         
 
         [self addDataToTable:stkID contentArray:contentArray fromDate:startDate EndDate:endDate];
@@ -131,6 +165,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     [[HYMonthDBManager defaultManager].dbInfo updateTime:endDate];
 #endif
     
+#ifdef EnalbeNSTKDayDB
+    [[HYNewSTKDayDBManager defaultManager].dbInfo updateTime:endDate];
+#endif
+    
     SMLog(@"end of writeDataToDB");
 }
 
@@ -141,12 +179,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     TKData* dayService = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
     TKData* weekService = [[HYWeekDBManager defaultManager] dbserviceWithSymbol:stkID];
     TKData* monthService = [[HYMonthDBManager defaultManager] dbserviceWithSymbol:stkID];
+    TKData* NSTKdayService = [[HYNewSTKDayDBManager defaultManager] dbserviceWithSymbol:stkID];
 
-    if(!dayService || !weekService || !monthService){
+    if(!dayService || !weekService || !monthService ||!NSTKdayService){
         return;
     }
     
-    if([contentArray count]<30 ){
+    if([contentArray count]<5 ){
 //        GSAssert(NO,@"contentArray count is < 30!");
         return;
     }
@@ -295,6 +334,37 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
 
+#endif
+    
+    
+    
+#ifdef EnalbeNSTKDayDB
+    fromDate = self.NSTKDayDBInfo.lastUpdateTime > 0 ? self.NSTKDayDBInfo.lastUpdateTime:20020101;
+    for(long i=0; i<[contentArray count]; i++ ){
+        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
+        
+        KDataModel* kT0Data = [contentArray objectAtIndex:i];
+        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
+            continue;
+        }
+        
+        kT0Data.ma5 = [UtilData getMAValue:5 array:contentArray t0Index:i];
+        kT0Data.ma10 = [UtilData getMAValue:10 array:contentArray t0Index:i];
+        kT0Data.ma20 = [UtilData getMAValue:20 array:contentArray t0Index:i];
+        kT0Data.ma30 = [UtilData getMAValue:30 array:contentArray t0Index:i];
+        kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
+        kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
+        
+        if(i>=1){
+            KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
+            kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+            kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
+        }
+        
+        [NSTKdayService addRecord:kT0Data];
+        
+    }
+    
 #endif
     
 }

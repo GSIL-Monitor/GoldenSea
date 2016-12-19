@@ -16,6 +16,7 @@
 		4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 421265481C867B7D0053787E /* NSArrayEX.m */; };
 		4212654C1C867B7D0053787E /* NSDictionaryEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212654A1C867B7D0053787E /* NSDictionaryEX.m */; };
 		4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */; };
+		4230596D1E03D575006E4F73 /* HYNewSTKDayDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4230596C1E03D575006E4F73 /* HYNewSTKDayDBManager.m */; };
 		4236ECBC1D0FF2C40001CF37 /* HYLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4236ECBB1D0FF2C40001CF37 /* HYLog.m */; };
 		42465B641DB5C5CB000FB12C /* STKxlsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 42465B5A1DB5C5CB000FB12C /* STKxlsReader.m */; };
 		42465B661DB5C5D8000FB12C /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42465B651DB5C5D8000FB12C /* libiconv.2.4.0.tbd */; };
@@ -31,6 +32,7 @@
 		4264EDD51D8E765D006DF8A3 /* HYMonthDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD41D8E765D006DF8A3 /* HYMonthDBManager.m */; };
 		4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */; };
 		4265DC361DB4BBAF0019EC09 /* GSBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265DC351DB4BBAF0019EC09 /* GSBaseResult.m */; };
+		42675FD81E0274ED00487D8B /* NewStkAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42675FD71E0274ED00487D8B /* NewStkAnalysisMgr.m */; };
 		426980041CEEF22200D99888 /* GSBaseLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980031CEEF22200D99888 /* GSBaseLogout.m */; };
 		426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980061CEEF5F000D99888 /* GSDataMgr.m */; };
 		4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */; };
@@ -211,6 +213,8 @@
 		4212654A1C867B7D0053787E /* NSDictionaryEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryEX.m; sourceTree = "<group>"; };
 		4223A1121D6FD3AC005A1CA4 /* TDBInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBInfo.h; sourceTree = "<group>"; };
 		4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBInfo.m; sourceTree = "<group>"; };
+		4230596B1E03D575006E4F73 /* HYNewSTKDayDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNewSTKDayDBManager.h; sourceTree = "<group>"; };
+		4230596C1E03D575006E4F73 /* HYNewSTKDayDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYNewSTKDayDBManager.m; sourceTree = "<group>"; };
 		4236ECBA1D0FF2C40001CF37 /* HYLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYLog.h; sourceTree = "<group>"; };
 		4236ECBB1D0FF2C40001CF37 /* HYLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLog.m; sourceTree = "<group>"; };
 		42465B591DB5C5CB000FB12C /* STKxlsReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKxlsReader.h; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 		4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseDBManager.m; sourceTree = "<group>"; };
 		4265DC341DB4BBAF0019EC09 /* GSBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseResult.h; sourceTree = "<group>"; };
 		4265DC351DB4BBAF0019EC09 /* GSBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseResult.m; sourceTree = "<group>"; };
+		42675FD61E0274ED00487D8B /* NewStkAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStkAnalysisMgr.h; sourceTree = "<group>"; };
+		42675FD71E0274ED00487D8B /* NewStkAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStkAnalysisMgr.m; sourceTree = "<group>"; };
 		426980021CEEF22200D99888 /* GSBaseLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBaseLogout.h; sourceTree = "<group>"; };
 		426980031CEEF22200D99888 /* GSBaseLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBaseLogout.m; sourceTree = "<group>"; };
 		426980051CEEF5F000D99888 /* GSDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSDataMgr.h; path = Service/GSDataMgr.h; sourceTree = "<group>"; };
@@ -750,6 +756,8 @@
 				4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */,
 				42465B671DB5CB34000FB12C /* HYSTKDBManager.h */,
 				42465B681DB5CB34000FB12C /* HYSTKDBManager.m */,
+				4230596B1E03D575006E4F73 /* HYNewSTKDayDBManager.h */,
+				4230596C1E03D575006E4F73 /* HYNewSTKDayDBManager.m */,
 				42C3C9021D4B29420050E676 /* HYDayDBManager.h */,
 				42C3C9031D4B29420050E676 /* HYDayDBManager.m */,
 				4264EDD01D8E7649006DF8A3 /* HYWeekDBManager.h */,
@@ -941,6 +949,8 @@
 				426980091CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m */,
 				42ABCC3A1CCDBE40008BD830 /* GSBaseAnalysisMgr.h */,
 				42ABCC3B1CCDBE40008BD830 /* GSBaseAnalysisMgr.m */,
+				42675FD61E0274ED00487D8B /* NewStkAnalysisMgr.h */,
+				42675FD71E0274ED00487D8B /* NewStkAnalysisMgr.m */,
 				42504D841D9B6C5700754E99 /* TechAnalysisMgr.h */,
 				42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */,
 				42BB4D251D6B3BD9003FB5DD /* AvgAnalysisMgr.h */,
@@ -1362,6 +1372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				426B30051DD163F400863C11 /* BRASharedString.m in Sources */,
+				42675FD81E0274ED00487D8B /* NewStkAnalysisMgr.m in Sources */,
 				42E08E581C7FF8C1004E4DC2 /* HYBaseRequest.m in Sources */,
 				42E0972F1C7FFAEB004E4DC2 /* UIButton+AFNetworking.m in Sources */,
 				42BB4D271D6B3BD9003FB5DD /* AvgAnalysisMgr.m in Sources */,
@@ -1503,6 +1514,7 @@
 				426B2FF21DD163F400863C11 /* BRACellRange.m in Sources */,
 				42E097B11C7FFAEB004E4DC2 /* DDDispatchQueueLogFormatter.m in Sources */,
 				42E0972A1C7FFAEB004E4DC2 /* AFURLResponseSerialization.m in Sources */,
+				4230596D1E03D575006E4F73 /* HYNewSTKDayDBManager.m in Sources */,
 				42E0972C1C7FFAEB004E4DC2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				426B2FF11DD163F400863C11 /* BRACellFormat.m in Sources */,
 			);

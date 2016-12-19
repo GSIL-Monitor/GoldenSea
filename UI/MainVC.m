@@ -28,6 +28,7 @@
 #import "AvgAnalysisMgr.h"
 #import "TechAnalysisMgr.h"
 #import "MonthStatAnalysisMgr.h"
+#import "NewStkAnalysisMgr.h"
 
 #import "GSBaseResult.h"
 
@@ -81,8 +82,9 @@
 //    [GSDataMgr shareInstance].startDate = 20160225;
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
+    [GSDataMgr shareInstance].isJustWriteNSTK = YES;
     
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161018];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161214];
 }
 
 
@@ -103,6 +105,22 @@
     GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
     [GSObjMgr shareInstance].mgr.reslut = baseReslut;
     
+}
+
+-(void)testForNewSTK
+{
+    [GSObjMgr shareInstance].mgr = [[NewStkAnalysisMgr alloc]init];
+    [self configureMgr];
+    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
+    
+    GSBaseParam* param = [[GSBaseParam alloc]init];
+    param.destDVValue = 2.f;
+    param.durationAfterBuy = 3;
+    [GSObjMgr shareInstance].mgr.param = param;
+    
+    
+    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
 }
 
 

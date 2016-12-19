@@ -20,6 +20,8 @@
 //+ (void)log:(BOOL)asynchronous
 //     format:(NSString *)format, ...
 
++(BOOL)isEqual:(CGFloat)f1 with:(CGFloat)f2;
+
 + (void)log:(NSString *)format, ... ;
 
 

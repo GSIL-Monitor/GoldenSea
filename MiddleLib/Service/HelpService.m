@@ -246,7 +246,14 @@
     return theHighestValue;
 }
 
-
++(BOOL)isEqual:(CGFloat)f1 with:(CGFloat)f2;
+{
+    if(fabs(f1-f2)<0.01){
+        return YES;
+    }
+    
+    return NO;
+}
 
 +(long)findIndexInArray:(NSArray*)array kT0Data:(KDataModel*)kT0Data;
 {
