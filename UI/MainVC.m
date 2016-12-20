@@ -88,6 +88,9 @@
     [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161214];
 }
 
+- (IBAction)onNSTK:(id)sender {
+    [self testForNewSTK];
+}
 
 #pragma mark - internal
 -(void)configureMgr
@@ -111,7 +114,8 @@
 -(void)testForNewSTK
 {
     [GSObjMgr shareInstance].mgr = [[NewStkAnalysisMgr alloc]init];
-    [self configureMgr];
+    GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
+    [GSObjMgr shareInstance].mgr.reslut = baseReslut;
     [GSObjMgr shareInstance].log = [[NSTKLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
