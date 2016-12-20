@@ -86,6 +86,8 @@
             kT0Data.tradeDbg.TBuyData = kT0Data;
             kT0Data.tradeDbg.isOpenLimit = [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.open];
             kT0Data.tradeDbg.pvLow2Op = kT0Data.low/kT0Data.open;
+            kT0Data.tradeDbg.pvOp2TP1Close = kT0Data.open/kTP1Data.close;
+            kT0Data.tradeDbg.TP1Data = kTP1Data;
             
             destValue = (1+self.param.destDVValue/100.f)*buyValue;
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data cxtArray:cxtArray start:i+1 stop:i+self.param.durationAfterBuy];
