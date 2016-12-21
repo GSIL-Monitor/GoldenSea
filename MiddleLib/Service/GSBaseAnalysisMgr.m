@@ -14,6 +14,7 @@
 #import "GSCondition.h"
 
 #import "NewStkAnalysisMgr.h"
+#import "STATAnalysisMgr.h"
 
 @interface GSBaseAnalysisMgr ()
 
@@ -136,32 +137,30 @@
 
 -(void)readContentArrayFromDB
 {
-    if(![self isKindOfClass:[NewStkAnalysisMgr class]]){
+    if([self isKindOfClass:[NewStkAnalysisMgr class]]){
+        self.NSTKdayCxtArray = [[GSDataMgr shareInstance]getNSTKDayDataFromDB:self.stkID];
+    }else if([self isKindOfClass:[STATAnalysisMgr class]]){
+        switch (self.period) {
+            case Period_day:
+                self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
+                break;
+                
+            case Period_week:
+                self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
+                break;
+                
+            case Period_month:
+                self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else{
         self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
         self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
         self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
-    }else{
-        self.NSTKdayCxtArray = [[GSDataMgr shareInstance]getNSTKDayDataFromDB:self.stkID];
-    }
-   
-    return;
-
-    
-    switch (self.period) {
-        case Period_day:
-            self.dayCxtArray = [[GSDataMgr shareInstance]getDayDataFromDB:self.stkID];
-            break;
-            
-        case Period_week:
-            self.weekCxtArray = [[GSDataMgr shareInstance]getWeekDataFromDB:self.stkID];
-            break;
-            
-        case Period_month:
-            self.monthCxtArray = [[GSDataMgr shareInstance]getMonthDataFromDB:self.stkID];
-            break;
-            
-        default:
-            break;
     }
 }
 

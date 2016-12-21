@@ -24,11 +24,12 @@
 #import "HYLog.h"
 #import "GSDataMgr.h"
 #import "NSTKLogout.h"
+#import "STATLogout.h"
 
 #import "LimitAnalysisMgr.h"
 #import "AvgAnalysisMgr.h"
 #import "TechAnalysisMgr.h"
-#import "MonthStatAnalysisMgr.h"
+#import "STATAnalysisMgr.h"
 #import "NewStkAnalysisMgr.h"
 
 #import "GSBaseResult.h"
@@ -92,6 +93,11 @@
     [self testForNewSTK];
 }
 
+- (IBAction)onSTAT:(id)sender {
+    [self testForMonthStat];
+}
+
+
 #pragma mark - internal
 -(void)configureMgr
 {
@@ -110,6 +116,33 @@
     [GSObjMgr shareInstance].mgr.reslut = baseReslut;
     
 }
+
+
+
+-(void)testForMonthStat
+{
+    [GSObjMgr shareInstance].mgr = [[STATAnalysisMgr alloc]init];
+    [self configureMgr];
+    NSMutableArray* rangeArray = [NSMutableArray array];
+    NSArray* stkArray = [[HYSTKDBManager defaultManager].allSTK getRecordsWithIndustry:@"农"];
+    for(long i=0; i<[stkArray count]; i++){
+        STKModel* stk = [stkArray safeObjectAtIndex:i];
+        [rangeArray addObject:stk.stkID];
+    }
+    [GSObjMgr shareInstance].mgr.stkRangeArray = rangeArray;
+    [GSObjMgr shareInstance].mgr.period = Period_month;
+    [GSObjMgr shareInstance].log = [[STATLogout alloc]init];
+    
+    GSBaseParam* param = [[GSBaseParam alloc]init];
+    param.destDVValue = 10.f;
+    param.durationAfterBuy = 1;
+    [GSObjMgr shareInstance].mgr.param = param;
+    
+    
+    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+}
+
 
 -(void)testForNewSTK
 {
@@ -268,30 +301,6 @@
     
 }
 
-
--(void)testForMonthStat
-{
-    [GSObjMgr shareInstance].mgr = [[MonthStatAnalysisMgr alloc]init];
-    [self configureMgr];
-    NSMutableArray* rangeArray = [NSMutableArray array];
-    NSArray* stkArray = [[HYSTKDBManager defaultManager].allSTK getRecordsWithIndustry:@"农"];
-    for(long i=0; i<[stkArray count]; i++){
-        STKModel* stk = [stkArray safeObjectAtIndex:i];
-        [rangeArray addObject:stk.stkID];
-    }
-    [GSObjMgr shareInstance].mgr.stkRangeArray = rangeArray;
-    [GSObjMgr shareInstance].mgr.period = Period_month;
-    [GSObjMgr shareInstance].log = [[GSBaseLogout alloc]init];
-    
-    GSBaseParam* param = [[GSBaseParam alloc]init];
-    param.destDVValue = 10.f;
-    param.durationAfterBuy = 1;
-    [GSObjMgr shareInstance].mgr.param = param;
-    
-    
-    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
-    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
-}
 
 
 //

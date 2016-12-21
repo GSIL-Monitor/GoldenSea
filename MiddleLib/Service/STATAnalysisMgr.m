@@ -6,9 +6,9 @@
 //  Copyright © 2016年 frank weng. All rights reserved.
 //
 
-#import "MonthStatAnalysisMgr.h"
+#import "STATAnalysisMgr.h"
 
-@implementation MonthStatAnalysisMgr
+@implementation STATAnalysisMgr
 
 
 -(BOOL)isMapCondition:(long)i isQuery:(BOOL)isQuery

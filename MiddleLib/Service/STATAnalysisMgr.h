@@ -8,6 +8,6 @@
 
 #import "GSBaseAnalysisMgr.h"
 
-@interface MonthStatAnalysisMgr : GSBaseAnalysisMgr
+@interface STATAnalysisMgr : GSBaseAnalysisMgr
 
 @end

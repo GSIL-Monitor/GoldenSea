@@ -25,6 +25,7 @@
 		42496A4E1E079C0400B5E613 /* NSTKLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42496A4D1E079C0400B5E613 /* NSTKLogout.m */; };
 		424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */; };
 		42504D861D9B6C5700754E99 /* TechAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */; };
+		425132C11E0A1C3A0059E352 /* STATLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = 425132C01E0A1C3A0059E352 /* STATLogout.m */; };
 		4258401F1D669FB80031AC39 /* TQueryRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4258401E1D669FB80031AC39 /* TQueryRes.m */; };
 		425840221D66A2800031AC39 /* QueryResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840211D66A2800031AC39 /* QueryResModel.m */; };
 		425840251D66AC680031AC39 /* QueryDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 425840241D66AC680031AC39 /* QueryDBManager.m */; };
@@ -84,7 +85,7 @@
 		426B303D1DD164E900863C11 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 426B303C1DD164E900863C11 /* libz.1.1.3.tbd */; };
 		426B303E1DD1650900863C11 /* libSSZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426B30371DD163F400863C11 /* libSSZipArchive.a */; };
 		426B30411DD1B3C800863C11 /* NSString+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30401DD1B3C800863C11 /* NSString+ex.m */; };
-		426B30441DD1BA5200863C11 /* MonthStatAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */; };
+		426B30441DD1BA5200863C11 /* STATAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30431DD1BA5200863C11 /* STATAnalysisMgr.m */; };
 		427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E871C1D6B1BA0002468FD /* GSObjMgr.m */; };
 		42A6EA5C1D680EDE00430CEC /* LimitAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */; };
 		42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA611D6856EF00430CEC /* GSBaseParam.m */; };
@@ -231,6 +232,8 @@
 		424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneDayCondition.m; sourceTree = "<group>"; };
 		42504D841D9B6C5700754E99 /* TechAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechAnalysisMgr.h; sourceTree = "<group>"; };
 		42504D851D9B6C5700754E99 /* TechAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechAnalysisMgr.m; sourceTree = "<group>"; };
+		425132BF1E0A1C3A0059E352 /* STATLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STATLogout.h; sourceTree = "<group>"; };
+		425132C01E0A1C3A0059E352 /* STATLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STATLogout.m; sourceTree = "<group>"; };
 		4258401D1D669FB80031AC39 /* TQueryRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQueryRes.h; sourceTree = "<group>"; };
 		4258401E1D669FB80031AC39 /* TQueryRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQueryRes.m; sourceTree = "<group>"; };
 		425840201D66A2800031AC39 /* QueryResModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResModel.h; sourceTree = "<group>"; };
@@ -353,8 +356,8 @@
 		426B303C1DD164E900863C11 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		426B303F1DD1B3C800863C11 /* NSString+ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ex.h"; sourceTree = "<group>"; };
 		426B30401DD1B3C800863C11 /* NSString+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ex.m"; sourceTree = "<group>"; };
-		426B30421DD1BA5200863C11 /* MonthStatAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthStatAnalysisMgr.h; sourceTree = "<group>"; };
-		426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthStatAnalysisMgr.m; sourceTree = "<group>"; };
+		426B30421DD1BA5200863C11 /* STATAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STATAnalysisMgr.h; sourceTree = "<group>"; };
+		426B30431DD1BA5200863C11 /* STATAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STATAnalysisMgr.m; sourceTree = "<group>"; };
 		427E871B1D6B1BA0002468FD /* GSObjMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSObjMgr.h; sourceTree = "<group>"; };
 		427E871C1D6B1BA0002468FD /* GSObjMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSObjMgr.m; sourceTree = "<group>"; };
 		42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitAnalysisMgr.h; sourceTree = "<group>"; };
@@ -960,12 +963,14 @@
 				42BB4D261D6B3BD9003FB5DD /* AvgAnalysisMgr.m */,
 				42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */,
 				42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */,
-				426B30421DD1BA5200863C11 /* MonthStatAnalysisMgr.h */,
-				426B30431DD1BA5200863C11 /* MonthStatAnalysisMgr.m */,
+				426B30421DD1BA5200863C11 /* STATAnalysisMgr.h */,
+				426B30431DD1BA5200863C11 /* STATAnalysisMgr.m */,
 				426980021CEEF22200D99888 /* GSBaseLogout.h */,
 				426980031CEEF22200D99888 /* GSBaseLogout.m */,
 				42496A4C1E079C0400B5E613 /* NSTKLogout.h */,
 				42496A4D1E079C0400B5E613 /* NSTKLogout.m */,
+				425132BF1E0A1C3A0059E352 /* STATLogout.h */,
+				425132C01E0A1C3A0059E352 /* STATLogout.m */,
 				42DA6F9B1D680A0500CD5E63 /* LimitLogout.h */,
 				42DA6F9C1D680A0500CD5E63 /* LimitLogout.m */,
 				42BB4D281D6B3F76003FB5DD /* AvgLogout.h */,
@@ -1406,7 +1411,7 @@
 				426B2FF51DD163F400863C11 /* BRAComments.m in Sources */,
 				426B30031DD163F400863C11 /* BRARelationships.m in Sources */,
 				42E097941C7FFAEB004E4DC2 /* HYFMDatabase.m in Sources */,
-				426B30441DD1BA5200863C11 /* MonthStatAnalysisMgr.m in Sources */,
+				426B30441DD1BA5200863C11 /* STATAnalysisMgr.m in Sources */,
 				42E097231C7FFAEB004E4DC2 /* AFHTTPRequestOperation.m in Sources */,
 				4204D0571C88160500D27135 /* HelpService.m in Sources */,
 				4264EDD81D8E7694006DF8A3 /* HYBaseDBManager.m in Sources */,
@@ -1433,6 +1438,7 @@
 				42E098141C7FFAEB004E4DC2 /* YTKBatchRequest.m in Sources */,
 				426B30081DD163F400863C11 /* BRAStyles.m in Sources */,
 				42E0972D1C7FFAEB004E4DC2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				425132C11E0A1C3A0059E352 /* STATLogout.m in Sources */,
 				42E097AB1C7FFAEB004E4DC2 /* DDASLLogCapture.m in Sources */,
 				4269800A1CEEF96000D99888 /* GSBaseAnalysisMgr+ex.m in Sources */,
 				42E097221C7FFAEB004E4DC2 /* AFDownloadRequestOperation.m in Sources */,
