@@ -10,6 +10,7 @@
 
 @interface STKResult : NSObject
 @property (nonatomic, strong) NSString* stkID;
+@property (nonatomic, assign) CGFloat LastDV;
 @property (nonatomic, assign) CGFloat avgDV;
 @property (nonatomic, strong) NSMutableArray* eleArray;
 @end

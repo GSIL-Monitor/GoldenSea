@@ -49,7 +49,7 @@
     for(long i=0; i<[resultArray count]; i++){
         
         STKResult* stkResult = [resultArray safeObjectAtIndex:i];
-        SMLog(@"%@: avgDV:%.2f",stkResult.stkID,stkResult.avgDV);
+        SMLog(@"%@: avgDV:%.2f, LastDV:%.2f",stkResult.stkID,stkResult.avgDV,stkResult.LastDV);
 
         for (KDataModel* kData in stkResult.eleArray) {
             SMLog(@"time:%ld, dvT0:%.2f",kData.time,kData.dvDbg.dvT0.dvClose);
