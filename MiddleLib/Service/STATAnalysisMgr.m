@@ -52,7 +52,7 @@
     
     long statDays = 0;
     STKResult* stkResult = [[STKResult alloc]init];
-    CGFloat totolDV = 0.f;
+    CGFloat totolDV = 0.f, totalHighDV = 0.f;
     CGFloat fstClose=0.f, lastClose=0.f;
     long winCount = 0;
     for(long i=1; i<[cxtArray count]; i++){
@@ -71,10 +71,12 @@
         KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
 
         kT0Data.dvDbg.dvT0.dvClose = kT0Data.close/kTP1Data.close;
+        kT0Data.dvDbg.dvT0.dvHigh = kT0Data.high/kTP1Data.close;
         if(kT0Data.dvDbg.dvT0.dvClose > 1.005f){
             winCount++;
         }
         totolDV += kT0Data.dvDbg.dvT0.dvClose;
+        totalHighDV += kT0Data.dvDbg.dvT0.dvHigh;
         [stkResult.eleArray addObject:kT0Data];
     }
     
@@ -83,13 +85,17 @@
 //    }
     
     CGFloat lastDV = 0.f; //lastClose/fstClose;
-    if([stkResult.eleArray count] > 2
+    if(
+       [stkResult.eleArray count] > 2
        && (lastDV = lastClose/fstClose)<3.f
        && ((CGFloat)winCount/[stkResult.eleArray count])>0.5f){
-        stkResult.stkID = self.stkID;
         stkResult.avgDV = totolDV/[stkResult.eleArray count];
-        stkResult.LastDV = lastDV;
-        [self.statResultArray addObject:stkResult];
+        if(stkResult.avgDV > 1.0f){
+            stkResult.stkID = self.stkID;
+            stkResult.LastDV = lastDV;
+            stkResult.avgHighDV = totalHighDV/[stkResult.eleArray count];
+            [self.statResultArray addObject:stkResult];
+        }
     }
     
 }

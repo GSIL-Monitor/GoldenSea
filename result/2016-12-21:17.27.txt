@@ -1,0 +1,1692 @@
+No0 SZ000627: avgDV:1.18, avgHighDV:1.40, LastDV:2.52
+time:20120131, dvT0:1.01, dvHigh:1.08
+time:20130131, dvT0:1.24, dvHigh:1.27
+time:20140130, dvT0:0.92, dvHigh:1.00
+time:20150130, dvT0:2.02, dvHigh:2.60
+time:20160129, dvT0:0.69, dvHigh:1.02
+No1 SZ300129: avgDV:1.16, avgHighDV:1.26, LastDV:2.77
+time:20120131, dvT0:0.94, dvHigh:1.04
+time:20130131, dvT0:1.04, dvHigh:1.10
+time:20140130, dvT0:1.97, dvHigh:1.99
+time:20150126, dvT0:1.14, dvHigh:1.15
+time:20160129, dvT0:0.71, dvHigh:1.00
+No2 SH601519: avgDV:1.14, avgHighDV:1.24, LastDV:1.79
+time:20120131, dvT0:0.96, dvHigh:1.06
+time:20130131, dvT0:1.11, dvHigh:1.16
+time:20140130, dvT0:1.20, dvHigh:1.20
+time:20150130, dvT0:1.77, dvHigh:1.77
+time:20160129, dvT0:0.67, dvHigh:1.00
+No3 SH600228: avgDV:1.13, avgHighDV:1.33, LastDV:0.96
+time:20120131, dvT0:1.61, dvHigh:1.61
+time:20130131, dvT0:1.32, dvHigh:1.55
+time:20140130, dvT0:0.85, dvHigh:1.25
+time:20150130, dvT0:1.17, dvHigh:1.22
+time:20160129, dvT0:0.72, dvHigh:1.00
+No4 SZ002514: avgDV:1.13, avgHighDV:1.29, LastDV:2.89
+time:20120131, dvT0:1.02, dvHigh:1.05
+time:20130131, dvT0:0.93, dvHigh:1.07
+time:20140130, dvT0:1.32, dvHigh:1.34
+time:20150130, dvT0:1.18, dvHigh:1.27
+time:20160129, dvT0:1.21, dvHigh:1.72
+No5 SZ000851: avgDV:1.13, avgHighDV:1.24, LastDV:1.77
+time:20120131, dvT0:0.99, dvHigh:1.10
+time:20130131, dvT0:1.07, dvHigh:1.14
+time:20140130, dvT0:1.67, dvHigh:1.70
+time:20150130, dvT0:1.18, dvHigh:1.23
+time:20160129, dvT0:0.74, dvHigh:1.02
+No6 SZ002015: avgDV:1.13, avgHighDV:1.32, LastDV:1.78
+time:20120131, dvT0:1.11, dvHigh:1.17
+time:20130131, dvT0:1.08, dvHigh:1.24
+time:20140130, dvT0:0.97, dvHigh:1.05
+time:20160129, dvT0:1.35, dvHigh:1.83
+No7 SZ000677: avgDV:1.13, avgHighDV:1.21, LastDV:2.66
+time:20130131, dvT0:1.30, dvHigh:1.44
+time:20140130, dvT0:0.92, dvHigh:1.04
+time:20160129, dvT0:1.16, dvHigh:1.16
+No8 SH600981: avgDV:1.12, avgHighDV:1.21, LastDV:1.79
+time:20120131, dvT0:1.08, dvHigh:1.12
+time:20130131, dvT0:1.07, dvHigh:1.07
+time:20140130, dvT0:1.01, dvHigh:1.06
+time:20150130, dvT0:1.78, dvHigh:1.78
+time:20160129, dvT0:0.68, dvHigh:1.01
+No9 SZ000156: avgDV:1.12, avgHighDV:1.31, LastDV:2.42
+time:20130131, dvT0:1.54, dvHigh:1.81
+time:20140130, dvT0:1.24, dvHigh:1.24
+time:20150130, dvT0:1.13, dvHigh:1.18
+time:20160129, dvT0:0.58, dvHigh:1.03
+No10 SZ002114: avgDV:1.12, avgHighDV:1.28, LastDV:2.79
+time:20120131, dvT0:1.51, dvHigh:1.62
+time:20130131, dvT0:1.29, dvHigh:1.48
+time:20140130, dvT0:0.99, dvHigh:1.09
+time:20150130, dvT0:1.10, dvHigh:1.20
+time:20160129, dvT0:0.72, dvHigh:1.01
+No11 SZ002371: avgDV:1.12, avgHighDV:1.19, LastDV:2.29
+time:20120131, dvT0:1.01, dvHigh:1.13
+time:20130131, dvT0:1.11, dvHigh:1.11
+time:20140130, dvT0:1.07, dvHigh:1.11
+time:20150130, dvT0:0.98, dvHigh:1.02
+time:20160129, dvT0:1.44, dvHigh:1.59
+No12 SZ002383: avgDV:1.12, avgHighDV:1.15, LastDV:2.01
+time:20120131, dvT0:0.96, dvHigh:1.06
+time:20130123, dvT0:1.20, dvHigh:1.20
+time:20140130, dvT0:1.15, dvHigh:1.18
+time:20150128, dvT0:1.17, dvHigh:1.18
+No13 SH600433: avgDV:1.12, avgHighDV:1.24, LastDV:2.70
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.53, dvHigh:1.56
+time:20140130, dvT0:1.13, dvHigh:1.21
+time:20150130, dvT0:1.24, dvHigh:1.32
+time:20160129, dvT0:0.65, dvHigh:1.01
+No14 SH600982: avgDV:1.11, avgHighDV:1.18, LastDV:1.35
+time:20120130, dvT0:1.02, dvHigh:1.07
+time:20130131, dvT0:1.28, dvHigh:1.28
+time:20140130, dvT0:1.03, dvHigh:1.04
+time:20150130, dvT0:1.13, dvHigh:1.30
+No15 SZ000066: avgDV:1.11, avgHighDV:1.20, LastDV:2.06
+time:20120131, dvT0:0.99, dvHigh:1.08
+time:20130131, dvT0:1.01, dvHigh:1.09
+time:20140130, dvT0:1.13, dvHigh:1.16
+time:20150130, dvT0:1.32, dvHigh:1.48
+No16 SZ002653: avgDV:1.11, avgHighDV:1.25, LastDV:2.86
+time:20130131, dvT0:1.31, dvHigh:1.36
+time:20140130, dvT0:1.14, dvHigh:1.20
+time:20150130, dvT0:1.33, dvHigh:1.44
+time:20160129, dvT0:0.68, dvHigh:1.01
+No17 SZ000829: avgDV:1.11, avgHighDV:1.23, LastDV:1.68
+time:20120131, dvT0:1.00, dvHigh:1.06
+time:20130131, dvT0:1.13, dvHigh:1.32
+time:20140130, dvT0:1.27, dvHigh:1.43
+time:20150130, dvT0:1.05, dvHigh:1.10
+No18 SZ000585: avgDV:1.11, avgHighDV:1.17, LastDV:2.50
+time:20120131, dvT0:1.04, dvHigh:1.12
+time:20130131, dvT0:1.22, dvHigh:1.28
+time:20140130, dvT0:0.96, dvHigh:1.01
+time:20150130, dvT0:1.21, dvHigh:1.26
+No19 SH601700: avgDV:1.11, avgHighDV:1.27, LastDV:2.38
+time:20120131, dvT0:0.87, dvHigh:1.05
+time:20130131, dvT0:1.23, dvHigh:1.37
+time:20140130, dvT0:1.18, dvHigh:1.22
+time:20150130, dvT0:1.56, dvHigh:1.59
+time:20160115, dvT0:0.69, dvHigh:1.10
+No20 SZ300148: avgDV:1.11, avgHighDV:1.32, LastDV:2.85
+time:20120131, dvT0:0.93, dvHigh:1.19
+time:20130131, dvT0:1.05, dvHigh:1.11
+time:20140130, dvT0:1.38, dvHigh:1.57
+time:20150130, dvT0:1.09, dvHigh:1.19
+time:20160129, dvT0:1.07, dvHigh:1.52
+No21 SH600898: avgDV:1.10, avgHighDV:1.16, LastDV:2.43
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.06, dvHigh:1.13
+time:20140130, dvT0:1.01, dvHigh:1.07
+time:20150130, dvT0:1.17, dvHigh:1.24
+time:20160127, dvT0:1.25, dvHigh:1.29
+No22 SZ002048: avgDV:1.10, avgHighDV:1.19, LastDV:2.68
+time:20120131, dvT0:1.11, dvHigh:1.18
+time:20130131, dvT0:1.01, dvHigh:1.04
+time:20140130, dvT0:1.30, dvHigh:1.38
+time:20150130, dvT0:1.00, dvHigh:1.15
+No23 SZ000510: avgDV:1.10, avgHighDV:1.19, LastDV:1.09
+time:20120131, dvT0:1.30, dvHigh:1.35
+time:20130131, dvT0:1.44, dvHigh:1.47
+time:20140130, dvT0:0.97, dvHigh:1.02
+time:20150116, dvT0:1.06, dvHigh:1.08
+time:20160129, dvT0:0.74, dvHigh:1.00
+No24 SH600469: avgDV:1.10, avgHighDV:1.14, LastDV:1.60
+time:20120131, dvT0:1.09, dvHigh:1.12
+time:20130131, dvT0:1.10, dvHigh:1.13
+time:20140130, dvT0:0.96, dvHigh:1.00
+time:20150130, dvT0:1.27, dvHigh:1.32
+No25 SZ000553: avgDV:1.10, avgHighDV:1.14, LastDV:2.04
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.23, dvHigh:1.30
+time:20140130, dvT0:1.05, dvHigh:1.07
+time:20150130, dvT0:1.04, dvHigh:1.06
+No26 SZ002440: avgDV:1.10, avgHighDV:1.22, LastDV:1.93
+time:20120131, dvT0:0.99, dvHigh:1.05
+time:20130131, dvT0:1.41, dvHigh:1.45
+time:20140130, dvT0:1.13, dvHigh:1.17
+time:20150130, dvT0:1.26, dvHigh:1.39
+time:20160129, dvT0:0.69, dvHigh:1.01
+No27 SZ002379: avgDV:1.10, avgHighDV:1.20, LastDV:1.95
+time:20120131, dvT0:1.12, dvHigh:1.32
+time:20130131, dvT0:1.16, dvHigh:1.20
+time:20140130, dvT0:1.13, dvHigh:1.22
+time:20150130, dvT0:0.99, dvHigh:1.05
+No28 SZ002649: avgDV:1.10, avgHighDV:1.20, LastDV:2.70
+time:20130131, dvT0:1.17, dvHigh:1.24
+time:20140130, dvT0:1.22, dvHigh:1.24
+time:20150130, dvT0:1.29, dvHigh:1.35
+time:20160129, dvT0:0.70, dvHigh:0.99
+No29 SZ002410: avgDV:1.10, avgHighDV:1.23, LastDV:2.06
+time:20120131, dvT0:0.82, dvHigh:1.03
+time:20130131, dvT0:1.19, dvHigh:1.20
+time:20140130, dvT0:1.50, dvHigh:1.51
+time:20150130, dvT0:1.35, dvHigh:1.42
+time:20160129, dvT0:0.62, dvHigh:1.00
+No30 SH600894: avgDV:1.09, avgHighDV:1.21, LastDV:2.32
+time:20120131, dvT0:0.99, dvHigh:1.09
+time:20130131, dvT0:1.22, dvHigh:1.27
+time:20140130, dvT0:1.26, dvHigh:1.33
+time:20150130, dvT0:1.32, dvHigh:1.36
+time:20160129, dvT0:0.69, dvHigh:1.01
+No31 SZ002151: avgDV:1.09, avgHighDV:1.23, LastDV:2.53
+time:20120131, dvT0:1.01, dvHigh:1.10
+time:20130131, dvT0:1.54, dvHigh:1.73
+time:20140130, dvT0:1.09, dvHigh:1.09
+time:20150130, dvT0:1.13, dvHigh:1.22
+time:20160129, dvT0:0.70, dvHigh:1.03
+No32 SZ000925: avgDV:1.09, avgHighDV:1.15, LastDV:1.87
+time:20120131, dvT0:1.00, dvHigh:1.09
+time:20130131, dvT0:1.04, dvHigh:1.07
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150130, dvT0:1.29, dvHigh:1.40
+No33 SZ002346: avgDV:1.09, avgHighDV:1.18, LastDV:2.67
+time:20120131, dvT0:1.04, dvHigh:1.09
+time:20130131, dvT0:1.04, dvHigh:1.13
+time:20150130, dvT0:1.25, dvHigh:1.34
+time:20160129, dvT0:1.02, dvHigh:1.15
+No34 SZ002231: avgDV:1.09, avgHighDV:1.16, LastDV:2.02
+time:20120131, dvT0:1.16, dvHigh:1.18
+time:20130131, dvT0:1.11, dvHigh:1.29
+time:20140130, dvT0:1.03, dvHigh:1.05
+time:20150130, dvT0:1.06, dvHigh:1.11
+No35 SH600610: avgDV:1.09, avgHighDV:1.14, LastDV:2.22
+time:20120131, dvT0:1.00, dvHigh:1.06
+time:20130131, dvT0:0.93, dvHigh:1.02
+time:20140121, dvT0:1.02, dvHigh:1.07
+time:20150130, dvT0:1.08, dvHigh:1.11
+time:20160128, dvT0:1.41, dvHigh:1.41
+No36 SZ000426: avgDV:1.09, avgHighDV:1.14, LastDV:1.53
+time:20120131, dvT0:1.27, dvHigh:1.33
+time:20130131, dvT0:1.04, dvHigh:1.08
+time:20140130, dvT0:0.95, dvHigh:1.02
+No37 SH600588: avgDV:1.09, avgHighDV:1.29, LastDV:2.21
+time:20120131, dvT0:0.90, dvHigh:1.03
+time:20130131, dvT0:1.03, dvHigh:1.11
+time:20140130, dvT0:1.45, dvHigh:1.54
+time:20150130, dvT0:1.46, dvHigh:1.74
+time:20160129, dvT0:0.58, dvHigh:1.01
+No38 SZ000768: avgDV:1.09, avgHighDV:1.23, LastDV:2.55
+time:20120131, dvT0:1.06, dvHigh:1.11
+time:20130131, dvT0:1.39, dvHigh:1.53
+time:20140130, dvT0:0.97, dvHigh:1.02
+time:20150130, dvT0:1.30, dvHigh:1.47
+time:20160129, dvT0:0.70, dvHigh:1.04
+No39 SZ002008: avgDV:1.08, avgHighDV:1.18, LastDV:2.82
+time:20120131, dvT0:1.10, dvHigh:1.14
+time:20130131, dvT0:1.32, dvHigh:1.43
+time:20140130, dvT0:1.15, dvHigh:1.22
+time:20150130, dvT0:1.07, dvHigh:1.12
+time:20160129, dvT0:0.79, dvHigh:1.00
+No40 SZ002172: avgDV:1.08, avgHighDV:1.19, LastDV:2.22
+time:20120131, dvT0:1.06, dvHigh:1.14
+time:20130131, dvT0:1.44, dvHigh:1.46
+time:20140130, dvT0:1.12, dvHigh:1.15
+time:20160129, dvT0:0.71, dvHigh:1.01
+No41 SZ002527: avgDV:1.08, avgHighDV:1.20, LastDV:2.13
+time:20120131, dvT0:0.94, dvHigh:1.06
+time:20130131, dvT0:1.34, dvHigh:1.41
+time:20140130, dvT0:1.35, dvHigh:1.35
+time:20150130, dvT0:1.13, dvHigh:1.17
+time:20160129, dvT0:0.65, dvHigh:1.00
+No42 SZ000738: avgDV:1.08, avgHighDV:1.16, LastDV:2.41
+time:20120131, dvT0:0.94, dvHigh:1.02
+time:20130131, dvT0:1.28, dvHigh:1.43
+time:20140130, dvT0:1.10, dvHigh:1.15
+time:20150130, dvT0:1.10, dvHigh:1.18
+time:20160129, dvT0:0.97, dvHigh:1.04
+No43 SH601000: avgDV:1.08, avgHighDV:1.18, LastDV:2.15
+time:20120131, dvT0:1.03, dvHigh:1.06
+time:20130131, dvT0:1.11, dvHigh:1.18
+time:20140130, dvT0:0.91, dvHigh:1.00
+time:20150130, dvT0:1.27, dvHigh:1.48
+No44 SH600880: avgDV:1.08, avgHighDV:1.22, LastDV:1.09
+time:20120131, dvT0:0.84, dvHigh:1.01
+time:20130131, dvT0:1.02, dvHigh:1.17
+time:20140130, dvT0:1.37, dvHigh:1.41
+time:20150130, dvT0:1.10, dvHigh:1.18
+time:20160129, dvT0:1.06, dvHigh:1.33
+No45 SZ002022: avgDV:1.08, avgHighDV:1.17, LastDV:1.90
+time:20120131, dvT0:0.98, dvHigh:1.03
+time:20130131, dvT0:1.24, dvHigh:1.28
+time:20140130, dvT0:1.37, dvHigh:1.38
+time:20150130, dvT0:1.15, dvHigh:1.17
+time:20160129, dvT0:0.65, dvHigh:1.00
+No46 SZ000033: avgDV:1.08, avgHighDV:1.11, LastDV:2.29
+time:20120131, dvT0:1.06, dvHigh:1.08
+time:20130131, dvT0:1.11, dvHigh:1.14
+time:20140130, dvT0:1.05, dvHigh:1.10
+No47 SZ002349: avgDV:1.07, avgHighDV:1.16, LastDV:2.83
+time:20120131, dvT0:0.75, dvHigh:1.01
+time:20130131, dvT0:1.05, dvHigh:1.11
+time:20140123, dvT0:1.09, dvHigh:1.10
+time:20150130, dvT0:1.41, dvHigh:1.43
+No48 SH600297: avgDV:1.07, avgHighDV:1.13, LastDV:1.93
+time:20120131, dvT0:1.01, dvHigh:1.05
+time:20130131, dvT0:1.10, dvHigh:1.14
+time:20140130, dvT0:1.01, dvHigh:1.02
+time:20150130, dvT0:1.23, dvHigh:1.38
+time:20160129, dvT0:1.02, dvHigh:1.05
+No49 SZ000760: avgDV:1.07, avgHighDV:1.17, LastDV:2.98
+time:20120131, dvT0:1.03, dvHigh:1.12
+time:20130131, dvT0:1.47, dvHigh:1.53
+time:20140130, dvT0:1.06, dvHigh:1.09
+time:20150130, dvT0:1.13, dvHigh:1.14
+time:20160129, dvT0:0.68, dvHigh:1.00
+No50 SZ000681: avgDV:1.07, avgHighDV:1.27, LastDV:1.78
+time:20140130, dvT0:1.41, dvHigh:1.57
+time:20150130, dvT0:1.18, dvHigh:1.24
+time:20160128, dvT0:0.62, dvHigh:1.00
+No51 SH600740: avgDV:1.07, avgHighDV:1.16, LastDV:0.70
+time:20120131, dvT0:1.19, dvHigh:1.28
+time:20130131, dvT0:1.08, dvHigh:1.17
+time:20140130, dvT0:1.04, dvHigh:1.09
+time:20150130, dvT0:0.97, dvHigh:1.10
+No52 SH600060: avgDV:1.07, avgHighDV:1.15, LastDV:2.68
+time:20120131, dvT0:1.22, dvHigh:1.27
+time:20130131, dvT0:1.19, dvHigh:1.22
+time:20140130, dvT0:0.97, dvHigh:1.02
+time:20150130, dvT0:1.26, dvHigh:1.26
+time:20160129, dvT0:0.71, dvHigh:1.00
+No53 SZ002190: avgDV:1.07, avgHighDV:1.27, LastDV:2.09
+time:20120131, dvT0:1.03, dvHigh:1.14
+time:20130131, dvT0:1.43, dvHigh:1.61
+time:20150130, dvT0:1.13, dvHigh:1.28
+time:20160129, dvT0:0.68, dvHigh:1.03
+No54 SZ002209: avgDV:1.07, avgHighDV:1.12, LastDV:2.49
+time:20120131, dvT0:0.96, dvHigh:1.06
+time:20130131, dvT0:1.06, dvHigh:1.07
+time:20140130, dvT0:1.12, dvHigh:1.14
+time:20150130, dvT0:1.12, dvHigh:1.20
+No55 SZ002286: avgDV:1.07, avgHighDV:1.13, LastDV:2.22
+time:20120131, dvT0:1.00, dvHigh:1.05
+time:20130131, dvT0:1.18, dvHigh:1.28
+time:20140130, dvT0:1.02, dvHigh:1.07
+time:20150130, dvT0:1.07, dvHigh:1.10
+No56 SH600373: avgDV:1.07, avgHighDV:1.16, LastDV:2.28
+time:20120131, dvT0:1.00, dvHigh:1.13
+time:20130131, dvT0:1.11, dvHigh:1.14
+time:20140130, dvT0:1.26, dvHigh:1.36
+time:20150130, dvT0:1.10, dvHigh:1.15
+time:20160129, dvT0:0.85, dvHigh:1.01
+No57 SH600271: avgDV:1.07, avgHighDV:1.14, LastDV:2.00
+time:20120131, dvT0:0.96, dvHigh:1.04
+time:20130131, dvT0:1.05, dvHigh:1.10
+time:20140130, dvT0:1.02, dvHigh:1.04
+time:20150130, dvT0:1.22, dvHigh:1.39
+No58 SH600677: avgDV:1.07, avgHighDV:1.24, LastDV:2.16
+time:20120131, dvT0:1.13, dvHigh:1.14
+time:20130131, dvT0:1.20, dvHigh:1.38
+time:20140130, dvT0:1.11, dvHigh:1.15
+time:20160129, dvT0:0.82, dvHigh:1.30
+No59 SZ300147: avgDV:1.07, avgHighDV:1.19, LastDV:2.26
+time:20120131, dvT0:0.98, dvHigh:1.03
+time:20130131, dvT0:1.15, dvHigh:1.22
+time:20140130, dvT0:1.42, dvHigh:1.45
+time:20150130, dvT0:1.18, dvHigh:1.25
+time:20160129, dvT0:0.60, dvHigh:1.01
+No60 SH600237: avgDV:1.06, avgHighDV:1.13, LastDV:1.43
+time:20120131, dvT0:0.96, dvHigh:1.02
+time:20130131, dvT0:1.02, dvHigh:1.07
+time:20140130, dvT0:1.12, dvHigh:1.25
+time:20150130, dvT0:1.05, dvHigh:1.11
+time:20160129, dvT0:1.18, dvHigh:1.21
+No61 SZ300349: avgDV:1.06, avgHighDV:1.15, LastDV:2.89
+time:20130131, dvT0:0.96, dvHigh:1.11
+time:20140130, dvT0:1.11, dvHigh:1.13
+time:20150130, dvT0:1.12, dvHigh:1.22
+No62 SZ002040: avgDV:1.06, avgHighDV:1.10, LastDV:2.47
+time:20120131, dvT0:1.02, dvHigh:1.04
+time:20130131, dvT0:1.03, dvHigh:1.05
+time:20140130, dvT0:1.01, dvHigh:1.05
+time:20150130, dvT0:1.20, dvHigh:1.27
+No63 SH600372: avgDV:1.06, avgHighDV:1.17, LastDV:1.44
+time:20120131, dvT0:1.01, dvHigh:1.06
+time:20130131, dvT0:1.46, dvHigh:1.52
+time:20140130, dvT0:1.09, dvHigh:1.11
+time:20150130, dvT0:1.00, dvHigh:1.11
+time:20160129, dvT0:0.74, dvHigh:1.05
+No64 SZ002633: avgDV:1.06, avgHighDV:1.14, LastDV:2.98
+time:20120131, dvT0:0.93, dvHigh:1.02
+time:20130131, dvT0:1.01, dvHigh:1.11
+time:20140124, dvT0:1.22, dvHigh:1.27
+time:20150130, dvT0:1.08, dvHigh:1.15
+No65 SZ300150: avgDV:1.06, avgHighDV:1.16, LastDV:2.15
+time:20120131, dvT0:1.08, dvHigh:1.13
+time:20130131, dvT0:1.06, dvHigh:1.12
+time:20140130, dvT0:1.27, dvHigh:1.31
+time:20150130, dvT0:1.13, dvHigh:1.24
+time:20160129, dvT0:0.76, dvHigh:1.00
+No66 SZ002333: avgDV:1.06, avgHighDV:1.13, LastDV:3.00
+time:20120131, dvT0:1.06, dvHigh:1.15
+time:20130131, dvT0:1.23, dvHigh:1.30
+time:20140130, dvT0:1.07, dvHigh:1.08
+time:20150130, dvT0:1.07, dvHigh:1.12
+time:20160129, dvT0:0.87, dvHigh:1.00
+No67 SH600312: avgDV:1.06, avgHighDV:1.19, LastDV:2.01
+time:20120131, dvT0:0.97, dvHigh:1.12
+time:20130131, dvT0:1.22, dvHigh:1.26
+time:20140130, dvT0:1.15, dvHigh:1.18
+time:20150130, dvT0:1.27, dvHigh:1.38
+time:20160129, dvT0:0.69, dvHigh:1.01
+No68 SZ002121: avgDV:1.06, avgHighDV:1.16, LastDV:2.28
+time:20120131, dvT0:1.02, dvHigh:1.06
+time:20130131, dvT0:1.04, dvHigh:1.10
+time:20140130, dvT0:1.24, dvHigh:1.31
+time:20150130, dvT0:1.25, dvHigh:1.34
+time:20160129, dvT0:0.75, dvHigh:0.99
+No69 SZ300355: avgDV:1.06, avgHighDV:1.09, LastDV:2.98
+time:20130131, dvT0:1.17, dvHigh:1.17
+time:20140130, dvT0:0.97, dvHigh:1.02
+time:20150130, dvT0:1.04, dvHigh:1.10
+No70 SZ000716: avgDV:1.06, avgHighDV:1.12, LastDV:2.15
+time:20130131, dvT0:1.07, dvHigh:1.07
+time:20140130, dvT0:1.19, dvHigh:1.27
+time:20150130, dvT0:1.13, dvHigh:1.14
+time:20160129, dvT0:0.85, dvHigh:1.01
+No71 SZ000982: avgDV:1.06, avgHighDV:1.11, LastDV:1.46
+time:20120131, dvT0:1.05, dvHigh:1.09
+time:20130131, dvT0:1.15, dvHigh:1.21
+time:20140130, dvT0:0.97, dvHigh:1.02
+No72 SZ002473: avgDV:1.06, avgHighDV:1.12, LastDV:2.72
+time:20120131, dvT0:1.06, dvHigh:1.10
+time:20130131, dvT0:0.98, dvHigh:1.11
+time:20140130, dvT0:1.09, dvHigh:1.12
+time:20150130, dvT0:1.10, dvHigh:1.15
+No73 SZ002089: avgDV:1.06, avgHighDV:1.17, LastDV:2.85
+time:20120131, dvT0:0.99, dvHigh:1.04
+time:20130131, dvT0:1.02, dvHigh:1.13
+time:20140130, dvT0:1.36, dvHigh:1.42
+time:20150130, dvT0:1.16, dvHigh:1.24
+time:20160107, dvT0:0.75, dvHigh:1.01
+No74 SH600021: avgDV:1.06, avgHighDV:1.19, LastDV:2.77
+time:20120131, dvT0:1.04, dvHigh:1.11
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:0.96, dvHigh:1.06
+time:20150130, dvT0:1.57, dvHigh:1.69
+time:20160129, dvT0:0.66, dvHigh:1.01
+No75 SH600612: avgDV:1.05, avgHighDV:1.15, LastDV:1.68
+time:20120131, dvT0:1.13, dvHigh:1.18
+time:20130131, dvT0:1.13, dvHigh:1.23
+time:20140130, dvT0:1.08, dvHigh:1.14
+time:20150130, dvT0:1.09, dvHigh:1.20
+time:20160129, dvT0:0.84, dvHigh:1.01
+No76 SZ002608: avgDV:1.05, avgHighDV:1.11, LastDV:1.00
+time:20120131, dvT0:1.02, dvHigh:1.05
+time:20130131, dvT0:1.21, dvHigh:1.31
+time:20140130, dvT0:0.98, dvHigh:1.01
+time:20150130, dvT0:1.01, dvHigh:1.07
+No77 SZ002107: avgDV:1.05, avgHighDV:1.20, LastDV:2.67
+time:20120131, dvT0:0.94, dvHigh:1.04
+time:20130131, dvT0:1.07, dvHigh:1.09
+time:20140130, dvT0:1.16, dvHigh:1.20
+time:20150130, dvT0:1.50, dvHigh:1.72
+time:20160129, dvT0:0.60, dvHigh:0.96
+No78 SZ300344: avgDV:1.05, avgHighDV:1.22, LastDV:2.38
+time:20130131, dvT0:1.06, dvHigh:1.31
+time:20140130, dvT0:1.03, dvHigh:1.19
+time:20150130, dvT0:1.07, dvHigh:1.16
+No79 SZ002416: avgDV:1.05, avgHighDV:1.17, LastDV:1.22
+time:20120131, dvT0:0.94, dvHigh:1.06
+time:20130131, dvT0:1.17, dvHigh:1.34
+time:20140130, dvT0:1.22, dvHigh:1.30
+time:20150130, dvT0:1.10, dvHigh:1.16
+time:20160129, dvT0:0.82, dvHigh:1.01
+No80 SZ300083: avgDV:1.05, avgHighDV:1.16, LastDV:2.06
+time:20120131, dvT0:0.97, dvHigh:1.01
+time:20130131, dvT0:1.23, dvHigh:1.31
+time:20140130, dvT0:1.14, dvHigh:1.24
+time:20150130, dvT0:1.19, dvHigh:1.24
+time:20160129, dvT0:0.72, dvHigh:1.00
+No81 SH600857: avgDV:1.05, avgHighDV:1.15, LastDV:1.61
+time:20120131, dvT0:1.24, dvHigh:1.26
+time:20130131, dvT0:1.08, dvHigh:1.10
+time:20140127, dvT0:1.23, dvHigh:1.24
+time:20150130, dvT0:1.11, dvHigh:1.16
+time:20160129, dvT0:0.60, dvHigh:1.01
+No82 SZ300057: avgDV:1.05, avgHighDV:1.17, LastDV:1.80
+time:20120131, dvT0:0.98, dvHigh:1.10
+time:20130131, dvT0:1.47, dvHigh:1.49
+time:20140130, dvT0:1.12, dvHigh:1.13
+time:20150130, dvT0:1.07, dvHigh:1.10
+time:20160129, dvT0:0.62, dvHigh:1.01
+No83 SH600718: avgDV:1.05, avgHighDV:1.20, LastDV:1.87
+time:20120131, dvT0:1.02, dvHigh:1.09
+time:20130131, dvT0:1.14, dvHigh:1.18
+time:20140130, dvT0:1.32, dvHigh:1.40
+time:20150130, dvT0:1.18, dvHigh:1.31
+time:20160129, dvT0:0.60, dvHigh:1.01
+No84 SZ000409: avgDV:1.05, avgHighDV:1.17, LastDV:2.24
+time:20120131, dvT0:1.07, dvHigh:1.08
+time:20130131, dvT0:1.28, dvHigh:1.57
+time:20140130, dvT0:0.98, dvHigh:1.03
+time:20150130, dvT0:1.15, dvHigh:1.20
+time:20160129, dvT0:0.77, dvHigh:1.00
+No85 SZ000416: avgDV:1.05, avgHighDV:1.17, LastDV:1.49
+time:20120131, dvT0:1.13, dvHigh:1.20
+time:20130131, dvT0:1.06, dvHigh:1.11
+time:20140130, dvT0:1.17, dvHigh:1.24
+time:20150130, dvT0:1.24, dvHigh:1.32
+time:20160129, dvT0:0.66, dvHigh:0.99
+No86 SH600180: avgDV:1.05, avgHighDV:1.19, LastDV:2.45
+time:20120131, dvT0:0.83, dvHigh:0.95
+time:20130131, dvT0:1.13, dvHigh:1.20
+time:20140130, dvT0:1.39, dvHigh:1.43
+time:20150130, dvT0:1.26, dvHigh:1.38
+time:20160129, dvT0:0.64, dvHigh:1.00
+No87 SH600893: avgDV:1.05, avgHighDV:1.17, LastDV:2.78
+time:20120131, dvT0:0.99, dvHigh:1.05
+time:20130122, dvT0:1.13, dvHigh:1.32
+time:20140130, dvT0:1.26, dvHigh:1.27
+time:20150130, dvT0:1.08, dvHigh:1.16
+time:20160129, dvT0:0.79, dvHigh:1.04
+No88 SZ300335: avgDV:1.05, avgHighDV:1.13, LastDV:2.65
+time:20130131, dvT0:1.12, dvHigh:1.27
+time:20140130, dvT0:1.11, dvHigh:1.13
+time:20150130, dvT0:1.07, dvHigh:1.13
+time:20160104, dvT0:0.91, dvHigh:1.00
+No89 SH600055: avgDV:1.05, avgHighDV:1.18, LastDV:2.15
+time:20120131, dvT0:0.95, dvHigh:1.03
+time:20130131, dvT0:1.23, dvHigh:1.27
+time:20140130, dvT0:1.25, dvHigh:1.27
+time:20150130, dvT0:1.18, dvHigh:1.29
+time:20160129, dvT0:0.62, dvHigh:1.05
+No90 SZ000550: avgDV:1.05, avgHighDV:1.13, LastDV:1.86
+time:20120131, dvT0:1.12, dvHigh:1.18
+time:20130131, dvT0:1.03, dvHigh:1.05
+time:20140130, dvT0:0.96, dvHigh:1.05
+time:20150130, dvT0:1.28, dvHigh:1.39
+time:20160129, dvT0:0.84, dvHigh:1.00
+No91 SH601311: avgDV:1.05, avgHighDV:1.15, LastDV:1.95
+time:20120131, dvT0:1.16, dvHigh:1.17
+time:20130131, dvT0:1.30, dvHigh:1.32
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150130, dvT0:1.10, dvHigh:1.18
+time:20160129, dvT0:0.63, dvHigh:1.00
+No92 SH600523: avgDV:1.05, avgHighDV:1.21, LastDV:1.61
+time:20120131, dvT0:1.10, dvHigh:1.22
+time:20130131, dvT0:1.42, dvHigh:1.66
+time:20140130, dvT0:0.98, dvHigh:1.03
+time:20150130, dvT0:1.09, dvHigh:1.12
+time:20160129, dvT0:0.65, dvHigh:1.03
+No93 SZ002024: avgDV:1.05, avgHighDV:1.15, LastDV:1.28
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.07, dvHigh:1.16
+time:20140130, dvT0:1.15, dvHigh:1.24
+time:20150130, dvT0:1.19, dvHigh:1.26
+time:20160129, dvT0:0.79, dvHigh:1.01
+No94 SZ002246: avgDV:1.05, avgHighDV:1.08, LastDV:1.94
+time:20120131, dvT0:1.04, dvHigh:1.06
+time:20130131, dvT0:1.10, dvHigh:1.18
+time:20140130, dvT0:1.01, dvHigh:1.02
+time:20150130, dvT0:1.04, dvHigh:1.07
+No95 SZ000068: avgDV:1.05, avgHighDV:1.16, LastDV:2.54
+time:20130131, dvT0:1.21, dvHigh:1.25
+time:20140130, dvT0:1.13, dvHigh:1.22
+time:20150126, dvT0:1.15, dvHigh:1.16
+time:20160129, dvT0:0.69, dvHigh:1.00
+No96 SH600640: avgDV:1.05, avgHighDV:1.15, LastDV:2.63
+time:20120131, dvT0:1.02, dvHigh:1.06
+time:20130131, dvT0:1.05, dvHigh:1.10
+time:20140130, dvT0:1.29, dvHigh:1.43
+time:20150130, dvT0:1.09, dvHigh:1.16
+time:20160129, dvT0:0.78, dvHigh:1.01
+No97 SZ002483: avgDV:1.04, avgHighDV:1.12, LastDV:1.11
+time:20120131, dvT0:0.96, dvHigh:1.03
+time:20130131, dvT0:1.01, dvHigh:1.11
+time:20140130, dvT0:1.05, dvHigh:1.10
+time:20150130, dvT0:1.15, dvHigh:1.23
+No98 SH600784: avgDV:1.04, avgHighDV:1.20, LastDV:1.41
+time:20120131, dvT0:1.06, dvHigh:1.12
+time:20130131, dvT0:1.23, dvHigh:1.49
+time:20140130, dvT0:0.91, dvHigh:1.00
+time:20150130, dvT0:1.26, dvHigh:1.39
+time:20160129, dvT0:0.76, dvHigh:1.01
+No99 SZ002461: avgDV:1.04, avgHighDV:1.12, LastDV:0.90
+time:20120131, dvT0:1.03, dvHigh:1.10
+time:20130131, dvT0:1.04, dvHigh:1.11
+time:20140130, dvT0:1.28, dvHigh:1.29
+time:20150130, dvT0:1.05, dvHigh:1.09
+time:20160129, dvT0:0.82, dvHigh:1.00
+No100 SZ002066: avgDV:1.04, avgHighDV:1.14, LastDV:2.48
+time:20120131, dvT0:1.00, dvHigh:1.06
+time:20130131, dvT0:1.11, dvHigh:1.24
+time:20140130, dvT0:1.01, dvHigh:1.02
+time:20150130, dvT0:1.32, dvHigh:1.39
+time:20160129, dvT0:0.78, dvHigh:1.01
+No101 SZ002213: avgDV:1.04, avgHighDV:1.13, LastDV:2.72
+time:20120131, dvT0:1.08, dvHigh:1.14
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:1.22, dvHigh:1.25
+time:20150130, dvT0:1.14, dvHigh:1.16
+time:20160129, dvT0:0.74, dvHigh:1.01
+No102 SH600749: avgDV:1.04, avgHighDV:1.11, LastDV:1.75
+time:20120131, dvT0:1.05, dvHigh:1.08
+time:20130131, dvT0:1.04, dvHigh:1.18
+time:20140130, dvT0:1.04, dvHigh:1.06
+No103 SZ300306: avgDV:1.04, avgHighDV:1.19, LastDV:2.77
+time:20130131, dvT0:0.98, dvHigh:1.22
+time:20140130, dvT0:1.02, dvHigh:1.14
+time:20150130, dvT0:1.13, dvHigh:1.21
+No104 SH600633: avgDV:1.04, avgHighDV:1.17, LastDV:2.05
+time:20120131, dvT0:0.98, dvHigh:1.13
+time:20130131, dvT0:1.15, dvHigh:1.16
+time:20140130, dvT0:1.38, dvHigh:1.41
+time:20150130, dvT0:1.07, dvHigh:1.16
+time:20160129, dvT0:0.63, dvHigh:1.01
+No105 SZ002006: avgDV:1.04, avgHighDV:1.17, LastDV:0.79
+time:20120131, dvT0:1.08, dvHigh:1.16
+time:20130131, dvT0:1.10, dvHigh:1.31
+time:20140130, dvT0:0.95, dvHigh:1.03
+No106 SZ002610: avgDV:1.04, avgHighDV:1.15, LastDV:2.44
+time:20120131, dvT0:0.96, dvHigh:1.06
+time:20130131, dvT0:1.05, dvHigh:1.17
+time:20140130, dvT0:1.31, dvHigh:1.33
+time:20150130, dvT0:1.11, dvHigh:1.19
+time:20160129, dvT0:0.77, dvHigh:1.00
+No107 SZ000922: avgDV:1.04, avgHighDV:1.20, LastDV:1.23
+time:20120131, dvT0:1.23, dvHigh:1.28
+time:20130131, dvT0:1.06, dvHigh:1.32
+time:20140130, dvT0:1.09, dvHigh:1.11
+time:20150130, dvT0:1.18, dvHigh:1.31
+time:20160129, dvT0:0.64, dvHigh:0.99
+No108 SZ002470: avgDV:1.04, avgHighDV:1.13, LastDV:1.97
+time:20120131, dvT0:1.08, dvHigh:1.08
+time:20130131, dvT0:1.14, dvHigh:1.18
+time:20140130, dvT0:1.02, dvHigh:1.10
+time:20150130, dvT0:1.23, dvHigh:1.30
+time:20160129, dvT0:0.73, dvHigh:1.00
+No109 SZ300132: avgDV:1.04, avgHighDV:1.12, LastDV:2.41
+time:20120131, dvT0:0.89, dvHigh:1.01
+time:20130131, dvT0:1.07, dvHigh:1.20
+time:20140130, dvT0:1.07, dvHigh:1.09
+time:20150130, dvT0:1.14, dvHigh:1.20
+No110 SZ002007: avgDV:1.04, avgHighDV:1.11, LastDV:2.43
+time:20120131, dvT0:0.92, dvHigh:1.03
+time:20130131, dvT0:1.15, dvHigh:1.26
+time:20140130, dvT0:1.05, dvHigh:1.10
+time:20150130, dvT0:1.09, dvHigh:1.14
+time:20160129, dvT0:0.99, dvHigh:1.02
+No111 SH600630: avgDV:1.04, avgHighDV:1.20, LastDV:2.69
+time:20120131, dvT0:1.06, dvHigh:1.12
+time:20130131, dvT0:1.12, dvHigh:1.23
+time:20140130, dvT0:1.17, dvHigh:1.21
+time:20150130, dvT0:1.22, dvHigh:1.33
+time:20160129, dvT0:0.63, dvHigh:1.09
+No112 SZ002432: avgDV:1.04, avgHighDV:1.17, LastDV:2.06
+time:20120131, dvT0:1.02, dvHigh:1.10
+time:20130131, dvT0:1.04, dvHigh:1.13
+time:20140130, dvT0:1.29, dvHigh:1.34
+time:20150130, dvT0:1.17, dvHigh:1.28
+time:20160129, dvT0:0.69, dvHigh:1.00
+No113 SH600551: avgDV:1.04, avgHighDV:1.15, LastDV:1.73
+time:20120131, dvT0:0.94, dvHigh:1.08
+time:20130131, dvT0:1.03, dvHigh:1.10
+time:20140130, dvT0:1.44, dvHigh:1.47
+time:20150130, dvT0:1.07, dvHigh:1.11
+time:20160129, dvT0:0.73, dvHigh:1.00
+No114 SZ002206: avgDV:1.04, avgHighDV:1.15, LastDV:1.95
+time:20120131, dvT0:0.91, dvHigh:1.02
+time:20130131, dvT0:1.16, dvHigh:1.27
+time:20140130, dvT0:1.17, dvHigh:1.22
+time:20150130, dvT0:1.20, dvHigh:1.26
+time:20160129, dvT0:0.75, dvHigh:0.99
+No115 SZ002355: avgDV:1.04, avgHighDV:1.15, LastDV:2.87
+time:20120131, dvT0:1.01, dvHigh:1.33
+time:20130131, dvT0:1.15, dvHigh:1.18
+time:20140130, dvT0:1.01, dvHigh:1.05
+time:20150130, dvT0:1.03, dvHigh:1.05
+time:20160129, dvT0:0.99, dvHigh:1.15
+No116 SZ002362: avgDV:1.04, avgHighDV:1.16, LastDV:1.62
+time:20120131, dvT0:1.03, dvHigh:1.12
+time:20130131, dvT0:1.21, dvHigh:1.29
+time:20140130, dvT0:1.18, dvHigh:1.22
+time:20150130, dvT0:1.11, dvHigh:1.15
+time:20160129, dvT0:0.66, dvHigh:1.00
+No117 SZ000021: avgDV:1.04, avgHighDV:1.15, LastDV:1.79
+time:20120131, dvT0:1.05, dvHigh:1.10
+time:20130131, dvT0:0.99, dvHigh:1.06
+time:20140130, dvT0:1.27, dvHigh:1.32
+time:20150130, dvT0:1.22, dvHigh:1.28
+time:20160129, dvT0:0.66, dvHigh:1.01
+No118 SZ002156: avgDV:1.04, avgHighDV:1.17, LastDV:2.59
+time:20120131, dvT0:1.14, dvHigh:1.14
+time:20130131, dvT0:1.04, dvHigh:1.11
+time:20140130, dvT0:1.12, dvHigh:1.20
+time:20150130, dvT0:1.33, dvHigh:1.39
+time:20160129, dvT0:0.57, dvHigh:1.00
+No119 SH600037: avgDV:1.04, avgHighDV:1.13, LastDV:1.89
+time:20120131, dvT0:1.03, dvHigh:1.08
+time:20130131, dvT0:1.03, dvHigh:1.06
+time:20140130, dvT0:1.14, dvHigh:1.20
+time:20150127, dvT0:1.27, dvHigh:1.31
+time:20160129, dvT0:0.72, dvHigh:1.00
+No120 SZ300084: avgDV:1.04, avgHighDV:1.18, LastDV:2.80
+time:20120131, dvT0:1.19, dvHigh:1.26
+time:20130131, dvT0:1.03, dvHigh:1.22
+time:20140130, dvT0:1.35, dvHigh:1.40
+time:20150130, dvT0:0.94, dvHigh:1.00
+time:20160129, dvT0:0.67, dvHigh:1.01
+No121 SZ002648: avgDV:1.04, avgHighDV:1.15, LastDV:1.08
+time:20120131, dvT0:1.11, dvHigh:1.13
+time:20130131, dvT0:1.16, dvHigh:1.25
+time:20140130, dvT0:1.17, dvHigh:1.22
+time:20150130, dvT0:1.07, dvHigh:1.14
+time:20160129, dvT0:0.68, dvHigh:1.02
+No122 SZ000534: avgDV:1.04, avgHighDV:1.11, LastDV:2.86
+time:20120131, dvT0:1.05, dvHigh:1.10
+time:20130131, dvT0:1.08, dvHigh:1.20
+time:20140130, dvT0:0.97, dvHigh:1.00
+time:20150130, dvT0:1.06, dvHigh:1.13
+No123 SZ000096: avgDV:1.04, avgHighDV:1.16, LastDV:2.97
+time:20120131, dvT0:1.06, dvHigh:1.10
+time:20130131, dvT0:1.35, dvHigh:1.52
+time:20140130, dvT0:1.04, dvHigh:1.11
+time:20150130, dvT0:0.98, dvHigh:1.05
+time:20160129, dvT0:0.76, dvHigh:1.00
+No124 SZ300002: avgDV:1.04, avgHighDV:1.20, LastDV:2.34
+time:20120131, dvT0:1.02, dvHigh:1.08
+time:20130131, dvT0:1.12, dvHigh:1.23
+time:20140130, dvT0:1.15, dvHigh:1.27
+time:20150130, dvT0:1.24, dvHigh:1.38
+time:20160129, dvT0:0.66, dvHigh:1.02
+No125 SH600710: avgDV:1.04, avgHighDV:1.09, LastDV:1.51
+time:20120131, dvT0:1.04, dvHigh:1.07
+time:20130131, dvT0:1.04, dvHigh:1.07
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:0.87, dvHigh:1.04
+time:20160129, dvT0:1.28, dvHigh:1.28
+No126 SH600835: avgDV:1.04, avgHighDV:1.15, LastDV:2.51
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.04, dvHigh:1.06
+time:20140130, dvT0:1.21, dvHigh:1.32
+time:20150130, dvT0:1.17, dvHigh:1.24
+time:20160129, dvT0:0.68, dvHigh:1.00
+No127 SH600401: avgDV:1.04, avgHighDV:1.22, LastDV:1.04
+time:20130131, dvT0:1.12, dvHigh:1.31
+time:20140130, dvT0:1.03, dvHigh:1.12
+time:20150130, dvT0:1.20, dvHigh:1.51
+time:20160129, dvT0:0.79, dvHigh:0.95
+No128 SZ000100: avgDV:1.04, avgHighDV:1.13, LastDV:2.02
+time:20120131, dvT0:1.12, dvHigh:1.20
+time:20130131, dvT0:1.10, dvHigh:1.17
+time:20140130, dvT0:1.08, dvHigh:1.16
+time:20150130, dvT0:1.02, dvHigh:1.13
+time:20160129, dvT0:0.85, dvHigh:1.01
+No129 SH600409: avgDV:1.04, avgHighDV:1.12, LastDV:1.71
+time:20120131, dvT0:1.05, dvHigh:1.08
+time:20130131, dvT0:1.16, dvHigh:1.17
+time:20140130, dvT0:0.94, dvHigh:1.00
+time:20150130, dvT0:1.31, dvHigh:1.35
+time:20160129, dvT0:0.72, dvHigh:1.00
+No130 SH600250: avgDV:1.04, avgHighDV:1.12, LastDV:2.68
+time:20120131, dvT0:1.06, dvHigh:1.09
+time:20130131, dvT0:1.28, dvHigh:1.29
+time:20140130, dvT0:1.01, dvHigh:1.08
+time:20160129, dvT0:0.79, dvHigh:1.00
+No131 SH600198: avgDV:1.04, avgHighDV:1.16, LastDV:1.88
+time:20120111, dvT0:1.00, dvHigh:1.04
+time:20130131, dvT0:1.23, dvHigh:1.31
+time:20140130, dvT0:1.27, dvHigh:1.33
+time:20150130, dvT0:1.05, dvHigh:1.13
+time:20160129, dvT0:0.63, dvHigh:1.00
+No132 SZ002207: avgDV:1.03, avgHighDV:1.11, LastDV:2.53
+time:20120131, dvT0:1.13, dvHigh:1.19
+time:20130131, dvT0:1.09, dvHigh:1.15
+time:20140130, dvT0:1.18, dvHigh:1.21
+time:20150130, dvT0:0.74, dvHigh:0.90
+No133 SH600390: avgDV:1.03, avgHighDV:1.17, LastDV:2.04
+time:20120131, dvT0:0.99, dvHigh:1.13
+time:20130131, dvT0:1.18, dvHigh:1.27
+time:20140130, dvT0:1.25, dvHigh:1.34
+time:20150130, dvT0:1.03, dvHigh:1.13
+time:20160129, dvT0:0.72, dvHigh:0.99
+No134 SZ000923: avgDV:1.03, avgHighDV:1.12, LastDV:1.99
+time:20120131, dvT0:1.13, dvHigh:1.25
+time:20130131, dvT0:1.05, dvHigh:1.07
+time:20140130, dvT0:1.04, dvHigh:1.05
+time:20150130, dvT0:1.17, dvHigh:1.25
+time:20160129, dvT0:0.78, dvHigh:1.01
+No135 SZ000603: avgDV:1.03, avgHighDV:1.15, LastDV:0.87
+time:20120131, dvT0:1.26, dvHigh:1.35
+time:20130131, dvT0:1.12, dvHigh:1.13
+time:20140130, dvT0:0.92, dvHigh:1.01
+time:20150130, dvT0:1.11, dvHigh:1.21
+time:20160129, dvT0:0.77, dvHigh:1.07
+No136 SZ000050: avgDV:1.03, avgHighDV:1.13, LastDV:2.72
+time:20120131, dvT0:0.92, dvHigh:1.02
+time:20130131, dvT0:1.16, dvHigh:1.20
+time:20140130, dvT0:1.22, dvHigh:1.24
+time:20150130, dvT0:1.16, dvHigh:1.19
+time:20160129, dvT0:0.71, dvHigh:1.01
+No137 SZ002082: avgDV:1.03, avgHighDV:1.09, LastDV:2.07
+time:20120131, dvT0:1.06, dvHigh:1.14
+time:20130131, dvT0:1.05, dvHigh:1.09
+time:20140130, dvT0:0.99, dvHigh:1.04
+time:20150130, dvT0:1.04, dvHigh:1.07
+No138 SZ000908: avgDV:1.03, avgHighDV:1.17, LastDV:1.77
+time:20120131, dvT0:1.22, dvHigh:1.22
+time:20130131, dvT0:0.98, dvHigh:1.17
+time:20140130, dvT0:1.14, dvHigh:1.19
+time:20150130, dvT0:1.10, dvHigh:1.27
+time:20160129, dvT0:0.74, dvHigh:1.00
+No139 SZ300255: avgDV:1.03, avgHighDV:1.12, LastDV:2.79
+time:20120131, dvT0:0.95, dvHigh:1.02
+time:20130131, dvT0:1.23, dvHigh:1.35
+time:20140130, dvT0:1.08, dvHigh:1.13
+time:20150130, dvT0:1.01, dvHigh:1.07
+time:20160129, dvT0:0.89, dvHigh:1.01
+No140 SZ002189: avgDV:1.03, avgHighDV:1.17, LastDV:1.97
+time:20120131, dvT0:1.06, dvHigh:1.14
+time:20130131, dvT0:1.16, dvHigh:1.25
+time:20140130, dvT0:1.01, dvHigh:1.05
+time:20150130, dvT0:1.25, dvHigh:1.42
+time:20160129, dvT0:0.70, dvHigh:1.01
+No141 SH600712: avgDV:1.03, avgHighDV:1.07, LastDV:1.92
+time:20120131, dvT0:1.06, dvHigh:1.09
+time:20130131, dvT0:1.09, dvHigh:1.12
+time:20140130, dvT0:0.93, dvHigh:1.01
+time:20150130, dvT0:1.06, dvHigh:1.08
+time:20160129, dvT0:1.03, dvHigh:1.05
+No142 SZ000973: avgDV:1.03, avgHighDV:1.12, LastDV:1.44
+time:20120131, dvT0:1.07, dvHigh:1.15
+time:20130131, dvT0:1.04, dvHigh:1.22
+time:20140130, dvT0:0.99, dvHigh:1.02
+time:20150130, dvT0:1.03, dvHigh:1.09
+No143 SH600462: avgDV:1.03, avgHighDV:1.10, LastDV:1.96
+time:20120131, dvT0:1.25, dvHigh:1.25
+time:20130131, dvT0:1.21, dvHigh:1.21
+time:20140130, dvT0:0.94, dvHigh:1.01
+time:20150130, dvT0:1.03, dvHigh:1.14
+time:20160129, dvT0:0.73, dvHigh:0.90
+No144 SZ002597: avgDV:1.03, avgHighDV:1.11, LastDV:2.27
+time:20120131, dvT0:1.00, dvHigh:1.02
+time:20130131, dvT0:1.01, dvHigh:1.16
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:1.19, dvHigh:1.34
+time:20160129, dvT0:1.01, dvHigh:1.01
+No145 SZ000761: avgDV:1.03, avgHighDV:1.12, LastDV:1.19
+time:20120131, dvT0:0.99, dvHigh:1.09
+time:20130131, dvT0:1.12, dvHigh:1.17
+time:20140130, dvT0:0.91, dvHigh:1.00
+time:20150130, dvT0:1.03, dvHigh:1.12
+time:20160129, dvT0:1.10, dvHigh:1.21
+No146 SZ002013: avgDV:1.03, avgHighDV:1.17, LastDV:2.36
+time:20120131, dvT0:0.94, dvHigh:1.03
+time:20130131, dvT0:1.33, dvHigh:1.55
+time:20140130, dvT0:1.08, dvHigh:1.10
+time:20150130, dvT0:1.02, dvHigh:1.13
+time:20160129, dvT0:0.79, dvHigh:1.07
+No147 SZ002126: avgDV:1.03, avgHighDV:1.14, LastDV:2.34
+time:20120131, dvT0:0.89, dvHigh:1.01
+time:20130131, dvT0:1.25, dvHigh:1.25
+time:20140130, dvT0:1.22, dvHigh:1.23
+time:20150130, dvT0:1.12, dvHigh:1.20
+time:20160129, dvT0:0.68, dvHigh:1.00
+No148 SZ002405: avgDV:1.03, avgHighDV:1.17, LastDV:2.03
+time:20120131, dvT0:0.94, dvHigh:1.04
+time:20130131, dvT0:1.06, dvHigh:1.28
+time:20140130, dvT0:1.25, dvHigh:1.29
+time:20150130, dvT0:1.19, dvHigh:1.25
+time:20160129, dvT0:0.72, dvHigh:1.01
+No149 SH600323: avgDV:1.03, avgHighDV:1.11, LastDV:2.41
+time:20120131, dvT0:1.01, dvHigh:1.05
+time:20130131, dvT0:1.06, dvHigh:1.09
+time:20140130, dvT0:1.32, dvHigh:1.34
+time:20150130, dvT0:1.03, dvHigh:1.06
+time:20160129, dvT0:0.73, dvHigh:1.00
+No150 SH600596: avgDV:1.03, avgHighDV:1.14, LastDV:1.05
+time:20120131, dvT0:1.03, dvHigh:1.12
+time:20130131, dvT0:1.39, dvHigh:1.44
+time:20140130, dvT0:0.99, dvHigh:1.04
+time:20150130, dvT0:1.07, dvHigh:1.12
+time:20160129, dvT0:0.67, dvHigh:1.00
+No151 SH600845: avgDV:1.03, avgHighDV:1.14, LastDV:2.97
+time:20120131, dvT0:1.07, dvHigh:1.16
+time:20130131, dvT0:1.03, dvHigh:1.09
+time:20140130, dvT0:1.24, dvHigh:1.27
+time:20150130, dvT0:1.10, dvHigh:1.20
+time:20160129, dvT0:0.70, dvHigh:1.00
+No152 SH600516: avgDV:1.03, avgHighDV:1.12, LastDV:1.07
+time:20120131, dvT0:1.20, dvHigh:1.23
+time:20130131, dvT0:1.19, dvHigh:1.24
+time:20140130, dvT0:0.94, dvHigh:1.00
+time:20150130, dvT0:1.10, dvHigh:1.14
+time:20160129, dvT0:0.72, dvHigh:1.00
+No153 SZ000892: avgDV:1.03, avgHighDV:1.11, LastDV:2.84
+time:20120131, dvT0:1.15, dvHigh:1.18
+time:20130131, dvT0:1.10, dvHigh:1.12
+time:20140130, dvT0:1.05, dvHigh:1.05
+time:20150127, dvT0:1.14, dvHigh:1.19
+time:20160129, dvT0:0.70, dvHigh:1.02
+No154 SZ000045: avgDV:1.03, avgHighDV:1.16, LastDV:1.66
+time:20120131, dvT0:1.05, dvHigh:1.17
+time:20130131, dvT0:1.26, dvHigh:1.38
+time:20140128, dvT0:1.05, dvHigh:1.07
+time:20150130, dvT0:1.10, dvHigh:1.18
+time:20160129, dvT0:0.67, dvHigh:1.00
+No155 SZ002357: avgDV:1.03, avgHighDV:1.11, LastDV:2.68
+time:20120131, dvT0:1.02, dvHigh:1.06
+time:20130131, dvT0:1.01, dvHigh:1.04
+time:20140130, dvT0:1.29, dvHigh:1.29
+time:20150130, dvT0:1.13, dvHigh:1.16
+time:20160129, dvT0:0.70, dvHigh:1.00
+No156 SH600507: avgDV:1.03, avgHighDV:1.21, LastDV:2.24
+time:20120131, dvT0:1.26, dvHigh:1.38
+time:20130131, dvT0:1.18, dvHigh:1.51
+time:20140130, dvT0:0.89, dvHigh:1.00
+time:20150130, dvT0:1.11, dvHigh:1.15
+time:20160129, dvT0:0.71, dvHigh:1.02
+No157 SH600973: avgDV:1.03, avgHighDV:1.14, LastDV:2.19
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.21, dvHigh:1.28
+time:20140130, dvT0:1.08, dvHigh:1.17
+time:20150130, dvT0:1.07, dvHigh:1.12
+time:20160129, dvT0:0.70, dvHigh:1.02
+No158 SH600889: avgDV:1.03, avgHighDV:1.15, LastDV:1.75
+time:20120131, dvT0:1.09, dvHigh:1.19
+time:20130131, dvT0:1.30, dvHigh:1.34
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:1.12, dvHigh:1.20
+time:20160129, dvT0:0.69, dvHigh:1.00
+No159 SZ000661: avgDV:1.03, avgHighDV:1.12, LastDV:2.67
+time:20120131, dvT0:0.94, dvHigh:1.02
+time:20130131, dvT0:1.21, dvHigh:1.26
+time:20140130, dvT0:1.11, dvHigh:1.19
+time:20150130, dvT0:1.06, dvHigh:1.12
+time:20160129, dvT0:0.82, dvHigh:1.01
+No160 SZ002011: avgDV:1.03, avgHighDV:1.09, LastDV:1.01
+time:20120131, dvT0:1.03, dvHigh:1.11
+time:20130131, dvT0:1.10, dvHigh:1.13
+time:20140130, dvT0:0.91, dvHigh:1.00
+time:20150130, dvT0:1.06, dvHigh:1.13
+No161 SZ000968: avgDV:1.03, avgHighDV:1.12, LastDV:0.60
+time:20120131, dvT0:1.06, dvHigh:1.14
+time:20130131, dvT0:1.10, dvHigh:1.20
+time:20140130, dvT0:0.92, dvHigh:1.00
+No162 SZ300157: avgDV:1.03, avgHighDV:1.18, LastDV:1.16
+time:20120131, dvT0:0.73, dvHigh:1.05
+time:20130131, dvT0:1.22, dvHigh:1.25
+time:20140130, dvT0:1.32, dvHigh:1.34
+time:20150130, dvT0:1.16, dvHigh:1.27
+time:20160129, dvT0:0.71, dvHigh:1.01
+No163 SZ002227: avgDV:1.03, avgHighDV:1.13, LastDV:2.45
+time:20120131, dvT0:0.87, dvHigh:1.01
+time:20130131, dvT0:1.17, dvHigh:1.22
+time:20140130, dvT0:1.18, dvHigh:1.25
+time:20150130, dvT0:1.13, dvHigh:1.16
+time:20160129, dvT0:0.78, dvHigh:1.00
+No164 SH600606: avgDV:1.03, avgHighDV:1.18, LastDV:1.99
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.04, dvHigh:1.21
+time:20150130, dvT0:1.32, dvHigh:1.44
+time:20160129, dvT0:0.71, dvHigh:1.00
+No165 SZ000587: avgDV:1.03, avgHighDV:1.11, LastDV:1.40
+time:20120130, dvT0:1.29, dvHigh:1.32
+time:20130104, dvT0:1.01, dvHigh:1.03
+time:20150130, dvT0:1.06, dvHigh:1.09
+time:20160129, dvT0:0.75, dvHigh:1.00
+No166 SH600651: avgDV:1.03, avgHighDV:1.08, LastDV:1.76
+time:20120131, dvT0:0.99, dvHigh:1.04
+time:20130131, dvT0:1.06, dvHigh:1.10
+time:20140130, dvT0:1.04, dvHigh:1.06
+time:20150129, dvT0:1.11, dvHigh:1.12
+time:20160129, dvT0:0.94, dvHigh:1.06
+No167 SH600335: avgDV:1.03, avgHighDV:1.15, LastDV:1.21
+time:20120131, dvT0:1.01, dvHigh:1.03
+time:20130131, dvT0:1.08, dvHigh:1.13
+time:20140130, dvT0:1.16, dvHigh:1.25
+time:20150130, dvT0:1.25, dvHigh:1.33
+time:20160129, dvT0:0.63, dvHigh:1.00
+No168 SZ002264: avgDV:1.03, avgHighDV:1.12, LastDV:1.08
+time:20120131, dvT0:0.95, dvHigh:1.02
+time:20130131, dvT0:1.08, dvHigh:1.09
+time:20140130, dvT0:1.34, dvHigh:1.39
+time:20150130, dvT0:1.04, dvHigh:1.09
+time:20160129, dvT0:0.71, dvHigh:1.02
+No169 SZ000933: avgDV:1.03, avgHighDV:1.13, LastDV:0.45
+time:20120131, dvT0:1.18, dvHigh:1.24
+time:20130131, dvT0:1.03, dvHigh:1.08
+time:20140130, dvT0:0.88, dvHigh:1.00
+time:20150130, dvT0:0.90, dvHigh:1.11
+time:20160129, dvT0:1.13, dvHigh:1.21
+No170 SZ002601: avgDV:1.03, avgHighDV:1.06, LastDV:1.04
+time:20120131, dvT0:0.95, dvHigh:1.01
+time:20130131, dvT0:1.02, dvHigh:1.08
+time:20140130, dvT0:1.02, dvHigh:1.02
+time:20150130, dvT0:1.15, dvHigh:1.15
+time:20160129, dvT0:1.00, dvHigh:1.03
+No171 SZ002119: avgDV:1.03, avgHighDV:1.12, LastDV:2.58
+time:20120131, dvT0:0.94, dvHigh:1.10
+time:20130131, dvT0:1.06, dvHigh:1.14
+time:20140130, dvT0:1.09, dvHigh:1.11
+time:20150105, dvT0:1.10, dvHigh:1.10
+time:20160129, dvT0:0.94, dvHigh:1.14
+No172 SZ300217: avgDV:1.03, avgHighDV:1.14, LastDV:1.71
+time:20120131, dvT0:1.00, dvHigh:1.09
+time:20130131, dvT0:1.03, dvHigh:1.24
+time:20140130, dvT0:1.12, dvHigh:1.19
+time:20150130, dvT0:1.18, dvHigh:1.20
+time:20160129, dvT0:0.79, dvHigh:1.00
+No173 SZ002094: avgDV:1.02, avgHighDV:1.12, LastDV:1.72
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.08, dvHigh:1.10
+time:20140130, dvT0:1.12, dvHigh:1.12
+time:20150130, dvT0:1.20, dvHigh:1.29
+time:20160129, dvT0:0.68, dvHigh:0.99
+No174 SH600681: avgDV:1.02, avgHighDV:1.10, LastDV:2.90
+time:20120131, dvT0:1.11, dvHigh:1.11
+time:20130131, dvT0:1.17, dvHigh:1.17
+time:20140130, dvT0:0.96, dvHigh:1.02
+time:20150130, dvT0:1.12, dvHigh:1.21
+time:20160129, dvT0:0.76, dvHigh:1.01
+No175 SZ002198: avgDV:1.02, avgHighDV:1.11, LastDV:2.59
+time:20120131, dvT0:1.12, dvHigh:1.14
+time:20130115, dvT0:1.11, dvHigh:1.12
+time:20140130, dvT0:1.20, dvHigh:1.22
+time:20150130, dvT0:1.02, dvHigh:1.05
+time:20160129, dvT0:0.67, dvHigh:1.01
+No176 SZ000751: avgDV:1.02, avgHighDV:1.18, LastDV:1.41
+time:20120131, dvT0:1.23, dvHigh:1.35
+time:20130129, dvT0:1.17, dvHigh:1.26
+time:20150130, dvT0:1.03, dvHigh:1.11
+time:20160129, dvT0:0.67, dvHigh:1.00
+No177 SZ002539: avgDV:1.02, avgHighDV:1.09, LastDV:2.58
+time:20120131, dvT0:1.04, dvHigh:1.10
+time:20130131, dvT0:1.06, dvHigh:1.10
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:1.18, dvHigh:1.24
+time:20160129, dvT0:0.89, dvHigh:1.04
+No178 SH600530: avgDV:1.02, avgHighDV:1.13, LastDV:2.58
+time:20120131, dvT0:1.04, dvHigh:1.08
+time:20130131, dvT0:1.17, dvHigh:1.29
+time:20140130, dvT0:0.97, dvHigh:1.01
+time:20150130, dvT0:1.06, dvHigh:1.14
+time:20160129, dvT0:0.88, dvHigh:1.13
+No179 SZ300030: avgDV:1.02, avgHighDV:1.15, LastDV:2.94
+time:20120131, dvT0:0.94, dvHigh:1.05
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:1.32, dvHigh:1.39
+time:20150130, dvT0:1.15, dvHigh:1.22
+time:20160129, dvT0:0.66, dvHigh:1.01
+No180 SZ000519: avgDV:1.02, avgHighDV:1.15, LastDV:2.14
+time:20120131, dvT0:1.21, dvHigh:1.21
+time:20130131, dvT0:1.12, dvHigh:1.20
+time:20140130, dvT0:1.01, dvHigh:1.03
+time:20150130, dvT0:1.12, dvHigh:1.18
+time:20160129, dvT0:0.65, dvHigh:1.13
+No181 SZ002237: avgDV:1.02, avgHighDV:1.14, LastDV:1.33
+time:20120131, dvT0:1.21, dvHigh:1.28
+time:20130131, dvT0:1.01, dvHigh:1.07
+time:20140130, dvT0:1.04, dvHigh:1.08
+time:20150116, dvT0:1.08, dvHigh:1.14
+time:20160129, dvT0:0.77, dvHigh:1.14
+No182 SH600405: avgDV:1.02, avgHighDV:1.12, LastDV:2.20
+time:20120131, dvT0:0.92, dvHigh:1.04
+time:20130131, dvT0:1.33, dvHigh:1.33
+time:20140130, dvT0:1.10, dvHigh:1.13
+time:20150130, dvT0:1.07, dvHigh:1.11
+time:20160129, dvT0:0.70, dvHigh:0.99
+No183 SZ000860: avgDV:1.02, avgHighDV:1.12, LastDV:1.37
+time:20120131, dvT0:1.02, dvHigh:1.05
+time:20130131, dvT0:1.13, dvHigh:1.21
+time:20140130, dvT0:0.92, dvHigh:1.08
+time:20150130, dvT0:1.08, dvHigh:1.15
+time:20160129, dvT0:0.95, dvHigh:1.09
+No184 SZ300035: avgDV:1.02, avgHighDV:1.14, LastDV:2.87
+time:20120131, dvT0:0.94, dvHigh:1.08
+time:20130131, dvT0:1.26, dvHigh:1.28
+time:20140130, dvT0:1.14, dvHigh:1.20
+time:20150130, dvT0:1.06, dvHigh:1.11
+time:20160129, dvT0:0.71, dvHigh:1.01
+No185 SZ300198: avgDV:1.02, avgHighDV:1.14, LastDV:2.25
+time:20120131, dvT0:0.91, dvHigh:1.02
+time:20130131, dvT0:1.31, dvHigh:1.35
+time:20140130, dvT0:1.04, dvHigh:1.09
+time:20150130, dvT0:1.14, dvHigh:1.18
+time:20160129, dvT0:0.70, dvHigh:1.07
+No186 SZ002223: avgDV:1.02, avgHighDV:1.14, LastDV:2.18
+time:20120131, dvT0:0.83, dvHigh:1.01
+time:20130131, dvT0:1.11, dvHigh:1.11
+time:20140130, dvT0:1.23, dvHigh:1.28
+time:20150130, dvT0:1.21, dvHigh:1.28
+time:20160129, dvT0:0.73, dvHigh:1.01
+No187 SZ000078: avgDV:1.02, avgHighDV:1.16, LastDV:2.14
+time:20120131, dvT0:0.99, dvHigh:1.04
+time:20130131, dvT0:1.37, dvHigh:1.58
+time:20140130, dvT0:1.04, dvHigh:1.08
+time:20150130, dvT0:1.04, dvHigh:1.10
+time:20160129, dvT0:0.65, dvHigh:1.00
+No188 SZ000912: avgDV:1.02, avgHighDV:1.14, LastDV:1.33
+time:20120131, dvT0:0.94, dvHigh:1.02
+time:20130131, dvT0:1.11, dvHigh:1.13
+time:20140130, dvT0:1.07, dvHigh:1.08
+time:20150130, dvT0:1.27, dvHigh:1.44
+time:20160129, dvT0:0.71, dvHigh:1.05
+No189 SH600608: avgDV:1.02, avgHighDV:1.12, LastDV:2.36
+time:20120131, dvT0:1.08, dvHigh:1.09
+time:20130131, dvT0:1.16, dvHigh:1.16
+time:20140130, dvT0:1.08, dvHigh:1.14
+time:20150130, dvT0:1.08, dvHigh:1.20
+time:20160129, dvT0:0.70, dvHigh:1.01
+No190 SZ002428: avgDV:1.02, avgHighDV:1.12, LastDV:1.39
+time:20120131, dvT0:1.14, dvHigh:1.21
+time:20130131, dvT0:1.16, dvHigh:1.17
+time:20140130, dvT0:1.03, dvHigh:1.09
+time:20150130, dvT0:1.03, dvHigh:1.08
+time:20160129, dvT0:0.74, dvHigh:1.03
+No191 SH600330: avgDV:1.02, avgHighDV:1.16, LastDV:1.51
+time:20120131, dvT0:1.04, dvHigh:1.14
+time:20130131, dvT0:1.02, dvHigh:1.09
+time:20140130, dvT0:1.31, dvHigh:1.41
+time:20150130, dvT0:1.10, dvHigh:1.13
+time:20160129, dvT0:0.63, dvHigh:1.01
+No192 SZ002064: avgDV:1.02, avgHighDV:1.12, LastDV:1.63
+time:20120131, dvT0:1.09, dvHigh:1.16
+time:20130131, dvT0:1.14, dvHigh:1.16
+time:20140130, dvT0:1.05, dvHigh:1.07
+time:20150130, dvT0:1.11, dvHigh:1.18
+time:20160129, dvT0:0.70, dvHigh:1.00
+No193 SZ000959: avgDV:1.02, avgHighDV:1.11, LastDV:2.22
+time:20120131, dvT0:1.07, dvHigh:1.09
+time:20130131, dvT0:1.07, dvHigh:1.23
+time:20140130, dvT0:0.95, dvHigh:1.00
+time:20150130, dvT0:0.94, dvHigh:1.05
+time:20160129, dvT0:1.06, dvHigh:1.19
+No194 SZ000929: avgDV:1.02, avgHighDV:1.10, LastDV:2.60
+time:20120131, dvT0:1.03, dvHigh:1.09
+time:20130131, dvT0:1.07, dvHigh:1.09
+time:20140130, dvT0:0.90, dvHigh:1.00
+time:20150130, dvT0:1.08, dvHigh:1.21
+No195 SZ000921: avgDV:1.02, avgHighDV:1.10, LastDV:2.83
+time:20120131, dvT0:1.05, dvHigh:1.07
+time:20130131, dvT0:1.18, dvHigh:1.25
+time:20140130, dvT0:0.96, dvHigh:1.01
+time:20150130, dvT0:1.13, dvHigh:1.15
+time:20160129, dvT0:0.78, dvHigh:1.01
+No196 SH600685: avgDV:1.02, avgHighDV:1.14, LastDV:1.73
+time:20120131, dvT0:1.13, dvHigh:1.18
+time:20130131, dvT0:1.07, dvHigh:1.17
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150121, dvT0:1.20, dvHigh:1.22
+time:20160129, dvT0:0.64, dvHigh:1.09
+No197 SH600572: avgDV:1.02, avgHighDV:1.12, LastDV:2.10
+time:20120131, dvT0:1.11, dvHigh:1.15
+time:20130131, dvT0:1.18, dvHigh:1.22
+time:20150130, dvT0:1.08, dvHigh:1.13
+time:20160129, dvT0:0.71, dvHigh:0.99
+No198 SZ002202: avgDV:1.02, avgHighDV:1.13, LastDV:2.00
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.10, dvHigh:1.19
+time:20140130, dvT0:1.18, dvHigh:1.24
+time:20150130, dvT0:1.04, dvHigh:1.12
+time:20160129, dvT0:0.70, dvHigh:0.98
+No199 SZ000823: avgDV:1.02, avgHighDV:1.12, LastDV:1.38
+time:20120131, dvT0:1.12, dvHigh:1.13
+time:20130131, dvT0:1.06, dvHigh:1.15
+time:20140130, dvT0:1.18, dvHigh:1.22
+time:20150130, dvT0:1.05, dvHigh:1.10
+time:20160129, dvT0:0.67, dvHigh:1.00
+No200 SZ002423: avgDV:1.02, avgHighDV:1.25, LastDV:1.10
+time:20120130, dvT0:1.02, dvHigh:1.14
+time:20130131, dvT0:1.35, dvHigh:1.63
+time:20140130, dvT0:0.98, dvHigh:1.01
+time:20150130, dvT0:1.05, dvHigh:1.15
+time:20160129, dvT0:0.69, dvHigh:1.32
+No201 SZ002026: avgDV:1.02, avgHighDV:1.11, LastDV:1.60
+time:20120131, dvT0:1.10, dvHigh:1.13
+time:20130131, dvT0:1.10, dvHigh:1.10
+time:20140130, dvT0:1.14, dvHigh:1.17
+time:20150130, dvT0:1.10, dvHigh:1.13
+time:20160129, dvT0:0.64, dvHigh:1.01
+No202 SH601137: avgDV:1.02, avgHighDV:1.08, LastDV:1.49
+time:20120131, dvT0:1.00, dvHigh:1.14
+time:20130131, dvT0:1.03, dvHigh:1.04
+time:20140130, dvT0:1.01, dvHigh:1.06
+time:20150130, dvT0:1.03, dvHigh:1.08
+No203 SZ000960: avgDV:1.02, avgHighDV:1.13, LastDV:0.70
+time:20120131, dvT0:1.21, dvHigh:1.27
+time:20130131, dvT0:1.15, dvHigh:1.22
+time:20140130, dvT0:0.95, dvHigh:1.00
+time:20150130, dvT0:1.09, dvHigh:1.15
+time:20160126, dvT0:0.69, dvHigh:1.00
+No204 SZ000983: avgDV:1.02, avgHighDV:1.12, LastDV:0.54
+time:20120131, dvT0:1.10, dvHigh:1.15
+time:20130131, dvT0:1.03, dvHigh:1.08
+time:20140130, dvT0:0.84, dvHigh:1.00
+time:20150130, dvT0:0.95, dvHigh:1.15
+time:20160129, dvT0:1.17, dvHigh:1.23
+No205 SZ300314: avgDV:1.02, avgHighDV:1.16, LastDV:2.62
+time:20130131, dvT0:1.24, dvHigh:1.30
+time:20140130, dvT0:1.13, dvHigh:1.17
+time:20150130, dvT0:1.07, dvHigh:1.17
+time:20160129, dvT0:0.64, dvHigh:1.01
+No206 SZ002106: avgDV:1.02, avgHighDV:1.14, LastDV:0.51
+time:20120131, dvT0:0.96, dvHigh:1.04
+time:20130131, dvT0:1.23, dvHigh:1.34
+time:20140130, dvT0:1.25, dvHigh:1.25
+time:20150130, dvT0:1.05, dvHigh:1.08
+time:20160129, dvT0:0.59, dvHigh:0.99
+No207 SH600184: avgDV:1.02, avgHighDV:1.15, LastDV:1.43
+time:20120131, dvT0:1.05, dvHigh:1.11
+time:20130131, dvT0:1.23, dvHigh:1.36
+time:20140130, dvT0:0.96, dvHigh:1.01
+time:20150130, dvT0:1.06, dvHigh:1.17
+time:20160129, dvT0:0.79, dvHigh:1.11
+No208 SH601727: avgDV:1.02, avgHighDV:1.12, LastDV:1.56
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.04, dvHigh:1.06
+time:20140130, dvT0:0.95, dvHigh:1.00
+time:20150130, dvT0:1.33, dvHigh:1.42
+time:20160129, dvT0:0.69, dvHigh:1.01
+No209 SZ002571: avgDV:1.02, avgHighDV:1.13, LastDV:2.53
+time:20120131, dvT0:0.99, dvHigh:1.02
+time:20130131, dvT0:1.26, dvHigh:1.30
+time:20140130, dvT0:1.10, dvHigh:1.14
+time:20150130, dvT0:1.15, dvHigh:1.20
+time:20160129, dvT0:0.58, dvHigh:1.01
+No210 SH600781: avgDV:1.02, avgHighDV:1.14, LastDV:1.47
+time:20120131, dvT0:1.09, dvHigh:1.12
+time:20130131, dvT0:1.05, dvHigh:1.07
+time:20140130, dvT0:0.91, dvHigh:1.01
+time:20150130, dvT0:1.12, dvHigh:1.15
+time:20160129, dvT0:0.91, dvHigh:1.33
+No211 SH600054: avgDV:1.02, avgHighDV:1.08, LastDV:1.57
+time:20120131, dvT0:1.01, dvHigh:1.04
+time:20130131, dvT0:1.15, dvHigh:1.18
+time:20140130, dvT0:1.05, dvHigh:1.07
+time:20150130, dvT0:1.06, dvHigh:1.09
+time:20160129, dvT0:0.81, dvHigh:1.01
+No212 SH600227: avgDV:1.02, avgHighDV:1.12, LastDV:1.54
+time:20120131, dvT0:1.05, dvHigh:1.08
+time:20130131, dvT0:1.03, dvHigh:1.06
+time:20140130, dvT0:0.93, dvHigh:1.01
+time:20150130, dvT0:0.92, dvHigh:1.21
+time:20160129, dvT0:1.14, dvHigh:1.21
+No213 SZ000153: avgDV:1.02, avgHighDV:1.09, LastDV:1.58
+time:20120131, dvT0:1.01, dvHigh:1.06
+time:20130131, dvT0:1.09, dvHigh:1.15
+time:20150130, dvT0:0.94, dvHigh:1.06
+No214 SH600652: avgDV:1.02, avgHighDV:1.09, LastDV:2.61
+time:20120131, dvT0:1.17, dvHigh:1.23
+time:20130131, dvT0:1.02, dvHigh:1.04
+time:20150130, dvT0:1.05, dvHigh:1.10
+time:20160129, dvT0:0.82, dvHigh:1.00
+No215 SZ000876: avgDV:1.01, avgHighDV:1.12, LastDV:0.88
+time:20120131, dvT0:1.02, dvHigh:1.04
+time:20130131, dvT0:1.14, dvHigh:1.23
+time:20140130, dvT0:0.81, dvHigh:1.04
+time:20150130, dvT0:1.10, dvHigh:1.17
+No216 SZ000813: avgDV:1.01, avgHighDV:1.13, LastDV:1.65
+time:20120131, dvT0:1.06, dvHigh:1.13
+time:20130131, dvT0:1.17, dvHigh:1.24
+time:20140130, dvT0:0.94, dvHigh:1.02
+time:20150130, dvT0:1.05, dvHigh:1.07
+time:20160129, dvT0:0.85, dvHigh:1.21
+No217 SH600366: avgDV:1.01, avgHighDV:1.12, LastDV:1.34
+time:20120131, dvT0:1.23, dvHigh:1.23
+time:20130131, dvT0:1.05, dvHigh:1.11
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:1.17, dvHigh:1.25
+time:20160129, dvT0:0.66, dvHigh:1.00
+No218 SZ002613: avgDV:1.01, avgHighDV:1.09, LastDV:1.80
+time:20120131, dvT0:0.95, dvHigh:1.02
+time:20130131, dvT0:1.02, dvHigh:1.17
+time:20140130, dvT0:1.06, dvHigh:1.12
+time:20150130, dvT0:1.06, dvHigh:1.14
+time:20160129, dvT0:0.97, dvHigh:1.00
+No219 SZ002150: avgDV:1.01, avgHighDV:1.11, LastDV:2.48
+time:20120131, dvT0:1.00, dvHigh:1.05
+time:20130131, dvT0:1.02, dvHigh:1.05
+time:20140130, dvT0:1.12, dvHigh:1.17
+time:20150130, dvT0:1.13, dvHigh:1.17
+time:20160129, dvT0:0.80, dvHigh:1.10
+No220 SH600594: avgDV:1.01, avgHighDV:1.14, LastDV:1.91
+time:20120131, dvT0:0.87, dvHigh:1.01
+time:20130129, dvT0:1.30, dvHigh:1.32
+time:20140130, dvT0:1.20, dvHigh:1.21
+time:20150130, dvT0:1.08, dvHigh:1.16
+time:20160129, dvT0:0.62, dvHigh:1.00
+No221 SZ002436: avgDV:1.01, avgHighDV:1.13, LastDV:2.27
+time:20120131, dvT0:1.00, dvHigh:1.11
+time:20130131, dvT0:1.10, dvHigh:1.16
+time:20140122, dvT0:1.01, dvHigh:1.06
+time:20150130, dvT0:1.26, dvHigh:1.28
+time:20160129, dvT0:0.71, dvHigh:1.01
+No222 SZ000697: avgDV:1.01, avgHighDV:1.11, LastDV:1.60
+time:20120131, dvT0:1.13, dvHigh:1.16
+time:20130131, dvT0:1.11, dvHigh:1.14
+time:20140130, dvT0:1.11, dvHigh:1.16
+time:20150130, dvT0:1.03, dvHigh:1.07
+time:20160129, dvT0:0.69, dvHigh:1.02
+No223 SZ002228: avgDV:1.01, avgHighDV:1.06, LastDV:2.47
+time:20120131, dvT0:0.93, dvHigh:1.02
+time:20130131, dvT0:1.08, dvHigh:1.14
+time:20140130, dvT0:1.01, dvHigh:1.01
+time:20150130, dvT0:1.03, dvHigh:1.07
+No224 SZ300194: avgDV:1.01, avgHighDV:1.16, LastDV:1.83
+time:20120131, dvT0:0.89, dvHigh:1.02
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:1.20, dvHigh:1.21
+time:20150130, dvT0:1.08, dvHigh:1.16
+time:20160129, dvT0:0.86, dvHigh:1.32
+No225 SZ000561: avgDV:1.01, avgHighDV:1.13, LastDV:1.95
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.31, dvHigh:1.43
+time:20140130, dvT0:1.02, dvHigh:1.03
+time:20150130, dvT0:1.04, dvHigh:1.08
+time:20160129, dvT0:0.68, dvHigh:1.05
+No226 SH600145: avgDV:1.01, avgHighDV:1.09, LastDV:0.91
+time:20120131, dvT0:0.81, dvHigh:1.05
+time:20130131, dvT0:1.09, dvHigh:1.11
+time:20140130, dvT0:1.11, dvHigh:1.12
+time:20150130, dvT0:1.03, dvHigh:1.06
+No227 SH600518: avgDV:1.01, avgHighDV:1.10, LastDV:2.78
+time:20120131, dvT0:1.07, dvHigh:1.11
+time:20130131, dvT0:1.21, dvHigh:1.23
+time:20140130, dvT0:0.95, dvHigh:1.04
+time:20150130, dvT0:1.06, dvHigh:1.13
+time:20160129, dvT0:0.77, dvHigh:0.99
+No228 SZ002192: avgDV:1.01, avgHighDV:1.13, LastDV:2.31
+time:20120131, dvT0:1.08, dvHigh:1.19
+time:20130131, dvT0:1.03, dvHigh:1.10
+time:20140130, dvT0:1.00, dvHigh:1.05
+time:20150130, dvT0:1.16, dvHigh:1.25
+time:20160129, dvT0:0.78, dvHigh:1.03
+No229 SH600531: avgDV:1.01, avgHighDV:1.09, LastDV:1.46
+time:20120131, dvT0:1.22, dvHigh:1.29
+time:20130131, dvT0:1.02, dvHigh:1.05
+time:20140130, dvT0:0.94, dvHigh:1.00
+time:20150130, dvT0:1.05, dvHigh:1.12
+time:20160129, dvT0:0.83, dvHigh:1.00
+No230 SZ002254: avgDV:1.01, avgHighDV:1.11, LastDV:1.71
+time:20120131, dvT0:1.00, dvHigh:1.07
+time:20130131, dvT0:1.12, dvHigh:1.24
+time:20140130, dvT0:1.01, dvHigh:1.04
+time:20150130, dvT0:1.14, dvHigh:1.18
+time:20160129, dvT0:0.79, dvHigh:1.01
+No231 SZ000733: avgDV:1.01, avgHighDV:1.13, LastDV:2.40
+time:20120131, dvT0:1.00, dvHigh:1.03
+time:20130131, dvT0:1.19, dvHigh:1.22
+time:20140130, dvT0:1.02, dvHigh:1.05
+time:20150130, dvT0:1.18, dvHigh:1.29
+time:20160129, dvT0:0.66, dvHigh:1.06
+No232 SZ002277: avgDV:1.01, avgHighDV:1.13, LastDV:1.09
+time:20120131, dvT0:1.04, dvHigh:1.08
+time:20130131, dvT0:1.10, dvHigh:1.19
+time:20140130, dvT0:1.12, dvHigh:1.17
+time:20150130, dvT0:1.10, dvHigh:1.19
+time:20160129, dvT0:0.70, dvHigh:1.00
+No233 SH600203: avgDV:1.01, avgHighDV:1.10, LastDV:1.92
+time:20120131, dvT0:1.13, dvHigh:1.15
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:1.10, dvHigh:1.19
+time:20150130, dvT0:1.06, dvHigh:1.08
+time:20160129, dvT0:0.73, dvHigh:1.01
+No234 SH600255: avgDV:1.01, avgHighDV:1.13, LastDV:1.33
+time:20120131, dvT0:1.06, dvHigh:1.12
+time:20130131, dvT0:1.15, dvHigh:1.27
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150130, dvT0:1.08, dvHigh:1.20
+time:20160129, dvT0:0.72, dvHigh:1.01
+No235 SZ002169: avgDV:1.01, avgHighDV:1.12, LastDV:2.35
+time:20120131, dvT0:0.94, dvHigh:1.04
+time:20130131, dvT0:1.05, dvHigh:1.12
+time:20140130, dvT0:1.18, dvHigh:1.25
+time:20150130, dvT0:1.14, dvHigh:1.19
+time:20160129, dvT0:0.74, dvHigh:1.01
+No236 SZ002315: avgDV:1.01, avgHighDV:1.14, LastDV:1.59
+time:20120131, dvT0:0.89, dvHigh:1.01
+time:20130131, dvT0:1.04, dvHigh:1.14
+time:20140130, dvT0:1.20, dvHigh:1.25
+time:20150130, dvT0:1.19, dvHigh:1.28
+time:20160129, dvT0:0.72, dvHigh:1.00
+No237 SZ300034: avgDV:1.01, avgHighDV:1.12, LastDV:2.80
+time:20120131, dvT0:1.03, dvHigh:1.07
+time:20130131, dvT0:1.01, dvHigh:1.16
+time:20140130, dvT0:1.18, dvHigh:1.18
+time:20150130, dvT0:1.09, dvHigh:1.18
+time:20160129, dvT0:0.75, dvHigh:1.03
+No238 SZ002593: avgDV:1.01, avgHighDV:1.11, LastDV:2.23
+time:20120131, dvT0:1.08, dvHigh:1.09
+time:20130131, dvT0:1.03, dvHigh:1.08
+time:20140130, dvT0:1.03, dvHigh:1.07
+time:20150130, dvT0:1.21, dvHigh:1.30
+time:20160129, dvT0:0.70, dvHigh:1.01
+No239 SH600679: avgDV:1.01, avgHighDV:1.09, LastDV:2.54
+time:20120131, dvT0:0.98, dvHigh:1.05
+time:20130131, dvT0:1.03, dvHigh:1.22
+time:20140130, dvT0:1.01, dvHigh:1.06
+time:20150120, dvT0:1.11, dvHigh:1.12
+time:20160129, dvT0:0.93, dvHigh:1.01
+No240 SZ002521: avgDV:1.01, avgHighDV:1.11, LastDV:1.42
+time:20120131, dvT0:1.04, dvHigh:1.08
+time:20130131, dvT0:1.10, dvHigh:1.19
+time:20140130, dvT0:1.04, dvHigh:1.06
+time:20150130, dvT0:1.18, dvHigh:1.23
+time:20160129, dvT0:0.68, dvHigh:1.00
+No241 SH601388: avgDV:1.01, avgHighDV:1.06, LastDV:1.16
+time:20130131, dvT0:1.06, dvHigh:1.11
+time:20140130, dvT0:0.96, dvHigh:1.01
+time:20150130, dvT0:1.01, dvHigh:1.07
+No242 SH600313: avgDV:1.01, avgHighDV:1.11, LastDV:1.84
+time:20120131, dvT0:1.02, dvHigh:1.03
+time:20130131, dvT0:1.13, dvHigh:1.16
+time:20140130, dvT0:0.91, dvHigh:1.03
+time:20150130, dvT0:1.28, dvHigh:1.33
+time:20160129, dvT0:0.71, dvHigh:1.00
+No243 SZ000518: avgDV:1.01, avgHighDV:1.09, LastDV:1.59
+time:20120131, dvT0:1.06, dvHigh:1.11
+time:20130131, dvT0:1.06, dvHigh:1.15
+time:20140130, dvT0:0.97, dvHigh:1.01
+time:20150130, dvT0:1.02, dvHigh:1.07
+time:20160129, dvT0:0.94, dvHigh:1.13
+No244 SH600580: avgDV:1.01, avgHighDV:1.16, LastDV:1.55
+time:20120131, dvT0:1.08, dvHigh:1.11
+time:20130131, dvT0:1.32, dvHigh:1.48
+time:20140130, dvT0:1.05, dvHigh:1.11
+time:20150130, dvT0:0.97, dvHigh:1.10
+time:20160129, dvT0:0.62, dvHigh:1.01
+No245 SH600080: avgDV:1.01, avgHighDV:1.12, LastDV:1.53
+time:20120131, dvT0:1.08, dvHigh:1.09
+time:20130131, dvT0:1.10, dvHigh:1.14
+time:20140130, dvT0:1.14, dvHigh:1.16
+time:20150130, dvT0:1.12, dvHigh:1.21
+time:20160129, dvT0:0.61, dvHigh:1.00
+No246 SZ002199: avgDV:1.01, avgHighDV:1.13, LastDV:1.59
+time:20120131, dvT0:0.98, dvHigh:1.10
+time:20130131, dvT0:1.08, dvHigh:1.11
+time:20140130, dvT0:1.13, dvHigh:1.29
+time:20150130, dvT0:1.11, dvHigh:1.17
+time:20160129, dvT0:0.75, dvHigh:1.00
+No247 SH600621: avgDV:1.01, avgHighDV:1.10, LastDV:2.51
+time:20120131, dvT0:1.02, dvHigh:1.06
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:0.95, dvHigh:1.00
+time:20150130, dvT0:1.34, dvHigh:1.35
+time:20160129, dvT0:0.69, dvHigh:1.00
+No248 SZ000807: avgDV:1.01, avgHighDV:1.14, LastDV:1.05
+time:20120131, dvT0:1.14, dvHigh:1.24
+time:20130131, dvT0:1.02, dvHigh:1.05
+time:20140130, dvT0:0.94, dvHigh:1.00
+time:20150130, dvT0:1.14, dvHigh:1.27
+time:20160129, dvT0:0.79, dvHigh:1.14
+No249 SZ300039: avgDV:1.01, avgHighDV:1.15, LastDV:1.53
+time:20120131, dvT0:0.79, dvHigh:1.01
+time:20130131, dvT0:1.17, dvHigh:1.20
+time:20140130, dvT0:1.29, dvHigh:1.40
+time:20150130, dvT0:1.08, dvHigh:1.12
+time:20160129, dvT0:0.71, dvHigh:1.00
+No250 SH600676: avgDV:1.01, avgHighDV:1.11, LastDV:1.94
+time:20120131, dvT0:1.07, dvHigh:1.07
+time:20130131, dvT0:1.04, dvHigh:1.05
+time:20140130, dvT0:0.94, dvHigh:0.99
+time:20150130, dvT0:1.25, dvHigh:1.44
+time:20160129, dvT0:0.74, dvHigh:1.01
+No251 SH600645: avgDV:1.01, avgHighDV:1.13, LastDV:1.34
+time:20120131, dvT0:1.10, dvHigh:1.10
+time:20130131, dvT0:1.17, dvHigh:1.20
+time:20140130, dvT0:1.11, dvHigh:1.11
+time:20150130, dvT0:1.10, dvHigh:1.23
+time:20160129, dvT0:0.54, dvHigh:0.99
+No252 SH600100: avgDV:1.01, avgHighDV:1.13, LastDV:1.76
+time:20120131, dvT0:1.15, dvHigh:1.19
+time:20130131, dvT0:1.05, dvHigh:1.09
+time:20140130, dvT0:1.07, dvHigh:1.10
+time:20150130, dvT0:1.14, dvHigh:1.28
+time:20160129, dvT0:0.62, dvHigh:1.01
+No253 SZ002052: avgDV:1.01, avgHighDV:1.16, LastDV:2.53
+time:20120130, dvT0:1.11, dvHigh:1.14
+time:20130131, dvT0:1.14, dvHigh:1.29
+time:20140130, dvT0:0.91, dvHigh:1.10
+time:20150130, dvT0:1.19, dvHigh:1.27
+time:20160111, dvT0:0.68, dvHigh:1.00
+No254 SZ000962: avgDV:1.01, avgHighDV:1.12, LastDV:0.57
+time:20120131, dvT0:1.18, dvHigh:1.23
+time:20130131, dvT0:1.21, dvHigh:1.24
+time:20140130, dvT0:0.96, dvHigh:1.03
+time:20150130, dvT0:1.02, dvHigh:1.08
+time:20160129, dvT0:0.67, dvHigh:1.01
+No255 SZ002031: avgDV:1.01, avgHighDV:1.09, LastDV:2.27
+time:20120131, dvT0:0.96, dvHigh:1.01
+time:20130131, dvT0:1.07, dvHigh:1.08
+time:20140130, dvT0:1.16, dvHigh:1.21
+time:20150130, dvT0:1.06, dvHigh:1.15
+time:20160113, dvT0:0.79, dvHigh:1.00
+No256 SZ002118: avgDV:1.01, avgHighDV:1.13, LastDV:1.33
+time:20120131, dvT0:1.24, dvHigh:1.30
+time:20130131, dvT0:1.04, dvHigh:1.14
+time:20140130, dvT0:0.96, dvHigh:1.04
+time:20150130, dvT0:1.10, dvHigh:1.19
+time:20160129, dvT0:0.69, dvHigh:1.00
+No257 SZ002091: avgDV:1.01, avgHighDV:1.12, LastDV:1.55
+time:20120131, dvT0:1.03, dvHigh:1.09
+time:20130131, dvT0:1.10, dvHigh:1.13
+time:20140130, dvT0:1.22, dvHigh:1.26
+time:20150130, dvT0:1.09, dvHigh:1.15
+time:20160129, dvT0:0.60, dvHigh:1.00
+No258 SZ002696: avgDV:1.01, avgHighDV:1.07, LastDV:2.05
+time:20130131, dvT0:1.03, dvHigh:1.09
+time:20140130, dvT0:0.92, dvHigh:1.01
+time:20150130, dvT0:1.07, dvHigh:1.11
+No259 SZ300124: avgDV:1.01, avgHighDV:1.14, LastDV:2.36
+time:20120131, dvT0:0.87, dvHigh:1.02
+time:20130131, dvT0:1.06, dvHigh:1.12
+time:20140130, dvT0:1.19, dvHigh:1.25
+time:20150130, dvT0:1.17, dvHigh:1.32
+time:20160129, dvT0:0.74, dvHigh:1.00
+No260 SZ000576: avgDV:1.01, avgHighDV:1.09, LastDV:1.83
+time:20120131, dvT0:0.97, dvHigh:1.01
+time:20130131, dvT0:1.15, dvHigh:1.19
+time:20140130, dvT0:1.07, dvHigh:1.09
+time:20150130, dvT0:1.01, dvHigh:1.07
+time:20160129, dvT0:0.84, dvHigh:1.10
+No261 SZ002484: avgDV:1.01, avgHighDV:1.12, LastDV:2.41
+time:20120131, dvT0:0.96, dvHigh:1.02
+time:20130131, dvT0:1.05, dvHigh:1.18
+time:20140130, dvT0:1.32, dvHigh:1.34
+time:20150130, dvT0:1.07, dvHigh:1.08
+time:20160129, dvT0:0.63, dvHigh:0.99
+No262 SH600328: avgDV:1.01, avgHighDV:1.07, LastDV:1.46
+time:20120131, dvT0:1.04, dvHigh:1.09
+time:20130131, dvT0:1.06, dvHigh:1.09
+time:20140130, dvT0:0.99, dvHigh:1.01
+time:20150130, dvT0:1.08, dvHigh:1.14
+time:20160129, dvT0:0.85, dvHigh:1.00
+No263 SH601857: avgDV:1.01, avgHighDV:1.07, LastDV:0.88
+time:20120131, dvT0:1.05, dvHigh:1.07
+time:20130131, dvT0:1.03, dvHigh:1.04
+time:20140130, dvT0:0.98, dvHigh:1.01
+time:20150130, dvT0:1.08, dvHigh:1.23
+time:20160129, dvT0:0.89, dvHigh:1.00
+No264 SH600235: avgDV:1.01, avgHighDV:1.11, LastDV:2.05
+time:20120131, dvT0:1.02, dvHigh:1.10
+time:20130131, dvT0:1.23, dvHigh:1.28
+time:20140130, dvT0:0.95, dvHigh:1.06
+time:20150130, dvT0:1.10, dvHigh:1.12
+time:20160129, dvT0:0.73, dvHigh:1.01
+No265 SZ002222: avgDV:1.01, avgHighDV:1.13, LastDV:2.86
+time:20120131, dvT0:1.05, dvHigh:1.07
+time:20130131, dvT0:1.15, dvHigh:1.23
+time:20140130, dvT0:1.10, dvHigh:1.16
+time:20150130, dvT0:1.05, dvHigh:1.17
+time:20160129, dvT0:0.67, dvHigh:1.01
+No266 SZ002493: avgDV:1.01, avgHighDV:1.13, LastDV:1.38
+time:20120131, dvT0:1.11, dvHigh:1.15
+time:20130131, dvT0:1.03, dvHigh:1.13
+time:20140130, dvT0:0.97, dvHigh:1.03
+time:20150130, dvT0:1.18, dvHigh:1.32
+time:20160129, dvT0:0.74, dvHigh:1.02
+No267 SH600311: avgDV:1.01, avgHighDV:1.12, LastDV:0.67
+time:20120131, dvT0:1.26, dvHigh:1.33
+time:20130131, dvT0:1.03, dvHigh:1.08
+time:20140130, dvT0:0.98, dvHigh:1.03
+time:20150130, dvT0:1.06, dvHigh:1.18
+time:20160129, dvT0:0.70, dvHigh:1.00
+No268 SZ002425: avgDV:1.00, avgHighDV:1.11, LastDV:2.78
+time:20120131, dvT0:1.02, dvHigh:1.10
+time:20130131, dvT0:1.12, dvHigh:1.13
+time:20140130, dvT0:1.16, dvHigh:1.20
+time:20150130, dvT0:1.08, dvHigh:1.12
+time:20160129, dvT0:0.64, dvHigh:1.01
+No269 SZ002452: avgDV:1.00, avgHighDV:1.11, LastDV:2.69
+time:20120131, dvT0:0.98, dvHigh:1.04
+time:20130131, dvT0:1.04, dvHigh:1.09
+time:20140130, dvT0:1.04, dvHigh:1.07
+time:20150130, dvT0:0.88, dvHigh:1.00
+time:20160129, dvT0:1.08, dvHigh:1.37
+No270 SZ002454: avgDV:1.00, avgHighDV:1.13, LastDV:1.87
+time:20120131, dvT0:1.13, dvHigh:1.20
+time:20130131, dvT0:1.06, dvHigh:1.14
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150130, dvT0:1.18, dvHigh:1.27
+time:20160129, dvT0:0.61, dvHigh:0.99
+No271 SH601928: avgDV:1.00, avgHighDV:1.13, LastDV:1.46
+time:20120131, dvT0:1.01, dvHigh:1.13
+time:20130131, dvT0:1.12, dvHigh:1.19
+time:20140130, dvT0:1.12, dvHigh:1.15
+time:20150130, dvT0:1.09, dvHigh:1.17
+time:20160129, dvT0:0.67, dvHigh:1.00
+No272 SH600839: avgDV:1.00, avgHighDV:1.12, LastDV:1.84
+time:20120131, dvT0:1.05, dvHigh:1.09
+time:20130131, dvT0:1.03, dvHigh:1.06
+time:20140130, dvT0:1.09, dvHigh:1.22
+time:20150130, dvT0:1.23, dvHigh:1.23
+time:20160129, dvT0:0.62, dvHigh:0.99
+No273 SZ002535: avgDV:1.00, avgHighDV:1.09, LastDV:0.89
+time:20120131, dvT0:1.07, dvHigh:1.08
+time:20130131, dvT0:1.13, dvHigh:1.18
+time:20140130, dvT0:1.02, dvHigh:1.06
+time:20150130, dvT0:1.07, dvHigh:1.12
+time:20160129, dvT0:0.72, dvHigh:1.00
+No274 SZ000597: avgDV:1.00, avgHighDV:1.11, LastDV:1.15
+time:20120131, dvT0:0.93, dvHigh:1.01
+time:20130131, dvT0:1.22, dvHigh:1.29
+time:20140130, dvT0:1.02, dvHigh:1.08
+time:20150130, dvT0:1.03, dvHigh:1.06
+time:20160129, dvT0:0.82, dvHigh:1.13
+No275 SH600363: avgDV:1.00, avgHighDV:1.11, LastDV:2.42
+time:20120131, dvT0:1.08, dvHigh:1.14
+time:20130131, dvT0:1.06, dvHigh:1.11
+time:20140130, dvT0:1.11, dvHigh:1.15
+time:20150130, dvT0:1.12, dvHigh:1.16
+time:20160129, dvT0:0.65, dvHigh:1.02
+No276 SH600213: avgDV:1.00, avgHighDV:1.15, LastDV:1.62
+time:20120131, dvT0:0.98, dvHigh:1.06
+time:20130131, dvT0:1.33, dvHigh:1.39
+time:20140130, dvT0:1.03, dvHigh:1.07
+time:20150130, dvT0:1.08, dvHigh:1.21
+time:20160129, dvT0:0.59, dvHigh:1.00
+No277 SZ002391: avgDV:1.00, avgHighDV:1.11, LastDV:1.65
+time:20120131, dvT0:0.98, dvHigh:1.04
+time:20130131, dvT0:1.13, dvHigh:1.17
+time:20140130, dvT0:1.07, dvHigh:1.13
+time:20150130, dvT0:1.11, dvHigh:1.19
+time:20160129, dvT0:0.72, dvHigh:1.00
+No278 SZ002496: avgDV:1.00, avgHighDV:1.14, LastDV:1.81
+time:20120131, dvT0:0.99, dvHigh:1.03
+time:20130131, dvT0:1.09, dvHigh:1.10
+time:20140130, dvT0:1.05, dvHigh:1.08
+time:20150130, dvT0:1.32, dvHigh:1.46
+time:20160129, dvT0:0.58, dvHigh:1.00
+No279 SH601699: avgDV:1.00, avgHighDV:1.12, LastDV:0.46
+time:20120131, dvT0:1.15, dvHigh:1.20
+time:20130131, dvT0:1.04, dvHigh:1.08
+time:20140130, dvT0:0.81, dvHigh:0.99
+time:20150130, dvT0:0.91, dvHigh:1.15
+time:20160129, dvT0:1.10, dvHigh:1.18
+No280 SZ000731: avgDV:1.00, avgHighDV:1.11, LastDV:1.38
+time:20120131, dvT0:1.08, dvHigh:1.14
+time:20130131, dvT0:1.26, dvHigh:1.29
+time:20140130, dvT0:0.90, dvHigh:1.02
+time:20150130, dvT0:1.07, dvHigh:1.11
+time:20160129, dvT0:0.70, dvHigh:1.01
+No281 SH600557: avgDV:1.00, avgHighDV:1.12, LastDV:1.74
+time:20120131, dvT0:0.79, dvHigh:1.00
+time:20130131, dvT0:1.22, dvHigh:1.28
+time:20140130, dvT0:1.20, dvHigh:1.23
+time:20150130, dvT0:1.06, dvHigh:1.10
+time:20160129, dvT0:0.75, dvHigh:1.00
+No282 SH601899: avgDV:1.00, avgHighDV:1.11, LastDV:0.84
+time:20120131, dvT0:1.18, dvHigh:1.26
+time:20130131, dvT0:1.01, dvHigh:1.03
+time:20140130, dvT0:0.97, dvHigh:1.02
+time:20150130, dvT0:1.06, dvHigh:1.22
+time:20160129, dvT0:0.79, dvHigh:1.02
+No283 SZ002170: avgDV:1.00, avgHighDV:1.11, LastDV:2.15
+time:20120131, dvT0:1.02, dvHigh:1.07
+time:20130131, dvT0:1.13, dvHigh:1.15
+time:20140130, dvT0:0.96, dvHigh:1.02
+time:20150130, dvT0:1.26, dvHigh:1.33
+time:20160129, dvT0:0.65, dvHigh:1.01
+No284 SH600038: avgDV:1.00, avgHighDV:1.12, LastDV:2.02
+time:20120131, dvT0:0.97, dvHigh:1.03
+time:20130131, dvT0:1.15, dvHigh:1.26
+time:20140130, dvT0:1.02, dvHigh:1.05
+time:20150130, dvT0:1.12, dvHigh:1.21
+time:20160129, dvT0:0.74, dvHigh:1.04
+No285 SZ002149: avgDV:1.00, avgHighDV:1.18, LastDV:1.85
+time:20120131, dvT0:1.20, dvHigh:1.29
+time:20130131, dvT0:1.16, dvHigh:1.26
+time:20140130, dvT0:0.96, dvHigh:1.04
+time:20150130, dvT0:1.11, dvHigh:1.19
+time:20160129, dvT0:0.57, dvHigh:1.11
+No286 SZ300239: avgDV:1.00, avgHighDV:1.14, LastDV:2.08
+time:20120131, dvT0:0.90, dvHigh:1.03
+time:20130131, dvT0:1.30, dvHigh:1.44
+time:20140130, dvT0:1.08, dvHigh:1.14
+time:20150130, dvT0:1.09, dvHigh:1.12
+time:20160129, dvT0:0.63, dvHigh:0.99
+No287 SH600171: avgDV:1.00, avgHighDV:1.11, LastDV:2.98
+time:20120131, dvT0:1.02, dvHigh:1.04
+time:20130131, dvT0:1.07, dvHigh:1.11
+time:20140130, dvT0:1.10, dvHigh:1.12
+time:20150130, dvT0:1.20, dvHigh:1.26
+time:20160129, dvT0:0.61, dvHigh:1.01
+No288 SZ000541: avgDV:1.00, avgHighDV:1.15, LastDV:1.34
+time:20120131, dvT0:0.97, dvHigh:1.01
+time:20130131, dvT0:1.04, dvHigh:1.08
+time:20140130, dvT0:1.40, dvHigh:1.51
+time:20150130, dvT0:1.05, dvHigh:1.12
+time:20160129, dvT0:0.54, dvHigh:1.01
+No289 SH600737: avgDV:1.00, avgHighDV:1.10, LastDV:1.48
+time:20120131, dvT0:1.06, dvHigh:1.09
+time:20130131, dvT0:1.25, dvHigh:1.30
+time:20140130, dvT0:0.95, dvHigh:1.01
+time:20150130, dvT0:1.05, dvHigh:1.12
+time:20160129, dvT0:0.70, dvHigh:1.01
+No290 SH600732: avgDV:1.00, avgHighDV:1.18, LastDV:1.89
+time:20120131, dvT0:1.06, dvHigh:1.16
+time:20130131, dvT0:1.20, dvHigh:1.27
+time:20150130, dvT0:1.06, dvHigh:1.14
+time:20160129, dvT0:0.69, dvHigh:1.16
+No291 SH600525: avgDV:1.00, avgHighDV:1.11, LastDV:2.22
+time:20120131, dvT0:1.01, dvHigh:1.04
+time:20130131, dvT0:1.03, dvHigh:1.12
+time:20140130, dvT0:1.05, dvHigh:1.06
+time:20150130, dvT0:1.23, dvHigh:1.31
+time:20160129, dvT0:0.69, dvHigh:1.00
+No292 SZ002028: avgDV:1.00, avgHighDV:1.10, LastDV:1.34
+time:20120131, dvT0:0.94, dvHigh:1.01
+time:20130131, dvT0:1.07, dvHigh:1.11
+time:20140130, dvT0:1.11, dvHigh:1.18
+time:20150130, dvT0:1.13, dvHigh:1.22
+time:20160129, dvT0:0.75, dvHigh:1.00
+No293 SZ002017: avgDV:1.00, avgHighDV:1.12, LastDV:1.97
+time:20120131, dvT0:0.94, dvHigh:1.08
+time:20130131, dvT0:1.06, dvHigh:1.12
+time:20140130, dvT0:1.25, dvHigh:1.26
+time:20150130, dvT0:1.10, dvHigh:1.15
+time:20160129, dvT0:0.66, dvHigh:1.01
+No294 SH600587: avgDV:1.00, avgHighDV:1.12, LastDV:1.84
+time:20120131, dvT0:0.84, dvHigh:1.00
+time:20130131, dvT0:1.13, dvHigh:1.19
+time:20140130, dvT0:1.20, dvHigh:1.23
+time:20150130, dvT0:1.15, dvHigh:1.18
+time:20160129, dvT0:0.68, dvHigh:1.00
+No295 SZ000988: avgDV:1.00, avgHighDV:1.13, LastDV:2.44
+time:20120131, dvT0:1.06, dvHigh:1.11
+time:20130131, dvT0:1.29, dvHigh:1.33
+time:20140130, dvT0:1.00, dvHigh:1.05
+time:20150130, dvT0:1.03, dvHigh:1.10
+time:20160129, dvT0:0.63, dvHigh:1.08
