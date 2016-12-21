@@ -8,13 +8,40 @@
 
 #import "STATAnalysisMgr.h"
 
+@implementation STKResult
+
+-(id)init
+{
+    if(self = [super init]){
+        self.avgDV = 0.f;
+        self.eleArray = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
+@end
+
+
 @implementation STATAnalysisMgr
 
+-(id)init
+{
+    if(self = [super init]){
+        self.statResultArray = [NSMutableArray array];
+    }
+    
+    return self;
+}
 
 -(BOOL)isMapCondition:(long)i isQuery:(BOOL)isQuery
 {
     return YES;
 }
+
+//query January
+
+
 -(void)analysis
 {
     NSArray* cxtArray = [self getCxtArray:self.period];
@@ -24,26 +51,29 @@
     }
     
     long statDays = 0;
-    for(long i=1; i<[cxtArray count]-statDays; i++){
-        CGFloat buyValue = 0.f;
-        CGFloat sellValue = 0.f;
+    STKResult* stkResult = [[STKResult alloc]init];
+    CGFloat totolDV = 0.f;
+    for(long i=1; i<[cxtArray count]; i++){
         
-        KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
-        KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
-        KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
-        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
-        //        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:(i+1)];
-        
-        
-        kT0Data.tradeDbg.TBuyData = kT0Data;
-        [self dispatchResult2Array:kT0Data buyValue:kT0Data.open sellValue:kT0Data.close];
 
+        [[GSDataMgr shareInstance]setCanlendarInfo:kT0Data];
+        if(kT0Data.unitDbg.month != 1){
+            continue;
+        }
+        
+        KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
 
+        kT0Data.dvDbg.dvT0.dvClose = kT0Data.close/kTP1Data.close;
+        totolDV += kT0Data.dvDbg.dvT0.dvClose;
+        [stkResult.eleArray addObject:kT0Data];
     }
     
-    
-    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
+    if([stkResult.eleArray count] > 2){
+        stkResult.stkID = self.stkID;
+        stkResult.avgDV = totolDV/[stkResult.eleArray count];
+        [self.statResultArray addObject:stkResult];
+    }
     
 }
 

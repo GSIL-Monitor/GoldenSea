@@ -94,14 +94,14 @@
 }
 
 - (IBAction)onSTAT:(id)sender {
-    [self testForMonthStat];
+    [self testForStat];
 }
 
 
 #pragma mark - internal
 -(void)configureMgr
 {
-    [GSDataMgr shareInstance].startDate = 20160225;
+    [GSDataMgr shareInstance].startDate = 20120101;
     
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
@@ -119,17 +119,17 @@
 
 
 
--(void)testForMonthStat
+-(void)testForStat
 {
     [GSObjMgr shareInstance].mgr = [[STATAnalysisMgr alloc]init];
     [self configureMgr];
-    NSMutableArray* rangeArray = [NSMutableArray array];
-    NSArray* stkArray = [[HYSTKDBManager defaultManager].allSTK getRecordsWithIndustry:@"农"];
-    for(long i=0; i<[stkArray count]; i++){
-        STKModel* stk = [stkArray safeObjectAtIndex:i];
-        [rangeArray addObject:stk.stkID];
-    }
-    [GSObjMgr shareInstance].mgr.stkRangeArray = rangeArray;
+//    NSMutableArray* rangeArray = [NSMutableArray array];
+//    NSArray* stkArray = [[HYSTKDBManager defaultManager].allSTK getRecordsWithIndustry:@"农"];
+//    for(long i=0; i<[stkArray count]; i++){
+//        STKModel* stk = [stkArray safeObjectAtIndex:i];
+//        [rangeArray addObject:stk.stkID];
+//    }
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = rangeArray;
     [GSObjMgr shareInstance].mgr.period = Period_month;
     [GSObjMgr shareInstance].log = [[STATLogout alloc]init];
     

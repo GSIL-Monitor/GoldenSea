@@ -49,6 +49,8 @@ typedef enum {
 -(NSMutableArray*)findSourcesInDir:(NSString*)docsDir;
 -(NSMutableArray*)getStkContentArray:(NSString*)filePath;
 
+-(void)setCanlendarInfo:(KDataModel*)kData;
+
 
 
 

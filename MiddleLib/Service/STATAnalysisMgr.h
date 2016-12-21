@@ -8,6 +8,14 @@
 
 #import "GSBaseAnalysisMgr.h"
 
-@interface STATAnalysisMgr : GSBaseAnalysisMgr
+@interface STKResult : NSObject
+@property (nonatomic, strong) NSString* stkID;
+@property (nonatomic, assign) CGFloat avgDV;
+@property (nonatomic, strong) NSMutableArray* eleArray;
+@end
 
+
+
+@interface STATAnalysisMgr : GSBaseAnalysisMgr
+@property (nonatomic, strong) NSMutableArray* statResultArray;
 @end
