@@ -100,6 +100,8 @@
 //baseIndex: 基准日(周..)
 +(void)setMACDBar:(NSArray*)tmpContentArray baseIndex:(long)baseIndex fstdays:(long)fstdays snddays:(long)snddays trddays:(long)trddays
 {
+    return; //don't use macd value.
+    
     //bar = 2*(diff-dea);
 
     

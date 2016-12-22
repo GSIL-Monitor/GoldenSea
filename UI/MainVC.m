@@ -84,7 +84,10 @@
 //    [GSDataMgr shareInstance].startDate = 20160225;
     
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
-    [GSDataMgr shareInstance].isJustWriteNSTK = YES;
+//    [GSDataMgr shareInstance].isJustWriteNSTK = YES;
+    
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
+
     
     [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161214];
 }
@@ -103,7 +106,7 @@
 {
     [GSDataMgr shareInstance].startDate = 20120101;
     
-    //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ000592"];
+        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
     

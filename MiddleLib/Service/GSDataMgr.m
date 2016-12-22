@@ -108,8 +108,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 
 //#define EnalbeDayDB 1
 //#define EnalbeWeekDB 1
-//#define EnalbeMonthDB 1
-#define EnalbeNSTKDayDB 1
+#define EnalbeMonthDB 1
+//#define EnalbeNSTKDayDB 1
 
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
@@ -833,7 +833,7 @@ static NSCalendar *sharedCalendar = nil;
         
         kData.unitDbg.monthLow = (kData.low < kTP1Data.unitDbg.monthLow )? kData.low : kTP1Data.unitDbg.monthLow;
         kData.unitDbg.monthHigh = (kData.high > kTP1Data.unitDbg.monthHigh ) ? kData.high: kTP1Data.unitDbg.monthHigh;
-        kData.unitDbg.monthOpen = kTP1Data.unitDbg.monthOpen;
+        kData.unitDbg.monthOpen = (kTP1Data.unitDbg.monthOpen>kInvalidData_Base) ? kData.open:kTP1Data.unitDbg.monthOpen;
     }
     
     if(kTP1Data.unitDbg.isWeekEnd ){
@@ -847,7 +847,7 @@ static NSCalendar *sharedCalendar = nil;
         
         kData.unitDbg.weekLow = (kData.low < kTP1Data.unitDbg.weekLow )? kData.low : kTP1Data.unitDbg.weekLow;
         kData.unitDbg.weekHigh = (kData.high > kTP1Data.unitDbg.weekHigh ) ? kData.high: kTP1Data.unitDbg.weekHigh;
-        kData.unitDbg.weekOpen = kTP1Data.unitDbg.weekOpen;
+        kData.unitDbg.weekOpen = (kTP1Data.unitDbg.weekOpen>kInvalidData_Base) ? kData.open:kTP1Data.unitDbg.weekOpen;
 
     }
 
