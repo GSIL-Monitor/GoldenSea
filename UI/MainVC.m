@@ -155,14 +155,12 @@
     [GSObjMgr shareInstance].log = [[NSTKLogout alloc]init];
     
     GSBaseParam* param = [[GSBaseParam alloc]init];
-    param.destDVValue = 5.f;
+    param.destDVValue = 2.f;
     param.durationAfterBuy = 1;
     [GSObjMgr shareInstance].mgr.param = param;
     
     
     param = [[GSBaseParam alloc]init];
-    param.destDVValue = 5.f;
-    param.durationAfterBuy = 1;
     NewStkAnalysisMgr* mgr  = (NewStkAnalysisMgr*)[GSObjMgr shareInstance].mgr;
     mgr.NSTKparam = param;
     

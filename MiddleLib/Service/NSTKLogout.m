@@ -57,7 +57,7 @@
         for (KDataModel* kData in tmpArray) {
             TradeDebugData* tradeDbg = kData.tradeDbg;
             NSString* isOpenLimit = tradeDbg.isOpenLimit ? @"YES":@"NO";
-            SMLog(@"%@ TBuyData:%ld, buyDayOpen:%.2f, dvSelltoBuy:%.2f, oneValDay:%ld, pvLow2Op:%.3f, TP1Vol:%.2f",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TBuyData.open,tradeDbg.dvSelltoBuy,tradeDbg.oneValDay, tradeDbg.pvLow2Op,tradeDbg.TP1Data.volume);
+            SMLog(@"%@ TBuyData:%ld, buyDayOpen:%.2f, dvSelltoBuy:%.2f, oneValDay:%ld, pvLow2Op:%.3f,pvOp2TP1Close:%.3f,pvHi2TP1Close:%.3f, TP1Vol:%.2f",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TBuyData.open,tradeDbg.dvSelltoBuy,tradeDbg.oneValDay, tradeDbg.pvLow2Op,tradeDbg.pvOp2TP1Close,tradeDbg.pvHi2TP1Close,tradeDbg.TP1Data.volume);
 
 //            SMLog(@"%@ TBuyData:%ld, buyDayOpen:%.2f, dvSelltoBuy:%.2f, oneValDay:%ld, isOpenLimit:%@",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TBuyData.open,tradeDbg.dvSelltoBuy,tradeDbg.oneValDay, isOpenLimit);
         }
