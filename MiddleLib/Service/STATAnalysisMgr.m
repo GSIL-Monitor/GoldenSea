@@ -40,7 +40,7 @@
 }
 
 //query January
-
+//使用此方法测试其它月份有效性
 
 -(void)analysis
 {
