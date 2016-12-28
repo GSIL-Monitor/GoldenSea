@@ -1,5 +1,0 @@
-totalCount:4, totalS2BDVValue:21.03
-SZ002822 TBuyData:20161213, buyDayOpen:33.80, dvSelltoBuy:13.62, oneValDay:10, pvLow2Op:0.930,pvOp2TP1Close:0.973,pvHi2TP1Close:1.100, TP1Vol:0.66
-SH603313 TBuyData:20161021, buyDayOpen:39.30, dvSelltoBuy:3.41, oneValDay:6, pvLow2Op:0.932,pvOp2TP1Close:1.100,pvHi2TP1Close:1.100, TP1Vol:0.30
-SH603919 TBuyData:20160321, buyDayOpen:29.50, dvSelltoBuy:2.00, oneValDay:7, pvLow2Op:0.918,pvOp2TP1Close:1.057,pvHi2TP1Close:1.096, TP1Vol:0.43
-SZ002788 TBuyData:20160301, buyDayOpen:57.40, dvSelltoBuy:2.00, oneValDay:8, pvLow2Op:0.839,pvOp2TP1Close:1.100,pvHi2TP1Close:1.100, TP1Vol:0.59

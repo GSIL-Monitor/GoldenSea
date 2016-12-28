@@ -1,9 +1,0 @@
-totalCount:8, totalS2BDVValue:31.51
-SZ002822 TBuyData:20161213, buyDayOpen:33.80, dvSelltoBuy:11.25, oneValDay:10, pvLow2Op:0.930,pvOp2TP1Close:0.973,pvHi2TP1Close:1.100, TP1Vol:0.66
-SH603313 TBuyData:20161021, buyDayOpen:39.30, dvSelltoBuy:1.25, oneValDay:6, pvLow2Op:0.932,pvOp2TP1Close:1.100,pvHi2TP1Close:1.100, TP1Vol:0.30
-SH601128 TBuyData:20161018, buyDayOpen:11.30, dvSelltoBuy:1.00, oneValDay:7, pvLow2Op:0.942,pvOp2TP1Close:1.035,pvHi2TP1Close:1.046, TP1Vol:1.31
-SZ300510 TBuyData:20160520, buyDayOpen:21.01, dvSelltoBuy:6.60, oneValDay:10, pvLow2Op:0.945,pvOp2TP1Close:1.006,pvHi2TP1Close:1.099, TP1Vol:0.31
-SZ300505 TBuyData:20160329, buyDayOpen:38.00, dvSelltoBuy:1.15, oneValDay:10, pvLow2Op:0.946,pvOp2TP1Close:1.091,pvHi2TP1Close:1.100, TP1Vol:0.35
-SH603919 TBuyData:20160321, buyDayOpen:29.50, dvSelltoBuy:1.00, oneValDay:7, pvLow2Op:0.918,pvOp2TP1Close:1.057,pvHi2TP1Close:1.096, TP1Vol:0.43
-SH603608 TBuyData:20160301, buyDayOpen:25.75, dvSelltoBuy:8.25, oneValDay:8, pvLow2Op:0.951,pvOp2TP1Close:0.945,pvHi2TP1Close:1.051, TP1Vol:10.75
-SZ002788 TBuyData:20160301, buyDayOpen:57.40, dvSelltoBuy:1.00, oneValDay:8, pvLow2Op:0.839,pvOp2TP1Close:1.100,pvHi2TP1Close:1.100, TP1Vol:0.59

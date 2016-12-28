@@ -106,7 +106,7 @@
 {
     [GSDataMgr shareInstance].startDate = 20120101;
     
-        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
+//        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
     
