@@ -106,9 +106,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     
 }
 
-//#define EnalbeDayDB 1
+#define EnalbeDayDB 1
 //#define EnalbeWeekDB 1
-#define EnalbeMonthDB 1
+//#define EnalbeMonthDB 1
 //#define EnalbeNSTKDayDB 1
 
 

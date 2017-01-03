@@ -195,19 +195,21 @@
                 }
             }
             
-            if (kT0Data.ma30 < kTP1Data.ma30) {
-                continue;
-            }
-            
-            if(kT1Data.volume > kT0Data.volume){ //缩量
-                continue;
-            }
-            
-//            //dbg
-//            if([self.stkID isEqual:@"SZ002643"] && kT0Data.time == 20160519){
-//                SMLog(@"");
+//            if (kT0Data.ma30 < kTP1Data.ma30) {
+//                continue;
 //            }
 //            
+//            if(kT1Data.volume > kT0Data.volume){ //缩量
+//                continue;
+//            }
+            
+            //dbg
+            if([self.stkID isEqual:@"SZ002005"]
+//               && kT0Data.time == 20160519
+               ){
+                SMLog(@"");
+            }
+            
 //            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
 //                SMLog(@"");
 //            }

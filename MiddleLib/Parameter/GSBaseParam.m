@@ -65,7 +65,7 @@
     CGFloat dvMa5AndClose = [UtilData getDVValueWithBaseValue:kTP1Data.ma5 destValue:kTP1Data.close];
     CGFloat dvMa10AndClose = [UtilData getDVValueWithBaseValue:kTP1Data.ma10 destValue:kTP1Data.close];
     if(dvMa5AndClose > 6.f
-       || dvMa10AndClose < -8.f
+//       || dvMa10AndClose < -8.f
        ){
         return NO;
     }

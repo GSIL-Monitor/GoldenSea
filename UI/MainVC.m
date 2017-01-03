@@ -70,7 +70,7 @@
     
     NSLog(@"onTest");
     
-    [self testForNewSTK];
+    [self testForAllLimit];
 }
 
 
@@ -104,11 +104,11 @@
 #pragma mark - internal
 -(void)configureMgr
 {
-    [GSDataMgr shareInstance].startDate = 20120101;
+    [GSDataMgr shareInstance].startDate = 20160101;
     
 //        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
-    //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002770"]; //SH600108
+        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002005"]; //SH600108
     
     //    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //        [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
@@ -239,7 +239,7 @@
     
     RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
     //tmp best.
-    param.daysAfterLastLimit = 15; //30;
+    param.daysAfterLastLimit = 30;
     param.buyPercent = 1.03;
     param.destDVValue = 3.f;
     param.durationAfterBuy = 3;
