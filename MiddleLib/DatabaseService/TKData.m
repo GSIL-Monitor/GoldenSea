@@ -40,6 +40,8 @@
                             
                             @{@"volume"       : @"float"},
 
+                            @{@"isLimitUp"          :@"bool"},
+                            @{@"isLimitDown"          :@"bool"},
                             
                             @{@"ma5"          : @"float"},
                             @{@"ma10"         : @"float"},
@@ -47,20 +49,10 @@
                             @{@"ma30"         : @"float"},
                             @{@"ma60"         : @"float"},
                             @{@"ma120"         : @"float"},
-
-
-                            @{@"isLimitUp"          :@"bool"},
-                            @{@"isLimitDown"          :@"bool"},
+                     
                             
-                            @{@"macd"         : @"float"},
-                            @{@"macdbar"         : @"float"},
-
-                            
-                            @{@"kdjK"         : @"float"},
-                            @{@"kdjD"         : @"float"},
-                            @{@"kdjJ"         : @"float"},
-                            
-                            
+//                            @{@"macd"         : @"float"},
+//                            @{@"macdbar"         : @"float"},
                             ];
     
     

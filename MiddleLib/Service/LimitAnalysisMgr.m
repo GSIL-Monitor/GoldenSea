@@ -134,9 +134,37 @@
 
 }
 
+//-(void)queryZhang
+//{
+//    NSArray* cxtArray = [self getCxtArray:self.period];
+//    long count = [cxtArray count];
+//    
+//    if([cxtArray count]< 60 ) // || [cxtArray count]<20)
+//    {
+//        return;
+//    }
+//    
+//    KDataModel* kT0Data = [cxtArray safeObjectAtIndex:(count -1)];
+//    if(kT0Data.time != 20161230){
+//        return;
+//    }
+//    
+//    KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(count-2)];
+//
+//    CGFloat dvClose = kT0Data.close/kTP1Data.close;
+//    if(dvClose > 1.059){
+//        SMLog(@"%@, %.2f ",self.stkID,dvClose );
+//    }
+//    
+//}
+
 
 -(void)analysis
 {
+//    [self queryZhang];
+//    return;
+    
+    
     NSArray* cxtArray = [self getCxtArray:self.period];
 
     if(! [self isValidDataPassedIn] || [cxtArray count]< 3 ) // || [cxtArray count]<20)
@@ -167,12 +195,16 @@
         kT0Data.tradeDbg.lowValDayIndex = 1;
         kT0Data.tradeDbg.highValDayIndex = 5;
         
+//        if(kT0Data.time == 20161021){
+//            SMLog(@"");
+//        }
+        
         if(kT0Data.isLimitUp){
-            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
-               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
-               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
-                continue;
-            }
+//            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
+//               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
+//               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+//                continue;
+//            }
             kT0Data.stkID = self.stkID;
             
             
@@ -204,26 +236,26 @@
 //            }
             
             //dbg
-            if([self.stkID isEqual:@"SZ002005"]
-//               && kT0Data.time == 20160519
-               ){
-                SMLog(@"");
-            }
+//            if([self.stkID isEqual:@"SZ002005"]
+////               && kT0Data.time == 20160519
+//               ){
+//                SMLog(@"");
+//            }
             
 //            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
 //                SMLog(@"");
 //            }
             
-
-            buyValue = kTP1Data.ma5 * self.param.buyPercent;
-            long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:cxtArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
-            if(bIndex == -1){ //not find
+            
+            if(![self isShiZi:kT1Data kT0Data:kT0Data]){
                 continue;
             }
             
-            kT0Data.tradeDbg.TBuyData = [cxtArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
+
+            buyValue = kT1Data.close ;
+            kT0Data.tradeDbg.TBuyData = kT1Data;
             
-            long start = i+self.param.buyStartIndex+bIndex+1;
+            long start = i+2;
             long stop = start+self.param.durationAfterBuy;
             sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
             
@@ -238,6 +270,45 @@
     [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
     
 }
+
+
+-(BOOL)isShiZi:(KDataModel*)kT1Data kT0Data:(KDataModel*)kT0Data
+{
+    BOOL isShiZi = NO;
+    
+    CGFloat oc = fabs(kT1Data.close-kT1Data.open);
+    CGFloat ocdv = oc/kT0Data.close;
+    
+    if(1
+       && ocdv < 0.015f
+       && kT1Data.high/kT0Data.close < 1.05f
+       && kT1Data.low/kT0Data.close > 0.96f
+//       && kT1Data.close>kT0Data.close
+       ){
+        isShiZi = YES;
+    }
+    
+    //似乎效果不错
+//    if( kT1Data.close/kT1Data.open < 1.05f
+//       && kT1Data.close/kT1Data.open > 0.9f
+//       ){
+//        isShiZi = YES;
+//    }
+    
+    return isShiZi;
+}
+
+
+
+//long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:cxtArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
+//if(bIndex == -1){ //not find
+//    continue;
+//}
+//
+//kT0Data.tradeDbg.TBuyData = [cxtArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
+//
+//long start = i+self.param.buyStartIndex+bIndex+1;
+//long stop = start+self.param.durationAfterBuy;
 
 
 #pragma setter //tbd.

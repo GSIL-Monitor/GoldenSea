@@ -272,6 +272,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
         kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
         kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
         
+//        if(kT0Data.time != 20160906){
+//            SMLog(@"");
+//            continue;
+//        }
+        
         if(i>=1){
             KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
             kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];

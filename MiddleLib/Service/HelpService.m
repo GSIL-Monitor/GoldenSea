@@ -68,15 +68,18 @@
 +(CGFloat)raisingLimitValue:(CGFloat)lastClose
 {
     //1.1倍再四舍五入
-    CGFloat val = (int)((lastClose*1.1)*100+0.5)/100.f;
-    return val;
+//    CGFloat val = (int)((lastClose*1.1)*100+0.5)/100.f;
+    CGFloat val1 = (int)((int)(lastClose*100+0.5)*1.1+0.5)/100.f;
+
+    return val1;
 }
 
 +(CGFloat)downLimitValue:(CGFloat)lastClose
 {
     //0.9倍再四舍五入
-    CGFloat val = (int)((lastClose*0.9)*100+0.5)/100.f;
-    return val;
+//    CGFloat val = (int)((lastClose*0.9)*100+0.5)/100.f;
+    CGFloat val1 = (int)((int)(lastClose*100+0.5)*0.9+0.5)/100.f;
+    return val1;
 }
 
 
