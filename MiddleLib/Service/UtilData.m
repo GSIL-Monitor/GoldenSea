@@ -10,6 +10,7 @@
 
 @implementation UtilData
 
+#if 0
 #pragma mark - tech data
 //macd, kdj
 //di(demand index),
@@ -113,6 +114,8 @@
     kT0Data.macdbar = 2.0*(todayDiff-kT0Data.macd);
     
 }
+#endif
+
 
 #pragma mark - util
 +(CGFloat)getDVValueWithBaseValue:(CGFloat)baseValue destValue:(CGFloat)destValue;

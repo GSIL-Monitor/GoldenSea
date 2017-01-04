@@ -206,9 +206,6 @@
 @property (assign) BOOL isLimitDown;
 
 
-
-
-
 @property (strong) TradeDebugData* tradeDbg;
 @property (strong) DVDebugData* dvDbg;
 @property (strong) UnitDebugData* unitDbg;
@@ -228,15 +225,15 @@
 // those tech index is rubbish! do wrong every time when you believe it if used as daily refer.
 //@property (assign) CGFloat chg; //
 //@property (assign) CGFloat turnrate; //
-@property (assign) CGFloat macd;
-@property (assign) CGFloat macdbar;
-@property (assign) CGFloat ema1; //12
-@property (assign) CGFloat ema2; //26
 
+//@property (assign) CGFloat macd;
+//@property (assign) CGFloat macdbar;
+//@property (assign) CGFloat ema1; //12
+//@property (assign) CGFloat ema2; //26
 
-@property (assign) CGFloat kdjK;
-@property (assign) CGFloat kdjD;
-@property (assign) CGFloat kdjJ;
+//@property (assign) CGFloat kdjK;
+//@property (assign) CGFloat kdjD;
+//@property (assign) CGFloat kdjJ;
 
 
 @end

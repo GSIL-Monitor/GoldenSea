@@ -15,6 +15,7 @@
 #define kInvalidData_Base 1000000.f
 #define kInvalidData_Base_Small (kInvalidData_Base-1)
 
+#define kNSTK_DayCount 50.f
 
 
 

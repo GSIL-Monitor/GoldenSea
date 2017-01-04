@@ -9,6 +9,8 @@
 #import "LimitAnalysisMgr.h"
 #import "RaisingLimitParam.h"
 
+
+
 @interface LimitAnalysisMgr ()
 
 @property (nonatomic, strong) RaisingLimitParam* param;
@@ -19,6 +21,32 @@
 @implementation LimitAnalysisMgr
 
 
+-(BOOL)isMapPreCondition:(NSArray*)cxtArray index:(long)i
+{
+    BOOL isMap = YES;
+    
+    KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
+    if(self.param.daysAfterLastLimit == 0)
+    {
+        //filter raise much in shorttime
+        if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
+            isMap = NO;
+        }
+    }
+    else
+    {
+        //filter raise much in shorttime
+        if(![self.param isMapRasingLimitAvgConditonMa30:kTP1Data]){
+            isMap = NO;
+        }
+        
+        if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:cxtArray]){
+            isMap = NO;
+        }
+    }
+
+    return isMap;
+}
 
 
 
@@ -27,18 +55,15 @@
     NSArray* cxtArray = [self getCxtArray:self.period];
 
     //skip new stk.
-    if([cxtArray count]<20){
+    if([cxtArray count]<kNSTK_DayCount){
         return;
     }
     
-    
-    //    SMLog(@"stkID:%@",self.stkID);
     long lastIndex = [cxtArray count]-1;
-    for(long i=[cxtArray count]-11; i<[cxtArray count]-1; i++ ){
+    for(long i=[cxtArray count]-3; i<[cxtArray count]-1; i++ ){
         KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
         KDataModel* kT0Data = [cxtArray objectAtIndex:i];
         kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
-        
         
         
         if(kT0Data.isLimitUp){
@@ -48,39 +73,16 @@
             kTP1Data.ma30 = [UtilData getMAValue:30 array:cxtArray t0Index:i-1];
 
             
-            if(self.param.daysAfterLastLimit == 0)
+            if(![self isMapPreCondition:cxtArray index:i])
             {
-                //filter raise much in shorttime
-                if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
-                    continue;
-                }
+                continue;
             }
-            else
-            {
-                //filter raise much in shorttime
-                if(![self.param isMapRasingLimitAvgConditonMa30:kTP1Data]){
-                    continue;
-                }
-                
-                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:cxtArray]){
-                    continue;
-                }
-            }
-            
             
             //filter raise much in shorttime
-            if(kT0Data.time >= 20160816){ // && kT0Data.time <= 20160816
+            if(kT0Data.time >= 20161230){ // && kT0Data.time <= 20160816
                 KDataModel* kTLastData = [cxtArray objectAtIndex:lastIndex];
                 CGFloat pvLast2kTP1DataMA5 = kTLastData.close/kTP1Data.ma5;
-                
-                //                    KDataModel* kT1Data = [cxtArray objectAtIndex:i+1];
-                //                    KDataModel* kT2Data = [cxtArray objectAtIndex:i+2];
-                
-//                if (pvLast2kTP1DataMA5 < 5.f) {
-//                    SMLog(@"%@ kT0Data: %ld.  pvLast2kTP1DataMA5(%.2f)",[self.stkID substringFromIndex:2],kT0Data.time, pvLast2kTP1DataMA5);
-//                }
-                
-                
+ 
                 //save to array
                 QueryResModel* model = [[QueryResModel alloc]init];
                 model.stkID = self.stkID;
@@ -91,11 +93,6 @@
             }
         }
     }
-    
-    
-    
-//    [[GSObjMgr shareInstance].log  SimpleLogOutResult:NO];
-    
     
 }
 
@@ -122,7 +119,7 @@
 
     for(long i=0; i<[self.queryResArray count]; i++){
         QueryResModel* model = [self.queryResArray objectAtIndex:i];
-        SMLog(@"%@ kT0Data:%ld, buyVal(%.2f), pvLast(%.2f)",[model.stkID substringFromIndex:2],model.time, model.buyVal, model.pvLast2kTP1DataMA5);
+        SMLog(@"%@ time:%ld, buyVal(%.2f), pvLast(%.2f)",[model.stkID substringFromIndex:2],model.time, model.buyVal, model.pvLast2kTP1DataMA5);
         
 //        //write to queryDB if need.
 //        if(self.isWriteToQueryDB){
@@ -167,7 +164,7 @@
     
     NSArray* cxtArray = [self getCxtArray:self.period];
 
-    if(! [self isValidDataPassedIn] || [cxtArray count]< 3 ) // || [cxtArray count]<20)
+    if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
     {
         return;
     }
@@ -205,35 +202,15 @@
 //               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
 //                continue;
 //            }
+            
+            
+            if(![self isMapPreCondition:cxtArray index:i])
+            {
+                continue;
+            }
+            
             kT0Data.stkID = self.stkID;
-            
-            
-            if(self.param.daysAfterLastLimit == 0)
-            {
-                //filter raise much in shorttime
-                if(![self.param isMapRasingLimitAvgConditon:kTP1Data]){
-                    continue;
-                }
-            }
-            else
-            {
-                //filter raise much in shorttime
-                if(![self.param isMapRasingLimitAvgConditonMa30:kTP1Data]){
-                    continue;
-                }
-                
-                if(![self.param isNoLimitInLastDaysBeforeIndex:i contentArray:cxtArray]){
-                    continue;
-                }
-            }
-            
-//            if (kT0Data.ma30 < kTP1Data.ma30) {
-//                continue;
-//            }
-//            
-//            if(kT1Data.volume > kT0Data.volume){ //缩量
-//                continue;
-//            }
+
             
             //dbg
 //            if([self.stkID isEqual:@"SZ002005"]

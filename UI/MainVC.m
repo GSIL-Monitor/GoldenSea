@@ -70,11 +70,13 @@
     
     NSLog(@"onTest");
     
-    [self testForAllLimit];
+    [self testForAllLimit:NO];
 }
 
 
 - (IBAction)onQuery:(id)sender {
+    [self testForAllLimit:YES];
+
 }
 
 
@@ -230,7 +232,7 @@
     [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
 }
 
--(void)testForAllLimit
+-(void)testForAllLimit:(BOOL)isQuery
 {
     
     [GSObjMgr shareInstance].mgr = [[LimitAnalysisMgr alloc]init];
@@ -248,8 +250,15 @@
     param.buyEndIndex = 3; //param.buyStartIndex;
     [GSObjMgr shareInstance].mgr.param = param;
     
-    [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
-    [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+    if(isQuery){ //query
+        [GSDataMgr shareInstance].marketType = marketType_All;
+        [[GSObjMgr shareInstance].mgr queryAllWithFile:_filedir];
+        
+    }else{ //analysis
+        [[GSObjMgr shareInstance].mgr analysisAllInDir:_filedir];
+        [ [GSObjMgr shareInstance].log analysisAndLogtoFile];
+    }
+    
     return;
     
     //    [[[GSObjMgr shareInstance].mgr]queryAllAndSaveToDBWithFile:_filedir];
