@@ -50,8 +50,40 @@
 
 
 
+//used for deep-down
+-(void)queryTodayisDown
+{
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    //skip new stk.
+    if([cxtArray count]<kNSTK_DayCount){
+        return;
+    }
+    
+    long todayIndex = [cxtArray count]-1;
+    KDataModel* kTodayData = [cxtArray objectAtIndex:todayIndex];
+    for(long i=[cxtArray count]-2; i>[cxtArray count]-6; i-- ){
+        KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray objectAtIndex:i];
+        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+        
+        
+        if(kT0Data.isLimitUp){
+            CGFloat dv = kTodayData.close/kT0Data.close;
+            if(dv < 0.96){
+                SMLog(@"%@: %ld dv(%.3f)",self.stkID,kT0Data.time,dv);
+            }
+            break;
+        }
+    }
+}
+
+
 -(void)query
 {
+    [self queryTodayisDown];
+    return;
+    
     NSArray* cxtArray = [self getCxtArray:self.period];
 
     //skip new stk.

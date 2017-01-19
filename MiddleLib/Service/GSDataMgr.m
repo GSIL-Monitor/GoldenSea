@@ -258,7 +258,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 #ifdef EnalbeDayDB
     fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
     for(long i=0; i<[contentArray count]; i++ ){
-        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
+//        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
         if(kT0Data.time <= fromDate  || kT0Data.time > endDate){

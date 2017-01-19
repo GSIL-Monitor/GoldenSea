@@ -92,7 +92,7 @@
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002005"]; //SH600108
 
     
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20161230];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170119];
 }
 
 - (IBAction)onNSTK:(id)sender {
