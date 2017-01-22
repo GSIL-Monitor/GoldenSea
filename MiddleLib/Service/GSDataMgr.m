@@ -261,7 +261,10 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 //        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
 
         KDataModel* kT0Data = [contentArray objectAtIndex:i];
-        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
+//        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
+//            continue;
+//        }
+        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
             continue;
         }
         
@@ -283,8 +286,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
         }
         
-        [dayService addRecord:kT0Data];
-        
+        if(kT0Data.time == fromDate){
+            [dayService addOrReplaceRecord:kT0Data];
+        }else{
+            [dayService addRecord:kT0Data];
+        }
     }
     
 #endif

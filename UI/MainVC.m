@@ -88,7 +88,7 @@
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
 //    [GSDataMgr shareInstance].isJustWriteNSTK = YES;
     
-//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
+    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600000"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002005"]; //SH600108
 
     

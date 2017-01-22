@@ -76,6 +76,15 @@ typedef enum {
  */
 - (BOOL)addRecord:(HYBaseModel *) recordModel;
 
+/**
+ *  add(if not exist) or replace one record to db
+ *
+ *  @param recordModel
+ *
+ *  @return sccuss or not
+ */
+- (BOOL)addOrReplaceRecord:(HYBaseModel *) recordModel;
+
 
 /**
  *  update one exist record in db

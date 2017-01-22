@@ -208,6 +208,20 @@
 }
 
 
+- (BOOL)addOrReplaceRecord:(HYBaseModel *) recordModel;
+{
+    __block BOOL result = NO;
+    [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
+        if (recordModel) {
+            NSString *sql = [NSString stringWithFormat:@"insert or replace into %@ (%@) values(%@)",self.tableName, [self buildAllFieldKeyString], [self buildAllFieldTypeSymbolStringWithRecord:recordModel] ];
+            
+            result = [db executeUpdate:sql];
+        }
+        
+    }];
+    return result;
+}
+
 
 - (BOOL)updateRecord:(HYBaseModel *)recordModel
 {
