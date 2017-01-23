@@ -107,7 +107,7 @@
 #pragma mark - internal
 -(void)configureMgr
 {
-    [GSDataMgr shareInstance].startDate = 20160101;
+    [GSDataMgr shareInstance].startDate = 20160201;
     
 //        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH603199"];
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];

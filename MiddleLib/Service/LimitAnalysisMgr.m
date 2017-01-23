@@ -163,122 +163,142 @@
 
 }
 
-//-(void)queryZhang
-//{
-//    NSArray* cxtArray = [self getCxtArray:self.period];
-//    long count = [cxtArray count];
-//    
-//    if([cxtArray count]< 60 ) // || [cxtArray count]<20)
-//    {
-//        return;
-//    }
-//    
-//    KDataModel* kT0Data = [cxtArray safeObjectAtIndex:(count -1)];
-//    if(kT0Data.time != 20161230){
-//        return;
-//    }
-//    
-//    KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(count-2)];
-//
-//    CGFloat dvClose = kT0Data.close/kTP1Data.close;
-//    if(dvClose > 1.059){
-//        SMLog(@"%@, %.2f ",self.stkID,dvClose );
-//    }
-//    
-//}
+
 
 
 -(void)analysis
 {
-//    [self queryZhang];
-//    return;
-    
-    
     NSArray* cxtArray = [self getCxtArray:self.period];
-
+    
     if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
     {
         return;
     }
     
-    
-    long statDays = 2;
+    long statDays = 5;
     long middleIndex = 7;
-    for(long i=1; i<[cxtArray count]-statDays; i++ ){
+    for(long i=5; i<[cxtArray count]-statDays; i++ ){
         CGFloat buyValue = 0.f;
         CGFloat sellValue = 0.f;
         
+        KDataModel* kTP5Data  = [cxtArray safeObjectAtIndex:(i-5)];
         KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
         KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
         KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
         //        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
         //        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
         //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
-        //        KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+                KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
         //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
         //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
         //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
         //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
         
         
-        kT0Data.tradeDbg.lowValDayIndex = 1;
-        kT0Data.tradeDbg.highValDayIndex = 5;
-        
-//        if(kT0Data.time == 20161021){
-//            SMLog(@"");
-//        }
-        
-        if(kT0Data.isLimitUp){
-//            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
-//               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
-//               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
-//                continue;
-//            }
-            
-            
-            if(![self isMapPreCondition:cxtArray index:i])
-            {
-                continue;
-            }
-            
-            kT0Data.stkID = self.stkID;
-
-            
-            //dbg
-//            if([self.stkID isEqual:@"SZ002005"]
-////               && kT0Data.time == 20160519
-//               ){
-//                SMLog(@"");
-//            }
-            
-//            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
-//                SMLog(@"");
-//            }
-            
-            
-            if(![self isShiZi:kT1Data kT0Data:kT0Data]){
-                continue;
-            }
-            
-
-            buyValue = kT1Data.close ;
-            kT0Data.tradeDbg.TBuyData = kT1Data;
-            
-            long start = i+2;
-            long stop = start+self.param.durationAfterBuy;
-            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
-            
-            if(kT0Data.tradeDbg.TSellData)
-                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
-            
+        CGFloat upDv = kT0Data.close/kTP5Data.close;
+        CGFloat downDv = kT5Data.close/kT0Data.close;
+        if(upDv > 1.25 && downDv < 0.78){
+            SMLog(@"%@: %ld upDv(%.3f), downDv(%.3f)",self.stkID,kT0Data.time,upDv,downDv);
         }
-        
     }
     
     
     [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
     
 }
+
+//
+//-(void)analysis
+//{
+////    [self queryZhang];
+////    return;
+//    
+//    
+//    NSArray* cxtArray = [self getCxtArray:self.period];
+//
+//    if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
+//    {
+//        return;
+//    }
+//    
+//    
+//    long statDays = 2;
+//    long middleIndex = 7;
+//    for(long i=1; i<[cxtArray count]-statDays; i++ ){
+//        CGFloat buyValue = 0.f;
+//        CGFloat sellValue = 0.f;
+//        
+//        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+//        KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+//        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
+//        //        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
+//        //        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
+//        //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
+//        //        KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+//        //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
+//        //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
+//        //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
+//        //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
+//        
+//        
+//        kT0Data.tradeDbg.lowValDayIndex = 1;
+//        kT0Data.tradeDbg.highValDayIndex = 5;
+//        
+////        if(kT0Data.time == 20161021){
+////            SMLog(@"");
+////        }
+//        
+//        if(kT0Data.isLimitUp){
+////            if((kT0Data.time > 20150813 && kT0Data.time < 20150819)
+////               ||(kT0Data.time > 20150615 && kT0Data.time < 20150702)
+////               ||(kT0Data.time > 20151230 && kT0Data.time < 20160115)){
+////                continue;
+////            }
+//            
+//            
+//            if(![self isMapPreCondition:cxtArray index:i])
+//            {
+//                continue;
+//            }
+//            
+//            kT0Data.stkID = self.stkID;
+//
+//            
+//            //dbg
+////            if([self.stkID isEqual:@"SZ002005"]
+//////               && kT0Data.time == 20160519
+////               ){
+////                SMLog(@"");
+////            }
+//            
+////            if([self.stkID isEqual:@"SZ000592"] && kT0Data.time == 20160728){
+////                SMLog(@"");
+////            }
+//            
+//            
+//            if(![self isShiZi:kT1Data kT0Data:kT0Data]){
+//                continue;
+//            }
+//            
+//
+//            buyValue = kT1Data.close ;
+//            kT0Data.tradeDbg.TBuyData = kT1Data;
+//            
+//            long start = i+2;
+//            long stop = start+self.param.durationAfterBuy;
+//            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
+//            
+//            if(kT0Data.tradeDbg.TSellData)
+//                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+//            
+//        }
+//        
+//    }
+//    
+//    
+//    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
+//    
+//}
 
 
 -(BOOL)isShiZi:(KDataModel*)kT1Data kT0Data:(KDataModel*)kT0Data
