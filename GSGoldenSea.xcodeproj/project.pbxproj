@@ -86,6 +86,7 @@
 		426B303E1DD1650900863C11 /* libSSZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426B30371DD163F400863C11 /* libSSZipArchive.a */; };
 		426B30411DD1B3C800863C11 /* NSString+ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30401DD1B3C800863C11 /* NSString+ex.m */; };
 		426B30441DD1BA5200863C11 /* STATAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B30431DD1BA5200863C11 /* STATAnalysisMgr.m */; };
+		4272D9F21E345E0E004CAA00 /* SinaDataReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 4272D9F11E345E0E004CAA00 /* SinaDataReq.m */; };
 		427E871D1D6B1BA0002468FD /* GSObjMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E871C1D6B1BA0002468FD /* GSObjMgr.m */; };
 		42A6EA5C1D680EDE00430CEC /* LimitAnalysisMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA5B1D680EDE00430CEC /* LimitAnalysisMgr.m */; };
 		42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A6EA611D6856EF00430CEC /* GSBaseParam.m */; };
@@ -358,6 +359,8 @@
 		426B30401DD1B3C800863C11 /* NSString+ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ex.m"; sourceTree = "<group>"; };
 		426B30421DD1BA5200863C11 /* STATAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STATAnalysisMgr.h; sourceTree = "<group>"; };
 		426B30431DD1BA5200863C11 /* STATAnalysisMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STATAnalysisMgr.m; sourceTree = "<group>"; };
+		4272D9F01E345E0E004CAA00 /* SinaDataReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaDataReq.h; sourceTree = "<group>"; };
+		4272D9F11E345E0E004CAA00 /* SinaDataReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaDataReq.m; sourceTree = "<group>"; };
 		427E871B1D6B1BA0002468FD /* GSObjMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSObjMgr.h; sourceTree = "<group>"; };
 		427E871C1D6B1BA0002468FD /* GSObjMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSObjMgr.m; sourceTree = "<group>"; };
 		42A6EA5A1D680EDE00430CEC /* LimitAnalysisMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitAnalysisMgr.h; sourceTree = "<group>"; };
@@ -940,6 +943,8 @@
 				42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */,
 				42D546B01D6E90E600603E6A /* YahooDataReq.h */,
 				42D546B11D6E90E600603E6A /* YahooDataReq.m */,
+				4272D9F01E345E0E004CAA00 /* SinaDataReq.h */,
+				4272D9F11E345E0E004CAA00 /* SinaDataReq.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1486,6 +1491,7 @@
 				42A6EA621D6856EF00430CEC /* GSBaseParam.m in Sources */,
 				426B2FF41DD163F400863C11 /* BRAComment.m in Sources */,
 				426B2FF01DD163F400863C11 /* BRACellFill.m in Sources */,
+				4272D9F21E345E0E004CAA00 /* SinaDataReq.m in Sources */,
 				426B30091DD163F400863C11 /* BRATheme.m in Sources */,
 				424C5FEA1CD0A9CE007DF3F5 /* OneDayCondition.m in Sources */,
 				426B30101DD163F400863C11 /* NSDictionary+DeepCopy.m in Sources */,
