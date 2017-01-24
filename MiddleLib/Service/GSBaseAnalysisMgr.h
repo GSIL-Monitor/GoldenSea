@@ -19,7 +19,9 @@
 typedef enum {
     Period_day = 0,
     Period_week,
-    Period_month
+    Period_month,
+    Period_NSTK, //used for enum
+    Period_Index
 }Period;
 
 

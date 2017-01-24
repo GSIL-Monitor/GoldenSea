@@ -29,6 +29,7 @@ typedef enum {
 @property (nonatomic, strong) DBInfoModel* monthDBInfo;
 
 @property (nonatomic, strong) DBInfoModel* NSTKDayDBInfo;
+@property (nonatomic, strong) DBInfoModel* IndexDBInfo;
 
 
 @end
@@ -98,6 +99,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     self.weekDBInfo = [[HYWeekDBManager defaultManager].dbInfo getRecord];
     self.monthDBInfo = [[HYMonthDBManager defaultManager].dbInfo getRecord];
     self.NSTKDayDBInfo = [[HYNewSTKDayDBManager defaultManager].dbInfo getRecord];
+    self.IndexDBInfo = [[HYIndexDBManager defaultManager].dbInfo getRecord];
     
 //    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
 //    if(!dbInfo){ //no result. means first time.
@@ -114,9 +116,9 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 }
 
 #define EnalbeDayDB 1
-//#define EnalbeWeekDB 1
-//#define EnalbeMonthDB 1
-//#define EnalbeNSTKDayDB 1
+#define EnalbeWeekDB 1
+#define EnalbeMonthDB 1
+#define EnalbeNSTKDayDB 1
 
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
@@ -209,6 +211,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     long fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
     long fromWeekDate = self.weekDBInfo.lastUpdateTime > 0 ? self.weekDBInfo.lastUpdateTime:20020101;
     long fromMonthDate = self.monthDBInfo.lastUpdateTime > 0 ? self.monthDBInfo.lastUpdateTime:20020101;
+    long fromIndexDate = self.IndexDBInfo.lastUpdateTime > 0 ? self.IndexDBInfo.lastUpdateTime:20020101;
     fromDate = fromDate<fromWeekDate?fromDate:fromWeekDate;
     fromDate = fromDate<fromMonthDate?fromDate:fromMonthDate;
     
@@ -224,7 +227,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             kTLastEndData = kT0Data;
         }
         
-        //skip fromdate for update db case. because fromDate is lastUpdate time
         if(kT0Data.time < fromDate || kT0Data.time > endDate){
             continue;
         }
@@ -235,7 +237,6 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             isFirstData = NO;
         }
         
-
         
         [self setCanlendarInfo:kT0Data];
         [self setRealEndInfo:kT0Data kTP1Data:kTP1Data];
@@ -261,138 +262,105 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     }
     
     
-    //1,deal with day data
 #ifdef EnalbeDayDB
-    fromDate = self.dayDBInfo.lastUpdateTime > 0 ? self.dayDBInfo.lastUpdateTime:20020101;
-    for(long i=0; i<[contentArray count]; i++ ){
-//        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
-
-        KDataModel* kT0Data = [contentArray objectAtIndex:i];
-//        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
-//            continue;
-//        }
-        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
-            continue;
-        }
-        
-        kT0Data.ma5 = [UtilData getMAValue:5 array:contentArray t0Index:i];
-        kT0Data.ma10 = [UtilData getMAValue:10 array:contentArray t0Index:i];
-        kT0Data.ma20 = [UtilData getMAValue:20 array:contentArray t0Index:i];
-        kT0Data.ma30 = [UtilData getMAValue:30 array:contentArray t0Index:i];
-        kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
-        kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
-        
-//        if(kT0Data.time != 20160906){
-//            SMLog(@"");
-//            continue;
-//        }
-        
-        if(i>=1){
-            KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
-            kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
-            kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
-        }
-        
-        if(kT0Data.time == fromDate){
-            [dayService addOrReplaceRecord:kT0Data];
-        }else{
-            [dayService addRecord:kT0Data];
-        }
-    }
-    
+    [self serviceAddRec:stkID array:contentArray period:Period_day EndDate:endDate kTLastEndData:kTLastEndData];
 #endif
 
-    
-    CGFloat tmpVolume;
-
 #ifdef EnalbeWeekDB
-    //2, deal with week data
-    fromDate = self.weekDBInfo.lastUpdateTime > 0 ? self.weekDBInfo.lastUpdateTime:20020101;
-    for(long i=0; i<[weekArray count]; i++ ){
-        [UtilData setMACDBar:weekArray baseIndex:i fstdays:12 snddays:26 trddays:9];
-
-        KDataModel* kT0Data = [weekArray objectAtIndex:i];
-        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
-            continue;
-        }
-        
-        kT0Data.ma5 = [UtilData getMAValue:5 array:weekArray t0Index:i];
-        kT0Data.ma10 = [UtilData getMAValue:10 array:weekArray t0Index:i];
-        kT0Data.ma20 = [UtilData getMAValue:20 array:weekArray t0Index:i];
-        kT0Data.ma30 = [UtilData getMAValue:30 array:weekArray t0Index:i];
-        
-        
-        [self addRecordByExchangeData:kT0Data service:weekService period:Period_week];
-    }
-    
-    if(![weekArray containsObject:kTLastEndData]){
-        [weekService deleteRecordWithTime:kTLastEndData.time];
-    }
-    
-
+    [self serviceAddRec:stkID array:weekArray period:Period_week EndDate:endDate kTLastEndData:kTLastEndData];
 #endif
     
 #ifdef EnalbeMonthDB
-    //3, deal with month data
-    fromDate = self.monthDBInfo.lastUpdateTime > 0 ? self.monthDBInfo.lastUpdateTime:20020101;
-    for(long i=0; i<[monthArray count]; i++ ){
-        [UtilData setMACDBar:monthArray baseIndex:i fstdays:12 snddays:26 trddays:9];
-
-        KDataModel* kT0Data = [monthArray objectAtIndex:i];
-        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
-            continue;
-        }
-        
-        kT0Data.ma5 = [UtilData getMAValue:5 array:monthArray t0Index:i];
-        kT0Data.ma10 = [UtilData getMAValue:10 array:monthArray t0Index:i];
-        kT0Data.ma20 = [UtilData getMAValue:20 array:monthArray t0Index:i];
-        kT0Data.ma30 = [UtilData getMAValue:30 array:monthArray t0Index:i];
-        
-        [self addRecordByExchangeData:kT0Data service:monthService period:Period_month];
-
-    }
-    
-    if(![monthArray containsObject:kTLastEndData]){
-        [monthService deleteRecordWithTime:kTLastEndData.time];
-    }
-    
-
+    [self serviceAddRec:stkID array:monthArray period:Period_month EndDate:endDate kTLastEndData:kTLastEndData];
 #endif
     
-    
-    
 #ifdef EnalbeNSTKDayDB
-    fromDate = self.NSTKDayDBInfo.lastUpdateTime > 0 ? self.NSTKDayDBInfo.lastUpdateTime:20020101;
-    for(long i=0; i<[contentArray count]; i++ ){
-        [UtilData setMACDBar:contentArray baseIndex:i fstdays:12 snddays:26 trddays:9];
-        
-        KDataModel* kT0Data = [contentArray objectAtIndex:i];
-        if(kT0Data.time <= fromDate  || kT0Data.time > endDate){
-            continue;
-        }
-        
-        kT0Data.ma5 = [UtilData getMAValue:5 array:contentArray t0Index:i];
-        kT0Data.ma10 = [UtilData getMAValue:10 array:contentArray t0Index:i];
-        kT0Data.ma20 = [UtilData getMAValue:20 array:contentArray t0Index:i];
-        kT0Data.ma30 = [UtilData getMAValue:30 array:contentArray t0Index:i];
-        kT0Data.ma60 = [UtilData getMAValue:60 array:contentArray t0Index:i];
-        kT0Data.ma120 = [UtilData getMAValue:120 array:contentArray t0Index:i];
-        
-        if(i>=1){
-            KDataModel* kTP1Data  = [contentArray objectAtIndex:(i-1)];
-            kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
-            kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
-        }
-        
-        [NSTKdayService addRecord:kT0Data];
-        
-    }
-    
+    [self serviceAddRec:stkID array:contentArray period:Period_NSTK EndDate:endDate kTLastEndData:kTLastEndData];
 #endif
     
 }
 
--(void)addRecordByExchangeData:(KDataModel*) kT0Data service:(TKData* )service period:(Period)period
+
+-(void)serviceAddRec:(NSString*)stkID array:(NSArray*)array period:(Period)period EndDate:(int)endDate kTLastEndData:(KDataModel*)kTLastEndData
+{
+    DBInfoModel* dbInfo;
+    TKData* service;
+    switch (period) {
+        case Period_day:
+            dbInfo = self.dayDBInfo;
+            service = [[HYDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+            break;
+            
+        case Period_week:
+            dbInfo = self.weekDBInfo;
+            service = [[HYWeekDBManager defaultManager] dbserviceWithSymbol:stkID];
+            break;
+            
+        case Period_month:
+            dbInfo = self.monthDBInfo;
+            service = [[HYMonthDBManager defaultManager] dbserviceWithSymbol:stkID];
+            break;
+            
+        case Period_NSTK:
+            dbInfo = self.NSTKDayDBInfo;
+            service = [[HYNewSTKDayDBManager defaultManager] dbserviceWithSymbol:stkID];
+            break;
+            
+        case Period_Index:
+            dbInfo = self.IndexDBInfo;
+            service = [[HYIndexDBManager defaultManager] dbserviceWithSymbol:stkID];
+            break;
+            
+        default:
+            break;
+    }
+    
+    long fromDate = dbInfo.lastUpdateTime > 0 ? dbInfo.lastUpdateTime:20020101;
+    for(long i=0; i<[array count]; i++ ){
+//        [UtilData setMACDBar:array baseIndex:i fstdays:12 snddays:26 trddays:9];
+        
+        KDataModel* kT0Data = [array objectAtIndex:i];
+        
+        if(kT0Data.time < fromDate  || kT0Data.time > endDate){
+            continue;
+        }
+        
+        kT0Data.ma5 = [UtilData getMAValue:5 array:array t0Index:i];
+        kT0Data.ma10 = [UtilData getMAValue:10 array:array t0Index:i];
+        kT0Data.ma20 = [UtilData getMAValue:20 array:array t0Index:i];
+        kT0Data.ma30 = [UtilData getMAValue:30 array:array t0Index:i];
+        
+        if(Period_day==period || Period_NSTK==period){
+            kT0Data.ma60 = [UtilData getMAValue:60 array:array t0Index:i];
+            kT0Data.ma120 = [UtilData getMAValue:120 array:array t0Index:i];
+        }
+        
+        if(Period_week==period || Period_month==period){
+            [self addRecordByExchangeData:kT0Data service:service period:period fromDate:fromDate];
+        }else{
+            if(i>=1 && Period_Index!=period){
+                KDataModel* kTP1Data  = [array objectAtIndex:(i-1)];
+                kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+                kT0Data.isLimitDown =  [HelpService isLimitDownValue:kTP1Data.close T0Close:kT0Data.close];
+            }
+            
+            if(kT0Data.time == fromDate){
+                [service addOrReplaceRecord:kT0Data];
+            }else{
+                [service addRecord:kT0Data];
+            }
+        }
+    }
+    
+    if(Period_week==period || Period_month==period){
+        if(![array containsObject:kTLastEndData]){
+            [service deleteRecordWithTime:kTLastEndData.time];
+        }
+    }
+    
+}
+
+-(void)addRecordByExchangeData:(KDataModel*) kT0Data service:(TKData* )service period:(Period)period fromDate:(long)fromDate
 {
     CGFloat tmpVolume;
     CGFloat tmpOpen;
@@ -442,7 +410,11 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             break;
     }
     
-    [service addRecord:kT0Data];
+    if(kT0Data.time == fromDate){
+        [service addOrReplaceRecord:kT0Data];
+    }else{
+        [service addRecord:kT0Data];
+    }
     
     kT0Data.volume = tmpVolume;
     kT0Data.open = tmpOpen;
