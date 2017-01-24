@@ -57,6 +57,7 @@
 #import "HYWeekDBManager.h"
 #import "HYMonthDBManager.h"
 #import "HYNewSTKDayDBManager.h"
+#import "HYIndexDBManager.h"
 
 #import "UtilData.h"
 

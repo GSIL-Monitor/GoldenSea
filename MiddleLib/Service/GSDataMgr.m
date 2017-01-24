@@ -84,6 +84,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     return array;
 }
 
+-(NSArray*)getIndexDayDataFromDB:(NSString*)stkID;
+{
+    TKData* service = [[HYIndexDBManager defaultManager] dbserviceWithSymbol:stkID];
+    NSArray* array = [service getRecords:20020101 end:Key_Max_Date ];
+    
+    return array;
+}
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {

@@ -161,6 +161,7 @@
 		42E098D81C8029D1004E4DC2 /* KDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098D71C8029D1004E4DC2 /* KDataModel.m */; };
 		42E098DB1C802A5D004E4DC2 /* XueQiuDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */; };
 		42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E74FF81CF2E7E5009D483D /* GSCondition.m */; };
+		42FBC8671E36EC85006B2D14 /* HYIndexDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBC8661E36EC85006B2D14 /* HYIndexDBManager.m */; };
 		E42D2D3D1CF4810E00E4D61C /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = E42D2D3C1CF4810E00E4D61C /* main.xib */; };
 		E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */; };
 		E4941B631D64BA15006B792B /* RaisingLimitParam.m in Sources */ = {isa = PBXBuildFile; fileRef = E4941B621D64BA15006B792B /* RaisingLimitParam.m */; };
@@ -531,6 +532,8 @@
 		42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XueQiuDataRequest.m; sourceTree = "<group>"; };
 		42E74FF71CF2E7E5009D483D /* GSCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCondition.h; sourceTree = "<group>"; };
 		42E74FF81CF2E7E5009D483D /* GSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCondition.m; sourceTree = "<group>"; };
+		42FBC8651E36EC85006B2D14 /* HYIndexDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYIndexDBManager.h; sourceTree = "<group>"; };
+		42FBC8661E36EC85006B2D14 /* HYIndexDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYIndexDBManager.m; sourceTree = "<group>"; };
 		E42D2D3C1CF4810E00E4D61C /* main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = main.xib; path = ../GSGoldenSea/main.xib; sourceTree = "<group>"; };
 		E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		E4941B611D64BA15006B792B /* RaisingLimitParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaisingLimitParam.h; sourceTree = "<group>"; };
@@ -767,6 +770,8 @@
 				42465B681DB5CB34000FB12C /* HYSTKDBManager.m */,
 				4230596B1E03D575006E4F73 /* HYNewSTKDayDBManager.h */,
 				4230596C1E03D575006E4F73 /* HYNewSTKDayDBManager.m */,
+				42FBC8651E36EC85006B2D14 /* HYIndexDBManager.h */,
+				42FBC8661E36EC85006B2D14 /* HYIndexDBManager.m */,
 				42C3C9021D4B29420050E676 /* HYDayDBManager.h */,
 				42C3C9031D4B29420050E676 /* HYDayDBManager.m */,
 				4264EDD01D8E7649006DF8A3 /* HYWeekDBManager.h */,
@@ -1427,6 +1432,7 @@
 				42E097281C7FFAEB004E4DC2 /* AFURLConnectionOperation.m in Sources */,
 				426B30011DD163F400863C11 /* BRAOpenXmlSubElement.m in Sources */,
 				42E0972B1C7FFAEB004E4DC2 /* AFURLSessionManager.m in Sources */,
+				42FBC8671E36EC85006B2D14 /* HYIndexDBManager.m in Sources */,
 				426B30191DD163F400863C11 /* SSZipArchive.m in Sources */,
 				42E0978A1C7FFAEB004E4DC2 /* GTMBase64.m in Sources */,
 				426980071CEEF5F000D99888 /* GSDataMgr.m in Sources */,

@@ -23,6 +23,11 @@ typedef enum {
 }Period;
 
 
+@interface IndexData : NSObject
+@property (nonatomic, strong) NSArray* SHIndexArray;
+@property (nonatomic, strong) NSArray* SZIndexArray;
+@end
+
 
 @interface GSBaseAnalysisMgr : NSObject
 
@@ -36,7 +41,7 @@ typedef enum {
 
 @property (nonatomic, assign) Period period;
 
-
+@property (nonatomic, strong) IndexData* indexData;
 @property (nonatomic, strong) NSMutableArray* querySTKArray;
 @property (nonatomic, strong) NSMutableArray* queryResArray;
 
