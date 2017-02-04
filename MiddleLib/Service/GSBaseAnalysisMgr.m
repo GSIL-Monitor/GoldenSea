@@ -16,9 +16,14 @@
 #import "NewStkAnalysisMgr.h"
 #import "STATAnalysisMgr.h"
 
+
+@implementation IndexData
+
+@end
+
+
+
 @interface GSBaseAnalysisMgr ()
-
-
 
 @end
 
@@ -406,6 +411,16 @@
     }
 }
 
-
+#pragma mark - getter
+-(IndexData*)indexData
+{
+    if(_indexData){
+        _indexData = [[IndexData alloc]init];
+        _indexData.SHIndexArray = [[GSDataMgr shareInstance]getDayDataFromDB:@"SH000001"];
+        _indexData.SZIndexArray = [[GSDataMgr shareInstance]getDayDataFromDB:@"SH000001"]; //TBD
+    }
+    
+    return _indexData;
+}
 
 @end

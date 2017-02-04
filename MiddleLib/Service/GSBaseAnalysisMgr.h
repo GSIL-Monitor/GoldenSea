@@ -33,17 +33,15 @@ typedef enum {
 
 @interface GSBaseAnalysisMgr : NSObject
 
-
-//@property (nonatomic,strong) NSArray* contentArray;
+@property (nonatomic, strong) IndexData* indexData;
 @property (nonatomic,strong) NSArray* dayCxtArray;
 @property (nonatomic,strong) NSArray* weekCxtArray;
 @property (nonatomic,strong) NSArray* monthCxtArray;
 @property (nonatomic,strong) NSArray* NSTKdayCxtArray;
-@property (nonatomic,strong) NSString* stkID;
 
+@property (nonatomic,strong) NSString* stkID;
 @property (nonatomic, assign) Period period;
 
-@property (nonatomic, strong) IndexData* indexData;
 @property (nonatomic, strong) NSMutableArray* querySTKArray;
 @property (nonatomic, strong) NSMutableArray* queryResArray;
 

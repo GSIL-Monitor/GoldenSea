@@ -85,13 +85,13 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     return array;
 }
 
--(NSArray*)getIndexDayDataFromDB:(NSString*)stkID;
-{
-    TKData* service = [[HYIndexDBManager defaultManager] dbserviceWithSymbol:stkID];
-    NSArray* array = [service getRecords:20020101 end:Key_Max_Date ];
-    
-    return array;
-}
+//-(NSArray*)getIndexDayDataFromDB:(NSString*)stkID;
+//{
+//    TKData* service = [[HYIndexDBManager defaultManager] dbserviceWithSymbol:stkID];
+//    NSArray* array = [service getRecords:20020101 end:Key_Max_Date ];
+//    
+//    return array;
+//}
 
 -(void)writeDataToDB:(NSString*)docsDir EndDate:(int)dataEndDate;
 {
@@ -101,30 +101,18 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
     self.NSTKDayDBInfo = [[HYNewSTKDayDBManager defaultManager].dbInfo getRecord];
     self.IndexDBInfo = [[HYIndexDBManager defaultManager].dbInfo getRecord];
     
-//    DBInfoModel* dbInfo = [[TDBInfo shareInstance]getRecord];
-//    if(!dbInfo){ //no result. means first time.
-//        [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
-//    }else{
-//        //from the lastUpdateTime, in case the lastUpdateTime day date not in db.
-//        //Don't! 
-//        [self _writeDataToDB:docsDir FromDate:(int)dbInfo.lastUpdateTime EndDate:dataEndDate];
-//    }
-    
     [self _writeDataToDB:docsDir FromDate:20020101 EndDate:dataEndDate];
-
-    
 }
 
 #define EnalbeDayDB 1
-#define EnalbeWeekDB 1
-#define EnalbeMonthDB 1
-#define EnalbeNSTKDayDB 1
+//#define EnalbeWeekDB 1
+//#define EnalbeMonthDB 1
+//#define EnalbeNSTKDayDB 1
 
 
 -(void)_writeDataToDB:(NSString*)docsDir FromDate:(int)startDate EndDate:(int)endDate;
 {
     long dbgNum = 0;
-    
     
     NSMutableArray* files = [[GSDataMgr shareInstance]findSourcesInDir:docsDir];
     for(NSString* file in files){
@@ -134,13 +122,7 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
             continue;
         }
         
-        
         NSMutableArray* contentArray = [[GSDataMgr shareInstance] getStkContentArray:file];
-        
-        
-//        if([stkID isEqualToString:@"SH600908"]){
-//            SMLog(@"");
-//        }
         
         if(self.isJustWriteNSTK){
             BOOL isNSTK=YES;
@@ -182,6 +164,8 @@ SINGLETON_GENERATOR(GSDataMgr, shareInstance);
 #ifdef EnalbeNSTKDayDB
     [[HYNewSTKDayDBManager defaultManager].dbInfo updateTime:endDate];
 #endif
+    
+    [[HYIndexDBManager defaultManager].dbInfo updateTime:endDate];
     
     SMLog(@"end of writeDataToDB");
 }

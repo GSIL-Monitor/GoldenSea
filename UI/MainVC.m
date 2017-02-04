@@ -88,11 +88,13 @@
     [GSObjMgr shareInstance].mgr = [[TechAnalysisMgr alloc]init];
 //    [GSDataMgr shareInstance].isJustWriteNSTK = YES;
     
-    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600000"];
+//    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600000",@"SH000001"];
 //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ002005"]; //SH600108
 
     
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170119];
+//    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170119];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170203];
+
 }
 
 - (IBAction)onNSTK:(id)sender {
