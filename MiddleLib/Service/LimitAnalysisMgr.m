@@ -51,7 +51,7 @@
 
 
 //used for deep-down
--(void)queryTodayisDown
+-(void)queryDeepDown
 {
     NSArray* cxtArray = [self getCxtArray:self.period];
     
@@ -76,6 +76,51 @@
             break;
         }
     }
+}
+
+//used for today-down
+-(void)queryTodayisDown
+{
+   
+    
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    if([self.stkID isEqualToString:@"SH600135"]){
+        SMLog(@"");
+    }
+    
+    //skip new stk.
+    if([cxtArray count]<kNSTK_DayCount){
+        return;
+    }
+    
+    long todayIndex = [cxtArray count]-1;
+    long tillBeforeDays = 2;
+    KDataModel* kTodayData = [cxtArray objectAtIndex:todayIndex];
+    KDataModel* kLastdayData = [cxtArray objectAtIndex:todayIndex-1];
+    if(kLastdayData.isLimitUp){
+        CGFloat dv = kTodayData.close/kLastdayData.close;
+        if(dv < 0.9955)
+        {
+            SMLog(@"%@: %ld dv(%.3f)",self.stkID,kLastdayData.time,dv);
+        }
+    }
+//
+//    for(long i= todayIndex; i>[cxtArray count]-tillBeforeDays; i-- ){
+//        KDataModel* kTP1Data  = [cxtArray objectAtIndex:(i-1)];
+//        KDataModel* kT0Data = [cxtArray objectAtIndex:i];
+//        kT0Data.isLimitUp =  [HelpService isLimitUpValue:kTP1Data.close T0Close:kT0Data.close];
+//        
+//        
+//        if(kT0Data.isLimitUp){
+//            CGFloat dv = kTodayData.close/kT0Data.close;
+////            if(dv < 0.97)
+//            {
+//                SMLog(@"%@: %ld dv(%.3f)",self.stkID,kT0Data.time,dv);
+//            }
+//            break;
+//        }
+//    }
 }
 
 

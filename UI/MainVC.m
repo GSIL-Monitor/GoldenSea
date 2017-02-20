@@ -93,7 +93,7 @@
 
     
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170119];
-    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170203];
+    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170217];
 
 }
 
@@ -115,10 +115,10 @@
     //    [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SH600098"]; //,@"SH600418",@"SZ000592"];
 //        [GSObjMgr shareInstance].mgr.stkRangeArray = @[@"SZ300505"]; //SH600108
     
-        [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
+    [GSDataMgr shareInstance].marketType = marketType_ShenZhenChuanYeBan; //
     //        [GSDataMgr shareInstance].marketType = marketType_ShenZhenMainAndZhenXiaoBan;
     [GSDataMgr shareInstance].marketType = marketType_ShangHai;
-//        [GSDataMgr shareInstance].marketType = marketType_All;
+    [GSDataMgr shareInstance].marketType = marketType_All;
     
     GSBaseResult* baseReslut = [[GSBaseResult alloc]init];
     [GSObjMgr shareInstance].mgr.reslut = baseReslut;
