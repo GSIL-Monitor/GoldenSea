@@ -10,20 +10,9 @@
 #import "HYFMDatabase.h"
 #import "HYFMDatabaseQueue.h"
 
-#define CONVERSATION_TABLE @"conversationTable"
-#define MESSAGE_TABLE      @"messageTable"
-#define GROUP_TABLE        @"groupTable"
-#define GROUPINVITE_TABLE  @"groupInviteTable"
-#define GROUPMEMBER_TABLE  @"groupMamberTable"
-#define FRIEND_TABLE       @"friendTable"
-
 #define DB_INPUT_NIL    -1
 
-/**
- *  Tele模块数据库表
- */
-#define TeleHistory_Table @"teleHistoryTable"
-#define NewTeleHistory_Table @"newTeleHistoryTable"
+
 
 @protocol DatabaseHelperDelegate <NSObject>
 

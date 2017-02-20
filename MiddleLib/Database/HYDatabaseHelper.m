@@ -26,11 +26,7 @@ static HYDatabaseHelper *defaultHelper = nil;
 - (BOOL)setupDB:(NSString*)dbPath isReset:(BOOL)isReset;
 {
     __block BOOL rst = NO;
-//    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-//    
-//    NSString *dbPath = [paths stringByAppendingPathComponent:@"GSStkDB.db"];
-    
-    
+        
     if(isReset){
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *err=nil;

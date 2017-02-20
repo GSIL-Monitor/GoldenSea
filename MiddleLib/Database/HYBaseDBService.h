@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HYBaseModel.h"
 #import "HYDatabaseHelper.h"
 
 
@@ -74,7 +73,7 @@ typedef enum {
  *
  *  @return sccuss or not
  */
-- (BOOL)addRecord:(HYBaseModel *) recordModel;
+- (BOOL)addRecord:(NSObject *) recordModel;
 
 /**
  *  add(if not exist) or replace one record to db
@@ -83,7 +82,7 @@ typedef enum {
  *
  *  @return sccuss or not
  */
-- (BOOL)addOrReplaceRecord:(HYBaseModel *) recordModel;
+- (BOOL)addOrReplaceRecord:(NSObject *) recordModel;
 
 
 /**
@@ -93,7 +92,7 @@ typedef enum {
  *
  *  @return sccuss or not
  */
-- (BOOL)updateRecord:(HYBaseModel *)recordModel;
+- (BOOL)updateRecord:(NSObject *)recordModel;
 
 
 /**

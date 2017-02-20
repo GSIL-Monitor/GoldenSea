@@ -193,7 +193,7 @@
 /**
  *  add record
  */
-- (BOOL)addRecord:(HYBaseModel *) recordModel
+- (BOOL)addRecord:(NSObject *) recordModel
 {
     __block BOOL result = NO;
     [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
@@ -208,7 +208,7 @@
 }
 
 
-- (BOOL)addOrReplaceRecord:(HYBaseModel *) recordModel;
+- (BOOL)addOrReplaceRecord:(NSObject *) recordModel;
 {
     __block BOOL result = NO;
     [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
@@ -223,13 +223,13 @@
 }
 
 
-- (BOOL)updateRecord:(HYBaseModel *)recordModel
+- (BOOL)updateRecord:(NSObject *)recordModel
 {
     return [self updateRecord:recordModel WithAditonCondition:nil];
 }
 
 
-- (BOOL)updateRecord:(HYBaseModel *)recordModel WithAditonCondition:(NSString *)condition
+- (BOOL)updateRecord:(NSObject *)recordModel WithAditonCondition:(NSString *)condition
 {
     __block BOOL rst = NO;
     [self.databaseQueue inDatabase:^(HYFMDatabase *db) {
@@ -389,7 +389,7 @@
 }
 
 
--(NSString*)buildAllFieldTypeSymbolStringWithRecord:(HYBaseModel *) recordModel
+-(NSString*)buildAllFieldTypeSymbolStringWithRecord:(NSObject *) recordModel
 {
     //            NSString *sql = [NSString stringWithFormat:@"insert into %@ (contacterName,contacterPhoneNumber,callTime,callTimeStampEnd,callDuration,isStranger,teleLocation,teleType,callDate,userAccount,callStatus,callTimeStampStart,callDurationTime,contactTimes) values('%@','%@','%@','%d','%d','%d','%@','%ld','%@','%@','%ld','%d','%@','%d')",TeleHistory_Table,teleRecordModel.contacterName,teleRecordModel.contactPhoneNumber,teleRecordModel.callTime,teleRecordModel.callTimeStampEnd, teleRecordModel.callDuration,teleRecordModel.isStranger,teleRecordModel.teleLocation,(long)teleRecordModel.teleType,teleRecordModel.callDate,teleRecordModel.userAccount,(long)teleRecordModel.callStatus,teleRecordModel.callTimeStampStart,teleRecordModel.callDurationTime,teleRecordModel.contactTimes];
     
@@ -408,7 +408,7 @@
 
 
 
--(NSString*)buildAllFieldAndValueStringWithRecord:(HYBaseModel *) recordModel
+-(NSString*)buildAllFieldAndValueStringWithRecord:(NSObject *) recordModel
 {
 //   NSString *sql = [NSString stringWithFormat:@"update %@ set toUserID = '%@',conversationType = '%u',lastSender = '%@',lastMessageID = '%@',lastMessageStatus = '%u',lastMessageType = '%u',conversationType = '%u',lastTimeStamp = '%ld',lastSender = '%@',lastMessage = '%@',unReadCount = '%ld',msgCount = '%ld',isTop = '%d',isHide = '%d',policy = '%u',draftContent = '%@',draftTimeStamp = '%ld' where conversationUUID = '%@'",CONVERSATION_TABLE,conversation.toUserID,conversation.conversationType,conversation.lastSender,conversation.lastMessageID,conversation.lastMessageStatus,conversation.lastMessageType,conversation.conversationType,(long)conversation.lastTimeStamp,conversation.lastSender,conversation.lastMessage,(long)conversation.unReadCount,(long)conversation.msgCount,conversation.isTop,conversation.isHide,conversation.policy,conversation.draftContent,(long)conversation.draftTimeStamp,conversation.conversationUUID];
     
@@ -430,7 +430,7 @@
 }
 
 
--(NSString*)dbStringValueForKey:(NSString*)key record:(HYBaseModel *) recordModel
+-(NSString*)dbStringValueForKey:(NSString*)key record:(NSObject *) recordModel
 {
     NSString* value;
     
@@ -706,7 +706,7 @@
     BOOL ret = YES;
     
 #ifdef DEBUG
-    HYBaseModel * model = [[[NSClassFromString(self.modelClassString) class] alloc]init];
+    NSObject * model = [[[NSClassFromString(self.modelClassString) class] alloc]init];
 
     for (NSString* key in self.keyTypeDict) {
         if (![model respondsToSelector:NSSelectorFromString(key)]) {
