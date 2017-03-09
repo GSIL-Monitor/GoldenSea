@@ -161,6 +161,9 @@
 		42E098D81C8029D1004E4DC2 /* KDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098D71C8029D1004E4DC2 /* KDataModel.m */; };
 		42E098DB1C802A5D004E4DC2 /* XueQiuDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */; };
 		42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E74FF81CF2E7E5009D483D /* GSCondition.m */; };
+		42EB173A1E5FD1180012CDCA /* StatSTKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB17391E5FD1180012CDCA /* StatSTKModel.m */; };
+		42EB17401E5FD2C70012CDCA /* HYStatSTKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB173F1E5FD2C70012CDCA /* HYStatSTKDBManager.m */; };
+		42EB17431E5FD3D20012CDCA /* TStatSTK.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EB17421E5FD3D20012CDCA /* TStatSTK.m */; };
 		42FBC8671E36EC85006B2D14 /* HYIndexDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBC8661E36EC85006B2D14 /* HYIndexDBManager.m */; };
 		E42D2D3D1CF4810E00E4D61C /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = E42D2D3C1CF4810E00E4D61C /* main.xib */; };
 		E4429C811CD41A8B003C6577 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4429C801CD41A8B003C6577 /* libsqlite3.0.dylib */; };
@@ -532,6 +535,12 @@
 		42E098DA1C802A5D004E4DC2 /* XueQiuDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XueQiuDataRequest.m; sourceTree = "<group>"; };
 		42E74FF71CF2E7E5009D483D /* GSCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCondition.h; sourceTree = "<group>"; };
 		42E74FF81CF2E7E5009D483D /* GSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCondition.m; sourceTree = "<group>"; };
+		42EB17381E5FD1180012CDCA /* StatSTKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatSTKModel.h; sourceTree = "<group>"; };
+		42EB17391E5FD1180012CDCA /* StatSTKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatSTKModel.m; sourceTree = "<group>"; };
+		42EB173E1E5FD2C70012CDCA /* HYStatSTKDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYStatSTKDBManager.h; sourceTree = "<group>"; };
+		42EB173F1E5FD2C70012CDCA /* HYStatSTKDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYStatSTKDBManager.m; sourceTree = "<group>"; };
+		42EB17411E5FD3D20012CDCA /* TStatSTK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TStatSTK.h; sourceTree = "<group>"; };
+		42EB17421E5FD3D20012CDCA /* TStatSTK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TStatSTK.m; sourceTree = "<group>"; };
 		42FBC8651E36EC85006B2D14 /* HYIndexDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYIndexDBManager.h; sourceTree = "<group>"; };
 		42FBC8661E36EC85006B2D14 /* HYIndexDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYIndexDBManager.m; sourceTree = "<group>"; };
 		E42D2D3C1CF4810E00E4D61C /* main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = main.xib; path = ../GSGoldenSea/main.xib; sourceTree = "<group>"; };
@@ -768,6 +777,8 @@
 				4264EDD71D8E7694006DF8A3 /* HYBaseDBManager.m */,
 				42465B671DB5CB34000FB12C /* HYSTKDBManager.h */,
 				42465B681DB5CB34000FB12C /* HYSTKDBManager.m */,
+				42EB173E1E5FD2C70012CDCA /* HYStatSTKDBManager.h */,
+				42EB173F1E5FD2C70012CDCA /* HYStatSTKDBManager.m */,
 				4230596B1E03D575006E4F73 /* HYNewSTKDayDBManager.h */,
 				4230596C1E03D575006E4F73 /* HYNewSTKDayDBManager.m */,
 				42FBC8651E36EC85006B2D14 /* HYIndexDBManager.h */,
@@ -784,6 +795,8 @@
 				4223A1131D6FD3AC005A1CA4 /* TDBInfo.m */,
 				42C3C9061D4B29420050E676 /* TSTK.h */,
 				42C3C9071D4B29420050E676 /* TSTK.m */,
+				42EB17411E5FD3D20012CDCA /* TStatSTK.h */,
+				42EB17421E5FD3D20012CDCA /* TStatSTK.m */,
 				42C3C9041D4B29420050E676 /* TKData.h */,
 				42C3C9051D4B29420050E676 /* TKData.m */,
 				4258401D1D669FB80031AC39 /* TQueryRes.h */,
@@ -912,6 +925,8 @@
 				42E098D71C8029D1004E4DC2 /* KDataModel.m */,
 				4204D0521C880AC800D27135 /* STKModel.h */,
 				4204D0531C880AC800D27135 /* STKModel.m */,
+				42EB17381E5FD1180012CDCA /* StatSTKModel.h */,
+				42EB17391E5FD1180012CDCA /* StatSTKModel.m */,
 				424C5FE81CD0A9CE007DF3F5 /* OneDayCondition.h */,
 				424C5FE91CD0A9CE007DF3F5 /* OneDayCondition.m */,
 				425840201D66A2800031AC39 /* QueryResModel.h */,
@@ -1417,6 +1432,7 @@
 				42E74FF91CF2E7E5009D483D /* GSCondition.m in Sources */,
 				4212654B1C867B7D0053787E /* NSArrayEX.m in Sources */,
 				42E097261C7FFAEB004E4DC2 /* AFNetworkReachabilityManager.m in Sources */,
+				42EB17431E5FD3D20012CDCA /* TStatSTK.m in Sources */,
 				426B2FF61DD163F400863C11 /* BRAContentTypes.m in Sources */,
 				426B2FF51DD163F400863C11 /* BRAComments.m in Sources */,
 				426B30031DD163F400863C11 /* BRARelationships.m in Sources */,
@@ -1430,6 +1446,7 @@
 				42465B691DB5CB34000FB12C /* HYSTKDBManager.m in Sources */,
 				42E097291C7FFAEB004E4DC2 /* AFURLRequestSerialization.m in Sources */,
 				42E097281C7FFAEB004E4DC2 /* AFURLConnectionOperation.m in Sources */,
+				42EB17401E5FD2C70012CDCA /* HYStatSTKDBManager.m in Sources */,
 				426B30011DD163F400863C11 /* BRAOpenXmlSubElement.m in Sources */,
 				42E0972B1C7FFAEB004E4DC2 /* AFURLSessionManager.m in Sources */,
 				42FBC8671E36EC85006B2D14 /* HYIndexDBManager.m in Sources */,
@@ -1460,6 +1477,7 @@
 				4223A1141D6FD3AC005A1CA4 /* TDBInfo.m in Sources */,
 				426B2FFD1DD163F400863C11 /* BRANumberFormat.m in Sources */,
 				4264EDD51D8E765D006DF8A3 /* HYMonthDBManager.m in Sources */,
+				42EB173A1E5FD1180012CDCA /* StatSTKModel.m in Sources */,
 				42E098151C7FFAEB004E4DC2 /* YTKBatchRequestAgent.m in Sources */,
 				4264EDD21D8E7649006DF8A3 /* HYWeekDBManager.m in Sources */,
 				42E097AC1C7FFAEB004E4DC2 /* DDASLLogger.m in Sources */,

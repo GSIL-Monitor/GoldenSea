@@ -1,0 +1,16 @@
+//
+//  TStatSTK.h
+//  GSGoldenSea
+//
+//  Created by frank weng on 17/2/24.
+//  Copyright © 2017年 frank weng. All rights reserved.
+//
+
+#import "HYBaseDBService.h"
+
+@interface TStatSTK : HYBaseDBService
+
+- (NSArray *)getRecordsWithIndustry:(NSString*)keyWord;
+
+
+@end

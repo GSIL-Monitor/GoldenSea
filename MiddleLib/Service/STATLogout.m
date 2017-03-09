@@ -69,19 +69,6 @@
     SMLog(@"totalAvgDV:%.3f, dbgAvgDV:%.3f, badAvgDV:%.3f",totalAvgDV,dbgAvgDV,badAvgDV);
     return;
     
-    for(long i=0; i<[resultArray count]; i++){
-        STKResult* stkResult = [resultArray safeObjectAtIndex:i];
-        SMLog(@"No%d %@: avgDV:%.2f, avgHighDV:%.2f, LastDV:%.2f, 16dv:%.2f, 16Highdv:%.2f, 16LowDV:%.2f",i,stkResult.stkID,stkResult.avgDV, stkResult.avgHighDV,stkResult.LastDV,stkResult.the2016DV,stkResult.the2016HighDV,stkResult.the2016LowDV);
-
-        for (KDataModel* kData in stkResult.eleArray) {
-            SMLog(@"time:%ld, dvT0:%.2f, dvHigh:%.2f",kData.time,kData.dvDbg.dvT0.dvClose,kData.dvDbg.dvT0.dvHigh);
-        }
-    }
-    
-    
-    [[HYLog shareInstance] disableLog];
-    
-    SMLog(@"<--end of analysisAndLogtoFile");
 }
 
 

@@ -13,6 +13,7 @@
 #import "TSTK.h"
 #import "TDBInfo.h"
 #import "TKData.h"
+#import "TStatSTK.h"
 
 
 @interface HYBaseDBManager : NSObject
