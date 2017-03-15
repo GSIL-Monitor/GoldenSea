@@ -357,6 +357,8 @@
 
 
 #pragma mark - common
+
+
 //start:(long)startIndex stop:(long)stopIndex
 -(CGFloat)getSellValue:(CGFloat)buyValue kT0data:(KDataModel*)kT0Data cxtArray:(NSArray*)cxtArray start:(long)startIndex stop:(long)stopIndex;
 {

@@ -74,7 +74,9 @@
         for (KDataModel* kData in tmpArray) {
             TradeDebugData* tradeDbg = kData.tradeDbg;
             BOOL isT1Red = [tradeDbg.T1Data isRed];
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, isT1Red:%@",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,isT1Red?@"Yes":@"No");
+            CGFloat dvT1Open = tradeDbg.T1Data.open/tradeDbg.T0Data.close;
+            CGFloat dvT0Open = tradeDbg.T0Data.open/tradeDbg.TP1Data.close;
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f,dvT0Open:%.2f,dvT1Open:%.2f, isT1Red:%@, ",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,dvT0Open,dvT1Open,isT1Red?@"Yes":@"No");
         }
     }
 }

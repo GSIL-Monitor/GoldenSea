@@ -129,6 +129,18 @@
     return NO;
 }
 
+-(BOOL)getBuyValue:(CGFloat)destBuyValue;
+{
+    if([self isYiZi]){
+        return NO;
+    }
+    
+    if(destBuyValue > self.low){
+        return YES;
+    }
+    
+    return NO;
+}
 
 @end
 

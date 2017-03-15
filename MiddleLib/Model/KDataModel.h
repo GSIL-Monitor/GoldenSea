@@ -221,6 +221,7 @@
 
 -(BOOL)isYiZi;
 -(BOOL)isRed;
+-(BOOL)getBuyValue:(CGFloat)destBuyValue;
 
 
 //@property (assign) CGFloat percent; //换手率

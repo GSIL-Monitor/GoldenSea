@@ -210,8 +210,10 @@
 
 -(void)analysis
 {
-    [self analyYaogu];
+//    [self analyYaogu];
 //    [self analyFstYiZi];
+    
+    [self analyOneDayZhangting];
 }
 
 
@@ -281,8 +283,99 @@
     
 }
 
+-(void)analyOneDayZhangting
+{
+    
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
+    {
+        return;
+    }
+    
+    long continusZhangtinDays = 3;
+    long statDays = 5;
+    long middleIndex = 7;
+    for(long i=5; i<[cxtArray count]-statDays; i++ ){
+        CGFloat buyValue = 0.f;
+        CGFloat sellValue = 0.f;
+        
+        KDataModel* kTP5Data  = [cxtArray safeObjectAtIndex:(i-5)];
+        KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
+        KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
+        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
+        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
+        //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
+        //                KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+        //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
+        //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
+        //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
+        //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
+        
+        
+        
+        //        if(kTP1Data.isLimitUp && kTP2Data.isLimitUp && kTP3Data.isLimitUp && (!kTP4Data.isLimitUp)
+        //           ) //&& ([kTP1Data isYiZi])
+        
+        if((kTP1Data.isLimitUp&& ![kTP1Data isYiZi]) && (!kTP2Data.isLimitUp) && !kTP3Data.isLimitUp )
+        {
+            if([kT0Data isYiZi]){
+                continue;
+            }
+            
+            if(![kT0Data isRed]){
+                continue;
+            }
+            
+            //            if(kT0Data.isLimitUp){
+            //                continue;
+            //            }
+            
+            if(!
+               ((kT0Data.open/kTP1Data.close<0.99)
+                 && (kT0Data.close/kTP1Data.close>1.01)
+                && (kT0Data.low/kT0Data.open>0.98)
+                && (kT0Data.high/kT0Data.close<1.02)
+                )
+               ){
+                continue;
+            }
+            
+            buyValue = kT0Data.close;
+//            if(![kT0Data getBuyValue:buyValue]){
+//                continue;
+//            }
+            
+            kT0Data.stkID = self.stkID;
+            
+            kT0Data.tradeDbg.TBuyData = kT0Data;
+            kT0Data.tradeDbg.T0Data = kT0Data;
+            kT0Data.tradeDbg.T1Data = kT1Data;
+            kT0Data.tradeDbg.TP1Data = kTP1Data;
+            
+            long start = i+1;
+            long stop = start+self.param.durationAfterBuy;
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
+            
+            if(kT0Data.tradeDbg.TSellData)
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+        }
+    }
+    
+    
+    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
+    
+}
+
+
+//强势逻辑
 -(void)analyYaogu
 {
+   
     NSArray* cxtArray = [self getCxtArray:self.period];
 
     if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
@@ -315,27 +408,38 @@
 
 
         
-        if(kTP1Data.isLimitUp && kTP2Data.isLimitUp && kTP3Data.isLimitUp && (!kTP4Data.isLimitUp)
-           ) //&& ([kTP1Data isYiZi])
+//        if(kTP1Data.isLimitUp && kTP2Data.isLimitUp && kTP3Data.isLimitUp && (!kTP4Data.isLimitUp)
+//           ) //&& ([kTP1Data isYiZi])
+        
+        if((kTP1Data.isLimitUp&& ![kTP1Data isYiZi]) && (kTP2Data.isLimitUp&&[kTP2Data isYiZi]) && !kTP3Data.isLimitUp )  //似乎沪市表现要好，和市值相关？
         {
             if([kT0Data isYiZi]){
                 continue;
             }
             
-            if(![kT0Data isRed]){
+//            if(![kT0Data isRed]){
+//                continue;
+//            }
+            
+//            if(kT0Data.isLimitUp){
+//                continue;
+//            }
+            
+            if(!(kT0Data.open > kTP1Data.close)){
                 continue;
             }
             
-            if([self.stkID isEqualToString:@"SZ000029"]){
-                SMLog(@"");
+            buyValue = kT0Data.open*0.99;
+            if(![kT0Data getBuyValue:buyValue]){
+                continue;
             }
             
             kT0Data.stkID = self.stkID;
     
-            buyValue = kT0Data.close ;
             kT0Data.tradeDbg.TBuyData = kT0Data;
             kT0Data.tradeDbg.T0Data = kT0Data;
             kT0Data.tradeDbg.T1Data = kT1Data;
+            kT0Data.tradeDbg.TP1Data = kTP1Data;
             
             long start = i+1;
             long stop = start+self.param.durationAfterBuy;
