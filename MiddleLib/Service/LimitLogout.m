@@ -40,7 +40,8 @@
         if(ele.totalCount == 0){
             continue;
         }
-        SMLog(@"\nNo.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",j++,  ele.destDVValue,  ele.durationAfterBuy, ele.avgS2BDVValue ,ele.totalCount);
+//        SMLog(@"\nNo.(%d)- Conditon:  DESTDVVALUE(%.2f), duration(%d)  Result:avgVal(%.2f),totalCount(%d) ",j++,  ele.destDVValue,  ele.durationAfterBuy, ele.avgS2BDVValue ,ele.totalCount);
+        SMLog(@" ");
         [self logAllResultWithParam:ele];
         
     }
@@ -68,11 +69,12 @@
         }
         percent = [tmpArray count]*100.f/totalCount;
         
-        SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
+//        SMLog(@"index(%ld), percent(%.2f)  count(%d) ", i, percent,[tmpArray count]);
         
         for (KDataModel* kData in tmpArray) {
             TradeDebugData* tradeDbg = kData.tradeDbg;
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy);
+            BOOL isT1Red = [tradeDbg.T1Data isRed];
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, isT1Red:%@",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,isT1Red?@"Yes":@"No");
         }
     }
 }

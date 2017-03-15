@@ -135,6 +135,7 @@
 
 @property (strong) KDataModel* TP1Data;
 @property (strong) KDataModel* T1Data;
+@property (strong) KDataModel* T0Data;
 @property (strong) KDataModel* TnData; //n is dynamicl.
 @property (strong) KDataModel* Tn1Data; //n+1 data.
 //for check is right
@@ -216,6 +217,10 @@
 @property (assign) CGFloat ma30;
 @property (assign) CGFloat ma60;
 @property (assign) CGFloat ma120;
+
+
+-(BOOL)isYiZi;
+-(BOOL)isRed;
 
 
 //@property (assign) CGFloat percent; //换手率

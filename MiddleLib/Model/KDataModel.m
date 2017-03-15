@@ -109,6 +109,27 @@
     return self;
 }
 
+-(BOOL)isYiZi
+{
+    if(fabs(self.high-self.low)<0.01){
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(BOOL)isRed
+{
+    long iClose = self.close*100;
+    long iOpen = self.open*100;
+    if(iClose >= iOpen){
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 @end
 
 

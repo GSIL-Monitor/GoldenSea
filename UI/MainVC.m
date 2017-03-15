@@ -247,9 +247,9 @@
     param.daysAfterLastLimit = 30;
     param.buyPercent = 1.03;
     param.destDVValue = 3.f;
-    param.durationAfterBuy = 2;
-    param.buyStartIndex = 1;
-    param.buyEndIndex = 3; //param.buyStartIndex;
+    param.durationAfterBuy = 5;
+//    param.buyStartIndex = 1;
+//    param.buyEndIndex = 10; 
     [GSObjMgr shareInstance].mgr.param = param;
     
     if(isQuery){ //query

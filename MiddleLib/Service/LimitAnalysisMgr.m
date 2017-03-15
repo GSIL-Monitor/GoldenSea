@@ -208,8 +208,148 @@
 
 }
 
+-(void)analysis
+{
+    [self analyYaogu];
+//    [self analyFstYiZi];
+}
 
 
+-(void)analyFstYiZi
+{
+    NSArray* cxtArray = [self getCxtArray:self.period];
+    
+    if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
+    {
+        return;
+    }
+    
+    long continusZhangtinDays = 3;
+    long statDays = 5;
+    long middleIndex = 7;
+    //skip new shangShi period
+    for(long i=kNSTK_DayCount/2; i<[cxtArray count]-statDays; i++ ){
+        CGFloat buyValue = 0.f;
+        CGFloat sellValue = 0.f;
+        
+//        KDataModel* kTP5Data  = [cxtArray safeObjectAtIndex:(i-5)];
+        KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
+        KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
+        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
+        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
+        //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
+        //        KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+        //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
+        //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
+        //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
+        //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
+        
+        
+        
+        if(kTP1Data.isLimitUp && ([kTP1Data isYiZi])
+           && !kTP2Data.isLimitUp && !kTP3Data.isLimitUp){
+            if([kT0Data isYiZi]){
+                continue;
+            }
+//
+//            if(![kT1Data isRed]){
+//                continue;
+//            }
+            
+            
+            kT0Data.stkID = self.stkID;
+            
+            buyValue = kT0Data.open ;
+            kT0Data.tradeDbg.TBuyData = kT0Data;
+            kT0Data.tradeDbg.T0Data = kT0Data;
+            kT0Data.tradeDbg.T1Data = kT1Data;
+            
+            long start = i+1;
+            long stop = start+self.param.durationAfterBuy;
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
+            
+            if(kT0Data.tradeDbg.TSellData)
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+        }
+    }
+    
+    
+    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
+    
+}
+
+-(void)analyYaogu
+{
+    NSArray* cxtArray = [self getCxtArray:self.period];
+
+    if(! [self isValidDataPassedIn] || [cxtArray count]< kNSTK_DayCount ) // || [cxtArray count]<20)
+    {
+        return;
+    }
+
+    long continusZhangtinDays = 3;
+    long statDays = 5;
+    long middleIndex = 7;
+    for(long i=5; i<[cxtArray count]-statDays; i++ ){
+        CGFloat buyValue = 0.f;
+        CGFloat sellValue = 0.f;
+
+        KDataModel* kTP5Data  = [cxtArray safeObjectAtIndex:(i-5)];
+        KDataModel* kTP4Data  = [cxtArray safeObjectAtIndex:(i-4)];
+        KDataModel* kTP3Data  = [cxtArray safeObjectAtIndex:(i-3)];
+        KDataModel* kTP2Data  = [cxtArray safeObjectAtIndex:(i-2)];
+        KDataModel* kTP1Data  = [cxtArray safeObjectAtIndex:(i-1)];
+        KDataModel* kT0Data = [cxtArray safeObjectAtIndex:i];
+        KDataModel* kT1Data = [cxtArray safeObjectAtIndex:i+1];
+        KDataModel* kT2Data = [cxtArray safeObjectAtIndex:i+2];
+        KDataModel* kT3Data = [cxtArray safeObjectAtIndex:i+3];
+        //        KDataModel* kT4Data = [cxtArray safeObjectAtIndex:i+4];
+//                KDataModel* kT5Data = [cxtArray safeObjectAtIndex:i+5];
+        //        KDataModel* kT6Data = [cxtArray safeObjectAtIndex:i+6];
+        //        KDataModel* kT7Data = [cxtArray safeObjectAtIndex:i+7];
+        //        KDataModel* kT8Data = [cxtArray safeObjectAtIndex:i+8];
+        //        KDataModel* kT9Data = [cxtArray safeObjectAtIndex:i+9];
+
+
+        
+        if(kTP1Data.isLimitUp && kTP2Data.isLimitUp && kTP3Data.isLimitUp && (!kTP4Data.isLimitUp)
+           ) //&& ([kTP1Data isYiZi])
+        {
+            if([kT0Data isYiZi]){
+                continue;
+            }
+            
+            if(![kT0Data isRed]){
+                continue;
+            }
+            
+            if([self.stkID isEqualToString:@"SZ000029"]){
+                SMLog(@"");
+            }
+            
+            kT0Data.stkID = self.stkID;
+    
+            buyValue = kT0Data.close ;
+            kT0Data.tradeDbg.TBuyData = kT0Data;
+            kT0Data.tradeDbg.T0Data = kT0Data;
+            kT0Data.tradeDbg.T1Data = kT1Data;
+            
+            long start = i+1;
+            long stop = start+self.param.durationAfterBuy;
+            sellValue = [self getSellValue:buyValue  kT0data:kT0Data  cxtArray:cxtArray  start:start stop:stop];
+            
+            if(kT0Data.tradeDbg.TSellData)
+                [self dispatchResult2Array:kT0Data buyValue:buyValue sellValue:sellValue];
+        }
+    }
+
+
+    [[GSObjMgr shareInstance].log SimpleLogOutResult:NO];
+
+}
 
 //-(void)analysis
 //{
@@ -253,7 +393,7 @@
 //}
 
 
--(void)analysis
+-(void)analyLimit
 {
     NSArray* cxtArray = [self getCxtArray:self.period];
 
@@ -370,32 +510,9 @@
 
 
 
-//long bIndex = [HelpService indexOfValueSmallThan:buyValue Array:cxtArray start:i+self.param.buyStartIndex stop:i+self.param.buyEndIndex kT0data:kT0Data];
-//if(bIndex == -1){ //not find
-//    continue;
-//}
-//
-//kT0Data.tradeDbg.TBuyData = [cxtArray objectAtIndex:i+self.param.buyStartIndex+bIndex];
-//
-//long start = i+self.param.buyStartIndex+bIndex+1;
-//long stop = start+self.param.durationAfterBuy;
 
 
-#pragma setter //tbd.
-//-(void)setParam:(RaisingLimitParam *)oldParam
-//{
-//    RaisingLimitParam* param = [[RaisingLimitParam alloc]init];
-//    param.durationAfterBuy = oldParam.durationAfterBuy;
-//    param.buyPercent = oldParam.buyPercent;
-//    param.daysAfterLastLimit = oldParam.daysAfterLastLimit;
-//    param.destDVValue = oldParam.destDVValue;
-//    param.cutDVValue = oldParam.cutDVValue;
-//
-//    param.buyStartIndex = oldParam.buyStartIndex;
-//    param.buyEndIndex = oldParam.buyEndIndex;
-//
-//    _param = param;
-//}
+
 
 
 @end
