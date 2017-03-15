@@ -331,9 +331,9 @@
                 continue;
             }
             
-            //            if(kT0Data.isLimitUp){
-            //                continue;
-            //            }
+            if(kT0Data.isLimitUp){
+                continue;
+            }
             
             if(!
                ((kT0Data.open/kTP1Data.close<0.99)

@@ -76,7 +76,14 @@
             BOOL isT1Red = [tradeDbg.T1Data isRed];
             CGFloat dvT1Open = tradeDbg.T1Data.open/tradeDbg.T0Data.close;
             CGFloat dvT0Open = tradeDbg.T0Data.open/tradeDbg.TP1Data.close;
-            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f,dvT0Open:%.2f,dvT1Open:%.2f, isT1Red:%@, ",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,dvT0Open,dvT1Open,isT1Red?@"Yes":@"No");
+            CGFloat dvT0Close = tradeDbg.T0Data.close/tradeDbg.TP1Data.close;
+            CGFloat dvT0High = tradeDbg.T0Data.high/tradeDbg.TP1Data.close;
+            CGFloat dvT0Low = tradeDbg.T0Data.low/tradeDbg.TP1Data.close;
+            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, dvT0Open:%.3f,dvT0Close:%.3f,dvT0High:%.3f,dvT0Low:%.3f,  ",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,
+                  dvT0Open,dvT0Close,dvT0High,dvT0Low);
+//            SMLog(@"%@ TBuyData:%ld, TSellData:%ld, dvSelltoBuy:%.2f, dvT0Open:%.3f,dvT0Close:%.3f,dvT0High:%.3f,dvT0Low:%.3f, dvT1Open:%.2f, isT1Red:%@, ",kData.stkID, tradeDbg.TBuyData.time,tradeDbg.TSellData.time,tradeDbg.dvSelltoBuy,
+//                  dvT0Open,dvT0Close,dvT0High,dvT0Low,
+//                  dvT1Open,isT1Red?@"Yes":@"No");
         }
     }
 }

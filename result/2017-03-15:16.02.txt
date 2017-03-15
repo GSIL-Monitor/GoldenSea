@@ -1,0 +1,95 @@
+ 
+SH600008 TBuyData:20160302, TSellData:20160307, dvSelltoBuy:-3.42, dvT0Open:0.990,dvT0Close:1.046,dvT0High:1.051,dvT0Low:1.046, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SH600149 TBuyData:20160302, TSellData:20160307, dvSelltoBuy:-5.62, dvT0Open:0.970,dvT0Close:1.056,dvT0High:1.070,dvT0Low:1.056, dvT1Open:0.98, isT1Red:No, 
+ 
+SH600198 TBuyData:20160531, TSellData:20160601, dvSelltoBuy:3.00, dvT0Open:0.984,dvT0Close:1.038,dvT0High:1.051,dvT0Low:1.038, dvT1Open:1.01, isT1Red:Yes, 
+ 
+SH600380 TBuyData:20160823, TSellData:20160826, dvSelltoBuy:-10.88, dvT0Open:0.982,dvT0Close:1.090,dvT0High:1.100,dvT0Low:1.090, dvT1Open:0.96, isT1Red:No, 
+ 
+SH600385 TBuyData:20160405, TSellData:20160408, dvSelltoBuy:-5.63, dvT0Open:0.986,dvT0Close:1.021,dvT0High:1.034,dvT0Low:1.021, dvT1Open:0.99, isT1Red:No, 
+ 
+SH600392 TBuyData:20160513, TSellData:20160516, dvSelltoBuy:3.00, dvT0Open:0.987,dvT0Close:1.095,dvT0High:1.099,dvT0Low:1.095, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SH600425 TBuyData:20160219, TSellData:20160222, dvSelltoBuy:3.00, dvT0Open:0.983,dvT0Close:1.011,dvT0High:1.030,dvT0Low:1.011, dvT1Open:1.01, isT1Red:Yes, 
+ 
+SH600493 TBuyData:20161205, TSellData:20161208, dvSelltoBuy:-3.36, dvT0Open:0.966,dvT0Close:1.034,dvT0High:1.035,dvT0Low:1.034, dvT1Open:0.99, isT1Red:No, 
+ 
+SH600730 TBuyData:20160721, TSellData:20160726, dvSelltoBuy:-1.41, dvT0Open:0.986,dvT0Close:1.011,dvT0High:1.014,dvT0Low:1.011, dvT1Open:0.99, isT1Red:No, 
+ 
+SH600807 TBuyData:20160216, TSellData:20160219, dvSelltoBuy:-2.16, dvT0Open:0.971,dvT0Close:1.013,dvT0High:1.027,dvT0Low:1.013, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SH600988 TBuyData:20160302, TSellData:20160303, dvSelltoBuy:3.00, dvT0Open:0.969,dvT0Close:1.051,dvT0High:1.061,dvT0Low:1.051, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SH601002 TBuyData:20160912, TSellData:20160919, dvSelltoBuy:-4.00, dvT0Open:0.984,dvT0Close:1.026,dvT0High:1.045,dvT0Low:1.026, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SH601388 TBuyData:20160615, TSellData:20160620, dvSelltoBuy:3.00, dvT0Open:0.977,dvT0Close:1.016,dvT0High:1.035,dvT0Low:1.016, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SH601668 TBuyData:20161129, TSellData:20161202, dvSelltoBuy:-6.91, dvT0Open:0.985,dvT0Close:1.079,dvT0High:1.100,dvT0Low:1.079, dvT1Open:1.00, isT1Red:No, 
+ 
+SH601789 TBuyData:20161215, TSellData:20161220, dvSelltoBuy:-4.61, dvT0Open:0.989,dvT0Close:1.051,dvT0High:1.061,dvT0Low:1.051, dvT1Open:0.98, isT1Red:No, 
+ 
+SH603026 TBuyData:20161018, TSellData:20161021, dvSelltoBuy:3.00, dvT0Open:0.988,dvT0Close:1.058,dvT0High:1.077,dvT0Low:1.058, dvT1Open:1.00, isT1Red:No, 
+ 
+SH603729 TBuyData:20160406, TSellData:20160408, dvSelltoBuy:3.00, dvT0Open:0.987,dvT0Close:1.050,dvT0High:1.055,dvT0Low:1.050, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ000005 TBuyData:20160615, TSellData:20160620, dvSelltoBuy:-1.88, dvT0Open:0.989,dvT0Close:1.083,dvT0High:1.100,dvT0Low:1.083, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ000060 TBuyData:20161114, TSellData:20161115, dvSelltoBuy:3.00, dvT0Open:0.970,dvT0Close:1.015,dvT0High:1.025,dvT0Low:1.015, dvT1Open:1.10, isT1Red:No, 
+ 
+SZ000426 TBuyData:20160804, TSellData:20160809, dvSelltoBuy:-11.33, dvT0Open:0.989,dvT0Close:1.011,dvT0High:1.021,dvT0Low:1.011, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ000567 TBuyData:20161024, TSellData:20161027, dvSelltoBuy:-3.95, dvT0Open:0.989,dvT0Close:1.025,dvT0High:1.043,dvT0Low:1.025, dvT1Open:0.97, isT1Red:No, 
+ 
+SZ000570 TBuyData:20160520, TSellData:20160525, dvSelltoBuy:-4.14, dvT0Open:0.984,dvT0Close:1.026,dvT0High:1.033,dvT0Low:1.026, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SZ000615 TBuyData:20160912, TSellData:20161017, dvSelltoBuy:-3.47, dvT0Open:0.965,dvT0Close:1.019,dvT0High:1.039,dvT0Low:1.019, dvT1Open:0.97, isT1Red:Yes, 
+ 
+SZ000721 TBuyData:20160726, TSellData:20160727, dvSelltoBuy:3.00, dvT0Open:0.983,dvT0Close:1.021,dvT0High:1.025,dvT0Low:1.021, dvT1Open:1.00, isT1Red:Yes, 
+ 
+SZ000780 TBuyData:20160425, TSellData:20160426, dvSelltoBuy:3.00, dvT0Open:0.984,dvT0Close:1.083,dvT0High:1.096,dvT0Low:1.083, dvT1Open:0.95, isT1Red:Yes, 
+ 
+SZ000791 TBuyData:20160902, TSellData:20160905, dvSelltoBuy:3.00, dvT0Open:0.976,dvT0Close:1.018,dvT0High:1.030,dvT0Low:1.018, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SZ000937 TBuyData:20161114, TSellData:20161117, dvSelltoBuy:-4.05, dvT0Open:0.990,dvT0Close:1.099,dvT0High:1.100,dvT0Low:1.099, dvT1Open:0.98, isT1Red:No, 
+ 
+SZ000959 TBuyData:20160818, TSellData:20160823, dvSelltoBuy:-4.60, dvT0Open:0.990,dvT0Close:1.010,dvT0High:1.018,dvT0Low:1.010, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SZ002016 TBuyData:20160721, TSellData:20160725, dvSelltoBuy:3.00, dvT0Open:0.960,dvT0Close:1.031,dvT0High:1.039,dvT0Low:1.031, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SZ002054 TBuyData:20160810, TSellData:20160811, dvSelltoBuy:3.00, dvT0Open:0.990,dvT0Close:1.012,dvT0High:1.022,dvT0Low:1.012, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SZ002110 TBuyData:20160217, TSellData:20160222, dvSelltoBuy:-8.05, dvT0Open:0.989,dvT0Close:1.072,dvT0High:1.083,dvT0Low:1.072, dvT1Open:1.00, isT1Red:No, 
+ 
+SZ002135 TBuyData:20160406, TSellData:20160408, dvSelltoBuy:3.00, dvT0Open:0.990,dvT0Close:1.018,dvT0High:1.024,dvT0Low:1.018, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ002222 TBuyData:20160531, TSellData:20160601, dvSelltoBuy:3.00, dvT0Open:0.972,dvT0Close:1.070,dvT0High:1.086,dvT0Low:1.070, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SZ002231 TBuyData:20160526, TSellData:20160531, dvSelltoBuy:-1.30, dvT0Open:0.979,dvT0Close:1.018,dvT0High:1.023,dvT0Low:1.018, dvT1Open:0.98, isT1Red:No, 
+ 
+SZ002253 TBuyData:20170118, TSellData:20170123, dvSelltoBuy:-3.36, dvT0Open:0.976,dvT0Close:1.019,dvT0High:1.025,dvT0Low:1.019, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SZ002292 TBuyData:20160223, TSellData:20160226, dvSelltoBuy:-10.15, dvT0Open:0.980,dvT0Close:1.058,dvT0High:1.073,dvT0Low:1.058, dvT1Open:0.98, isT1Red:No, 
+ 
+SZ002302 TBuyData:20160322, TSellData:20160324, dvSelltoBuy:3.00, dvT0Open:0.988,dvT0Close:1.016,dvT0High:1.023,dvT0Low:1.016, dvT1Open:1.00, isT1Red:No, 
+ 
+SZ002406 TBuyData:20160928, TSellData:20161010, dvSelltoBuy:-1.91, dvT0Open:0.978,dvT0Close:1.015,dvT0High:1.030,dvT0Low:1.015, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ002619 TBuyData:20160426, TSellData:20160427, dvSelltoBuy:3.00, dvT0Open:0.989,dvT0Close:1.094,dvT0High:1.099,dvT0Low:1.094, dvT1Open:0.98, isT1Red:Yes, 
+ 
+SZ002684 TBuyData:20160503, TSellData:20160506, dvSelltoBuy:-8.35, dvT0Open:0.986,dvT0Close:1.041,dvT0High:1.045,dvT0Low:1.041, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ300063 TBuyData:20161208, TSellData:20161209, dvSelltoBuy:3.00, dvT0Open:0.978,dvT0Close:1.017,dvT0High:1.034,dvT0Low:1.017, dvT1Open:1.00, isT1Red:Yes, 
+ 
+SZ300073 TBuyData:20160503, TSellData:20160506, dvSelltoBuy:3.00, dvT0Open:0.981,dvT0Close:1.015,dvT0High:1.031,dvT0Low:1.015, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ300099 TBuyData:20160520, TSellData:20160523, dvSelltoBuy:3.00, dvT0Open:0.978,dvT0Close:1.030,dvT0High:1.031,dvT0Low:1.030, dvT1Open:1.01, isT1Red:Yes, 
+SZ300099 TBuyData:20160728, TSellData:20160802, dvSelltoBuy:0.09, dvT0Open:0.982,dvT0Close:1.075,dvT0High:1.089,dvT0Low:1.075, dvT1Open:0.97, isT1Red:No, 
+ 
+SZ300198 TBuyData:20160217, TSellData:20160218, dvSelltoBuy:3.00, dvT0Open:0.984,dvT0Close:1.053,dvT0High:1.069,dvT0Low:1.053, dvT1Open:1.00, isT1Red:No, 
+ 
+SZ300228 TBuyData:20160317, TSellData:20160318, dvSelltoBuy:3.00, dvT0Open:0.977,dvT0Close:1.052,dvT0High:1.072,dvT0Low:1.052, dvT1Open:0.99, isT1Red:Yes, 
+ 
+SZ300348 TBuyData:20160627, TSellData:20160630, dvSelltoBuy:3.00, dvT0Open:0.972,dvT0Close:1.018,dvT0High:1.027,dvT0Low:1.018, dvT1Open:0.99, isT1Red:No, 
+ 
+SZ300494 TBuyData:20160704, TSellData:20160705, dvSelltoBuy:3.00, dvT0Open:0.975,dvT0Close:1.031,dvT0High:1.049,dvT0Low:1.031, dvT1Open:1.01, isT1Red:Yes, 
