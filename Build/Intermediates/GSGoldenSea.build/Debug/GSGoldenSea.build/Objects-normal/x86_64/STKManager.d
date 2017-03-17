@@ -55,6 +55,7 @@ dependencies: \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/DatabaseService/HYIndexDBManager.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/UtilData.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/STKManager.h \
+  /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Model/STKModel.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Request/XueQiuDataRequest.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Network/HYBaseRequest.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/BaseLib/YTKNetwork/YTKRequest.h \

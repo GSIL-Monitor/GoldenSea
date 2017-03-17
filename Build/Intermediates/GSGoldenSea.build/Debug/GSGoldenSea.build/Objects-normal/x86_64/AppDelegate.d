@@ -59,6 +59,7 @@ dependencies: \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Network/HYBaseResponse.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/DatabaseService/HYSTKDBManager.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/STKManager.h \
+  /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Model/STKModel.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Conditon/GSCondition.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/LimitAnalysisMgr.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/AvgAnalysisMgr.h \

@@ -53,8 +53,14 @@
     
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
 
-    
+    [self test];
 
+}
+
+-(void)test
+{
+    NSArray* arr = [[HYSTKDBManager defaultManager].allSTK getSTKWithStartTime:20161001 endTime:20161101];
+    SMLog(@"");
 }
 
 
