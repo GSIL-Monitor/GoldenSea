@@ -94,7 +94,7 @@
     }
     
     model.stkID = recordID;
-    model.lastUpdateTime = updateTime;
+//    model.lastUpdateTime = updateTime;
     
     NSString* condition = [NSString stringWithFormat:@"stkID = '%@'",recordID];
     

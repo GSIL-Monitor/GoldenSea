@@ -54,16 +54,11 @@
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
 
     
-    [self test];
-
 
 }
 
 
--(void)test
-{
-    [[STKManager shareInstance]saveStkToDB];
-}
+
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application

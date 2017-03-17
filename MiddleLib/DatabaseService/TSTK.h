@@ -12,9 +12,16 @@
 
 
 
+
+-(NSArray *)getRecordsWithIndustry:(NSString*)keyWord;
+
+-(NSArray*)getSTKWithStartTime:(long)startTime endTime:(long)endTime;
+
+-(NSArray*)getSTKWithCondition:(NSString*)condition;
+
+
+
+
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID;
-
-- (NSArray *)getRecordsWithIndustry:(NSString*)keyWord;
-
 
 @end

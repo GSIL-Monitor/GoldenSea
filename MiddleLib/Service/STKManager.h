@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STKModel.h"
 
 @interface STKManager : NSObject
 
 +(STKManager*)shareInstance;
 
 -(void)saveStkToDB;
+
 
 @end

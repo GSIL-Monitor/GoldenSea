@@ -31,21 +31,18 @@ SINGLETON_GENERATOR(STKManager, shareInstance);
     self = [super init];
     if(self){
         
-        [self setupDB];
+        
     }
     
     return self;
 }
 
--(void)setupDB
-{
-//    [[HYDatabaseHelper defaultHelper] setupDB];
-        
-}
+
 
 
 -(void)saveStkToDB;
 {
+    //reset db firstly.
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:YES];
 
     
@@ -55,7 +52,6 @@ SINGLETON_GENERATOR(STKManager, shareInstance);
     
     [[STKxlsReader shareInstance] startWithPath:xlsPath dbPath:nil];
 }
-
 
 
 

@@ -12,14 +12,7 @@
 #import "HYSTKDBManager.h"
 #import "XlsxReaderWriter.h"
 
-/*
- @property (nonatomic, strong) NSString* stkID;
- @property (nonatomic, strong) NSString* name;
- @property (nonatomic, strong) NSString* industry;
- @property (nonatomic, strong) NSString* province;
- @property (nonatomic, assign) CGFloat totalMV; //market value;
- @property (nonatomic, assign) CGFloat curMV; //current market value;
- */
+
 
 //sheet index
 #define SheetIndex_600         (1)

@@ -87,6 +87,25 @@
     return res;
 }
 
+
+-(NSArray*)getSTKWithStartTime:(long)startTime endTime:(long)endTime;
+{
+    
+    NSString* sql = [NSString stringWithFormat:@"where marketTime>%ld and  marketTime<=%ld ",startTime, endTime];
+    NSArray* res = [super getAllRecordsWithAditonCondition:sql];
+    
+    return res;
+}
+
+-(NSArray*)getSTKWithCondition:(NSString*)condition;
+{
+    NSString* sql = condition;
+
+    NSArray* res = [super getAllRecordsWithAditonCondition:sql];
+    
+    return res;
+}
+
 -(BOOL)updateTime:(long)updateTime WithID:(NSString *)recordID
 {
     
@@ -96,7 +115,7 @@
     }
     
     model.stkID = recordID;
-    model.lastUpdateTime = updateTime;
+//    model.lastUpdateTime = updateTime;
     
     NSString* condition = [NSString stringWithFormat:@"stkID = '%@'",recordID];
 

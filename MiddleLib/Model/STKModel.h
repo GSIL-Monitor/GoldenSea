@@ -19,6 +19,6 @@
 @property (nonatomic, assign) CGFloat totalMV; //market value;
 @property (nonatomic, assign) CGFloat curMV; //current market value;
 
-@property (assign) long lastUpdateTime;
+//@property (assign) long lastUpdateTime;
 
 @end
