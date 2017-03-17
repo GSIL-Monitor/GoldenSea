@@ -80,7 +80,7 @@
 }
 
 
-- (IBAction)onSaveData:(id)sender {   
+- (IBAction)onSaveData:(id)sender {
     //    [GSDataMgr shareInstance].startDate = 20140125;
     //    [GSDataMgr shareInstance].startDate = 20151001;
 //    [GSDataMgr shareInstance].startDate = 20160225;
@@ -95,6 +95,10 @@
 //    [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170119];
     [[GSDataMgr shareInstance] writeDataToDB:_filedir EndDate:20170217];
 
+}
+
+- (IBAction)onSaveSTK:(id)sender {
+    [[STKManager shareInstance]saveStkToDB];
 }
 
 - (IBAction)onNSTK:(id)sender {

@@ -12,7 +12,6 @@
 
 +(STKManager*)shareInstance;
 
-
--(void)test;
+-(void)saveStkToDB;
 
 @end

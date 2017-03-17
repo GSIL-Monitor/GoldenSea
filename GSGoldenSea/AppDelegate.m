@@ -28,7 +28,6 @@
 #import "TechAnalysisMgr.h"
 #import "GSBaseResult.h"
 
-#import "STKxlsReader.h"
 
 @interface AppDelegate (){
     
@@ -55,7 +54,7 @@
     [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
 
     
-//    [self test];
+    [self test];
 
 
 }
@@ -63,11 +62,7 @@
 
 -(void)test
 {
-    NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    NSString* xlsPath = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/test.xlsx",[paths stringByDeletingLastPathComponent]];
-//    NSString* xlsPath = [NSString stringWithFormat:@"%@/Code/1HelpCode/0data/test1.xlsx",[paths stringByDeletingLastPathComponent]];
-
-    [[STKxlsReader shareInstance] startWithPath:xlsPath dbPath:nil];
+    [[STKManager shareInstance]saveStkToDB];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

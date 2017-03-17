@@ -62,5 +62,4 @@ dependencies: \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Conditon/GSCondition.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/LimitAnalysisMgr.h \
   /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/AvgAnalysisMgr.h \
-  /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/TechAnalysisMgr.h \
-  /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/STKxlsSDK/STKxlsReader.h
+  /Users/frankweng/Code/1HelpCode/GSGoldenSea/MiddleLib/Service/TechAnalysisMgr.h

@@ -71,18 +71,32 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 
 - (void)startWithPath:(NSString *)xlsPath dbPath:(NSString*)dbPath;
 {
-    
     _spreadsheet = [BRAOfficeDocumentPackage open:xlsPath];
     _workbook = _spreadsheet.workbook;
     
+    [self readDongFangXls];
     
+    
+    NSLog(@"end of startWithPath");
+}
+
+#pragma mark - dongFang xls
+-(void)readDongFangXls
+{
+    BRAWorksheet *worksheet = _workbook.worksheets[0];
+    [self readWorkSheet:worksheet base:0];
+}
+
+
+#pragma mark - self xls
+- (void)readSelfXls;
+{
     NSInteger base=0;
     for(long i=1; i<=4; i++){
         BRAWorksheet *worksheet = _workbook.worksheets[i];
         [self readWorkSheet:worksheet base:i];
     }
     
-    NSLog(@"end of startWithPath");
 }
 
 -(void)readWorkSheet:(BRAWorksheet*)worksheet base:(NSInteger)base
@@ -90,6 +104,7 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
     for(long i=1; i<[worksheet.rows count]; i++){ //0 is title
         BRARow* row = [worksheet.rows safeObjectAtIndex:i];
         STKModel* stkMod = [[STKModel alloc]init];
+        long sid = 0;
         for(long j=ColumnIndex_stkID; j<[row.cells count]; j++){
             BRACell* cell = [row.cells safeObjectAtIndex:j];
             switch (j) {

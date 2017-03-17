@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString* industry;
 @property (nonatomic, strong) NSString* province;
 @property (nonatomic, strong) NSString* property;
+@property (nonatomic, assign) long marketTime; //first market time
 @property (nonatomic, assign) CGFloat totalMV; //market value;
 @property (nonatomic, assign) CGFloat curMV; //current market value;
 
