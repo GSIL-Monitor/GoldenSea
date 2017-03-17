@@ -43,6 +43,7 @@
                        @{@"industry"                    : @"text"},
                        @{@"province"                    : @"text"},
                        @{@"property"                    : @"text"},
+                       @{@"marketTime"                  : @"integer"},
 
                        @{@"totalMV"         : @"float"},
                        @{@"curMV"         : @"float"},

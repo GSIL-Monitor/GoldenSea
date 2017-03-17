@@ -29,24 +29,47 @@
 
 
 //cloumn index
-#define ColumnIndex_stkID       0
-#define ColumnIndex_name        (ColumnIndex_stkID+1)
-#define ColumnIndex_industry    (ColumnIndex_name+1)
-#define ColumnIndex_province    (ColumnIndex_industry+1)
-#define ColumnIndex_property    (ColumnIndex_province+1)
-#define ColumnIndex_totalMV     (ColumnIndex_property+1)
-#define ColumnIndex_curPercent  (ColumnIndex_totalMV+1)
+//#define ColumnIndex_stkID       0
+//#define ColumnIndex_name        (ColumnIndex_stkID+1)
+//#define ColumnIndex_industry    (ColumnIndex_name+1)
+//#define ColumnIndex_province    (ColumnIndex_industry+1)
+//#define ColumnIndex_property    (ColumnIndex_province+1)
+//#define ColumnIndex_totalMV     (ColumnIndex_property+1)
+//#define ColumnIndex_curPercent  (ColumnIndex_totalMV+1)
+//
+//#define ColumnIndex_BookValue   (ColumnIndex_curPercent+1)
+//#define ColumnIndex_PB          (ColumnIndex_bookValue+1)
+//#define ColumnIndex_title       (ColumnIndex_PB+1)
+//#define ColumnIndex_level       (ColumnIndex_title+1)
+//
+//#define ColumnIndex_increase12t15   (ColumnIndex_level+1)
+//#define ColumnIndex_increase16      (ColumnIndex_increase12t15+1)
+//
+//#define ColumnIndex_note        (ColumnIndex_increase16+1)
+//#define ColumnIndex_ref         (ColumnIndex_note+1)
 
-#define ColumnIndex_BookValue   (ColumnIndex_curPercent+1)
-#define ColumnIndex_PB          (ColumnIndex_bookValue+1)
-#define ColumnIndex_title       (ColumnIndex_PB+1)
-#define ColumnIndex_level       (ColumnIndex_title+1)
+//cloumn index
+static long ColumnIndex_stkID = 0xffff;
+static long ColumnIndex_name = 0xffff;
+static long ColumnIndex_marketTime = 0xffff;
+static long ColumnIndex_industry = 0xffff;
+static long ColumnIndex_province = 0xffff;
+static long ColumnIndex_property = 0xffff;
+static long ColumnIndex_totalMV = 0xffff;
+static long ColumnIndex_curPercent = 0xffff;
 
-#define ColumnIndex_increase12t15   (ColumnIndex_level+1)
-#define ColumnIndex_increase16      (ColumnIndex_increase12t15+1)
+static long ColumnIndex_BookValue = 0xffff;
+static long ColumnIndex_PB = 0xffff;
+static long ColumnIndex_title = 0xffff;
+static long ColumnIndex_level = 0xffff;
 
-#define ColumnIndex_note        (ColumnIndex_increase16+1)
-#define ColumnIndex_ref         (ColumnIndex_note+1)
+static long ColumnIndex_increase12t15 = 0xffff;
+static long ColumnIndex_increase16 = 0xffff;
+
+static long ColumnIndex_note = 0xffff;
+static long ColumnIndex_ref = 0xffff;
+
+
 
 
 
@@ -63,9 +86,55 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
 {
     if(self = [super init]){
         [self initDB];
+        
+        [self initDongFangXlsParam];
     }
     
     return self;
+}
+
+-(void)initDB
+{
+    BOOL isRest = YES;
+    [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
+    
+}
+
+-(void)initSelfXlsParam
+{
+    ColumnIndex_stkID = 0;
+    
+    ColumnIndex_name     =   (ColumnIndex_stkID+1);
+    ColumnIndex_industry  =  (ColumnIndex_name+1);
+    ColumnIndex_province   = (ColumnIndex_industry+1);
+    ColumnIndex_property   = (ColumnIndex_province+1);
+    ColumnIndex_totalMV    = (ColumnIndex_property+1);
+    ColumnIndex_curPercent = (ColumnIndex_totalMV+1);
+    
+    ColumnIndex_BookValue  = (ColumnIndex_curPercent+1);
+    ColumnIndex_PB         = (ColumnIndex_BookValue+1);
+    ColumnIndex_title      = (ColumnIndex_PB+1);
+    ColumnIndex_level      = (ColumnIndex_title+1);
+    
+    ColumnIndex_increase12t15 =  (ColumnIndex_level+1);
+    ColumnIndex_increase16     = (ColumnIndex_increase12t15+1);
+    
+    ColumnIndex_note      =  (ColumnIndex_increase16+1);
+    ColumnIndex_ref       = (ColumnIndex_note+1);
+}
+
+-(void)initDongFangXlsParam
+{
+    ColumnIndex_stkID = 0;
+    
+    ColumnIndex_name     =   1;
+    ColumnIndex_marketTime = 2;
+
+//    ColumnIndex_industry  =  (ColumnIndex_name+1);
+//    ColumnIndex_province   = (ColumnIndex_industry+1);
+//    ColumnIndex_property   = (ColumnIndex_province+1);
+//    ColumnIndex_totalMV    = (ColumnIndex_property+1);
+//    ColumnIndex_curPercent = (ColumnIndex_totalMV+1);
 }
 
 
@@ -107,34 +176,57 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
         long sid = 0;
         for(long j=ColumnIndex_stkID; j<[row.cells count]; j++){
             BRACell* cell = [row.cells safeObjectAtIndex:j];
-            switch (j) {
-                case ColumnIndex_stkID:
-                    stkMod.stkID = [self convertSTKID:base cell:cell];
-                    break;
-                    
-                case ColumnIndex_name:
-                    stkMod.name = cell.stringValue;
-                    break;
-                    
-                case ColumnIndex_industry:
-                    stkMod.industry = cell.stringValue;
-                    break;
-                    
-                case ColumnIndex_province:
-                    stkMod.province = cell.stringValue;
-                    break;
-                    
-                case ColumnIndex_totalMV:
-                    stkMod.totalMV = cell.floatValue;
-                    break;
-                    
-                case ColumnIndex_curPercent:
-                    stkMod.curMV = cell.floatValue*stkMod.totalMV;
-                    break;
-                    
-                default:
-                    break;
+            if(j == ColumnIndex_stkID){
+                stkMod.stkID = [self convertSTKID:base cell:cell];
             }
+            else if(j == ColumnIndex_name){
+                stkMod.name = cell.stringValue;
+            }
+            else if(j == ColumnIndex_marketTime){
+                stkMod.marketTime = [self convertMarketTime:cell];
+            }
+            else if(j == ColumnIndex_industry){
+                stkMod.industry = cell.stringValue;
+            }
+            else if(j == ColumnIndex_province){
+                stkMod.province = cell.stringValue;
+            }
+            else if(j == ColumnIndex_totalMV){
+                stkMod.totalMV = cell.floatValue;
+            }
+            else if(j == ColumnIndex_curPercent){
+                stkMod.curMV = cell.floatValue*stkMod.totalMV;
+            }
+            
+            
+//            switch (j) {
+//                case ColumnIndex_stkID:
+//                    stkMod.stkID = [self convertSTKID:base cell:cell];
+//                    break;
+//                    
+//                case ColumnIndex_name:
+//                    stkMod.name = cell.stringValue;
+//                    break;
+//                    
+//                case ColumnIndex_industry:
+//                    stkMod.industry = cell.stringValue;
+//                    break;
+//                    
+//                case ColumnIndex_province:
+//                    stkMod.province = cell.stringValue;
+//                    break;
+//                    
+//                case ColumnIndex_totalMV:
+//                    stkMod.totalMV = cell.floatValue;
+//                    break;
+//                    
+//                case ColumnIndex_curPercent:
+//                    stkMod.curMV = cell.floatValue*stkMod.totalMV;
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
             
         }
         
@@ -145,40 +237,24 @@ SINGLETON_GENERATOR(STKxlsReader, shareInstance);
     }
 }
 
-
+#pragma mark - dongcai data change.
 -(NSString*)convertSTKID:(NSInteger)base cell:(BRACell*)cell
 {
     NSString* stkID;
     NSString *prefix = (cell.integerValue>=600000)? @"SH":@"SZ";
-    
-    switch (base) {
-        case 1: //600
-        case 4: //300
-            stkID = [NSString stringWithFormat:@"%@%ld",prefix,cell.integerValue];
-            break;
-
-        case 2: //000
-            stkID = [NSString stringWithFormat:@"%@000%ld",prefix,cell.integerValue];
-            break;
-
-        case 3: //002
-            stkID = [NSString stringWithFormat:@"%@002%ld",prefix,cell.integerValue];
-            break;
-
-        default:
-            break;
-    }
-    
+    NSString* stk = [cell.stringValue substringToIndex:6];
+    stkID = [NSString stringWithFormat:@"%@%@",prefix,stk];
     return stkID;
 }
 
 
--(void)initDB
+-(long)convertMarketTime:(BRACell*)cell
 {
-    BOOL isRest = YES;
-    [[HYSTKDBManager defaultManager]setupDB:nil isReset:isRest];
-
+    NSString* filterTime = [cell.stringValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    return filterTime.integerValue;
 }
+
+
 
 
 @end
