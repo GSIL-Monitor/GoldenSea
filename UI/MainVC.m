@@ -70,7 +70,7 @@
     
     NSLog(@"onTest");
     
-    [self testForAllLimit:NO];
+    [self testForTech];
 }
 
 
